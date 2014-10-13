@@ -3,3 +3,4 @@ build/*
 *.DS_Store
 Doxyfile
 *.vpp~1
+*.o
