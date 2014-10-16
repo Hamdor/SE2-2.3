@@ -16,8 +16,10 @@
 #include <stdint.h>
 #include <pthread.h>
 #include "HAWThread.h"
+#include "lib/util/mutex.hpp"
 
 using namespace thread;
+using namespace se2::util;
 
 class Blink_Thread: public HAWThread {
     /* Variablen deklarationen */
@@ -30,7 +32,7 @@ class Blink_Thread: public HAWThread {
         uint8_t ioControlBitmask_ ;  ///< Setzen der Richtungsbits.
         uint8_t greenLightBitmask_;  ///< Bitmaske zum Ansteuern der gruenen Lampe.
 
-        static pthread_mutex_t mtx_; ///< Synchronisationsmutex.
+        static mutex mtx_;           ///< Synchronisationsmutex.
 
     /* Methoden deklarationen */
     public:

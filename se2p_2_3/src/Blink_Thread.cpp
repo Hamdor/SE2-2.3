@@ -15,11 +15,15 @@
 #include <unistd.h>
 #include <time.h>
 #include "Blink_Thread.h"
-#include "lib/Lock.h"
-#include "lib/HWaccess.h"
+
+#include "lib/HWaccess.hpp"
+#include "lib/util/mutex.hpp"
+#include "lib/util/lock_guard.hpp"
+
+using namespace se2::util;
 
 /* Zuweisung der Klassenvariablen */
-pthread_mutex_t Blink_Thread::mtx_ = PTHREAD_MUTEX_INITIALIZER;
+mutex Blink_Thread::mtx_;
 
 /**
  *  Standard Konstruktor.
@@ -62,7 +66,7 @@ Blink_Thread::~Blink_Thread() {
  */
 void Blink_Thread::execute(void*){
     /* Klassenweiten Mutex, locken. */
-    Lock lock(&mtx_);
+    lock_guard lock(mtx_);
     cout << "Blink_Thread executing" << endl;
 
     /* Zugriffsrechte von QNX fuer diesen Thread, auf die Hardware erbitten. */
