@@ -20,13 +20,16 @@ LDFLAGS+=-lang-c++ -Y _gpp
 VFLAG_g=-gstabs+
 
 #===== EXTRA_SRCVPATH - a space-separated list of directories to search for source files.
-EXTRA_SRCVPATH+=$(PROJECT_ROOT)/src $(PROJECT_ROOT)/src/lib
+EXTRA_SRCVPATH+=$(PROJECT_ROOT)/src $(PROJECT_ROOT)/src/lib $(PROJECT_ROOT)/src/lib/util
 
 #===== LIBS - a space-separated list of library items to be included in the link.
-LIBS+=IOaccess cpt_terminal
+LIBS+=ioaccess cpt_terminal
 
 #===== CCFLAGS - add the flags to the C compiler command line. 
-CCFLAGS+=-Y _gpp
+CCFLAGS+=-Y _gpp -DSIMULATION
+
+#===== EXTRA_LIBVPATH - a space-separated list of directories to search for library files.
+EXTRA_LIBVPATH+=/opt/qnx660/target/qnx6/x86/lib
 
 include $(MKFILES_ROOT)/qmacros.mk
 ifndef QNX_INTERNAL
