@@ -37,7 +37,7 @@ Blink_Thread::Blink_Thread(uint16_t times): times_(times) {
      * damit auch nicht gegen die const correctness siehe Blink_Thread.h .
      */
   
-    cout << "ctor: Blink_Thread" << endl;
+    std::cout << "ctor: Blink_Thread" << std::endl;
 
     ioControlAddress_ = 0x303;
     registerAddress_  = 0x300;
@@ -55,7 +55,7 @@ Blink_Thread::Blink_Thread(uint16_t times): times_(times) {
  * --> Automatischer Dekonstruktoraufruf.  
  */
 Blink_Thread::~Blink_Thread() {
-    cout << "dtor: Blink_Thread" << endl;
+    std::cout << "dtor: Blink_Thread" << std::endl;
 }
 
 
@@ -67,11 +67,11 @@ Blink_Thread::~Blink_Thread() {
 void Blink_Thread::execute(void*){
     /* Klassenweiten Mutex, locken. */
     lock_guard lock(mtx_);
-    cout << "Blink_Thread executing" << endl;
+    std::cout << "Blink_Thread executing" << std::endl;
 
     /* Zugriffsrechte von QNX fuer diesen Thread, auf die Hardware erbitten. */
     if( ThreadCtl(_NTO_TCTL_IO_PRIV,0) == -1 ){
-        cout << "Can't get Hardware access, therefore can't do anything." << endl;
+        std::cout << "Can't get Hardware access, therefore can't do anything." << std::endl;
     }
     
     /* IO Register als Eingänge bzw. Ausgänge definieren. */
@@ -97,7 +97,7 @@ void Blink_Thread::execute(void*){
  * evtl. aufraumen das Threadablauf.
  */
 void Blink_Thread::shutdown(){
-    cout << "Blink_Thread shutdown" << endl;
+    std::cout << "Blink_Thread shutdown" << std::endl;
 }
 
 
@@ -106,7 +106,7 @@ void Blink_Thread::shutdown(){
  * @return liefert immer 0 zurueck. 
  */
 uint8_t Blink_Thread::turnGreenOn() const {
-    cout << "Turning green light on." << endl;
+    std::cout << "Turning green light on." << std::endl;
     /* Bit fuer gruenes Licht setzen. */
     out8(registerAddress_, in8(registerAddress_) | greenLightBitmask_);
     return 0;
@@ -118,7 +118,7 @@ uint8_t Blink_Thread::turnGreenOn() const {
  * @return liefert immer 0 zurueck. 
  */
 uint8_t Blink_Thread::turnGreenOff() const {
-    cout << "Turning green light off." << endl;
+    std::cout << "Turning green light off." << std::endl;
     /* Bit fuer gruenes Licht loeschen. */
     out8(registerAddress_, in8(registerAddress_) & ~greenLightBitmask_);
     return 0;
