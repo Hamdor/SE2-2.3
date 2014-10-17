@@ -18,7 +18,6 @@
 #include "HAWThread.h"
 #include "lib/util/mutex.hpp"
 
-using namespace thread;
 using namespace se2::util;
 
 class Blink_Thread: public HAWThread {

@@ -1,75 +1,71 @@
-/***************************************************************************
-*                                                                         
-*    Hochschule für Angewandte Wissenschaften Hamburg              
-*                                                                          
-*    WP
-*    Effiziente Datenstrukturen in C++ für verteilte Echtzeitprogrammierung
-*
-*	 Prof. Dr. Stephan Pareigis  
-*
-*    Thread Class Implementation                                                                         
-****************************************************************************/
-
+/******************************************************************************
+ *                                                                            *
+ *    Hochschule fÃ¼r Angewandte Wissenschaften Hamburg                        *
+ *                                                                            *
+ *    WP                                                                      *
+ *    Effiziente Datenstrukturen in C++ fÃ¼r verteilte Echtzeitprogrammierung  *
+ *                                                                            *
+ *    Prof. Dr. Stephan Pareigis                                              *
+ *                                                                            *
+ *    Thread Class Implementation                                             *
+ *                                                                            *
+ ******************************************************************************
+ * Gruppe 2.3:                                                                *
+ * Bei dieser Datei wurde Namespace sowie Codingstyle angepasst.              *
+ * Variablennamen und C-Style Casts wurden Refaktorisiert.                    *
+ * Die Originalversion dieser Datei befindet sich im Pub.                     *
+ ******************************************************************************/
 
 #include "HAWThread.h"
 
+using namespace se2::util;
 
-namespace thread
-{
+volatile bool HAWThread::s_exit = false;
 
-volatile bool HAWThread::GLOBAL_EXIT = false;
-
-
-HAWThread::HAWThread() 
-: bRunning_(false)
-, LOCAL_EXIT(false)
-{
+HAWThread::HAWThread() : m_running(false), m_exit(false), m_arg(NULL) {
+  // nop
 }
 
-HAWThread::~HAWThread()
-{
-	ThreadDestroy(tid_ , 0 , 0);	
+HAWThread::~HAWThread() {
+	ThreadDestroy(m_tid , 0 , 0);
 }
 
-void  HAWThread::start(void * arg)
-{
-	if ( bRunning_ ) return;
-	bRunning_ = true;	
-   Arg(arg); // store user data
-   int code = pthread_create(&tid_, NULL, (HAWThread::entryPoint), this);
-   if ( code != 0 ) cout<<"Thread could not be started."<<endl;
+void HAWThread::start(void * arg) {
+	if (m_running) {
+	  return;
+	}
+	m_running = true;
+  Arg(arg); // store user data
+  int rc = pthread_create(&m_tid, NULL, (HAWThread::entryPoint), this);
+  if (rc != 0) {
+    std::cout << "Thread could not be started. Error: "
+              << rc << std::endl;
+  }
 }
 
-void HAWThread::stop()
-{
-	LOCAL_EXIT = true;	
+void HAWThread::stop() {
+	m_exit = true;
 }
 
-void HAWThread::hold()
-{
-	ThreadCtl(_NTO_TCTL_ONE_THREAD_HOLD,  (void*) tid_);
-}
-void HAWThread::cont()
-{
-	ThreadCtl(_NTO_TCTL_ONE_THREAD_CONT,  (void*) tid_);
+void HAWThread::hold() {
+	ThreadCtl(_NTO_TCTL_ONE_THREAD_HOLD, static_cast<void*>(&m_tid));
 }
 
+void HAWThread::cont() {
+	ThreadCtl(_NTO_TCTL_ONE_THREAD_CONT, static_cast<void*>(&m_tid));
+}
 
-void HAWThread::run(void * arg)
-{
+void HAWThread::run(void* arg) {
    execute( arg );
    shutdown();
 }
 
-void* HAWThread::entryPoint(void* pthis)
-{
-   HAWThread* pt = (HAWThread*)pthis;
-   pt->run( pt->Arg() );
+void* HAWThread::entryPoint(void* pthis) {
+  HAWThread* pt = static_cast<HAWThread*>(pthis);
+  pt->run(pt->Arg());
   return NULL;
 }
 
-void HAWThread::join() const
-{
-	pthread_join( tid_ , NULL );
+void HAWThread::join() const {
+	pthread_join(m_tid, NULL);
 }
-};
