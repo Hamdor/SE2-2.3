@@ -15,7 +15,7 @@
 
 #include <stdint.h>
 #include <pthread.h>
-#include "HAWThread.h"
+#include "lib/util/HAWThread.hpp"
 #include "lib/util/mutex.hpp"
 
 using namespace se2::util;
