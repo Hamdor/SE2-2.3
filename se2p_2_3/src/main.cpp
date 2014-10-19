@@ -7,7 +7,7 @@
  *          da, hier bereits alles Grundlegende Konfiguriert ist.
  */
 
-//#define SIMULATION  // #define Auskommentieren falls mit der Simulation gearbeitet wird.
+#define SIMULATION  // #define Auskommentieren falls mit der Simulation gearbeitet wird.
 
 #include <cstdlib>
 #include <iostream>
@@ -15,6 +15,8 @@
 #include "lib/HWaccess.hpp"
 
 using namespace std;
+using namespace se2;
+using namespace se2::util;
 
 int main(int argc, char *argv[]) {
 
