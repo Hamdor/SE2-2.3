@@ -22,7 +22,7 @@ using namespace se2::util;
 
 volatile bool HAWThread::s_exit = false;
 
-HAWThread::HAWThread() : m_running(false), m_exit(false), m_arg(NULL) {
+HAWThread::HAWThread() : m_running(false), m_arg(NULL), m_exit(false) {
   // nop
 }
 
