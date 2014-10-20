@@ -50,9 +50,15 @@ hwaccess* hwaccess::get_instance() {
 
 hwaccess::hwaccess() {
 #ifdef USE_STUBS
+  /**
+   * TODO ADD STUBS HERE
+   * */
 #else
   m_inout = new iowrapper();
 #endif
+  /**
+   * TODO Init Control Register (IOCTLADDR)
+   * */
 }
 
 void hwaccess::set_motor(enum motor_modes mode, bool slow) {
