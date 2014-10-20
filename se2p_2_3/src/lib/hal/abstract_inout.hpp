@@ -49,13 +49,13 @@ struct abstract_inout {
    * @param port gibt den port an
    * @param val  gibt den wert an
    **/
-  virtual void out8(enum port_num port, uint8_t val) = 0;
+  virtual void outbyte(enum port_num port, uint8_t val) = 0;
 
   /**
    * Liest einen Wert vom angegebenen Port
    * @return den Wert des Ports
    **/
-  virtual uint8_t in8(enum port_num port) = 0;
+  virtual uint8_t inbyte(enum port_num port) = 0;
 
 
   /**

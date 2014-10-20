@@ -30,19 +30,29 @@
 namespace se2 {
 namespace hal {
 
-class iowrapper : public abstract_inout {
+struct iowrapper : public abstract_inout {
+  /**
+   * Default Konstruktor
+   **/
+  iowrapper();
+
+  /**
+   * Default Destruktor
+   **/
+  ~iowrapper();
+
   /**
    * Schreibt einen Wert auf den angegebenen Port
    * @param port gibt den port an
    * @param val  gibt den wert an
    **/
-  void out8(enum port_num port, uint8_t val);
+  void outbyte(enum port_num port, uint8_t val);
 
   /**
    * Liest einen Wert vom angegebenen Port
    * @return den Wert des Ports
    **/
-  uint8_t in8(enum port_num port);
+  uint8_t inbyte(enum port_num port);
 
   /**
    * Schreibt ein Bit auf die angegebene Position des

@@ -23,15 +23,24 @@
  **/
 
 #include "lib/hal/iowrapper.hpp"
+
 #include <hw/inout.h>
 
 using namespace se2::hal;
 
-void iowrapper::out8(enum port_num port, uint8_t val) {
+iowrapper::iowrapper() {
+  // nop
+}
+
+iowrapper::~iowrapper() {
+  // nop
+}
+
+void iowrapper::outbyte(enum port_num port, uint8_t val) {
   ::out8(static_cast<uint16_t>(port), val);
 }
 
-uint8_t iowrapper::in8(enum port_num port) {
+uint8_t iowrapper::inbyte(enum port_num port) {
   return ::in8(static_cast<uint16_t>(port));
 }
 
