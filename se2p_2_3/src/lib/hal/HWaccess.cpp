@@ -61,6 +61,10 @@ hwaccess::hwaccess() {
    * */
 }
 
+hwaccess::~hwaccess() {
+  delete m_io;
+}
+
 /**
  * Für die anzusteuernden Bits kann das übergebene
  * enum einfach zu einem Int gecastet werden. Sonderfall hier

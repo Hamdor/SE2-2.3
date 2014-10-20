@@ -109,6 +109,11 @@ enum light_colors {
 
 struct hwaccess {
   /**
+   * Default Destruktor
+   **/
+  ~hwaccess();
+
+  /**
    * Setzt den Motor Modus (Aus, Rechtslauf, Linkslauf)
    * @param mode  Gibt den Modus an
    **/
