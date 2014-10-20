@@ -54,53 +54,79 @@ hwaccess::hwaccess() {
    * TODO ADD STUBS HERE
    * */
 #else
-  m_inout = new iowrapper();
+  m_io = new iowrapper();
 #endif
   /**
    * TODO Init Control Register (IOCTLADDR)
    * */
 }
 
-void hwaccess::set_motor(enum motor_modes mode, bool slow) {
-
+/**
+ * Für die anzusteuernden Bits kann das übergebene
+ * enum einfach zu einem Int gecastet werden. Sonderfall hier
+ * ist `motor_fast`, hierbei muss Bit 2 entfernt werden.
+ **/
+void hwaccess::set_motor(enum motor_modes mode) {
+  if (mode == motor_fast) {
+    // Motor soll wieder schnell laufen
+    // setze Bit 2 auf 0
+    m_io->out1(PORTA, static_cast<uint8_t>(motor_slow), false);
+    return;
+  }
+  const uint8_t bit = static_cast<uint8_t>(mode);
+  m_io->out1(PORTA, bit, true);
 }
 
 void hwaccess::open_switch() {
-
+  m_io->out1(PORTA, SWITCH_BIT, true);
 }
 
 void hwaccess::close_switch() {
-
+  m_io->out1(PORTA, SWITCH_BIT, false);
 }
 
-void hwaccess::set_light(enum button_leds light, bool on) {
-
+void hwaccess::set_light(enum light_colors light, bool on) {
+  m_io->out1(PORTA, static_cast<uint8_t>(light), on);
 }
 
 bool hwaccess::obj_in_light_barrier(enum light_barriers barrier) const {
-  return false;
+  return !m_io->in1(PORTB, static_cast<uint8_t>(barrier));
 }
 
 bool hwaccess::obj_has_valid_height() const {
-  return false;
+  return m_io->in1(PORTB, HEIGHT_BIT);
 }
 
 uint16_t hwaccess::get_height_value() {
+  /**
+   * TODO: Ansteuerung des Höhensensors
+   * 1. Steuersignal setzen
+   * 2. Wert auslesen
+   * 3. Wert zusammensetzen?
+   * "Analogeingabeport" => Adresse?
+   * */
   return 0;
 }
 
 bool hwaccess::obj_has_metal() const {
-  return false;
+  return m_io->in1(PORTB, METAL_BIT);
 }
 
 bool hwaccess::is_switch_open() const {
-  return false;
+  return m_io->in1(PORTB, SWITCH_OPEN_BIT);
 }
 
 void hwaccess::set_led_state(enum button_leds led, bool on) {
-
+  m_io->out1(PORTC, static_cast<uint8_t>(led), on);
 }
 
 bool hwaccess::is_button_pressed(enum buttons key) const {
-  return false;
+  bool value = m_io->in1(PORTC, static_cast<uint8_t>(key));
+  if (key == button_stop || key == button_estop) {
+    // Invertierte logik (low aktiv)
+    return !value;
+  } else {
+    // high aktiv
+    return value;
+  }
 }

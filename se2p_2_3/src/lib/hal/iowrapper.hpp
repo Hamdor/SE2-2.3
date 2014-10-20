@@ -59,7 +59,7 @@ struct iowrapper : public abstract_inout {
    * angegebenen Ports
    * @param
    **/
-  void out1(enum port_num port, uint8_t pos);
+  void out1(enum port_num port, uint8_t pos, bool set);
 
   /**
    * Liest einen Wert vom angegebenen Port

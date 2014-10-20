@@ -39,57 +39,80 @@ namespace hal {
  * Motor modes
  **/
 enum motor_modes {
-  motor_stop,
-  motot_right,
-  motor_left
+  motot_right = 0,
+  motor_left  = 1,
+  motor_slow  = 2,
+  motor_stop  = 3,
+  motor_fast  = 4
 };
+
+/**
+ * Bit Position der Weiche auf Port A
+ **/
+#define SWITCH_BIT 4
+
+/**
+ * Bit Position für geöffnete Weiche Sensor auf Port B
+ **/
+#define SWITCH_OPEN_BIT 5
+
+/**
+ * Bit Position für Höhensensor auf Port B
+ * (Tolleranzbereich, nicht Absolutwert)
+ **/
+#define HEIGHT_BIT 2
+
+/**
+ * Bit Position für Metallsensor auf Port B
+ **/
+#define METAL_BIT 4
 
 /**
  * LEDs der einzelnen Knöpfe
  **/
 enum button_leds {
-  start_button,
-  reset_button,
-  q1_button,
-  q2_button
+  start_button = 0,
+  reset_button = 1,
+  q1_button    = 2,
+  q2_button    = 3
 };
 
 /**
  * Verfügbare Knöpfe
  **/
 enum buttons {
-  button_start,
-  button_stop,
-  button_estop
+  button_start = 4, // 1 => gedrückt
+  button_stop  = 5, // 1 => NICHT gedrückt
+  button_reset = 6, // 1 => gedrückt
+  button_estop = 7  // 1 => NICHT gedrückt
 };
 
 /**
  * Lichtschranken des Systems
  **/
 enum light_barriers {
-  entrace_sensor,
-  height_sensor,
-  switch_sensor,
-  light_sensor,
-  exit_sensor
+  entrace_sensor = 0, // einlauf
+  height_sensor  = 1, // höhensensor
+  switch_sensor  = 3, // weiche
+  slight_sensor  = 6, // rutsche
+  exit_sensor    = 7  // auslauf
 };
 
 /**
  * Lampen der Ampel
  **/
 enum light_colors {
-  red,
-  yellow,
-  green
+  green  = 5,
+  yellow = 6,
+  red    = 7
 };
 
 struct hwaccess {
   /**
    * Setzt den Motor Modus (Aus, Rechtslauf, Linkslauf)
    * @param mode  Gibt den Modus an
-   * @param slow  Wenn true läuft der Motor langsam
    **/
-  void set_motor(enum motor_modes mode, bool slow);
+  void set_motor(enum motor_modes mode);
 
   /**
    * Öffnet die Weiche, wenn Weiche offen keine weitere Reaktion
@@ -106,7 +129,7 @@ struct hwaccess {
    * @param light Bestimmt die Lampe
    * @param on    Bestimmt ob an oder aus
    **/
-  void set_light(enum button_leds light, bool on);
+  void set_light(enum light_colors light, bool on);
 
   /**
    * Prüft ob die angegebene Lichtschranke unterbrochen ist
@@ -178,7 +201,7 @@ struct hwaccess {
   /**
    * Member deklaration
    **/
-  abstract_inout* m_inout;
+  abstract_inout* m_io;
 };
 
 } // namespace hal

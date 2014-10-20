@@ -44,9 +44,13 @@ uint8_t iowrapper::inbyte(enum port_num port) {
   return ::in8(static_cast<uint16_t>(port));
 }
 
-void iowrapper::out1(enum port_num port, uint8_t pos) {
+void iowrapper::out1(enum port_num port, uint8_t pos, bool set) {
   const uint8_t bit = 0x01 << pos;
-  ::out8(static_cast<uint16_t>(port), ::in8(static_cast<uint16_t>(port)) | bit);
+  if (set) {
+    ::out8(static_cast<uint16_t>(port), ::in8(static_cast<uint16_t>(port)) | bit);
+  } else {
+    ::out8(static_cast<uint16_t>(port), ::in8(static_cast<uint16_t>(port)) & ~bit);
+  }
 }
 
 uint8_t iowrapper::in1(enum port_num port, uint8_t bit) {
