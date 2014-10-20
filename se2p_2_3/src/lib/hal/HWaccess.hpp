@@ -29,7 +29,6 @@
 #include "lib/util/mutex.hpp"
 
 #include <sys/neutrino.h>
-#include <hw/inout.h>
 #include <ioaccess.h>
 
 namespace se2 {

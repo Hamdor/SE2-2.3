@@ -25,10 +25,13 @@
 #ifndef SE2_ABSTRACT_INOUT_HPP
 #define SE2_ABSTRACT_INOUT_HPP
 
+#include <stdint.h>
+
 namespace se2 {
 namespace hal {
 
-#define IOBASE 0x300
+#define IOCTLADDR 0x303  // Register zum definieren der input/output Ports
+#define IOBASE    0x300  // IO Base Register
 
 enum port_num {
   PORTA = IOBASE + 0x00, // IOBASE + 0x00

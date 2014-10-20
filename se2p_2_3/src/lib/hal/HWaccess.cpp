@@ -23,7 +23,7 @@
  * Allgemeiner Zugriff auf Hardware, sowie Ansteuerung der Sensorik und Aktorik
  **/
 
-#include "lib/HWaccess.hpp"
+#include "lib/hal/HWaccess.hpp"
 
 #include "lib/util/lock_guard.hpp"
 
