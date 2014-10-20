@@ -27,11 +27,13 @@
 #define SE2_HWACCESS_HPP
 
 #include "lib/util/mutex.hpp"
+#include "lib/hal/abstract_inout.hpp"
 
 #include <sys/neutrino.h>
 #include <ioaccess.h>
 
 namespace se2 {
+namespace hal {
 
 /**
  * Motor modes
@@ -172,8 +174,14 @@ struct hwaccess {
    **/
   hwaccess();
   hwaccess(const hwaccess&);
+
+  /**
+   * Member deklaration
+   **/
+  abstract_inout* m_inout;
 };
 
+} // namespace hal
 } // namespace se2
 
 #endif // SE2_HWACCESS_HPP

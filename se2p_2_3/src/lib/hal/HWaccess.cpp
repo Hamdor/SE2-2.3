@@ -25,10 +25,12 @@
 
 #include "lib/hal/HWaccess.hpp"
 
+#include "lib/hal/iowrapper.hpp"
 #include "lib/util/lock_guard.hpp"
 
 using namespace se2;
 using namespace se2::util;
+using namespace se2::hal;
 
 hwaccess* hwaccess::instance = NULL;
 mutex     hwaccess::s_lock;
@@ -47,7 +49,10 @@ hwaccess* hwaccess::get_instance() {
 }
 
 hwaccess::hwaccess() {
-  // nop
+#ifdef USE_STUBS
+#else
+  m_inout = new iowrapper();
+#endif
 }
 
 void hwaccess::set_motor(enum motor_modes mode, bool slow) {
