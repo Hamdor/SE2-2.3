@@ -16,7 +16,7 @@
 #include <time.h>
 #include "Blink_Thread.h"
 
-#include "lib/HWaccess.hpp"
+#include "lib/hal/HWaccess.hpp"
 #include "lib/util/mutex.hpp"
 #include "lib/util/lock_guard.hpp"
 

@@ -12,7 +12,7 @@
 #include <cstdlib>
 #include <iostream>
 #include "Blink_Thread.h"
-#include "lib/HWaccess.hpp"
+#include "lib/hal/HWaccess.hpp"
 
 using namespace std;
 using namespace se2;
