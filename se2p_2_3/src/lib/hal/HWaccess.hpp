@@ -29,7 +29,6 @@
 #include "lib/util/mutex.hpp"
 #include "lib/hal/abstract_inout.hpp"
 
-#include <sys/neutrino.h>
 #include <ioaccess.h>
 
 namespace se2 {
