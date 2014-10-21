@@ -41,12 +41,9 @@ iowrapper::~iowrapper() {
 }
 
 void iowrapper::init_input_output() {
-  /**
-   * TODO: Port B und Port C hinzufügen
-   * */
-  uint16_t ioControlAddress_  = 0x303;      // Port A
-  uint8_t  ioControlBitmask_  = 0b10001010; // Port A Mask
-  out8(ioControlAddress_, ioControlBitmask_);
+  out8(IOCTLADDRA, IOCTLPORTA);
+  out8(IOCTLADDRB, IOCTLPORTB);
+  out8(IOCTLADDRC, IOCTLPORTC);
 }
 
 void iowrapper::outbyte(enum port_num port, uint8_t val) {
