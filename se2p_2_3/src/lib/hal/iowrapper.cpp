@@ -41,9 +41,7 @@ iowrapper::~iowrapper() {
 }
 
 void iowrapper::init_input_output() {
-  out8(IOCTLADDRA, IOCTLPORTA);
-  out8(IOCTLADDRB, IOCTLPORTB);
-  out8(IOCTLADDRC, IOCTLPORTC);
+  out8(IOCTLADDR, IOCTLPORT);
 }
 
 void iowrapper::outbyte(enum port_num port, uint8_t val) {

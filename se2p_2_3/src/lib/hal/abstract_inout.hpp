@@ -30,16 +30,9 @@
 namespace se2 {
 namespace hal {
 
-#define IOCTLADDRA 0x303      // Register zum definieren der input/output Ports
-#define IOCTLADDRB IOCTLADDRA + 0x01 // Port B korrekt?
-#define IOCTLADDRC IOCTLADDRA + 0x02 // Port C korrekt?
-                 //  76543210
-#define IOCTLPORTA 0b00000000 // IO Control Mask Port A korrekt? (Alle Out)
-#define IOCTLPORTB 0b11111111 // IO Control Mask Port B korrekt? (Alle In)
-#define IOCTLPORTC 0b11110000 // IO Control Mask Port C korrekt?
-                              // (0 bis 3 Out, 4 bis 7 In)
-
-#define IOBASE     0x300  // IO Base Register
+#define IOBASE    0x300         // IO Base Register
+#define IOCTLADDR IOBASE + 0x03 // Register zum definieren der input/output Ports
+#define IOCTLPORT 0x82
 
 enum port_num {
   PORTA = IOBASE + 0x00, // IOBASE + 0x00

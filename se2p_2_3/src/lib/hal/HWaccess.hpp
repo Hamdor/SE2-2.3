@@ -60,7 +60,7 @@ namespace hal {
  * Motor modes
  **/
 enum motor_modes {
-  motot_right = 0,
+  motor_right = 0,
   motor_left  = 1,
   motor_slow  = 2,
   motor_stop  = 3,
