@@ -51,6 +51,19 @@ struct iowrapper : public abstract_inout {
    * @param port gibt den port an
    * @param val  gibt den wert an
    **/
+  void outshort(enum port_num port, uint16_t val);
+
+  /**
+   * Liest einen Wert vom angegebenen Port
+   * @return den Wert des Ports
+   **/
+  uint16_t inshort(enum port_num port);
+
+  /**
+   * Schreibt einen Wert auf den angegebenen Port
+   * @param port gibt den port an
+   * @param val  gibt den wert an
+   **/
   void outbyte(enum port_num port, uint8_t val);
 
   /**
@@ -64,7 +77,7 @@ struct iowrapper : public abstract_inout {
    * angegebenen Ports
    * @param
    **/
-  void out1(enum port_num port, uint8_t pos, bool set);
+  void outbit(enum port_num port, uint8_t pos, bool set);
 
   /**
    * Liest einen Wert vom angegebenen Port
@@ -73,7 +86,7 @@ struct iowrapper : public abstract_inout {
    * @return Wenn Positiv, dann ist das Bit gesetzt
    *         Wenn 0, dann ist das Bit nicht gesetzt
    **/
-  uint8_t in1(enum port_num port, uint8_t bit);
+  uint8_t inbit(enum port_num port, uint8_t bit);
 };
 
 } // namespace hal

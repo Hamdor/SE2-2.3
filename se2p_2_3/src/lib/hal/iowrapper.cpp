@@ -44,6 +44,14 @@ void iowrapper::init_input_output() {
   out8(IOCTLADDR, IOCTLPORT);
 }
 
+void iowrapper::outshort(enum port_num port, uint16_t val) {
+  out16(static_cast<uint16_t>(port), val);
+}
+
+uint16_t iowrapper::inshort(enum port_num port) {
+  return in16(static_cast<uint16_t>(port));
+}
+
 void iowrapper::outbyte(enum port_num port, uint8_t val) {
   out8(static_cast<uint16_t>(port), val);
 }
@@ -52,7 +60,7 @@ uint8_t iowrapper::inbyte(enum port_num port) {
   return in8(static_cast<uint16_t>(port));
 }
 
-void iowrapper::out1(enum port_num port, uint8_t pos, bool set) {
+void iowrapper::outbit(enum port_num port, uint8_t pos, bool set) {
   const uint8_t bit = 0x01 << pos;
 #ifdef DEBUG_OUT
   std::cout << "iowrapper::out1()"
@@ -68,7 +76,7 @@ void iowrapper::out1(enum port_num port, uint8_t pos, bool set) {
   }
 }
 
-uint8_t iowrapper::in1(enum port_num port, uint8_t bit) {
+uint8_t iowrapper::inbit(enum port_num port, uint8_t bit) {
   const uint8_t mask = 0x01 << bit;
 #ifdef DEBUG_OUT
   std::cout << "iowrapper::out1()"

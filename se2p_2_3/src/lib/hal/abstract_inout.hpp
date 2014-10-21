@@ -34,6 +34,8 @@ namespace hal {
 #define IOCTLADDR IOBASE + 0x03 // Register zum definieren der input/output Ports
 #define IOCTLPORT 0x82
 
+#define IOANALOG  IOBASE + 0x02
+
 enum port_num {
   PORTA = IOBASE + 0x00, // IOBASE + 0x00
   PORTB = IOBASE + 0x01, // IOBASE + 0x01
@@ -55,6 +57,19 @@ struct abstract_inout {
    * @param port gibt den port an
    * @param val  gibt den wert an
    **/
+  virtual void outshort(enum port_num port, uint16_t val) = 0;
+
+  /**
+   * Liest einen Wert vom angegebenen Port
+   * @return den Wert des Ports
+   **/
+  virtual uint16_t inshort(enum port_num port) = 0;
+
+  /**
+   * Schreibt einen Wert auf den angegebenen Port
+   * @param port gibt den port an
+   * @param val  gibt den wert an
+   **/
   virtual void outbyte(enum port_num port, uint8_t val) = 0;
 
   /**
@@ -68,7 +83,7 @@ struct abstract_inout {
    * angegebenen Ports
    * @param
    **/
-  virtual void out1(enum port_num port, uint8_t pos, bool set) = 0;
+  virtual void outbit(enum port_num port, uint8_t pos, bool set) = 0;
 
   /**
    * Liest einen Wert vom angegebenen Port
@@ -77,7 +92,7 @@ struct abstract_inout {
    * @param set gibt an ob das Bit gesetzt werden soll
    * @return den Wert des Ports
    **/
-  virtual uint8_t in1(enum port_num port, uint8_t bit) = 0;
+  virtual uint8_t inbit(enum port_num port, uint8_t bit) = 0;
 };
 
 } // namespace hal
