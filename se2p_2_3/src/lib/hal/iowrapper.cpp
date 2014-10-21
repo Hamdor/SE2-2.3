@@ -24,7 +24,11 @@
 
 #include "lib/hal/iowrapper.hpp"
 
+#include <iostream>
+
 #include <hw/inout.h>
+#include <sys/neutrino.h>
+#include <ioaccess.h>
 
 using namespace se2::hal;
 
@@ -36,24 +40,46 @@ iowrapper::~iowrapper() {
   // nop
 }
 
+void iowrapper::init_input_output() {
+  /**
+   * TODO: Port B und Port C hinzufügen
+   * */
+  uint16_t ioControlAddress_  = 0x303;      // Port A
+  uint8_t  ioControlBitmask_  = 0b10001010; // Port A Mask
+  out8(ioControlAddress_, ioControlBitmask_);
+}
+
 void iowrapper::outbyte(enum port_num port, uint8_t val) {
-  ::out8(static_cast<uint16_t>(port), val);
+  out8(static_cast<uint16_t>(port), val);
 }
 
 uint8_t iowrapper::inbyte(enum port_num port) {
-  return ::in8(static_cast<uint16_t>(port));
+  return in8(static_cast<uint16_t>(port));
 }
 
 void iowrapper::out1(enum port_num port, uint8_t pos, bool set) {
   const uint8_t bit = 0x01 << pos;
+#ifdef DEBUG_OUT
+  std::cout << "iowrapper::out1()"
+            << " port: " << std::hex << static_cast<int>(port)
+            << " pos: "  << std::dec << static_cast<int>(pos)
+            << " bit: "  << std::dec << static_cast<int>(bit)
+            << " set: "  << set << std::endl;
+#endif
   if (set) {
-    ::out8(static_cast<uint16_t>(port), ::in8(static_cast<uint16_t>(port)) | bit);
+    out8(uint16_t(port), in8(uint16_t(port)) | bit);
   } else {
-    ::out8(static_cast<uint16_t>(port), ::in8(static_cast<uint16_t>(port)) & ~bit);
+    out8(uint16_t(port), in8(uint16_t(port)) & ~bit);
   }
 }
 
 uint8_t iowrapper::in1(enum port_num port, uint8_t bit) {
   const uint8_t mask = 0x01 << bit;
-  return ::in8(static_cast<uint16_t>(port)) & mask;
+#ifdef DEBUG_OUT
+  std::cout << "iowrapper::out1()"
+            << " port: " << std::hex << static_cast<int>(port)
+            << " mask: " << std::hex << static_cast<int>(mask)
+            << " bit: "  << std::dec << static_cast<int>(bit) << std::endl;
+#endif
+  return in8(static_cast<uint16_t>(port)) & mask;
 }

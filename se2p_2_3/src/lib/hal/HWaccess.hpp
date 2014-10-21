@@ -36,17 +36,6 @@ namespace se2 {
 namespace hal {
 
 /**
- * Motor modes
- **/
-enum motor_modes {
-  motot_right = 0,
-  motor_left  = 1,
-  motor_slow  = 2,
-  motor_stop  = 3,
-  motor_fast  = 4
-};
-
-/**
  * Bit Position der Weiche auf Port A
  **/
 #define SWITCH_BIT 4
@@ -66,6 +55,17 @@ enum motor_modes {
  * Bit Position für Metallsensor auf Port B
  **/
 #define METAL_BIT 4
+
+/**
+ * Motor modes
+ **/
+enum motor_modes {
+  motot_right = 0,
+  motor_left  = 1,
+  motor_slow  = 2,
+  motor_stop  = 3,
+  motor_fast  = 4
+};
 
 /**
  * LEDs der einzelnen Knöpfe
@@ -189,13 +189,13 @@ struct hwaccess {
   /**
    * Singleton
    **/
- private:
-  static hwaccess*   instance;
-  static util::mutex s_lock;
   /**
    * @return Gibt die Instanz der HAL zurück
    **/
   static hwaccess* get_instance();
+ private:
+  static hwaccess*   instance;
+  static util::mutex s_lock;
 
   /**
    * Private Konstruktoren

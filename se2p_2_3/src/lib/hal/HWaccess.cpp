@@ -28,6 +28,8 @@
 #include "lib/hal/iowrapper.hpp"
 #include "lib/util/lock_guard.hpp"
 
+#include <iostream>
+
 using namespace se2;
 using namespace se2::util;
 using namespace se2::hal;
@@ -39,6 +41,14 @@ mutex     hwaccess::s_lock;
  * Singleton nach DCLP - Double Checked Locking Pattern
  **/
 hwaccess* hwaccess::get_instance() {
+  /**
+   * Dieser Thread möchte gern auf HW zugreifen,
+   * ThreadCtl geben.
+   **/
+  if (ThreadCtl(_NTO_TCTL_IO_PRIV, NULL) == -1) {
+      std::cerr << "hwaccess::get_instance() : ThreadCtl() failed!"
+                << std::endl;
+  }
   if (!instance) {
     lock_guard lock(s_lock);
     if (!instance) {
@@ -56,6 +66,7 @@ hwaccess::hwaccess() {
 #else
   m_io = new iowrapper();
 #endif
+  m_io->init_input_output();
   /**
    * TODO Init Control Register (IOCTLADDR)
    * */
@@ -121,11 +132,11 @@ bool hwaccess::is_switch_open() const {
 }
 
 void hwaccess::set_led_state(enum button_leds led, bool on) {
-  m_io->out1(PORTC, static_cast<uint8_t>(led), on);
+  m_io->out1(PORTC, static_cast<int>(led), on);
 }
 
 bool hwaccess::is_button_pressed(enum buttons key) const {
-  bool value = m_io->in1(PORTC, static_cast<uint8_t>(key));
+  bool value = m_io->in1(PORTC, static_cast<int>(key));
   if (key == button_stop || key == button_estop) {
     // Invertierte logik (low aktiv)
     return !value;

@@ -42,6 +42,11 @@ struct iowrapper : public abstract_inout {
   ~iowrapper();
 
   /**
+   * Schaltet die Ports auf Eingang oder Ausgang
+   **/
+  void init_input_output();
+
+  /**
    * Schreibt einen Wert auf den angegebenen Port
    * @param port gibt den port an
    * @param val  gibt den wert an

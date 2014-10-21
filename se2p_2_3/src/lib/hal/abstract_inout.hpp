@@ -45,6 +45,11 @@ struct abstract_inout {
   }
 
   /**
+   * Schaltet die Ports auf Eingang oder Ausgang
+   **/
+  virtual void init_input_output() = 0;
+
+  /**
    * Schreibt einen Wert auf den angegebenen Port
    * @param port gibt den port an
    * @param val  gibt den wert an
@@ -56,7 +61,6 @@ struct abstract_inout {
    * @return den Wert des Ports
    **/
   virtual uint8_t inbyte(enum port_num port) = 0;
-
 
   /**
    * Schreibt ein Bit auf die angegebene Position des
