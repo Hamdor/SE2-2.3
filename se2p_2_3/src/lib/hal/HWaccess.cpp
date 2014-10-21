@@ -132,11 +132,11 @@ bool hwaccess::is_switch_open() const {
 }
 
 void hwaccess::set_led_state(enum button_leds led, bool on) {
-  m_io->out1(PORTC, static_cast<int>(led), on);
+  m_io->out1(PORTC, static_cast<uint8_t>(led), on);
 }
 
 bool hwaccess::is_button_pressed(enum buttons key) const {
-  bool value = m_io->in1(PORTC, static_cast<int>(key));
+  bool value = m_io->in1(PORTC, static_cast<uint8_t>(key));
   if (key == button_stop || key == button_estop) {
     // Invertierte logik (low aktiv)
     return !value;
