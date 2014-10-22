@@ -34,7 +34,8 @@ namespace hal {
 #define IOCTLADDR IOBASE + 0x03 // Register zum definieren der input/output Ports
 #define IOCTLPORT 0x82
 
-#define IOANALOG  IOBASE + 0x02
+#define IOANALOG  IOBASE + 0x02 // FIXME: Addresse ist falsch
+                                // ist eigenes Register!
 
 enum port_num {
   PORTA = IOBASE + 0x00, // IOBASE + 0x00

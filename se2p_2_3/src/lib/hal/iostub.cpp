@@ -24,6 +24,13 @@
 
 #include "lib/hal/iostub.hpp"
 
+/**
+ * TODO:
+ * - Wenn Weiche geöffnet wird muss auch das Bit gekippt werden welches prüft
+ *   ob die Weiche geöffnet ist.
+ * - selbiges gilt für andere Sensoren
+ **/
+
 using namespace se2::hal;
 
 iostub::iostub(uint8_t portA, uint8_t portB, uint8_t portC)
@@ -38,29 +45,66 @@ iostub::~iostub() {
 }
 
 void iostub::init_input_output() {
-
+  // nop
 }
 
 void iostub::outshort(enum port_num port, uint16_t val) {
-
+  outbyte(port, val);
 }
 
 uint16_t iostub::inshort(enum port_num port) {
-
+  return inbyte(port);
 }
 
 void iostub::outbyte(enum port_num port, uint8_t val) {
-
+  if (port == PORTA) {
+    m_port_a = val;
+  } else if (port == PORTB) {
+    m_port_b = val;
+  } else {
+    m_port_c = val;
+  }
 }
 
 uint8_t iostub::inbyte(enum port_num port) {
-
+  if (port == PORTA) {
+    return m_port_a;
+  } else if (port == PORTB) {
+    return m_port_b;
+  } else {
+    return m_port_c;
+  }
 }
 
 void iostub::outbit(enum port_num port, uint8_t pos, bool set) {
-
+  const uint8_t mask = 0x01 << pos;
+  if (port == PORTA) {
+    if (set) {
+      m_port_a |= mask;
+    } else {
+      m_port_a &= ~mask;
+    }
+  } else if (port == PORTB) {
+    if (set) {
+      m_port_b |= mask;
+    } else {
+      m_port_b &= ~mask;
+    }
+  } else {
+    if (set) {
+      m_port_c |= mask;
+    } else {
+      m_port_c &= ~mask;
+    }
+  }
 }
 
 uint8_t iostub::inbit(enum port_num port, uint8_t bit) {
-
+  if (port == PORTA) {
+    return m_port_a & (0x01 << bit);
+  } else if (port == PORTB) {
+    return m_port_b & (0x01 << bit);
+  } else {
+    return m_port_c & (0x01 << bit);
+  }
 }

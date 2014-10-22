@@ -35,6 +35,11 @@ namespace se2 {
 namespace hal {
 
 /**
+ * DEBUG Define
+ **/
+//#define USE_STUBS
+
+/**
  * Bit Position der Weiche auf Port A
  **/
 #define SWITCH_BIT 4

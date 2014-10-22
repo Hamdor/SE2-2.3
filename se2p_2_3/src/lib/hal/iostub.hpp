@@ -27,6 +27,9 @@
 
 #include "lib/hal/abstract_inout.hpp"
 
+namespace se2 {
+namespace hal {
+
 struct iostub : public abstract_inout {
   /**
    * Default Konstruktor
@@ -85,10 +88,13 @@ struct iostub : public abstract_inout {
    **/
   uint8_t inbit(enum port_num port, uint8_t bit);
 
- pirvate:
+ private:
   uint8_t m_port_a;
   uint8_t m_port_b;
   uint8_t m_port_c;
 };
+
+} // namespace hal
+} // namespace se2
 
 #endif // SE2_IOSTUB_HPP
