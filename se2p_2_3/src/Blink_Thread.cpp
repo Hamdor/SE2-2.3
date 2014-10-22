@@ -76,6 +76,20 @@ void Blink_Thread::execute(void*){
       hal->set_led_state(reset_button, true);
       hal->set_led_state(q1_button, true);
       hal->set_led_state(q2_button, true);
+      //hal->get_height_value();
+      hal->open_switch();
+      if (hal->is_switch_open()) {
+        std::cout << "switch is open!" << std::endl;
+      } else {
+        std::cout << "switch isnt open! ERROR!" << std::endl;
+      }
+      usleep(500000);
+      hal->close_switch();
+      if (!hal->is_switch_open()) {
+        std::cout << "switch is closed!" << std::endl;
+      } else {
+        std::cout << "switch is open! ERROR!" << std::endl;
+      }
     }
   }
   hal->set_motor(motor_stop);
