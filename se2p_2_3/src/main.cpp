@@ -14,31 +14,36 @@
 #include "Blink_Thread.h"
 #include "lib/hal/HWaccess.hpp"
 
+#include "lib/serial_bus/serial_interface.hpp"
+
 using namespace std;
 using namespace se2;
 using namespace se2::util;
 
 int main(int argc, char *argv[]) {
+  // Baut Verbindung zu Simulation auf
+  #ifdef SIMULATION
+      IOaccess_open();
+  #endif
 
-    // Baut Verbindung zu Simulation auf
-    #ifdef SIMULATION
-        IOaccess_open();
-    #endif
+  cout << "First QNX Demo, let there be light!." << endl;
 
-    cout << "First QNX Demo, let there be light!." << endl;
+  Blink_Thread th1(5); // Thread 1, soll 5 mal blinken
+  Blink_Thread th2(3); // Thread 2, soll 3 mal blinken
 
-    Blink_Thread th1(5); // Thread 1, soll 5 mal blinken
-    Blink_Thread th2(3); // Thread 2, soll 3 mal blinken
+  th1.start(NULL);     // Start Thread 1
+  th2.start(NULL);     // Start Thread 2
 
-    th1.start(NULL);     // Start Thread 1
-    th2.start(NULL);     // Start Thread 2
+  th2.join();          // Warten auf das Ende von Thread 1
+  th1.join();          // Warten auf das Ende von Thread 2
 
-    th2.join();          // Warten auf das Ende von Thread 1
-    th1.join();          // Warten auf das Ende von Thread 2
+  serial_interface bus;
+  int integer = 0;
+  bus.read(&integer, sizeof(integer));
 
-    #ifdef SIMULATION
-       IOaccess_close();
-    #endif
+  #ifdef SIMULATION
+     IOaccess_close();
+  #endif
 
-    return EXIT_SUCCESS;
+  return EXIT_SUCCESS;
 }
