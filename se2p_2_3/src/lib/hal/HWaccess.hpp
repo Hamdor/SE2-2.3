@@ -37,7 +37,7 @@ namespace hal {
 /**
  * DEBUG Define
  **/
-//#define USE_STUBS
+#define USE_STUBS
 
 /**
  * Bit Position der Weiche auf Port A

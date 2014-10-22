@@ -64,8 +64,15 @@ hwaccess* hwaccess::get_instance() {
 
 hwaccess::hwaccess() {
 #ifdef USE_STUBS
+  /**
+   * Stub IO
+   * USE_STUBS ist definiert in HWaccess.hpp
+   **/
   m_io = new iostub(0b00000000, 0b11001011, 0b10100000);
 #else
+  /**
+   * Hardware IO
+   **/
   m_io = new iowrapper();
 #endif
   m_io->init_input_output();
