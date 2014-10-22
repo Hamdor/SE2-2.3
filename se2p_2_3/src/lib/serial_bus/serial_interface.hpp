@@ -25,12 +25,11 @@
 #ifndef SE2_SERIAL_INTERFACE_HPP
 #define SE2_SERIAL_INTERFACE_HPP
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
 #include <unistd.h>
 
-class serial_interface{
+namespace se2 {
+
+class serial_interface {
  public:  
   /**
    * Default Konstruktor  
@@ -45,23 +44,30 @@ class serial_interface{
   /**
    * Schreibt Daten auf den Seriellen bus
    * @param data gibt die zu schreibenden Daten an
+   * @param len  gibt die Länge des Datentypens an
    * @return TRUE  wenn erfolgreich 
    *         FALSE wenn fehlschlägt
    **/
-  template<typename T>
-  bool write(T* data);
+  bool write(void* data, size_t len);
 
   /**
    * Schreibt Daten auf den Seriellen bus
    * @param data gibt die zu schreibenden Daten an
+   * @param len  gibt die Länge des Datentypens an
    * @return TRUE  wenn erfolgreich  
    *         FALSE wenn fehlschlägt
    **/
-  template<typename T>
-  bool read(T* buffer);
+  bool read(void* buffer, size_t len);
 
  private:
   int m_fd;
+
+  /**
+   * Konfiguriert die Serielle Schnittstelle
+   **/
+  void config();
 };
+
+} // namespace se2
 
 #endif // SE2_SERIAL_INTERFACE_HPP

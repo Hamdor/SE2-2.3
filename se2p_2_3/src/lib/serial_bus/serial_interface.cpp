@@ -22,18 +22,25 @@
  * Implementierung der Seriellen Schnittstelle
  **/
 
-#include "lib/serial_interface/serial_interface.hpp"
-#include <cerrno>
+#include "lib/serial_bus/serial_interface.hpp"
+
+#include <termios.h>
+#include <fcntl.h>
+#include <stdio.h>
+
+using namespace se2;
 
 namespace {
   const char*  char_device = "dev/ser1";
 } // namespace <anonymous>
 
 serial_interface::serial_interface() {
-  m_fd = ::open(char_device, 0);
+  m_fd = ::open(char_device, O_RDWR);
   if (m_fd == -1) {
     perror("serial_interface::serial_interface() cant open file!");
+    return;
   }
+  config();
 }
 
 serial_interface::~serial_interface() {
@@ -42,30 +49,43 @@ serial_interface::~serial_interface() {
   }
 }
 
-template<typename T>
-bool serial_interface::read(T* buffer) {
-  int rc = 0;
-  while (rc != sizeof(T)) { 
-    int err = ::read(m_fd, static_cast<void*>(buffer) + rc, sizeof(T) - rc);
+bool serial_interface::read(void* buffer, size_t len) {
+  size_t rc = 0;
+  while (rc != len) {
+    ssize_t err = ::read(m_fd, static_cast<size_t*>(buffer) + rc, len - rc);
     if (err == -1) {
       perror("serial_interface::read()");
       break;
     }
     rc += err;
   }
-  return rc == sizeof(T);
+  return rc == len;
 }
 
-template<typename T>
-bool serial_interface::write(T* data) {
-  int rc = 0;
-  while ( rc != sizeof(T)) {
-    int err = ::write(m_fd, static_cast<void*>(data) + rc, sizeof(T) - rc);
+bool serial_interface::write(void* data, size_t len) {
+  size_t rc = 0;
+  while (rc != len) {
+    ssize_t err = ::write(m_fd, static_cast<size_t*>(data) + rc, len - rc);
     if (err == -1) {
       perror("serial_interface::write()");
       break;
     }
     rc += err;
   }
-  return rc == sizeof(T);
+  return rc == len;
+}
+
+void serial_interface::config() {
+  struct termios ts;
+  tcflush(m_fd, TCIOFLUSH);
+  tcgetattr(m_fd, &ts);
+  cfsetispeed(&ts, B19200);
+  cfsetospeed(&ts, B19200);
+  ts.c_cflag &= ~CSIZE;
+  ts.c_cflag &= ~CSTOPB;
+  ts.c_cflag &= ~PARENB;
+  ts.c_cflag |= CS8;
+  ts.c_cflag |= CREAD;
+  ts.c_cflag |= CLOCAL;
+  tcsetattr(m_fd, TCSANOW, &ts);
 }
