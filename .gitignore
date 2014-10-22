@@ -7,3 +7,4 @@ Doxyfile
 se2p_2_3/x86/o/se2p_2_3
 192.168.100.100/.trgtproject
 192.168.100.100/.project
+*.vpp~*
