@@ -23,13 +23,7 @@
  **/
 
 #include "lib/hal/iostub.hpp"
-
-/**
- * TODO:
- * - Wenn Weiche geöffnet wird muss auch das Bit gekippt werden welches prüft
- *   ob die Weiche geöffnet ist.
- * - selbiges gilt für andere Sensoren
- **/
+#include "lib/hal/HWaccess.hpp" // for defines
 
 using namespace se2::hal;
 
@@ -80,6 +74,9 @@ void iostub::outbit(enum port_num port, uint8_t pos, bool set) {
   const uint8_t mask = 0x01 << pos;
   if (port == PORTA) {
     if (set) {
+      if (pos == SWITCH_BIT) {
+        m_port_b |= (0x01 << SWITCH_OPEN_BIT);
+      }
       m_port_a |= mask;
     } else {
       m_port_a &= ~mask;
