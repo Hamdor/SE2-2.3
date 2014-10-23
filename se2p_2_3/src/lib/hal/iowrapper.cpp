@@ -26,10 +26,6 @@
 
 #include <iostream>
 
-#include <hw/inout.h>
-#include <sys/neutrino.h>
-#include <ioaccess.h>
-
 using namespace se2::hal;
 
 iowrapper::iowrapper() {

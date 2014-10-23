@@ -1,15 +1,12 @@
 /**
- * @file    Blink_Thread.cpp
- * @author  Simon Brummer
- * @version 0.1
- * ------------------------------------
+ * @file    test_thread.cpp
  * @author Gruppe 2.3
  * @version 0.2
  */
 
 #include <unistd.h>
 #include <time.h>
-#include "Blink_Thread.h"
+#include "test_thread.hpp"
 
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/mutex.hpp"
@@ -18,30 +15,21 @@
 using namespace se2::util;
 using namespace se2::hal;
 
-/* Zuweisung der Klassenvariablen */
-mutex Blink_Thread::mtx_;
+mutex test_thread::mtx_;
 
-/**
- *  Standard Konstruktor.
- *  Genauer beschreibender Text für Doxygen...
- *  @param times bestimmt wie oft das gruene Licht blinken soll. 
- */
-Blink_Thread::Blink_Thread(uint16_t times): times_(times) {
+test_thread::test_thread(uint16_t times): times_(times) {
   // nop
 }
 
-Blink_Thread::~Blink_Thread() {
+test_thread::~test_thread() {
   // nop
 }
 
-void Blink_Thread::execute(void*){
-  /* Klassenweiten Mutex, locken. */
+void test_thread::execute(void*){
   lock_guard lock(mtx_);
   std::cout << "Blink_Thread executing" << std::endl;
   hwaccess* hal = hwaccess::get_instance();
-  /* Gruenes Licht blinken lassen inkl. Pruefung ob der Thread extern gestoppt wurde. */
   for (int i = 0; i < times_; i++) {
-    /* Pruefen ob der Thread durch stop() beendet wurde. */
     if (!isStopped()) {
       hal->set_led_state(start_button, false);
       hal->set_led_state(reset_button, false);
@@ -95,6 +83,6 @@ void Blink_Thread::execute(void*){
   hal->set_motor(motor_stop);
 }
 
-void Blink_Thread::shutdown(){
+void test_thread::shutdown(){
     std::cout << "Blink_Thread shutdown" << std::endl;
 }

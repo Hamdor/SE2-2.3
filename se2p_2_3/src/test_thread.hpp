@@ -7,8 +7,8 @@
  * @version 0.2
  */
 
-#ifndef BLINK_THREAD_H_
-#define BLINK_THREAD_H_
+#ifndef TEST_THREAD_HPP
+#define TEST_THREAD_HPP
 
 #include <stdint.h>
 #include <pthread.h>
@@ -18,18 +18,18 @@
 
 using namespace se2::util;
 
-class Blink_Thread: public HAWThread {
+class test_thread : public HAWThread {
  private:
   uint16_t const times_;
   static mutex mtx_;
  public:
-  Blink_Thread(uint16_t times);
-  virtual ~Blink_Thread();
+  test_thread(uint16_t times);
+  virtual ~test_thread();
  private:
-  Blink_Thread(const Blink_Thread& b);
-  Blink_Thread& operator=(Blink_Thread& b);
+  test_thread(const test_thread& b);
+  test_thread& operator=(test_thread& b);
   virtual void execute(void*);
   virtual void shutdown();
 };
 
-#endif
+#endif // TEST_THREAD_HPP
