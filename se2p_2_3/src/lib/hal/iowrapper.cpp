@@ -70,9 +70,9 @@ void iowrapper::outbit(enum port_num port, uint8_t pos, bool set) {
             << " set: "  << set << std::endl;
 #endif
   if (set) {
-    out8(uint16_t(port), in8(uint16_t(port)) | bit);
+    out8(static_cast<uint16_t>(port), in8(static_cast<uint16_t>(port)) | bit);
   } else {
-    out8(uint16_t(port), in8(uint16_t(port)) & ~bit);
+    out8(static_cast<uint16_t>(port), in8(static_cast<uint16_t>(port)) & ~bit);
   }
 }
 
