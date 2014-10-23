@@ -25,6 +25,12 @@
 #ifndef SE2_ABSTRACT_INOUT_HPP
 #define SE2_ABSTRACT_INOUT_HPP
 
+#include <hw/inout.h>
+#include <sys/neutrino.h>
+#ifdef SIMULATION
+ #include <ioaccess.h>
+#endif
+
 #include <stdint.h>
 
 namespace se2 {

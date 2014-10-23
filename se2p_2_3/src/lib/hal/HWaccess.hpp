@@ -29,8 +29,6 @@
 #include "lib/util/mutex.hpp"
 #include "lib/hal/abstract_inout.hpp"
 
-#include <ioaccess.h>
-
 namespace se2 {
 namespace hal {
 
