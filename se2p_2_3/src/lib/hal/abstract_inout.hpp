@@ -38,7 +38,7 @@ namespace hal {
 
 #define IOBASE    0x300         // IO Base Register
 #define IOCTLADDR IOBASE + 0x03 // Register zum definieren der input/output Ports
-#define IOCTLPORT 0x82
+#define IOCTLPORT 0b10001010    // 0x8A
 
 #define IOANALOG  IOBASE + 0x02 // FIXME: Addresse ist falsch
                                 // ist eigenes Register!
