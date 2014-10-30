@@ -17,7 +17,7 @@
  ******************************************************************************/
 /**
  * @file    HWaccess.hpp
- * @version 0.1
+ * @version 0.2
  *
  * Header der HAL - Allgemeiner Zugriff auf Hardware, sowie Ansteuerung
  * der Sensorik und Aktorik.
@@ -26,88 +26,12 @@
 #ifndef SE2_HWACCESS_HPP
 #define SE2_HWACCESS_HPP
 
+#include "lib/constants.hpp"
 #include "lib/util/mutex.hpp"
 #include "lib/hal/abstract_inout.hpp"
 
 namespace se2 {
 namespace hal {
-
-/**
- * DEBUG Define
- **/
-//#define USE_STUBS
-
-/**
- * Bit Position der Weiche auf Port A
- **/
-#define SWITCH_BIT 4
-
-/**
- * Bit Position für geöffnete Weiche Sensor auf Port B
- **/
-#define SWITCH_OPEN_BIT 5
-
-/**
- * Bit Position für Höhensensor auf Port B
- * (Tolleranzbereich, nicht Absolutwert)
- **/
-#define HEIGHT_BIT 2
-
-/**
- * Bit Position für Metallsensor auf Port B
- **/
-#define METAL_BIT 4
-
-/**
- * Motor modes
- **/
-enum motor_modes {
-  motor_right = 0,
-  motor_left  = 1,
-  motor_slow  = 2,
-  motor_stop  = 3,
-  motor_fast  = 4
-};
-
-/**
- * LEDs der einzelnen Knöpfe
- **/
-enum button_leds {
-  start_button = 0,
-  reset_button = 1,
-  q1_button    = 2,
-  q2_button    = 3
-};
-
-/**
- * Verfügbare Knöpfe
- **/
-enum buttons {
-  button_start = 4, // 1 => gedrückt
-  button_stop  = 5, // 1 => NICHT gedrückt
-  button_reset = 6, // 1 => gedrückt
-  button_estop = 7  // 1 => NICHT gedrückt
-};
-
-/**
- * Lichtschranken des Systems
- **/
-enum light_barriers {
-  entrace_sensor = 0, // einlauf
-  height_sensor  = 1, // höhensensor
-  switch_sensor  = 3, // weiche
-  slight_sensor  = 6, // rutsche
-  exit_sensor    = 7  // auslauf
-};
-
-/**
- * Lampen der Ampel
- **/
-enum light_colors {
-  green  = 5,
-  yellow = 6,
-  red    = 7
-};
 
 struct hwaccess {
   /**

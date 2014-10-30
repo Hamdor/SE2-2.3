@@ -25,29 +25,17 @@
 #ifndef SE2_ABSTRACT_INOUT_HPP
 #define SE2_ABSTRACT_INOUT_HPP
 
+#include "lib/constants.hpp"
+
+#include <stdint.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #ifdef SIMULATION
  #include <ioaccess.h>
 #endif
 
-#include <stdint.h>
-
 namespace se2 {
 namespace hal {
-
-#define IOBASE    0x300         // IO Base Register
-#define IOCTLADDR IOBASE + 0x03 // Register zum definieren der input/output Ports
-#define IOCTLPORT 0b10001010    // 0x8A
-
-#define IOANALOG  IOBASE + 0x02 // FIXME: Addresse ist falsch
-                                // ist eigenes Register!
-
-enum port_num {
-  PORTA = IOBASE + 0x00, // IOBASE + 0x00
-  PORTB = IOBASE + 0x01, // IOBASE + 0x01
-  PORTC = IOBASE + 0x02  // IOBASE + 0x02
-};
 
 struct abstract_inout {
   virtual ~abstract_inout() {

@@ -31,7 +31,7 @@
 using namespace se2;
 
 namespace {
-  const char*  char_device = "/dev/ser1";
+  const char* char_device = "/dev/ser1";
 } // namespace <anonymous>
 
 serial_interface::serial_interface() {
