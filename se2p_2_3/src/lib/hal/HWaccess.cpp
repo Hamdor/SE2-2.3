@@ -27,6 +27,7 @@
 
 #include "lib/hal/iowrapper.hpp"
 #include "lib/util/lock_guard.hpp"
+#include "lib/util/logging.hpp"
 
 #ifdef USE_STUBS
   #include "lib/hal/iostub.hpp"
@@ -81,6 +82,19 @@ hwaccess::hwaccess() {
 hwaccess::~hwaccess() {
   delete m_io;
 }
+
+#ifdef USE_STUBS
+void hwaccess::change_stub(iostub* ptr) {
+  if (!ptr) {
+    LOG_ERROR("invalid stub");
+    return;
+  }
+  if (m_io) {
+    delete m_io;
+  }
+  m_io = reinterpret_cast<abstract_inout*>(ptr);
+}
+#endif
 
 /**
  * Für die anzusteuernden Bits kann das übergebene
