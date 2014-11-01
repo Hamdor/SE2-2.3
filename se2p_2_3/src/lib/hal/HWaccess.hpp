@@ -30,18 +30,20 @@
 #include "lib/util/mutex.hpp"
 #include "lib/hal/abstract_inout.hpp"
 
+#ifdef USE_STUBS
+#include "lib/hal/iostub.hpp"
+#endif
+
 namespace se2 {
 namespace hal {
 
 struct hwaccess {
 #ifdef USE_STUBS
-  struct iostub;
   /**
    * Wechselt den aktuell gesetzten Stub
    **/
   void change_stub(iostub* ptr);
 #endif
-
   /**
    * Default Destruktor
    **/
