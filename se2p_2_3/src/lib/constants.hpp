@@ -136,6 +136,17 @@ enum light_colors {
 };
 
 } // namespace hal
+
+namespace util {
+
+enum loglevel {
+  TRACE   = 0,  /*  */
+  DEBUG   = 1,  /*  */
+  WARNING = 2,  /*  */
+  ERROR   = 3   /*  */
+};
+
+} // namespace util
 } // namespace se2
 
 #endif // SE2_CONSTANTS_HPP
