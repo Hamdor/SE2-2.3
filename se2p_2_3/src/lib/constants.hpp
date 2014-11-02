@@ -26,11 +26,6 @@
 #define SE2_CONSTANTS_HPP
 
 /**
- * Stubs für iowrapper aktivieren
- **/
-//#define USE_STUBS
-
-/**
  * Bit Position der Weiche auf Port A
  **/
 #define SWITCH_BIT 4
@@ -64,13 +59,23 @@
 /**
  * Maske für das Controllregister
  **/
-#define IOCTLPORT 0b10001010    // 0x8A
+#define IOCTLPORT 0x8A
 
 /**
- * Addresse Analogport
+ * Addressen/Defines Analogport
  **/
-#define IOANALOG  IOBASE + 0x02 // FIXME: Addresse ist falsch
-                                // ist eigenes Register!
+#define IOANALOG_BASE        0x320
+#define IOANALOG_OFFSET      0x02
+#define START_HEIGHT_MEASURE 0x10
+
+/**
+ * Addressen/Defines Interrupt
+ **/
+#define IRQ_ENABLE_MASK         0xF9
+#define IRQ_INIT_MASK           0xACB
+#define PORTB_INTERRUPT         2
+#define PORTC_INTERRUPT         8
+#define IO_IRQ                  11
 
 namespace se2 {
 namespace hal {
@@ -79,9 +84,11 @@ namespace hal {
  * Offset der Ports
  **/
 enum port_num {
-  PORTA = IOBASE + 0x00, // IOBASE + 0x00
-  PORTB = IOBASE + 0x01, // IOBASE + 0x01
-  PORTC = IOBASE + 0x02  // IOBASE + 0x02
+  PORTA          = IOBASE + 0x00, // IOBASE + 0x00
+  PORTB          = IOBASE + 0x01, // IOBASE + 0x01
+  PORTC          = IOBASE + 0x02, // IOBASE + 0x02
+  IRQ_ENABLE_REG = IOBASE + 0x0B, // IOBASE + 0x0B
+  IRQ_CLEAR_REG  = IOBASE + 0x0F  // IOBASE + 0x0F
 };
 
 /**
@@ -140,10 +147,10 @@ enum light_colors {
 namespace util {
 
 enum loglevel {
-  TRACE   = 0,  /*  */
-  DEBUG   = 1,  /*  */
-  WARNING = 2,  /*  */
-  ERROR   = 3   /*  */
+  TRACE   = 0,  // Unwichtig
+  DEBUG   = 1,  // Debug
+  WARNING = 2,  // Warnung
+  ERROR   = 3   // Fehler
 };
 
 } // namespace util
