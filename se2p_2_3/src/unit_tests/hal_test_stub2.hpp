@@ -16,28 +16,93 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    hal_test.hpp
+ * @file    hal_test_stub2.hpp
  * @version 0.1
  *
  * Unit tests der HAL
  **/
 
-#include "lib/hal/HWaccess.hpp"
+#ifndef SE2_HAL_TEST_STUB2_HPP
+#define SE2_HAL_TEST_STUB2_HPP
 
-class hal_test {
+#include "lib/hal/HWaccess.hpp"
+#include "unit_tests/abstract_test.hpp"
+#include "lib/hal/iostub.hpp"
+
+namespace se2 {
+namespace unit_tests {
+
+class hal_test_stub2 : public abstract_test<hal_test_stub2> {
  public:
   /**
    * Constructor
    **/
-  hal_test ();
+  hal_test_stub2();
 
   /**
    * Destructor
    **/
-  ~hal_test();
+  ~hal_test_stub2();
 
- /**
-  * Start hal test
-  **/
-  int start_test();
+  /**
+   * Wird einmalig für alle ausgeführt
+   * @return 0 wenn erfolgreich
+   */
+  virtual int beforeClass();
+
+  /**
+   * Funktion wird vor jedem test ausgeführt
+   * @return 0 wenn erfolgreich
+   */
+  virtual int before();
+
+  /**
+   * Initialisiert den Funktionsvektor
+   * @return 0 wenn erfolgreich
+   */
+  virtual int init();
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
+  virtual int after();
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
+  virtual int afterClass();
+
+ private:
+  /**
+    * Test für durchbrochene Lichtschranken
+    * @return fehlgeschlagene Anzahl
+    */
+  int light_barrier_interrupted_test();
+
+  /**
+    * Test für Höhe im Toleranzbereich
+    * @return fehlgeschlagene Anzahl
+    */
+  int valid_height_test();
+
+  /**
+    * Test für metall
+    * @return fehlgeschlagene Anzahl
+    */
+  int metal_detected_test();
+
+  /**
+    * Test für gedrückte Tasten
+    * @return fehlgeschlagene Anzahl
+    */
+  int buttons_pressed_test();
+
+  hal::hwaccess* m_hal;
+  int m_error;
 };
+} // namespace unit_test
+} // namepsace se2
+
+#endif // SE2_HAL_TEST_STUB2_HPP
