@@ -72,7 +72,6 @@
  * Addressen/Defines Interrupt
  **/
 #define IRQ_ENABLE_MASK         0xF9
-#define IRQ_INIT_MASK           0xACB
 #define PORTB_INTERRUPT         2
 #define PORTC_INTERRUPT         8
 #define IO_IRQ                  11
@@ -88,7 +87,9 @@ enum port_num {
   PORTB          = IOBASE + 0x01, // IOBASE + 0x01
   PORTC          = IOBASE + 0x02, // IOBASE + 0x02
   IRQ_ENABLE_REG = IOBASE + 0x0B, // IOBASE + 0x0B
-  IRQ_CLEAR_REG  = IOBASE + 0x0F  // IOBASE + 0x0F
+  IRQ_CLEAR_REG  = IOBASE + 0x0F, // IOBASE + 0x0F
+  ANALOG_BASE    = IOANALOG_BASE, // IOANALOG_BASE (0x320)
+  ANALOG_PORT_A  = IOANALOG_BASE + IOANALOG_OFFSET // IOANALOG_BASE + 0x02
 };
 
 /**

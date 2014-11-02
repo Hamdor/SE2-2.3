@@ -33,6 +33,7 @@
   #include "lib/hal/iostub.hpp"
 #endif
 
+#include <sstream>
 #include <iostream>
 
 #include <sys/siginfo.h>
@@ -53,8 +54,7 @@ hwaccess* hwaccess::get_instance() {
    * ThreadCtl geben.
    **/
   if (ThreadCtl(_NTO_TCTL_IO_PRIV, NULL) == -1) {
-      std::cerr << "hwaccess::get_instance() : ThreadCtl() failed!"
-                << std::endl;
+    LOG_ERROR("ThreadCtl() failed!")
   }
   if (!instance) {
     lock_guard lock(s_lock);
@@ -140,21 +140,20 @@ bool hwaccess::obj_has_valid_height() const {
 }
 
 uint16_t hwaccess::get_height_value() {
-  // Port C inhalt speichern?
-  // PORTC aka IOANALOG
-  //m_io->outbyte(PORTC, 0x10); // startet messung
-  // Der Sensor braucht einen moment bis er die Daten in
-  // das Register geschrieben hat. Ich weiß nicht genau
-  // wie lange, deshalb erstmal 50 loops...
-  //uint8_t mask = 0x80;
-  //for (int i = 0; i < 50 && !(m_io->inbyte(PORTC) & mask); ++i) {
+  LOG_TRACE("");
+  // Sensor sagen, er soll Wert in Register schreiben
+  m_io->outbyte(ANALOG_PORT_A, START_HEIGHT_MEASURE);
+  uint8_t  mask   = 0x01 << 7;
+  size_t   loop   = 0;
+  while(loop++ < 100 && (m_io->inbyte(ANALOG_BASE) & mask) == 0) {
     // nop
-  //}
+  }
   // Wert sollte nun im Register stehen
-  //uint16_t height = m_io->inshort(PORTC);
-  //std::cout << "hwaccess::get_height_value(): " << height << std::endl;
-  //return height;
-  return 0;
+  uint16_t height = m_io->inshort(ANALOG_PORT_A);
+  std::stringstream ss;
+  ss << "height: " << std::hex << height;
+  LOG_DEBUG(ss.str().c_str())
+  return height;
 }
 
 bool hwaccess::obj_has_metal() const {
