@@ -160,6 +160,12 @@ struct hwaccess {
   void init_isr();
 
   /**
+   * ISR Abmelden
+   * wird im Destructor aufgerufen
+   **/
+  void stop_isr();
+
+  /**
    * Member deklaration
    **/
   abstract_inout* m_io;

@@ -85,6 +85,7 @@ hwaccess::hwaccess() : m_isr(new isr_control) {
 
 hwaccess::~hwaccess() {
   LOG_TRACE("")
+  stop_isr();
   delete m_io;
   delete m_isr;
   hwaccess::instance = NULL;
@@ -239,5 +240,21 @@ void hwaccess::init_isr() {
   if (m_isr->m_interruptid == -1) {
     LOG_ERROR("InterruptAttach() failed!")
     return;
+  }
+}
+
+void hwaccess::stop_isr() {
+  int rc = 0;
+  rc = InterruptDetach(m_isr->m_interruptid);
+  if (rc) {
+    LOG_ERROR("InterruptDetach() failed")
+  }
+  rc = ConnectDetach(m_isr->m_coid);
+  if (rc) {
+    LOG_ERROR("ConnectDetach() failed!")
+  }
+  rc = ChannelDestroy(m_isr->m_chid);
+  if (rc) {
+    LOG_ERROR("ChannelDestroy() failed!")
   }
 }
