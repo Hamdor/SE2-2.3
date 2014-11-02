@@ -8,11 +8,17 @@
 #include "test_thread.hpp"
 #include "lib/hal/HWaccess.hpp"
 
+#include "unit_tests/hal_test_stub1.hpp"
+#include "unit_tests/hal_test_stub2.hpp"
+
+#include "unit_tests/test_suite.hpp"
+
 #include "lib/serial_bus/serial_interface.hpp"
 
 using namespace std;
 using namespace se2;
 using namespace se2::util;
+using namespace se2::unit_tests;
 
 int main(int argc, char *argv[]) {
   #ifdef SIMULATION
@@ -23,6 +29,10 @@ int main(int argc, char *argv[]) {
   /**
    * Unit Tests kommen hier rein
    **/
+   cout << "run `hal_test_stub1` errors: "
+        << test_suite<hal_test_stub1>().run() << endl
+        << "run `hal_test_stub2` errors: "
+        << test_suite<hal_test_stub2>().run() << endl;
 #else
   /**
    * Hier wird die eigentliche Logik angestartet
