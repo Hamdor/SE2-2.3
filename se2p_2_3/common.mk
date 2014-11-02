@@ -23,15 +23,16 @@ VFLAG_g=-gstabs+
 EXTRA_SRCVPATH+= \
 	$(PROJECT_ROOT)/src  \
 	$(PROJECT_ROOT)/src/lib  \
-	$(PROJECT_ROOT)/src/lib/util \
-	$(PROJECT_ROOT)/src/lib/hal \
+	$(PROJECT_ROOT)/src/lib/util  \
+	$(PROJECT_ROOT)/src/lib/hal  \
 	$(PROJECT_ROOT)/src/lib/serial_bus \
+	$(PROJECT_ROOT)/src/unit_tests
 
 #===== LIBS - a space-separated list of library items to be included in the link.
 LIBS+=ioaccess cpt_terminal
 
 #===== CCFLAGS - add the flags to the C compiler command line. 
-CCFLAGS+=-Y _gpp
+CCFLAGS+=-Y _gpp -DSIMULATION -DUNIT_TESTS -DUSE_STUBS
 
 #===== EXTRA_LIBVPATH - a space-separated list of directories to search for library files.
 EXTRA_LIBVPATH+=/opt/qnx660/target/qnx6/x86/lib

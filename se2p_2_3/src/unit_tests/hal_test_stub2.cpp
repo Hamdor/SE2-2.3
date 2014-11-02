@@ -22,9 +22,9 @@
  * Unit tests der HAL
  **/
 
-#include "hal_test_stub2.hpp"
-
+#include "unit_tests/hal_test_stub2.hpp"
 #include "lib/util/logging.hpp"
+
 #include <iostream>
 
 using namespace std;
