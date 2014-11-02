@@ -25,6 +25,7 @@
 #ifndef SE2_SERIAL_INTERFACE_HPP
 #define SE2_SERIAL_INTERFACE_HPP
 
+#include "lib/util/logging.hpp"
 #include <unistd.h>
 
 namespace se2 {
@@ -48,7 +49,19 @@ class serial_interface {
    * @return TRUE  wenn erfolgreich 
    *         FALSE wenn fehlschlägt
    **/
-  bool write(void* data, size_t len);
+  template <typename T>
+  bool write(T* data) {
+    size_t rc = 0;
+    while (rc != sizeof(T)) {
+      ssize_t err = ::write(m_fd, data + rc, sizeof(T) - rc);
+      if (err == -1) {
+        LOG_ERROR("serial_interface::write()")
+        break;
+      }
+      rc += err;
+    }
+    return rc == sizeof(T);
+  }
 
   /**
    * Schreibt Daten auf den Seriellen bus
@@ -57,7 +70,19 @@ class serial_interface {
    * @return TRUE  wenn erfolgreich  
    *         FALSE wenn fehlschlägt
    **/
-  bool read(void* buffer, size_t len);
+  template <typename T>
+  bool read(T* buffer) {
+    size_t rc = 0;
+    while (rc != sizeof(T)) {
+      ssize_t err = ::read(m_fd, buffer + rc, sizeof(T) - rc);
+      if (err == -1) {
+        LOG_ERROR("serial_interface::read()")
+        break;
+      }
+      rc += err;
+    }
+    return rc == sizeof(T);
+  }
 
  private:
   int m_fd;

@@ -37,7 +37,7 @@ namespace {
 serial_interface::serial_interface() {
   m_fd = ::open(char_device, O_RDWR);
   if (m_fd == -1) {
-    perror("serial_interface::serial_interface() cant open file!");
+    LOG_ERROR("serial_interface::serial_interface() cant open file!")
     return;
   }
   config();
@@ -45,34 +45,8 @@ serial_interface::serial_interface() {
 
 serial_interface::~serial_interface() {
   if (close(m_fd) == -1) {
-    perror("serial_interface::~serial_interface() cant close file!");
+    LOG_ERROR("serial_interface::~serial_interface() cant close file!")
   }
-}
-
-bool serial_interface::read(void* buffer, size_t len) {
-  size_t rc = 0;
-  while (rc != len) {
-    ssize_t err = ::read(m_fd, static_cast<size_t*>(buffer) + rc, len - rc);
-    if (err == -1) {
-      perror("serial_interface::read()");
-      break;
-    }
-    rc += err;
-  }
-  return rc == len;
-}
-
-bool serial_interface::write(void* data, size_t len) {
-  size_t rc = 0;
-  while (rc != len) {
-    ssize_t err = ::write(m_fd, static_cast<size_t*>(data) + rc, len - rc);
-    if (err == -1) {
-      perror("serial_interface::write()");
-      break;
-    }
-    rc += err;
-  }
-  return rc == len;
 }
 
 void serial_interface::config() {
