@@ -91,8 +91,10 @@ hwaccess::~hwaccess() {
   hwaccess::instance = NULL;
 }
 
-#ifdef USE_STUBS
+// Diese Funktion ist eine NOP funktion
+// solange `USE_STUBS` nicht definiert ist
 void hwaccess::change_stub(iostub* ptr) {
+#ifdef USE_STUBS
   if (!ptr) {
     LOG_ERROR("invalid stub");
     return;
@@ -101,8 +103,11 @@ void hwaccess::change_stub(iostub* ptr) {
     delete m_io;
   }
   m_io = reinterpret_cast<abstract_inout*>(ptr);
-}
+
+#else
+  // nop
 #endif
+}
 
 /**
  * Für die anzusteuernden Bits kann das übergebene

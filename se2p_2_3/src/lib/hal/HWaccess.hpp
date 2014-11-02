@@ -30,9 +30,7 @@
 #include "lib/util/mutex.hpp"
 #include "lib/hal/abstract_inout.hpp"
 
-#ifdef USE_STUBS
 #include "lib/hal/iostub.hpp"
-#endif
 
 #include "sys/siginfo.h"
 
@@ -52,12 +50,11 @@ struct hwaccess {
     struct sigevent m_event; // sigevent Struct
   };
 
-#ifdef USE_STUBS
   /**
    * Wechselt den aktuell gesetzten Stub
    **/
   void change_stub(iostub* ptr);
-#endif
+
   /**
    * Default Destruktor
    **/
