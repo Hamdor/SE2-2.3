@@ -40,7 +40,7 @@ class test_suite {
    **/
   test_suite() : m_test() {
     m_test.init();
-    m_test.beforeClass();
+    m_test.before_class();
     m_error = 0;
   }
 
@@ -48,7 +48,7 @@ class test_suite {
    * Default Destruktor
    **/
   ~test_suite() {
-    m_test.afterClass();
+    m_test.after_class();
   }
 
   /**
