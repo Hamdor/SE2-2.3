@@ -39,7 +39,7 @@ hal_test_stub2::~hal_test_stub2() {
   // nop
 }
 
-int hal_test_stub2::beforeClass() {
+int hal_test_stub2::before_class() {
   m_hal = hwaccess::get_instance();
   m_hal->change_stub(new iostub(0b00000000, 0b00010100, 0b01010000));
   return 0;
@@ -62,7 +62,7 @@ int hal_test_stub2::after() {
   return 0;
 }
 
-int hal_test_stub2::afterClass() {
+int hal_test_stub2::after_class() {
   return 0;
 }
 

@@ -44,11 +44,11 @@ class hal_test_stub1 : public abstract_test<hal_test_stub1> {
    **/
   ~hal_test_stub1();
 
-  virtual int beforeClass();
+  virtual int before_class();
   virtual int before();
   virtual int init();
   virtual int after();
-  virtual int afterClass();
+  virtual int after_class();
 
  private:
   /**

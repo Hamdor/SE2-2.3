@@ -44,7 +44,7 @@ class abstract_test {
    * Wird einmalig für alle ausgeführt
    * @return 0 wenn erfolgreich
    */
-  virtual int beforeClass() = 0;
+  virtual int before_class() = 0;
 
   /**
    * Funktion wird vor jedem test ausgeführt
@@ -68,7 +68,7 @@ class abstract_test {
    * Aufräumen der Unit Tests
    * @return 0 wenn erfolgreich
    */
-  virtual int afterClass() = 0;
+  virtual int after_class() = 0;
 
   std::vector<int (T::*)(void)> m_test_functions;
 };

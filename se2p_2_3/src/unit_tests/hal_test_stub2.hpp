@@ -48,7 +48,7 @@ class hal_test_stub2 : public abstract_test<hal_test_stub2> {
    * Wird einmalig für alle ausgeführt
    * @return 0 wenn erfolgreich
    */
-  virtual int beforeClass();
+  virtual int before_class();
 
   /**
    * Funktion wird vor jedem test ausgeführt
@@ -72,7 +72,7 @@ class hal_test_stub2 : public abstract_test<hal_test_stub2> {
    * Aufräumen der Unit Tests
    * @return 0 wenn erfolgreich
    */
-  virtual int afterClass();
+  virtual int after_class();
 
  private:
   /**
