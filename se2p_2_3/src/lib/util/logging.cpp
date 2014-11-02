@@ -80,7 +80,7 @@ void logging::log(const char* str, loglevel lvl,
      << ":"       << line_num;
   m_lock.acquire();
   m_fstream << ss.str() << " " << str << std::endl;
-  if (lvl == ERROR || lvl == WARNING) {
+  if (lvl != TRACE) {
     std::cerr << ss.str() << " " << str << std::endl;
   }
   m_lock.release();
