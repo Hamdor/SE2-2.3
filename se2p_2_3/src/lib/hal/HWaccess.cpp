@@ -35,6 +35,8 @@
 
 #include <iostream>
 
+#include <sys/siginfo.h>
+
 using namespace se2;
 using namespace se2::util;
 using namespace se2::hal;
@@ -63,7 +65,8 @@ hwaccess* hwaccess::get_instance() {
   return instance;
 }
 
-hwaccess::hwaccess() {
+hwaccess::hwaccess() : m_isr(new isr_control) {
+  LOG_TRACE("")
 #ifdef USE_STUBS
   /**
    * Stub IO
@@ -77,10 +80,14 @@ hwaccess::hwaccess() {
   m_io = new iowrapper();
 #endif
   m_io->init_input_output();
+  init_isr();
 }
 
 hwaccess::~hwaccess() {
+  LOG_TRACE("")
   delete m_io;
+  delete m_isr;
+  hwaccess::instance = NULL;
 }
 
 #ifdef USE_STUBS
@@ -170,5 +177,68 @@ bool hwaccess::is_button_pressed(enum buttons key) const {
   } else {
     // high aktiv
     return value;
+  }
+}
+
+const struct sigevent* isr(void* arg, int id) {
+  struct sigevent* event = static_cast<struct sigevent*>(arg);
+  // Hier muss leider die HAL übergangen werden um von einem
+  // Register zu lesen/schreiben.
+  // Grund: Wir haben keine HAL Instanz, da die isr Funktion
+  // nicht von einem `hwaccess` Objekt ist. Die Funktion
+  // `hwaccess::get_instance()` lockt unter umständen jedoch
+  // ein Mutex, wenn dieses Mutex vergriffen ist würde
+  // dies ein Deadlock produzieren.
+  // Es ist eigentlich unwahrscheinlich dass das passiert,
+  // da wenn wir uns in der `isr` befinden, bereits eine
+  // Instanz von `hwaccess` exsistiert. Dieses Problem
+  // könnte also nur auftreten während das Singleton gelöscht
+  // wird, welches beim `shutdown()` passiert.
+  // TODO: Text anpassen da `shutdown()` noch nicht implementiert.
+  int irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
+  event->sigev_value.sival_int = 0;
+  event->sigev_notify = SIGEV_PULSE;
+  if (irq_val == PORTB_INTERRUPT || irq_val == PORTC_INTERRUPT) {
+    // IRQ wurde von Port B oder Port C ausgelöst
+    uint8_t portb = in8(static_cast<uint16_t>(PORTB));
+    uint8_t portc = in8(static_cast<uint16_t>(PORTC));
+    // Werte von Port B um 8 Bit verschieben, damit die Werte
+    // von Port C angehängt werden können.
+    // TODO: Wenn der Dispatcher implementiert wurde
+    // diesen Code noch einmal überdenken!
+    event->sigev_value.sival_int = (portb << 8) | portc;
+  }
+  // Interrupt zurücksetzen
+  out8(IRQ_CLEAR_REG, 0);
+  return event;
+}
+
+void hwaccess::init_isr() {
+  LOG_TRACE("")
+  // Channel erstellen
+  m_isr->m_chid = ChannelCreate(0);
+  if (m_isr->m_chid == -1) {
+    LOG_ERROR("ChannelCreate() failed!")
+    return;
+  }
+  // Channel öffnen
+  m_isr->m_coid = ConnectAttach(0, 0, m_isr->m_chid, _NTO_SIDE_CHANNEL, 0);
+  if (m_isr->m_coid == -1) {
+    LOG_ERROR("ConnectAttach() failed!")
+    return;
+  }
+  // Initialisiert event struktur auf isr pulse message
+  SIGEV_PULSE_INIT(&m_isr->m_event, m_isr->m_coid, SIGEV_PULSE_PRIO_INHERIT,
+                   0 /* Dieser wert definiert von wo der puls kam */, 0);
+  // IRQ für Port B und Port C aktivieren
+  m_io->outbyte(IRQ_ENABLE_REG, IRQ_ENABLE_MASK);
+  // Interrupts zurücksetzen
+  m_io->outbyte(IRQ_CLEAR_REG, 0);
+  // Interrupt an isr (Funktion) binden
+  m_isr->m_interruptid = InterruptAttach(IO_IRQ, isr, &m_isr->m_event,
+                                         sizeof(m_isr->m_event), 0);
+  if (m_isr->m_interruptid == -1) {
+    LOG_ERROR("InterruptAttach() failed!")
+    return;
   }
 }

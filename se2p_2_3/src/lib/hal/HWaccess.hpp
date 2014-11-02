@@ -34,10 +34,24 @@
 #include "lib/hal/iostub.hpp"
 #endif
 
+#include "sys/siginfo.h"
+
 namespace se2 {
 namespace hal {
 
 struct hwaccess {
+  /**
+   * Control Klasse für den ISR Teil der HAL
+   * Diese Klasse ist nur von `hwaccess` zugänglich
+   * Kapselt alle benötigten Daten für die ISR
+   **/
+  struct isr_control {
+    int m_chid;              // Channel ID für Pulse Messages
+    int m_coid;              // Connection ID für Channel Connection
+    int m_interruptid;       // Interrupt ID (IRQ 11)
+    struct sigevent m_event; // sigevent Struct
+  };
+
 #ifdef USE_STUBS
   /**
    * Wechselt den aktuell gesetzten Stub
@@ -140,9 +154,16 @@ struct hwaccess {
   hwaccess(const hwaccess&);
 
   /**
+   * Initialisiert die ISR sowie die notwendigen
+   * Datenstrutkuren.
+   **/
+  void init_isr();
+
+  /**
    * Member deklaration
    **/
   abstract_inout* m_io;
+  isr_control*    m_isr;
 };
 
 } // namespace hal
