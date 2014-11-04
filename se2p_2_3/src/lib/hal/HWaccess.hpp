@@ -32,7 +32,7 @@
 
 #include "lib/hal/iostub.hpp"
 
-#include "sys/siginfo.h"
+#include <sys/siginfo.h>
 
 namespace se2 {
 namespace hal {
@@ -132,6 +132,18 @@ struct hwaccess {
    *         FALSE wenn Button nicht gedrückt
    **/
   bool is_button_pressed(enum buttons key) const;
+
+  /**
+   * Gibt den die Channel ID des Channels zurück
+   * den die ISR benutzt
+   **/
+  int get_isr_channel() const;
+
+  /**
+   * Gibt den die Connection ID des Channels zurück
+   * den die ISR benutzt
+   **/
+  int get_isr_connid() const;
 
   /**
    * Singleton
