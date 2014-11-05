@@ -16,92 +16,71 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    hal_test_stub1.hpp
+ * @file    irq_test.hpp
  * @version 0.1
  *
- * Unit tests der HAL
+ * Unit tests der ISR/IRQ
  **/
 
-#ifndef SE2_HAL_TEST_STUB1_HPP
-#define SE2_HAL_TEST_STUB1_HPP
+#ifndef SE2_IRQ_TEST_HPP
+#define SE2_IRQ_TEST_HPP
 
 #include "lib/hal/HWaccess.hpp"
 #include "unit_tests/abstract_test.hpp"
-#include "lib/hal/iostub.hpp"
 
 namespace se2 {
 namespace unit_tests {
 
-class hal_test_stub1 : public abstract_test<hal_test_stub1> {
+class irq_test : public abstract_test<irq_test> {
  public:
   /**
    * Constructor
    **/
-  hal_test_stub1();
+  irq_test();
 
   /**
-   * Default Destructor
+   * Destructor
    **/
-  ~hal_test_stub1();
+  ~irq_test();
 
+  /**
+   * Wird einmalig für alle ausgeführt
+   * @return 0 wenn erfolgreich
+   */
   virtual int before_class();
+
+  /**
+   * Funktion wird vor jedem test ausgeführt
+   * @return 0 wenn erfolgreich
+   */
   virtual int before();
+
+  /**
+   * Initialisiert den Funktionsvektor
+   * @return 0 wenn erfolgreich
+   */
   virtual int init();
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
   virtual int after();
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
   virtual int after_class();
 
  private:
-  /**
-   * Test für die funktionsfähigkeit des Motors
-   * @return fehlgeschlagene Anzahl
-   **/
-   int motor_test();
+  int open_switch();
+  int close_switch();
 
-   /**
-    * Tests der Weiche
-    * @return fehlgeschlagene Anzahl
-    **/
-   int switch_test();
-
-   /**
-    * Test für die LEDs der Tasten
-    * @return fehlgeschlagene Anzahl
-    **/
-   int button_led_test();
-
-   /**
-    * Test für die Ampeln
-    * @return fehlgeschlagene Anzahl
-    **/
-   int light_test();
-
-   /**
-    * Tests der funktionsfähigkeit der Lichtschranken
-    * @return fehlgeschlagene Anzahl
-    **/
-   int light_barrier_test();
-
-   /**
-    * Tests für nicht gedrückte Tasten
-    * @return fehlgeschlagene Anzahl
-    **/
-   int buttons_not_pressed_test();
-
-   /**
-    * Test der Höhe außerhalb des toleranzbereichs
-    * @return fehlgeschlagene Anzahl
-    **/
-   int invalid_heigt_test();
-
-   /**
-    * Test des Metallsensors für kein metall
-    * @return fehlgeschlagene Anzahl
-    **/
-   int no_metal_test();
- private:
-   hal::hwaccess* m_hal;
-   int m_error;
+  hal::hwaccess* m_hal;
+  int m_error;
 };
 } // namespace unit_test
-} // namespace se2
-#endif // SE2_HAL_TEST_STUB1_HPP
+} // namepsace se2
+
+#endif // SE2_IRQ_TEST_HPP

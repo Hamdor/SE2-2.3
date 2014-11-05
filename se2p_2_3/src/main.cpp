@@ -8,15 +8,15 @@
 #include "test_thread.hpp"
 #include "lib/hal/HWaccess.hpp"
 
-#include "unit_tests/hal_test_stub1.hpp"
-#include "unit_tests/hal_test_stub2.hpp"
-
-#include "unit_tests/test_suite.hpp"
+#ifdef UNIT_TESTS
+  #include "unit_tests/hal_test_stub1.hpp"
+  #include "unit_tests/hal_test_stub2.hpp"
+  #include "unit_tests/irq_test.hpp"
+  #include "unit_tests/test_suite.hpp"
+#endif
 
 #include "lib/serial_bus/serial_interface.hpp"
 #include "lib/util/logging.hpp"
-
-#include <bitset>
 
 using namespace std;
 using namespace se2;
@@ -33,20 +33,18 @@ int main(int argc, char *argv[]) {
   /**
    * Unit Tests kommen hier rein
    **/
-   cout << "run `hal_test_stub1` errors: "
-        << test_suite<hal_test_stub1>().run() << endl
-        << "run `hal_test_stub2` errors: "
+   /*cout << "run `hal_test_stub1` errors: "
+        << test_suite<hal_test_stub1>().run() << endl;
+   sleep(1);
+   cout << "run `hal_test_stub2` errors: "
         << test_suite<hal_test_stub2>().run() << endl;
+   sleep(1);*/
+   cout << "run `irq_tes`        errors: "
+        << test_suite<irq_test>().run()       << endl;
 #else
-  hwaccess* hal = hwaccess::get_instance();
-  struct _pulse msg;
-  int cnt = 10;
-  do {
-    MsgReceivePulse(hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-    cout << "Msg: "
-         << bitset<sizeof(msg.value.sival_int)*8>(msg.value.sival_int)
-         << endl;
-  } while(--cnt > 0);
+  /**
+   * Main programm kommt hier rein
+   **/
 #endif
   /**
    * TODO Add proper way to handle singletons
