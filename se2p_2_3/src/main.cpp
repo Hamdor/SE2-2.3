@@ -8,7 +8,7 @@
 #include "test_thread.hpp"
 #include "lib/hal/HWaccess.hpp"
 
-#ifdef UNIT_TESTS
+#if defined (UNIT_TESTS_IRQ) || defined(UNIT_TESTS_STUB)
   #include "unit_tests/hal_test_stub1.hpp"
   #include "unit_tests/hal_test_stub2.hpp"
   #include "unit_tests/irq_test.hpp"
@@ -21,26 +21,29 @@
 using namespace std;
 using namespace se2;
 using namespace se2::util;
-using namespace se2::unit_tests;
 using namespace se2::hal;
 
-int main(int argc, char *argv[]) {
-  #ifdef SIMULATION
-      IOaccess_open();
-  #endif
+#if defined(UNIT_TESTS_IRQ) || defined (UNIT_TESTS_STUB)
+  using namespace se2::unit_tests;
+#endif
 
-#ifdef UNIT_TESTS
+int main(int argc, char *argv[]) {
+#ifdef SIMULATION
+  IOaccess_open();
+#endif
+
+#ifdef UNIT_TESTS_STUB
   /**
    * Unit Tests kommen hier rein
    **/
-   /*cout << "run `hal_test_stub1` errors: "
+   cout << "run `hal_test_stub1` errors: "
         << test_suite<hal_test_stub1>().run() << endl;
    sleep(1);
    cout << "run `hal_test_stub2` errors: "
         << test_suite<hal_test_stub2>().run() << endl;
-   sleep(1);*/
-   cout << "run `irq_tes`        errors: "
-        << test_suite<irq_test>().run()       << endl;
+#elif UNIT_TESTS_IRQ
+  cout << "run `irq_tes`        errors: "
+       << test_suite<irq_test>().run()       << endl;
 #else
   /**
    * Main programm kommt hier rein
@@ -52,7 +55,7 @@ int main(int argc, char *argv[]) {
   delete se2::hal::hwaccess::get_instance();
   delete se2::util::logging::get_instance();
 #ifdef SIMULATION
-   IOaccess_close();
+  IOaccess_close();
 #endif
   return EXIT_SUCCESS;
 }

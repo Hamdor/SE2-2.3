@@ -30,7 +30,7 @@
 #include "lib/util/logging.hpp"
 #include "lib/hal/isr.h"
 
-#ifdef USE_STUBS
+#ifdef UNIT_TESTS_STUB
   #include "lib/hal/iostub.hpp"
 #endif
 
@@ -66,10 +66,9 @@ hwaccess* hwaccess::get_instance() {
 
 hwaccess::hwaccess() : m_isr(new isr_control) {
   LOG_TRACE("")
-#ifdef USE_STUBS
+#ifdef UNIT_TESTS_STUB
   /**
    * Stub IO
-   * USE_STUBS ist definiert in HWaccess.hpp
    **/
   m_io = new iostub(0b00000000, 0b11001011, 0b10100000);
 #else
@@ -91,9 +90,9 @@ hwaccess::~hwaccess() {
 }
 
 // Diese Funktion ist eine NOP funktion
-// solange `USE_STUBS` nicht definiert ist
+// solange `UNIT_TESTS_STUB` nicht definiert ist
 void hwaccess::change_stub(iostub* ptr) {
-#ifdef USE_STUBS
+#ifdef UNIT_TESTS_STUB
   if (!ptr) {
     LOG_ERROR("invalid stub");
     return;
