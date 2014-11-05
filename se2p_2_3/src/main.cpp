@@ -16,6 +16,8 @@
 #include "lib/serial_bus/serial_interface.hpp"
 #include "lib/util/logging.hpp"
 
+#include <bitset>
+
 using namespace std;
 using namespace se2;
 using namespace se2::util;
@@ -38,9 +40,13 @@ int main(int argc, char *argv[]) {
 #else
   hwaccess* hal = hwaccess::get_instance();
   struct _pulse msg;
-  MsgReceivePulse(hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  std::cout << "Msg: " << msg.value.sival_int << std::endl;
-  InterruptUnmask(IO_IRQ, 0);
+  int cnt = 10;
+  do {
+    MsgReceivePulse(hal->get_isr_channel(), &msg, sizeof(msg), NULL);
+    cout << "Msg: "
+         << bitset<sizeof(msg.value.sival_int)*8>(msg.value.sival_int)
+         << endl;
+  } while(--cnt > 0);
 #endif
   /**
    * TODO Add proper way to handle singletons
