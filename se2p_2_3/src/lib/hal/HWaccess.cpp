@@ -153,11 +153,7 @@ uint16_t hwaccess::get_height_value() {
     // nop
   }
   // Wert sollte nun im Register stehen
-  uint16_t height = m_io->inshort(ANALOG_PORT_A);
-  std::stringstream ss;
-  ss << "height: " << std::hex << height;
-  LOG_DEBUG(ss.str().c_str())
-  return height;
+  return m_io->inshort(ANALOG_PORT_A);
 }
 
 bool hwaccess::obj_has_metal() const {
