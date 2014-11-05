@@ -14,11 +14,13 @@
 #include "unit_tests/test_suite.hpp"
 
 #include "lib/serial_bus/serial_interface.hpp"
+#include "lib/util/logging.hpp"
 
 using namespace std;
 using namespace se2;
 using namespace se2::util;
 using namespace se2::unit_tests;
+using namespace se2::hal;
 
 int main(int argc, char *argv[]) {
   #ifdef SIMULATION
@@ -34,27 +36,19 @@ int main(int argc, char *argv[]) {
         << "run `hal_test_stub2` errors: "
         << test_suite<hal_test_stub2>().run() << endl;
 #else
-  /**
-   * Hier wird die eigentliche Logik angestartet
-   * TODO: HAL/Thread test entfernen/ersetzen
-   **/
-  test_thread th1(5);
-  test_thread th2(3);
-
-  th1.start(NULL);
-  th2.start(NULL);
-
-  th2.join();
-  th1.join();
-
-  serial_interface bus;
-  int integer = 0;
-  bus.read(&integer, sizeof(integer));
+  hwaccess* hal = hwaccess::get_instance();
+  struct _pulse msg;
+  MsgReceivePulse(hal->get_isr_channel(), &msg, sizeof(msg), NULL);
+  std::cout << "Msg: " << msg.value.sival_int << std::endl;
+  InterruptUnmask(IO_IRQ, 0);
 #endif
-
-  #ifdef SIMULATION
-     IOaccess_close();
-  #endif
-
+  /**
+   * TODO Add proper way to handle singletons
+   **/
+  delete se2::hal::hwaccess::get_instance();
+  delete se2::util::logging::get_instance();
+#ifdef SIMULATION
+   IOaccess_close();
+#endif
   return EXIT_SUCCESS;
 }

@@ -194,14 +194,17 @@ int hwaccess::get_isr_connid() const {
 const struct sigevent* isr(void* arg, int id) {
   struct sigevent* event = static_cast<struct sigevent*>(arg);
   hwaccess* hal = hwaccess::get_instance();
-  int irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
+  uint8_t irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
   out8(static_cast<uint16_t>(IRQ_CLEAR_REG), 0); // Interrupt zurücksetzen
   int coid = hal->get_isr_connid();
   if (irq_val == PORTB_INTERRUPT || irq_val == PORTC_INTERRUPT) {
+    InterruptMask(IO_IRQ, 0);
     event->sigev_notify = SIGEV_PULSE;
     event->__sigev_un1.__sigev_coid = coid;
     event->__sigev_un2.__st.__sigev_code = 0;
     event->sigev_value.sival_int = irq_val;
+  } else {
+    event = NULL;
   }
   return event;
 }
@@ -229,8 +232,7 @@ void hwaccess::init_isr() {
                    0 /* Dieser wert definiert von wo der puls kam */, 0);
   // Interrupt an isr (Funktion) binden
   m_isr->m_interruptid = InterruptAttach(IO_IRQ, isr, &m_isr->m_event,
-                                         sizeof(m_isr->m_event),
-                                         _NTO_INTR_FLAGS_TRK_MSK);
+                                         sizeof(m_isr->m_event), 0);
   if (m_isr->m_interruptid == -1) {
     LOG_ERROR("InterruptAttach() failed!")
     return;
