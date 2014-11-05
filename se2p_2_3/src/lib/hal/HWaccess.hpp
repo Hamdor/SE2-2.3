@@ -29,15 +29,19 @@
 #include "lib/constants.hpp"
 #include "lib/util/mutex.hpp"
 #include "lib/hal/abstract_inout.hpp"
-
 #include "lib/hal/iostub.hpp"
 
 #include <sys/siginfo.h>
+
+int main(int argc, char *argv[]);
 
 namespace se2 {
 namespace hal {
 
 struct hwaccess {
+  // TODO: main hier weg und isr evtl rein
+  //       warum geht das mit der isr nicht?...
+  friend int ::main(int argc, char *argv[]);
   /**
    * Control Klasse für den ISR Teil der HAL
    * Diese Klasse ist nur von `hwaccess` zugänglich
@@ -134,18 +138,6 @@ struct hwaccess {
   bool is_button_pressed(enum buttons key) const;
 
   /**
-   * Gibt den die Channel ID des Channels zurück
-   * den die ISR benutzt
-   **/
-  int get_isr_channel() const;
-
-  /**
-   * Gibt den die Connection ID des Channels zurück
-   * den die ISR benutzt
-   **/
-  int get_isr_connid() const;
-
-  /**
    * Singleton
    **/
   /**
@@ -155,6 +147,12 @@ struct hwaccess {
  private:
   static hwaccess*   instance;
   static util::mutex s_lock;
+
+  /**
+   * Gibt den die Channel ID des Channels zurück
+   * den die ISR benutzt
+   **/
+  int get_isr_channel() const;
 
   /**
    * Private Konstruktoren

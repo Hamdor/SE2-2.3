@@ -28,6 +28,7 @@
 #include "lib/hal/iowrapper.hpp"
 #include "lib/util/lock_guard.hpp"
 #include "lib/util/logging.hpp"
+#include "lib/hal/isr.h"
 
 #ifdef USE_STUBS
   #include "lib/hal/iostub.hpp"
@@ -187,28 +188,6 @@ int hwaccess::get_isr_channel() const {
   return m_isr->m_chid;
 }
 
-int hwaccess::get_isr_connid() const {
-  return m_isr->m_coid;
-}
-
-const struct sigevent* isr(void* arg, int id) {
-  struct sigevent* event = static_cast<struct sigevent*>(arg);
-  hwaccess* hal = hwaccess::get_instance();
-  uint8_t irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
-  out8(static_cast<uint16_t>(IRQ_CLEAR_REG), 0); // Interrupt zurücksetzen
-  int coid = hal->get_isr_connid();
-  if (irq_val == PORTB_INTERRUPT || irq_val == PORTC_INTERRUPT) {
-    InterruptMask(IO_IRQ, 0);
-    event->sigev_notify = SIGEV_PULSE;
-    event->__sigev_un1.__sigev_coid = coid;
-    event->__sigev_un2.__st.__sigev_code = 0;
-    event->sigev_value.sival_int = irq_val;
-  } else {
-    event = NULL;
-  }
-  return event;
-}
-
 void hwaccess::init_isr() {
   LOG_TRACE("")
   // Channel erstellen
@@ -223,6 +202,8 @@ void hwaccess::init_isr() {
     LOG_ERROR("ConnectAttach() failed!")
     return;
   }
+  isr_coid = m_isr->m_coid; // globale variable setzen...
+                            // die isr kennt die hal nicht
   // Interrupts zurücksetzen
   m_io->outbyte(IRQ_CLEAR_REG, 0);
   // IRQ für Port B und Port C aktivieren
