@@ -60,4 +60,7 @@ class singleton_mgr {
 }
 }
 
+#define TO_HAL(ptr) static_cast<se2::hal::hwaccess*>(ptr)
+#define TO_LOG(ptr) static_cast<se2::util::logging*>(ptr)
+
 #endif // SE2_SINGLETON_MGR_HPP

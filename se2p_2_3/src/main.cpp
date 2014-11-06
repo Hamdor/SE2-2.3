@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
    * Main programm kommt hier rein
    **/
   std::cout << "blub" << std::endl;
-  hwaccess* hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL));
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL));
   std::cout << "blub2" << std::endl;
   hal->open_switch();
   std::cout << "switch should be open" << std::endl;

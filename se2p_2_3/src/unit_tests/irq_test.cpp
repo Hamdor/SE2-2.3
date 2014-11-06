@@ -42,7 +42,7 @@ irq_test::~irq_test() {
 }
 
 int irq_test::before_class() {
-  m_hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL));
+  m_hal = TO_HAL(singleton_mgr::get_instance(HAL));
   return 0;
 }
 
