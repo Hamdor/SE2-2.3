@@ -1,3 +1,9 @@
+build/*
+*.swp
+*.DS_Store
+Doxyfile
+*.vpp~1
+*.o
 *.aux
 *.glo
 *.idx
@@ -29,5 +35,8 @@
 *vpp.working
 se2p_2_3/.settings/
 se2p_2_3/.cproject
+se2p_2_3/x86/o/se2p_2_3
 se2p_2_3/x86/o-g/
 se2p_2_3/x86/
+192.168.100.100/.trgtproject
+192.168.100.100/.project
