@@ -16,66 +16,28 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_test.hpp
+ * @file    config.h
  * @version 0.1
  *
- * interface für tests
+ * Globaler Config Header
+ * Sollte in jeder Datei includiert sein
  **/
 
-#ifndef SE2_ABSTRACT_TEST_HPP
-#define SE2_ABSTRACT_TEST_HPP
+#ifndef SE2_CONFIG_H
+#define SE2_CONFIG_H
 
-#include "config.h"
+//#define UNIT_TESTS_STUB   // Unit Tests der HAL aktivieren
+//#define UNIT_TESTS_IRQ    // Unit Tests der IRQ aktivieren
+//#define REAL_HW           // Deaktiviert das LOG file
+//#define SIMULATION        // Aktiviert die Verbindung zur Simulation
 
-#include <vector>
+#ifdef UNIT_TESTS_STUB
+// Es kann zur Zeit nur mit einem Test kompiliert werden,
+// das liegt daran, dass die HAL Unit Tests stubs brauchen.
+// Diese k�nnen jedoch keine interrupts ausl�sen.
+// TODO: Besseres verhalten
+  #undef UNIT_TESTS_IRQ
+#warning "UNIT_TESTS_IRQ nicht m�glich mit UNIT_TESTS_STUB"
+#endif
 
-namespace se2 {
-namespace unit_tests {
-
-template <typename T>
-class abstract_test {
- public:
-  /**
-   * Default Destruktor
-   */
-  virtual ~abstract_test() {
-    m_test_functions.clear();
-  }
-
-  /**
-   * Wird einmalig für alle ausgeführt
-   * @return 0 wenn erfolgreich
-   */
-  virtual int before_class() = 0;
-
-  /**
-   * Funktion wird vor jedem test ausgeführt
-   * @return 0 wenn erfolgreich
-   */
-  virtual int before() = 0;
-
-  /**
-   * Initialisiert den Funktionsvektor
-   * @return 0 wenn erfolgreich
-   */
-  virtual int init() = 0;
-
-  /**
-   * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
-  virtual int after() = 0;
-
-  /**
-   * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
-  virtual int after_class() = 0;
-
-  std::vector<int (T::*)(void)> m_test_functions;
-};
-
-} // unit_tests
-} // se2
-
-#endif // SE2_ABSTRACT_TEST_HPP
+#endif // SE2_CONFIG_H

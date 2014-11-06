@@ -25,12 +25,14 @@
 #ifndef SE2_LOGGING_HPP
 #define SE2_LOGGING_HPP
 
-#include <fstream>
+#include "config.h"
 
 #include "lib/constants.hpp"
 #include "lib/util/mutex.hpp"
 #include "lib/util/singleton_mgr.hpp"
 #include "lib/util/abstract_singleton.hpp"
+
+#include <fstream>
 
 namespace se2 {
 namespace util {

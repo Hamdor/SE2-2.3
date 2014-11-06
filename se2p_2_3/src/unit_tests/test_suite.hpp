@@ -25,6 +25,8 @@
 #ifndef SE2_TEST_SUITE_HPP
 #define SE2_TEST_SUITE_HPP
 
+#include "config.h"
+
 #include <vector>
 #include <cstddef>
 #include "unit_tests/abstract_test.hpp"

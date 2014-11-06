@@ -25,6 +25,8 @@
 #ifndef SE2_HAL_TEST_STUB1_HPP
 #define SE2_HAL_TEST_STUB1_HPP
 
+#include "config.h"
+
 #include "lib/hal/HWaccess.hpp"
 #include "unit_tests/abstract_test.hpp"
 #include "lib/hal/iostub.hpp"

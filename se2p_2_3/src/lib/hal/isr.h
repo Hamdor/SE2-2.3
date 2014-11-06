@@ -22,6 +22,8 @@
  * Implementierung der ISR
  **/
 
+#include "config.h"
+
 #include "lib/hal/HWaccess.hpp"
 #include "lib/constants.hpp"
 

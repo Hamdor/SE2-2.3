@@ -25,6 +25,8 @@
 #ifndef SE2_SINGLETON_MGR_HPP
 #define SE2_SINGLETON_MGR_HPP
 
+#include "config.h"
+
 #include "lib/hal/HWaccess.hpp"
 
 #include "lib/util/mutex.hpp"

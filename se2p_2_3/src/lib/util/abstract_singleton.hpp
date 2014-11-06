@@ -25,6 +25,8 @@
 #ifndef SE2_ABSTRACT_SINGLETON_HPP
 #define SE2_ABSTRACT_SINGLETON_HPP
 
+#include "config.h"
+
 namespace se2 {
 namespace util {
 

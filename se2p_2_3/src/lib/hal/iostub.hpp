@@ -25,6 +25,8 @@
 #ifndef SE2_IOSTUB_HPP
 #define SE2_IOSTUB_HPP
 
+#include "config.h"
+
 #include "lib/hal/abstract_inout.hpp"
 
 namespace se2 {

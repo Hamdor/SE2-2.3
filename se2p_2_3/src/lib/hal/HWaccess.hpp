@@ -26,6 +26,8 @@
 #ifndef SE2_HWACCESS_HPP
 #define SE2_HWACCESS_HPP
 
+#include "config.h"
+
 #include "lib/constants.hpp"
 #include "lib/hal/iostub.hpp"
 #include "lib/hal/abstract_inout.hpp"

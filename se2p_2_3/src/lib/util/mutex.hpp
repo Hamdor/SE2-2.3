@@ -25,6 +25,7 @@
 #ifndef SE2_UTIL_MUTEX_HPP
 #define SE2_UTIL_MUTEX_HPP
 
+#include "config.h"
 #include <pthread.h>
 
 namespace se2 {

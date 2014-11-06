@@ -25,6 +25,8 @@
 #ifndef SE2_ABSTRACT_INOUT_HPP
 #define SE2_ABSTRACT_INOUT_HPP
 
+#include "config.h"
+
 #include "lib/constants.hpp"
 
 #include <stdint.h>

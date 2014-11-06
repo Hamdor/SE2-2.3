@@ -25,6 +25,7 @@
 #ifndef SE2_UTIL_LOCK_GUARD_HPP
 #define SE2_UTIL_LOCK_GUARD_HPP
 
+#include "config.h"
 #include "mutex.hpp"
 
 namespace se2 {

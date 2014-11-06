@@ -25,6 +25,8 @@
 #ifndef SE2_IOWRAPPER_HPP
 #define SE2_IOWRAPPER_HPP
 
+#include "config.h"
+
 #include "lib/hal/abstract_inout.hpp"
 
 namespace se2 {

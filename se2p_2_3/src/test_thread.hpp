@@ -10,6 +10,8 @@
 #ifndef TEST_THREAD_HPP
 #define TEST_THREAD_HPP
 
+#include "config.h"
+
 #include <stdint.h>
 #include <pthread.h>
 

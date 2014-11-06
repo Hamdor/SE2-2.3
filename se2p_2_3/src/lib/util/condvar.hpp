@@ -25,8 +25,8 @@
 #ifndef SE2_UTIL_CONDVAR_HPP
 #define SE2_UTIL_CONDVAR_HPP
 
+#include "config.h"
 #include "mutex.hpp"
-
 #include <pthread.h>
 
 namespace se2 {

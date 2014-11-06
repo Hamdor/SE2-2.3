@@ -25,6 +25,8 @@
 #ifndef SE2_IRQ_TEST_HPP
 #define SE2_IRQ_TEST_HPP
 
+#include "config.h"
+
 #include "lib/hal/HWaccess.hpp"
 #include "unit_tests/abstract_test.hpp"
 

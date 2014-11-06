@@ -3,12 +3,13 @@
  * @version 0.1
  */
 
+#include "config.h"
+
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/singleton_mgr.hpp"
 
-#include <cstdlib>
 #include <iostream>
-
+#include <cstdlib>
 #include <unistd.h>
 
 #if defined (UNIT_TESTS_IRQ) || defined(UNIT_TESTS_STUB)

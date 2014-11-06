@@ -19,8 +19,9 @@
 #ifndef _HAW_THREAD_H_
 #define _HAW_THREAD_H_
 
-#include <iostream>
+#include "config.h"
 
+#include <iostream>
 #include <pthread.h>
 #include <sys/neutrino.h>
 

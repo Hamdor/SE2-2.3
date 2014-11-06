@@ -25,6 +25,8 @@
 #ifndef SE2_SERIAL_INTERFACE_HPP
 #define SE2_SERIAL_INTERFACE_HPP
 
+#include "config.h"
+
 #include "lib/util/logging.hpp"
 #include <unistd.h>
 
