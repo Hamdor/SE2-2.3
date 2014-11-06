@@ -27,7 +27,7 @@
 \begin{document}
  
 % Titelseite aufbauen
-%\titlehead{\flushright\includegraphics[scale=.3]{img/HAW_logo.png}}
+\titlehead{\flushright\includegraphics[scale=.3]{imgs/HAW_logo.png}}
 \subject{Software Engineering II\\Wintersemester 2014/2015}
 \title{Requirements and Design Documentation}
 \subtitle{Praktikums-Gruppe: 2.3}
@@ -606,7 +606,7 @@ C++ (nur STL)
 % 5.4 Use-Case-Diagramm
 \begin{figure}
  \subsection{Use-Case-Diagramm}
- \centering\vfill\includegraphics[angle=90,scale=0.7]{uml_imgs/UseCases.png}
+ \centering\vfill\includegraphics[angle=90,scale=0.7]{imgs/UseCases.png}
 \end{figure}
 
 \newpage
@@ -716,9 +716,11 @@ Dazu können Sie die Meilensteine zu Hilfe nehmen.}}
 
 % 8.6 Testprotokolle und Auswertungen
 \subsection{Testprotokolle und Auswertungen}
-4.11.2014: Testen der HAL, insbesondere der Sensorik \newline
-Nachdem die korrekte Ansteuerung der Aktorik und die serielle Schnittstelle mit dem zweiten Milestone abgenommen wurde, wurde die Sensorik getestet. Es wurde beobachtet, dass der H\"ohensensor (korrekte) Messwerte liefert. Weiterhin wurde beobachtet, dass das Programm sich aufh\"angt, sobald ein Messwert geliefert bzw. ein Interrupt von der Sensorik ausgel\"ost wurde. Dies ben\"otigt weitere Bearbeitung.\newline
-
+04.11.2014: Testen der HAL, insbesondere der Sensorik \newline
+Nachdem die korrekte Ansteuerung der Aktorik und die serielle Schnittstelle mit dem zweiten Milestone abgenommen wurde, wurde die Sensorik getestet. Es wurde beobachtet, dass der H\"ohensensor (korrekte) Messwerte liefert. Weiterhin wurde beobachtet, dass das Programm sich aufh\"angt, sobald ein Messwert geliefert bzw. ein Interrupt von der Sensorik ausgel\"ost wurde. Dies ben\"otigt weitere Bearbeitung.\\
+\newline
+06.11.2014: Der Interrupt für die Sensorik funktioniert.\\
+\newline
 \textcolor{red}{\textbf{Hier fügen Sie die Test Protokolle bei, auch wenn Fehler bereits beseitigt
 worden sind, ist es schön zu wissen, welche Fehler einst aufgetaucht sind.
 Eventuelle Anmerkung zur Fehlerbehandlung kann für weitere Entwicklungen hilfreich sein.\\
