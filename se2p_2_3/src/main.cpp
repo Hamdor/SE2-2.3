@@ -48,14 +48,10 @@ int main(int argc, char *argv[]) {
   /**
    * Main programm kommt hier rein
    **/
-  std::cout << "blub" << std::endl;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL));
-  std::cout << "blub2" << std::endl;
   hal->open_switch();
-  std::cout << "switch should be open" << std::endl;
-  sleep(2);
+  sleep(1);
   hal->close_switch();
-  std::cout << "switch should be closed" << std::endl;
 #endif
   singleton_mgr::shutdown();
 #ifdef SIMULATION
