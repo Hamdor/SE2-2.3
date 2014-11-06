@@ -23,12 +23,13 @@
  **/
 
 #include "unit_tests/hal_test_stub2.hpp"
-#include "lib/util/logging.hpp"
 
-#include <iostream>
+#include "lib/util/logging.hpp"
+#include "lib/util/singleton_mgr.hpp"
 
 using namespace std;
 using namespace se2::hal;
+using namespace se2::util;
 using namespace se2::unit_tests;
 
 hal_test_stub2::hal_test_stub2() : m_hal(NULL), m_error(0) {
@@ -40,7 +41,7 @@ hal_test_stub2::~hal_test_stub2() {
 }
 
 int hal_test_stub2::before_class() {
-  m_hal = hwaccess::get_instance();
+  m_hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL));
   m_hal->change_stub(new iostub(0b00000000, 0b00010100, 0b01010000));
   return 0;
 }

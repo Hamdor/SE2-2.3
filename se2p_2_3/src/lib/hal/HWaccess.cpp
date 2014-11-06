@@ -42,27 +42,6 @@ using namespace se2::util;
 using namespace se2::hal;
 
 hwaccess* hwaccess::instance = NULL;
-mutex     hwaccess::s_lock;
-
-/**
- * Singleton nach DCLP - Double Checked Locking Pattern
- **/
-hwaccess* hwaccess::get_instance() {
-  /**
-   * Dieser Thread möchte gern auf HW zugreifen,
-   * ThreadCtl geben.
-   **/
-  if (ThreadCtl(_NTO_TCTL_IO_PRIV, NULL) == -1) {
-    LOG_ERROR("ThreadCtl() failed!")
-  }
-  if (!instance) {
-    lock_guard lock(s_lock);
-    if (!instance) {
-      instance = new hwaccess();
-    }
-  }
-  return instance;
-}
 
 hwaccess::hwaccess() : m_isr(new isr_control) {
   LOG_TRACE("")
@@ -82,8 +61,6 @@ hwaccess::hwaccess() : m_isr(new isr_control) {
 }
 
 hwaccess::~hwaccess() {
-  LOG_TRACE("")
-  stop_isr();
   delete m_io;
   delete m_isr;
   hwaccess::instance = NULL;
@@ -229,4 +206,13 @@ void hwaccess::stop_isr() {
   if (rc) {
     LOG_ERROR("ChannelDestroy() failed!")
   }
+}
+
+void hwaccess::initialize() {
+
+}
+
+void hwaccess::destroy() {
+  LOG_TRACE("")
+  stop_isr();
 }

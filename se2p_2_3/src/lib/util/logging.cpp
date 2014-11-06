@@ -33,7 +33,6 @@
 using namespace se2::util;
 
 logging* logging::instance = NULL;
-mutex    logging::s_lock;
 
 namespace {
   std::string output_file = "/root/logs/log_";
@@ -100,12 +99,10 @@ logging::~logging() {
   instance = NULL;
 }
 
-logging* logging::get_instance() {
-  if (!instance) {
-    lock_guard guard(s_lock);
-    if (!instance) {
-      instance = new logging();
-    }
-  }
-  return instance;
+void logging::initialize() {
+
+}
+
+void logging::destroy() {
+
 }

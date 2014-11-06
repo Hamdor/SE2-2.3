@@ -11,6 +11,7 @@
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/mutex.hpp"
 #include "lib/util/lock_guard.hpp"
+#include "lib/util/singleton_mgr.hpp"
 
 using namespace se2::util;
 using namespace se2::hal;
@@ -28,7 +29,7 @@ test_thread::~test_thread() {
 void test_thread::execute(void*){
   lock_guard lock(mtx_);
   std::cout << "Blink_Thread executing" << std::endl;
-  hwaccess* hal = hwaccess::get_instance();
+  hwaccess* hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL));
   for (int i = 0; i < times_; i++) {
     if (!isStopped()) {
       hal->set_led_state(start_button, false);

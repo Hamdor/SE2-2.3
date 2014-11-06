@@ -16,75 +16,53 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    irq_test.cpp
+ * @file    abstract_singleton.cpp
  * @version 0.1
  *
- * Unit tests der ISR/IRQ
+ * Interface/Abstrakte Klasse für Singletons
  **/
 
-#include "unit_tests/irq_test.hpp"
 #include "lib/util/singleton_mgr.hpp"
 
-#include <bitset>
-#include <iostream>
-
-using namespace std;
-using namespace se2::hal;
 using namespace se2::util;
-using namespace se2::unit_tests;
+using namespace se2::hal;
 
-irq_test::irq_test() : m_hal(NULL), m_error(0) {
-  // nop
-}
+mutex singleton_mgr::s_lock_hal;
+mutex singleton_mgr::s_lock_log;
 
-irq_test::~irq_test() {
-  // nop
-}
-
-int irq_test::before_class() {
-  m_hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL));
-  return 0;
-}
-
-int irq_test::before() {
-  return 0;
-}
-
-int irq_test::init() {
-  m_test_functions.push_back(&irq_test::open_switch);
-  m_test_functions.push_back(&irq_test::close_switch);
-  return 0;
-}
-
-int irq_test::after() {
-  return 0;
-}
-
-int irq_test::after_class() {
-  delete m_hal;
-  return 0;
-}
-
-int irq_test::open_switch() {
-  m_hal->open_switch();
-  struct _pulse msg;
-  MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000001110101110100000);
-  bitset<32> value(msg.value.sival_int);
-  if (expected != value) {
-    m_error++;
+abstract_singleton* singleton_mgr::get_instance(module_type module) {
+  if (module == HAL) {
+    if (ThreadCtl(_NTO_TCTL_IO_PRIV, NULL) == -1) {
+      LOG_ERROR("ThreadCtl() failed!")
+    }
+    if (!hwaccess::instance) {
+      lock_guard guard(s_lock_hal);
+      if (!hwaccess::instance) {
+        hwaccess::instance = new hwaccess();
+        hwaccess::instance->initialize();
+      }
+    }
+    return hwaccess::instance;
+  } else if (module == LOGGER) {
+    if (!logging::instance) {
+      lock_guard guard(s_lock_log);
+      if (!logging::instance) {
+        logging::instance = new logging();
+        logging::instance->initialize();
+      }
+    }
+    return logging::instance;
   }
-  return m_error;
+  return NULL;
 }
 
-int irq_test::close_switch() {
-  m_hal->close_switch();
-  struct _pulse msg;
-  MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000001100101110100000);
-  bitset<32> value(msg.value.sival_int);
-  if (expected != value) {
-    m_error++;
+void singleton_mgr::shutdown() {
+  if (hwaccess::instance) {
+    hwaccess::instance->destroy();
+    delete hwaccess::instance;
   }
-  return m_error;
+  if (logging::instance) {
+    logging::instance->destroy();
+    delete logging::instance;
+  }
 }

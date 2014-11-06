@@ -16,75 +16,35 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    irq_test.cpp
+ * @file    abstract_singleton.hpp
  * @version 0.1
  *
- * Unit tests der ISR/IRQ
+ * Interface/Abstrakte Klasse für Singletons
  **/
 
-#include "unit_tests/irq_test.hpp"
-#include "lib/util/singleton_mgr.hpp"
+#ifndef SE2_ABSTRACT_SINGLETON_HPP
+#define SE2_ABSTRACT_SINGLETON_HPP
 
-#include <bitset>
-#include <iostream>
+namespace se2 {
+namespace util {
 
-using namespace std;
-using namespace se2::hal;
-using namespace se2::util;
-using namespace se2::unit_tests;
+class abstract_singleton {
+  /**
+   * Initialisierung des Singletons
+   **/
+  virtual void initialize() = 0;
 
-irq_test::irq_test() : m_hal(NULL), m_error(0) {
-  // nop
-}
-
-irq_test::~irq_test() {
-  // nop
-}
-
-int irq_test::before_class() {
-  m_hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL));
-  return 0;
-}
-
-int irq_test::before() {
-  return 0;
-}
-
-int irq_test::init() {
-  m_test_functions.push_back(&irq_test::open_switch);
-  m_test_functions.push_back(&irq_test::close_switch);
-  return 0;
-}
-
-int irq_test::after() {
-  return 0;
-}
-
-int irq_test::after_class() {
-  delete m_hal;
-  return 0;
-}
-
-int irq_test::open_switch() {
-  m_hal->open_switch();
-  struct _pulse msg;
-  MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000001110101110100000);
-  bitset<32> value(msg.value.sival_int);
-  if (expected != value) {
-    m_error++;
+  /**
+   * Zerstörung des Singleton
+   **/
+  virtual void destroy() = 0;
+ public:
+  virtual ~abstract_singleton() {
+    // nop
   }
-  return m_error;
-}
+};
 
-int irq_test::close_switch() {
-  m_hal->close_switch();
-  struct _pulse msg;
-  MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000001100101110100000);
-  bitset<32> value(msg.value.sival_int);
-  if (expected != value) {
-    m_error++;
-  }
-  return m_error;
-}
+} // namespace util
+} // namespace se2
+
+#endif // SE2_ABSTRACT_SINGLETON_HPP

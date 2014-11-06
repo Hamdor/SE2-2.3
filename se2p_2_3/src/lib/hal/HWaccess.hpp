@@ -27,16 +27,22 @@
 #define SE2_HWACCESS_HPP
 
 #include "lib/constants.hpp"
-#include "lib/util/mutex.hpp"
-#include "lib/hal/abstract_inout.hpp"
 #include "lib/hal/iostub.hpp"
+#include "lib/hal/abstract_inout.hpp"
+
+#include "lib/util/mutex.hpp"
+#include "lib/util/abstract_singleton.hpp"
 
 #include <sys/siginfo.h>
 
 namespace se2 {
+namespace util {
+class singleton_mgr;
+} // namespace util
 namespace hal {
 
-struct hwaccess {
+struct hwaccess : public util::abstract_singleton {
+  friend class util::singleton_mgr;
   /**
    * Control Klasse für den ISR Teil der HAL
    * Diese Klasse ist nur von `hwaccess` zugänglich
@@ -57,7 +63,7 @@ struct hwaccess {
   /**
    * Default Destruktor
    **/
-  ~hwaccess();
+  virtual ~hwaccess();
 
   /**
    * Setzt den Motor Modus (Aus, Rechtslauf, Linkslauf)
@@ -138,16 +144,17 @@ struct hwaccess {
    **/
   int get_isr_channel() const;
 
-  /**
-   * Singleton
-   **/
-  /**
-   * @return Gibt die Instanz der HAL zurück
-   **/
-  static hwaccess* get_instance();
  private:
-  static hwaccess*   instance;
-  static util::mutex s_lock;
+  static hwaccess* instance;
+  /**
+   * Initialisierung des Singletons
+   **/
+  virtual void initialize();
+
+  /**
+   * Zerst�rung des Singleton
+   **/
+  virtual void destroy();
 
   /**
    * Private Konstruktoren

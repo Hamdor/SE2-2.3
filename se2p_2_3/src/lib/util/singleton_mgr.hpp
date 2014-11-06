@@ -16,75 +16,48 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    irq_test.cpp
+ * @file    abstract_singleton.hpp
  * @version 0.1
  *
- * Unit tests der ISR/IRQ
+ * Interface/Abstrakte Klasse für Singletons
  **/
 
-#include "unit_tests/irq_test.hpp"
-#include "lib/util/singleton_mgr.hpp"
+#ifndef SE2_SINGLETON_MGR_HPP
+#define SE2_SINGLETON_MGR_HPP
 
-#include <bitset>
-#include <iostream>
+#include "lib/hal/HWaccess.hpp"
 
-using namespace std;
-using namespace se2::hal;
-using namespace se2::util;
-using namespace se2::unit_tests;
+#include "lib/util/mutex.hpp"
+#include "lib/util/logging.hpp"
+#include "lib/util/lock_guard.hpp"
+#include "lib/util/abstract_singleton.hpp"
 
-irq_test::irq_test() : m_hal(NULL), m_error(0) {
-  // nop
+namespace se2 {
+namespace util {
+
+enum module_type {
+  HAL,
+  LOGGER
+};
+
+class singleton_mgr {
+  static mutex s_lock_hal;
+  static mutex s_lock_log;
+ public:
+  /**
+   * Zurgiff auf ein beliebiges Singleton Module
+   * @param  `module_type` des angeforderten Modules
+   * @return ein `abstract_singleton` pointer auf das Module
+   **/
+  static abstract_singleton* get_instance(module_type module);
+
+  /**
+   * Zerstört alle Singleton Module
+   **/
+  static void shutdown();
+};
+
+}
 }
 
-irq_test::~irq_test() {
-  // nop
-}
-
-int irq_test::before_class() {
-  m_hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL));
-  return 0;
-}
-
-int irq_test::before() {
-  return 0;
-}
-
-int irq_test::init() {
-  m_test_functions.push_back(&irq_test::open_switch);
-  m_test_functions.push_back(&irq_test::close_switch);
-  return 0;
-}
-
-int irq_test::after() {
-  return 0;
-}
-
-int irq_test::after_class() {
-  delete m_hal;
-  return 0;
-}
-
-int irq_test::open_switch() {
-  m_hal->open_switch();
-  struct _pulse msg;
-  MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000001110101110100000);
-  bitset<32> value(msg.value.sival_int);
-  if (expected != value) {
-    m_error++;
-  }
-  return m_error;
-}
-
-int irq_test::close_switch() {
-  m_hal->close_switch();
-  struct _pulse msg;
-  MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000001100101110100000);
-  bitset<32> value(msg.value.sival_int);
-  if (expected != value) {
-    m_error++;
-  }
-  return m_error;
-}
+#endif // SE2_SINGLETON_MGR_HPP
