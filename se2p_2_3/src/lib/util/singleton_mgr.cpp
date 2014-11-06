@@ -19,16 +19,18 @@
  * @file    abstract_singleton.cpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse für Singletons
+ * Interface/Abstrakte Klasse fï¿½r Singletons
  **/
 
 #include "lib/util/singleton_mgr.hpp"
 
 using namespace se2::util;
 using namespace se2::hal;
+using namespace se2::serial_bus;
 
 mutex singleton_mgr::s_lock_hal;
 mutex singleton_mgr::s_lock_log;
+mutex singleton_mgr::s_lock_serial;
 
 abstract_singleton* singleton_mgr::get_instance(module_type module) {
   if (module == HAL) {
@@ -52,6 +54,15 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
       }
     }
     return logging::instance;
+  } else if (module == SERIAL) {
+    if (!serial_channel::instance) {
+      lock_guard guard(s_lock_serial);
+      if(!serial_channel::instance) {
+        serial_channel::instance = new serial_channel();
+        serial_channel::instance->initialize();
+      }
+    }
+    return serial_channel::instance;
   }
   return NULL;
 }
@@ -64,5 +75,9 @@ void singleton_mgr::shutdown() {
   if (logging::instance) {
     logging::instance->destroy();
     delete logging::instance;
+  }
+  if (serial_channel::instance) {
+    serial_channel::instance->destroy();
+    delete serial_channel::instance;
   }
 }
