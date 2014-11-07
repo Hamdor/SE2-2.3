@@ -37,14 +37,14 @@ int main(int argc, char *argv[]) {
   /**
    * Unit Tests kommen hier rein
    **/
-   cout << "run `hal_test_stub1` errors: "
-        << test_suite<hal_test_stub1>().run() << endl;
-   sleep(1);
-   cout << "run `hal_test_stub2` errors: "
-        << test_suite<hal_test_stub2>().run() << endl;
+  cout << "run `hal_test_stub1` errors: "
+       << test_suite<hal_test_stub1>().run() << endl;
+  sleep(1);
+  cout << "run `hal_test_stub2` errors: "
+       << test_suite<hal_test_stub2>().run() << endl;
 #elif UNIT_TESTS_IRQ
   cout << "run `irq_tes`        errors: "
-       << test_suite<irq_test>().run()        << endl;
+       << test_suite<irq_test>().run()       << endl;
 #else
   /**
    * Main programm kommt hier rein
