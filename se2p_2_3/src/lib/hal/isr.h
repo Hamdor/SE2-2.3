@@ -33,8 +33,7 @@
 using namespace se2::hal;
 
 int isr_coid = 0;
-int port_old = (in8(static_cast<uint16_t>(PORTB)) << 8) |
-                in8(static_cast<uint16_t>(PORTC));
+int port_old = 0;
 
 const struct sigevent* isr(void* arg, int id) {
   struct sigevent* event = static_cast<struct sigevent*>(arg);

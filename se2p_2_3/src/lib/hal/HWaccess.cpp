@@ -56,8 +56,6 @@ hwaccess::hwaccess() : m_isr(new isr_control) {
    **/
   m_io = new iowrapper();
 #endif
-  m_io->init_input_output();
-  init_isr();
 }
 
 hwaccess::~hwaccess() {
@@ -190,6 +188,9 @@ void hwaccess::init_isr() {
     LOG_ERROR("InterruptAttach() failed!")
     return;
   }
+  // Globale Variable der ISR initialisieren
+  port_old = (in8(static_cast<uint16_t>(PORTB)) << 8) |
+              in8(static_cast<uint16_t>(PORTC));
 }
 
 void hwaccess::stop_isr() {
@@ -209,7 +210,8 @@ void hwaccess::stop_isr() {
 }
 
 void hwaccess::initialize() {
-
+  m_io->init_input_output();
+  init_isr();
 }
 
 void hwaccess::destroy() {
