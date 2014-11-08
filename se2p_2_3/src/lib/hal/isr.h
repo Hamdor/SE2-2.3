@@ -32,20 +32,26 @@
 
 using namespace se2::hal;
 
-int isr_coid;
+int isr_coid = 0;
+int port_old = (in8(static_cast<uint16_t>(PORTB)) << 8) |
+                in8(static_cast<uint16_t>(PORTC));
 
 const struct sigevent* isr(void* arg, int id) {
   struct sigevent* event = static_cast<struct sigevent*>(arg);
   uint8_t irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
   out8(static_cast<uint16_t>(IRQ_CLEAR_REG), 0); // Interrupt zurücksetzen
   if (irq_val == PORTB_INTERRUPT || irq_val == PORTC_INTERRUPT) {
-    uint8_t portb = in8(static_cast<uint16_t>(PORTB));
-    uint8_t portc = in8(static_cast<uint16_t>(PORTC));
+    uint16_t ports = (in8(static_cast<uint16_t>(PORTB)) << 8) |
+                      in8(static_cast<uint16_t>(PORTC));
     event->sigev_notify = SIGEV_PULSE;
     event->__sigev_un1.__sigev_coid = isr_coid;
     event->__sigev_un2.__st.__sigev_code = 0;
-    event->sigev_value.sival_int = portb << 8 | portc;
+    int changed_bit = port_old ^ ports;
+    event->sigev_value.sival_int = changed_bit;
+    // update port_old
+    port_old = ports;
   } else {
+	// Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren
     event = NULL;
   }
   return event;
