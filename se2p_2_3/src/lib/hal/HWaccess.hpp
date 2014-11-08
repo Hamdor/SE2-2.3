@@ -60,7 +60,7 @@ struct hwaccess : public util::abstract_singleton {
   /**
    * Wechselt den aktuell gesetzten Stub
    **/
-  void change_stub(iostub* ptr);
+  void change_stub(abstract_inout* ptr);
 
   /**
    * Default Destruktor
@@ -154,7 +154,7 @@ struct hwaccess : public util::abstract_singleton {
   virtual void initialize();
 
   /**
-   * Zerstörung des Singleton
+   * Zerstï¿½rung des Singleton
    **/
   virtual void destroy();
 

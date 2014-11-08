@@ -33,7 +33,7 @@
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #ifdef SIMULATION
- #include <ioaccess.h>
+  #include <ioaccess.h>
 #endif
 
 namespace se2 {

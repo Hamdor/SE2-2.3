@@ -17,7 +17,7 @@
  ******************************************************************************/
 /**
  * @file    config.h
- * @version 0.1
+ * @version 0.2
  *
  * Globaler Config Header
  * Sollte in jeder Datei includiert sein
@@ -26,18 +26,8 @@
 #ifndef SE2_CONFIG_H
 #define SE2_CONFIG_H
 
-//#define UNIT_TESTS_STUB   // Unit Tests der HAL aktivieren
-//#define UNIT_TESTS_IRQ    // Unit Tests der IRQ aktivieren
-//#define REAL_HW           // Deaktiviert das LOG file
-//#define SIMULATION        // Aktiviert die Verbindung zur Simulation
-
-#ifdef UNIT_TESTS_STUB
-// Es kann zur Zeit nur mit einem Test kompiliert werden,
-// das liegt daran, dass die HAL Unit Tests stubs brauchen.
-// Diese können jedoch keine interrupts auslösen.
-// TODO: Besseres verhalten
-  #undef UNIT_TESTS_IRQ
-#warning "UNIT_TESTS_IRQ nicht möglich mit UNIT_TESTS_STUB"
-#endif
+//#define UNIT_TESTS   // Unit Tests
+//#define REAL_HW      // Deaktiviert das LOG file
+//#define SIMULATION   // Aktiviert die Verbindung zur Simulation
 
 #endif // SE2_CONFIG_H

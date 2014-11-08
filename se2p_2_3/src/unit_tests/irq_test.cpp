@@ -23,10 +23,11 @@
  **/
 
 #include "unit_tests/irq_test.hpp"
+
+#include "lib/hal/iowrapper.hpp"
 #include "lib/util/singleton_mgr.hpp"
 
 #include <bitset>
-#include <iostream>
 
 using namespace std;
 using namespace se2::hal;
@@ -43,6 +44,7 @@ irq_test::~irq_test() {
 
 int irq_test::before_class() {
   m_hal = TO_HAL(singleton_mgr::get_instance(HAL));
+  m_hal->change_stub(new iowrapper);
   return 0;
 }
 

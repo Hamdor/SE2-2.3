@@ -43,19 +43,8 @@ using namespace se2::hal;
 
 hwaccess* hwaccess::instance = NULL;
 
-hwaccess::hwaccess() : m_isr(new isr_control) {
-  LOG_TRACE("")
-#ifdef UNIT_TESTS_STUB
-  /**
-   * Stub IO
-   **/
-  m_io = new iostub(0b00000000, 0b11001011, 0b10100000);
-#else
-  /**
-   * Hardware IO
-   **/
-  m_io = new iowrapper();
-#endif
+hwaccess::hwaccess() : m_io(new iowrapper), m_isr(new isr_control) {
+  // nop
 }
 
 hwaccess::~hwaccess() {
@@ -65,9 +54,9 @@ hwaccess::~hwaccess() {
 }
 
 // Diese Funktion ist eine NOP funktion
-// solange `UNIT_TESTS_STUB` nicht definiert ist
-void hwaccess::change_stub(iostub* ptr) {
-#ifdef UNIT_TESTS_STUB
+// solange `UNIT_TESTS` nicht definiert ist
+void hwaccess::change_stub(abstract_inout* ptr) {
+#ifdef UNIT_TESTS
   if (!ptr) {
     LOG_ERROR("invalid stub");
     return;
@@ -76,7 +65,6 @@ void hwaccess::change_stub(iostub* ptr) {
     delete m_io;
   }
   m_io = reinterpret_cast<abstract_inout*>(ptr);
-
 #else
   // nop
 #endif
