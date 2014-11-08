@@ -51,7 +51,7 @@ const struct sigevent* isr(void* arg, int id) {
     // update port_old
     port_old = ports;
   } else {
-	// Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren
+    // Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren
     event = NULL;
   }
   return event;
