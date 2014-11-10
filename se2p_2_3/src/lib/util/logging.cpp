@@ -57,6 +57,7 @@ void logging::log(const char* str, loglevel lvl,
               << "Log message:"             << std::endl
               << str                        << std::endl;
   }
+#endif
   std::string prefix;
   switch (lvl) {
   case TRACE:
@@ -81,12 +82,13 @@ void logging::log(const char* str, loglevel lvl,
      << " file: " << file_name
      << ":"       << line_num;
   m_lock.acquire();
+#ifndef REAL_HW
   m_fstream << ss.str() << " " << str << std::endl;
+#endif
   if (lvl != TRACE) {
     std::cerr << ss.str() << " " << str << std::endl;
   }
   m_lock.release();
-#endif
 }
 
 logging::~logging() {
