@@ -44,6 +44,8 @@ serial_interface::serial_interface() {
     return;
   }
   config();
+#else
+  m_fd = 0;
 #endif
 }
 
