@@ -77,6 +77,16 @@
 #define IO_IRQ                  11
 
 namespace se2 {
+
+/**
+ * Pulse Message Herkunft
+ **/
+enum event_source {
+  INTERRUPT = 0,
+  SERIAL    = 1,
+  TIMER     = 2
+};
+
 namespace hal {
 
 /**

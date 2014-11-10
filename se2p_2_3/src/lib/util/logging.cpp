@@ -102,9 +102,9 @@ logging::~logging() {
 }
 
 void logging::initialize() {
-
+  // nop
 }
 
 void logging::destroy() {
-
+  // nop
 }
