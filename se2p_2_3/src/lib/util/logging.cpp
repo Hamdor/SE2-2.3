@@ -35,7 +35,7 @@ using namespace se2::util;
 logging* logging::instance = NULL;
 
 namespace {
-  std::string output_file = "/root/logs/log_";
+  std::string output_file = std::string(LOG_FILE_PATH) + "log_";
 } // namespace <anonymous>
 
 logging::logging() : m_fstream(), m_lock() {

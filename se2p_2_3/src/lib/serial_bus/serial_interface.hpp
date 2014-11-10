@@ -50,9 +50,11 @@ class serial_interface {
    * @param len  gibt die Länge des Datentypens an
    * @return TRUE  wenn erfolgreich 
    *         FALSE wenn fehlschlägt
+   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
    **/
   template <typename T>
   bool write(T* data) {
+#ifdef HAS_SERIAL_INTERFACE
     size_t rc = 0;
     while (rc != sizeof(T)) {
       ssize_t err = ::write(m_fd, data + rc, sizeof(T) - rc);
@@ -63,6 +65,9 @@ class serial_interface {
       rc += err;
     }
     return rc == sizeof(T);
+#else
+    return false;
+#endif
   }
 
   /**
@@ -71,9 +76,11 @@ class serial_interface {
    * @param len  gibt die Länge des Datentypens an
    * @return TRUE  wenn erfolgreich  
    *         FALSE wenn fehlschlägt
+   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
    **/
   template <typename T>
   bool read(T* buffer) {
+#ifdef HAS_SERIAL_INTERFACE
     size_t rc = 0;
     while (rc != sizeof(T)) {
       ssize_t err = ::read(m_fd, buffer + rc, sizeof(T) - rc);
@@ -84,6 +91,9 @@ class serial_interface {
       rc += err;
     }
     return rc == sizeof(T);
+#else
+    return false;
+#endif
   }
 
  private:

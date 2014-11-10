@@ -30,23 +30,29 @@
 
 using namespace se2;
 
+#ifdef HAS_SERIAL_INTERFACE
 namespace {
-  const char* char_device = "/dev/ser1";
+  const char* char_device = SERIAL_CHAR_DEV;
 } // namespace <anonymous>
+#endif
 
 serial_interface::serial_interface() {
+#ifdef HAS_SERIAL_INTERFACE
   m_fd = ::open(char_device, O_RDWR);
   if (m_fd == -1) {
     LOG_ERROR("serial_interface::serial_interface() cant open file!")
     return;
   }
   config();
+#endif
 }
 
 serial_interface::~serial_interface() {
+#ifdef HAS_SERIAL_INTERFACE
   if (close(m_fd) == -1) {
     LOG_ERROR("serial_interface::~serial_interface() cant close file!")
   }
+#endif
 }
 
 void serial_interface::config() {
