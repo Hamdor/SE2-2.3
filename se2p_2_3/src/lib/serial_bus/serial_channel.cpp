@@ -22,12 +22,17 @@
  * Logik Ebene der Seriellen Schnittstelle
  **/
 
+#include "lib/hal/HWaccess.hpp"
+#include "lib/util/lock_guard.hpp"
+#include "lib/util/singleton_mgr.hpp"
 #include "lib/serial_bus/serial_channel.hpp"
 #include "lib/serial_bus/serial_interface.hpp"
-#include "lib/util/lock_guard.hpp"
 
-using namespace se2::serial_bus;
+#include <sys/neutrino.h>
+
+using namespace se2::hal;
 using namespace se2::util;
+using namespace se2::serial_bus;
 
 serial_channel* serial_channel::instance = 0;
 
@@ -40,6 +45,12 @@ serial_channel::~serial_channel() {
   instance = 0;
 }
 
+telegram serial_channel::get_telegram() {
+  telegram result = m_queue.front();
+  m_queue.pop();
+  return result;
+}
+
 void serial_channel::initialize() {
   // nop
 }
@@ -49,9 +60,26 @@ void serial_channel::destroy() {
 }
 
 void serial_channel::execute(void*) {
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL));
   telegram data;
-  while(1) { /* hier abbruch bedingung vom haw thread benutzen */
+  while(!isStopped()) {
     m_interface->read(&data);
+    event_values value;
+    if (data.m_type == MSG) {
+      value = NEW_SERIAL_MSG;
+    } else if (data.m_type == DATA) {
+      value = NEW_SERIAL_DATA;
+    } else if (data.m_type == ERR) {
+      value = NEW_SERIAL_ERR;
+    } else {
+      // unkown ...
+      value = NEW_SERIAL_UNK;
+    }
     m_queue.push(data);
+    MsgSendPulse(hal->get_isr_channel(), 0, SERIAL, value);
   }
+}
+
+void serial_channel::shutdown() {
+  // nop
 }

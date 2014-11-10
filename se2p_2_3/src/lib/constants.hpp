@@ -25,6 +25,8 @@
 #ifndef SE2_CONSTANTS_HPP
 #define SE2_CONSTANTS_HPP
 
+#include "lib/token.hpp"
+
 /**
  * Bit Position der Weiche auf Port A
  **/
@@ -85,6 +87,17 @@ enum event_source {
   INTERRUPT = 0,
   SERIAL    = 1,
   TIMER     = 2
+};
+
+/**
+ * Pulse Message Values
+ * TODO: erweitern
+ **/
+enum event_values {
+  NEW_SERIAL_DATA = 0, // Daten vom anderen Band
+  NEW_SERIAL_MSG  = 1, // Nachricht des anderen Bandes
+  NEW_SERIAL_ERR  = 2, // Error Nachricht des anderen Bandes
+  NEW_SERIAL_UNK  = 3  // Unbekannte Nachricht
 };
 
 namespace hal {
@@ -199,6 +212,40 @@ enum loglevel {
 };
 
 } // namespace util
+
+namespace serial_bus {
+
+/**
+ * Telegram Typ
+ **/
+enum telegram_type {
+  MSG  = 0,  // Nachricht (keine Daten)
+  DATA = 1,  // Daten werden übertragen
+  ERR  = 2   // letzte packet neu senden
+};
+
+/**
+ * Nachricht typen
+ **/
+enum msg_type {
+  ERR_STOP = 0,  // Fehler auf einem Band, stoppen
+  ERR_QUIT = 1,  // Fehler quittiert
+  RESUME   = 2,  // Weiterlaufen/Start
+  B2_FREE  = 3,  // Band 2 wieder frei von Puk
+  E_STOP   = 4,  // Estop gedrückt
+  STOP     = 5   // Stop taste gedrückt
+};
+
+/**
+ * Telegram komplett
+ **/
+struct telegram {
+  telegram_type m_type; // (SYNC, MSG, ACK, DATA, ERROR)
+  msg_type      m_msg;  // Nachricht (optional bei Daten)
+  token         m_data; // Daten (optional bei Message)
+};
+
+} // namespace serial_bus
 } // namespace se2
 
 #endif // SE2_CONSTANTS_HPP

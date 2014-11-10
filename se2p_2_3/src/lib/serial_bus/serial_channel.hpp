@@ -26,9 +26,7 @@
 #define SE2_SERIAL_CHANNEL_HPP
 
 #include "config.h"
-
-#include "token.hpp"
-
+#include "lib/constants.hpp"
 #include "lib/util/HAWThread.hpp"
 #include "lib/util/mutex.hpp"
 #include "lib/util/abstract_singleton.hpp"
@@ -44,46 +42,42 @@ namespace serial_bus {
 
 class serial_interface;
 
-enum telegram_type {
-  MSG  = 0,  // Nachricht (keine Daten)
-  DATA = 1,  // Daten werden übertragen
-  ERR  = 2   // letzte packet neu senden
-};
-
-enum msg_type {
-  ERR_STOP = 0,  // Fehler auf einem Band, stoppen
-  ERR_QUIT = 1,  // Fehler quittiert
-  RESUME   = 2,  // Weiterlaufen/Start
-  B2_FREE  = 3,  // Band 2 wieder frei von Puk
-  E_STOP   = 4,  // Estop gedrückt
-  STOP     = 5   // Stop taste gedrückt
-};
-
-struct telegram {
-  telegram_type m_type; // (SYNC, MSG, ACK, DATA, ERROR)
-  msg_type      m_msg;  // Nachricht (optional bei Daten)
-  token         m_data; // Daten (optional bei Message)
-};
-
 #define TELEGRAM_SIZE sizeof(telegram)
 
 class serial_channel : public util::abstract_singleton
                      , public util::HAWThread {
   friend class util::singleton_mgr;
+  /**
+   * Konstruktor
+   **/
   serial_channel();
+
+  /**
+   * Default Destruktor
+   **/
   virtual ~serial_channel();
-  static serial_channel* instance;
 
   virtual void initialize();
   virtual void destroy();
-
   virtual void execute(void*);
-  virtual void shutdown() {
-    // nop
-  }
+  virtual void shutdown();
 
+  /**
+   * Serial channel instanz
+   **/
+  static serial_channel* instance;
   serial_interface* m_interface;
+
+  /**
+   * FIFO der telegrams
+   **/
   std::queue<telegram> m_queue;
+ public:
+  /**
+   * Ruft das naechste telegram ab und entfertnt es
+   * @return next telegram
+   **/
+  telegram get_telegram();
 };
 
 } // namepsace serial_bus
