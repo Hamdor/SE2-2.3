@@ -16,57 +16,27 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_singleton.hpp
+ * @file    token.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse f�r Singletons
+ * Token/Puk Klasse
  **/
 
-#ifndef SE2_SINGLETON_MGR_HPP
-#define SE2_SINGLETON_MGR_HPP
-
-#include "config.h"
-
-#include "lib/hal/HWaccess.hpp"
-#include "lib/util/logging.hpp"
-#include "lib/serial_bus/serial_channel.hpp"
-
-#include "lib/util/mutex.hpp"
-#include "lib/util/lock_guard.hpp"
-#include "lib/util/abstract_singleton.hpp"
+#ifndef SE2_TOKEN_HPP
+#define SE2_TOKEN_HPP
 
 namespace se2 {
-namespace util {
 
-enum module_type {
-  HAL,
-  LOGGER,
-  SERIAL
-};
-
-class singleton_mgr {
-  static mutex s_lock_hal;
-  static mutex s_lock_log;
-  static mutex s_lock_serial;
+class token {
+  int m_id;
+  int m_wert1;
+  int m_wert2;
  public:
-  /**
-   * Zurgiff auf ein beliebiges Singleton Module
-   * @param  `module_type` des angeforderten Modules
-   * @return ein `abstract_singleton` pointer auf das Module
-   **/
-  static abstract_singleton* get_instance(module_type module);
-
-  /**
-   * Zerst�rt alle Singleton Module
-   **/
-  static void shutdown();
+  bool is_valid() const {
+    return !(m_id == 0 && m_wert1 == 0 && m_wert2 == 0);
+  }
 };
 
-}
-}
+} // namespace se2
 
-#define TO_HAL(ptr) static_cast<se2::hal::hwaccess*>(ptr)
-#define TO_LOG(ptr) static_cast<se2::util::logging*>(ptr)
-#define TO_SERIAL(ptr) static_cast<se2::serial_bus::serial_channel*>(ptr)
-
-#endif // SE2_SINGLETON_MGR_HPP
+#endif // SE2_TOKEN_HPP

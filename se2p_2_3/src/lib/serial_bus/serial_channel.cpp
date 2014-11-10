@@ -23,6 +23,7 @@
  **/
 
 #include "lib/serial_bus/serial_channel.hpp"
+#include "lib/serial_bus/serial_interface.hpp"
 #include "lib/util/lock_guard.hpp"
 
 using namespace se2::serial_bus;
@@ -30,11 +31,12 @@ using namespace se2::util;
 
 serial_channel* serial_channel::instance = 0;
 
-serial_channel::serial_channel() {
+serial_channel::serial_channel() : m_interface(new serial_interface) {
   // nop
 }
 
 serial_channel::~serial_channel() {
+  delete m_interface;
   instance = 0;
 }
 
@@ -44,4 +46,12 @@ void serial_channel::initialize() {
 
 void serial_channel::destroy() {
   // nop
+}
+
+void serial_channel::execute(void*) {
+  telegram data;
+  while(1) { /* hier abbruch bedingung vom haw thread benutzen */
+    m_interface->read(&data);
+    m_queue.push(data);
+  }
 }

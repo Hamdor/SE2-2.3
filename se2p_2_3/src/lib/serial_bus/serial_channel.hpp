@@ -25,9 +25,15 @@
 #ifndef SE2_SERIAL_CHANNEL_HPP
 #define SE2_SERIAL_CHANNEL_HPP
 
+#include "config.h"
+
+#include "token.hpp"
+
+#include "lib/util/HAWThread.hpp"
 #include "lib/util/mutex.hpp"
 #include "lib/util/abstract_singleton.hpp"
 
+#include <queue>
 #include <stdint.h>
 
 namespace se2 {
@@ -36,12 +42,12 @@ class singleton_mgr;
 } // namespace util
 namespace serial_bus {
 
+class serial_interface;
+
 enum telegram_type {
-  SYNC = 0,  // Zurücksetzen
-  MSG  = 1,  // Nachricht (keine Daten)
-  DATA = 2,  // Daten werden übertragen
-  ACK  = 3,  // erfolgreich übertragen
-  ERR  = 4   // letzte packet neu senden
+  MSG  = 0,  // Nachricht (keine Daten)
+  DATA = 1,  // Daten werden übertragen
+  ERR  = 2   // letzte packet neu senden
 };
 
 enum msg_type {
@@ -53,39 +59,31 @@ enum msg_type {
   STOP     = 5   // Stop taste gedrückt
 };
 
-enum data_type { // typen die für typename T erlaubt sind
-  PUK,           // PUK/Tocken Datentyp
-  INT,           // 32 bit Integer
-  FLOAT          // 32 bit Float
-};
-
-struct telegram_header {
-  telegram_type m_type; // (SYNC, MSG, ACK, DATA, ERROR)
-  size_t        m_len;  // länge des bodys
-};
-
-template <typename T>
-struct telegram_body {
-  msg_type m_msg;  // Nachricht (optional bei Daten)
-  T m_data;        // Daten (optional bei Message)
-};
-
-template <typename T>
 struct telegram {
-  telegram_header  m_header; // Header
-  telegram_body<T> m_body;   // Body
-  uint32_t         m_crc;    // CRC über ganze telegram
+  telegram_type m_type; // (SYNC, MSG, ACK, DATA, ERROR)
+  msg_type      m_msg;  // Nachricht (optional bei Daten)
+  token         m_data; // Daten (optional bei Message)
 };
 
 #define TELEGRAM_SIZE sizeof(telegram)
 
-class serial_channel : public util::abstract_singleton {
+class serial_channel : public util::abstract_singleton
+                     , public util::HAWThread {
   friend class util::singleton_mgr;
   serial_channel();
   virtual ~serial_channel();
   static serial_channel* instance;
+
   virtual void initialize();
   virtual void destroy();
+
+  virtual void execute(void*);
+  virtual void shutdown() {
+    // nop
+  }
+
+  serial_interface* m_interface;
+  std::queue<telegram> m_queue;
 };
 
 } // namepsace serial_bus
