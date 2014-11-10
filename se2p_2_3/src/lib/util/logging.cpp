@@ -39,7 +39,7 @@ namespace {
 } // namespace <anonymous>
 
 logging::logging() : m_fstream(), m_lock() {
-#ifndef REAL_HW
+#ifndef DISABLE_LOGGING
   std::ostringstream fname;
   fname << output_file << getpid() << "_" << time(0) << ".log";
   m_fstream.open(fname.str().c_str(), std::ios::out | std::ios::app);
@@ -51,7 +51,7 @@ logging::logging() : m_fstream(), m_lock() {
 
 void logging::log(const char* str, loglevel lvl,
                   const char* file_name, int line_num) {
-#ifndef REAL_HW
+#ifndef DISABLE_LOGGING
   if (!m_fstream.is_open()) {
     std::cerr << "Log file already closed!" << std::endl
               << "Log message:"             << std::endl
@@ -82,7 +82,7 @@ void logging::log(const char* str, loglevel lvl,
      << " file: " << file_name
      << ":"       << line_num;
   m_lock.acquire();
-#ifndef REAL_HW
+#ifndef DISABLE_LOGGING
   m_fstream << ss.str() << " " << str << std::endl;
 #endif
   if (lvl != TRACE) {
@@ -92,7 +92,7 @@ void logging::log(const char* str, loglevel lvl,
 }
 
 logging::~logging() {
-#ifndef REAL_HW
+#ifndef DISABLE_LOGGING
   m_lock.acquire();
   m_fstream << "[END Logfile]" << std::endl;
   m_fstream.close();
