@@ -60,7 +60,7 @@ class test_suite {
   int run() {
     for (size_t i = 0; i < m_test.m_test_functions.size(); ++i) {
       m_test.before();
-      m_error += (m_test.*(m_test.m_test_functions[i]))();
+      m_error = (m_test.*(m_test.m_test_functions[i]))();
       m_test.after();
     }
     return m_error;

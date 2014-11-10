@@ -71,7 +71,7 @@ int irq_test::open_switch() {
   m_hal->open_switch();
   struct _pulse msg;
   MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000001110101110100000);
+  bitset<32> expected(0b00000000000000000010000000000000);
   bitset<32> value(msg.value.sival_int);
   if (expected != value) {
     m_error++;
@@ -83,7 +83,7 @@ int irq_test::close_switch() {
   m_hal->close_switch();
   struct _pulse msg;
   MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000001100101110100000);
+  bitset<32> expected(0b00000000000000000010000000000000);
   bitset<32> value(msg.value.sival_int);
   if (expected != value) {
     m_error++;

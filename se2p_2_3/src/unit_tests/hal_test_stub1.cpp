@@ -144,7 +144,7 @@ int hal_test_stub1::light_barrier_test() {
 }
 
 int hal_test_stub1::buttons_not_pressed_test() {
-  if (m_hal->is_button_pressed(button_start)) {
+  if (!m_hal->is_button_pressed(button_start)) {
     m_error++;
     LOG_ERROR("button_start is pressed")
   }
@@ -152,7 +152,7 @@ int hal_test_stub1::buttons_not_pressed_test() {
     m_error++;
     LOG_ERROR("button_stop is pressed")
   }
-  if (m_hal->is_button_pressed(button_reset)) {
+  if (!m_hal->is_button_pressed(button_reset)) {
     m_error++;
     LOG_ERROR("button_reset is pressed")
   }

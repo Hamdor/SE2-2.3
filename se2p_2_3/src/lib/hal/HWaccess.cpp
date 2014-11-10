@@ -62,9 +62,11 @@ void hwaccess::change_stub(abstract_inout* ptr) {
     return;
   }
   if (m_io) {
+    destroy();
     delete m_io;
   }
   m_io = reinterpret_cast<abstract_inout*>(ptr);
+  initialize();
 #else
   // nop
 #endif
@@ -183,10 +185,12 @@ void hwaccess::init_isr() {
 
 void hwaccess::stop_isr() {
   int rc = 0;
+#ifndef SIMULATION
   rc = InterruptDetach(m_isr->m_interruptid);
   if (rc) {
     LOG_ERROR("InterruptDetach() failed")
   }
+#endif
   rc = ConnectDetach(m_isr->m_coid);
   if (rc) {
     LOG_ERROR("ConnectDetach() failed!")

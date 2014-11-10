@@ -112,7 +112,7 @@ int hal_test_stub2::buttons_pressed_test() {
     m_error++;
     LOG_ERROR("button_start is not pressed")
   }
-  if (!m_hal->is_button_pressed(button_stop)) {
+  if (m_hal->is_button_pressed(button_stop)) {
     m_error++;
     LOG_ERROR("button_stop is not pressed")
   }
@@ -120,7 +120,7 @@ int hal_test_stub2::buttons_pressed_test() {
     m_error++;
     LOG_ERROR("button_reset is not pressed")
   }
-  if (!m_hal->is_button_pressed(button_estop)) {
+  if (m_hal->is_button_pressed(button_estop)) {
     m_error++;
     LOG_ERROR("button_estop is not pressed")
   }
