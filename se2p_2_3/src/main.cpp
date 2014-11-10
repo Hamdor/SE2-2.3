@@ -43,8 +43,10 @@ int main(int argc, char *argv[]) {
        << test_suite<hal_test_stub2>().run() << endl;
   cout << "run `irq_tes`        errors: "
        << test_suite<irq_test>().run()       << endl;
+#ifdef HAS_SERIAL_INTERFACE
   cout << "run `serial_test`    errors: "
        << test_suite<serial_test>().run()    << endl;
+#endif
 #else
   /**
    * Main programm kommt hier rein
