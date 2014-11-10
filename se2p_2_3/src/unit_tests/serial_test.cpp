@@ -16,74 +16,80 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_channel.cpp
+ * @file    serial_test.cpp
  * @version 0.1
  *
- * Logik Ebene der Seriellen Schnittstelle
+ * Unit tests der seriellen Schnittstelle
  **/
 
-#include "lib/hal/HWaccess.hpp"
-#include "lib/util/lock_guard.hpp"
+#include "unit_tests/serial_test.hpp"
 #include "lib/util/singleton_mgr.hpp"
-#include "lib/serial_bus/serial_channel.hpp"
-#include "lib/serial_bus/serial_interface.hpp"
+#include "lib/constants.hpp"
 
-#include <sys/neutrino.h>
-
-using namespace se2::hal;
 using namespace se2::util;
+using namespace se2::unit_tests;
 using namespace se2::serial_bus;
 
-serial_channel* serial_channel::instance = 0;
-
-serial_channel::serial_channel() : m_interface(new serial_interface) {
+serial_test::serial_test() : m_serial(0), m_error(0) {
   // nop
 }
 
-serial_channel::~serial_channel() {
-  delete m_interface;
-  instance = 0;
-}
-
-telegram serial_channel::get_telegram() {
-  telegram result = m_queue.front();
-  m_queue.pop();
-  return result;
-}
-
-void serial_channel::initialize() {
-  start(0); // startet thread
-}
-
-void serial_channel::destroy() {
+serial_test::~serial_test() {
   // nop
 }
 
-void serial_channel::execute(void*) {
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  telegram data;
-  while(!isStopped()) {
-    m_interface->read(&data);
-    event_values value;
-    if (data.m_type == MSG) {
-      value = NEW_SERIAL_MSG;
-    } else if (data.m_type == DATA) {
-      value = NEW_SERIAL_DATA;
-    } else if (data.m_type == ERR) {
-      value = NEW_SERIAL_ERR;
-    } else {
-      // unkown ...
-      value = NEW_SERIAL_UNK;
-    }
-    m_queue.push(data);
-    MsgSendPulse(hal->get_isr_channel(), 0, SERIAL, value);
+int serial_test::before_class() {
+  m_serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
+  return 0;
+}
+
+int serial_test::before() {
+  return 0;
+}
+
+int serial_test::init() {
+  m_test_functions.push_back(&serial_test::test_serial_channel);
+  return 0;
+}
+
+int serial_test::after() {
+  return 0;
+}
+
+int serial_test::after_class() {
+  return 0;
+}
+
+int serial_test::test_serial_channel() {
+  token tok;
+  tok.m_id    = 1;
+  tok.m_wert1 = 2;
+  tok.m_wert2 = 3;
+  telegram tel;
+  tel.m_type = DATA;
+  tel.m_msg  = NOTHING;
+  tel.m_data = tok;
+#ifdef UNIT_TEST_SENDER
+  m_serial->send_telegram(tel);
+#else
+  telegram recieved = m_serial->get_telegram();
+  if (recieved.m_type != tel.m_type) {
+    ++m_error;
   }
-}
+  if (recieved.m_msg != tel.m_msg) {
+    ++m_error;
+  }
+  if (recieved.m_data.m_id != tel.m_data.m_id) {
+    ++m_error;
+  }
+  if (recieved.m_data.m_wert1 != tel.m_data.m_wert1) {
+    ++m_error;
+  }
+  if (recieved.m_data.m_wert2 != tel.m_data.m_wert2) {
+    ++m_error;
+  }
+#endif
+  return m_error;
 
-void serial_channel::shutdown() {
-  // nop
-}
 
-void serial_channel::send_telegram(telegram& tel) {
-  m_interface->write(&tel);
 }

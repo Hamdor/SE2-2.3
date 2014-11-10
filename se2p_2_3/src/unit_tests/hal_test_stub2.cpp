@@ -41,7 +41,7 @@ hal_test_stub2::~hal_test_stub2() {
 }
 
 int hal_test_stub2::before_class() {
-  m_hal = TO_HAL(singleton_mgr::get_instance(HAL));
+  m_hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   m_hal->change_stub(new iostub(0b00000000, 0b00010100, 0b01010000));
   return 0;
 }

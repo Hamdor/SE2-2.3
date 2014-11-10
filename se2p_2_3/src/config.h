@@ -31,6 +31,9 @@
                        // In `hwaccess` wird dadurch die Funktion
                        // `change_stub()` zu einer nicht NOP Funktion.
 
+#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test für
+                           // die Serielle chnittstelle
+
 #define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur
                        // Folge dass `ioaccess.h` in `abstract_inout.hpp`
                        // inkludiert wird. Dadurch koennen die Original
@@ -53,7 +56,7 @@
  * ----------------------------------------------------------------------------
  * Serielle Schnittstelle Spezifische Defines
  **/
-//#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
+#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
 #define SERIAL_CHAR_DEV "/dev/ser1" // Pfad zum Char Device der Seriellen
                                     // Schnittstelle. In der VM NICHT verfügbar
 /**

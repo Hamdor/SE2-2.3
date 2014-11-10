@@ -33,7 +33,7 @@ mutex singleton_mgr::s_lock_log;
 mutex singleton_mgr::s_lock_serial;
 
 abstract_singleton* singleton_mgr::get_instance(module_type module) {
-  if (module == HAL) {
+  if (module == HAL_PLUGIN) {
     if (ThreadCtl(_NTO_TCTL_IO_PRIV, NULL) == -1) {
       LOG_ERROR("ThreadCtl() failed!")
     }
@@ -45,7 +45,7 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
       }
     }
     return hwaccess::instance;
-  } else if (module == LOGGER) {
+  } else if (module == LOGGER_PLUGIN) {
     if (!logging::instance) {
       lock_guard guard(s_lock_log);
       if (!logging::instance) {
@@ -54,7 +54,7 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
       }
     }
     return logging::instance;
-  } else if (module == SERIAL) {
+  } else if (module == SERIAL_PLUGIN) {
     if (!serial_channel::instance) {
       lock_guard guard(s_lock_serial);
       if(!serial_channel::instance) {

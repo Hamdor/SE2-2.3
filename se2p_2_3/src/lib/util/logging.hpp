@@ -55,7 +55,7 @@ class logging : public abstract_singleton {
   virtual void initialize();
 
   /**
-   * Zerstörung des Singleton
+   * Zerstï¿½rung des Singleton
    **/
   virtual void destroy();
 
@@ -90,21 +90,21 @@ class logging : public abstract_singleton {
 
 #define LOG_TRACE(str)                                                        \
     static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(  \
-                          se2::util::LOGGER))->log(str, se2::util::TRACE,     \
+                   se2::util::LOGGER_PLUGIN))->log(str, se2::util::TRACE,     \
                           __FILE__, __LINE__);
 
 #define LOG_DEBUG(str)                                                        \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
-                          se2::util::LOGGER))->log(str, se2::util::DEBUG,     \
+                   se2::util::LOGGER_PLUGIN))->log(str, se2::util::DEBUG,     \
                                          __FILE__, __LINE__);
 
 #define LOG_WARNING(str)                                                      \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
-                          se2::util::LOGGER))->log(str, se2::util::WARNING,   \
+                   se2::util::LOGGER_PLUGIN))->log(str, se2::util::WARNING,   \
                                          __FILE__, __LINE__);
 
 #define LOG_ERROR(str)                                                        \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
-                                   se2::util::LOGGER))->log(str,              \
+                            se2::util::LOGGER_PLUGIN))->log(str,              \
                                    se2::util::ERROR, __FILE__, __LINE__);
 #endif // SE2_LOGGING_HPP

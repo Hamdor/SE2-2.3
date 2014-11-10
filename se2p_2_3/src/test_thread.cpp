@@ -29,7 +29,7 @@ test_thread::~test_thread() {
 void test_thread::execute(void*){
   lock_guard lock(mtx_);
   std::cout << "Blink_Thread executing" << std::endl;
-  hwaccess* hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL));
+  hwaccess* hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL_PLUGIN));
   for (int i = 0; i < times_; i++) {
     if (!isStopped()) {
       hal->set_led_state(start_button, false);

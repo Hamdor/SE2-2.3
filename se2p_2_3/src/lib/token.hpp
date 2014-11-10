@@ -27,11 +27,10 @@
 
 namespace se2 {
 
-class token {
+struct token {
   int m_id;
   int m_wert1;
   int m_wert2;
- public:
   bool is_valid() const {
     return !(m_id == 0 && m_wert1 == 0 && m_wert2 == 0);
   }

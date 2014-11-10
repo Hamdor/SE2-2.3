@@ -78,6 +78,11 @@ class serial_channel : public util::abstract_singleton
    * @return next telegram
    **/
   telegram get_telegram();
+
+  /**
+   * Sendet ein telegram
+   **/
+  void send_telegram(telegram& tel);
 };
 
 } // namepsace serial_bus

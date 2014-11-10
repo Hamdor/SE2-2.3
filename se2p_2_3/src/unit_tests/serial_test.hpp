@@ -16,34 +16,34 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    irq_test.hpp
+ * @file    serial_test.hpp
  * @version 0.1
  *
- * Unit tests der ISR/IRQ
+ * Unit tests der seriellen Schnittstelle
  **/
 
-#ifndef SE2_IRQ_TEST_HPP
-#define SE2_IRQ_TEST_HPP
+#ifndef SE2_SERIAL_TEST_HPP
+#define SE2_SERIAL_TEST_HPP
 
 #include "config.h"
 
-#include "lib/hal/HWaccess.hpp"
+#include "lib/serial_bus/serial_channel.hpp"
 #include "unit_tests/abstract_test.hpp"
 
 namespace se2 {
 namespace unit_tests {
 
-class irq_test : public abstract_test<irq_test> {
+class serial_test : public abstract_test<serial_test> {
  public:
   /**
    * Constructor
    **/
-  irq_test();
+  serial_test();
 
   /**
    * Destructor
    **/
-  ~irq_test();
+  ~serial_test();
 
   /**
    * Wird einmalig für alle ausgeführt
@@ -74,16 +74,14 @@ class irq_test : public abstract_test<irq_test> {
    * @return 0 wenn erfolgreich
    */
   virtual int after_class();
-
  private:
-  int open_switch();
-  int close_switch();
-
-  hal::hwaccess* m_hal;
+  serial_bus::serial_channel* m_serial;
   int m_error;
+  int test_serial_channel();
+
 };
 
 } // namespace unit_test
 } // namepsace se2
 
-#endif // SE2_IRQ_TEST_HPP
+#endif // SE2_SERIAL_TEST_HPP

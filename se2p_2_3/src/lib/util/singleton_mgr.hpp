@@ -39,9 +39,9 @@ namespace se2 {
 namespace util {
 
 enum module_type {
-  HAL,
-  LOGGER,
-  SERIAL
+  HAL_PLUGIN,
+  LOGGER_PLUGIN,
+  SERIAL_PLUGIN
 };
 
 class singleton_mgr {

@@ -13,10 +13,11 @@
 #include <unistd.h>
 
 #ifdef UNIT_TESTS
-  #include "unit_tests/hal_test_stub1.hpp"
-  #include "unit_tests/hal_test_stub2.hpp"
   #include "unit_tests/irq_test.hpp"
   #include "unit_tests/test_suite.hpp"
+  #include "unit_tests/serial_test.hpp"
+  #include "unit_tests/hal_test_stub1.hpp"
+  #include "unit_tests/hal_test_stub2.hpp"
 #endif
 
 using namespace std;
@@ -42,6 +43,8 @@ int main(int argc, char *argv[]) {
        << test_suite<hal_test_stub2>().run() << endl;
   cout << "run `irq_tes`        errors: "
        << test_suite<irq_test>().run()       << endl;
+  cout << "run `serial_test`    errors: "
+       << test_suite<serial_test>().run()    << endl;
 #else
   /**
    * Main programm kommt hier rein

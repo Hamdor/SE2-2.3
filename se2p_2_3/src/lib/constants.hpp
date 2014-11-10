@@ -233,7 +233,8 @@ enum msg_type {
   RESUME   = 2,  // Weiterlaufen/Start
   B2_FREE  = 3,  // Band 2 wieder frei von Puk
   E_STOP   = 4,  // Estop gedrückt
-  STOP     = 5   // Stop taste gedrückt
+  STOP     = 5,  // Stop taste gedrückt
+  NOTHING  = 6   // Keine MSG
 };
 
 /**
