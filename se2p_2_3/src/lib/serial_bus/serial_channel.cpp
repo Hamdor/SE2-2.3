@@ -81,7 +81,7 @@ void serial_channel::execute(void*) {
 }
 
 void serial_channel::shutdown() {
-  // nop
+  stop();
 }
 
 void serial_channel::send_telegram(telegram& tel) {
