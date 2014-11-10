@@ -154,6 +154,39 @@ enum light_colors {
   red    = 7
 };
 
+/**
+ * Rueckgabewerte des Hoehensensors
+ * fuer die einzelnen Puck typen.
+ **/
+enum height_values {
+#if defined(FESTO_3)
+  TOO_SMALL_LOW       = 2835, // zu flach (Min)
+  TOO_SMALL_HI        = 2845, // zu flach (Max)
+  HOLE_BUTTOM_UP_LOW  = 2562, // Bohrung (Falsch herum) (Min)
+  HOLE_BUTTOM_UP_HI   = 2573, // Bohrung (Falsch herum) (Max)
+  HOLE_LOW            = 3608, // Bohrung (Richtig herum) (Min)
+  HOLE_HI             = 3617, // Bohrung (Richtig herum) (Max)
+  METAL_BUTTOM_UP_LOW = 2547, // Mit Metall (Falsch herum) (Min)
+  METAL_BUTTOM_UP_HI  = 2557, // Mit Metall (Falsch herum) (Max)
+  METAL_LOW           = 3620, // Mit Metall (Richtig herum) (Min)
+  METAL_HI            = 3629  // Mit Metall (Richtig herum) (Max)
+#elif defined(FESTO_9)
+  TOO_SMALL_LOW       = 2720, // zu flach (Min)
+  TOO_SMALL_HI        = 2735, // zu flach (Max)
+  HOLE_BUTTOM_UP_LOW  = 2455, // Bohrung (Falsch herum) (Min)
+  HOLE_BUTTOM_UP_HI   = 2470, // Bohrung (Falsch herum) (Max)
+  HOLE_LOW            = 3475, // Bohrung (Richtig herum) (Min)
+  HOLE_HI             = 3490, // Bohrung (Richtig herum) (Max)
+  // (WURDEN NICHT GEMESSEN)
+  //METAL_BUTTOM_UP_LOW = , // Mit Metall (Falsch herum) (Min)
+  //METAL_BUTTOM_UP_HI  = , // Mit Metall (Falsch herum) (Max)
+  METAL_LOW           = 3515, // Mit Metall (Richtig herum) (Min)
+  METAL_HI            = 3535  // Mit Metall (Richtig herum) (Max)
+#else
+  // TODO: Default Werte? Mittelwert?
+#endif
+};
+
 } // namespace hal
 
 namespace util {
