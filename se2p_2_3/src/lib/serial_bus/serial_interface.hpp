@@ -31,6 +31,9 @@
 #include <unistd.h>
 
 namespace se2 {
+namespace serial_bus {
+
+class serial_channel;
 /**
  * Zugriff auf `serial_interface` nur durch `serial_channel`
  **/
@@ -108,6 +111,7 @@ class serial_interface {
   void config();
 };
 
+} // namespace serial_bus
 } // namespace se2
 
 #endif // SE2_SERIAL_INTERFACE_HPP

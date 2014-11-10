@@ -29,6 +29,7 @@
 #include <stdio.h>
 
 using namespace se2;
+using namespace se2::serial_bus;
 
 #ifdef HAS_SERIAL_INTERFACE
 namespace {
