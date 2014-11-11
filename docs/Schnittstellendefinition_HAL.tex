@@ -1,0 +1,41 @@
+\documentclass[a4paper,10pt]{article}\\
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[utf8x]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc} % T1-encoded fonts: auch Wörter mit Umlauten trennen
+\thispagestyle{empty}    % Keine Kopf- und Fusszeile
+
+% Beginn des Dokuments
+\begin{document}
+  \section*{Schnittstellendefinition der HAL}
+  Die Aufgabe der HAL ist es hardwarezugriffe zu abstrahieren. Zugriffe auf Hardware nur über HAL möglich.
+  Der zur HAL gehörige Header ist HWaccess.hpp. Alle Module die hardwarezugriff benötigen müssen den HAL-header inkludieren. \newline
+   
+  \textbf{\newline Port A}
+  \begin{itemize}
+    \item enum motor\_mode(stop, right, left)
+    \item void set\_motor(enum motor\_mode, bool slow) 
+    \item void open\_switch()
+    \item void close\_switch()
+    \item enum light\_color(red, yellow, grenn)
+    \item void set\_light(enum light\_color, bool on) 
+  \end{itemize}
+  
+  \textbf{\newline Port B}
+  \begin{itemize}
+	\item enum light\_barriers(entrance\_sensor, height\_sensor, switch\_sensor, light\_sensor, exit\_sensor)
+    \item bool obj\_in\_light\_barrier(enum light\_barriers)
+    \item bool obj\_has\_valid\_height()
+    \item bool obj\_has\_metall()
+    \item bool is\_switch\_open()
+  \end{itemize}
+  
+  \textbf{\newline Port C}
+  \begin{itemize}
+    \item enum button\_light(start\_button, reset\_button, q1\_button, q2\_button)
+    \item void set\_led\_state(enum button\_light)
+    \item enum button( start, stop, reset, e\_stop)
+     \item bool is\_button\_pressed(enum button)
+  \end{itemize}
+
+\end{document}
