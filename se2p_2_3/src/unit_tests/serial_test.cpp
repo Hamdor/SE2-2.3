@@ -62,8 +62,8 @@ int serial_test::after_class() {
 
 int serial_test::test_serial_channel() {
   telegram tel;
-  tel.m_header.m_type = DATA;
-  tel.m_header.m_msg  = NOTHING;
+  tel.m_type = DATA;
+  tel.m_msg  = NOTHING;
   tel.m_id = 1;
   tel.m_height1 = 2;
   tel.m_height2 = 3;
@@ -77,13 +77,13 @@ int serial_test::test_serial_channel() {
   if (recieved.m_msg != tel.m_msg) {
     ++m_error;
   }
-  if (recieved.m_data.m_id != tel.m_data.m_id) {
+  if (recieved.m_id != tel.m_id) {
     ++m_error;
   }
-  if (recieved.m_data.m_wert1 != tel.m_data.m_wert1) {
+  if (recieved.m_height1 != tel.m_height1) {
     ++m_error;
   }
-  if (recieved.m_data.m_wert2 != tel.m_data.m_wert2) {
+  if (recieved.m_height2 != tel.m_height2) {
     ++m_error;
   }
 #endif

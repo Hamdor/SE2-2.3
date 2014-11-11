@@ -53,7 +53,6 @@ class serial_interface {
   /**
    * Schreibt Daten auf den Seriellen bus
    * @param data gibt die zu schreibenden Daten an
-   * @param len  gibt die Länge des Datentypens an
    * @return TRUE  wenn erfolgreich 
    *         FALSE wenn fehlschlägt
    *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
@@ -63,7 +62,7 @@ class serial_interface {
 #ifdef HAS_SERIAL_INTERFACE
     size_t rc = 0;
     while (rc != sizeof(T)) {
-      ssize_t err = ::write(m_fd, data + rc, sizeof(T) - rc);
+      ssize_t err = ::write(m_fd, reinterpret_cast<char*>(data) + rc, sizeof(T) - rc);
       if (err == -1) {
         perror("serial_interface::write()");
         break;
@@ -79,7 +78,6 @@ class serial_interface {
   /**
    * Schreibt Daten auf den Seriellen bus
    * @param data gibt die zu schreibenden Daten an
-   * @param len  gibt die Länge des Datentypens an
    * @return TRUE  wenn erfolgreich  
    *         FALSE wenn fehlschlägt
    *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
@@ -89,7 +87,7 @@ class serial_interface {
 #ifdef HAS_SERIAL_INTERFACE
     size_t rc = 0;
     while (rc != sizeof(T)) {
-      ssize_t err = ::read(m_fd, buffer + rc, sizeof(T) - rc);
+      ssize_t err = ::read(m_fd, reinterpret_cast<char*>(buffer) + rc, sizeof(T) - rc);
       if (err == -1) {
         perror("serial_interface::read()");
         break;

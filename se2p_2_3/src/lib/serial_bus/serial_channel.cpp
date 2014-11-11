@@ -66,16 +66,17 @@ void serial_channel::execute(void*) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   telegram data;
   while(!isStopped()) {
-    m_interface->read(&data.m_header);
+    m_interface->read(&data.m_type);
+    m_interface->read(&data.m_msg);
     event_values value;
-    if (data.m_header.m_type == MSG) {
+    if (data.m_type == MSG) {
       value = NEW_SERIAL_MSG;
-    } else if (data.m_header.m_type == DATA) {
+    } else if (data.m_type == DATA) {
       value = NEW_SERIAL_DATA;
       m_interface->read(&data.m_id);
       m_interface->read(&data.m_height1);
       m_interface->read(&data.m_height2);
-    } else if (data.m_header.m_type == ERR) {
+    } else if (data.m_type == ERR) {
       value = NEW_SERIAL_ERR;
     } else {
       // unkown ...
@@ -91,7 +92,8 @@ void serial_channel::shutdown() {
 }
 
 void serial_channel::send_telegram(telegram& tel) {
-  m_interface->write(&tel.m_header);
+  m_interface->write(&tel.m_type);
+  m_interface->write(&tel.m_msg);
   m_interface->write(&tel.m_id);
   m_interface->write(&tel.m_height1);
   m_interface->write(&tel.m_height2);

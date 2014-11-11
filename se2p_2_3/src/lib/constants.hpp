@@ -238,19 +238,15 @@ enum msg_type {
   NOTHING  = 6   // Keine MSG
 };
 
-struct telegram_header {
-  telegram_type m_type; // (SYNC, MSG, ACK, DATA, ERROR)
-  msg_type      m_msg;  // Nachricht (optional bei Daten)
-};
-
 /**
  * Telegram komplett
  **/
 struct telegram {
-  telegram_header m_header;
-  uint16_t m_id;
-  uint16_t m_height1;
-  uint16_t m_height2;
+  telegram_type m_type; // (SYNC, MSG, ACK, DATA, ERROR)
+  msg_type      m_msg;  // Nachricht (optional bei Daten)
+  uint16_t      m_id;
+  uint16_t      m_height1;
+  uint16_t      m_height2;
 };
 
 } // namespace serial_bus
