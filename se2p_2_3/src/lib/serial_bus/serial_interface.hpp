@@ -65,7 +65,7 @@ class serial_interface {
     while (rc != sizeof(T)) {
       ssize_t err = ::write(m_fd, data + rc, sizeof(T) - rc);
       if (err == -1) {
-        //LOG_ERROR("serial_interface::write()")
+        perror("serial_interface::write()");
         break;
       }
       rc += err;
@@ -91,7 +91,7 @@ class serial_interface {
     while (rc != sizeof(T)) {
       ssize_t err = ::read(m_fd, buffer + rc, sizeof(T) - rc);
       if (err == -1) {
-        //LOG_ERROR("serial_interface::read()")
+        perror("serial_interface::read()");
         break;
       }
       rc += err;

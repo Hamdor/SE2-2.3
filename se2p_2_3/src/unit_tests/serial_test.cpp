@@ -61,14 +61,12 @@ int serial_test::after_class() {
 }
 
 int serial_test::test_serial_channel() {
-  token tok;
-  tok.m_id    = 1;
-  tok.m_wert1 = 2;
-  tok.m_wert2 = 3;
   telegram tel;
-  tel.m_type = DATA;
-  tel.m_msg  = NOTHING;
-  tel.m_data = tok;
+  tel.m_header.m_type = DATA;
+  tel.m_header.m_msg  = NOTHING;
+  tel.m_id = 1;
+  tel.m_height1 = 2;
+  tel.m_height2 = 3;
 #ifdef UNIT_TEST_SENDER
   m_serial->send_telegram(tel);
 #else

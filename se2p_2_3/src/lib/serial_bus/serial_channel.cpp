@@ -46,6 +46,9 @@ serial_channel::~serial_channel() {
 }
 
 telegram serial_channel::get_telegram() {
+  while(!m_queue.size()) {
+    // TODO: Mit Condition Variable implementieren
+  }
   telegram result = m_queue.front();
   m_queue.pop();
   return result;
@@ -63,13 +66,16 @@ void serial_channel::execute(void*) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   telegram data;
   while(!isStopped()) {
-    m_interface->read(&data);
+    m_interface->read(&data.m_header);
     event_values value;
-    if (data.m_type == MSG) {
+    if (data.m_header.m_type == MSG) {
       value = NEW_SERIAL_MSG;
-    } else if (data.m_type == DATA) {
+    } else if (data.m_header.m_type == DATA) {
       value = NEW_SERIAL_DATA;
-    } else if (data.m_type == ERR) {
+      m_interface->read(&data.m_id);
+      m_interface->read(&data.m_height1);
+      m_interface->read(&data.m_height2);
+    } else if (data.m_header.m_type == ERR) {
       value = NEW_SERIAL_ERR;
     } else {
       // unkown ...
@@ -85,5 +91,8 @@ void serial_channel::shutdown() {
 }
 
 void serial_channel::send_telegram(telegram& tel) {
-  m_interface->write(&tel);
+  m_interface->write(&tel.m_header);
+  m_interface->write(&tel.m_id);
+  m_interface->write(&tel.m_height1);
+  m_interface->write(&tel.m_height2);
 }
