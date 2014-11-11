@@ -28,6 +28,7 @@
 #include "lib/serial_bus/serial_channel.hpp"
 #include "lib/serial_bus/serial_interface.hpp"
 
+#include <cstring>
 #include <sys/neutrino.h>
 
 using namespace se2::hal;
@@ -71,6 +72,7 @@ void serial_channel::execute(void*) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   telegram data;
   while(!isStopped()) {
+    std::memset(&data, 0, sizeof(telegram));
     m_interface->read(&data.m_type);
     m_interface->read(&data.m_msg);
     event_values value;
