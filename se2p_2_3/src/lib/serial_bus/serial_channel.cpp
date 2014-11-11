@@ -36,7 +36,11 @@ using namespace se2::serial_bus;
 
 serial_channel* serial_channel::instance = 0;
 
-serial_channel::serial_channel() : m_interface(new serial_interface) {
+serial_channel::serial_channel()
+    : m_interface(new serial_interface)
+    , m_queue()
+    , m_lock()
+    , m_cond(m_lock) {
   // nop
 }
 
@@ -46,8 +50,9 @@ serial_channel::~serial_channel() {
 }
 
 telegram serial_channel::get_telegram() {
+  lock_guard lock(m_lock);
   while(!m_queue.size()) {
-    // TODO: Mit Condition Variable implementieren
+    m_cond.wait();
   }
   telegram result = m_queue.front();
   m_queue.pop();
@@ -82,7 +87,11 @@ void serial_channel::execute(void*) {
       // unkown ...
       value = NEW_SERIAL_UNK;
     }
-    m_queue.push(data);
+    {
+      lock_guard lock(m_lock);
+      m_queue.push(data);
+      m_cond.broadcast();
+    }
     MsgSendPulse(hal->get_isr_channel(), 0, SERIAL, value);
   }
 }
@@ -91,10 +100,12 @@ void serial_channel::shutdown() {
   stop();
 }
 
-void serial_channel::send_telegram(telegram& tel) {
-  m_interface->write(&tel.m_type);
-  m_interface->write(&tel.m_msg);
-  m_interface->write(&tel.m_id);
-  m_interface->write(&tel.m_height1);
-  m_interface->write(&tel.m_height2);
+void serial_channel::send_telegram(telegram* tel) {
+  m_interface->write(&tel->m_type);
+  m_interface->write(&tel->m_msg);
+  if (tel->m_type == DATA) {
+    m_interface->write(&tel->m_id);
+    m_interface->write(&tel->m_height1);
+    m_interface->write(&tel->m_height2);
+  }
 }

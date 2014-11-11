@@ -27,8 +27,8 @@
 
 #include "config.h"
 #include "lib/constants.hpp"
+#include "lib/util/condvar.hpp"
 #include "lib/util/HAWThread.hpp"
-#include "lib/util/mutex.hpp"
 #include "lib/util/abstract_singleton.hpp"
 
 #include <queue>
@@ -72,6 +72,18 @@ class serial_channel : public util::abstract_singleton
    * FIFO der telegrams
    **/
   std::queue<telegram> m_queue;
+
+  /**
+   * Lock fuer einfuegen/entfernen aus queue
+   **/
+  util::mutex   m_lock;
+
+  /**
+   * Condition Variable
+   * Wird signalisiert sobald eine Nachricht in die
+   * queue kommt
+   **/
+  util::condvar m_cond;
  public:
   /**
    * Ruft das naechste telegram ab und entfertnt es
@@ -82,7 +94,7 @@ class serial_channel : public util::abstract_singleton
   /**
    * Sendet ein telegram
    **/
-  void send_telegram(telegram& tel);
+  void send_telegram(telegram* tel);
 };
 
 } // namepsace serial_bus

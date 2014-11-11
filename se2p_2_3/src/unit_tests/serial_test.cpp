@@ -68,7 +68,7 @@ int serial_test::test_serial_channel() {
   tel.m_height1 = 2;
   tel.m_height2 = 3;
 #ifdef UNIT_TEST_SENDER
-  m_serial->send_telegram(tel);
+  m_serial->send_telegram(&tel);
 #else
   telegram recieved = m_serial->get_telegram();
   if (recieved.m_type != tel.m_type) {
