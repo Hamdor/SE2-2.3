@@ -32,39 +32,39 @@ void test_thread::execute(void*){
   hwaccess* hal = static_cast<hwaccess*>(singleton_mgr::get_instance(HAL_PLUGIN));
   for (int i = 0; i < times_; i++) {
     if (!isStopped()) {
-      hal->set_led_state(start_button, false);
-      hal->set_led_state(reset_button, false);
-      hal->set_led_state(q1_button, false);
-      hal->set_led_state(q2_button, false);
-      hal->set_light(green, true);
-      hal->set_light(yellow, true);
-      hal->set_light(red, true);
+      hal->set_led_state(START_LED, false);
+      hal->set_led_state(RESET_LED, false);
+      hal->set_led_state(Q1_LED, false);
+      hal->set_led_state(Q2_LED, false);
+      hal->set_light(GREEN, true);
+      hal->set_light(YELLOW, true);
+      hal->set_light(RED, true);
       usleep(500000);
-      hal->set_light(green, false);
-      hal->set_light(yellow, false);
-      hal->set_light(red, false);
+      hal->set_light(GREEN, false);
+      hal->set_light(YELLOW, false);
+      hal->set_light(RED, false);
       usleep(500000);
-      hal->set_motor(motor_right);
-      hal->set_motor(motor_slow);
+      hal->set_motor(MOTOR_RIGHT);
+      hal->set_motor(MOTOR_SLOW);
       usleep(100000);
-      hal->set_motor(motor_fast);
-      hal->set_motor(motor_left);
-      if (hal->is_button_pressed(button_start)) {
+      hal->set_motor(MOTOR_FAST);
+      hal->set_motor(MOTOR_LEFT);
+      if (hal->is_button_pressed(BUTTON_START)) {
         std::cout << "Start button is pressed" << std::endl;
       }
-      if (hal->is_button_pressed(button_stop)) {
+      if (hal->is_button_pressed(BUTTON_STOP)) {
         std::cout << "Stop button is pressed" << std::endl;
       }
-      if (hal->is_button_pressed(button_reset)) {
+      if (hal->is_button_pressed(BUTTON_RESET)) {
         std::cout << "reset button is pressed" << std::endl;
       }
-      if (hal->is_button_pressed(button_estop)) {
+      if (hal->is_button_pressed(BUTTON_ESTOP)) {
         std::cout << "estop is pressed" << std::endl;
       }
-      hal->set_led_state(start_button, true);
-      hal->set_led_state(reset_button, true);
-      hal->set_led_state(q1_button, true);
-      hal->set_led_state(q2_button, true);
+      hal->set_led_state(START_LED, true);
+      hal->set_led_state(RESET_LED, true);
+      hal->set_led_state(Q1_LED, true);
+      hal->set_led_state(Q2_LED, true);
       //hal->get_height_value();
       hal->open_switch();
       if (hal->is_switch_open()) {
@@ -81,7 +81,7 @@ void test_thread::execute(void*){
       }
     }
   }
-  hal->set_motor(motor_stop);
+  hal->set_motor(MOTOR_STOP);
 }
 
 void test_thread::shutdown(){

@@ -25,7 +25,6 @@
 #ifndef SE2_CONSTANTS_HPP
 #define SE2_CONSTANTS_HPP
 
-#include "lib/token.hpp"
 #include <stdint.h>
 
 /**
@@ -121,51 +120,51 @@ enum port_num {
  * Motor modes
  **/
 enum motor_modes {
-  motor_right = 0,
-  motor_left  = 1,
-  motor_slow  = 2,
-  motor_stop  = 3,
-  motor_fast  = 4
+  MOTOR_RIGHT = 0,
+  MOTOR_LEFT  = 1,
+  MOTOR_SLOW  = 2,
+  MOTOR_STOP  = 3,
+  MOTOR_FAST  = 4
 };
 
 /**
  * LEDs der einzelnen Knöpfe
  **/
 enum button_leds {
-  start_button = 0,
-  reset_button = 1,
-  q1_button    = 2,
-  q2_button    = 3
+  START_LED = 0,
+  RESET_LED = 1,
+  Q1_LED    = 2,
+  Q2_LED    = 3
 };
 
 /**
  * Verfügbare Knöpfe
  **/
 enum buttons {
-  button_start = 4, // 1 => gedrückt
-  button_stop  = 5, // 1 => NICHT gedrückt
-  button_reset = 6, // 1 => gedrückt
-  button_estop = 7  // 1 => NICHT gedrückt
+  BUTTON_START = 4, // 1 => gedrückt
+  BUTTON_STOP  = 5, // 1 => NICHT gedrückt
+  BUTTON_RESET = 6, // 1 => gedrückt
+  BUTTON_ESTOP = 7  // 1 => NICHT gedrückt
 };
 
 /**
  * Lichtschranken des Systems
  **/
 enum light_barriers {
-  entrace_sensor = 0, // einlauf
-  height_sensor  = 1, // höhensensor
-  switch_sensor  = 3, // weiche
-  slight_sensor  = 6, // rutsche
-  exit_sensor    = 7  // auslauf
+  ENTRACE_SENSOR = 0, // einlauf
+  HEIGHT_SENSOR  = 1, // höhensensor
+  SWITCH_SENSOR  = 3, // weiche
+  SLIGHT_SENSOR  = 6, // rutsche
+  EXIT_SENSOR    = 7  // auslauf
 };
 
 /**
  * Lampen der Ampel
  **/
 enum light_colors {
-  green  = 5,
-  yellow = 6,
-  red    = 7
+  GREEN  = 5,
+  YELLOW = 6,
+  RED    = 7
 };
 
 /**

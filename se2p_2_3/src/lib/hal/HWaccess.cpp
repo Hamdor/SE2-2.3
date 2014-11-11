@@ -78,10 +78,10 @@ void hwaccess::change_stub(abstract_inout* ptr) {
  * ist `motor_fast`, hierbei muss Bit 2 entfernt werden.
  **/
 void hwaccess::set_motor(enum motor_modes mode) {
-  if (mode == motor_fast) {
+  if (mode == MOTOR_FAST) {
     // Motor soll wieder schnell laufen
     // setze Bit 2 auf 0
-    m_io->outbit(PORTA, static_cast<uint8_t>(motor_slow), false);
+    m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_SLOW), false);
     return;
   }
   const uint8_t bit = static_cast<uint8_t>(mode);
@@ -135,7 +135,7 @@ void hwaccess::set_led_state(enum button_leds led, bool on) {
 
 bool hwaccess::is_button_pressed(enum buttons key) const {
   bool value = m_io->inbit(PORTC, static_cast<uint8_t>(key));
-  if (key == button_stop || key == button_estop) {
+  if (key == BUTTON_STOP || key == BUTTON_ESTOP) {
     // Invertierte logik (low aktiv)
     return !value;
   } else {

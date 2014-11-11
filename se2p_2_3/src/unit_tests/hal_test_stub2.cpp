@@ -68,23 +68,23 @@ int hal_test_stub2::after_class() {
 }
 
 int hal_test_stub2::light_barrier_interrupted_test() {
-  if (!m_hal->obj_in_light_barrier(entrace_sensor)) {
+  if (!m_hal->obj_in_light_barrier(ENTRACE_SENSOR)) {
     m_error++;
     LOG_ERROR("obj is not entrace_sensor")
   }
-  if (!m_hal->obj_in_light_barrier(height_sensor)) {
+  if (!m_hal->obj_in_light_barrier(HEIGHT_SENSOR)) {
     m_error++;
     LOG_ERROR("obj is not in height_sensor")
   }
-  if (!m_hal->obj_in_light_barrier(switch_sensor)) {
+  if (!m_hal->obj_in_light_barrier(SWITCH_SENSOR)) {
     m_error++;
     LOG_ERROR("obj is not in switch_sensor")
   }
-  if (!m_hal->obj_in_light_barrier(slight_sensor)) {
+  if (!m_hal->obj_in_light_barrier(SLIGHT_SENSOR)) {
     m_error++;
     LOG_ERROR("obj is not inslight_sensor")
   }
-  if (!m_hal->obj_in_light_barrier(exit_sensor)) {
+  if (!m_hal->obj_in_light_barrier(EXIT_SENSOR)) {
     m_error++;
     LOG_ERROR("obj is not in exit_sensor")
   }
@@ -108,19 +108,19 @@ int hal_test_stub2::metal_detected_test() {
 }
 
 int hal_test_stub2::buttons_pressed_test() {
-  if (!m_hal->is_button_pressed(button_start)) {
+  if (!m_hal->is_button_pressed(BUTTON_START)) {
     m_error++;
     LOG_ERROR("button_start is not pressed")
   }
-  if (m_hal->is_button_pressed(button_stop)) {
+  if (m_hal->is_button_pressed(BUTTON_STOP)) {
     m_error++;
     LOG_ERROR("button_stop is not pressed")
   }
-  if (!m_hal->is_button_pressed(button_reset)) {
+  if (!m_hal->is_button_pressed(BUTTON_RESET)) {
     m_error++;
     LOG_ERROR("button_reset is not pressed")
   }
-  if (m_hal->is_button_pressed(button_estop)) {
+  if (m_hal->is_button_pressed(BUTTON_ESTOP)) {
     m_error++;
     LOG_ERROR("button_estop is not pressed")
   }
