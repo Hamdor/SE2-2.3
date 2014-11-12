@@ -58,6 +58,31 @@ serial_interface::~serial_interface() {
 #endif
 }
 
+bool serial_interface::write(telegram* data) {
+#ifdef HAS_SERIAL_INTERFACE
+  size_t rc = 0;
+  while (rc != sizeof(telegram)) {
+    ssize_t err = ::write(m_fd, data + rc, sizeof(telegram) - rc);
+    if (err == -1) {
+      break;
+    }
+    rc += err;
+  }
+  return rc == sizeof(telegram);
+#else
+  return false;
+#endif
+}
+
+bool serial_interface::read(telegram* buffer) {
+#ifdef HAS_SERIAL_INTERFACE
+  int rc = readcond(m_fd, buffer, sizeof(telegram), sizeof(telegram), 0, 0);
+  return rc == sizeof(telegram);
+#else
+  return false;
+#endif
+}
+
 void serial_interface::config() {
   struct termios ts;
   tcflush(m_fd, TCIOFLUSH);

@@ -54,44 +54,21 @@ class serial_interface {
 
   /**
    * Schreibt Daten auf den Seriellen bus
-   * @param data gibt die zu schreibenden Daten an
+   * @param data gibt das zu schreibenden Telegram an
    * @return TRUE  wenn erfolgreich 
    *         FALSE wenn fehlschlägt
    *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
    **/
-  bool write(telegram* data) {
-#ifdef HAS_SERIAL_INTERFACE
-    size_t rc = 0;
-    while (rc != sizeof(telegram)) {
-      ssize_t err = ::write(m_fd, data + rc, sizeof(telegram) - rc);
-      if (err == -1) {
-        perror("serial_interface::write()");
-        break;
-      }
-      rc += err;
-    }
-    return rc == sizeof(telegram);
-#else
-    return false;
-#endif
-  }
+  bool write(telegram* data);
 
   /**
    * Schreibt Daten auf den Seriellen bus
-   * @param data gibt die zu schreibenden Daten an
+   * @param data gibt die zu lesende Telegram an
    * @return TRUE  wenn erfolgreich  
    *         FALSE wenn fehlschlägt
    *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
    **/
-  bool read(telegram* buffer) {
-#ifdef HAS_SERIAL_INTERFACE
-    int rc = readcond(m_fd, buffer, sizeof(telegram), sizeof(telegram), 0, 0);
-    return rc == sizeof(telegram);
-#else
-    return false;
-#endif
-  }
-
+  bool read(telegram* buffer);
  private:
   int m_fd;
 
