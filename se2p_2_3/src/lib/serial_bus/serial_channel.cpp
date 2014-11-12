@@ -99,11 +99,5 @@ void serial_channel::shutdown() {
 }
 
 void serial_channel::send_telegram(telegram* tel) {
-  /*m_interface->write(&tel->m_type);
-  m_interface->write(&tel->m_msg);
-  if (tel->m_type == DATA) {
-    m_interface->write(&tel->m_id);
-    m_interface->write(&tel->m_height1);
-    m_interface->write(&tel->m_height2);
-  }*/
+  m_interface->write(tel);
 }

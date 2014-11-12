@@ -85,12 +85,8 @@ class serial_interface {
    **/
   bool read(telegram* buffer) {
 #ifdef HAS_SERIAL_INTERFACE
-	std::cout << sizeof(telegram) << std::endl;
     int rc = readcond(m_fd, buffer, sizeof(telegram), sizeof(telegram), 0, 0);
-    if (rc < 0) {
-    	perror("bla");
-    }
-    return true;
+    return rc == sizeof(telegram);
 #else
     return false;
 #endif
