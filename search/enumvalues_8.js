@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['slight_5fsensor',['slight_sensor',['../namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ad4a79ce56ab7e9e898a685225f26bfbb',1,'se2::hal']]],
-  ['start_5fbutton',['start_button',['../namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5bad56a915ab80a0d4ae3bb6be8a8677553',1,'se2::hal']]],
-  ['switch_5fsensor',['switch_sensor',['../namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a420d4cd810f6133c516cd921dc4af413',1,'se2::hal']]]
+  ['motor_5ffast',['MOTOR_FAST',['../namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb',1,'se2::hal']]],
+  ['motor_5fleft',['MOTOR_LEFT',['../namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c',1,'se2::hal']]],
+  ['motor_5fright',['MOTOR_RIGHT',['../namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a',1,'se2::hal']]],
+  ['motor_5fslow',['MOTOR_SLOW',['../namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d',1,'se2::hal']]],
+  ['motor_5fstop',['MOTOR_STOP',['../namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd',1,'se2::hal']]],
+  ['msg',['MSG',['../namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda6740779c1b381667fbe18669e0e90a38',1,'se2::serial_bus']]]
 ];

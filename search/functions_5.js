@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['hawthread',['HAWThread',['../classse2_1_1util_1_1_h_a_w_thread.html#a4ead560d2275603711f88a38a04f9096',1,'se2::util::HAWThread']]],
-  ['hold',['hold',['../classse2_1_1util_1_1_h_a_w_thread.html#a4bad462598350fd7539d2a579e613699',1,'se2::util::HAWThread']]],
-  ['hwaccess',['hwaccess',['../structse2_1_1hal_1_1hwaccess.html#acaf0242a565adba9a03b1c4b0e058d98',1,'se2::hal::hwaccess::hwaccess()'],['../structse2_1_1hal_1_1hwaccess.html#a7e3a108a4cd68336d561a568f975dcb6',1,'se2::hal::hwaccess::hwaccess(const hwaccess &amp;)']]]
+  ['get_5fheight_5fvalue',['get_height_value',['../structse2_1_1hal_1_1hwaccess.html#a6ad0abf522ba9cc2942c7359998311a0',1,'se2::hal::hwaccess']]],
+  ['get_5finstance',['get_instance',['../classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc',1,'se2::util::singleton_mgr']]],
+  ['get_5fisr_5fchannel',['get_isr_channel',['../structse2_1_1hal_1_1hwaccess.html#a93e565ffa4d86bb2752bedeb9bce4719',1,'se2::hal::hwaccess']]],
+  ['get_5ftelegram',['get_telegram',['../classse2_1_1serial__bus_1_1serial__channel.html#a1e52370ea740c505d727d325a675ec97',1,'se2::serial_bus::serial_channel']]]
 ];

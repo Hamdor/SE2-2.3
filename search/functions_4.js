@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['get_5fheight_5fvalue',['get_height_value',['../structse2_1_1hal_1_1hwaccess.html#a6ad0abf522ba9cc2942c7359998311a0',1,'se2::hal::hwaccess']]],
-  ['get_5finstance',['get_instance',['../structse2_1_1hal_1_1hwaccess.html#a47a689df7176a878e96d3cf0245038de',1,'se2::hal::hwaccess']]]
+  ['entrypoint',['entryPoint',['../classse2_1_1util_1_1_h_a_w_thread.html#ab582a0dbecfab57f1141c8655cd46c34',1,'se2::util::HAWThread']]],
+  ['execute',['execute',['../classse2_1_1serial__bus_1_1serial__channel.html#a74426d17c76df0e61cae2478a9301be0',1,'se2::serial_bus::serial_channel::execute()'],['../classse2_1_1util_1_1_h_a_w_thread.html#a8c6c7feb4951eecb48ccdba89646e7a0',1,'se2::util::HAWThread::execute()']]]
 ];

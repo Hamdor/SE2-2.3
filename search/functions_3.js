@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['entrypoint',['entryPoint',['../classse2_1_1util_1_1_h_a_w_thread.html#ab582a0dbecfab57f1141c8655cd46c34',1,'se2::util::HAWThread']]],
-  ['execute',['execute',['../classse2_1_1util_1_1_h_a_w_thread.html#a8c6c7feb4951eecb48ccdba89646e7a0',1,'se2::util::HAWThread::execute()'],['../classtest__thread.html#a1cf2522d5f61e617392e1a3b35461086',1,'test_thread::execute()']]]
+  ['destroy',['destroy',['../structse2_1_1hal_1_1hwaccess.html#a36d65ba6b404df0f559f780f9009ae3d',1,'se2::hal::hwaccess::destroy()'],['../classse2_1_1serial__bus_1_1serial__channel.html#afd343360a4ae4be2223b2b6a14522bcd',1,'se2::serial_bus::serial_channel::destroy()'],['../classse2_1_1util_1_1abstract__singleton.html#a752730b510e3e985ba61fca22aadaf94',1,'se2::util::abstract_singleton::destroy()'],['../classse2_1_1util_1_1logging.html#a0ab01de2c709398933308acbba547c18',1,'se2::util::logging::destroy()']]]
 ];

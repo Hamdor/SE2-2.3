@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['porta',['PORTA',['../namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa2de5c90398cd57ac319911e25b5b0dbf',1,'se2::hal']]],
-  ['portb',['PORTB',['../namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc',1,'se2::hal']]],
-  ['portc',['PORTC',['../namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda',1,'se2::hal']]]
+  ['hal_5fplugin',['HAL_PLUGIN',['../namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6',1,'se2::util']]],
+  ['height_5fsensor',['HEIGHT_SENSOR',['../namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a9710701ef5910cb1e96ca97ce28f3a4c',1,'se2::hal']]]
 ];

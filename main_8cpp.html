@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2-Milestone3</span>
    </div>
   </td>
  </tr>
@@ -91,12 +91,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">main.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cstdlib&gt;</code><br/>
+<div class="textblock"><code>#include &quot;<a class="el" href="config_8h_source.html">config.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="_h_waccess_8hpp_source.html">lib/hal/HWaccess.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="singleton__mgr_8hpp_source.html">lib/util/singleton_mgr.hpp</a>&quot;</code><br/>
 <code>#include &lt;iostream&gt;</code><br/>
-<code>#include &quot;<a class="el" href="test__thread_8hpp.html">test_thread.hpp</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="_h_waccess_8hpp.html">lib/hal/HWaccess.hpp</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="serial__interface_8hpp.html">lib/serial_bus/serial_interface.hpp</a>&quot;</code><br/>
-</div><table class="memberdecls">
+<code>#include &lt;cstdlib&gt;</code><br/>
+<code>#include &lt;unistd.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="irq__test_8hpp_source.html">unit_tests/irq_test.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="test__suite_8hpp_source.html">unit_tests/test_suite.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="serial__test_8hpp_source.html">unit_tests/serial_test.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="hal__test__stub1_8hpp_source.html">unit_tests/hal_test_stub1.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="hal__test__stub2_8hpp_source.html">unit_tests/hal_test_stub2.hpp</a>&quot;</code><br/>
+</div>
+<p><a href="main_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
@@ -126,8 +134,44 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Hier wird die eigentliche Logik angestartet TODO: HAL/Thread test entfernen/ersetzen</p>
+<p>Unit Tests</p>
 
+<p>Definition at line <a class="el" href="main_8cpp_source.html#l00032">32</a> of file <a class="el" href="main_8cpp_source.html">main.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                                 {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef SIMULATION</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor"></span>  IOaccess_open();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#ifdef UNIT_TESTS</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;run `hal_test_stub1` errors: &quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;hal_test_stub1&gt;</a>().run() &lt;&lt; endl;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;run `hal_test_stub2` errors: &quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;hal_test_stub2&gt;</a>().run() &lt;&lt; endl;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;run `irq_tes`        errors: &quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;irq_test&gt;</a>().run()       &lt;&lt; endl;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#ifdef HAS_SERIAL_INTERFACE</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor"></span>  cout &lt;&lt; <span class="stringliteral">&quot;run `serial_test`    errors: &quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;serial_test&gt;</a>().run()    &lt;&lt; endl;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  <a class="code" href="structse2_1_1hal_1_1hwaccess.html">hwaccess</a>* hal = <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(singleton_mgr::get_instance(HAL));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a31a9c2c63ea05cf6726ea93004dd0128">open_switch</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  sleep(1);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a30ddc4b49f4488fb773ec4be3a8c4e9b">close_switch</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor"></span>  singleton_mgr::shutdown();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#ifdef SIMULATION</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"></span>  IOaccess_close();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00068">singleton_mgr.hpp:68</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html">se2::hal::hwaccess</a></div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8hpp_source.html#l00046">HWaccess.hpp:46</a></div></div>
+<div class="ttc" id="classse2_1_1unit__tests_1_1test__suite_html"><div class="ttname"><a href="classse2_1_1unit__tests_1_1test__suite.html">se2::unit_tests::test_suite</a></div><div class="ttdef"><b>Definition:</b> <a href="test__suite_8hpp_source.html#l00038">test_suite.hpp:38</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a30ddc4b49f4488fb773ec4be3a8c4e9b"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a30ddc4b49f4488fb773ec4be3a8c4e9b">se2::hal::hwaccess::close_switch</a></div><div class="ttdeci">void close_switch()</div><div class="ttdoc">Schließt die Weiche, wenn Weiche geschlossen keine weitere Reaktion. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00095">HWaccess.cpp:95</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a31a9c2c63ea05cf6726ea93004dd0128"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a31a9c2c63ea05cf6726ea93004dd0128">se2::hal::hwaccess::open_switch</a></div><div class="ttdeci">void open_switch()</div><div class="ttdoc">Öffnet die Weiche, wenn Weiche offen keine weitere Reaktion. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00091">HWaccess.cpp:91</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

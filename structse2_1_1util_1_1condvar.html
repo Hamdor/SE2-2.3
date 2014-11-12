@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2-Milestone3</span>
    </div>
   </td>
  </tr>
@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;condvar.hpp&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="condvar_8hpp_source.html">condvar.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -131,7 +131,10 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:a1492dce3c07a46fddd9074ad8c660af8"><td class="memItemLeft" align="right" valign="top">pthread_cond_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">m_cond</a></td></tr>
 <tr class="separator:a1492dce3c07a46fddd9074ad8c660af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="condvar_8hpp_source.html#l00035">35</a> of file <a class="el" href="condvar_8hpp_source.html">condvar.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a09058793d3d1fff9d1a5e8459234ded8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -147,14 +150,21 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Konsturktor condvar. </p>
-<p>Erstellt eine neue Conditionvariable, diese ist mit dem referenzierten Mutex verknüpft.</p>
+<p>Erstellt eine neue Conditionvariable, diese ist mit dem referenzierten Mutex verknüpft. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Referenz</td><td>auf ein mutex </td></tr>
+    <tr><td class="paramname">mutex</td><td>ist die Referenz auf ein mutex </td></tr>
   </table>
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="condvar_8cpp_source.html#l00029">29</a> of file <a class="el" href="condvar_8cpp_source.html">condvar.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                             : <a class="code" href="structse2_1_1util_1_1condvar.html#a5b7fb7253f47d6e2886030a808af3b70">m_lock</a>(mutex) {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  pthread_cond_init(&amp;<a class="code" href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">m_cond</a>, NULL);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_a1492dce3c07a46fddd9074ad8c660af8"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">se2::util::condvar::m_cond</a></div><div class="ttdeci">pthread_cond_t m_cond</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00080">condvar.hpp:80</a></div></div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_a5b7fb7253f47d6e2886030a808af3b70"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a5b7fb7253f47d6e2886030a808af3b70">se2::util::condvar::m_lock</a></div><div class="ttdeci">mutex &amp; m_lock</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00079">condvar.hpp:79</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="af2d3664286d77471aec1593014a663f8"></a>
@@ -180,6 +190,12 @@ Private Attributes</h2></td></tr>
 
 <p>Destruktor. </p>
 
+<p>Definition at line <a class="el" href="condvar_8cpp_source.html#l00033">33</a> of file <a class="el" href="condvar_8cpp_source.html">condvar.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                  {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  pthread_cond_destroy(&amp;<a class="code" href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">m_cond</a>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_a1492dce3c07a46fddd9074ad8c660af8"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">se2::util::condvar::m_cond</a></div><div class="ttdeci">pthread_cond_t m_cond</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00080">condvar.hpp:80</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a8a6568ee847ed9e795592c00e72f56ce"></a>
@@ -246,6 +262,12 @@ Private Attributes</h2></td></tr>
 <p>Diese Funktion entblockt alle Threads die auf diese Conditionvariable blockieren. </p>
 <dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_cond_t</code> wurde nicht initialisiert 0 bei Erfolg </dd></dl>
 
+<p>Definition at line <a class="el" href="condvar_8cpp_source.html#l00045">45</a> of file <a class="el" href="condvar_8cpp_source.html">condvar.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                       {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordflow">return</span> pthread_cond_broadcast(&amp;<a class="code" href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">m_cond</a>);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_a1492dce3c07a46fddd9074ad8c660af8"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">se2::util::condvar::m_cond</a></div><div class="ttdeci">pthread_cond_t m_cond</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00080">condvar.hpp:80</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a822b8a1dcdb91c1d54df02982f6e8006"></a>
@@ -264,6 +286,12 @@ Private Attributes</h2></td></tr>
 <p>Diese Funktion entblockt einen Thread der auf diese Conditionvariable blockieren. </p>
 <dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_cond_t</code> wurde nicht initialisiert 0 bei Erfolg </dd></dl>
 
+<p>Definition at line <a class="el" href="condvar_8cpp_source.html#l00041">41</a> of file <a class="el" href="condvar_8cpp_source.html">condvar.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">return</span> pthread_cond_signal(&amp;<a class="code" href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">m_cond</a>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_a1492dce3c07a46fddd9074ad8c660af8"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">se2::util::condvar::m_cond</a></div><div class="ttdeci">pthread_cond_t m_cond</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00080">condvar.hpp:80</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a9649d7344f6c0db5a0ff4d08abe392f3"></a>
@@ -282,6 +310,14 @@ Private Attributes</h2></td></tr>
 <p>Auf dieser Conditionvariable blockieren, bis diese Conditionvariable signalisiert wird. </p>
 <dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_mutex_t</code> oder <code>pthread_cond_t</code> sind ungültig EINVAL Der aufrufende Thread war/ist nicht im besitzt von <code>pthread_mutex_t</code> 0 bei Erfolg </dd></dl>
 
+<p>Definition at line <a class="el" href="condvar_8cpp_source.html#l00037">37</a> of file <a class="el" href="condvar_8cpp_source.html">condvar.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                  {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordflow">return</span> pthread_cond_wait(&amp;<a class="code" href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">m_cond</a>, &amp;<a class="code" href="structse2_1_1util_1_1condvar.html#a5b7fb7253f47d6e2886030a808af3b70">m_lock</a>.<a class="code" href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">m_mutex</a>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_a1492dce3c07a46fddd9074ad8c660af8"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">se2::util::condvar::m_cond</a></div><div class="ttdeci">pthread_cond_t m_cond</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00080">condvar.hpp:80</a></div></div>
+<div class="ttc" id="structse2_1_1util_1_1mutex_html_a36dc2dc19355432a4b01770680051925"><div class="ttname"><a href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">se2::util::mutex::m_mutex</a></div><div class="ttdeci">pthread_mutex_t m_mutex</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00070">mutex.hpp:70</a></div></div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_a5b7fb7253f47d6e2886030a808af3b70"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a5b7fb7253f47d6e2886030a808af3b70">se2::util::condvar::m_lock</a></div><div class="ttdeci">mutex &amp; m_lock</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00079">condvar.hpp:79</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -303,6 +339,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="condvar_8hpp_source.html#l00080">80</a> of file <a class="el" href="condvar_8hpp_source.html">condvar.hpp</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a5b7fb7253f47d6e2886030a808af3b70"></a>
@@ -323,11 +361,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="condvar_8hpp_source.html#l00079">79</a> of file <a class="el" href="condvar_8hpp_source.html">condvar.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
-<li>se2p_2_3/src/lib/util/<a class="el" href="condvar_8hpp.html">condvar.hpp</a></li>
-<li>se2p_2_3/src/lib/util/<a class="el" href="condvar_8cpp.html">condvar.cpp</a></li>
+<li>se2p_2_3/src/lib/util/<a class="el" href="condvar_8hpp_source.html">condvar.hpp</a></li>
+<li>se2p_2_3/src/lib/util/<a class="el" href="condvar_8cpp_source.html">condvar.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

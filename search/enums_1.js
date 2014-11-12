@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['light_5fbarriers',['light_barriers',['../namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889',1,'se2::hal']]],
-  ['light_5fcolors',['light_colors',['../namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8',1,'se2::hal']]]
+  ['event_5fsource',['event_source',['../namespacese2.html#a8b8153f14e875cb44bc6084edf126894',1,'se2']]],
+  ['event_5fvalues',['event_values',['../namespacese2.html#a29f4bad56faf98602debd570faf4354f',1,'se2']]]
 ];

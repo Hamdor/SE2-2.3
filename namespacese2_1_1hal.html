@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2-Milestone3</span>
    </div>
   </td>
  </tr>
@@ -111,72 +111,86 @@ Enumerations</h2></td></tr>
 <br/>
 &#160;&#160;<a class="el" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc">PORTB</a> = IOBASE + 0x01, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda">PORTC</a> = IOBASE + 0x02
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda">PORTC</a> = IOBASE + 0x02, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa37da3cf4fd0cda027bbdb35e930f79d3">IRQ_ENABLE_REG</a> = IOBASE + 0x0B, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47">IRQ_CLEAR_REG</a> = IOBASE + 0x0F, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35facee54d577b5fe3531148efc7c5af1646">IRQ_RNC_REG</a> = IOBASE + 0x12, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa6671b9ea45dd82f8e29be07186895d08">ANALOG_BASE</a> = IOANALOG_BASE, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa461ae2f7ff8bf86ebda86490881c49ca">ANALOG_PORT_A</a> = IOANALOG_BASE + IOANALOG_OFFSET
 <br/>
  }</td></tr>
+<tr class="memdesc:ae0b046d03802ed481d6e12b408e5f35f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset der Ports.  <a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35f">More...</a><br/></td></tr>
 <tr class="separator:ae0b046d03802ed481d6e12b408e5f35f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc94d0dd219c97174e3804e68bf3d64b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64b">motor_modes</a> { <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba479272db780fd93aec8d76bde7b3b847">motor_right</a> = 0, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">MOTOR_RIGHT</a> = 0, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba380e105374237445c03b6de46b1b096d">motor_left</a> = 1, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c">MOTOR_LEFT</a> = 1, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba3613ff7eb7ac0b9d04470492dc33c51b">motor_slow</a> = 2, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d">MOTOR_SLOW</a> = 2, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba13b911829c77f4c21967b3f0cb97005e">motor_stop</a> = 3, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">MOTOR_STOP</a> = 3, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba426d4a6643c7b49c0b95bda21f180610">motor_fast</a> = 4
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb">MOTOR_FAST</a> = 4
 <br/>
  }</td></tr>
 <tr class="memdesc:abc94d0dd219c97174e3804e68bf3d64b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor modes.  <a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64b">More...</a><br/></td></tr>
 <tr class="separator:abc94d0dd219c97174e3804e68bf3d64b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e876638b89b5de22efac6d0705fec5b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5b">button_leds</a> { <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5bad56a915ab80a0d4ae3bb6be8a8677553">start_button</a> = 0, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba8ebd1124430d955c32928574665f65d0">START_LED</a> = 0, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5baee73bb7dadc6f0671feaff513134b5d0">reset_button</a> = 1, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba82888470ef25f109e34e97d43ed8b2ba">RESET_LED</a> = 1, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba926bada292c619106e83ac6c2d8d44dc">q1_button</a> = 2, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba4ff47c9316e44f8dde012a588517ba89">Q1_LED</a> = 2, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba88486ea88b3913214477e95c95e693ac">q2_button</a> = 3
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba586dee838a9109fe351adc7c9f639048">Q2_LED</a> = 3
 <br/>
  }</td></tr>
 <tr class="memdesc:a8e876638b89b5de22efac6d0705fec5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">LEDs der einzelnen Knöpfe.  <a href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5b">More...</a><br/></td></tr>
 <tr class="separator:a8e876638b89b5de22efac6d0705fec5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7991a0acc71800c63fa419fa508cd13b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13b">buttons</a> { <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba5993ba2c0ac33fbee547368640585c12">button_start</a> = 4, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78">BUTTON_START</a> = 4, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba1dd3b3e2e0504e385b3b1a71fe0fde1f">button_stop</a> = 5, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba9d7f61248326435394efaf8166ca7f74">BUTTON_STOP</a> = 5, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba2af1e0d2a5ab5cf81c244251326951db">button_reset</a> = 6, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba4fa28cbd79fa2521ec6fefc59dd1591a">BUTTON_RESET</a> = 6, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13bacfc990c5e4d62eb58bea57c2c7900982">button_estop</a> = 7
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e">BUTTON_ESTOP</a> = 7
 <br/>
  }</td></tr>
 <tr class="memdesc:a7991a0acc71800c63fa419fa508cd13b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verfügbare Knöpfe.  <a href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13b">More...</a><br/></td></tr>
 <tr class="separator:a7991a0acc71800c63fa419fa508cd13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1d44c1c759eace0e3537635c4c7b889"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889">light_barriers</a> { <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a1bc05a85746ed8af56ccc0fb85864ff9">entrace_sensor</a> = 0, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a5238ca61c1bacb9936c584da0b66b428">ENTRACE_SENSOR</a> = 0, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a2569b7c28d6e273f186c03d7bded64bb">height_sensor</a> = 1, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a9710701ef5910cb1e96ca97ce28f3a4c">HEIGHT_SENSOR</a> = 1, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a420d4cd810f6133c516cd921dc4af413">switch_sensor</a> = 3, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ad831391ca031d3a86b0e080b4b1fc799">SWITCH_SENSOR</a> = 3, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ad4a79ce56ab7e9e898a685225f26bfbb">slight_sensor</a> = 6, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a833e6c101fe26125534044e0a22b4ab9">SLIGHT_SENSOR</a> = 6, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ac9adb6e04ffa41a4ae682a749cb7296e">exit_sensor</a> = 7
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ae625ea2bfe95dbd2d1147bb61642a91b">EXIT_SENSOR</a> = 7
 <br/>
  }</td></tr>
 <tr class="memdesc:aa1d44c1c759eace0e3537635c4c7b889"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lichtschranken des Systems.  <a href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889">More...</a><br/></td></tr>
 <tr class="separator:aa1d44c1c759eace0e3537635c4c7b889"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a548828526dc7fd5e105c955b6777bef8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8">light_colors</a> { <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a30638b21e32f6924b7e41a49e45f8361">green</a> = 5, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a45f12bb629fba8b7d868be4c8109ec0d">GREEN</a> = 5, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a63799877ae80bfe3cf7d9f9d266a82c5">yellow</a> = 6, 
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8ac4ad3103493f6c9df69e5da6550edb96">YELLOW</a> = 6, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8ac233bfa2b990f8fa953a17ec7b72ff60">red</a> = 7
+&#160;&#160;<a class="el" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a432221c6181c99aaa74248105fb8ed9a">RED</a> = 7
 <br/>
  }</td></tr>
 <tr class="memdesc:a548828526dc7fd5e105c955b6777bef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lampen der Ampel.  <a href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8">More...</a><br/></td></tr>
 <tr class="separator:a548828526dc7fd5e105c955b6777bef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a809a8b1319c02b4f0f603e0b5ad0428d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1hal.html#a809a8b1319c02b4f0f603e0b5ad0428d">height_values</a> </td></tr>
+<tr class="memdesc:a809a8b1319c02b4f0f603e0b5ad0428d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rueckgabewerte des Hoehensensors fuer die einzelnen Puck typen.  <a href="namespacese2_1_1hal.html#a809a8b1319c02b4f0f603e0b5ad0428d">More...</a><br/></td></tr>
+<tr class="separator:a809a8b1319c02b4f0f603e0b5ad0428d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a class="anchor" id="a8e876638b89b5de22efac6d0705fec5b"></a>
@@ -191,16 +205,28 @@ Enumerations</h2></td></tr>
 
 <p>LEDs der einzelnen Knöpfe. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a8e876638b89b5de22efac6d0705fec5bad56a915ab80a0d4ae3bb6be8a8677553"></a>start_button</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a8e876638b89b5de22efac6d0705fec5ba8ebd1124430d955c32928574665f65d0"></a>START_LED</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a8e876638b89b5de22efac6d0705fec5baee73bb7dadc6f0671feaff513134b5d0"></a>reset_button</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="a8e876638b89b5de22efac6d0705fec5ba82888470ef25f109e34e97d43ed8b2ba"></a>RESET_LED</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a8e876638b89b5de22efac6d0705fec5ba926bada292c619106e83ac6c2d8d44dc"></a>q1_button</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="a8e876638b89b5de22efac6d0705fec5ba4ff47c9316e44f8dde012a588517ba89"></a>Q1_LED</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a8e876638b89b5de22efac6d0705fec5ba88486ea88b3913214477e95c95e693ac"></a>q2_button</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="a8e876638b89b5de22efac6d0705fec5ba586dee838a9109fe351adc7c9f639048"></a>Q2_LED</em>&#160;</td><td class="fielddoc">
 </td></tr>
 </table>
 
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00133">133</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;                 {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba8ebd1124430d955c32928574665f65d0">START_LED</a> = 0,</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba82888470ef25f109e34e97d43ed8b2ba">RESET_LED</a> = 1,</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba4ff47c9316e44f8dde012a588517ba89">Q1_LED</a>    = 2,</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba586dee838a9109fe351adc7c9f639048">Q2_LED</a>    = 3</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;};</div>
+<div class="ttc" id="namespacese2_1_1hal_html_a8e876638b89b5de22efac6d0705fec5ba586dee838a9109fe351adc7c9f639048"><div class="ttname"><a href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba586dee838a9109fe351adc7c9f639048">se2::hal::Q2_LED</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00137">constants.hpp:137</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a8e876638b89b5de22efac6d0705fec5ba8ebd1124430d955c32928574665f65d0"><div class="ttname"><a href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba8ebd1124430d955c32928574665f65d0">se2::hal::START_LED</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00134">constants.hpp:134</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a8e876638b89b5de22efac6d0705fec5ba82888470ef25f109e34e97d43ed8b2ba"><div class="ttname"><a href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba82888470ef25f109e34e97d43ed8b2ba">se2::hal::RESET_LED</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00135">constants.hpp:135</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a8e876638b89b5de22efac6d0705fec5ba4ff47c9316e44f8dde012a588517ba89"><div class="ttname"><a href="namespacese2_1_1hal.html#a8e876638b89b5de22efac6d0705fec5ba4ff47c9316e44f8dde012a588517ba89">se2::hal::Q1_LED</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00136">constants.hpp:136</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a7991a0acc71800c63fa419fa508cd13b"></a>
@@ -215,16 +241,72 @@ Enumerations</h2></td></tr>
 
 <p>Verfügbare Knöpfe. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a7991a0acc71800c63fa419fa508cd13ba5993ba2c0ac33fbee547368640585c12"></a>button_start</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78"></a>BUTTON_START</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a7991a0acc71800c63fa419fa508cd13ba1dd3b3e2e0504e385b3b1a71fe0fde1f"></a>button_stop</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="a7991a0acc71800c63fa419fa508cd13ba9d7f61248326435394efaf8166ca7f74"></a>BUTTON_STOP</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a7991a0acc71800c63fa419fa508cd13ba2af1e0d2a5ab5cf81c244251326951db"></a>button_reset</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="a7991a0acc71800c63fa419fa508cd13ba4fa28cbd79fa2521ec6fefc59dd1591a"></a>BUTTON_RESET</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a7991a0acc71800c63fa419fa508cd13bacfc990c5e4d62eb58bea57c2c7900982"></a>button_estop</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e"></a>BUTTON_ESTOP</em>&#160;</td><td class="fielddoc">
 </td></tr>
 </table>
 
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00143">143</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;             {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78">BUTTON_START</a> = 4, <span class="comment">// 1 =&gt; gedrückt</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba9d7f61248326435394efaf8166ca7f74">BUTTON_STOP</a>  = 5, <span class="comment">// 1 =&gt; NICHT gedrückt</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba4fa28cbd79fa2521ec6fefc59dd1591a">BUTTON_RESET</a> = 6, <span class="comment">// 1 =&gt; gedrückt</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e">BUTTON_ESTOP</a> = 7  <span class="comment">// 1 =&gt; NICHT gedrückt</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;};</div>
+<div class="ttc" id="namespacese2_1_1hal_html_a7991a0acc71800c63fa419fa508cd13ba4fa28cbd79fa2521ec6fefc59dd1591a"><div class="ttname"><a href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba4fa28cbd79fa2521ec6fefc59dd1591a">se2::hal::BUTTON_RESET</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00146">constants.hpp:146</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78"><div class="ttname"><a href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78">se2::hal::BUTTON_START</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00144">constants.hpp:144</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e"><div class="ttname"><a href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e">se2::hal::BUTTON_ESTOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00147">constants.hpp:147</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a7991a0acc71800c63fa419fa508cd13ba9d7f61248326435394efaf8166ca7f74"><div class="ttname"><a href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba9d7f61248326435394efaf8166ca7f74">se2::hal::BUTTON_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00145">constants.hpp:145</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a809a8b1319c02b4f0f603e0b5ad0428d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacese2_1_1hal.html#a809a8b1319c02b4f0f603e0b5ad0428d">se2::hal::height_values</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rueckgabewerte des Hoehensensors fuer die einzelnen Puck typen. </p>
+
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00174">174</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                   {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#if defined(FESTO_3)</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor"></span>  TOO_SMALL_LOW       = 2835, <span class="comment">// zu flach (Min)</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;  TOO_SMALL_HI        = 2845, <span class="comment">// zu flach (Max)</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  HOLE_BUTTOM_UP_LOW  = 2562, <span class="comment">// Bohrung (Falsch herum) (Min)</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  HOLE_BUTTOM_UP_HI   = 2573, <span class="comment">// Bohrung (Falsch herum) (Max)</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  HOLE_LOW            = 3608, <span class="comment">// Bohrung (Richtig herum) (Min)</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  HOLE_HI             = 3617, <span class="comment">// Bohrung (Richtig herum) (Max)</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  METAL_BUTTOM_UP_LOW = 2547, <span class="comment">// Mit Metall (Falsch herum) (Min)</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  METAL_BUTTOM_UP_HI  = 2557, <span class="comment">// Mit Metall (Falsch herum) (Max)</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  METAL_LOW           = 3620, <span class="comment">// Mit Metall (Richtig herum) (Min)</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;  METAL_HI            = 3629  <span class="comment">// Mit Metall (Richtig herum) (Max)</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#elif defined(FESTO_9)</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor"></span>  TOO_SMALL_LOW       = 2720, <span class="comment">// zu flach (Min)</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  TOO_SMALL_HI        = 2735, <span class="comment">// zu flach (Max)</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  HOLE_BUTTOM_UP_LOW  = 2455, <span class="comment">// Bohrung (Falsch herum) (Min)</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;  HOLE_BUTTOM_UP_HI   = 2470, <span class="comment">// Bohrung (Falsch herum) (Max)</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  HOLE_LOW            = 3475, <span class="comment">// Bohrung (Richtig herum) (Min)</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;  HOLE_HI             = 3490, <span class="comment">// Bohrung (Richtig herum) (Max)</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  <span class="comment">// (WURDEN NICHT GEMESSEN)</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="comment">//METAL_BUTTOM_UP_LOW = , // Mit Metall (Falsch herum) (Min)</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;  <span class="comment">//METAL_BUTTOM_UP_HI  = , // Mit Metall (Falsch herum) (Max)</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;  METAL_LOW           = 3515, <span class="comment">// Mit Metall (Richtig herum) (Min)</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  METAL_HI            = 3535  <span class="comment">// Mit Metall (Richtig herum) (Max)</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor"></span>  <span class="comment">// TODO: Default Werte? Mittelwert?</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor"></span>};</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889"></a>
@@ -239,18 +321,32 @@ Enumerations</h2></td></tr>
 
 <p>Lichtschranken des Systems. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889a1bc05a85746ed8af56ccc0fb85864ff9"></a>entrace_sensor</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889a5238ca61c1bacb9936c584da0b66b428"></a>ENTRACE_SENSOR</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889a2569b7c28d6e273f186c03d7bded64bb"></a>height_sensor</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889a9710701ef5910cb1e96ca97ce28f3a4c"></a>HEIGHT_SENSOR</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889a420d4cd810f6133c516cd921dc4af413"></a>switch_sensor</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889ad831391ca031d3a86b0e080b4b1fc799"></a>SWITCH_SENSOR</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889ad4a79ce56ab7e9e898a685225f26bfbb"></a>slight_sensor</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889a833e6c101fe26125534044e0a22b4ab9"></a>SLIGHT_SENSOR</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889ac9adb6e04ffa41a4ae682a749cb7296e"></a>exit_sensor</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="aa1d44c1c759eace0e3537635c4c7b889ae625ea2bfe95dbd2d1147bb61642a91b"></a>EXIT_SENSOR</em>&#160;</td><td class="fielddoc">
 </td></tr>
 </table>
 
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00153">153</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;                    {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a5238ca61c1bacb9936c584da0b66b428">ENTRACE_SENSOR</a> = 0, <span class="comment">// einlauf</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a9710701ef5910cb1e96ca97ce28f3a4c">HEIGHT_SENSOR</a>  = 1, <span class="comment">// höhensensor</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ad831391ca031d3a86b0e080b4b1fc799">SWITCH_SENSOR</a>  = 3, <span class="comment">// weiche</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a833e6c101fe26125534044e0a22b4ab9">SLIGHT_SENSOR</a>  = 6, <span class="comment">// rutsche</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ae625ea2bfe95dbd2d1147bb61642a91b">EXIT_SENSOR</a>    = 7  <span class="comment">// auslauf</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;};</div>
+<div class="ttc" id="namespacese2_1_1hal_html_aa1d44c1c759eace0e3537635c4c7b889ad831391ca031d3a86b0e080b4b1fc799"><div class="ttname"><a href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ad831391ca031d3a86b0e080b4b1fc799">se2::hal::SWITCH_SENSOR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00156">constants.hpp:156</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_aa1d44c1c759eace0e3537635c4c7b889a9710701ef5910cb1e96ca97ce28f3a4c"><div class="ttname"><a href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a9710701ef5910cb1e96ca97ce28f3a4c">se2::hal::HEIGHT_SENSOR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00155">constants.hpp:155</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_aa1d44c1c759eace0e3537635c4c7b889a833e6c101fe26125534044e0a22b4ab9"><div class="ttname"><a href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a833e6c101fe26125534044e0a22b4ab9">se2::hal::SLIGHT_SENSOR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00157">constants.hpp:157</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_aa1d44c1c759eace0e3537635c4c7b889ae625ea2bfe95dbd2d1147bb61642a91b"><div class="ttname"><a href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889ae625ea2bfe95dbd2d1147bb61642a91b">se2::hal::EXIT_SENSOR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00158">constants.hpp:158</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_aa1d44c1c759eace0e3537635c4c7b889a5238ca61c1bacb9936c584da0b66b428"><div class="ttname"><a href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a5238ca61c1bacb9936c584da0b66b428">se2::hal::ENTRACE_SENSOR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00154">constants.hpp:154</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a548828526dc7fd5e105c955b6777bef8"></a>
@@ -265,14 +361,24 @@ Enumerations</h2></td></tr>
 
 <p>Lampen der Ampel. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a548828526dc7fd5e105c955b6777bef8a30638b21e32f6924b7e41a49e45f8361"></a>green</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a548828526dc7fd5e105c955b6777bef8a45f12bb629fba8b7d868be4c8109ec0d"></a>GREEN</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a548828526dc7fd5e105c955b6777bef8a63799877ae80bfe3cf7d9f9d266a82c5"></a>yellow</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="a548828526dc7fd5e105c955b6777bef8ac4ad3103493f6c9df69e5da6550edb96"></a>YELLOW</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="a548828526dc7fd5e105c955b6777bef8ac233bfa2b990f8fa953a17ec7b72ff60"></a>red</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="a548828526dc7fd5e105c955b6777bef8a432221c6181c99aaa74248105fb8ed9a"></a>RED</em>&#160;</td><td class="fielddoc">
 </td></tr>
 </table>
 
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00164">164</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                  {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a45f12bb629fba8b7d868be4c8109ec0d">GREEN</a>  = 5,</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8ac4ad3103493f6c9df69e5da6550edb96">YELLOW</a> = 6,</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a432221c6181c99aaa74248105fb8ed9a">RED</a>    = 7</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;};</div>
+<div class="ttc" id="namespacese2_1_1hal_html_a548828526dc7fd5e105c955b6777bef8a432221c6181c99aaa74248105fb8ed9a"><div class="ttname"><a href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a432221c6181c99aaa74248105fb8ed9a">se2::hal::RED</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00167">constants.hpp:167</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a548828526dc7fd5e105c955b6777bef8ac4ad3103493f6c9df69e5da6550edb96"><div class="ttname"><a href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8ac4ad3103493f6c9df69e5da6550edb96">se2::hal::YELLOW</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00166">constants.hpp:166</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a548828526dc7fd5e105c955b6777bef8a45f12bb629fba8b7d868be4c8109ec0d"><div class="ttname"><a href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a45f12bb629fba8b7d868be4c8109ec0d">se2::hal::GREEN</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00165">constants.hpp:165</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64b"></a>
@@ -287,18 +393,32 @@ Enumerations</h2></td></tr>
 
 <p>Motor modes. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64ba479272db780fd93aec8d76bde7b3b847"></a>motor_right</em>&#160;</td><td class="fielddoc">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a"></a>MOTOR_RIGHT</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64ba380e105374237445c03b6de46b1b096d"></a>motor_left</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c"></a>MOTOR_LEFT</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64ba3613ff7eb7ac0b9d04470492dc33c51b"></a>motor_slow</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d"></a>MOTOR_SLOW</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64ba13b911829c77f4c21967b3f0cb97005e"></a>motor_stop</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd"></a>MOTOR_STOP</em>&#160;</td><td class="fielddoc">
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64ba426d4a6643c7b49c0b95bda21f180610"></a>motor_fast</em>&#160;</td><td class="fielddoc">
+<tr><td class="fieldname"><em><a class="anchor" id="abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb"></a>MOTOR_FAST</em>&#160;</td><td class="fielddoc">
 </td></tr>
 </table>
 
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00122">122</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                 {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">MOTOR_RIGHT</a> = 0,</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c">MOTOR_LEFT</a>  = 1,</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d">MOTOR_SLOW</a>  = 2,</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">MOTOR_STOP</a>  = 3,</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb">MOTOR_FAST</a>  = 4</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;};</div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">se2::hal::MOTOR_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00126">constants.hpp:126</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d">se2::hal::MOTOR_SLOW</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00125">constants.hpp:125</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb">se2::hal::MOTOR_FAST</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00127">constants.hpp:127</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c">se2::hal::MOTOR_LEFT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00124">constants.hpp:124</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">se2::hal::MOTOR_RIGHT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00123">constants.hpp:123</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ae0b046d03802ed481d6e12b408e5f35f"></a>
@@ -310,6 +430,8 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Offset der Ports. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ae0b046d03802ed481d6e12b408e5f35fa2de5c90398cd57ac319911e25b5b0dbf"></a>PORTA</em>&#160;</td><td class="fielddoc">
 </td></tr>
@@ -317,8 +439,41 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda"></a>PORTC</em>&#160;</td><td class="fielddoc">
 </td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae0b046d03802ed481d6e12b408e5f35fa37da3cf4fd0cda027bbdb35e930f79d3"></a>IRQ_ENABLE_REG</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47"></a>IRQ_CLEAR_REG</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae0b046d03802ed481d6e12b408e5f35facee54d577b5fe3531148efc7c5af1646"></a>IRQ_RNC_REG</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae0b046d03802ed481d6e12b408e5f35fa6671b9ea45dd82f8e29be07186895d08"></a>ANALOG_BASE</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ae0b046d03802ed481d6e12b408e5f35fa461ae2f7ff8bf86ebda86490881c49ca"></a>ANALOG_PORT_A</em>&#160;</td><td class="fielddoc">
+</td></tr>
 </table>
 
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00108">108</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;              {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa2de5c90398cd57ac319911e25b5b0dbf">PORTA</a>          = <a class="code" href="constants_8hpp.html#a3bed8f84abe0aa1aea8b84ac2731451f">IOBASE</a> + 0x00, <span class="comment">// IOBASE + 0x00</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc">PORTB</a>          = <a class="code" href="constants_8hpp.html#a3bed8f84abe0aa1aea8b84ac2731451f">IOBASE</a> + 0x01, <span class="comment">// IOBASE + 0x01</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda">PORTC</a>          = <a class="code" href="constants_8hpp.html#a3bed8f84abe0aa1aea8b84ac2731451f">IOBASE</a> + 0x02, <span class="comment">// IOBASE + 0x02</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa37da3cf4fd0cda027bbdb35e930f79d3">IRQ_ENABLE_REG</a> = <a class="code" href="constants_8hpp.html#a3bed8f84abe0aa1aea8b84ac2731451f">IOBASE</a> + 0x0B, <span class="comment">// IOBASE + 0x0B</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47">IRQ_CLEAR_REG</a>  = <a class="code" href="constants_8hpp.html#a3bed8f84abe0aa1aea8b84ac2731451f">IOBASE</a> + 0x0F, <span class="comment">// IOBASE + 0x0F</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35facee54d577b5fe3531148efc7c5af1646">IRQ_RNC_REG</a>    = <a class="code" href="constants_8hpp.html#a3bed8f84abe0aa1aea8b84ac2731451f">IOBASE</a> + 0x12, <span class="comment">// IOBASE + 0x12 (Read and Clear)</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa6671b9ea45dd82f8e29be07186895d08">ANALOG_BASE</a>    = <a class="code" href="constants_8hpp.html#ad7d41125f0ca1184d9bab9add06052eb">IOANALOG_BASE</a>, <span class="comment">// IOANALOG_BASE (0x320)</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  <a class="code" href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa461ae2f7ff8bf86ebda86490881c49ca">ANALOG_PORT_A</a>  = <a class="code" href="constants_8hpp.html#ad7d41125f0ca1184d9bab9add06052eb">IOANALOG_BASE</a> + <a class="code" href="constants_8hpp.html#a32b81b42dc16e15734d63142b69088ca">IOANALOG_OFFSET</a> <span class="comment">// IOANALOG_BASE + 0x02</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;};</div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc">se2::hal::PORTB</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00110">constants.hpp:110</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa461ae2f7ff8bf86ebda86490881c49ca"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa461ae2f7ff8bf86ebda86490881c49ca">se2::hal::ANALOG_PORT_A</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00116">constants.hpp:116</a></div></div>
+<div class="ttc" id="constants_8hpp_html_a32b81b42dc16e15734d63142b69088ca"><div class="ttname"><a href="constants_8hpp.html#a32b81b42dc16e15734d63142b69088ca">IOANALOG_OFFSET</a></div><div class="ttdeci">#define IOANALOG_OFFSET</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00070">constants.hpp:70</a></div></div>
+<div class="ttc" id="constants_8hpp_html_ad7d41125f0ca1184d9bab9add06052eb"><div class="ttname"><a href="constants_8hpp.html#ad7d41125f0ca1184d9bab9add06052eb">IOANALOG_BASE</a></div><div class="ttdeci">#define IOANALOG_BASE</div><div class="ttdoc">Addressen/Defines Analogport. </div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00069">constants.hpp:69</a></div></div>
+<div class="ttc" id="constants_8hpp_html_a3bed8f84abe0aa1aea8b84ac2731451f"><div class="ttname"><a href="constants_8hpp.html#a3bed8f84abe0aa1aea8b84ac2731451f">IOBASE</a></div><div class="ttdeci">#define IOBASE</div><div class="ttdoc">Basis Addresse des IO Registers. </div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00054">constants.hpp:54</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47">se2::hal::IRQ_CLEAR_REG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00113">constants.hpp:113</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa37da3cf4fd0cda027bbdb35e930f79d3"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa37da3cf4fd0cda027bbdb35e930f79d3">se2::hal::IRQ_ENABLE_REG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00112">constants.hpp:112</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda">se2::hal::PORTC</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00111">constants.hpp:111</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35facee54d577b5fe3531148efc7c5af1646"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35facee54d577b5fe3531148efc7c5af1646">se2::hal::IRQ_RNC_REG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00114">constants.hpp:114</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa2de5c90398cd57ac319911e25b5b0dbf"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa2de5c90398cd57ac319911e25b5b0dbf">se2::hal::PORTA</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00109">constants.hpp:109</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa6671b9ea45dd82f8e29be07186895d08"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa6671b9ea45dd82f8e29be07186895d08">se2::hal::ANALOG_BASE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00115">constants.hpp:115</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

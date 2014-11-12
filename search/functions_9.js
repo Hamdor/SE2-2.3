@@ -1,5 +1,9 @@
 var searchData=
 [
-  ['main',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
-  ['mutex',['mutex',['../structse2_1_1util_1_1mutex.html#a6b7350155befa79a8c6ad27c4c794b1e',1,'se2::util::mutex::mutex()'],['../structse2_1_1util_1_1mutex.html#ab2539a6e748121eaf614eca7bdf80128',1,'se2::util::mutex::mutex(const mutex &amp;)']]]
+  ['light_5fbarrier_5finterrupted_5ftest',['light_barrier_interrupted_test',['../classse2_1_1unit__tests_1_1hal__test__stub2.html#adad81755227a7a451e19ac6ae6e68c1c',1,'se2::unit_tests::hal_test_stub2']]],
+  ['light_5fbarrier_5ftest',['light_barrier_test',['../classse2_1_1unit__tests_1_1hal__test__stub1.html#a2ac2d2879fd1c6660311b29884040884',1,'se2::unit_tests::hal_test_stub1']]],
+  ['light_5ftest',['light_test',['../classse2_1_1unit__tests_1_1hal__test__stub1.html#a9dcfc487308b3683372221347b330d21',1,'se2::unit_tests::hal_test_stub1']]],
+  ['lock_5fguard',['lock_guard',['../structse2_1_1util_1_1lock__guard.html#aab74930d6affcd14bb2b0f08a3e708ea',1,'se2::util::lock_guard::lock_guard(mutex &amp;)'],['../structse2_1_1util_1_1lock__guard.html#ae7bb7197f68d34a2036caf4f738f4924',1,'se2::util::lock_guard::lock_guard(const lock_guard &amp;)']]],
+  ['log',['log',['../classse2_1_1util_1_1logging.html#a248d7b8d5d55e818d36c0414c572829a',1,'se2::util::logging']]],
+  ['logging',['logging',['../classse2_1_1util_1_1logging.html#a9fc3278b328fdec4922315d85f772489',1,'se2::util::logging']]]
 ];

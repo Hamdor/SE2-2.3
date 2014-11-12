@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['button_5festop',['button_estop',['../namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13bacfc990c5e4d62eb58bea57c2c7900982',1,'se2::hal']]],
-  ['button_5freset',['button_reset',['../namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba2af1e0d2a5ab5cf81c244251326951db',1,'se2::hal']]],
-  ['button_5fstart',['button_start',['../namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba5993ba2c0ac33fbee547368640585c12',1,'se2::hal']]],
-  ['button_5fstop',['button_stop',['../namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba1dd3b3e2e0504e385b3b1a71fe0fde1f',1,'se2::hal']]]
+  ['analog_5fbase',['ANALOG_BASE',['../namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa6671b9ea45dd82f8e29be07186895d08',1,'se2::hal']]],
+  ['analog_5fport_5fa',['ANALOG_PORT_A',['../namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa461ae2f7ff8bf86ebda86490881c49ca',1,'se2::hal']]]
 ];

@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2-Milestone3</span>
    </div>
   </td>
  </tr>
@@ -83,7 +83,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a>  </div>
   <div class="headertitle">
 <div class="title">se2 Namespace Reference</div>  </div>
 </div><!--header-->
@@ -96,18 +97,116 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacese2_1_1hal"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1hal.html">hal</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacese2_1_1serial__bus"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1serial__bus.html">serial_bus</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacese2_1_1unit__tests"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1unit__tests.html">unit_tests</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacese2_1_1util"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2_1_1util.html">util</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1serial__interface.html">serial_interface</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1token.html">token</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a8b8153f14e875cb44bc6084edf126894"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894">event_source</a> { <br/>
+&#160;&#160;<a class="el" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0">INTERRUPT</a> = 0, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a769a8d2dd33695da5b869f7228ccdbb0">SERIAL</a> = 1, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4">TIMER</a> = 2
+<br/>
+ }</td></tr>
+<tr class="memdesc:a8b8153f14e875cb44bc6084edf126894"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pulse Message Herkunft.  <a href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894">More...</a><br/></td></tr>
+<tr class="separator:a8b8153f14e875cb44bc6084edf126894"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29f4bad56faf98602debd570faf4354f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacese2.html#a29f4bad56faf98602debd570faf4354f">event_values</a> { <br/>
+&#160;&#160;<a class="el" href="namespacese2.html#a29f4bad56faf98602debd570faf4354fa59599bd2e9df0343d630000fdda4363d">NEW_SERIAL_DATA</a> = 0, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2.html#a29f4bad56faf98602debd570faf4354fac907e820735028e0be8f04c6f6bf624e">NEW_SERIAL_MSG</a> = 1, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2.html#a29f4bad56faf98602debd570faf4354faa8b02be57cdade11788e4a37675f69be">NEW_SERIAL_ERR</a> = 2, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2.html#a29f4bad56faf98602debd570faf4354facb693f4d28215b062ea4f73023aebc02">NEW_SERIAL_UNK</a> = 3
+<br/>
+ }</td></tr>
+<tr class="memdesc:a29f4bad56faf98602debd570faf4354f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pulse Message Values TODO: erweitern.  <a href="namespacese2.html#a29f4bad56faf98602debd570faf4354f">More...</a><br/></td></tr>
+<tr class="separator:a29f4bad56faf98602debd570faf4354f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>HAWThread class. </p>
 <p>Encapsulates the most important features of a thread. This serves as a basis for further development. For example, priorities could be passed as constructor argument. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a class="anchor" id="a8b8153f14e875cb44bc6084edf126894"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894">se2::event_source</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pulse Message Herkunft. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0"></a>INTERRUPT</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b8153f14e875cb44bc6084edf126894a769a8d2dd33695da5b869f7228ccdbb0"></a>SERIAL</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4"></a>TIMER</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00086">86</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                  {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <a class="code" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0">INTERRUPT</a> = 0,</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <a class="code" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a769a8d2dd33695da5b869f7228ccdbb0">SERIAL</a>    = 1,</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <a class="code" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4">TIMER</a>     = 2</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;};</div>
+<div class="ttc" id="namespacese2_html_a8b8153f14e875cb44bc6084edf126894a769a8d2dd33695da5b869f7228ccdbb0"><div class="ttname"><a href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a769a8d2dd33695da5b869f7228ccdbb0">se2::SERIAL</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00088">constants.hpp:88</a></div></div>
+<div class="ttc" id="namespacese2_html_a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4"><div class="ttname"><a href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4">se2::TIMER</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00089">constants.hpp:89</a></div></div>
+<div class="ttc" id="namespacese2_html_a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0"><div class="ttname"><a href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0">se2::INTERRUPT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00087">constants.hpp:87</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a29f4bad56faf98602debd570faf4354f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="namespacese2.html#a29f4bad56faf98602debd570faf4354f">se2::event_values</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pulse Message Values TODO: erweitern. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a29f4bad56faf98602debd570faf4354fa59599bd2e9df0343d630000fdda4363d"></a>NEW_SERIAL_DATA</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a29f4bad56faf98602debd570faf4354fac907e820735028e0be8f04c6f6bf624e"></a>NEW_SERIAL_MSG</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a29f4bad56faf98602debd570faf4354faa8b02be57cdade11788e4a37675f69be"></a>NEW_SERIAL_ERR</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a29f4bad56faf98602debd570faf4354facb693f4d28215b062ea4f73023aebc02"></a>NEW_SERIAL_UNK</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00096">96</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                  {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <a class="code" href="namespacese2.html#a29f4bad56faf98602debd570faf4354fa59599bd2e9df0343d630000fdda4363d">NEW_SERIAL_DATA</a> = 0, <span class="comment">// Daten vom anderen Band</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <a class="code" href="namespacese2.html#a29f4bad56faf98602debd570faf4354fac907e820735028e0be8f04c6f6bf624e">NEW_SERIAL_MSG</a>  = 1, <span class="comment">// Nachricht des anderen Bandes</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  <a class="code" href="namespacese2.html#a29f4bad56faf98602debd570faf4354faa8b02be57cdade11788e4a37675f69be">NEW_SERIAL_ERR</a>  = 2, <span class="comment">// Error Nachricht des anderen Bandes</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  <a class="code" href="namespacese2.html#a29f4bad56faf98602debd570faf4354facb693f4d28215b062ea4f73023aebc02">NEW_SERIAL_UNK</a>  = 3  <span class="comment">// Unbekannte Nachricht</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;};</div>
+<div class="ttc" id="namespacese2_html_a29f4bad56faf98602debd570faf4354faa8b02be57cdade11788e4a37675f69be"><div class="ttname"><a href="namespacese2.html#a29f4bad56faf98602debd570faf4354faa8b02be57cdade11788e4a37675f69be">se2::NEW_SERIAL_ERR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00099">constants.hpp:99</a></div></div>
+<div class="ttc" id="namespacese2_html_a29f4bad56faf98602debd570faf4354fac907e820735028e0be8f04c6f6bf624e"><div class="ttname"><a href="namespacese2.html#a29f4bad56faf98602debd570faf4354fac907e820735028e0be8f04c6f6bf624e">se2::NEW_SERIAL_MSG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00098">constants.hpp:98</a></div></div>
+<div class="ttc" id="namespacese2_html_a29f4bad56faf98602debd570faf4354facb693f4d28215b062ea4f73023aebc02"><div class="ttname"><a href="namespacese2.html#a29f4bad56faf98602debd570faf4354facb693f4d28215b062ea4f73023aebc02">se2::NEW_SERIAL_UNK</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00100">constants.hpp:100</a></div></div>
+<div class="ttc" id="namespacese2_html_a29f4bad56faf98602debd570faf4354fa59599bd2e9df0343d630000fdda4363d"><div class="ttname"><a href="namespacese2.html#a29f4bad56faf98602debd570faf4354fa59599bd2e9df0343d630000fdda4363d">se2::NEW_SERIAL_DATA</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00097">constants.hpp:97</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

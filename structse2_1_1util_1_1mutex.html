@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">0.2-Milestone3</span>
    </div>
   </td>
  </tr>
@@ -98,7 +98,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;mutex.hpp&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -130,7 +130,10 @@ Friends</h2></td></tr>
 <tr class="memitem:ab6face571679bdaa3f1269425dd01b72"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1mutex.html#ab6face571679bdaa3f1269425dd01b72">condvar</a></td></tr>
 <tr class="separator:ab6face571679bdaa3f1269425dd01b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p>Definition at line <a class="el" href="mutex_8hpp_source.html#l00036">36</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6b7350155befa79a8c6ad27c4c794b1e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -146,6 +149,12 @@ Friends</h2></td></tr>
 
 <p>Konstruktor. </p>
 
+<p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00029">29</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;             {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  pthread_mutex_init(&amp;<a class="code" href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">m_mutex</a>, NULL);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1mutex_html_a36dc2dc19355432a4b01770680051925"><div class="ttname"><a href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">se2::util::mutex::m_mutex</a></div><div class="ttdeci">pthread_mutex_t m_mutex</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00070">mutex.hpp:70</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ae30185d87a48c5451a04c2861ba3d034"></a>
@@ -171,6 +180,12 @@ Friends</h2></td></tr>
 
 <p>Destruktor. </p>
 
+<p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00033">33</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;              {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  pthread_mutex_destroy(&amp;<a class="code" href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">m_mutex</a>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1mutex_html_a36dc2dc19355432a4b01770680051925"><div class="ttname"><a href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">se2::util::mutex::m_mutex</a></div><div class="ttdeci">pthread_mutex_t m_mutex</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00070">mutex.hpp:70</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ab2539a6e748121eaf614eca7bdf80128"></a>
@@ -215,6 +230,12 @@ Friends</h2></td></tr>
 <p>Blockiert bis der Aufrufende Thread das Mutex bekommt. </p>
 <dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_mutex_t</code> wurde nicht initialisiert EAGAIN Die maximale Anzahl an Mutexen wurde erreicht EDEADLK Der aufrufende Thread besitzt das Mutex bereits 0 bei Erfolg </dd></dl>
 
+<p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00037">37</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                   {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <span class="keywordflow">return</span> pthread_mutex_lock(&amp;<a class="code" href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">m_mutex</a>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1mutex_html_a36dc2dc19355432a4b01770680051925"><div class="ttname"><a href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">se2::util::mutex::m_mutex</a></div><div class="ttdeci">pthread_mutex_t m_mutex</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00070">mutex.hpp:70</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ae0384ff94dcb2909625dc1aac1131716"></a>
@@ -233,6 +254,12 @@ Friends</h2></td></tr>
 <p>Mutex zurückgeben. </p>
 <dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_mutex_t</code> wurde nicht initialisiert EAGAIN Die maximale Anzahl an Mutexen wurde erreicht EPERM Der aufrufende Thread besitzt das Mutex nicht 0 bei Erfolg </dd></dl>
 
+<p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00041">41</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                   {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">return</span> pthread_mutex_unlock(&amp;<a class="code" href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">m_mutex</a>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1util_1_1mutex_html_a36dc2dc19355432a4b01770680051925"><div class="ttname"><a href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">se2::util::mutex::m_mutex</a></div><div class="ttdeci">pthread_mutex_t m_mutex</div><div class="ttdef"><b>Definition:</b> <a href="mutex_8hpp_source.html#l00070">mutex.hpp:70</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Function Documentation</h2>
@@ -253,6 +280,8 @@ Friends</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="mutex_8hpp_source.html#l00037">37</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
 
 </div>
 </div>
@@ -275,11 +304,13 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Definition at line <a class="el" href="mutex_8hpp_source.html#l00070">70</a> of file <a class="el" href="mutex_8hpp_source.html">mutex.hpp</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following files:<ul>
-<li>se2p_2_3/src/lib/util/<a class="el" href="mutex_8hpp.html">mutex.hpp</a></li>
-<li>se2p_2_3/src/lib/util/<a class="el" href="mutex_8cpp.html">mutex.cpp</a></li>
+<li>se2p_2_3/src/lib/util/<a class="el" href="mutex_8hpp_source.html">mutex.hpp</a></li>
+<li>se2p_2_3/src/lib/util/<a class="el" href="mutex_8cpp_source.html">mutex.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
