@@ -550,7 +550,8 @@ WARN_LOGFILE           =
 # with spaces.
 
 INPUT                  = /opt/gitrepos/se2-2.3/se2p_2_3/src/
-INPUT                  += index.md
+
+USE_MDFILE_AS_MAINPAGE = README.md
 
 # This tag can be used to specify the character encoding of the source files 
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is 
