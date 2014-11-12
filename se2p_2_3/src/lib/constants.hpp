@@ -241,11 +241,11 @@ enum msg_type {
  * Telegram komplett
  **/
 struct telegram {
-  telegram_type m_type; // (SYNC, MSG, ACK, DATA, ERROR)
-  msg_type      m_msg;  // Nachricht (optional bei Daten)
-  uint16_t      m_id;
-  uint16_t      m_height1;
-  uint16_t      m_height2;
+  int m_type;
+  int m_msg;
+  int m_id;
+  int m_height1;
+  int m_height2;
 };
 
 } // namespace serial_bus

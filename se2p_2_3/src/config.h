@@ -34,7 +34,7 @@
 #define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test für
                            // die Serielle chnittstelle
 
-#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur
+//#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur
                        // Folge dass `ioaccess.h` in `abstract_inout.hpp`
                        // inkludiert wird. Dadurch koennen die Original
                        // `in8()`, `out8` sowie `AttachInterrupt()`,

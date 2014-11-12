@@ -73,16 +73,12 @@ void serial_channel::execute(void*) {
   telegram data;
   while(!isStopped()) {
     std::memset(&data, 0, sizeof(telegram));
-    m_interface->read(&data.m_type);
-    m_interface->read(&data.m_msg);
+    m_interface->read(&data);
     event_values value;
     if (data.m_type == MSG) {
       value = NEW_SERIAL_MSG;
     } else if (data.m_type == DATA) {
       value = NEW_SERIAL_DATA;
-      m_interface->read(&data.m_id);
-      m_interface->read(&data.m_height1);
-      m_interface->read(&data.m_height2);
     } else if (data.m_type == ERR) {
       value = NEW_SERIAL_ERR;
     } else {
@@ -103,11 +99,11 @@ void serial_channel::shutdown() {
 }
 
 void serial_channel::send_telegram(telegram* tel) {
-  m_interface->write(&tel->m_type);
+  /*m_interface->write(&tel->m_type);
   m_interface->write(&tel->m_msg);
   if (tel->m_type == DATA) {
     m_interface->write(&tel->m_id);
     m_interface->write(&tel->m_height1);
     m_interface->write(&tel->m_height2);
-  }
+  }*/
 }

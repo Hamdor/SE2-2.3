@@ -39,7 +39,7 @@ namespace {
 
 serial_interface::serial_interface() {
 #ifdef HAS_SERIAL_INTERFACE
-  m_fd = ::open(char_device, O_RDWR);
+  m_fd = open(char_device, O_RDWR);
   if (m_fd == -1) {
     LOG_ERROR("serial_interface::serial_interface() cant open file!")
     return;

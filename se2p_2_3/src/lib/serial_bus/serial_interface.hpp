@@ -29,6 +29,8 @@
 
 #include "lib/util/logging.hpp"
 #include <unistd.h>
+#include <cstdio>
+#include <errno.h>
 
 namespace se2 {
 namespace serial_bus {
@@ -57,19 +59,18 @@ class serial_interface {
    *         FALSE wenn fehlschlägt
    *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
    **/
-  template <typename T>
-  bool write(T* data) {
+  bool write(telegram* data) {
 #ifdef HAS_SERIAL_INTERFACE
     size_t rc = 0;
-    while (rc != sizeof(T)) {
-      ssize_t err = ::write(m_fd, reinterpret_cast<char*>(data) + rc, sizeof(T) - rc);
+    while (rc != sizeof(telegram)) {
+      ssize_t err = ::write(m_fd, data + rc, sizeof(telegram) - rc);
       if (err == -1) {
         perror("serial_interface::write()");
         break;
       }
       rc += err;
     }
-    return rc == sizeof(T);
+    return rc == sizeof(telegram);
 #else
     return false;
 #endif
@@ -82,19 +83,14 @@ class serial_interface {
    *         FALSE wenn fehlschlägt
    *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
    **/
-  template <typename T>
-  bool read(T* buffer) {
+  bool read(telegram* buffer) {
 #ifdef HAS_SERIAL_INTERFACE
-    size_t rc = 0;
-    while (rc != sizeof(T)) {
-      ssize_t err = ::read(m_fd, reinterpret_cast<char*>(buffer) + rc, sizeof(T) - rc);
-      if (err == -1) {
-        perror("serial_interface::read()");
-        break;
-      }
-      rc += err;
+	std::cout << sizeof(telegram) << std::endl;
+    int rc = readcond(m_fd, buffer, sizeof(telegram), sizeof(telegram), 0, 0);
+    if (rc < 0) {
+    	perror("bla");
     }
-    return rc == sizeof(T);
+    return true;
 #else
     return false;
 #endif
