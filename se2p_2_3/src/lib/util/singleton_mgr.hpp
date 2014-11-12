@@ -51,7 +51,7 @@ class singleton_mgr {
  public:
   /**
    * Zurgiff auf ein beliebiges Singleton Module
-   * @param  `module_type` des angeforderten Modules
+   * @param  module gibt den `module_type` des angeforderten Modules
    * @return ein `abstract_singleton` pointer auf das Module
    **/
   static abstract_singleton* get_instance(module_type module);

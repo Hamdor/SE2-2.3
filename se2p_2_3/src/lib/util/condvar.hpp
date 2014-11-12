@@ -36,8 +36,7 @@ struct condvar {
   /**
    * Konsturktor condvar. Erstellt eine neue Conditionvariable,
    * diese ist mit dem referenzierten Mutex verknüpft.
-   *
-   * @param Referenz auf ein mutex
+   * @param mutex ist die Referenz auf ein mutex
    */
   condvar(mutex& mutex);
 

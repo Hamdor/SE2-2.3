@@ -63,7 +63,7 @@ class serial_interface {
 
   /**
    * Schreibt Daten auf den Seriellen bus
-   * @param data gibt die zu lesende Telegram an
+   * @param buffer gibt die zu lesende Telegram an
    * @return TRUE  wenn erfolgreich  
    *         FALSE wenn fehlschlägt
    *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert

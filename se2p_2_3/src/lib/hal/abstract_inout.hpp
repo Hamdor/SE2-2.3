@@ -78,7 +78,9 @@ struct abstract_inout {
   /**
    * Schreibt ein Bit auf die angegebene Position des
    * angegebenen Ports
-   * @param
+   * @param port gibt den Port an
+   * @param pos gibt das Bit an
+   * @param set gibt an ob das Bit auf 1 oder 0 gesetzt werden soll
    **/
   virtual void outbit(enum port_num port, uint8_t pos, bool set) = 0;
 
@@ -86,7 +88,6 @@ struct abstract_inout {
    * Liest einen Wert vom angegebenen Port
    * @param port gibt den Port an
    * @param bit gibt das Bit an
-   * @param set gibt an ob das Bit gesetzt werden soll
    * @return den Wert des Ports
    **/
   virtual uint8_t inbit(enum port_num port, uint8_t bit) = 0;
