@@ -79,12 +79,14 @@
   \hline
   0.6 & Eugen Winter & 11.11.2014 & Umlaute in .tex-Datei geändert und Formatierungen an den Tabellen vorgenommen.\\
   \hline
+  0.7 & Eugen Winter & 13.11.2014 & Interrupt Implementierung und Automaten Diagramme hinzugefügt.\\
+  \hline
  \end{tabular}
 \end{small}
 }
 
 % Titelseite mit Datum und Version erstellen und Seitenzahl bei 1 beginnen
-\date{\today\thanks{Dokument-Version: 0.6}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
+\date{\today\thanks{Dokument-Version: 0.7}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
 \maketitle
 \setcounter{page}{1}
 
@@ -645,6 +647,28 @@ siehe Komponenten"=Diagramm\newline
 Architektur mit den dazugehörenden Komponenten und Schnittstellen.
 Spezifikation der Architektur und Definition der System-Schnittstellen in einem UML Komponenten"=Diagramm.}}
 
+% 6.1.1 Automat für Band 1
+\begin{figure}
+	\subsubsection{Automat für Band 1}
+	\centering\vfill\includegraphics[angle=0,scale=0.7]{imgs/Band1_FSM.png}
+\end{figure}
+
+% 6.1.2 Automat für Band 2
+\begin{figure}
+	\subsubsection{Automat für Band 2}
+	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Band2_FSM.png}
+\end{figure}
+
+\newpage
+
+% 6.1.3 Automat für Fehlerbehebung
+\begin{figure}
+	\subsubsection{Automat für Fehlerbehebung}
+	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Error_FSM.png}
+\end{figure}
+
+\newpage
+
 % 6.2 Datenmodell
 \subsection{Datenmodell}
 siehe Klassendiagramm \newline
@@ -682,7 +706,7 @@ um aus Ihrem Design entsprechenden Code zu erstellen.}}
 
 % 7.4 Interrupt Implementierung
 \subsection{Interrupt Implementierung}
-Die ISR soll eine Pulse Message generieren, diese landet im Pulse Message Channel der vom Dispatcher abgehört wird.
+Die ISR soll eine Pulse Message generieren. Diese landet im Pulse Message Channel, der vom Dispatcher abgehört wird.
 Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach Links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
 \newpage
 
