@@ -672,7 +672,7 @@ Anmerkung: Bitte KEINE ganze Programme hierhin kopieren!}}
 
 % 7.2 Patterns
 \subsection{Patterns}
-Scope Logging, DCLP, Singelton, Delegator \newline
+Scoped Locking, DCLP, Singelton, Delegator \newline
 \textcolor{red}{\textbf{Wichtige Patterns, die Sie implementiert haben.}}
 
 % 7.3 Mapping Rules
@@ -680,6 +680,10 @@ Scope Logging, DCLP, Singelton, Delegator \newline
 \textcolor{red}{\textbf{Wichtige Mapping Rules, die Sie benutzt haben, z.B.
 um aus Ihrem Design entsprechenden Code zu erstellen.}}
 
+% 7.4 Interrupt Implementierung
+\subsection{Interrupt Implementierung}
+Die ISR soll eine Pulse Message generieren, diese landet im Pulse Message Channel der vom Dispatcher abgehört wird.
+Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach Links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
 \newpage
 
 % 8. Testen
