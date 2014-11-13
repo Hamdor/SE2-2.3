@@ -29,50 +29,58 @@
 #include <stdio.h>
 
 using namespace se2;
+using namespace se2::serial_bus;
 
+#ifdef HAS_SERIAL_INTERFACE
 namespace {
-  const char*  char_device = "/dev/ser1";
+  const char* char_device = SERIAL_CHAR_DEV;
 } // namespace <anonymous>
+#endif
 
 serial_interface::serial_interface() {
-  m_fd = ::open(char_device, O_RDWR);
+#ifdef HAS_SERIAL_INTERFACE
+  m_fd = open(char_device, O_RDWR);
   if (m_fd == -1) {
-    perror("serial_interface::serial_interface() cant open file!");
+    LOG_ERROR("serial_interface::serial_interface() cant open file!")
     return;
   }
   config();
+#else
+  m_fd = 0;
+#endif
 }
 
 serial_interface::~serial_interface() {
+#ifdef HAS_SERIAL_INTERFACE
   if (close(m_fd) == -1) {
-    perror("serial_interface::~serial_interface() cant close file!");
+    LOG_ERROR("serial_interface::~serial_interface() cant close file!")
   }
+#endif
 }
 
-bool serial_interface::read(void* buffer, size_t len) {
+bool serial_interface::write(telegram* data) {
+#ifdef HAS_SERIAL_INTERFACE
   size_t rc = 0;
-  while (rc != len) {
-    ssize_t err = ::read(m_fd, static_cast<size_t*>(buffer) + rc, len - rc);
+  while (rc != sizeof(telegram)) {
+    ssize_t err = ::write(m_fd, data + rc, sizeof(telegram) - rc);
     if (err == -1) {
-      perror("serial_interface::read()");
       break;
     }
     rc += err;
   }
-  return rc == len;
+  return rc == sizeof(telegram);
+#else
+  return false;
+#endif
 }
 
-bool serial_interface::write(void* data, size_t len) {
-  size_t rc = 0;
-  while (rc != len) {
-    ssize_t err = ::write(m_fd, static_cast<size_t*>(data) + rc, len - rc);
-    if (err == -1) {
-      perror("serial_interface::write()");
-      break;
-    }
-    rc += err;
-  }
-  return rc == len;
+bool serial_interface::read(telegram* buffer) {
+#ifdef HAS_SERIAL_INTERFACE
+  int rc = readcond(m_fd, buffer, sizeof(telegram), sizeof(telegram), 0, 0);
+  return rc == sizeof(telegram);
+#else
+  return false;
+#endif
 }
 
 void serial_interface::config() {

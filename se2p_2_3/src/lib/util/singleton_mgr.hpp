@@ -16,69 +16,57 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    abstract_singleton.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Interface/Abstrakte Klasse f�r Singletons
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_SINGLETON_MGR_HPP
+#define SE2_SINGLETON_MGR_HPP
 
 #include "config.h"
 
+#include "lib/hal/HWaccess.hpp"
 #include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include "lib/serial_bus/serial_channel.hpp"
+
+#include "lib/util/mutex.hpp"
+#include "lib/util/lock_guard.hpp"
+#include "lib/util/abstract_singleton.hpp"
 
 namespace se2 {
-namespace serial_bus {
+namespace util {
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
-  /**
-   * Default Konstruktor  
-   **/
-  serial_interface();
-
-  /**
-   * Default Destruktor
-   **/
-  ~serial_interface();
-
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool write(telegram* data);
-
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
-
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
+enum module_type {
+  HAL_PLUGIN,
+  LOGGER_PLUGIN,
+  SERIAL_PLUGIN
 };
 
-} // namespace serial_bus
-} // namespace se2
+class singleton_mgr {
+  static mutex s_lock_hal;
+  static mutex s_lock_log;
+  static mutex s_lock_serial;
+ public:
+  /**
+   * Zurgiff auf ein beliebiges Singleton Module
+   * @param  module gibt den `module_type` des angeforderten Modules
+   * @return ein `abstract_singleton` pointer auf das Module
+   **/
+  static abstract_singleton* get_instance(module_type module);
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+  /**
+   * Zerst�rt alle Singleton Module
+   **/
+  static void shutdown();
+};
+
+}
+}
+
+#define TO_HAL(ptr) static_cast<se2::hal::hwaccess*>(ptr)
+#define TO_LOG(ptr) static_cast<se2::util::logging*>(ptr)
+#define TO_SERIAL(ptr) static_cast<se2::serial_bus::serial_channel*>(ptr)
+
+#endif // SE2_SINGLETON_MGR_HPP

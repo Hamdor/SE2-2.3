@@ -16,69 +16,48 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    isr.h
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Implementierung der ISR
  **/
-
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
 
 #include "config.h"
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include "lib/constants.hpp"
 
-namespace se2 {
-namespace serial_bus {
+#ifndef SE2_ISR_H
+#define SE2_ISR_H
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
-  /**
-   * Default Konstruktor  
-   **/
-  serial_interface();
+using namespace se2;
+using namespace se2::hal;
 
-  /**
-   * Default Destruktor
-   **/
-  ~serial_interface();
+int isr_coid = 0;
+int port_old = 0;
 
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool write(telegram* data);
+const struct sigevent* isr(void* arg, int id) {
+  struct sigevent* event = static_cast<struct sigevent*>(arg);
+  uint8_t irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
+  out8(static_cast<uint16_t>(IRQ_CLEAR_REG), 0); // Interrupt zurücksetzen
+  if (irq_val == PORTB_INTERRUPT || irq_val == PORTC_INTERRUPT) {
+    uint16_t ports = (in8(static_cast<uint16_t>(PORTB)) << 8) |
+                      in8(static_cast<uint16_t>(PORTC));
+    event->sigev_notify = SIGEV_PULSE;
+    event->__sigev_un1.__sigev_coid = isr_coid;
+    event->__sigev_un2.__st.__sigev_code = INTERRUPT;
+    int changed_bit = port_old ^ ports;
+    event->sigev_value.sival_int = changed_bit;
+    // update port_old
+#ifdef SIMULATION
+    port_old = ports & ~changed_bit;
+#else
+    port_old = ports;
+#endif
+  } else {
+    // Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren
+    event = NULL;
+  }
+  return event;
+}
 
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
-
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
-};
-
-} // namespace serial_bus
-} // namespace se2
-
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_ISR_H

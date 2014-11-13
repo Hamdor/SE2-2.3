@@ -16,69 +16,63 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    test_suite.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Laufzeitumgebung für tests
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_TEST_SUITE_HPP
+#define SE2_TEST_SUITE_HPP
 
 #include "config.h"
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include <vector>
+#include <cstddef>
+#include "unit_tests/abstract_test.hpp"
 
 namespace se2 {
-namespace serial_bus {
+namespace unit_tests {
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
+template<typename T>
+class test_suite {
+ public:
   /**
-   * Default Konstruktor  
+   * Konstruktor
    **/
-  serial_interface();
+  test_suite() : m_test() {
+    m_test.init();
+    m_test.before_class();
+    m_error = 0;
+  }
 
   /**
    * Default Destruktor
    **/
-  ~serial_interface();
+  ~test_suite() {
+    m_test.after_class();
+  }
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Startet alle registrierten Tests
+   * @return Anzahl der fehlgeschlagenen Tests
    **/
-  bool write(telegram* data);
+  int run() {
+    for (size_t i = 0; i < m_test.m_test_functions.size(); ++i) {
+      m_test.before();
+      m_error = (m_test.*(m_test.m_test_functions[i]))();
+      m_test.after();
+    }
+    return m_error;
+  }
 
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool read(telegram* buffer);
+ protected:
+  T m_test;
  private:
-  int m_fd;
-
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
+  int m_error;
 };
 
-} // namespace serial_bus
+} // namespace unit_tests
 } // namespace se2
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_TEST_SUITE_HPP

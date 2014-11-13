@@ -16,69 +16,26 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    token.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Token/Puk Klasse
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
-
-#include "config.h"
-
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#ifndef SE2_TOKEN_HPP
+#define SE2_TOKEN_HPP
 
 namespace se2 {
-namespace serial_bus {
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
-  /**
-   * Default Konstruktor  
-   **/
-  serial_interface();
-
-  /**
-   * Default Destruktor
-   **/
-  ~serial_interface();
-
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool write(telegram* data);
-
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
-
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
+struct token {
+  int m_id;
+  int m_wert1;
+  int m_wert2;
+  bool is_valid() const {
+    return !(m_id == 0 && m_wert1 == 0 && m_wert2 == 0);
+  }
 };
 
-} // namespace serial_bus
 } // namespace se2
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_TOKEN_HPP

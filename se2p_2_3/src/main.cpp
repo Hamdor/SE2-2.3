@@ -3,48 +3,62 @@
  * @version 0.1
  */
 
-#include <cstdlib>
-#include <iostream>
-#include "test_thread.hpp"
-#include "lib/hal/HWaccess.hpp"
+#include "config.h"
 
-#include "lib/serial_bus/serial_interface.hpp"
+#include "lib/hal/HWaccess.hpp"
+#include "lib/util/singleton_mgr.hpp"
+
+#include <iostream>
+#include <cstdlib>
+#include <unistd.h>
+
+#ifdef UNIT_TESTS
+  #include "unit_tests/irq_test.hpp"
+  #include "unit_tests/test_suite.hpp"
+  #include "unit_tests/serial_test.hpp"
+  #include "unit_tests/hal_test_stub1.hpp"
+  #include "unit_tests/hal_test_stub2.hpp"
+#endif
 
 using namespace std;
 using namespace se2;
 using namespace se2::util;
-
-int main(int argc, char *argv[]) {
-  #ifdef SIMULATION
-      IOaccess_open();
-  #endif
+using namespace se2::hal;
 
 #ifdef UNIT_TESTS
-  /**
-   * Unit Tests kommen hier rein
-   **/
-#else
-  /**
-   * Hier wird die eigentliche Logik angestartet
-   * TODO: HAL/Thread test entfernen/ersetzen
-   **/
-  test_thread th1(5);
-  test_thread th2(3);
-
-  th1.start(NULL);
-  th2.start(NULL);
-
-  th2.join();
-  th1.join();
-
-  serial_interface bus;
-  int integer = 0;
-  bus.read(&integer, sizeof(integer));
+  using namespace se2::unit_tests;
 #endif
 
-  #ifdef SIMULATION
-     IOaccess_close();
-  #endif
-
+int main(int argc, char *argv[]) {
+#ifdef SIMULATION
+  IOaccess_open();
+#endif
+#ifdef UNIT_TESTS
+  /**
+   * Unit Tests
+   **/
+  cout << "run `hal_test_stub1` errors: "
+       << test_suite<hal_test_stub1>().run() << endl;
+  cout << "run `hal_test_stub2` errors: "
+       << test_suite<hal_test_stub2>().run() << endl;
+  cout << "run `irq_tes`        errors: "
+       << test_suite<irq_test>().run()       << endl;
+#ifdef HAS_SERIAL_INTERFACE
+  cout << "run `serial_test`    errors: "
+       << test_suite<serial_test>().run()    << endl;
+#endif
+#else
+  /**
+   * Main programm kommt hier rein
+   **/
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL));
+  hal->open_switch();
+  sleep(1);
+  hal->close_switch();
+#endif
+  singleton_mgr::shutdown();
+#ifdef SIMULATION
+  IOaccess_close();
+#endif
   return EXIT_SUCCESS;
 }

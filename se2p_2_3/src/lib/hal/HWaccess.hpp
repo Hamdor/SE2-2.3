@@ -17,7 +17,7 @@
  ******************************************************************************/
 /**
  * @file    HWaccess.hpp
- * @version 0.1
+ * @version 0.2
  *
  * Header der HAL - Allgemeiner Zugriff auf Hardware, sowie Ansteuerung
  * der Sensorik und Aktorik.
@@ -26,94 +26,46 @@
 #ifndef SE2_HWACCESS_HPP
 #define SE2_HWACCESS_HPP
 
-#include "lib/util/mutex.hpp"
+#include "config.h"
+
+#include "lib/constants.hpp"
+#include "lib/hal/iostub.hpp"
 #include "lib/hal/abstract_inout.hpp"
 
+#include "lib/util/mutex.hpp"
+#include "lib/util/abstract_singleton.hpp"
+
+#include <sys/siginfo.h>
+
 namespace se2 {
+namespace util {
+class singleton_mgr;
+} // namespace util
 namespace hal {
 
-/**
- * DEBUG Define
- **/
-//#define USE_STUBS
+struct hwaccess : public util::abstract_singleton {
+  friend class util::singleton_mgr;
+  /**
+   * Control Klasse für den ISR Teil der HAL
+   * Diese Klasse ist nur von `hwaccess` zugänglich
+   * Kapselt alle benötigten Daten für die ISR
+   **/
+  struct isr_control {
+    int m_chid;              // Channel ID für Pulse Messages
+    int m_coid;              // Connection ID für Channel Connection
+    int m_interruptid;       // Interrupt ID (IRQ 11)
+    struct sigevent m_event; // sigevent Struct
+  };
 
-/**
- * Bit Position der Weiche auf Port A
- **/
-#define SWITCH_BIT 4
+  /**
+   * Wechselt den aktuell gesetzten Stub
+   **/
+  void change_stub(abstract_inout* ptr);
 
-/**
- * Bit Position für geöffnete Weiche Sensor auf Port B
- **/
-#define SWITCH_OPEN_BIT 5
-
-/**
- * Bit Position für Höhensensor auf Port B
- * (Tolleranzbereich, nicht Absolutwert)
- **/
-#define HEIGHT_BIT 2
-
-/**
- * Bit Position für Metallsensor auf Port B
- **/
-#define METAL_BIT 4
-
-/**
- * Motor modes
- **/
-enum motor_modes {
-  motor_right = 0,
-  motor_left  = 1,
-  motor_slow  = 2,
-  motor_stop  = 3,
-  motor_fast  = 4
-};
-
-/**
- * LEDs der einzelnen Knöpfe
- **/
-enum button_leds {
-  start_button = 0,
-  reset_button = 1,
-  q1_button    = 2,
-  q2_button    = 3
-};
-
-/**
- * Verfügbare Knöpfe
- **/
-enum buttons {
-  button_start = 4, // 1 => gedrückt
-  button_stop  = 5, // 1 => NICHT gedrückt
-  button_reset = 6, // 1 => gedrückt
-  button_estop = 7  // 1 => NICHT gedrückt
-};
-
-/**
- * Lichtschranken des Systems
- **/
-enum light_barriers {
-  entrace_sensor = 0, // einlauf
-  height_sensor  = 1, // höhensensor
-  switch_sensor  = 3, // weiche
-  slight_sensor  = 6, // rutsche
-  exit_sensor    = 7  // auslauf
-};
-
-/**
- * Lampen der Ampel
- **/
-enum light_colors {
-  green  = 5,
-  yellow = 6,
-  red    = 7
-};
-
-struct hwaccess {
   /**
    * Default Destruktor
    **/
-  ~hwaccess();
+  virtual ~hwaccess();
 
   /**
    * Setzt den Motor Modus (Aus, Rechtslauf, Linkslauf)
@@ -189,15 +141,22 @@ struct hwaccess {
   bool is_button_pressed(enum buttons key) const;
 
   /**
-   * Singleton
+   * Gibt den die Channel ID des Channels zurück
+   * den die ISR benutzt
    **/
-  /**
-   * @return Gibt die Instanz der HAL zurück
-   **/
-  static hwaccess* get_instance();
+  int get_isr_channel() const;
+
  private:
-  static hwaccess*   instance;
-  static util::mutex s_lock;
+  static hwaccess* instance;
+  /**
+   * Initialisierung des Singletons
+   **/
+  virtual void initialize();
+
+  /**
+   * Zerst�rung des Singleton
+   **/
+  virtual void destroy();
 
   /**
    * Private Konstruktoren
@@ -206,9 +165,22 @@ struct hwaccess {
   hwaccess(const hwaccess&);
 
   /**
+   * Initialisiert die ISR sowie die notwendigen
+   * Datenstrutkuren.
+   **/
+  void init_isr();
+
+  /**
+   * ISR Abmelden
+   * wird im Destructor aufgerufen
+   **/
+  void stop_isr();
+
+  /**
    * Member deklaration
    **/
   abstract_inout* m_io;
+  isr_control*    m_isr;
 };
 
 } // namespace hal

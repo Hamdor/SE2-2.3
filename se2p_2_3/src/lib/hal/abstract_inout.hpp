@@ -25,29 +25,19 @@
 #ifndef SE2_ABSTRACT_INOUT_HPP
 #define SE2_ABSTRACT_INOUT_HPP
 
+#include "config.h"
+
+#include "lib/constants.hpp"
+
+#include <stdint.h>
 #include <hw/inout.h>
 #include <sys/neutrino.h>
 #ifdef SIMULATION
- #include <ioaccess.h>
+  #include <ioaccess.h>
 #endif
-
-#include <stdint.h>
 
 namespace se2 {
 namespace hal {
-
-#define IOBASE    0x300         // IO Base Register
-#define IOCTLADDR IOBASE + 0x03 // Register zum definieren der input/output Ports
-#define IOCTLPORT 0x82
-
-#define IOANALOG  IOBASE + 0x02 // FIXME: Addresse ist falsch
-                                // ist eigenes Register!
-
-enum port_num {
-  PORTA = IOBASE + 0x00, // IOBASE + 0x00
-  PORTB = IOBASE + 0x01, // IOBASE + 0x01
-  PORTC = IOBASE + 0x02  // IOBASE + 0x02
-};
 
 struct abstract_inout {
   virtual ~abstract_inout() {
@@ -88,7 +78,9 @@ struct abstract_inout {
   /**
    * Schreibt ein Bit auf die angegebene Position des
    * angegebenen Ports
-   * @param
+   * @param port gibt den Port an
+   * @param pos gibt das Bit an
+   * @param set gibt an ob das Bit auf 1 oder 0 gesetzt werden soll
    **/
   virtual void outbit(enum port_num port, uint8_t pos, bool set) = 0;
 
@@ -96,7 +88,6 @@ struct abstract_inout {
    * Liest einen Wert vom angegebenen Port
    * @param port gibt den Port an
    * @param bit gibt das Bit an
-   * @param set gibt an ob das Bit gesetzt werden soll
    * @return den Wert des Ports
    **/
   virtual uint8_t inbit(enum port_num port, uint8_t bit) = 0;

@@ -16,69 +16,37 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    abstract_singleton.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Interface/Abstrakte Klasse für Singletons
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_ABSTRACT_SINGLETON_HPP
+#define SE2_ABSTRACT_SINGLETON_HPP
 
 #include "config.h"
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
-
 namespace se2 {
-namespace serial_bus {
+namespace util {
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
+class abstract_singleton {
   /**
-   * Default Konstruktor  
+   * Initialisierung des Singletons
    **/
-  serial_interface();
+  virtual void initialize() = 0;
 
   /**
-   * Default Destruktor
+   * Zerstörung des Singleton
    **/
-  ~serial_interface();
-
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlÃ¤gt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool write(telegram* data);
-
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlÃ¤gt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
-
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
+  virtual void destroy() = 0;
+ public:
+  virtual ~abstract_singleton() {
+    // nop
+  }
 };
 
-} // namespace serial_bus
+} // namespace util
 } // namespace se2
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_ABSTRACT_SINGLETON_HPP

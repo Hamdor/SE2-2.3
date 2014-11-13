@@ -25,6 +25,8 @@
 #ifndef SE2_IOSTUB_HPP
 #define SE2_IOSTUB_HPP
 
+#include "config.h"
+
 #include "lib/hal/abstract_inout.hpp"
 
 namespace se2 {
@@ -44,7 +46,7 @@ struct iostub : public abstract_inout {
   /**
    * Schaltet die Ports auf Eingang oder Ausgang
    **/
-   void init_input_output();
+  void init_input_output();
 
   /**
    * Schreibt einen Wert auf den angegebenen Port
@@ -75,7 +77,10 @@ struct iostub : public abstract_inout {
   /**
    * Schreibt ein Bit auf die angegebene Position des
    * angegebenen Ports
-   * @param
+   * @param port gibt den Port an
+   * @param pos gibt das Bit an
+   * @param set gibt an ob das Bit gesetzt werden soll
+   * @return den Wert des Ports
    **/
   void outbit(enum port_num port, uint8_t pos, bool set);
 
@@ -83,7 +88,6 @@ struct iostub : public abstract_inout {
    * Liest einen Wert vom angegebenen Port
    * @param port gibt den Port an
    * @param bit gibt das Bit an
-   * @param set gibt an ob das Bit gesetzt werden soll
    * @return den Wert des Ports
    **/
   uint8_t inbit(enum port_num port, uint8_t bit);

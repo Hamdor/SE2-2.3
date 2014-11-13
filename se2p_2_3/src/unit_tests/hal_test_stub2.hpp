@@ -16,71 +16,95 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    condvar.hpp
+ * @file    hal_test_stub2.hpp
  * @version 0.1
  *
- * `pthread_cond_t` Wrapper
+ * Unit tests der HAL
  **/
 
-#ifndef SE2_UTIL_CONDVAR_HPP
-#define SE2_UTIL_CONDVAR_HPP
+#ifndef SE2_HAL_TEST_STUB2_HPP
+#define SE2_HAL_TEST_STUB2_HPP
 
 #include "config.h"
-#include "mutex.hpp"
-#include <pthread.h>
+
+#include "lib/hal/HWaccess.hpp"
+#include "unit_tests/abstract_test.hpp"
+#include "lib/hal/iostub.hpp"
 
 namespace se2 {
-namespace util {
+namespace unit_tests {
 
-struct condvar {
+class hal_test_stub2 : public abstract_test<hal_test_stub2> {
+ public:
   /**
-   * Konsturktor condvar. Erstellt eine neue Conditionvariable,
-   * diese ist mit dem referenzierten Mutex verknüpft.
-   * @param mutex ist die Referenz auf ein mutex
-   */
-  condvar(mutex& mutex);
-
-  /**
-   * Destruktor
-   */
-  virtual ~condvar();
+   * Constructor
+   **/
+  hal_test_stub2();
 
   /**
-   * Auf dieser Conditionvariable blockieren, bis diese
-   * Conditionvariable signalisiert wird.
-   *
-   * @return EINVAL `pthread_mutex_t` oder `pthread_cond_t` sind ungültig
-   *         EINVAL Der aufrufende Thread war/ist nicht im besitzt von
-   *         `pthread_mutex_t`
-   *         0 bei Erfolg
-   */
-  int wait();
+   * Destructor
+   **/
+  ~hal_test_stub2();
 
   /**
-   * Diese Funktion entblockt einen Thread der auf diese Conditionvariable
-   * blockieren.
-   * @returns EINVAL `pthread_cond_t` wurde nicht initialisiert
-   *          0 bei Erfolg
+   * Wird einmalig für alle ausgeführt
+   * @return 0 wenn erfolgreich
    */
-  int signal();
+  virtual int before_class();
 
   /**
-   * Diese Funktion entblockt alle Threads die auf diese Conditionvariable
-   * blockieren.
-   * @returns EINVAL `pthread_cond_t` wurde nicht initialisiert
-   *          0 bei Erfolg
+   * Funktion wird vor jedem test ausgeführt
+   * @return 0 wenn erfolgreich
    */
-  int broadcast();
+  virtual int before();
+
+  /**
+   * Initialisiert den Funktionsvektor
+   * @return 0 wenn erfolgreich
+   */
+  virtual int init();
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
+  virtual int after();
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
+  virtual int after_class();
 
  private:
-  condvar();
-  condvar(const condvar&);
+  /**
+    * Test für durchbrochene Lichtschranken
+    * @return fehlgeschlagene Anzahl
+    */
+  int light_barrier_interrupted_test();
 
-  mutex&         m_lock;
-  pthread_cond_t m_cond;
+  /**
+    * Test für Höhe im Toleranzbereich
+    * @return fehlgeschlagene Anzahl
+    */
+  int valid_height_test();
+
+  /**
+    * Test für metall
+    * @return fehlgeschlagene Anzahl
+    */
+  int metal_detected_test();
+
+  /**
+    * Test für gedrückte Tasten
+    * @return fehlgeschlagene Anzahl
+    */
+  int buttons_pressed_test();
+
+  hal::hwaccess* m_hal;
+  int m_error;
 };
+} // namespace unit_test
+} // namepsace se2
 
-} // namespace util
-} // namespace se2
-
-#endif // SE2_UTIL_CONDVAR_HPP
+#endif // SE2_HAL_TEST_STUB2_HPP

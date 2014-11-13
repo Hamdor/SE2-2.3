@@ -25,6 +25,8 @@
 #ifndef SE2_IOWRAPPER_HPP
 #define SE2_IOWRAPPER_HPP
 
+#include "config.h"
+
 #include "lib/hal/abstract_inout.hpp"
 
 namespace se2 {
@@ -75,14 +77,16 @@ struct iowrapper : public abstract_inout {
   /**
    * Schreibt ein Bit auf die angegebene Position des
    * angegebenen Ports
-   * @param
+   * @param port gibt den Port an
+   * @param pos gibt das Bit an
+   * @param set gibt an ob das Bit gesetzt werden soll
    **/
   void outbit(enum port_num port, uint8_t pos, bool set);
 
   /**
    * Liest einen Wert vom angegebenen Port
    * @param port gibt den Port an
-   * @param gibt das Bit an
+   * @param bit gibt das Bit an
    * @return Wenn Positiv, dann ist das Bit gesetzt
    *         Wenn 0, dann ist das Bit nicht gesetzt
    **/

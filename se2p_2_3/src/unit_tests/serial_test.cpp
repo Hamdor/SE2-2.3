@@ -16,69 +16,78 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    serial_test.cpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Unit tests der seriellen Schnittstelle
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#include "unit_tests/serial_test.hpp"
+#include "lib/util/singleton_mgr.hpp"
+#include "lib/constants.hpp"
 
-#include "config.h"
+using namespace se2::util;
+using namespace se2::unit_tests;
+using namespace se2::serial_bus;
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+serial_test::serial_test() : m_serial(0), m_error(0) {
+  // nop
+}
 
-namespace se2 {
-namespace serial_bus {
+serial_test::~serial_test() {
+  // nop
+}
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
-  /**
-   * Default Konstruktor  
-   **/
-  serial_interface();
+int serial_test::before_class() {
+  m_serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
+  return 0;
+}
 
-  /**
-   * Default Destruktor
-   **/
-  ~serial_interface();
+int serial_test::before() {
+  return 0;
+}
 
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool write(telegram* data);
+int serial_test::init() {
+  m_test_functions.push_back(&serial_test::test_serial_channel);
+  return 0;
+}
 
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
+int serial_test::after() {
+  return 0;
+}
 
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
-};
+int serial_test::after_class() {
+  return 0;
+}
 
-} // namespace serial_bus
-} // namespace se2
+int serial_test::test_serial_channel() {
+  telegram tel;
+  tel.m_type = DATA;
+  tel.m_msg  = NOTHING;
+  tel.m_id = 1;
+  tel.m_height1 = 2;
+  tel.m_height2 = 3;
+#ifdef UNIT_TEST_SENDER
+  m_serial->send_telegram(&tel);
+#else
+  telegram recieved = m_serial->get_telegram();
+  if (recieved.m_type != tel.m_type) {
+    ++m_error;
+  }
+  if (recieved.m_msg != tel.m_msg) {
+    ++m_error;
+  }
+  if (recieved.m_id != tel.m_id) {
+    ++m_error;
+  }
+  if (recieved.m_height1 != tel.m_height1) {
+    ++m_error;
+  }
+  if (recieved.m_height2 != tel.m_height2) {
+    ++m_error;
+  }
+#endif
+  return m_error;
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+
+}

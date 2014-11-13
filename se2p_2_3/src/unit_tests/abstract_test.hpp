@@ -16,69 +16,66 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    abstract_test.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * interface für tests
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_ABSTRACT_TEST_HPP
+#define SE2_ABSTRACT_TEST_HPP
 
 #include "config.h"
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include <vector>
 
 namespace se2 {
-namespace serial_bus {
+namespace unit_tests {
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
-  /**
-   * Default Konstruktor  
-   **/
-  serial_interface();
-
+template <typename T>
+class abstract_test {
+ public:
   /**
    * Default Destruktor
-   **/
-  ~serial_interface();
+   */
+  virtual ~abstract_test() {
+    m_test_functions.clear();
+  }
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool write(telegram* data);
+   * Wird einmalig für alle ausgeführt
+   * @return 0 wenn erfolgreich
+   */
+  virtual int before_class() = 0;
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
+   * Funktion wird vor jedem test ausgeführt
+   * @return 0 wenn erfolgreich
+   */
+  virtual int before() = 0;
 
   /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
+   * Initialisiert den Funktionsvektor
+   * @return 0 wenn erfolgreich
+   */
+  virtual int init() = 0;
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
+  virtual int after() = 0;
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
+  virtual int after_class() = 0;
+
+  std::vector<int (T::*)(void)> m_test_functions;
 };
 
-} // namespace serial_bus
-} // namespace se2
+} // unit_tests
+} // se2
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_ABSTRACT_TEST_HPP

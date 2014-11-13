@@ -1,0 +1,2252 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <!--Created by yEd 3.13-->
+  <key attr.name="Beschreibung" attr.type="string" for="graph" id="d0"/>
+  <key for="port" id="d1" yfiles.type="portgraphics"/>
+  <key for="port" id="d2" yfiles.type="portgeometry"/>
+  <key for="port" id="d3" yfiles.type="portuserdata"/>
+  <key attr.name="url" attr.type="string" for="node" id="d4"/>
+  <key attr.name="description" attr.type="string" for="node" id="d5"/>
+  <key for="node" id="d6" yfiles.type="nodegraphics"/>
+  <key for="graphml" id="d7" yfiles.type="resources"/>
+  <key attr.name="url" attr.type="string" for="edge" id="d8"/>
+  <key attr.name="description" attr.type="string" for="edge" id="d9"/>
+  <key for="edge" id="d10" yfiles.type="edgegraphics"/>
+  <graph edgedefault="directed" id="G">
+    <data key="d0"/>
+    <node id="n0" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="0.0" y="245.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="229.0615234375" x="22.63173828124951" y="48.98170068359332">Interface für HAL erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.45958618164062587" nodeRatioY="0.2503345849609332" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="374.78017578124934" y="48.98170068359332">3,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.35856218610490953" nodeRatioY="0.2503345849609332" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n0:"/>
+    </node>
+    <node id="n1">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="100.0" width="560.0" x="0.0" y="0.0"/>
+          <y:Fill color="#FFCC00" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="36" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="200.048828125" x="179.9755859375" y="25.9482421875">Milestone 1<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n2" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="800.0" y="245.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="249.07421875" x="17.712890624999545" y="50.67724609375017">Projektstrukturplan erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.46836983816964367" nodeRatioY="0.2672900390625017" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="371.74267578124955" y="50.67724609375017">3,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.35313807896205274" nodeRatioY="0.2672900390625017" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n2:"/>
+    </node>
+    <node id="n3">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="100.0" width="560.0" x="800.0" y="0.0"/>
+          <y:Fill color="#FF9900" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="36" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="200.048828125" x="179.9755859375" y="25.9482421875">Milestone 2<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n4" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="1600.0" y="245.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="277.05859375" x="0.028828124997744453" y="52.772746093750754">Projektstrukturplan fertigstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.49994852120536115" nodeRatioY="0.28824503906250754" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="356.98023590413686" y="52.772746093750754">3,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.3267765791814944" nodeRatioY="0.28824503906250754" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n4:"/>
+    </node>
+    <node id="n5">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="100.0" width="560.0" x="1600.0" y="0.0"/>
+          <y:Fill color="#FF7700" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="36" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="200.048828125" x="179.9755859375" y="25.9482421875">Milestone 3<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n6" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="2400.0" y="245.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="313.1025390625" x="4.0" y="40.23939843750088">Callback-Mechanismus für Sensorik
+implementieren (Reactor Pattern)<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.38342914062500877" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="389.64267968749846" y="51.26527734375088">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.3886650809151758" nodeRatioY="0.2731703515625088" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="300.8725781249996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="236.12742187500038">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n6:"/>
+    </node>
+    <node id="n7">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="100.0" width="560.0" x="2400.0" y="0.0"/>
+          <y:Fill color="#FF5500" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="36" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="200.048828125" x="179.9755859375" y="25.9482421875">Milestone 4<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n8" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="3200.0" y="245.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="396.0361328125" x="4.0" y="42.419398437500604">Ablauf über beide Förderbänder
+implementieren (ohne Ausnahmebehandlung)<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.40522914062500603" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="429.45267968749795" y="53.445277343750604">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.4597543666294607" nodeRatioY="0.29497035156250606" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="382.7925781249997">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="154.2074218750003">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n8:"/>
+    </node>
+    <node id="n9">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="100.0" width="560.0" x="3200.0" y="0.0"/>
+          <y:Fill color="#FF3000" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="36" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="200.048828125" x="179.9755859375" y="25.9482421875">Milestone 5<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n10" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="4000.0" y="245.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="389.048828125" x="4.0" y="41.00174218750021">Ablauf über beide Förderbänder
+implementieren (inkl. Ausnahmebehandlung)<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.39105257812500216" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="424.3325234374952" y="52.02762109375021">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.4506112304687414" nodeRatioY="0.2807937890625021" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="376.55007812500077">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="160.44992187499923">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n10:"/>
+    </node>
+    <node id="n11">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="ShinyPlateNodeWithShadow">
+          <y:Geometry height="100.0" width="560.0" x="4000.0" y="0.0"/>
+          <y:Fill color="#FF0000" transparent="false"/>
+          <y:BorderStyle hasColor="false" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="36" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="200.048828125" x="179.9755859375" y="25.9482421875">Milestone 6<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n12" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="0.0" y="535.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="189.09765625" x="46.48867187499977" y="48.98170068359309">Use Cases feststellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.416984514508929" nodeRatioY="0.25033458496093086" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="362.03017578124957" y="48.98170068359309">5,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.33579432896205275" nodeRatioY="0.25033458496093086" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n12:"/>
+    </node>
+    <node id="n13" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="0.0" y="825.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="218.06640625" x="29.004296874999767" y="49.98170068359309">Requirements feststellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.4482066127232147" nodeRatioY="0.26033458496093087" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="356.980235904137" y="49.98170068359309">5,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.3267765791814946" nodeRatioY="0.26033458496093087" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="custom" textColor="#000000" visible="true" width="4.0" x="147.95628906250002" y="33.0">
+            <y:LabelModel>
+              <y:ColumnNodeLabelModel offset="3.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:ColumnNodeLabelModelParameter id="column_0" inside="true" verticalPosition="0.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n13:"/>
+    </node>
+    <node id="n14" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="0.0" y="1115.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="226.064453125" x="27.00527343749974" y="54.34912109375">UML-Diagramme erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.45177629743303616" nodeRatioY="0.30400878906249995" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="366.03017578124957" y="54.34912109375">8,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.34293718610491" nodeRatioY="0.30400878906249995" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n14:"/>
+    </node>
+    <node id="n15" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="0.0" y="1405.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="217.0732421875" x="31.50087890624974" y="53.34912109375">Regressionstests planen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.44374843052455404" nodeRatioY="0.29400878906250005" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="374.03017578124957" y="53.34912109375">0,5 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.3572229003906242" nodeRatioY="0.29400878906250005" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n15:"/>
+    </node>
+    <node id="n16" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="800.0" y="535.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="141.021484375" x="66.73925781249955" y="39.151367187500114">HAL der Aktorik
+implementieren<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.3808227539062508" nodeRatioY="0.3725488281250011" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="369.24267578124955" y="50.177246093750114">8,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.34867379324776704" nodeRatioY="0.26229003906250115" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n16:"/>
+    </node>
+    <node id="n17" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="800.0" y="825.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="180.0712890625" x="49.714355468749545" y="40.4013671875">Serielle Schnittstelle
+implementieren<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.41122436523437583" nodeRatioY="0.38504882812499996" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="375.49267578124955" y="51.42724609375">4,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.35983450753348134" nodeRatioY="0.2747900390625" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n17:"/>
+    </node>
+    <node id="n18" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="800.0" y="1115.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="264.0244140625" x="8.295792968749424" y="40.82536718749998">Testprogramm für Aktorik und
+serielle Schnittstelle erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.485186083984376" nodeRatioY="0.38928882812499976" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="356.98023590413686" y="51.85124609374998">1,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.3267765791814944" nodeRatioY="0.2790300390624998" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n18:"/>
+    </node>
+    <node id="n19" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="1600.0" y="535.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="293.0810546875" x="4.0" y="41.02686718750056">HAL der Sensorik implementieren
+(via ISRs und Pulse-Messages)<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.3913038281250055" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="106.0146484375" x="387.6308007812477" y="52.05274609375056">8,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.38150973074776373" nodeRatioY="0.28104503906250555" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="282.8245781250001">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="254.17542187499993">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n19:"/>
+    </node>
+    <node id="n20" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="1600.0" y="825.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="281.048828125" x="4.0" y="40.55486718750046">Anlagensteuerung mit
+Zustandsautomaten modellieren<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.3865838281250046" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="374.7612421874974" y="51.58074609375046">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.36209108537945955" nodeRatioY="0.2763250390625046" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="267.11257812499986">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="269.88742187500014">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n20:"/>
+    </node>
+    <node id="n21" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="1600.0" y="1115.0"/>
+          <y:Fill color="#00CC00" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="292.10546875" x="4.0" y="51.980746093749985">Regressionstests implementieren<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.28032503906249984" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="386.7612421874974" y="51.980746093749985">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.383519656808031" nodeRatioY="0.28032503906249984" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="279.1125781250001">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="257.8874218749999">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n21:"/>
+    </node>
+    <node id="n22" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="2400.0" y="535.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="345.0595703125" x="4.0" y="40.79939843750071">Testprogramm für Implementierung des
+Callback-Mechanismus erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.38902914062500715" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="405.64267968749846" y="51.82527734375071">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.4172365094866044" nodeRatioY="0.2787703515625072" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="334.1525781249998">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="202.84742187500018">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n22:"/>
+    </node>
+    <node id="n23" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="2400.0" y="825.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="300.0595703125" x="4.0" y="41.35939843750043">Zustandsautomaten der
+Anlagensteuerung implementieren<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.3946291406250043" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="386.4426796874991" y="52.38527734375043">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.38295079520089126" nodeRatioY="0.28437035156250434" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="287.432578125">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="249.56742187499998">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n23:"/>
+    </node>
+    <node id="n24" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="2400.0" y="1115.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="309.0419921875" x="4.0" y="41.27939843750028">Testprogramm für Implementierung
+der Zustandsautomaten erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.39382914062500274" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="385.8026796874992" y="52.30527734375028">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.38180793805803437" nodeRatioY="0.28357035156250276" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="298.952578125">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="238.047421875">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n24:"/>
+    </node>
+    <node id="n25" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="3200.0" y="535.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="379.08203125" x="4.0" y="40.41939843750038">Dokumentation des fehlerfreien Testablaufs
+mit allen Bauteilen erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.3852291406250038" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="420.4926796874979" y="51.44527734375038">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.44375436662946055" nodeRatioY="0.2749703515625037" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="366.79257812500015">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="170.20742187499985">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n25:"/>
+    </node>
+    <node id="n26" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="3200.0" y="825.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="281.0224609375" x="4.0" y="40.499398437500304">Timer für Ausnahmebehandlung
+implementieren<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.38602914062500304" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="370.09267968749555" y="47.525277343750304">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.35375436662945636" nodeRatioY="0.23577035156250303" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="270.3125781249997">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="266.6874218750003">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n26:"/>
+    </node>
+    <node id="n27" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="3200.0" y="1115.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="307.0205078125" x="4.0" y="40.89939843750017">Timingverhalten zwischen HW- und
+BS-Timer im RDD diskutiert<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.3900291406250017" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="390.09267968749555" y="51.92527734375017">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.38946865234374206" nodeRatioY="0.27977035156250163" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="299.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="237.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n27:"/>
+    </node>
+    <node id="n28" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="4000.0" y="535.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="295.111328125" x="4.0" y="40.97174218750001">Bedienhandbuch für die
+Werkstück-Sortieranlage erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.3907525781250001" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="383.73252343749573" y="51.99762109375001">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.3781112304687424" nodeRatioY="0.2804937890625001" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="282.952578125">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="254.047421875">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n28:"/>
+    </node>
+    <node id="n29" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="4000.0" y="825.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="197.060546875" x="43.115132812495176" y="51.87962109374985">Abnahmetest erstellen<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.42300869140625863" nodeRatioY="0.2793137890624985" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="368.8751171874992" y="51.87962109374985">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.3515801478794629" nodeRatioY="0.2793137890624985" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="259.91257812500004">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="277.08742187499996">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n29:"/>
+    </node>
+    <node id="n30" yfiles.foldertype="group">
+      <data key="d6">
+        <y:TableNode configuration="com.yworks.bpmn.Pool">
+          <y:Geometry height="100.0" width="560.0" x="4000.0" y="1115.0"/>
+          <y:Fill color="#CC0000" color2="#D4D4D4CC" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="20" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="28.501953125" modelName="internal" modelPosition="t" textColor="#000000" visible="true" width="125.15234375" x="217.423828125" y="4.0">Arbeitspaket</y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="48.103515625" modelName="custom" textColor="#000000" visible="true" width="283.0439453125" x="4.0" y="41.69636718749916">Dokumentation vervollständigen
+(inkl. „Lessons learned“)<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="-0.5" labelRatioY="0.5" nodeRatioX="-0.5" nodeRatioY="0.39799882812499165" offsetX="4.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="18" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="26.0517578125" modelName="custom" textColor="#000000" visible="true" width="108.009765625" x="374.6943171875" y="52.72224609374916">X,0 Stunden<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.5" labelRatioY="0.5" nodeRatioX="0.36197157645089284" nodeRatioY="0.2877400390624917" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+          <y:StyleProperties>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.line.color" value="#000000"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_ROW_SELECTION_STYLE">
+              <y:SimpleStyle fillColor="#474A4380" lineColor="#000000" lineType="line" lineWidth="3.0"/>
+            </y:Property>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_ALTERNATING" value="#ffffff"/>
+            <y:Property class="java.awt.Color" name="POOL_LANE_COLOR_MAIN" value="#ffffff"/>
+            <y:Property class="java.lang.String" name="POOL_LANE_STYLE" value="LANE_STYLE_COLUMNS"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill2" value="#d4d4d4cc"/>
+            <y:Property class="java.awt.Color" name="com.yworks.bpmn.icon.fill" value="#ffffffe6"/>
+            <y:Property class="com.yworks.yfiles.bpmn.view.BPMNTypeEnum" name="com.yworks.bpmn.type" value="POOL_TYPE_COLUMN"/>
+            <y:Property name="y.view.tabular.TableNodePainter.ALTERNATE_COLUMN_STYLE">
+              <y:SimpleStyle fillColor="#474A4340" lineColor="#000000" lineType="line" lineWidth="1.0"/>
+            </y:Property>
+          </y:StyleProperties>
+          <y:State autoResize="true" closed="false" closedHeight="80.0" closedWidth="100.0"/>
+          <y:Insets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:BorderInsets bottom="0" bottomF="0.0" left="0" leftF="0.0" right="0" rightF="0.0" top="0" topF="0.0"/>
+          <y:Table autoResizeTable="true" defaultColumnWidth="202.0" defaultMinimumColumnWidth="30.0" defaultMinimumRowHeight="30.0" defaultRowHeight="280.0">
+            <y:DefaultColumnInsets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+            <y:DefaultRowInsets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+            <y:Insets bottom="0.0" left="0.0" right="0.0" top="30.0"/>
+            <y:Columns>
+              <y:Column id="column_0" minimumWidth="65.357421875" width="269.3333781249999">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+              <y:Column id="column_1" minimumWidth="65.357421875" width="267.6666218750001">
+                <y:Insets bottom="3.0" left="3.0" right="3.0" top="20.0"/>
+              </y:Column>
+            </y:Columns>
+            <y:Rows>
+              <y:Row height="47.0" id="row_0" minimumHeight="30.0">
+                <y:Insets bottom="3.0" left="20.0" right="3.0" top="3.0"/>
+              </y:Row>
+            </y:Rows>
+          </y:Table>
+        </y:TableNode>
+      </data>
+      <graph edgedefault="directed" id="n30:"/>
+    </node>
+    <edge id="e0" source="n1" target="n3">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e1" source="n3" target="n5">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e2" source="n5" target="n7">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="-231.5" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e3" source="n7" target="n9">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e4" source="n9" target="n11">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="-213.25" ty="0.0"/>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="standard"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e5" source="n3" target="n2">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="1080.0" y="150.0"/>
+            <y:Point x="750.0" y="150.0"/>
+            <y:Point x="750.0" y="295.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e6" source="n1" target="n0">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="280.0" y="150.0"/>
+            <y:Point x="-50.0" y="150.0"/>
+            <y:Point x="-50.0" y="295.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e7" source="n1" target="n12">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="280.0" y="150.0"/>
+            <y:Point x="-50.0" y="150.0"/>
+            <y:Point x="-50.0" y="585.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e8" source="n1" target="n13">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="280.0" y="150.0"/>
+            <y:Point x="-50.0" y="150.0"/>
+            <y:Point x="-50.0" y="875.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e9" source="n1" target="n14">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="280.0" y="150.0"/>
+            <y:Point x="-50.0" y="150.0"/>
+            <y:Point x="-50.0" y="1165.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e10" source="n1" target="n15">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="280.0" y="150.0"/>
+            <y:Point x="-50.0" y="150.0"/>
+            <y:Point x="-50.0" y="1455.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e11" source="n3" target="n16">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="1080.0" y="150.0"/>
+            <y:Point x="750.0" y="150.0"/>
+            <y:Point x="750.0" y="585.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e12" source="n3" target="n17">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="1080.0" y="150.0"/>
+            <y:Point x="750.0" y="150.0"/>
+            <y:Point x="750.0" y="875.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e13" source="n3" target="n18">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="1080.0" y="150.0"/>
+            <y:Point x="750.0" y="150.0"/>
+            <y:Point x="750.0" y="1165.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e14" source="n5" target="n4">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="1880.0" y="150.0"/>
+            <y:Point x="1550.0" y="150.0"/>
+            <y:Point x="1550.0" y="295.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e15" source="n5" target="n19">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="1880.0" y="150.0"/>
+            <y:Point x="1550.0" y="150.0"/>
+            <y:Point x="1550.0" y="585.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e16" source="n5" target="n20">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="1880.0" y="150.0"/>
+            <y:Point x="1550.0" y="150.0"/>
+            <y:Point x="1550.0" y="875.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e17" source="n5" target="n21">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="1880.0" y="150.0"/>
+            <y:Point x="1550.0" y="150.0"/>
+            <y:Point x="1550.0" y="1165.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e18" source="n7" target="n6">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="2680.0" y="150.0"/>
+            <y:Point x="2350.0" y="150.0"/>
+            <y:Point x="2350.0" y="295.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e19" source="n7" target="n22">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="2680.0" y="150.0"/>
+            <y:Point x="2350.0" y="150.0"/>
+            <y:Point x="2350.0" y="585.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e20" source="n7" target="n23">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="2680.0" y="150.0"/>
+            <y:Point x="2350.0" y="150.0"/>
+            <y:Point x="2350.0" y="875.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e21" source="n7" target="n24">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="2680.0" y="150.0"/>
+            <y:Point x="2350.0" y="150.0"/>
+            <y:Point x="2350.0" y="1165.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e22" source="n9" target="n8">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="3480.0" y="150.0"/>
+            <y:Point x="3150.0" y="150.0"/>
+            <y:Point x="3150.0" y="295.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e23" source="n9" target="n25">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="3480.0" y="150.0"/>
+            <y:Point x="3150.0" y="150.0"/>
+            <y:Point x="3150.0" y="585.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e24" source="n9" target="n26">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="3480.0" y="150.0"/>
+            <y:Point x="3150.0" y="150.0"/>
+            <y:Point x="3150.0" y="875.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e25" source="n9" target="n27">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="3480.0" y="150.0"/>
+            <y:Point x="3150.0" y="150.0"/>
+            <y:Point x="3150.0" y="1165.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e26" source="n11" target="n10">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="4280.0" y="150.0"/>
+            <y:Point x="3950.0" y="150.0"/>
+            <y:Point x="3950.0" y="295.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e27" source="n11" target="n28">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="4280.0" y="150.0"/>
+            <y:Point x="3950.0" y="150.0"/>
+            <y:Point x="3950.0" y="585.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e28" source="n11" target="n29">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="4280.0" y="150.0"/>
+            <y:Point x="3950.0" y="150.0"/>
+            <y:Point x="3950.0" y="875.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+    <edge id="e29" source="n11" target="n30">
+      <data key="d9"/>
+      <data key="d10">
+        <y:PolyLineEdge>
+          <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0">
+            <y:Point x="4280.0" y="150.0"/>
+            <y:Point x="3950.0" y="150.0"/>
+            <y:Point x="3950.0" y="1165.0"/>
+          </y:Path>
+          <y:LineStyle color="#000000" type="line" width="1.0"/>
+          <y:Arrows source="none" target="none"/>
+          <y:BendStyle smoothed="false"/>
+        </y:PolyLineEdge>
+      </data>
+    </edge>
+  </graph>
+  <data key="d7">
+    <y:Resources/>
+  </data>
+</graphml>

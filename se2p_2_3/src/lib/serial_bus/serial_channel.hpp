@@ -16,69 +16,88 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    serial_channel.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Logik Ebene der Seriellen Schnittstelle
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_SERIAL_CHANNEL_HPP
+#define SE2_SERIAL_CHANNEL_HPP
 
 #include "config.h"
+#include "lib/constants.hpp"
+#include "lib/util/condvar.hpp"
+#include "lib/util/HAWThread.hpp"
+#include "lib/util/abstract_singleton.hpp"
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include <queue>
+#include <stdint.h>
 
 namespace se2 {
+namespace util {
+class singleton_mgr;
+} // namespace util
 namespace serial_bus {
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
+class serial_interface;
+
+#define TELEGRAM_SIZE sizeof(telegram)
+
+class serial_channel : public util::abstract_singleton
+                     , public util::HAWThread {
+  friend class util::singleton_mgr;
   /**
-   * Default Konstruktor  
+   * Konstruktor
    **/
-  serial_interface();
+  serial_channel();
 
   /**
    * Default Destruktor
    **/
-  ~serial_interface();
+  virtual ~serial_channel();
+
+  virtual void initialize();
+  virtual void destroy();
+  virtual void execute(void*);
+  virtual void shutdown();
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Serial channel instanz
    **/
-  bool write(telegram* data);
+  static serial_channel* instance;
+  serial_interface* m_interface;
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlägt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * FIFO der telegrams
    **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
+  std::queue<telegram> m_queue;
 
   /**
-   * Konfiguriert die Serielle Schnittstelle
+   * Lock fuer einfuegen/entfernen aus queue
    **/
-  void config();
+  util::mutex   m_lock;
+
+  /**
+   * Condition Variable
+   * Wird signalisiert sobald eine Nachricht in die
+   * queue kommt
+   **/
+  util::condvar m_cond;
+ public:
+  /**
+   * Ruft das naechste telegram ab und entfertnt es
+   * @return next telegram
+   **/
+  telegram get_telegram();
+
+  /**
+   * Sendet ein telegram
+   **/
+  void send_telegram(telegram* tel);
 };
 
-} // namespace serial_bus
+} // namepsace serial_bus
 } // namespace se2
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_SERIAL_CHANNEL_HPP
