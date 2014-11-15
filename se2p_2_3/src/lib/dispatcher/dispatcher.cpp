@@ -16,61 +16,52 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_singleton.hpp
+ * @file    dispatcher.cpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse fuer Singletons
+ * Dispatcher
  **/
 
-#ifndef SE2_SINGLETON_MGR_HPP
-#define SE2_SINGLETON_MGR_HPP
-
-#include "config.h"
-
-#include "lib/hal/HWaccess.hpp"
-#include "lib/util/logging.hpp"
-#include "lib/serial_bus/serial_channel.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
 
-#include "lib/util/mutex.hpp"
-#include "lib/util/lock_guard.hpp"
-#include "lib/util/abstract_singleton.hpp"
+using namespace se2::dispatch;
 
-namespace se2 {
-namespace util {
+using se2::hal::event_values;
 
-enum module_type {
-  HAL_PLUGIN,
-  LOGGER_PLUGIN,
-  SERIAL_PLUGIN,
-  DISPATCHER_PLUGIN
-};
+dispatcher* dispatcher::instance = 0;
 
-class singleton_mgr {
-  static mutex s_lock_hal;
-  static mutex s_lock_log;
-  static mutex s_lock_serial;
-  static mutex s_lock_dispatcher;
- public:
-  /**
-   * Zurgiff auf ein beliebiges Singleton Module
-   * @param  module gibt den `module_type` des angeforderten Modules
-   * @return ein `abstract_singleton` pointer auf das Module
-   **/
-  static abstract_singleton* get_instance(module_type module);
-
-  /**
-   * Zerstoert alle Singleton Module
-   **/
-  static void shutdown();
-};
-
-}
+dispatcher::dispatcher() {
+  // nop
 }
 
-#define TO_HAL(ptr) static_cast<se2::hal::hwaccess*>(ptr)
-#define TO_LOG(ptr) static_cast<se2::util::logging*>(ptr)
-#define TO_SERIAL(ptr) static_cast<se2::serial_bus::serial_channel*>(ptr)
-#define TO_DISPATCHER(ptr) static_cast<se2::dispatch::dispatcher*>(ptr)
+dispatcher::~dispatcher() {
+  instance = 0;
+}
 
-#endif // SE2_SINGLETON_MGR_HPP
+bool dispatcher::register_listener(void* listener, hal::event_values event) {
+  return false;
+}
+
+bool dispatcher::unregister_listener(void* listener, hal::event_values event) {
+  return false;
+}
+
+void dispatcher::unregister_from_all(void* listener) {
+
+}
+
+void dispatcher::direct_call_event(hal::event_values event) {
+
+}
+
+dispatcher_events dispatcher::map_from_event_values(event_values val) {
+  return DISPATCHED_EVENT_MAX;
+}
+
+void dispatcher::initialize() {
+
+}
+
+void dispatcher::destroy() {
+
+}

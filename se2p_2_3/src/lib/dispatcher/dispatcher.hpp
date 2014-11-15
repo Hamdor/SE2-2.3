@@ -16,31 +16,32 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_dispatcher.hpp
+ * @file    dispatcher.hpp
  * @version 0.1
  *
- * Dispatcher Interface
+ * Dispatcher
  **/
 
-#ifndef SE2_ABSTRACT_DISPATCHER
-#define SE2_ABSTRACT_DISPATCHER
+#ifndef SE2_DISPATCHER
+#define SE2_DISPATCHER
 
 #include "config.h"
-#include "lib/constants.hpp"
+#include "lib/dispatcher/abstract_dispatcher.hpp"
+#include "lib/util/abstract_singleton.hpp"
 
 namespace se2 {
+namespace util {
+class singleton_mgr;
+}
 namespace dispatch {
 
-/**
- * Dispatcher Interface
- **/
-struct abstract_dispatcher {
+struct dispatcher : public abstract_dispatcher
+                  , public util::abstract_singleton {
+  friend util::singleton_mgr;
   /**
-   * Default Destruktor
+   * Default Destuktor
    **/
-  virtual ~abstract_dispatcher() {
-    // nop
-  }
+  virtual ~dispatcher();
 
   /**
    * Registriert einen Listener fuer ein Event.
@@ -53,7 +54,7 @@ struct abstract_dispatcher {
    *                 dieses Event erreicht ist
    * TODO: Typen ersetzen
    **/
-  virtual bool register_listener(void* listener, hal::event_values event) = 0;
+  virtual bool register_listener(void* listener, hal::event_values event);
 
   /**
    * Unregistriert einen Listener von einem Event.
@@ -63,26 +64,47 @@ struct abstract_dispatcher {
    *         FALSE   listener hat nicht auf das event gehorcht
    * TODO: Typen ersetzen
    **/
-  virtual bool unregister_listener(void* listener, hal::event_values event) = 0;
+  virtual bool unregister_listener(void* listener, hal::event_values event);
 
   /**
    * Unregistriert einen Listener von allen Events.
    * @param listener Pointer
    * TODO: Typen ersetzen
    **/
-  virtual void unregister_from_all(void* listener) = 0;
+  virtual void unregister_from_all(void* listener);
 
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
    * @param Event welches ausgeloest werden soll
-   * TODO: Benoetigt? Wuerde die Sache verkomplizieren,
    *       da dann synchronisation zwischen dem Dispatcher Thread
    *       und dem aufrufendem Thread benoetigt wird.
    **/
-  virtual void direct_call_event(hal::event_values event) = 0;
+  virtual void direct_call_event(hal::event_values event);
+ private:
+  /**
+   * Default Konstruktor (private)
+   **/
+  dispatcher();
+
+  static dispatcher* instance;
+  /**
+   * Mappt von `event_values` auf `dispatcher_events`
+   * fuer zugriff auf Matrix
+   **/
+  static dispatcher_events map_from_event_values(hal::event_values val);
+
+  /**
+   * Initialisierung des Singletons
+   **/
+  virtual void initialize();
+
+  /**
+   * Zerstoerung des Singleton
+   **/
+  virtual void destroy();
 };
 
 } // namespace dispatch
 } // namespace se2
 
-#endif // SE2_ABSTRACT_DISPATCHER
+#endif // SE2_DISPATCHER
