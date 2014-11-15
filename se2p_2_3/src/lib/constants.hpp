@@ -89,17 +89,6 @@ enum event_source {
   TIMER     = 2
 };
 
-/**
- * Pulse Message Values
- * TODO: erweitern
- **/
-enum event_values {
-  NEW_SERIAL_DATA = 0, // Daten vom anderen Band
-  NEW_SERIAL_MSG  = 1, // Nachricht des anderen Bandes
-  NEW_SERIAL_ERR  = 2, // Error Nachricht des anderen Bandes
-  NEW_SERIAL_UNK  = 3  // Unbekannte Nachricht
-};
-
 namespace hal {
 
 /**
@@ -198,6 +187,74 @@ enum height_values {
 #else
   // TODO: Default Werte? Mittelwert?
 #endif
+};
+
+/**
+ * Defines fuer `event_values` Bereiche
+ **/
+#define EVENT_BASE 0x01
+#define EVENT_PORT_A_OFFSET 0x00
+#define EVENT_PORT_C_OFFSET 0x08
+#define EVENT_SERIAL_START (EVENT_BASE << EXIT_SENSOR                         \
+                                       << EVENT_PORT_C_OFFSET) | 0x01
+/**
+ * Pulse Message Values
+ * Events Port C:
+ *   EVENT_BUTTON_START   Start Button getoggelt
+ *   EVENT_BUTTON_STOP    Stop Button getoggelt
+ *   EVENT_BUTTON_RESET   Reset Button getoggelt
+ *   EVENT_BUTTON_E_STOP  E Stop getoggelt
+ *
+ * Events Port B:
+ *   EVENT_ENTRACE_SENSOR Lichtschranke am Band einlauf getoggelt
+ *   EVENT_HEIGHT_SENSOR  Lichtschranke am Hoehensensor getoggelt
+ *   EVENT_SWITCH_SENSOR  Lichtschranke am Switch getoggelt
+ *   EVENT_SLIGHT_SENSOR  Lichtschranke der Rutsche getoggelt
+ *   EVENT_EXIT_SENSOR    Lichtschranke am Ausgang des Bandes getoggelt
+ *
+ * Serielle Schnittstelle:
+ *   EVENT_SERIAL_DATA    Daten empfangen     (Token Daten)
+ *   EVENT_SERIAL_MSG     Nachricht empfangen (Keine Daten)
+ *   EVENT_SERIAL_ERR     Errornachricht empfagen
+ *   EVENT_SERIAL_UNK     Unbekannte Nachricht empfangen
+ *                        (Fehlerhafte Nachricht?)
+ *
+ * Timer Events:
+ *   EVENT_SEG1_EXCEEDED   Token zwischen Einlauf und Hoehenmessung (Segment 1)
+ *   EVENT_SEG2_EXCEEDED   Token zwischen Hoehenmessung und Weiche (Segment 2)
+ *   EVENT_SEG3_EXCEEDED   Token zwischen Weiche und Auslauf (Segment 3)
+ *   EVENT_SLIDE_FULL      Rutsche ist voll wenn abgelaufen
+ *   EVENT_OPEN_SWITCH     Oeffnungsdauer der Weiche
+ *   EVENT_TURN_TOKEN      Zeit zum Wenden eines Puks/Tokens
+ *   EVENT_REMOVE_TOKEN    Zeit zum Entfernen eines Puks/Tokens
+ *   EVENT_TOKEN_FINISHED  Zeit bis der Token das Ende von Band 2 erreicht hat
+ **/
+enum event_values {
+  // Port C
+  EVENT_BUTTON_START   = EVENT_BASE << BUTTON_START   << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_STOP    = EVENT_BASE << BUTTON_STOP    << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_RESET   = EVENT_BASE << BUTTON_RESET   << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_E_STOP  = EVENT_BASE << BUTTON_ESTOP   << EVENT_PORT_A_OFFSET,
+  // Port B
+  EVENT_ENTRACE_SENSOR = EVENT_BASE << ENTRACE_SENSOR << EVENT_PORT_C_OFFSET,
+  EVENT_HEIGHT_SENSOR  = EVENT_BASE << HEIGHT_SENSOR  << EVENT_PORT_C_OFFSET,
+  EVENT_SWITCH_SENSOR  = EVENT_BASE << SWITCH_SENSOR  << EVENT_PORT_C_OFFSET,
+  EVENT_SLIGHT_SENSOR  = EVENT_BASE << SLIGHT_SENSOR  << EVENT_PORT_C_OFFSET,
+  EVENT_EXIT_SENSOR    = EVENT_BASE << EXIT_SENSOR    << EVENT_PORT_C_OFFSET,
+  // Serial Interface
+  EVENT_SERIAL_DATA = EVENT_SERIAL_START, // EVENT_SERIAL_START + 0x00
+  EVENT_SERIAL_MSG,                       // EVENT_SERIAL_START + 0x01
+  EVENT_SERIAL_ERR,                       // EVENT_SERIAL_START + 0x02
+  EVENT_SERIAL_UNK,                       // EVENT_SERIAL_START + 0x03
+  // Timer
+  EVENT_SEG1_EXCEEDED,                    // EVENT_SERIAL_UNK + 0x01
+  EVENT_SEG2_EXCEEDED,                    // EVENT_SERIAL_UNK + 0x02
+  EVENT_SEG3_EXCEEDED,                    // EVENT_SERIAL_UNK + 0x03
+  EVENT_SLIDE_FULL,                       // EVENT_SERIAL_UNK + 0x04
+  EVENT_OPEN_SWITCH,                      // EVENT_SERIAL_UNK + 0x05
+  EVENT_TURN_TOKEN,                       // EVENT_SERIAL_UNK + 0x06
+  EVENT_REMOVE_TOKEN,                     // EVENT_SERIAL_UNK + 0x07
+  EVENT_TOKEN_FINISHED                    // EVENT_SERIAL_UNK + 0x08
 };
 
 } // namespace hal

@@ -76,14 +76,14 @@ void serial_channel::execute(void*) {
     m_interface->read(&data);
     event_values value;
     if (data.m_type == MSG) {
-      value = NEW_SERIAL_MSG;
+      value = EVENT_SERIAL_MSG;
     } else if (data.m_type == DATA) {
-      value = NEW_SERIAL_DATA;
+      value = EVENT_SERIAL_DATA;
     } else if (data.m_type == ERR) {
-      value = NEW_SERIAL_ERR;
+      value = EVENT_SERIAL_ERR;
     } else {
       // unkown ...
-      value = NEW_SERIAL_UNK;
+      value = EVENT_SERIAL_UNK;
     }
     {
       lock_guard lock(m_lock);
