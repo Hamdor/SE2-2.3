@@ -80,6 +80,12 @@ struct dispatcher : public abstract_dispatcher
    *       und dem aufrufendem Thread benoetigt wird.
    **/
   virtual void direct_call_event(hal::event_values event);
+
+  /**
+   * Mappt von `event_values` auf `dispatcher_events`
+   * fuer zugriff auf Matrix
+   **/
+  static dispatcher_events map_from_event_values(hal::event_values val);
  private:
   /**
    * Default Konstruktor (private)
@@ -87,11 +93,6 @@ struct dispatcher : public abstract_dispatcher
   dispatcher();
 
   static dispatcher* instance;
-  /**
-   * Mappt von `event_values` auf `dispatcher_events`
-   * fuer zugriff auf Matrix
-   **/
-  static dispatcher_events map_from_event_values(hal::event_values val);
 
   /**
    * Initialisierung des Singletons

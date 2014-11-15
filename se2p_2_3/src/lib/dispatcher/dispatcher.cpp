@@ -23,10 +23,11 @@
  **/
 
 #include "lib/dispatcher/dispatcher.hpp"
+#include "lib/util/logging.hpp"
 
+using namespace se2::hal;
+using namespace se2::util;
 using namespace se2::dispatch;
-
-using se2::hal::event_values;
 
 dispatcher* dispatcher::instance = 0;
 
@@ -55,6 +56,53 @@ void dispatcher::direct_call_event(hal::event_values event) {
 }
 
 dispatcher_events dispatcher::map_from_event_values(event_values val) {
+  switch(val) {
+  case EVENT_BUTTON_START:
+    return DISPATCHED_EVENT_BUTTON_START;
+  case EVENT_BUTTON_STOP:
+    return DISPATCHED_EVENT_BUTTON_STOP;
+  case EVENT_BUTTON_RESET:
+    return DISPATCHED_EVENT_BUTTON_RESET;
+  case EVENT_BUTTON_E_STOP:
+    return DISPATCHED_EVENT_BUTTON_E_STOP;
+  case EVENT_ENTRACE_SENSOR:
+    return DISPATCHED_EVENT_ENTRACE_SENSOR;
+  case EVENT_HEIGHT_SENSOR:
+    return DISPATCHED_EVENT_HEIGHT_SENSOR;
+  case EVENT_SWITCH_SENSOR:
+    return DISPATCHED_EVENT_SWITCH_SENSOR;
+  case EVENT_SLIGHT_SENSOR:
+    return DISPATCHED_EVENT_SLIGHT_SENSOR;
+  case EVENT_EXIT_SENSOR:
+    return DISPATCHED_EVENT_EXIT_SENSOR;
+  case EVENT_SERIAL_DATA:
+    return DISPATCHED_EVENT_SERIAL_DATA;
+  case EVENT_SERIAL_MSG:
+    return DISPATCHED_EVENT_SERIAL_MSG;
+  case EVENT_SERIAL_ERR:
+    return DISPATCHED_EVENT_SERIAL_ERR;
+  case EVENT_SERIAL_UNK:
+    return DISPATCHED_EVENT_SERIAL_UNK;
+  case EVENT_SEG1_EXCEEDED:
+    return DISPATCHED_EVENT_SEG1_EXCEEDED;
+  case EVENT_SEG2_EXCEEDED:
+    return DISPATCHED_EVENT_SEG2_EXCEEDED;
+  case EVENT_SEG3_EXCEEDED:
+    return DISPATCHED_EVENT_SEG3_EXCEEDED;
+  case EVENT_SLIDE_FULL:
+    return DISPATCHED_EVENT_SLIDE_FULL;
+  case EVENT_OPEN_SWITCH:
+    return DISPATCHED_EVENT_OPEN_SWITCH;
+  case EVENT_TURN_TOKEN:
+    return DISPATCHED_EVENT_TURN_TOKEN;
+  case EVENT_REMOVE_TOKEN:
+    return DISPATCHED_EVENT_REMOVE_TOKEN;
+  case EVENT_TOKEN_FINISHED:
+    return DISPATCHED_EVENT_TOKEN_FINISHED;
+  default:
+    LOG_ERROR("map_from_event_values() : unkown value")
+    break;
+  }
   return DISPATCHED_EVENT_MAX;
 }
 
