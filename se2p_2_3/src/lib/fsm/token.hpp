@@ -19,13 +19,14 @@
  * @file    token.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse fuer Token Kontext
+ * Interface/Abstrakte Kontext Klasse für Puck/Token
  **/
 
 #ifndef TOKEN_HPP_
 #define TOKEN_HPP_
 
 namespace se2 {
+namespace fsm {
 
 class token : public events {
  public:
@@ -34,6 +35,7 @@ class token : public events {
 
   int get_id();
   void set_id(int id);
+  int get_next_id();
   int get_height1();
   void set_height1(int height1);
   int get_height2();
@@ -44,22 +46,40 @@ class token : public events {
   void set_is_metal(bool b);
   bool is_valid();
 
-  virtual void event_entrance_sensor(void);
-  virtual void event_height_sensor(void);
-  virtual void event_switch_sensor(void);
-  virtual void event_slide_sensor(void);
-  virtual void event_exit_sensor(void);
-  virtual void event_button_start(void);
+  virtual void dispatched_event_button_start(void);
+  virtual void dispatched_event_button_stop(void);
+  virtual void dispatched_event_button_reset(void);
+  virtual void dispatched_event_button_e_stop(void);
+  virtual void dispatched_event_sensor_entrance(void);
+  virtual void dispatched_event_sensor_height(void);
+  virtual void dispatched_event_sensor_switch(void);
+  virtual void dispatched_event_sensor_slide(void);
+  virtual void dispatched_event_sensor_exit(void);
+  virtual void dispatched_event_serial_data(void);
+  virtual void dispatched_event_serial_msg(void);
+  virtual void dispatched_event_serial_err(void);
+  virtual void dispatched_event_serial_unk(void);
+  virtual void dispatched_event_seg1_exceeded(void);
+  virtual void dispatched_event_seg2_exceeded(void);
+  virtual void dispatched_event_seg3_exceeded(void);
+  virtual void dispatched_event_slide_full(void);
+  virtual void dispatched_event_open_switch(void);
+  virtual void dispatched_event_turn_token(void);
+  virtual void dispatched_event_remove_token(void);
+  virtual void dispatched_event_token_finished(void);
+  virtual void dispatched_event_max(void);
 
  private:
   events* m_state;
   int m_id;
+  static int m_id_counter;
   int m_height1;
   int m_height2;
   bool m_is_upside_down;
   bool m_is_metal;
 };
 
+} // namespace fsm
 } // namespace se2
 
 #endif // TOKEN_HPP_

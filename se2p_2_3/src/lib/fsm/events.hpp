@@ -26,18 +26,36 @@
 #define EVENTS_HPP_
 
 namespace se2 {
+namespace fsm {
 
 class events {
  public:
   virtual ~events(void){ };
-  virtual void event_entrance_sensor(void) = 0;
-  virtual void event_height_sensor(void)   = 0;
-  virtual void event_switch_sensor(void)   = 0;
-  virtual void event_slide_sensor(void)    = 0;
-  virtual void event_exit_sensor(void)     = 0;
-  virtual void event_button_start(void)    = 0;
+  virtual void dispatched_event_button_start(void)    = 0;
+  virtual void dispatched_event_button_stop(void)     = 0;
+  virtual void dispatched_event_button_reset(void)    = 0;
+  virtual void dispatched_event_button_e_stop(void)   = 0;
+  virtual void dispatched_event_sensor_entrance(void) = 0;
+  virtual void dispatched_event_sensor_height(void)   = 0;
+  virtual void dispatched_event_sensor_switch(void)   = 0;
+  virtual void dispatched_event_sensor_slide(void)    = 0;
+  virtual void dispatched_event_sensor_exit(void)     = 0;
+  virtual void dispatched_event_serial_data(void)     = 0;
+  virtual void dispatched_event_serial_msg(void)      = 0;
+  virtual void dispatched_event_serial_err(void)      = 0;
+  virtual void dispatched_event_serial_unk(void)      = 0;
+  virtual void dispatched_event_seg1_exceeded(void)   = 0;
+  virtual void dispatched_event_seg2_exceeded(void)   = 0;
+  virtual void dispatched_event_seg3_exceeded(void)   = 0;
+  virtual void dispatched_event_slide_full(void)      = 0;
+  virtual void dispatched_event_open_switch(void)     = 0;
+  virtual void dispatched_event_turn_token(void)      = 0;
+  virtual void dispatched_event_remove_token(void)    = 0;
+  virtual void dispatched_event_token_finished(void)  = 0;
+  virtual void dispatched_event_max(void)             = 0;
 };
 
+} // namespace fsm
 } // namespace se2
 
 #endif /* EVENTS_HPP_ */

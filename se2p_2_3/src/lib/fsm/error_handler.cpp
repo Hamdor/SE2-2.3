@@ -19,9 +19,9 @@
  * @file    error_handler.cpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse fuer Error FSM
+ * Klasse für Fehler Zustandsautomaten
  **/
 
 #include "error_handler.hpp"
 
-using namespace se2::fsm;
+using namespace se2;
