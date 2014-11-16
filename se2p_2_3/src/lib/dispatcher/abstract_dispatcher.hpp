@@ -32,6 +32,14 @@ namespace se2 {
 namespace dispatch {
 
 /**
+ * TODO: Muss geandert werden wenn FSM fertig
+ **/
+class transition;
+class context;
+
+typedef void (transition::*func_t)(void);
+
+/**
  * Dispatcher Interface
  **/
 struct abstract_dispatcher {
@@ -51,9 +59,9 @@ struct abstract_dispatcher {
    * @return TRUE    nach erfolgreichen hinzufuegen
    *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
    *                 dieses Event erreicht ist
-   * TODO: Typen ersetzen
    **/
-  virtual bool register_listener(void* listener, hal::event_values event) = 0;
+  virtual bool register_listener(transition* listener,
+                                 hal::event_values event) = 0;
 
   /**
    * Unregistriert einen Listener von einem Event.
@@ -61,16 +69,15 @@ struct abstract_dispatcher {
    * @param event    welches nicht mehr gehoert werden soll
    * @return TRUE    nach erfoglreichen entfernen
    *         FALSE   listener hat nicht auf das event gehorcht
-   * TODO: Typen ersetzen
    **/
-  virtual bool unregister_listener(void* listener, hal::event_values event) = 0;
+  virtual bool unregister_listener(transition* listener,
+                                   hal::event_values event) = 0;
 
   /**
    * Unregistriert einen Listener von allen Events.
    * @param listener Pointer
-   * TODO: Typen ersetzen
    **/
-  virtual void unregister_from_all(void* listener) = 0;
+  virtual void unregister_from_all(transition* listener) = 0;
 
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert

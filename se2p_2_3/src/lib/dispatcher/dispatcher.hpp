@@ -29,6 +29,8 @@
 #include "lib/dispatcher/abstract_dispatcher.hpp"
 #include "lib/util/abstract_singleton.hpp"
 
+#include <cstddef>
+
 namespace se2 {
 namespace util {
 class singleton_mgr;
@@ -37,6 +39,7 @@ namespace dispatch {
 
 struct dispatcher : public abstract_dispatcher
                   , public util::abstract_singleton {
+
   friend util::singleton_mgr;
   /**
    * Default Destuktor
@@ -52,9 +55,9 @@ struct dispatcher : public abstract_dispatcher
    * @return TRUE    nach erfolgreichen hinzufuegen
    *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
    *                 dieses Event erreicht ist
-   * TODO: Typen ersetzen
    **/
-  virtual bool register_listener(void* listener, hal::event_values event);
+  virtual bool register_listener(transition* listener,
+                                 hal::event_values event);
 
   /**
    * Unregistriert einen Listener von einem Event.
@@ -62,16 +65,15 @@ struct dispatcher : public abstract_dispatcher
    * @param event    welches nicht mehr gehoert werden soll
    * @return TRUE    nach erfoglreichen entfernen
    *         FALSE   listener hat nicht auf das event gehorcht
-   * TODO: Typen ersetzen
    **/
-  virtual bool unregister_listener(void* listener, hal::event_values event);
+  virtual bool unregister_listener(transition* listener,
+                                   hal::event_values event);
 
   /**
    * Unregistriert einen Listener von allen Events.
    * @param listener Pointer
-   * TODO: Typen ersetzen
    **/
-  virtual void unregister_from_all(void* listener);
+  virtual void unregister_from_all(transition* listener);
 
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
@@ -103,6 +105,10 @@ struct dispatcher : public abstract_dispatcher
    * Zerstoerung des Singleton
    **/
   virtual void destroy();
+
+  static const size_t m_max_listeners = 10;
+  transition*         m_listeners[DISPATCHED_EVENT_MAX][m_max_listeners];
+  func_t              m_functions[DISPATCHED_EVENT_MAX];
 };
 
 } // namespace dispatch

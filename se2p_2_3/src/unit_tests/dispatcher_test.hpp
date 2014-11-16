@@ -51,6 +51,11 @@ class dispatcher_test : public abstract_test<dispatcher_test> {
   virtual int after();
   virtual int after_class();
  private:
+  /**
+   * Test fuer das mapping von `event_values` zu `dispatcher_events`.
+   * Das Mapping wird von der Funktion `dispatcher::map_from_event_values()`
+   * uebernommen.
+   **/
   int test_mapping();
 
   dispatch::dispatcher* m_dispatcher;

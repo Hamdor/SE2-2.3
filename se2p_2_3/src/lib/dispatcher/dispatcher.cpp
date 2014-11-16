@@ -32,30 +32,61 @@ using namespace se2::dispatch;
 dispatcher* dispatcher::instance = 0;
 
 dispatcher::dispatcher() {
-  // nop
+  /**
+   * TODO:
+   * m_functions initialisieren
+   **/
 }
 
 dispatcher::~dispatcher() {
   instance = 0;
 }
 
-bool dispatcher::register_listener(void* listener, hal::event_values event) {
+bool dispatcher::register_listener(transition* listener,
+                                   hal::event_values event) {
+  dispatcher_events devent = dispatcher::map_from_event_values(event);
+  if (devent == DISPATCHED_EVENT_MAX) {
+    return false;
+  }
+  for (size_t i = 0; i < m_max_listeners; ++i) {
+    if (m_listeners[devent][i] == NULL) {
+      m_listeners[devent][i] = listener;
+      return true;
+    }
+  }
   return false;
 }
 
-bool dispatcher::unregister_listener(void* listener, hal::event_values event) {
+bool dispatcher::unregister_listener(transition* listener,
+                                     hal::event_values event) {
+  dispatcher_events devent = dispatcher::map_from_event_values(event);
+  if (devent == DISPATCHED_EVENT_MAX) {
+    return false;
+  }
+  for (size_t i = 0; i < m_max_listeners; ++i) {
+    if (m_listeners[devent][i] == listener) {
+      m_listeners[devent][i] = NULL;
+      return true;
+    }
+  }
   return false;
 }
 
-void dispatcher::unregister_from_all(void* listener) {
+void dispatcher::unregister_from_all(transition* listener) {
 
 }
 
 void dispatcher::direct_call_event(hal::event_values event) {
-
+  dispatcher_events devent = dispatcher::map_from_event_values(event);
+  for (size_t i = 0; i < m_max_listeners; ++i) {
+    if (m_listeners[devent][i] != NULL) {
+      (m_listeners[devent][i]->*m_functions[devent])();
+    }
+  }
 }
 
-dispatcher_events dispatcher::map_from_event_values(event_values val) {
+dispatcher_events dispatcher::map_from_event_values(
+    event_values val) {
   switch(val) {
   case EVENT_BUTTON_START:
     return DISPATCHED_EVENT_BUTTON_START;
