@@ -33,18 +33,18 @@
 #define SWITCH_BIT 4
 
 /**
- * Bit Position fÃ¼r geÃ¶ffnete Weiche Sensor auf Port B
+ * Bit Position für geöffnete Weiche Sensor auf Port B
  **/
 #define SWITCH_OPEN_BIT 5
 
 /**
- * Bit Position fÃ¼r HÃ¶hensensor auf Port B
+ * Bit Position für Höhensensor auf Port B
  * (Tolleranzbereich, nicht Absolutwert)
  **/
 #define HEIGHT_BIT 2
 
 /**
- * Bit Position fÃ¼r Metallsensor auf Port B
+ * Bit Position für Metallsensor auf Port B
  **/
 #define METAL_BIT 4
 
@@ -54,17 +54,17 @@
 #define IOBASE    0x300         // IO Base Register
 
 /**
- * Addresse des Controllregisters
+ * Addresse des Control-Registers
  **/
-#define IOCTLADDR IOBASE + 0x03 // Register zum definieren der input/output Ports
+#define IOCTLADDR IOBASE + 0x03 // Register zum Definieren der input/output Ports
 
 /**
- * Maske fÃ¼r das Controllregister
+ * Maske für das Control-Register
  **/
 #define IOCTLPORT 0x8A
 
 /**
- * Addressen/Defines Analogport
+ * Addressen/Defines Analog-Port
  **/
 #define IOANALOG_BASE        0x320
 #define IOANALOG_OFFSET      0x02
@@ -106,7 +106,7 @@ enum port_num {
 };
 
 /**
- * Motor modes
+ * Verfügbare Modi des Motor
  **/
 enum motor_modes {
   MOTOR_RIGHT = 0,
@@ -117,34 +117,34 @@ enum motor_modes {
 };
 
 /**
- * LEDs der einzelnen KnÃ¶pfe
+ * Verfügbare LEDs
  **/
-enum button_leds {
-  START_LED = 0,
-  RESET_LED = 1,
-  Q1_LED    = 2,
-  Q2_LED    = 3
+enum leds {
+  LED_START = 0,
+  LED_RESET = 1,
+  LED_Q1    = 2,
+  LED_Q2    = 3
 };
 
 /**
- * VerfÃ¼gbare KnÃ¶pfe
+ * Verfügbare Knöpfe
  **/
 enum buttons {
-  BUTTON_START = 4, // 1 => gedrÃ¼ckt
-  BUTTON_STOP  = 5, // 1 => NICHT gedrÃ¼ckt
-  BUTTON_RESET = 6, // 1 => gedrÃ¼ckt
-  BUTTON_ESTOP = 7  // 1 => NICHT gedrÃ¼ckt
+  BUTTON_START = 4, // 1 => gedrückt
+  BUTTON_STOP  = 5, // 1 => NICHT gedrückt
+  BUTTON_RESET = 6, // 1 => gedrückt
+  BUTTON_ESTOP = 7  // 1 => NICHT gedrückt
 };
 
 /**
  * Lichtschranken des Systems
  **/
 enum light_barriers {
-  ENTRACE_SENSOR = 0, // einlauf
-  HEIGHT_SENSOR  = 1, // hÃ¶hensensor
-  SWITCH_SENSOR  = 3, // weiche
-  SLIGHT_SENSOR  = 6, // rutsche
-  EXIT_SENSOR    = 7  // auslauf
+  SENSOR_ENTRANCE = 0, // Einlauf
+  SENSOR_HEIGHT   = 1, // Höhensensor
+  SENSOR_SWITCH   = 3, // Weiche
+  SENSOR_SLIDE    = 6, // Rutsche
+  SENSOR_EXIT     = 7  // Auslauf
 };
 
 /**
@@ -157,8 +157,8 @@ enum light_colors {
 };
 
 /**
- * Rueckgabewerte des Hoehensensors
- * fuer die einzelnen Puck typen.
+ * Rueckgabewerte des Höhensensors
+ * für die einzelnen Puck Typen.
  **/
 enum height_values {
 #if defined(FESTO_3)
@@ -190,7 +190,7 @@ enum height_values {
 };
 
 /**
- * Defines fuer `event_values` Bereiche
+ * Defines für `event_values` Bereiche
  **/
 #define EVENT_BASE 0x01
 #define EVENT_PORT_A_OFFSET 0x00
@@ -200,64 +200,97 @@ enum height_values {
 /**
  * Pulse Message Values
  * Events Port C:
- *   EVENT_BUTTON_START   Start Button getoggelt
- *   EVENT_BUTTON_STOP    Stop Button getoggelt
- *   EVENT_BUTTON_RESET   Reset Button getoggelt
- *   EVENT_BUTTON_E_STOP  E Stop getoggelt
+ *   EVENT_BUTTON_START    Start Button getoggelt
+ *   EVENT_BUTTON_STOP     Stop Button getoggelt
+ *   EVENT_BUTTON_RESET    Reset Button getoggelt
+ *   EVENT_BUTTON_E_STOP   E-Stop getoggelt
  *
  * Events Port B:
- *   EVENT_ENTRACE_SENSOR Lichtschranke am Band einlauf getoggelt
- *   EVENT_HEIGHT_SENSOR  Lichtschranke am Hoehensensor getoggelt
- *   EVENT_SWITCH_SENSOR  Lichtschranke am Switch getoggelt
- *   EVENT_SLIGHT_SENSOR  Lichtschranke der Rutsche getoggelt
- *   EVENT_EXIT_SENSOR    Lichtschranke am Ausgang des Bandes getoggelt
+ *   EVENT_SENSOR_ENTRANCE Lichtschranke am Band einlauf getoggelt
+ *   EVENT_SENSOR_HEIGHT   Lichtschranke am Höhensensor getoggelt
+ *   EVENT_SENSOR_SWITCH   Lichtschranke am Switch getoggelt
+ *   EVENT_SENSOR_SLIDE    Lichtschranke der Rutsche getoggelt
+ *   EVENT_SENSOR_EXIT     Lichtschranke am Ausgang des Bandes getoggelt
  *
  * Serielle Schnittstelle:
- *   EVENT_SERIAL_DATA    Daten empfangen     (Token Daten)
- *   EVENT_SERIAL_MSG     Nachricht empfangen (Keine Daten)
- *   EVENT_SERIAL_ERR     Errornachricht empfagen
- *   EVENT_SERIAL_UNK     Unbekannte Nachricht empfangen
- *                        (Fehlerhafte Nachricht?)
+ *   EVENT_SERIAL_DATA     Daten empfangen     (Token Daten)
+ *   EVENT_SERIAL_MSG      Nachricht empfangen (Keine Daten)
+ *   EVENT_SERIAL_ERR      Errornachricht empfagen
+ *   EVENT_SERIAL_UNK      Unbekannte Nachricht empfangen
+ *                         (Fehlerhafte Nachricht?)
  *
  * Timer Events:
- *   EVENT_SEG1_EXCEEDED   Token zwischen Einlauf und Hoehenmessung (Segment 1)
- *   EVENT_SEG2_EXCEEDED   Token zwischen Hoehenmessung und Weiche (Segment 2)
+ *   EVENT_SEG1_EXCEEDED   Token zwischen Einlauf und Höhenmessung (Segment 1)
+ *   EVENT_SEG2_EXCEEDED   Token zwischen Höhenmessung und Weiche  (Segment 2)
  *   EVENT_SEG3_EXCEEDED   Token zwischen Weiche und Auslauf (Segment 3)
  *   EVENT_SLIDE_FULL      Rutsche ist voll wenn abgelaufen
- *   EVENT_OPEN_SWITCH     Oeffnungsdauer der Weiche
- *   EVENT_TURN_TOKEN      Zeit zum Wenden eines Puks/Tokens
- *   EVENT_REMOVE_TOKEN    Zeit zum Entfernen eines Puks/Tokens
- *   EVENT_TOKEN_FINISHED  Zeit bis der Token das Ende von Band 2 erreicht hat
+ *   EVENT_OPEN_SWITCH     Öffnungsdauer der Weiche
+ *   EVENT_TURN_TOKEN      Zeit zum Wenden eines Pucks
+ *   EVENT_REMOVE_TOKEN    Zeit zum Entfernen eines Pucks
+ *   EVENT_TOKEN_FINISHED  Zeit bis der Puck das Ende von Band 2 erreicht hat
  **/
 enum event_values {
   // Port C
-  EVENT_BUTTON_START   = EVENT_BASE << BUTTON_START   << EVENT_PORT_A_OFFSET,
-  EVENT_BUTTON_STOP    = EVENT_BASE << BUTTON_STOP    << EVENT_PORT_A_OFFSET,
-  EVENT_BUTTON_RESET   = EVENT_BASE << BUTTON_RESET   << EVENT_PORT_A_OFFSET,
-  EVENT_BUTTON_E_STOP  = EVENT_BASE << BUTTON_ESTOP   << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_START    = EVENT_BASE << BUTTON_START    << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_STOP     = EVENT_BASE << BUTTON_STOP     << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_RESET    = EVENT_BASE << BUTTON_RESET    << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_E_STOP   = EVENT_BASE << BUTTON_ESTOP    << EVENT_PORT_A_OFFSET,
   // Port B
-  EVENT_ENTRACE_SENSOR = EVENT_BASE << ENTRACE_SENSOR << EVENT_PORT_C_OFFSET,
-  EVENT_HEIGHT_SENSOR  = EVENT_BASE << HEIGHT_SENSOR  << EVENT_PORT_C_OFFSET,
-  EVENT_SWITCH_SENSOR  = EVENT_BASE << SWITCH_SENSOR  << EVENT_PORT_C_OFFSET,
-  EVENT_SLIGHT_SENSOR  = EVENT_BASE << SLIGHT_SENSOR  << EVENT_PORT_C_OFFSET,
-  EVENT_EXIT_SENSOR    = EVENT_BASE << EXIT_SENSOR    << EVENT_PORT_C_OFFSET,
+  EVENT_SENSOR_ENTRANCE = EVENT_BASE << SENSOR_ENTRANCE << EVENT_PORT_C_OFFSET,
+  EVENT_SENSOR_HEIGHT   = EVENT_BASE << SENSOR_HEIGHT   << EVENT_PORT_C_OFFSET,
+  EVENT_SENSOR_SWITCH   = EVENT_BASE << SENSOR_SWITCH   << EVENT_PORT_C_OFFSET,
+  EVENT_SENSOR_SLIDE    = EVENT_BASE << SENSOR_SLIDE    << EVENT_PORT_C_OFFSET,
+  EVENT_SENSOR_EXIT     = EVENT_BASE << SENSOR_EXIT     << EVENT_PORT_C_OFFSET,
   // Serial Interface
-  EVENT_SERIAL_DATA = EVENT_SERIAL_START, // EVENT_SERIAL_START + 0x00
-  EVENT_SERIAL_MSG,                       // EVENT_SERIAL_START + 0x01
-  EVENT_SERIAL_ERR,                       // EVENT_SERIAL_START + 0x02
-  EVENT_SERIAL_UNK,                       // EVENT_SERIAL_START + 0x03
+  EVENT_SERIAL_DATA     = EVENT_SERIAL_START, // EVENT_SERIAL_START + 0x00
+  EVENT_SERIAL_MSG,                           // EVENT_SERIAL_START + 0x01
+  EVENT_SERIAL_ERR,                           // EVENT_SERIAL_START + 0x02
+  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x03
   // Timer
-  EVENT_SEG1_EXCEEDED,                    // EVENT_SERIAL_UNK + 0x01
-  EVENT_SEG2_EXCEEDED,                    // EVENT_SERIAL_UNK + 0x02
-  EVENT_SEG3_EXCEEDED,                    // EVENT_SERIAL_UNK + 0x03
-  EVENT_SLIDE_FULL,                       // EVENT_SERIAL_UNK + 0x04
-  EVENT_OPEN_SWITCH,                      // EVENT_SERIAL_UNK + 0x05
-  EVENT_TURN_TOKEN,                       // EVENT_SERIAL_UNK + 0x06
-  EVENT_REMOVE_TOKEN,                     // EVENT_SERIAL_UNK + 0x07
-  EVENT_TOKEN_FINISHED                    // EVENT_SERIAL_UNK + 0x08
+  EVENT_SEG1_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x01
+  EVENT_SEG2_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x02
+  EVENT_SEG3_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x03
+  EVENT_SLIDE_FULL,                           // EVENT_SERIAL_UNK + 0x04
+  EVENT_OPEN_SWITCH,                          // EVENT_SERIAL_UNK + 0x05
+  EVENT_TURN_TOKEN,                           // EVENT_SERIAL_UNK + 0x06
+  EVENT_REMOVE_TOKEN,                         // EVENT_SERIAL_UNK + 0x07
+  EVENT_TOKEN_FINISHED                        // EVENT_SERIAL_UNK + 0x08
 };
 
 } // namespace hal
+
+namespace dispatch {
+
+/**
+ * Interne Events für Dispatcher Matrix
+ * Bildet von `event_values` auf Dispatcher interne `dispatcher_events` ab
+ **/
+enum dispatcher_events {
+  DISPATCHED_EVENT_BUTTON_START = 0,
+  DISPATCHED_EVENT_BUTTON_STOP,
+  DISPATCHED_EVENT_BUTTON_RESET,
+  DISPATCHED_EVENT_BUTTON_E_STOP,
+  DISPATCHED_EVENT_SENSOR_ENTRANCE,
+  DISPATCHED_EVENT_SENSOR_HEIGHT,
+  DISPATCHED_EVENT_SENSOR_SWITCH,
+  DISPATCHED_EVENT_SENSOR_SLIDE,
+  DISPATCHED_EVENT_SENSOR_EXIT,
+  DISPATCHED_EVENT_SERIAL_DATA,
+  DISPATCHED_EVENT_SERIAL_MSG,
+  DISPATCHED_EVENT_SERIAL_ERR,
+  DISPATCHED_EVENT_SERIAL_UNK,
+  DISPATCHED_EVENT_SEG1_EXCEEDED,
+  DISPATCHED_EVENT_SEG2_EXCEEDED,
+  DISPATCHED_EVENT_SEG3_EXCEEDED,
+  DISPATCHED_EVENT_SLIDE_FULL,
+  DISPATCHED_EVENT_OPEN_SWITCH,
+  DISPATCHED_EVENT_TURN_TOKEN,
+  DISPATCHED_EVENT_REMOVE_TOKEN,
+  DISPATCHED_EVENT_TOKEN_FINISHED,
+  DISPATCHED_EVENT_MAX
+};
+
+}
 
 namespace util {
 
@@ -277,8 +310,8 @@ namespace serial_bus {
  **/
 enum telegram_type {
   MSG  = 0,  // Nachricht (keine Daten)
-  DATA = 1,  // Daten werden Ã¼bertragen
-  ERR  = 2   // letzte packet neu senden
+  DATA = 1,  // Daten werden übertragen
+  ERR  = 2   // Letztes Paket neu senden
 };
 
 /**
@@ -288,9 +321,9 @@ enum msg_type {
   ERR_STOP = 0,  // Fehler auf einem Band, stoppen
   ERR_QUIT = 1,  // Fehler quittiert
   RESUME   = 2,  // Weiterlaufen/Start
-  B2_FREE  = 3,  // Band 2 wieder frei von Puk
-  E_STOP   = 4,  // Estop gedrÃ¼ckt
-  STOP     = 5,  // Stop taste gedrÃ¼ckt
+  B2_FREE  = 3,  // Band 2 wieder frei von Puck
+  E_STOP   = 4,  // E-Stop gedrückt
+  STOP     = 5,  // Stop Taste gedrückt
   NOTHING  = 6   // Keine MSG
 };
 
