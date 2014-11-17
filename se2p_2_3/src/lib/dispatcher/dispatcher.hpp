@@ -29,6 +29,7 @@
 #include "lib/dispatcher/abstract_dispatcher.hpp"
 #include "lib/util/abstract_singleton.hpp"
 
+#include <queue>
 #include <cstddef>
 
 namespace se2 {
@@ -56,24 +57,8 @@ struct dispatcher : public abstract_dispatcher
    *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
    *                 dieses Event erreicht ist
    **/
-  virtual bool register_listener(transition* listener,
+  virtual bool register_listener(fsm::events* listener,
                                  hal::event_values event);
-
-  /**
-   * Unregistriert einen Listener von einem Event.
-   * @param listener Pointer auf den Status
-   * @param event    welches nicht mehr gehoert werden soll
-   * @return TRUE    nach erfoglreichen entfernen
-   *         FALSE   listener hat nicht auf das event gehorcht
-   **/
-  virtual bool unregister_listener(transition* listener,
-                                   hal::event_values event);
-
-  /**
-   * Unregistriert einen Listener von allen Events.
-   * @param listener Pointer
-   **/
-  virtual void unregister_from_all(transition* listener);
 
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
@@ -106,9 +91,8 @@ struct dispatcher : public abstract_dispatcher
    **/
   virtual void destroy();
 
-  static const size_t m_max_listeners = 10;
-  transition*         m_listeners[DISPATCHED_EVENT_MAX][m_max_listeners];
-  func_t              m_functions[DISPATCHED_EVENT_MAX];
+  std::queue<fsm::events*> m_listeners[DISPATCHED_EVENT_MAX];
+  func_t                   m_functions[DISPATCHED_EVENT_MAX];
 };
 
 } // namespace dispatch

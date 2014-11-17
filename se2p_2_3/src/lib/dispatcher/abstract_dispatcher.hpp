@@ -29,15 +29,13 @@
 #include "lib/constants.hpp"
 
 namespace se2 {
+namespace fsm {
+class events;
+class token;
+}
 namespace dispatch {
 
-/**
- * TODO: Muss geandert werden wenn FSM fertig
- **/
-class transition;
-class context;
-
-typedef void (transition::*func_t)(void);
+typedef void (fsm::events::*func_t)(void);
 
 /**
  * Dispatcher Interface
@@ -60,24 +58,8 @@ struct abstract_dispatcher {
    *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
    *                 dieses Event erreicht ist
    **/
-  virtual bool register_listener(transition* listener,
+  virtual bool register_listener(fsm::events* listener,
                                  hal::event_values event) = 0;
-
-  /**
-   * Unregistriert einen Listener von einem Event.
-   * @param listener Pointer auf den Status
-   * @param event    welches nicht mehr gehoert werden soll
-   * @return TRUE    nach erfoglreichen entfernen
-   *         FALSE   listener hat nicht auf das event gehorcht
-   **/
-  virtual bool unregister_listener(transition* listener,
-                                   hal::event_values event) = 0;
-
-  /**
-   * Unregistriert einen Listener von allen Events.
-   * @param listener Pointer
-   **/
-  virtual void unregister_from_all(transition* listener) = 0;
 
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert

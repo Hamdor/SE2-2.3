@@ -24,6 +24,7 @@
 
 #include "lib/dispatcher/dispatcher.hpp"
 #include "lib/util/logging.hpp"
+#include "lib/fsm/events.hpp"
 
 using namespace se2::hal;
 using namespace se2::util;
@@ -42,47 +43,23 @@ dispatcher::~dispatcher() {
   instance = 0;
 }
 
-bool dispatcher::register_listener(transition* listener,
+bool dispatcher::register_listener(fsm::events* listener,
                                    hal::event_values event) {
   dispatcher_events devent = dispatcher::map_from_event_values(event);
   if (devent == DISPATCHED_EVENT_MAX) {
     return false;
   }
-  for (size_t i = 0; i < m_max_listeners; ++i) {
-    if (m_listeners[devent][i] == NULL) {
-      m_listeners[devent][i] = listener;
-      return true;
-    }
-  }
-  return false;
-}
-
-bool dispatcher::unregister_listener(transition* listener,
-                                     hal::event_values event) {
-  dispatcher_events devent = dispatcher::map_from_event_values(event);
-  if (devent == DISPATCHED_EVENT_MAX) {
-    return false;
-  }
-  for (size_t i = 0; i < m_max_listeners; ++i) {
-    if (m_listeners[devent][i] == listener) {
-      m_listeners[devent][i] = NULL;
-      return true;
-    }
-  }
-  return false;
-}
-
-void dispatcher::unregister_from_all(transition* listener) {
-
+  m_listeners[devent].push(listener);
+  return true;
 }
 
 void dispatcher::direct_call_event(hal::event_values event) {
   dispatcher_events devent = dispatcher::map_from_event_values(event);
-  for (size_t i = 0; i < m_max_listeners; ++i) {
-    if (m_listeners[devent][i] != NULL) {
-      (m_listeners[devent][i]->*m_functions[devent])();
-    }
+  if (devent == DISPATCHED_EVENT_MAX) {
+    return;
   }
+  (m_listeners[devent].front()->*m_functions[devent])();
+  m_listeners[devent].pop();
 }
 
 dispatcher_events dispatcher::map_from_event_values(
