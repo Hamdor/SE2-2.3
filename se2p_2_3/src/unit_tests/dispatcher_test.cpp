@@ -32,6 +32,9 @@ using namespace se2::util;
 using namespace se2::dispatch;
 using namespace se2::unit_tests;
 
+int dispatcher_test::s_error = 0;
+event_values dispatcher_test::s_assumed_next = hal::EVENT_BUTTON_START;
+
 dispatcher_test::dispatcher_test()
     : m_dispatcher(NULL), m_error(0) {
   // nop
@@ -53,6 +56,7 @@ int dispatcher_test::before() {
 int dispatcher_test::init() {
   m_test_functions.push_back(&dispatcher_test::test_mapping);
   m_test_functions.push_back(&dispatcher_test::test_function_address_reg);
+  m_test_functions.push_back(&dispatcher_test::test_small_fsm);
   return 0;
 }
 
@@ -186,3 +190,202 @@ int dispatcher_test::test_function_address_reg() {
   return m_error;
 }
 
+int dispatcher_test::test_small_fsm() {
+  class state : public fsm::events {
+
+    void register_for_next(event_values assumed, event_values next) {
+      if (dispatcher_test::s_assumed_next != assumed) {
+        ++s_error;
+      }
+      dispatcher_test::s_assumed_next = next;
+      dispatcher* disp = TO_DISPATCHER(
+          singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+      disp->register_listener(this, next);
+    }
+
+    void dispatched_event_button_start() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_button_start()" << std::endl;
+#endif
+      register_for_next(EVENT_BUTTON_START, EVENT_BUTTON_STOP);
+    }
+
+    void dispatched_event_button_stop() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_button_stop()" << std::endl;
+#endif
+      register_for_next(EVENT_BUTTON_STOP, EVENT_BUTTON_RESET);
+    }
+
+    void dispatched_event_button_reset() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_button_reset()" << std::endl;
+#endif
+      register_for_next(EVENT_BUTTON_RESET, EVENT_BUTTON_E_STOP);
+    }
+
+    void dispatched_event_button_e_stop() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_button_e_stop()" << std::endl;
+#endif
+      register_for_next(EVENT_BUTTON_E_STOP, EVENT_SENSOR_ENTRANCE);
+    }
+
+    void dispatched_event_sensor_entrance() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_sensor_entrance()" << std::endl;
+#endif
+      register_for_next(EVENT_SENSOR_ENTRANCE, EVENT_SENSOR_HEIGHT);
+    }
+
+    void dispatched_event_sensor_height() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_sensor_height()" << std::endl;
+#endif
+      register_for_next(EVENT_SENSOR_HEIGHT, EVENT_SENSOR_SWITCH);
+    }
+
+    void dispatched_event_sensor_switch() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_sensor_switch()" << std::endl;
+#endif
+      register_for_next(EVENT_SENSOR_SWITCH, EVENT_SENSOR_SLIDE);
+    }
+
+    void dispatched_event_sensor_slide() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_sensor_slide()" << std::endl;
+#endif
+      register_for_next(EVENT_SENSOR_SLIDE, EVENT_SENSOR_EXIT);
+    }
+
+    void dispatched_event_sensor_exit() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_sensor_exit()" << std::endl;
+#endif
+      register_for_next(EVENT_SENSOR_EXIT, EVENT_SERIAL_DATA);
+    }
+
+    void dispatched_event_serial_data() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_serial_data()" << std::endl;
+#endif
+      register_for_next(EVENT_SERIAL_DATA, EVENT_SERIAL_MSG);
+    }
+
+    void dispatched_event_serial_msg() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_serial_msg()" << std::endl;
+#endif
+      register_for_next(EVENT_SERIAL_MSG, EVENT_SERIAL_ERR);
+    }
+
+    void dispatched_event_serial_err() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_serial_err()" << std::endl;
+#endif
+      register_for_next(EVENT_SERIAL_ERR, EVENT_SERIAL_UNK);
+    }
+
+    void dispatched_event_serial_unk() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_serial_unk()" << std::endl;
+#endif
+      register_for_next(EVENT_SERIAL_UNK, EVENT_SEG1_EXCEEDED);
+    }
+
+    void dispatched_event_seg1_exceeded() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_seg1_exceeded()" << std::endl;
+#endif
+      register_for_next(EVENT_SEG1_EXCEEDED, EVENT_SEG2_EXCEEDED);
+    }
+
+    void dispatched_event_seg2_exceeded() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_seg2_exceeded()" << std::endl;
+#endif
+      register_for_next(EVENT_SEG2_EXCEEDED, EVENT_SEG3_EXCEEDED);
+    }
+
+    void dispatched_event_seg3_exceeded() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_seg3_exceeded()" << std::endl;
+#endif
+      register_for_next(EVENT_SEG3_EXCEEDED, EVENT_SLIDE_FULL);
+    }
+
+    void dispatched_event_slide_full() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_slide_full()" << std::endl;
+#endif
+      register_for_next(EVENT_SLIDE_FULL, EVENT_OPEN_SWITCH);
+    }
+
+    void dispatched_event_open_switch() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_open_switch()" << std::endl;
+#endif
+      register_for_next(EVENT_OPEN_SWITCH, EVENT_TURN_TOKEN);
+    }
+
+    void dispatched_event_turn_token() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_turn_token()" << std::endl;
+#endif
+      register_for_next(EVENT_TURN_TOKEN, EVENT_REMOVE_TOKEN);
+    }
+
+    void dispatched_event_remove_token() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_remove_token()" << std::endl;
+#endif
+      register_for_next(EVENT_REMOVE_TOKEN, EVENT_TOKEN_FINISHED);
+    }
+
+    void dispatched_event_token_finished() {
+#ifdef PRINT_TRANSITIONS
+      std::cout << "dispatched_event_token_finished()" << std::endl;
+#endif
+      if (dispatcher_test::s_assumed_next != EVENT_TOKEN_FINISHED) {
+        ++s_error;
+      }
+    }
+  };
+
+  class fsm {
+   public:
+    fsm() : m_state(new state) {
+      dispatcher* disp = TO_DISPATCHER(
+          singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+      disp->register_listener(m_state, EVENT_BUTTON_START);
+    }
+    ~fsm() {
+      delete m_state;
+    }
+    state* m_state;
+  };
+  fsm f;
+  m_dispatcher->direct_call_event(EVENT_BUTTON_START);
+  m_dispatcher->direct_call_event(EVENT_BUTTON_STOP);
+  m_dispatcher->direct_call_event(EVENT_BUTTON_RESET);
+  m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP);
+  m_dispatcher->direct_call_event(EVENT_SENSOR_ENTRANCE);
+  m_dispatcher->direct_call_event(EVENT_SENSOR_HEIGHT);
+  m_dispatcher->direct_call_event(EVENT_SENSOR_SWITCH);
+  m_dispatcher->direct_call_event(EVENT_SENSOR_SLIDE);
+  m_dispatcher->direct_call_event(EVENT_SENSOR_EXIT);
+  m_dispatcher->direct_call_event(EVENT_SERIAL_DATA);
+  m_dispatcher->direct_call_event(EVENT_SERIAL_MSG);
+  m_dispatcher->direct_call_event(EVENT_SERIAL_ERR);
+  m_dispatcher->direct_call_event(EVENT_SERIAL_UNK);
+  m_dispatcher->direct_call_event(EVENT_SEG1_EXCEEDED);
+  m_dispatcher->direct_call_event(EVENT_SEG2_EXCEEDED);
+  m_dispatcher->direct_call_event(EVENT_SEG3_EXCEEDED);
+  m_dispatcher->direct_call_event(EVENT_SLIDE_FULL);
+  m_dispatcher->direct_call_event(EVENT_OPEN_SWITCH);
+  m_dispatcher->direct_call_event(EVENT_TURN_TOKEN);
+  m_dispatcher->direct_call_event(EVENT_REMOVE_TOKEN);
+  m_dispatcher->direct_call_event(EVENT_TOKEN_FINISHED);
+  return s_error;
+}

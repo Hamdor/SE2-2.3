@@ -36,6 +36,11 @@
                        // `DetachInterrupt()` nicht verwendet werden.
                        // Statt­des­sen werden diese Funktionen auf eigene fuer
                        // die Simulation ueberschrieben.
+
+
+//#define PRINT_TRANSITIONS_UNIT_TEST // Aktiviert die Ausgabe der Uebergaenge
+                                      // im Dispatcher Unit Test
+
 /**
  * ----------------------------------------------------------------------------
  * Logging Spezifische Defines

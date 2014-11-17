@@ -75,6 +75,9 @@ void dispatcher::direct_call_event(hal::event_values event) {
   if (devent == DISPATCHED_EVENT_MAX) {
     return;
   }
+  if (m_listeners[devent].empty()) {
+    return;
+  }
   (m_listeners[devent].front()->*m_functions[devent])();
   m_listeners[devent].pop();
 }

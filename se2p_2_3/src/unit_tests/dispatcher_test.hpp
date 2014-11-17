@@ -50,6 +50,12 @@ class dispatcher_test : public abstract_test<dispatcher_test> {
   virtual int init();
   virtual int after();
   virtual int after_class();
+
+  /**
+   * Werte werden fuer die Mini FSM benoetigt
+   **/
+  static int s_error;
+  static hal::event_values s_assumed_next;
  private:
   /**
    * Test fuer das mapping von `event_values` zu `dispatcher_events`.
@@ -62,6 +68,11 @@ class dispatcher_test : public abstract_test<dispatcher_test> {
    * Testet die Belegung im `m_functions` array von `dispatcher`.
    **/
   int test_function_address_reg();
+
+  /**
+   * Eine kleine FSM die alle Events einmal benötigt
+   **/
+  int test_small_fsm();
 
   dispatch::dispatcher* m_dispatcher;
   int m_error;
