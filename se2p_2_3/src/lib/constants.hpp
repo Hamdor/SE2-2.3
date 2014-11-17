@@ -157,6 +157,14 @@ enum light_colors {
 };
 
 /**
+ * Token Typen
+ **/
+enum token_types {
+  NO_METAL = 0,
+  METAL    = 1
+};
+
+/**
  * Rueckgabewerte des Hoehensensors
  * fuer die einzelnen Puck Typen.
  **/
@@ -310,12 +318,12 @@ namespace serial_bus {
  **/
 enum telegram_type {
   MSG  = 0,  // Nachricht (keine Daten)
-  DATA = 1,  // Daten werden Uebertragen
+  DATA = 1,  // Daten werden uebertragen
   ERR  = 2   // Letztes Paket neu senden
 };
 
 /**
- * Nachricht typen
+ * Nachricht Typen
  **/
 enum msg_type {
   ERR_STOP = 0,  // Fehler auf einem Band, stoppen
