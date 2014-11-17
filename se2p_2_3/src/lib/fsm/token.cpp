@@ -19,7 +19,7 @@
  * @file    token.cpp
  * @version 0.1
  *
- * Kontext Klasse für Puck/Token
+ * Kontext Klasse fï¿½r Puck/Token
  **/
 
 #include "token.hpp"
@@ -38,7 +38,7 @@ class token : public events {
   }
 
   virtual ~token(){
-    // Sich aus allen Event-Queues entfernen und das state-Objekt löschen
+    // Sich aus allen Event-Queues entfernen und das state-Objekt lï¿½schen
     dispatcher* disp = dispatcher::getInstance();
     disp->unregister_from_all(this);
     delete m_state;
@@ -65,91 +65,91 @@ class token : public events {
     return !(m_id == 0 && m_height1 == 0 && m_height2 == 0);
   }
 
-  virtual void dispatched_event_button_start(void) {
+  virtual void dispatched_event_button_start() {
     m_state->dispatched_event_button_start();
   }
 
-  virtual void dispatched_event_button_stop(void) {
+  virtual void dispatched_event_button_stop() {
     m_state->dispatched_event_button_stop();
   }
 
-  virtual void dispatched_event_button_reset(void) {
+  virtual void dispatched_event_button_reset() {
     m_state->dispatched_event_button_reset();
   }
 
-  virtual void dispatched_event_button_e_stop(void) {
+  virtual void dispatched_event_button_e_stop() {
     m_state->dispatched_event_button_e_stop();
   }
 
-  virtual void dispatched_event_sensor_entrance(void) {
+  virtual void dispatched_event_sensor_entrance() {
     m_state->dispatched_event_sensor_entrance();
   }
 
-  virtual void dispatched_event_sensor_height(void) {
+  virtual void dispatched_event_sensor_height() {
     m_state->dispatched_event_sensor_height();
   }
 
-  virtual void dispatched_event_sensor_switch(void) {
+  virtual void dispatched_event_sensor_switch() {
     m_state->dispatched_event_sensor_switch();
   }
 
-  virtual void dispatched_event_sensor_slide(void) {
+  virtual void dispatched_event_sensor_slide() {
     m_state->dispatched_event_sensor_slide();
   }
 
-  virtual void dispatched_event_sensor_exit(void) {
+  virtual void dispatched_event_sensor_exit() {
     m_state->dispatched_event_sensor_exit();
   }
 
-  virtual void dispatched_event_serial_data(void) {
+  virtual void dispatched_event_serial_data() {
     m_state->dispatched_event_serial_data();
   }
 
-  virtual void dispatched_event_serial_msg(void) {
+  virtual void dispatched_event_serial_msg() {
     m_state->dispatched_event_serial_msg();
   }
 
-  virtual void dispatched_event_serial_err(void) {
+  virtual void dispatched_event_serial_err() {
     m_state->dispatched_event_serial_err();
   }
 
-  virtual void dispatched_event_serial_unk(void) {
+  virtual void dispatched_event_serial_unk() {
     m_state->dispatched_event_serial_unk();
   }
 
-  virtual void dispatched_event_seg1_exceeded(void) {
+  virtual void dispatched_event_seg1_exceeded() {
     m_state->dispatched_event_seg1_exceeded();
   }
 
-  virtual void dispatched_event_seg2_exceeded(void) {
+  virtual void dispatched_event_seg2_exceeded() {
     m_state->dispatched_event_seg2_exceeded();
   }
 
-  virtual void dispatched_event_seg3_exceeded(void) {
+  virtual void dispatched_event_seg3_exceeded() {
     m_state->dispatched_event_seg3_exceeded();
   }
 
-  virtual void dispatched_event_slide_full(void) {
+  virtual void dispatched_event_slide_full() {
     m_state->dispatched_event_slide_full();
   }
 
-  virtual void dispatched_event_open_switch(void) {
+  virtual void dispatched_event_open_switch() {
     m_state->dispatched_event_open_switch();
   }
 
-  virtual void dispatched_event_turn_token(void) {
+  virtual void dispatched_event_turn_token() {
     m_state->dispatched_event_turn_token();
   }
 
-  virtual void dispatched_event_remove_token(void) {
+  virtual void dispatched_event_remove_token() {
     m_state->dispatched_event_remove_token();
   }
 
-  virtual void dispatched_event_token_finished(void) {
+  virtual void dispatched_event_token_finished() {
     m_state->dispatched_event_token_finished();
   }
 
-  virtual void dispatched_event_max(void) {
+  virtual void dispatched_event_max() {
     m_state->dispatched_event_max();
   }
 

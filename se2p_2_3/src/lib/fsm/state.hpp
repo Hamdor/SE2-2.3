@@ -19,7 +19,7 @@
  * @file    state.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse für Zustandsautomaten
+ * Interface/Abstrakte Klasse fï¿½r Zustandsautomaten
  **/
 
 #ifndef STATE_HPP_
@@ -30,33 +30,36 @@ namespace fsm {
 
 class state : public events {
  public:
-  state(token* t) { }
-  virtual ~state() { }
+  state(token* t) {
+    // nop
+  }
 
-  virtual void dispatched_event_button_start(void);
-  virtual void dispatched_event_button_stop(void);
-  virtual void dispatched_event_button_reset(void);
-  virtual void dispatched_event_button_e_stop(void);
-  virtual void dispatched_event_sensor_entrance(void);
-  virtual void dispatched_event_sensor_height(void);
-  virtual void dispatched_event_sensor_switch(void);
-  virtual void dispatched_event_sensor_slide(void);
-  virtual void dispatched_event_sensor_exit(void);
-  virtual void dispatched_event_serial_data(void);
-  virtual void dispatched_event_serial_msg(void);
-  virtual void dispatched_event_serial_err(void);
-  virtual void dispatched_event_serial_unk(void);
-  virtual void dispatched_event_seg1_exceeded(void);
-  virtual void dispatched_event_seg2_exceeded(void);
-  virtual void dispatched_event_seg3_exceeded(void);
-  virtual void dispatched_event_slide_full(void);
-  virtual void dispatched_event_open_switch(void);
-  virtual void dispatched_event_turn_token(void);
-  virtual void dispatched_event_remove_token(void);
-  virtual void dispatched_event_token_finished(void);
-  virtual void dispatched_event_max(void);
+  virtual ~state() {
+    // nop
+  }
+
+  virtual void dispatched_event_button_start();
+  virtual void dispatched_event_button_stop();
+  virtual void dispatched_event_button_reset();
+  virtual void dispatched_event_button_e_stop();
+  virtual void dispatched_event_sensor_entrance();
+  virtual void dispatched_event_sensor_height();
+  virtual void dispatched_event_sensor_switch();
+  virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_sensor_exit();
+  virtual void dispatched_event_serial_data();
+  virtual void dispatched_event_serial_msg();
+  virtual void dispatched_event_serial_err();
+  virtual void dispatched_event_serial_unk();
+  virtual void dispatched_event_seg1_exceeded();
+  virtual void dispatched_event_seg2_exceeded();
+  virtual void dispatched_event_seg3_exceeded();
+  virtual void dispatched_event_slide_full();
+  virtual void dispatched_event_open_switch();
+  virtual void dispatched_event_turn_token();
+  virtual void dispatched_event_remove_token();
+  virtual void dispatched_event_token_finished();
 };
-
 
 class anonymous_token : public state {
  public:

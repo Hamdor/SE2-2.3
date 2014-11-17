@@ -30,29 +30,31 @@ namespace fsm {
 
 class events {
  public:
-  virtual ~events(void){ };
-  virtual void dispatched_event_button_start(void)    = 0;
-  virtual void dispatched_event_button_stop(void)     = 0;
-  virtual void dispatched_event_button_reset(void)    = 0;
-  virtual void dispatched_event_button_e_stop(void)   = 0;
-  virtual void dispatched_event_sensor_entrance(void) = 0;
-  virtual void dispatched_event_sensor_height(void)   = 0;
-  virtual void dispatched_event_sensor_switch(void)   = 0;
-  virtual void dispatched_event_sensor_slide(void)    = 0;
-  virtual void dispatched_event_sensor_exit(void)     = 0;
-  virtual void dispatched_event_serial_data(void)     = 0;
-  virtual void dispatched_event_serial_msg(void)      = 0;
-  virtual void dispatched_event_serial_err(void)      = 0;
-  virtual void dispatched_event_serial_unk(void)      = 0;
-  virtual void dispatched_event_seg1_exceeded(void)   = 0;
-  virtual void dispatched_event_seg2_exceeded(void)   = 0;
-  virtual void dispatched_event_seg3_exceeded(void)   = 0;
-  virtual void dispatched_event_slide_full(void)      = 0;
-  virtual void dispatched_event_open_switch(void)     = 0;
-  virtual void dispatched_event_turn_token(void)      = 0;
-  virtual void dispatched_event_remove_token(void)    = 0;
-  virtual void dispatched_event_token_finished(void)  = 0;
-  virtual void dispatched_event_max(void)             = 0;
+  virtual ~events(){
+    // nop
+  }
+
+  virtual void dispatched_event_button_start()    = 0;
+  virtual void dispatched_event_button_stop()     = 0;
+  virtual void dispatched_event_button_reset()    = 0;
+  virtual void dispatched_event_button_e_stop()   = 0;
+  virtual void dispatched_event_sensor_entrance() = 0;
+  virtual void dispatched_event_sensor_height()   = 0;
+  virtual void dispatched_event_sensor_switch()   = 0;
+  virtual void dispatched_event_sensor_slide()    = 0;
+  virtual void dispatched_event_sensor_exit()     = 0;
+  virtual void dispatched_event_serial_data()     = 0;
+  virtual void dispatched_event_serial_msg()      = 0;
+  virtual void dispatched_event_serial_err()      = 0;
+  virtual void dispatched_event_serial_unk()      = 0;
+  virtual void dispatched_event_seg1_exceeded()   = 0;
+  virtual void dispatched_event_seg2_exceeded()   = 0;
+  virtual void dispatched_event_seg3_exceeded()   = 0;
+  virtual void dispatched_event_slide_full()      = 0;
+  virtual void dispatched_event_open_switch()     = 0;
+  virtual void dispatched_event_turn_token()      = 0;
+  virtual void dispatched_event_remove_token()    = 0;
+  virtual void dispatched_event_token_finished()  = 0;
 };
 
 } // namespace fsm
