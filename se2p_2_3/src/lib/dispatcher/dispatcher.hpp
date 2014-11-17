@@ -28,6 +28,7 @@
 #include "config.h"
 #include "lib/dispatcher/abstract_dispatcher.hpp"
 #include "lib/util/abstract_singleton.hpp"
+#include "lib/util/HAWThread.hpp"
 
 #include <queue>
 #include <cstddef>
@@ -42,7 +43,8 @@ class singleton_mgr;
 namespace dispatch {
 
 struct dispatcher : public abstract_dispatcher
-                  , public util::abstract_singleton {
+                  , public util::abstract_singleton
+                  , public util::HAWThread {
   friend unit_tests::dispatcher_test;
   friend util::singleton_mgr;
   /**
@@ -93,6 +95,10 @@ struct dispatcher : public abstract_dispatcher
    * Zerstoerung des Singleton
    **/
   virtual void destroy();
+
+  virtual void execute(void*);
+
+  virtual void shutdown();
 
   std::queue<fsm::events*> m_listeners[DISPATCHED_EVENT_MAX];
   func_t                   m_functions[DISPATCHED_EVENT_MAX];
