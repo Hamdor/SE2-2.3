@@ -157,8 +157,8 @@ enum light_colors {
 };
 
 /**
- * Rueckgabewerte des H�hensensors
- * f�r die einzelnen Puck Typen.
+ * Rueckgabewerte des Hoehensensors
+ * fuer die einzelnen Puck Typen.
  **/
 enum height_values {
 #if defined(FESTO_3)
