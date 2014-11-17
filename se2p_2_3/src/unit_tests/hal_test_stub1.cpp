@@ -98,14 +98,14 @@ int hal_test_stub1::switch_test() {
 }
 
 int hal_test_stub1::button_led_test() {
-  m_hal->set_led_state(START_LED, true);
-  m_hal->set_led_state(START_LED, false);
-  m_hal->set_led_state(RESET_LED, true);
-  m_hal->set_led_state(RESET_LED, false);
-  m_hal->set_led_state(Q1_LED, true);
-  m_hal->set_led_state(Q1_LED, false);
-  m_hal->set_led_state(Q2_LED, true);
-  m_hal->set_led_state(Q2_LED, false);
+  m_hal->set_led_state(LED_START, true);
+  m_hal->set_led_state(LED_START, false);
+  m_hal->set_led_state(LED_RESET, true);
+  m_hal->set_led_state(LED_RESET, false);
+  m_hal->set_led_state(LED_Q1, true);
+  m_hal->set_led_state(LED_Q1, false);
+  m_hal->set_led_state(LED_Q2, true);
+  m_hal->set_led_state(LED_Q2, false);
   return 0;
 }
 
@@ -120,23 +120,23 @@ int hal_test_stub1::light_test() {
 }
 
 int hal_test_stub1::light_barrier_test() {
-  if (m_hal->obj_in_light_barrier(ENTRACE_SENSOR)) {
+  if (m_hal->obj_in_light_barrier(SENSOR_ENTRANCE)) {
     m_error++;
     LOG_ERROR("obj in entrace_sensor")
   }
-  if (m_hal->obj_in_light_barrier(HEIGHT_SENSOR)) {
+  if (m_hal->obj_in_light_barrier(SENSOR_HEIGHT)) {
     m_error++;
     LOG_ERROR("obj in height_sensor")
   }
-  if (m_hal->obj_in_light_barrier(SWITCH_SENSOR)) {
+  if (m_hal->obj_in_light_barrier(SENSOR_SWITCH)) {
     m_error++;
     LOG_ERROR("obj in switch_sensor")
   }
-  if (m_hal->obj_in_light_barrier(SLIGHT_SENSOR)) {
+  if (m_hal->obj_in_light_barrier(SENSOR_SLIDE)) {
     m_error++;
     LOG_ERROR("obj in slight_sensor")
   }
-  if (m_hal->obj_in_light_barrier(EXIT_SENSOR)) {
+  if (m_hal->obj_in_light_barrier(SENSOR_EXIT)) {
     m_error++;
     LOG_ERROR("obj in exit_sensor")
   }

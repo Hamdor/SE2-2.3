@@ -129,7 +129,7 @@ bool hwaccess::is_switch_open() const {
   return !m_io->inbit(PORTB, SWITCH_OPEN_BIT);
 }
 
-void hwaccess::set_led_state(enum button_leds led, bool on) {
+void hwaccess::set_led_state(enum leds led, bool on) {
   m_io->outbit(PORTC, static_cast<uint8_t>(led), on);
 }
 

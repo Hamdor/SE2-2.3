@@ -33,18 +33,18 @@
 #define SWITCH_BIT 4
 
 /**
- * Bit Position für geöffnete Weiche Sensor auf Port B
+ * Bit Position fuer geoeffnete Weiche Sensor auf Port B
  **/
 #define SWITCH_OPEN_BIT 5
 
 /**
- * Bit Position für Höhensensor auf Port B
+ * Bit Position fuer Hoehensensor auf Port B
  * (Tolleranzbereich, nicht Absolutwert)
  **/
 #define HEIGHT_BIT 2
 
 /**
- * Bit Position für Metallsensor auf Port B
+ * Bit Position fuer Metallsensor auf Port B
  **/
 #define METAL_BIT 4
 
@@ -59,7 +59,7 @@
 #define IOCTLADDR IOBASE + 0x03 // Register zum Definieren der input/output Ports
 
 /**
- * Maske für das Control-Register
+ * Maske fuer das Control-Register
  **/
 #define IOCTLPORT 0x8A
 
@@ -106,7 +106,7 @@ enum port_num {
 };
 
 /**
- * Verfügbare Modi des Motor
+ * Verfuegbare Modi des Motor
  **/
 enum motor_modes {
   MOTOR_RIGHT = 0,
@@ -117,7 +117,7 @@ enum motor_modes {
 };
 
 /**
- * Verfügbare LEDs
+ * Verfuegbare LEDs
  **/
 enum leds {
   LED_START = 0,
@@ -127,13 +127,13 @@ enum leds {
 };
 
 /**
- * Verfügbare Knöpfe
+ * Verfuegbare Knoepfe
  **/
 enum buttons {
-  BUTTON_START = 4, // 1 => gedrückt
-  BUTTON_STOP  = 5, // 1 => NICHT gedrückt
-  BUTTON_RESET = 6, // 1 => gedrückt
-  BUTTON_ESTOP = 7  // 1 => NICHT gedrückt
+  BUTTON_START = 4, // 1 => gedrueckt
+  BUTTON_STOP  = 5, // 1 => NICHT gedrueckt
+  BUTTON_RESET = 6, // 1 => gedrueckt
+  BUTTON_ESTOP = 7  // 1 => NICHT gedrueckt
 };
 
 /**
@@ -141,7 +141,7 @@ enum buttons {
  **/
 enum light_barriers {
   SENSOR_ENTRANCE = 0, // Einlauf
-  SENSOR_HEIGHT   = 1, // Höhensensor
+  SENSOR_HEIGHT   = 1, // Hoehensensor
   SENSOR_SWITCH   = 3, // Weiche
   SENSOR_SLIDE    = 6, // Rutsche
   SENSOR_EXIT     = 7  // Auslauf
@@ -157,8 +157,8 @@ enum light_colors {
 };
 
 /**
- * Rueckgabewerte des Höhensensors
- * für die einzelnen Puck Typen.
+ * Rueckgabewerte des Hï¿½hensensors
+ * fï¿½r die einzelnen Puck Typen.
  **/
 enum height_values {
 #if defined(FESTO_3)
@@ -190,12 +190,12 @@ enum height_values {
 };
 
 /**
- * Defines für `event_values` Bereiche
+ * Defines fuer `event_values` Bereiche
  **/
 #define EVENT_BASE 0x01
 #define EVENT_PORT_A_OFFSET 0x00
 #define EVENT_PORT_C_OFFSET 0x08
-#define EVENT_SERIAL_START (EVENT_BASE << EXIT_SENSOR                         \
+#define EVENT_SERIAL_START (EVENT_BASE << SENSOR_EXIT                         \
                                        << EVENT_PORT_C_OFFSET) | 0x01
 /**
  * Pulse Message Values
@@ -207,7 +207,7 @@ enum height_values {
  *
  * Events Port B:
  *   EVENT_SENSOR_ENTRANCE Lichtschranke am Band einlauf getoggelt
- *   EVENT_SENSOR_HEIGHT   Lichtschranke am Höhensensor getoggelt
+ *   EVENT_SENSOR_HEIGHT   Lichtschranke am Hoehensensor getoggelt
  *   EVENT_SENSOR_SWITCH   Lichtschranke am Switch getoggelt
  *   EVENT_SENSOR_SLIDE    Lichtschranke der Rutsche getoggelt
  *   EVENT_SENSOR_EXIT     Lichtschranke am Ausgang des Bandes getoggelt
@@ -220,11 +220,11 @@ enum height_values {
  *                         (Fehlerhafte Nachricht?)
  *
  * Timer Events:
- *   EVENT_SEG1_EXCEEDED   Token zwischen Einlauf und Höhenmessung (Segment 1)
- *   EVENT_SEG2_EXCEEDED   Token zwischen Höhenmessung und Weiche  (Segment 2)
+ *   EVENT_SEG1_EXCEEDED   Token zwischen Einlauf und Hoehenmessung (Segment 1)
+ *   EVENT_SEG2_EXCEEDED   Token zwischen Hoehenmessung und Weiche  (Segment 2)
  *   EVENT_SEG3_EXCEEDED   Token zwischen Weiche und Auslauf (Segment 3)
  *   EVENT_SLIDE_FULL      Rutsche ist voll wenn abgelaufen
- *   EVENT_OPEN_SWITCH     Öffnungsdauer der Weiche
+ *   EVENT_OPEN_SWITCH     Oeffnungsdauer der Weiche
  *   EVENT_TURN_TOKEN      Zeit zum Wenden eines Pucks
  *   EVENT_REMOVE_TOKEN    Zeit zum Entfernen eines Pucks
  *   EVENT_TOKEN_FINISHED  Zeit bis der Puck das Ende von Band 2 erreicht hat
@@ -262,7 +262,7 @@ enum event_values {
 namespace dispatch {
 
 /**
- * Interne Events für Dispatcher Matrix
+ * Interne Events fuer Dispatcher Matrix
  * Bildet von `event_values` auf Dispatcher interne `dispatcher_events` ab
  **/
 enum dispatcher_events {
@@ -310,7 +310,7 @@ namespace serial_bus {
  **/
 enum telegram_type {
   MSG  = 0,  // Nachricht (keine Daten)
-  DATA = 1,  // Daten werden übertragen
+  DATA = 1,  // Daten werden Uebertragen
   ERR  = 2   // Letztes Paket neu senden
 };
 
@@ -322,8 +322,8 @@ enum msg_type {
   ERR_QUIT = 1,  // Fehler quittiert
   RESUME   = 2,  // Weiterlaufen/Start
   B2_FREE  = 3,  // Band 2 wieder frei von Puck
-  E_STOP   = 4,  // E-Stop gedrückt
-  STOP     = 5,  // Stop Taste gedrückt
+  E_STOP   = 4,  // E-Stop gedrueckt
+  STOP     = 5,  // Stop Taste gedrueckt
   NOTHING  = 6   // Keine MSG
 };
 
