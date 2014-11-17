@@ -156,4 +156,5 @@ void dispatcher::shutdown() {
   if (rc == -1) {
     perror("dispatcher::shutdown()");
   }
+  ConnectDetach(coid);
 }
