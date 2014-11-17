@@ -79,16 +79,16 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_BUTTON_RESET);
   m_error += test_single_mapping_equal(EVENT_BUTTON_E_STOP,
                                        DISPATCHED_EVENT_BUTTON_E_STOP);
-  m_error += test_single_mapping_equal(EVENT_ENTRACE_SENSOR,
-                                       DISPATCHED_EVENT_ENTRACE_SENSOR);
-  m_error += test_single_mapping_equal(EVENT_HEIGHT_SENSOR,
-                                       DISPATCHED_EVENT_HEIGHT_SENSOR);
-  m_error += test_single_mapping_equal(EVENT_SWITCH_SENSOR,
-                                       DISPATCHED_EVENT_SWITCH_SENSOR);
-  m_error += test_single_mapping_equal(EVENT_SLIGHT_SENSOR,
-                                       DISPATCHED_EVENT_SLIGHT_SENSOR);
-  m_error += test_single_mapping_equal(EVENT_EXIT_SENSOR,
-                                       DISPATCHED_EVENT_EXIT_SENSOR);
+  m_error += test_single_mapping_equal(EVENT_SENSOR_ENTRANCE,
+                                       DISPATCHED_EVENT_SENSOR_ENTRANCE);
+  m_error += test_single_mapping_equal(EVENT_SENSOR_HEIGHT,
+                                       DISPATCHED_EVENT_SENSOR_HEIGHT);
+  m_error += test_single_mapping_equal(EVENT_SENSOR_SWITCH,
+                                       DISPATCHED_EVENT_SENSOR_SWITCH);
+  m_error += test_single_mapping_equal(EVENT_SENSOR_SLIDE,
+                                       DISPATCHED_EVENT_SENSOR_SLIDE);
+  m_error += test_single_mapping_equal(EVENT_SENSOR_EXIT,
+                                       DISPATCHED_EVENT_SENSOR_EXIT);
   m_error += test_single_mapping_equal(EVENT_SERIAL_DATA,
                                        DISPATCHED_EVENT_SERIAL_DATA);
   m_error += test_single_mapping_equal(EVENT_SERIAL_MSG,
