@@ -34,7 +34,6 @@ int main(int argc, char *argv[]) {
 #ifdef SIMULATION
   IOaccess_open();
 #endif
-#ifdef UNIT_TESTS
   /**
    * Unit Tests
    **/
@@ -49,15 +48,6 @@ int main(int argc, char *argv[]) {
 #ifdef HAS_SERIAL_INTERFACE
   cout << "run `serial_test`     errors: "
        << test_suite<serial_test>().run()     << endl;
-#endif
-#else
-  /**
-   * Main programm kommt hier rein
-   **/
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->open_switch();
-  sleep(1);
-  hal->close_switch();
 #endif
   singleton_mgr::shutdown();
 #ifdef SIMULATION

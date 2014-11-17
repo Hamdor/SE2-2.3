@@ -56,9 +56,6 @@ int dispatcher_test::init() {
 
 
 int dispatcher_test::after() {
-  // Instanzen loeschen, damit der naechste
-  // Test frische Instanzen bekommt
-  singleton_mgr::shutdown();
   return 0;
 }
 
@@ -115,3 +112,4 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_TOKEN_FINISHED);
   return m_error;
 }
+

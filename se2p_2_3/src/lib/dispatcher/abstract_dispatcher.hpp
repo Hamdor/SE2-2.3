@@ -31,7 +31,6 @@
 namespace se2 {
 namespace fsm {
 class events;
-class token;
 }
 namespace dispatch {
 
