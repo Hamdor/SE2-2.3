@@ -207,6 +207,5 @@ void hwaccess::initialize() {
 }
 
 void hwaccess::destroy() {
-  LOG_TRACE("")
   stop_isr();
 }

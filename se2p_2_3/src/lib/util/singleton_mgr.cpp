@@ -79,6 +79,16 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
 }
 
 void singleton_mgr::shutdown() {
+  // Shutdown all Threads
+  HAWThread::shutdownAll();
+  if (dispatcher::instance) {
+    dispatcher::instance->destroy();
+    delete dispatcher::instance;
+  }
+  if (serial_channel::instance) {
+    serial_channel::instance->destroy();
+    delete serial_channel::instance;
+  }
   if (hwaccess::instance) {
     hwaccess::instance->destroy();
     delete hwaccess::instance;
@@ -86,13 +96,5 @@ void singleton_mgr::shutdown() {
   if (logging::instance) {
     logging::instance->destroy();
     delete logging::instance;
-  }
-  if (serial_channel::instance) {
-    serial_channel::instance->destroy();
-    delete serial_channel::instance;
-  }
-  if (dispatcher::instance) {
-    dispatcher::instance->destroy();
-    delete dispatcher::instance;
   }
 }
