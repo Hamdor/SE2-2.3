@@ -28,6 +28,8 @@
 namespace se2 {
 namespace fsm {
 
+using namespace se2::hal;
+
 class token : public events {
  public:
   token();
@@ -42,8 +44,8 @@ class token : public events {
   void set_height2(int height2);
   bool get_is_upside_down();
   void set_is_upside_down(bool b);
-  bool get_is_metal();
-  void set_is_metal(bool b);
+  token_types get_type();
+  void set_type(token_types type);
   bool is_valid();
 
   virtual void dispatched_event_button_start(void);
@@ -75,8 +77,8 @@ class token : public events {
   static int m_id_counter;
   int m_height1;
   int m_height2;
+  token_types m_type;
   bool m_is_upside_down;
-  bool m_is_metal;
 };
 
 } // namespace fsm

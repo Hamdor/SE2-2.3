@@ -25,6 +25,7 @@
 #include "token.hpp"
 
 using namespace se2::fsm;
+using namespace se2::hal;
 
 class token : public events {
  public:
@@ -32,8 +33,8 @@ class token : public events {
     m_id = 0;
     m_height1 = 0;
     m_height2 = 0;
+    m_type = NO_METAL;
     m_is_upside_down = 0;
-    m_is_metal = 0;
   }
 
   virtual ~token(){
@@ -57,8 +58,8 @@ class token : public events {
   bool get_is_upside_down() { return m_is_upside_down; }
   void set_is_upside_down(bool b) { m_is_upside_down = b; }
 
-  bool get_is_metal() { return m_is_metal; }
-  void set_is_metal(bool b) { m_is_metal = b; }
+  token_types get_type() { return m_type; }
+  void set_type(token_types type) { m_type = type; }
 
   bool is_valid() const {
     return !(m_id == 0 && m_height1 == 0 && m_height2 == 0);
@@ -158,8 +159,8 @@ class token : public events {
   static int m_id_counter;
   int m_height1;
   int m_height2;
+  token_types m_type;
   bool m_is_upside_down;
-  bool m_is_metal;
 };
 
 int token::m_id_counter = 1; // Beginne fortlaufende ID's der Pucks bei 1

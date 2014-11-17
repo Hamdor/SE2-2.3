@@ -34,6 +34,7 @@ using namespace se2::fsm;
 using namespace se2::hal;
 using namespace se2::util;
 using namespace se2::dispatcher;
+using namespace se2::serial_bus;
 
 class state : public events {
  protected:
@@ -113,17 +114,31 @@ class b1_realized_object : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_HEIGHT);
-    // TODO:
-    // Motor langsam laufen lassen für eine bestimmte Zeit (1-2 Sekunden?)
-    // Höhenmesswerte auslesen und im Puck ablegen
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    hal->set_motor(MOTOR_SLOW);
+    // TODO: Prüfen, ob Timer für die langsame Strecke notwendig ist
+    // m_token->set_is_upside_down(hal->get_is_upside_down()); // FIXME
+    new (this) b1_height_measurement(this->m_token);
   }
 };
 
 class b1_height_measurement : public state {
  public:
-    // TODO: Lambda-Zustandswechel
-    // 1. Höhe NICHT OK -> b1_token_too_small
-    // 2. Höhe OK       -> b1_valid_height
+  b1_height_measurement(token* t) : state::state(t) {
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+
+    if (hal->obj_has_valid_height()) {
+      m_token->set_height1(hal->get_height_value());
+      hal->set_motor(MOTOR_FAST);
+      new (this) b1_valid_height(this->m_token);
+    } else {
+      hal->set_motor(MOTOR_FAST);
+      hal->close_switch();
+      new (this) b1_token_too_small(this->m_token);
+    }
+  }
+
+  ~b1_height_measurement() { }
 };
 
 class b1_token_too_small : public state {
@@ -140,8 +155,7 @@ class b1_token_too_small : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_SLIDE);
-    // TODO:
-    // Puck wird zu anonymous_token
+    new (this) anonymous_token(this->m_token);
   }
 };
 
@@ -159,8 +173,10 @@ class b1_valid_height : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_SWITCH);
-    // TODO:
-    // Detektieren des Metalkerns
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    hal->open_switch();
+    m_token->set_type(hal->obj_has_metal());
+    new (this) b1_metal_detection(this->m_token);
   }
 };
 
@@ -178,19 +194,32 @@ class b1_metal_detection : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_EXIT);
-    // TODO:
-    // ?
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    hal->close_switch();
+    new (this) b1_exit(this->m_token);
   }
 };
 
 class b1_exit : public state {
  public:
-    // TODO: Lambda-Zustandswechel
-    // 1. Puck NICHT gewendet -> b1_token_upside_down
-    // 2. Puck gewendet       -> b2_realized_object
+  b1_exit(token* t) : state::state(t) {
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+
+    if (m_token->get_is_upside_down()) {
+      hal->set_motor(MOTOR_STOP);
+      // TODO: Springt hier in Fehlerbehandlung
+      new (this) b1_token_upside_down(this->m_token);
+    } else {
+      if (1/* FIXME hal oder dispatcher abfragen, ob Band 2 frei ist */) {
+        new (this) b1_token_ready_for_b2(this->m_token);
+      }
+    }
+  }
+
+  ~b1_exit() { }
 };
 
-class b1_token_upside_down : public state {
+class b1_token_upside_down : public state { // TODO: Wird ausgelagert in eigenen Fehlerzustand
  public:
   b1_token_upside_down(token* t) : state::state(t) {
     // Beginne mit Lauschen auf geeignete Events
@@ -204,9 +233,10 @@ class b1_token_upside_down : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_BUTTON_START);
+
     // TODO:
     // Wenn erfolgreich gewendet -> b1_token_ready_for_b2
-    // (Im Hintergrund läuft sonst der Timer für den Wendevorgang ab)
+
   }
 };
 
@@ -224,11 +254,22 @@ class b1_token_ready_for_b2 : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
     // TODO:
     // 1. Define für Band 2 abfragen
-    // 2. Band 2 muss leer sein
-    // 3. Daten des Pucks an Band 2 schicken?
-    // 4. Puck nach erfolgreicher Übertragung auf Band 1 wieder anonym machen?
+    // 2. Band 2 muss leer sein (Queue von Band 2 mit Größe 1 muss leer sein / anonymous_token)
+          // 3. Wenn alles OK, Motor starten: hal->set_motor(MOTOR_RIGHT);
+
+    // Telegramm fuer den Versand erstellen
+    telegram* tg = new telegram;
+    tg->m_type = m_token->get_type();
+    tg->m_id = m_token->get_id();
+    tg->m_height1 = m_token->get_height1();
+
+    serial->send_telegram(tg); // 4. Daten des Pucks an Band 2 schicken?
+    // TODO: Ausgabe der Puck Daten auf dem Terminal
+    new (this) b2_receive_data(this->m_token);
   }
 };
 
@@ -236,6 +277,31 @@ class b1_token_ready_for_b2 : public state {
 /******************************************************************************
  *                                BAND 2 FSM                                  *
  ******************************************************************************/
+
+
+class b2_receive_data : public state {
+ public:
+  b2_receive_data(token* t) : state::state(t) {
+    // Beginne mit Lauschen auf geeignete Events
+    dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+    disp->register_listener(this->m_token, EVENT_SERIAL_DATA);
+  }
+
+  ~b2_receive_data() { }
+
+  void dispatched_event_serial_data() {
+    // Beende das Lauschen auf geeignete Events
+    dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+    disp->unregister_listener(this->m_token, EVENT_SERIAL_DATA);
+    serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
+
+    // Werte aus Telegramm holen
+    telegram* t = serial->get_telegram();
+    this->m_token->set_id(t->m_id);
+    this->m_token->set_height1(t->m_height1);
+    this->m_token->set_type(t->m_type);
+  }
+};
 
 class b2_realized_object : public state {
  public:
@@ -251,17 +317,33 @@ class b2_realized_object : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_HEIGHT);
-    // TODO:
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    hal->set_motor(MOTOR_SLOW);
+    // TODO: Prüfen, ob Timer für die langsame Strecke notwendig ist
     // 1. Define für Band 2 abfragen
-    // 2. Daten des Pucks von Band 1 anfordern?
+    // m_token->set_is_upside_down(hal->get_is_upside_down()); // FIXME
+    new (this) b2_height_measurement(this->m_token);
   }
 };
 
 class b2_height_measurement : public state {
  public:
-  // TODO: Lambda-Zustandswechel
-  // 1. Puck NICHT gewendet -> b2_token_upside_down
-  // 2. Puck gewendet       -> b2_valid_height
+  b2_height_measurement(token* t) : state::state(t) {
+    // TODO: Define für Band 2 abfragen
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+
+    if (1 /* hal->obj_is_upside_down() */) {
+      hal->set_motor(MOTOR_FAST);
+      hal->close_switch();
+      new (this) b2_token_upside_down(this->m_token);
+    } else {
+      m_token->set_height2(hal->get_height_value());
+      hal->set_motor(MOTOR_FAST);
+      new (this) b2_valid_height(this->m_token);
+    }
+  }
+
+  ~b2_height_measurement() { }
 };
 
 class b2_token_upside_down : public state {
@@ -278,9 +360,7 @@ class b2_token_upside_down : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_SLIDE);
-    // TODO:
-    // 1. Define für Band 2 abfragen
-    // 2. Puck wird zu anonymous_token
+    new (this) anonymous_token(this->m_token);
   }
 };
 
@@ -298,17 +378,27 @@ class b2_valid_height : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_SWITCH);
-    // TODO:
-    // 1. Define für Band 2 abfragen
-    // 2. Detektieren des Metalkerns
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    m_token->set_is_metal(hal->obj_has_metal());
+    new (this) b2_metal_detection(this->m_token);
   }
 };
 
 class b2_metal_detection : public state {
  public:
-  // TODO: Lambda-Zustandswechel
-  // 1. Reihenfolge NICHT korrekt -> b2_is_wrong_order
-  // 2. Reihenfolge korrekt       -> b2_is_correct_order
+  b2_metal_detection() {
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+
+    if (1 /* wrong_order */) { // FIXME
+      hal->set_motor(MOTOR_LEFT);
+      new (this) b2_is_wrong_order(this->m_token);
+    } else {
+      hal->open_switch();
+      new (this) b2_is_correct_order(this->m_token);
+    }
+  }
+
+  ~b2_metal_detection() { }
 };
 
 class b2_is_wrong_order : public state {
@@ -325,10 +415,11 @@ class b2_is_wrong_order : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
-    // TODO:
-    // 1. Define von Band 2 abfragen
-    // 2. Motor von Band 2 anhalten
-    // 3. Entfernungs-Vorgang einleiten und Puck zu anonymous_token machen
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    // TODO 1. Define von Band 2 abfragen
+    hal->set_motor(MOTOR_STOP);// 2. Motor von Band 2 anhalten
+    // TODO: Entfernungs-Vorgang einleiten und dort Puck zu anonymous_token machen
+    // new (this) err_remove_token(this->m_token);
   }
 };
 
@@ -346,9 +437,17 @@ class b2_is_correct_order : public state {
     // Beende das Lauschen auf geeignete Events
     dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
     disp->unregister_listener(this->m_token, EVENT_SENSOR_EXIT);
-    // TODO:
-    // 1. Define für Band 2 abfragen
-    // 2. Weiche schliessen -> hwaccess::close_switch();
-    // 3. Entfernungs-Vorgang einleiten und Puck zu anonymous_token machen
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    // TODO: 1. Define für Band 2 abfragen
+    hal->set_motor(MOTOR_STOP);
+    hal->close_switch();
+    // new (this) token_finished(this->m_token); // Entfernungs-Vorgang einleiten und Puck zu anonymous_token machen
   }
 };
+
+
+/******************************************************************************
+ *                                ERROR FSM                                   *
+ ******************************************************************************/
+
+// class err_b1_...
