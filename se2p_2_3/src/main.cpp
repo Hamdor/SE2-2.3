@@ -18,6 +18,7 @@
   #include "unit_tests/serial_test.hpp"
   #include "unit_tests/hal_test_stub1.hpp"
   #include "unit_tests/hal_test_stub2.hpp"
+  #include "unit_tests/dispatcher_test.hpp"
 #endif
 
 using namespace std;
@@ -37,21 +38,23 @@ int main(int argc, char *argv[]) {
   /**
    * Unit Tests
    **/
-  cout << "run `hal_test_stub1` errors: "
-       << test_suite<hal_test_stub1>().run() << endl;
-  cout << "run `hal_test_stub2` errors: "
-       << test_suite<hal_test_stub2>().run() << endl;
-  cout << "run `irq_tes`        errors: "
-       << test_suite<irq_test>().run()       << endl;
+  cout << "run `hal_test_stub1`  errors: "
+       << test_suite<hal_test_stub1>().run()  << endl;
+  cout << "run `hal_test_stub2`  errors: "
+       << test_suite<hal_test_stub2>().run()  << endl;
+  cout << "run `irq_test`        errors: "
+       << test_suite<irq_test>().run()        << endl;
+  cout << "run `dispatcher_test` errors: "
+       << test_suite<dispatcher_test>().run() << endl;
 #ifdef HAS_SERIAL_INTERFACE
-  cout << "run `serial_test`    errors: "
-       << test_suite<serial_test>().run()    << endl;
+  cout << "run `serial_test`     errors: "
+       << test_suite<serial_test>().run()     << endl;
 #endif
 #else
   /**
    * Main programm kommt hier rein
    **/
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL));
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->open_switch();
   sleep(1);
   hal->close_switch();

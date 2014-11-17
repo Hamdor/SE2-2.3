@@ -16,61 +16,53 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_singleton.hpp
+ * @file    dispatcher_test.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse fuer Singletons
+ * Unit tests des Dispatchers
  **/
 
-#ifndef SE2_SINGLETON_MGR_HPP
-#define SE2_SINGLETON_MGR_HPP
+#ifndef SE2_DISPATCHER_TEST_HPP
+#define SE2_DISPATCHER_TEST_HPP
 
 #include "config.h"
 
-#include "lib/hal/HWaccess.hpp"
-#include "lib/util/logging.hpp"
-#include "lib/serial_bus/serial_channel.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
-
-#include "lib/util/mutex.hpp"
-#include "lib/util/lock_guard.hpp"
-#include "lib/util/abstract_singleton.hpp"
+#include "unit_tests/abstract_test.hpp"
 
 namespace se2 {
-namespace util {
+namespace unit_tests {
 
-enum module_type {
-  HAL_PLUGIN,
-  LOGGER_PLUGIN,
-  SERIAL_PLUGIN,
-  DISPATCHER_PLUGIN
-};
-
-class singleton_mgr {
-  static mutex s_lock_hal;
-  static mutex s_lock_log;
-  static mutex s_lock_serial;
-  static mutex s_lock_dispatcher;
+class dispatcher_test : public abstract_test<dispatcher_test> {
  public:
   /**
-   * Zurgiff auf ein beliebiges Singleton Module
-   * @param  module gibt den `module_type` des angeforderten Modules
-   * @return ein `abstract_singleton` pointer auf das Module
+   * Constructor
    **/
-  static abstract_singleton* get_instance(module_type module);
+  dispatcher_test();
 
   /**
-   * Zerstoert alle Singleton Module
+   * Default Destructor
    **/
-  static void shutdown();
+  ~dispatcher_test();
+
+  virtual int before_class();
+  virtual int before();
+  virtual int init();
+  virtual int after();
+  virtual int after_class();
+ private:
+  /**
+   * Test fuer das mapping von `event_values` zu `dispatcher_events`.
+   * Das Mapping wird von der Funktion `dispatcher::map_from_event_values()`
+   * uebernommen.
+   **/
+  int test_mapping();
+
+  dispatch::dispatcher* m_dispatcher;
+  int m_error;
 };
 
-}
-}
+} // namespace unit_tests
+} // namespace se2
 
-#define TO_HAL(ptr) static_cast<se2::hal::hwaccess*>(ptr)
-#define TO_LOG(ptr) static_cast<se2::util::logging*>(ptr)
-#define TO_SERIAL(ptr) static_cast<se2::serial_bus::serial_channel*>(ptr)
-#define TO_DISPATCHER(ptr) static_cast<se2::dispatch::dispatcher*>(ptr)
-
-#endif // SE2_SINGLETON_MGR_HPP
+#endif // SE2_DISPATCHER_TEST_HPP

@@ -24,13 +24,15 @@
 
 #include "lib/util/singleton_mgr.hpp"
 
-using namespace se2::util;
 using namespace se2::hal;
+using namespace se2::util;
+using namespace se2::dispatch;
 using namespace se2::serial_bus;
 
 mutex singleton_mgr::s_lock_hal;
 mutex singleton_mgr::s_lock_log;
 mutex singleton_mgr::s_lock_serial;
+mutex singleton_mgr::s_lock_dispatcher;
 
 abstract_singleton* singleton_mgr::get_instance(module_type module) {
   if (module == HAL_PLUGIN) {
@@ -57,12 +59,20 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
   } else if (module == SERIAL_PLUGIN) {
     if (!serial_channel::instance) {
       lock_guard guard(s_lock_serial);
-      if(!serial_channel::instance) {
+      if (!serial_channel::instance) {
         serial_channel::instance = new serial_channel();
         serial_channel::instance->initialize();
       }
     }
     return serial_channel::instance;
+  } else if (module == DISPATCHER_PLUGIN) {
+    if (!dispatcher::instance) {
+      lock_guard guard(s_lock_dispatcher);
+      if (!dispatcher::instance) {
+        dispatcher::instance = new dispatcher();
+        dispatcher::instance->initialize();
+      }
+    }
   }
   return NULL;
 }
@@ -79,5 +89,9 @@ void singleton_mgr::shutdown() {
   if (serial_channel::instance) {
     serial_channel::instance->destroy();
     delete serial_channel::instance;
+  }
+  if (dispatcher::instance) {
+    dispatcher::instance->destroy();
+    delete dispatcher::instance;
   }
 }
