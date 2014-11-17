@@ -26,10 +26,12 @@
 
 using namespace se2::util;
 using namespace se2::hal;
+using namespace se2::timer;
 using namespace se2::serial_bus;
 
 mutex singleton_mgr::s_lock_hal;
 mutex singleton_mgr::s_lock_log;
+mutex singleton_mgr::s_lock_timer;
 mutex singleton_mgr::s_lock_serial;
 
 abstract_singleton* singleton_mgr::get_instance(module_type module) {
@@ -63,6 +65,15 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
       }
     }
     return serial_channel::instance;
+  } else if (module == TIMER_PLUGIN) {
+    if (!timer_handler::instance) {
+      lock_guard guard(s_lock_timer);
+      if(!timer_handler::instance) {
+        timer_handler::instance = new timer_handler();
+        timer_handler::instance->initialize();
+      }
+    }
+    return timer_handler::instance;
   }
   return NULL;
 }
@@ -79,5 +90,9 @@ void singleton_mgr::shutdown() {
   if (serial_channel::instance) {
     serial_channel::instance->destroy();
     delete serial_channel::instance;
+  }
+  if (timer_handler::instance) {
+    timer_handler::instance->destroy();
+    delete timer_handler::instance;
   }
 }

@@ -19,7 +19,7 @@
  * @file    abstract_singleton.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse für Singletons
+ * Interface/Abstrakte Klasse fï¿½r Singletons
  **/
 
 #ifndef SE2_ABSTRACT_SINGLETON_HPP
@@ -37,7 +37,7 @@ class abstract_singleton {
   virtual void initialize() = 0;
 
   /**
-   * Zerstörung des Singleton
+   * Zerstoerung des Singleton
    **/
   virtual void destroy() = 0;
  public:

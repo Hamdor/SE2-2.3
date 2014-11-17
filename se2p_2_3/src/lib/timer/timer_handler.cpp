@@ -16,61 +16,34 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_singleton.hpp
+ * @file    timer_handler.cpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse f�r Singletons
+ *  Handler fuer timer
  **/
 
-#ifndef SE2_SINGLETON_MGR_HPP
-#define SE2_SINGLETON_MGR_HPP
-
-#include "config.h"
-
-#include "lib/hal/HWaccess.hpp"
-#include "lib/util/logging.hpp"
 #include "lib/timer/timer_handler.hpp"
-#include "lib/serial_bus/serial_channel.hpp"
 
-#include "lib/util/mutex.hpp"
-#include "lib/util/lock_guard.hpp"
-#include "lib/util/abstract_singleton.hpp"
+using namespace se2::timer;
 
-namespace se2 {
-namespace util {
+timer_handler* timer_handler::instance = 0;
 
-enum module_type {
-  HAL_PLUGIN,
-  LOGGER_PLUGIN,
-  SERIAL_PLUGIN,
-  TIMER_PLUGIN
-};
-
-class singleton_mgr {
-  static mutex s_lock_hal;
-  static mutex s_lock_log;
-  static mutex s_lock_timer;
-  static mutex s_lock_serial;
- public:
-  /**
-   * Zurgiff auf ein beliebiges Singleton Module
-   * @param  module gibt den `module_type` des angeforderten Modules
-   * @return ein `abstract_singleton` pointer auf das Module
-   **/
-  static abstract_singleton* get_instance(module_type module);
-
-  /**
-   * Zerstoert alle Singleton Module
-   **/
-  static void shutdown();
-};
+void timer_handler::initialize() {
 
 }
+
+void timer_handler::destroy() {
+
 }
 
-#define TO_HAL(ptr) static_cast<se2::hal::hwaccess*>(ptr)
-#define TO_LOG(ptr) static_cast<se2::util::logging*>(ptr)
-#define TO_TIMER(ptr) static_cast<se2::timer::timer_handler*>(ptr)
-#define TO_SERIAL(ptr) static_cast<se2::serial_bus::serial_channel*>(ptr)
+timer_handler::timer_handler() {
 
-#endif // SE2_SINGLETON_MGR_HPP
+}
+
+timer_handler::~timer_handler() {
+
+}
+int timer_handler::register_timer(duration time, duration interval, int value) {
+
+  return 0;
+}

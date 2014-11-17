@@ -27,7 +27,8 @@ EXTRA_SRCVPATH+= \
 	$(PROJECT_ROOT)/src/lib/hal  \
 	$(PROJECT_ROOT)/src/lib/serial_bus  \
 	$(PROJECT_ROOT)/src/lib/dispatcher  \
-	$(PROJECT_ROOT)/src/unit_tests
+	$(PROJECT_ROOT)/src/unit_tests      \
+	$(PROJECT_ROOT)/src/lib/timer 
 
 #===== LIBS - a space-separated list of library items to be included in the link.
 LIBS+=ioaccess cpt_terminal
