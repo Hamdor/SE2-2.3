@@ -73,6 +73,7 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
         dispatcher::instance->initialize();
       }
     }
+    return dispatcher::instance;
   }
   return NULL;
 }
