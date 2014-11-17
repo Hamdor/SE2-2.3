@@ -93,7 +93,9 @@ void serial_channel::execute(void*) {
     }
     MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, value);
   }
+#ifndef SIMULATION
   ConnectDetach(coid);
+#endif
 }
 
 void serial_channel::shutdown() {
