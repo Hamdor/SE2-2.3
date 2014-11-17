@@ -70,6 +70,7 @@ void serial_channel::destroy() {
 
 void serial_channel::execute(void*) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  int coid = ConnectAttach(0, 0, hal->get_isr_channel(), 0, 0);
   telegram data;
   while(!isStopped()) {
     std::memset(&data, 0, sizeof(telegram));
@@ -90,7 +91,7 @@ void serial_channel::execute(void*) {
       m_queue.push(data);
       m_cond.broadcast();
     }
-    MsgSendPulse(hal->get_isr_channel(), 0, SERIAL, value);
+    MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, value);
   }
 }
 
