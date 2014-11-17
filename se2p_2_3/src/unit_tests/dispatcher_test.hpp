@@ -58,6 +58,11 @@ class dispatcher_test : public abstract_test<dispatcher_test> {
    **/
   int test_mapping();
 
+  /**
+   * Testet die Belegung im `m_functions` array von `dispatcher`.
+   **/
+  int test_function_address_reg();
+
   dispatch::dispatcher* m_dispatcher;
   int m_error;
 };

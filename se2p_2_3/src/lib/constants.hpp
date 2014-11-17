@@ -56,7 +56,7 @@
 /**
  * Addresse des Control-Registers
  **/
-#define IOCTLADDR IOBASE + 0x03 // Register zum Definieren der input/output Ports
+#define IOCTLADDR IOBASE + 0x03 // Register zum definieren der Ports
 
 /**
  * Maske fuer das Control-Register

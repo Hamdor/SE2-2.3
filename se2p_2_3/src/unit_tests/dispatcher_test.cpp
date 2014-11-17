@@ -25,6 +25,7 @@
 #include "unit_tests/dispatcher_test.hpp"
 #include "lib/util/singleton_mgr.hpp"
 #include "lib/constants.hpp"
+#include "lib/fsm/events.hpp"
 
 using namespace se2::hal;
 using namespace se2::util;
@@ -41,16 +42,17 @@ dispatcher_test::~dispatcher_test() {
 }
 
 int dispatcher_test::before_class() {
+  m_dispatcher = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   return 0;
 }
 
 int dispatcher_test::before() {
-  m_dispatcher = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   return 0;
 }
 
 int dispatcher_test::init() {
   m_test_functions.push_back(&dispatcher_test::test_mapping);
+  m_test_functions.push_back(&dispatcher_test::test_function_address_reg);
   return 0;
 }
 
@@ -110,6 +112,77 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_REMOVE_TOKEN);
   m_error += test_single_mapping_equal(EVENT_TOKEN_FINISHED,
                                        DISPATCHED_EVENT_TOKEN_FINISHED);
+  return m_error;
+}
+
+int test_single_fun_ptr(const func_t rhs, const func_t lhs) {
+  return rhs == lhs ? 0 : 1;
+}
+
+int dispatcher_test::test_function_address_reg() {
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_BUTTON_START],
+      &fsm::events::dispatched_event_button_start);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_BUTTON_STOP],
+      &fsm::events::dispatched_event_button_stop);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_BUTTON_RESET],
+      &fsm::events::dispatched_event_button_reset);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_BUTTON_E_STOP],
+      &fsm::events::dispatched_event_button_e_stop);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_ENTRANCE],
+      &fsm::events::dispatched_event_sensor_entrance);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_HEIGHT],
+      &fsm::events::dispatched_event_sensor_height);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_SWITCH],
+      &fsm::events::dispatched_event_sensor_switch);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_SLIDE],
+      &fsm::events::dispatched_event_sensor_slide);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_EXIT],
+      &fsm::events::dispatched_event_sensor_exit);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_DATA],
+      &fsm::events::dispatched_event_serial_data);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_MSG],
+      &fsm::events::dispatched_event_serial_msg);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_ERR],
+      &fsm::events::dispatched_event_serial_err);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_UNK],
+      &fsm::events::dispatched_event_serial_unk);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG1_EXCEEDED],
+      &fsm::events::dispatched_event_seg1_exceeded);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG2_EXCEEDED],
+      &fsm::events::dispatched_event_seg2_exceeded);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG3_EXCEEDED],
+      &fsm::events::dispatched_event_seg3_exceeded);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SLIDE_FULL],
+      &fsm::events::dispatched_event_slide_full);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_OPEN_SWITCH],
+      &fsm::events::dispatched_event_open_switch);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_TURN_TOKEN],
+      &fsm::events::dispatched_event_turn_token);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_REMOVE_TOKEN],
+      &fsm::events::dispatched_event_remove_token);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_TOKEN_FINISHED],
+      &fsm::events::dispatched_event_token_finished);
   return m_error;
 }
 

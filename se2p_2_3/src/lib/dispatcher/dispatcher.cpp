@@ -42,18 +42,18 @@ dispatcher::dispatcher() {
   m_functions[6]  = &fsm::events::dispatched_event_sensor_switch;
   m_functions[7]  = &fsm::events::dispatched_event_sensor_slide;
   m_functions[8]  = &fsm::events::dispatched_event_sensor_exit;
-  m_functions[10] = &fsm::events::dispatched_event_serial_data;
-  m_functions[11] = &fsm::events::dispatched_event_serial_msg;
-  m_functions[12] = &fsm::events::dispatched_event_serial_err;
-  m_functions[13] = &fsm::events::dispatched_event_serial_unk;
-  m_functions[14] = &fsm::events::dispatched_event_seg1_exceeded;
-  m_functions[16] = &fsm::events::dispatched_event_seg2_exceeded;
-  m_functions[17] = &fsm::events::dispatched_event_seg3_exceeded;
-  m_functions[18] = &fsm::events::dispatched_event_slide_full;
-  m_functions[19] = &fsm::events::dispatched_event_open_switch;
-  m_functions[20] = &fsm::events::dispatched_event_turn_token;
-  m_functions[21] = &fsm::events::dispatched_event_remove_token;
-  m_functions[22] = &fsm::events::dispatched_event_token_finished;
+  m_functions[9]  = &fsm::events::dispatched_event_serial_data;
+  m_functions[10] = &fsm::events::dispatched_event_serial_msg;
+  m_functions[11] = &fsm::events::dispatched_event_serial_err;
+  m_functions[12] = &fsm::events::dispatched_event_serial_unk;
+  m_functions[13] = &fsm::events::dispatched_event_seg1_exceeded;
+  m_functions[14] = &fsm::events::dispatched_event_seg2_exceeded;
+  m_functions[15] = &fsm::events::dispatched_event_seg3_exceeded;
+  m_functions[16] = &fsm::events::dispatched_event_slide_full;
+  m_functions[17] = &fsm::events::dispatched_event_open_switch;
+  m_functions[18] = &fsm::events::dispatched_event_turn_token;
+  m_functions[19] = &fsm::events::dispatched_event_remove_token;
+  m_functions[20] = &fsm::events::dispatched_event_token_finished;
 }
 
 dispatcher::~dispatcher() {

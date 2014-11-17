@@ -33,6 +33,9 @@
 #include <cstddef>
 
 namespace se2 {
+namespace unit_tests {
+class dispatcher_test;
+}
 namespace util {
 class singleton_mgr;
 }
@@ -40,7 +43,7 @@ namespace dispatch {
 
 struct dispatcher : public abstract_dispatcher
                   , public util::abstract_singleton {
-
+  friend unit_tests::dispatcher_test;
   friend util::singleton_mgr;
   /**
    * Default Destuktor

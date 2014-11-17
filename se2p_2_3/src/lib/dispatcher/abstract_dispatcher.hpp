@@ -34,7 +34,7 @@ class events;
 }
 namespace dispatch {
 
-typedef void (fsm::events::*func_t)(void);
+typedef void (fsm::events::*func_t)();
 
 /**
  * Dispatcher Interface
