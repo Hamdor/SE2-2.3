@@ -53,10 +53,7 @@ hwaccess::~hwaccess() {
   hwaccess::instance = NULL;
 }
 
-// Diese Funktion ist eine NOP funktion
-// solange `UNIT_TESTS` nicht definiert ist
 void hwaccess::change_stub(abstract_inout* ptr) {
-#ifdef UNIT_TESTS
   if (!ptr) {
     LOG_ERROR("invalid stub");
     return;
@@ -67,9 +64,6 @@ void hwaccess::change_stub(abstract_inout* ptr) {
   }
   m_io = reinterpret_cast<abstract_inout*>(ptr);
   initialize();
-#else
-  // nop
-#endif
 }
 
 /**

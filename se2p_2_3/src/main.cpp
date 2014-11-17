@@ -8,27 +8,22 @@
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/singleton_mgr.hpp"
 
+#include "unit_tests/irq_test.hpp"
+#include "unit_tests/test_suite.hpp"
+#include "unit_tests/serial_test.hpp"
+#include "unit_tests/hal_test_stub1.hpp"
+#include "unit_tests/hal_test_stub2.hpp"
+#include "unit_tests/dispatcher_test.hpp"
+
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
 
-#ifdef UNIT_TESTS
-  #include "unit_tests/irq_test.hpp"
-  #include "unit_tests/test_suite.hpp"
-  #include "unit_tests/serial_test.hpp"
-  #include "unit_tests/hal_test_stub1.hpp"
-  #include "unit_tests/hal_test_stub2.hpp"
-  #include "unit_tests/dispatcher_test.hpp"
-#endif
-
 using namespace std;
 using namespace se2;
-using namespace se2::util;
 using namespace se2::hal;
-
-#ifdef UNIT_TESTS
-  using namespace se2::unit_tests;
-#endif
+using namespace se2::util;
+using namespace se2::unit_tests;
 
 int main(int argc, char *argv[]) {
 #ifdef SIMULATION
@@ -53,5 +48,6 @@ int main(int argc, char *argv[]) {
 #ifdef SIMULATION
   IOaccess_close();
 #endif
+  cout << "End of main()" << std::endl;
   return EXIT_SUCCESS;
 }
