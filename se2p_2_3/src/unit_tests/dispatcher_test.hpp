@@ -74,6 +74,12 @@ class dispatcher_test : public abstract_test<dispatcher_test> {
    **/
   int test_small_fsm();
 
+  /**
+   * Test fuer den Dispatcher Thread bzw. die verteilung
+   * ueber Pulse Messages
+   **/
+  int dispatcher_thread_test();
+
   dispatch::dispatcher* m_dispatcher;
   int m_error;
 };
