@@ -68,14 +68,16 @@ struct dispatcher : public abstract_dispatcher
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
    * @param Event welches ausgeloest werden soll
-   *       da dann synchronisation zwischen dem Dispatcher Thread
-   *       und dem aufrufendem Thread benoetigt wird.
+   *        da dann synchronisation zwischen dem Dispatcher Thread
+   *        und dem aufrufendem Thread benoetigt wird.
    **/
   virtual void direct_call_event(hal::event_values event);
 
   /**
    * Mappt von `event_values` auf `dispatcher_events`
    * fuer zugriff auf Matrix
+   * @param  val der Wert der in `dispatcher_events` abgebildet werden soll
+   * @return gibt den Wert in `dispatcher_events` zurueck
    **/
   static dispatcher_events map_from_event_values(hal::event_values val);
  private:
@@ -95,6 +97,13 @@ struct dispatcher : public abstract_dispatcher
    * Zerstoerung des Singleton
    **/
   virtual void destroy();
+
+  /**
+   * Diese Funktion behandelt eventuelle Sonderfaelle der einzelnen
+   * Signale. Intern durch ein Switch/Case abgedeckt.
+   * @param buffer eine Referenz auf eine Pulse Message
+   **/
+  void special_case_handling(const _pulse& buffer);
 
   virtual void execute(void*);
 

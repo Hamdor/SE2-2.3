@@ -22,9 +22,11 @@
  * Dispatcher
  **/
 
-#include "lib/dispatcher/dispatcher.hpp"
-#include "lib/util/logging.hpp"
 #include "lib/fsm/events.hpp"
+#include "lib/util/logging.hpp"
+#include "lib/dispatcher/dispatcher.hpp"
+
+#include <cstring>
 
 using namespace se2::hal;
 using namespace se2::util;
@@ -142,11 +144,87 @@ void dispatcher::destroy() {
   shutdown();
 }
 
+void dispatcher::special_case_handling(const _pulse& buffer) {
+  // Fuer eventuelle Spezialfaelle in den Signalen
+  switch(buffer.code) {
+  case INTERRUPT:
+    switch(buffer.value.sival_int) {
+    case EVENT_BUTTON_START:
+      break;
+    case EVENT_BUTTON_STOP:
+      break;
+    case EVENT_BUTTON_RESET:
+      break;
+    case EVENT_BUTTON_E_STOP:
+      break;
+    case EVENT_SENSOR_ENTRANCE:
+      break;
+    case EVENT_SENSOR_HEIGHT:
+      break;
+    case EVENT_SENSOR_SWITCH:
+      break;
+    case EVENT_SENSOR_SLIDE:
+      break;
+    case EVENT_SENSOR_EXIT:
+      break;
+    default:
+      LOG_ERROR("Unkown Interrupt Value")
+      break;
+    }
+    break;
+  case SERIAL:
+    switch(buffer.value.sival_int) {
+    case EVENT_SERIAL_DATA:
+      break;
+    case EVENT_SERIAL_MSG:
+      break;
+    case EVENT_SERIAL_ERR:
+      break;
+    case EVENT_SERIAL_UNK:
+      break;
+    default:
+      LOG_ERROR("Unkown Serial Interface Value")
+      break;
+    }
+    break;
+  case TIMER:
+    switch(buffer.value.sival_int) {
+    case EVENT_SEG1_EXCEEDED:
+      break;
+    case EVENT_SEG2_EXCEEDED:
+      break;
+    case EVENT_SEG3_EXCEEDED:
+      break;
+    case EVENT_SLIDE_FULL:
+      break;
+    case EVENT_OPEN_SWITCH:
+      break;
+    case EVENT_TURN_TOKEN:
+      break;
+    case EVENT_REMOVE_TOKEN:
+      break;
+    case EVENT_TOKEN_FINISHED:
+      break;
+    default:
+      LOG_ERROR("Unkown Timer Value")
+      break;
+    }
+    break;
+  default:
+    LOG_ERROR("Unkown Pulse Code")
+    break;
+  }
+}
+
 void dispatcher::execute(void*) {
-  int chid = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->get_isr_channel();
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  int chid = hal->get_isr_channel();
   struct _pulse buffer;
+  std::memset(&buffer, 0, sizeof(buffer));
   while(!isStopped()) {
     MsgReceivePulse(chid, &buffer, sizeof(_pulse), NULL);
+    special_case_handling(buffer);
+    direct_call_event(static_cast<event_values>(buffer.value.sival_int));
   }
 }
 
