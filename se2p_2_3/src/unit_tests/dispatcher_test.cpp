@@ -71,6 +71,8 @@ int dispatcher_test::after() {
 }
 
 int dispatcher_test::after_class() {
+  // Alle Singletons und Threads nach diesen Test loeschen
+  singleton_mgr::shutdown();
   return 0;
 }
 
