@@ -222,6 +222,8 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
   }
 }
 
+#define SHUTDOWN_CODE -1
+#define SHUTDOWN_VAL  -1
 void dispatcher::execute(void*) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   int chid = hal->get_isr_channel();
@@ -229,6 +231,10 @@ void dispatcher::execute(void*) {
   std::memset(&buffer, 0, sizeof(buffer));
   while(!isStopped()) {
     MsgReceivePulse(chid, &buffer, sizeof(_pulse), NULL);
+    if (buffer.code == SHUTDOWN_CODE
+        && buffer.value.sival_int == SHUTDOWN_VAL) {
+      break;
+    }
     special_case_handling(buffer);
     direct_call_event(static_cast<event_values>(buffer.value.sival_int));
   }
@@ -237,9 +243,11 @@ void dispatcher::execute(void*) {
 void dispatcher::shutdown() {
   // Shutdown message in den ISR Pulse message channel schreiben
   // das sollte den Dispatcher entblockieren.
-  int chid = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->get_isr_channel();
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  int chid = hal->get_isr_channel();
   int coid = ConnectAttach(0, 0, chid, 0, 0);
-  int rc = MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, 0, 0);
+  int rc = MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT,
+                        SHUTDOWN_CODE, SHUTDOWN_VAL);
   if (rc == -1) {
     perror("dispatcher::shutdown()");
   }
