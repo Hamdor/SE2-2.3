@@ -63,9 +63,6 @@ struct abstract_dispatcher {
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
    * @param Event welches ausgeloest werden soll
-   * TODO: Benoetigt? Wuerde die Sache verkomplizieren,
-   *       da dann synchronisation zwischen dem Dispatcher Thread
-   *       und dem aufrufendem Thread benoetigt wird.
    **/
   virtual void direct_call_event(hal::event_values event) = 0;
 };
