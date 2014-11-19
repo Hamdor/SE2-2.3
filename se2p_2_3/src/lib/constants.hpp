@@ -157,14 +157,6 @@ enum light_colors {
 };
 
 /**
- * Token Typen
- **/
-enum token_types {
-  NO_METAL = 0,
-  METAL    = 1
-};
-
-/**
  * Rueckgabewerte des Hoehensensors
  * fuer die einzelnen Puck Typen.
  **/
