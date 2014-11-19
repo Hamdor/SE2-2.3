@@ -25,15 +25,27 @@
 #ifndef TOKEN_HPP_
 #define TOKEN_HPP_
 
+#include <cstdio>
+
+#include "constants.hpp"
+#include "events.hpp"
+
 namespace se2 {
 namespace fsm {
 
-using namespace se2::hal;
-
 class token : public events {
  public:
-  token();
-  virtual ~token();
+  token() : m_state(NULL) {
+    m_id = 0;
+    m_height1 = 0;
+    m_height2 = 0;
+    m_is_metal = false;
+    m_is_upside_down = 0;
+  }
+
+  ~token() { delete m_state; }
+
+  virtual void set_state(events* state) { m_state = state; }
 
   int get_id();
   void set_id(int id);
@@ -44,8 +56,8 @@ class token : public events {
   void set_height2(int height2);
   bool get_is_upside_down();
   void set_is_upside_down(bool b);
-  token_types get_type();
-  void set_type(token_types type);
+  bool get_is_metal();
+  void set_is_metal(bool b);
   bool is_valid();
 
   virtual void dispatched_event_button_start();
@@ -76,7 +88,7 @@ class token : public events {
   static int m_id_counter;
   int m_height1;
   int m_height2;
-  token_types m_type;
+  bool m_is_metal;
   bool m_is_upside_down;
 };
 

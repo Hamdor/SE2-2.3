@@ -25,18 +25,22 @@
 #ifndef STATE_HPP_
 #define STATE_HPP_
 
+#include "events.hpp"
+#include "token.hpp"
+#include "lib/hal/HWaccess.hpp"
+#include "lib/util/singleton_mgr.hpp"
+#include "lib/dispatcher/dispatcher.hpp"
+
 namespace se2 {
 namespace fsm {
 
 class state : public events {
- public:
-  state(token* t) {
-    // nop
-  }
+ protected:
+  token* m_token;
 
-  virtual ~state() {
-    // nop
-  }
+ public:
+  state(token* t) : m_token(t) { }
+  virtual ~state();
 
   virtual void dispatched_event_button_start();
   virtual void dispatched_event_button_stop();
@@ -138,6 +142,14 @@ class b1_token_ready_for_b2 : public state {
 /******************************************************************************
  *                                BAND 2 FSM                                  *
  ******************************************************************************/
+
+class b2_receive_data : public state {
+ public:
+  b2_receive_data(token* t);
+  ~b2_receive_data();
+
+  virtual void dispatched_event_serial_data();
+};
 
 class b2_realized_object : public state {
  public:
