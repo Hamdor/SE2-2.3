@@ -77,10 +77,29 @@ public:
   virtual int after_class();
 
  private:
+  /**
+   * One shot Test
+   **/
   int test_timer_1msec();
+
+  /**
+   * Intervall Test
+   **/
   int test_timer_intervall();
+
+  /**
+   * Pause Test
+   **/
   int test_timer_pause();
+
+  /**
+   * Continue Test
+   **/
   int test_timer_continue();
+
+  /**
+   * Test zum Timer erhoen
+   **/
   int test_timer_add();
 
   timer::timer_handler* m_timer;

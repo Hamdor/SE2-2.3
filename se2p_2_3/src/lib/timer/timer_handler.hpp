@@ -57,6 +57,10 @@ friend class util::singleton_mgr;
    **/
   int register_timer(duration time, duration interval, int value);
 
+  /**
+   * Wechselt den Pulse Message Channel
+   * @param channel id
+   **/
   void change_channel(int chid);
 
   /**
@@ -70,6 +74,10 @@ friend class util::singleton_mgr;
    * @param pos Position des Timers
    **/
   void pause_timer(size_t pos);
+
+  /**
+   * Pausiert alle registrierten Timer
+   **/
   void pause_all();
 
   /**
@@ -77,6 +85,10 @@ friend class util::singleton_mgr;
    * @param pos Position des Timers
    **/
   void continue_timer(size_t pos);
+
+  /**
+   * Setzt alle registrierten Timer fort
+   **/
   void continue_all();
   /**
    * Addiert auf Timer die Werte
@@ -85,6 +97,10 @@ friend class util::singleton_mgr;
    **/
   void add_time(size_t pos, duration time);
 
+  /**
+   * Addiert auf alle Timer die Zeit
+   * @param time zu addierende Zeit
+   **/
   void add_all(duration time);
 
   /**
@@ -93,6 +109,11 @@ friend class util::singleton_mgr;
    * @param time zu subtrahierende Werte
    **/
   void sub_time(size_t pos, duration time);
+
+  /**
+   * Subtrahiert auf alle Timer die Zeit
+   * @param time zu subtrahierende Zeit
+   **/
   void sub_all(duration time);
 
 
