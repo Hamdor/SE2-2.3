@@ -19,11 +19,11 @@
  * @file    state.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse f�r Zustandsautomaten
+ * Interface/Abstrakte Klasse fuer Zustandsautomaten
  **/
 
-#ifndef STATE_HPP_
-#define STATE_HPP_
+#ifndef SE2_STATE_HPP
+#define SE2_STATE_HPP
 
 #include "events.hpp"
 #include "token.hpp"
@@ -206,4 +206,4 @@ class b2_is_correct_order : public state {
 } // namespace fsm
 } // namespace se2
 
-#endif /* STATE_HPP_ */
+#endif // SE2_STATE_HPP

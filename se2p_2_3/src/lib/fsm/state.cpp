@@ -19,7 +19,7 @@
  * @file    state.cpp
  * @version 0.1
  *
- * Klasse für Zustandsautomaten
+ * Klasse fï¿½r Zustandsautomaten
  **/
 
 #include "state.hpp"
@@ -33,31 +33,115 @@ using namespace se2::serial_bus;
 
 state::~state() { delete m_token; }
 
-  /* Zu implementierende Funktionen
-   *
-  void dispatched_event_button_start();
-  void dispatched_event_button_stop();
-  void dispatched_event_button_reset();
-  void dispatched_event_button_e_stop();
-  void dispatched_event_sensor_entrance();
-  void dispatched_event_sensor_height();
-  void dispatched_event_sensor_switch();
-  void dispatched_event_sensor_slide();
-  void dispatched_event_sensor_exit();
-  void dispatched_event_serial_data();
-  void dispatched_event_serial_msg();
-  void dispatched_event_serial_err();
-  void dispatched_event_serial_unk();
-  void dispatched_event_seg1_exceeded();
-  void dispatched_event_seg2_exceeded();
-  void dispatched_event_seg3_exceeded();
-  void dispatched_event_slide_full();
-  void dispatched_event_open_switch();
-  void dispatched_event_turn_token();
-  void dispatched_event_remove_token();
-  void dispatched_event_token_finished();
-  void dispatched_event_max();
-  */
+/* Zu implementierende Funktionen
+ *
+void dispatched_event_button_start();
+void dispatched_event_button_stop();
+void dispatched_event_button_reset();
+void dispatched_event_button_e_stop();
+void dispatched_event_sensor_entrance();
+void dispatched_event_sensor_height();
+void dispatched_event_sensor_switch();
+void dispatched_event_sensor_slide();
+void dispatched_event_sensor_exit();
+void dispatched_event_serial_data();
+void dispatched_event_serial_msg();
+void dispatched_event_serial_err();
+void dispatched_event_serial_unk();
+void dispatched_event_seg1_exceeded();
+void dispatched_event_seg2_exceeded();
+void dispatched_event_seg3_exceeded();
+void dispatched_event_slide_full();
+void dispatched_event_open_switch();
+void dispatched_event_turn_token();
+void dispatched_event_remove_token();
+void dispatched_event_token_finished();
+*/
+
+void state::dispatched_event_button_start() {
+  // nop
+}
+
+void state::dispatched_event_button_stop() {
+  // nop
+}
+
+void state::dispatched_event_button_reset() {
+  // nop
+}
+
+void state::dispatched_event_button_e_stop() {
+  // nop
+}
+
+void state::dispatched_event_sensor_entrance() {
+  // nop
+}
+
+void state::dispatched_event_sensor_height() {
+  // nop
+}
+
+void state::dispatched_event_sensor_switch() {
+  // nop
+}
+
+void state::dispatched_event_sensor_slide() {
+  // nop
+}
+
+
+void state::dispatched_event_sensor_exit() {
+  // nop
+}
+
+void state::dispatched_event_serial_data() {
+  // nop
+}
+
+void state::dispatched_event_serial_msg() {
+  // nop
+}
+
+void state::dispatched_event_serial_err() {
+  // nop
+}
+
+void state::dispatched_event_serial_unk() {
+  // nop
+}
+
+void state::dispatched_event_seg1_exceeded() {
+  // nop
+}
+
+void state::dispatched_event_seg2_exceeded() {
+  // nop
+}
+
+void state::dispatched_event_seg3_exceeded() {
+  // nop
+}
+
+void state::dispatched_event_slide_full() {
+  // nop
+}
+
+void state::dispatched_event_open_switch() {
+  // nop
+}
+
+void state::dispatched_event_turn_token() {
+  // nop
+}
+
+void state::dispatched_event_remove_token() {
+  // nop
+}
+
+void state::dispatched_event_token_finished() {
+  // nop
+}
 
 // anonymous_token
 anonymous_token::anonymous_token(token* t) : state::state(t) {
@@ -73,7 +157,7 @@ void anonymous_token::dispatched_event_sensor_entrance() {
   m_token->set_id(m_token->get_next_id());
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_RIGHT);
-  // Wechsel in den nächsten Zustand
+  // Wechsel in den nï¿½chsten Zustand
   new (this) b1_realized_object(this->m_token);
 }
 
@@ -95,7 +179,7 @@ b1_realized_object::~b1_realized_object() { }
 void b1_realized_object::dispatched_event_sensor_height() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_SLOW);
-  // TODO: Prüfen, ob Timer für die langsame Strecke notwendig ist
+  // TODO: Pruefen, ob Timer fuer die langsame Strecke notwendig ist
   // m_token->set_is_upside_down(hal->get_is_upside_down()); // FIXME
   new (this) b1_height_measurement(this->m_token);
 }
@@ -207,8 +291,8 @@ b1_token_ready_for_b2::~b1_token_ready_for_b2() { }
 void b1_token_ready_for_b2::dispatched_event_sensor_entrance() {
   serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
   // TODO:
-  // 1. Define für Band 2 abfragen
-  // 2. Band 2 muss leer sein (Queue von Band 2 mit Größe 1 muss leer sein / anonymous_token)
+  // 1. Define fuer Band 2 abfragen
+  // 2. Band 2 muss leer sein (Queue von Band 2 mit Groesse 1 muss leer sein / anonymous_token)
         // 3. Wenn alles OK, Motor starten: hal->set_motor(MOTOR_RIGHT);
 
   // Telegramm fuer den Versand erstellen
@@ -264,8 +348,8 @@ b2_realized_object::~b2_realized_object() { }
 void b2_realized_object::dispatched_event_sensor_height() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_SLOW);
-  // TODO: Prüfen, ob Timer für die langsame Strecke notwendig ist
-  // 1. Define für Band 2 abfragen
+  // TODO: Pruefen, ob Timer fuer die langsame Strecke notwendig ist
+  // 1. Define fuer Band 2 abfragen
   // m_token->set_is_upside_down(hal->get_is_upside_down()); // FIXME
   new (this) b2_height_measurement(this->m_token);
 }
@@ -273,7 +357,7 @@ void b2_realized_object::dispatched_event_sensor_height() {
 
 // b2_height_measurement
 b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
-  // TODO: Define für Band 2 abfragen
+  // TODO: Define fuer Band 2 abfragen
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_FAST);
 
@@ -358,13 +442,13 @@ b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
 
 b2_is_correct_order::~b2_is_correct_order() { }
 
-  void b2_is_correct_order::dispatched_event_sensor_exit() {
-    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-    // TODO: 1. Define für Band 2 abfragen
-    hal->set_motor(MOTOR_STOP);
-    hal->close_switch();
-    // new (this) token_finished(this->m_token); // Entfernungs-Vorgang einleiten und Puck zu anonymous_token machen
-  }
+void b2_is_correct_order::dispatched_event_sensor_exit() {
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  // TODO: 1. Define fuer Band 2 abfragen
+  hal->set_motor(MOTOR_STOP);
+  hal->close_switch();
+  // new (this) token_finished(this->m_token); // Entfernungs-Vorgang einleiten und Puck zu anonymous_token machen
+}
 
 
 /******************************************************************************

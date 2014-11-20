@@ -22,8 +22,8 @@
  * Interface/Abstrakte Klasse fuer Events
  **/
 
-#ifndef EVENTS_HPP_
-#define EVENTS_HPP_
+#ifndef SE2_EVENTS_HPP
+#define SE2_EVENTS_HPP
 
 namespace se2 {
 namespace fsm {
@@ -60,4 +60,4 @@ class events {
 } // namespace fsm
 } // namespace se2
 
-#endif /* EVENTS_HPP_ */
+#endif // SE2_EVENTS_HPP

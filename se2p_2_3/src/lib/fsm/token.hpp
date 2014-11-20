@@ -19,13 +19,11 @@
  * @file    token.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Kontext Klasse f�r Puck/Token
+ * Interface/Abstrakte Kontext Klasse fuer Puck/Token
  **/
 
-#ifndef TOKEN_HPP_
-#define TOKEN_HPP_
-
-#include <cstdio>
+#ifndef SE2_TOKEN_HPP
+#define SE2_TOKEN_HPP
 
 #include "constants.hpp"
 #include "events.hpp"
@@ -35,12 +33,10 @@ namespace fsm {
 
 class token : public events {
  public:
-  token() : m_state(NULL) {
-    m_id = 0;
-    m_height1 = 0;
-    m_height2 = 0;
-    m_is_metal = false;
-    m_is_upside_down = 0;
+  token()
+      : m_state(0), m_id(0), m_height1(0), m_height2(0)
+      , m_is_metal(false), m_is_upside_down(0) {
+    // nop
   }
 
   ~token() { delete m_state; }
@@ -95,4 +91,4 @@ class token : public events {
 } // namespace fsm
 } // namespace se2
 
-#endif // TOKEN_HPP_
+#endif // SE2_TOKEN_HPP

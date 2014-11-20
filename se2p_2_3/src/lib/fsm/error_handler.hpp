@@ -19,11 +19,11 @@
  * @file    error_handler.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse für Fehler Zustandsautomaten
+ * Interface/Abstrakte Klasse fuer Fehler Zustandsautomaten
  **/
 
-#ifndef ERROR_HANDLER_HPP_
-#define ERROR_HANDLER_HPP_
+#ifndef SE2_ERROR_HANDLER_HPP
+#define SE2_ERROR_HANDLER_HPP
 
 #include "state.hpp"
 
@@ -32,7 +32,7 @@ namespace se2 {
 // TODO: Abgleich mit UML-Diagramm machen
 // TODO: Ampel-Ansteuerung mit implementieren
 
-class error : public state {
+class error : public fsm::state {
  public:
   virtual ~error() { }
 
@@ -42,7 +42,7 @@ class error : public state {
   virtual void next_state();
  private:
   // Choice Point erstellen?
-  // History für Rückkehr zum normalen Zustand?
+  // History fuer Rueckkehr zum normalen Zustand?
 };
 
 
@@ -98,4 +98,4 @@ class err_runtime_too_short_quitted : public error {
 
 } // namespace se2
 
-#endif /* ERROR_HANDLER_HPP_ */
+#endif // SE2_ERROR_HANDLER_HPP

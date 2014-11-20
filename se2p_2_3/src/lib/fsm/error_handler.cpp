@@ -19,7 +19,7 @@
  * @file    error_handler.cpp
  * @version 0.1
  *
- * Klasse für Fehler Zustandsautomaten
+ * Klasse fuer Fehler Zustandsautomaten
  **/
 
 #include "error_handler.hpp"
