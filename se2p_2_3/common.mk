@@ -34,7 +34,7 @@ EXTRA_SRCVPATH+= \
 LIBS+=ioaccess cpt_terminal
 
 #===== CCFLAGS - add the flags to the C compiler command line. 
-CCFLAGS+=-Y _gpp -DSIMULATION
+CCFLAGS+=-Y _gpp
 
 #===== EXTRA_LIBVPATH - a space-separated list of directories to search for library files.
 EXTRA_LIBVPATH+=/opt/qnx660/target/qnx6/x86/lib
