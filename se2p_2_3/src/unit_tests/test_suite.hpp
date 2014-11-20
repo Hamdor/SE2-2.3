@@ -40,9 +40,9 @@ class test_suite {
   /**
    * Konstruktor
    **/
-  test_suite() : m_test() {
-    m_test.init();
-    m_test.before_class();
+  test_suite() : m_test(new T) {
+    m_test->init();
+    m_test->before_class();
     m_error = 0;
   }
 
@@ -50,7 +50,8 @@ class test_suite {
    * Default Destruktor
    **/
   ~test_suite() {
-    m_test.after_class();
+    m_test->after_class();
+    delete m_test;
   }
 
   /**
@@ -58,16 +59,16 @@ class test_suite {
    * @return Anzahl der fehlgeschlagenen Tests
    **/
   int run() {
-    for (size_t i = 0; i < m_test.m_test_functions.size(); ++i) {
-      m_test.before();
-      m_error = (m_test.*(m_test.m_test_functions[i]))();
-      m_test.after();
+    for (size_t i = 0; i < m_test->m_test_functions.size(); ++i) {
+      m_test->before();
+      m_error = (m_test->*(m_test->m_test_functions[i]))();
+      m_test->after();
     }
     return m_error;
   }
 
  protected:
-  T m_test;
+  T* m_test;
  private:
   int m_error;
 };
