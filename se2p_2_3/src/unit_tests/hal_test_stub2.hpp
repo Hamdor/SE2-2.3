@@ -44,7 +44,7 @@ class hal_test_stub2 : public abstract_test<hal_test_stub2> {
   /**
    * Destructor
    **/
-  ~hal_test_stub2();
+  virtual ~hal_test_stub2();
 
   /**
    * Wird einmalig für alle ausgeführt

@@ -44,7 +44,7 @@ class hal_test_stub1 : public abstract_test<hal_test_stub1> {
   /**
    * Default Destructor
    **/
-  ~hal_test_stub1();
+  virtual ~hal_test_stub1();
 
   virtual int before_class();
   virtual int before();

@@ -26,31 +26,30 @@
 #define SE2_TIMER_WAPPER_HPP
 #include <time.h>
 #include <sys/neutrino.h>
-#include "lib/hal/HWaccess.hpp"
+#include "lib/constants.hpp"
 
 namespace se2 {
 namespace timer {
-
-struct duration {
-  size_t sec;
-  size_t msec;
-};
+class timer_handler;
 
 class timer_wrapper {
-
- public:
+  friend class timer_handler;
   /**
    * Konstruktor
    * @param time dauer des timers
    * @param interval_value gibt den Interval des Timers an
    * @param pulse_value Wert der die Pulse Message senden soll
    **/
-  timer_wrapper(duration time, duration interval_value, int pulse_value);
+  timer_wrapper(duration time, duration interval_value,
+                int pulse_value, int chid);
 
   /**
    * Default Destruktor
    **/
   ~timer_wrapper();
+
+
+ public:
 
   /**
    * Startet Timer
@@ -91,6 +90,8 @@ class timer_wrapper {
   void sub_time(duration time);
 
  private:
+
+
   /**
    * Timer ID
    **/
@@ -115,12 +116,6 @@ class timer_wrapper {
    * Connection id
    **/
   int m_coid;
-
-  /**
-   * hal instanz
-   **/
-  hal::hwaccess* m_hal;
-
   void set_time(itimerspec* spec, duration time);
   void set_time(itimerspec* spec, duration time, duration interval);
   bool is_running;

@@ -7,6 +7,7 @@
 
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/singleton_mgr.hpp"
+#include "lib/constants.hpp"
 
 #include <iostream>
 #include <cstdlib>
@@ -18,12 +19,15 @@
   #include "unit_tests/serial_test.hpp"
   #include "unit_tests/hal_test_stub1.hpp"
   #include "unit_tests/hal_test_stub2.hpp"
+  #include "unit_tests/timer_test.hpp"
+
 #endif
 
 using namespace std;
 using namespace se2;
 using namespace se2::util;
 using namespace se2::hal;
+using namespace se2::timer;
 
 #ifdef UNIT_TESTS
   using namespace se2::unit_tests;
@@ -33,7 +37,7 @@ int main(int argc, char *argv[]) {
 #ifdef SIMULATION
   IOaccess_open();
 #endif
-#ifdef UNIT_TESTS
+  #ifdef UNIT_TESTS
   /**
    * Unit Tests
    **/
@@ -43,6 +47,8 @@ int main(int argc, char *argv[]) {
        << test_suite<hal_test_stub2>().run() << endl;
   cout << "run `irq_tes`        errors: "
        << test_suite<irq_test>().run()       << endl;
+  cout << "run `timer_test      errors: "
+       << test_suite<timer_test>().run()     << endl;
 #ifdef HAS_SERIAL_INTERFACE
   cout << "run `serial_test`    errors: "
        << test_suite<serial_test>().run()    << endl;

@@ -32,33 +32,28 @@ using namespace se2::util;
 
 
 timer_wrapper::timer_wrapper(duration time, duration interval_value,
-                             int pulse_value)
+                             int pulse_value, int chid)
     : is_running(false)
     , is_paused(true) {
-  m_hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  m_coid = ConnectAttach(0, 0, m_hal->get_isr_channel(), 0, 0);
+  m_coid = ConnectAttach(0, 0, chid, 0, 0);
   SIGEV_PULSE_INIT(&m_event, m_coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, pulse_value);
   int rc = timer_create(CLOCK_REALTIME, &m_event, &m_timerid);
   if (rc == -1) {
     LOG_ERROR("timer_create() failed")
   }
-  set_time(&m_temp_pause_timer, time, interval_value);
+  //set_time(&m_temp_pause_timer, time, interval_value);
+  set_time(&m_timer, time, interval_value);
+  start_timer();
 }
 
 timer_wrapper::~timer_wrapper() {
-  int rc = ConnectDetach(m_coid);
-  if (rc == -1) {
-    LOG_ERROR("ConnectDetach() failed")
-  }
-  rc = timer_delete(m_timerid);
-  if (rc == -1) {
-    LOG_ERROR("timer_delete() failed")
-  }
+  ConnectDetach(m_coid);
+  timer_delete(m_timerid);
 }
 
 void timer_wrapper::start_timer() {
   if (!is_running) {
-    int rc =  timer_settime(m_timerid, 0, &m_timer, NULL);
+    int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
     if (rc == -1) {
       LOG_ERROR("timer_settime() in start_timer failed")
     } else {
@@ -69,10 +64,7 @@ void timer_wrapper::start_timer() {
 
 void timer_wrapper::delete_timer() {
   if (is_running) {
-    int rc = timer_delete(m_timerid);
-    if (rc == -1) {
-      LOG_ERROR("timer_delete() in stop_timer failed")
-    }
+    timer_delete(m_timerid);
   }
 }
 

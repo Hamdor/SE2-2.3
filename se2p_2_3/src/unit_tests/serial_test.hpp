@@ -43,7 +43,7 @@ class serial_test : public abstract_test<serial_test> {
   /**
    * Destructor
    **/
-  ~serial_test();
+  virtual ~serial_test();
 
   /**
    * Wird einmalig für alle ausgeführt

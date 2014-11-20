@@ -25,7 +25,7 @@
 #ifndef SE2_CONSTANTS_HPP
 #define SE2_CONSTANTS_HPP
 
-#include <stdint.h>
+#include <cstddef>
 
 /**
  * Bit Position der Weiche auf Port A
@@ -306,6 +306,15 @@ struct telegram {
 };
 
 } // namespace serial_bus
+
+namespace timer {
+struct duration {
+  size_t sec;
+  size_t msec;
+};
+
+
+} // namespace timer
 } // namespace se2
 
 #endif // SE2_CONSTANTS_HPP

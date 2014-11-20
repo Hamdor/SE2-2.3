@@ -27,6 +27,9 @@
 
 #include "lib/util/abstract_singleton.hpp"
 #include "lib/timer/timer_wrapper.hpp"
+#include "lib/constants.hpp"
+
+#include <vector>
 
 namespace se2 {
 namespace util {
@@ -36,13 +39,67 @@ namespace timer {
 
 class timer_handler : public util::abstract_singleton {
 friend class util::singleton_mgr;
+ public:
+  /**
+   * Registriert timer
+   * @param time Dauer des Timers
+   * @param value Wert der die Pulsemsg senden soll
+   * @return Position des neuen Timers
+   **/
+  int register_timer(duration time, int value);
 
   /**
    * Registriert timer
+   * @param time Dauer des Timers
+   * @param interval Intervall des Timers
+   * @param value Wert der die Pulsemsg senden soll
+   * @return Position des neuen Timers
    **/
   int register_timer(duration time, duration interval, int value);
+
+  void change_channel(int chid);
+
+  /**
+   * Stopt den Timer
+   * @param pos Position des Timers
+   **/
+  void delete_timer(size_t pos);
+
+  /**
+   * Pausiert den Timer
+   * @param pos Position des Timers
+   **/
+  void pause_timer(size_t pos);
+  void pause_all();
+
+  /**
+   * Setzt den Timer fort
+   * @param pos Position des Timers
+   **/
+  void continue_timer(size_t pos);
+  void continue_all();
+  /**
+   * Addiert auf Timer die Werte
+   * @param pos Position des Timers
+   * @param time zu addierende Werte
+   **/
+  void add_time(size_t pos, duration time);
+
+  void add_all(duration time);
+
+  /**
+   * Subtrahiert auf Timer die Werte
+   * @param pos Position des Timers
+   * @param time zu subtrahierende Werte
+   **/
+  void sub_time(size_t pos, duration time);
+  void sub_all(duration time);
+
+
 private:
 static timer_handler* instance;
+std::vector<timer_wrapper*> timers;
+int m_chid;
 /**
  * Initialisierung des Singletons
  **/

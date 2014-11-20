@@ -16,34 +16,35 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    irq_test.hpp
+ * @file    timer_test.hpp
  * @version 0.1
  *
- * Unit tests der ISR/IRQ
+ * Unit tests des Timers
  **/
 
-#ifndef SE2_IRQ_TEST_HPP
-#define SE2_IRQ_TEST_HPP
+#ifndef SE2_TIMER_TEST_HPP
+#define SE2_TIMER_TEST_HPP
 
 #include "config.h"
 
-#include "lib/hal/HWaccess.hpp"
+#include "lib/timer/timer_handler.hpp"
 #include "unit_tests/abstract_test.hpp"
 
 namespace se2 {
 namespace unit_tests {
 
-class irq_test : public abstract_test<irq_test> {
- public:
+class timer_test : public abstract_test<timer_test> {
+
+public:
   /**
    * Constructor
    **/
-  irq_test();
+  timer_test();
 
   /**
    * Destructor
    **/
-  virtual ~irq_test();
+  virtual ~timer_test();
 
   /**
    * Wird einmalig für alle ausgeführt
@@ -76,14 +77,16 @@ class irq_test : public abstract_test<irq_test> {
   virtual int after_class();
 
  private:
-  int open_switch();
-  int close_switch();
+  int test_timer_1msec();
+  int test_timer_intervall();
+  int test_timer_pause();
+  int test_timer_continue();
+  int test_timer_add();
 
-  hal::hwaccess* m_hal;
+  timer::timer_handler* m_timer;
+  int m_chid;
   int m_error;
 };
-
-} // namespace unit_test
-} // namepsace se2
-
-#endif // SE2_IRQ_TEST_HPP
+} // namespace unit_tests
+} // namespace se2
+#endif // SE2_TIMER_TEST_HPP
