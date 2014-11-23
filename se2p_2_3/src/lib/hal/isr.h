@@ -38,7 +38,7 @@ int port_old = 0;
 const struct sigevent* isr(void* arg, int id) {
   struct sigevent* event = static_cast<struct sigevent*>(arg);
   uint8_t irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
-  out8(static_cast<uint16_t>(IRQ_CLEAR_REG), 0); // Interrupt zurücksetzen
+  out8(static_cast<uint16_t>(IRQ_CLEAR_REG), 0); // Interrupt zuruecksetzen
   if (irq_val == PORTB_INTERRUPT || irq_val == PORTC_INTERRUPT) {
     uint16_t ports = (in8(static_cast<uint16_t>(PORTB)) << 8) |
                       in8(static_cast<uint16_t>(PORTC));
@@ -49,7 +49,7 @@ const struct sigevent* isr(void* arg, int id) {
     event->sigev_value.sival_int = changed_bit;
     // update port_old
 #ifdef SIMULATION
-    port_old = ports & ~changed_bit;
+    // port_old = ports & ~changed_bit; // FIXME: Erzeugt falsche Event Values
 #else
     port_old = ports;
 #endif
