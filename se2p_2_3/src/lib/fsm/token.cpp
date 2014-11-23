@@ -19,7 +19,7 @@
  * @file    token.cpp
  * @version 0.1
  *
- * Kontext Klasse f�r Puck/Token
+ * Kontext Klasse fuer Puck/Token
  **/
 
 #include "token.hpp"

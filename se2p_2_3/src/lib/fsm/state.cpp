@@ -19,7 +19,7 @@
  * @file    state.cpp
  * @version 0.1
  *
- * Klasse f�r Zustandsautomaten
+ * Klasse fuer Zustandsautomaten
  **/
 
 #include "state.hpp"
@@ -145,6 +145,7 @@ void state::dispatched_event_token_finished() {
 
 // anonymous_token
 anonymous_token::anonymous_token(token* t) : state::state(t) {
+  std::cout << "Konstruktor von anonymous_token()" << std::endl; //FIXME
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
@@ -153,11 +154,12 @@ anonymous_token::anonymous_token(token* t) : state::state(t) {
 anonymous_token::~anonymous_token() { }
 
 void anonymous_token::dispatched_event_sensor_entrance() {
+  std::cout << "Aufruf von anonymous_token::dispatched_event_sensor_entrance()" << std::endl; //FIXME
   // ID zuweisen und Motor des Laufbands im Rechtslauf starten
   m_token->set_id(m_token->get_next_id());
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_RIGHT);
-  // Wechsel in den n�chsten Zustand
+  // Wechsel in den naechsten Zustand
   new (this) b1_realized_object(this->m_token);
 }
 
@@ -166,9 +168,9 @@ void anonymous_token::dispatched_event_sensor_entrance() {
 /******************************************************************************
  *                                BAND 1 FSM                                  *
  ******************************************************************************/
-
 // b1_realized_object
 b1_realized_object::b1_realized_object(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b1_realized_object()" << std::endl; //FIXME
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_HEIGHT);
@@ -177,19 +179,22 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
 b1_realized_object::~b1_realized_object() { }
 
 void b1_realized_object::dispatched_event_sensor_height() {
+  std::cout << "b1_realized_object::dispatched_event_sensor_height()" << std::endl; //FIXME
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_SLOW);
   // TODO: Pruefen, ob Timer fuer die langsame Strecke notwendig ist
-  // m_token->set_is_upside_down(hal->get_is_upside_down()); // FIXME
+  // TODO: Funktion in der HAL fuer is_upside_down implementieren m_token->set_is_upside_down(*** HAL -> get_is_upside_down() ***)
   new (this) b1_height_measurement(this->m_token);
 }
 
 // b1_height_measurement
 b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b1_height_measurement()" << std::endl; //FIXME
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_FAST);
 
-  if (hal->obj_has_valid_height()) {
+  if(this->m_token->is_valid()) {
+  // if (hal->obj_has_valid_height()) { FIXME: Hier korrekte Hoehe feststellen!
     m_token->set_height1(hal->get_height_value());
     new (this) b1_valid_height(this->m_token);
   } else {
@@ -202,6 +207,7 @@ b1_height_measurement::~b1_height_measurement() { }
 
 // b1_token_too_small
 b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b1_token_too_small()" << std::endl; //FIXME
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_SLIDE);
@@ -215,6 +221,7 @@ void b1_token_too_small::dispatched_event_sensor_slide() {
 
 // b1_valid_height
 b1_valid_height::b1_valid_height(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b1_valid_height()" << std::endl; //FIXME
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_SWITCH);
@@ -231,6 +238,7 @@ void b1_valid_height::dispatched_event_sensor_switch() {
 
 // b1_metal_detection
 b1_metal_detection::b1_metal_detection(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b1_metal_detection()" << std::endl; //FIXME
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_EXIT);
@@ -244,18 +252,17 @@ void b1_metal_detection::dispatched_event_sensor_exit() {
   new (this) b1_exit(this->m_token);
 }
 
-
 // b1_exit
-
 b1_exit::b1_exit(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b1_exit()" << std::endl; //FIXME
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
 
   if (m_token->get_is_upside_down()) {
     hal->set_motor(MOTOR_STOP);
-    // TODO: Springt hier in Fehlerbehandlung
+    // TODO: Hier in Fehlerbehandlung springen
     new (this) b1_token_upside_down(this->m_token);
   } else {
-    if (1/* FIXME hal oder dispatcher abfragen, ob Band 2 frei ist */) {
+    if (1/* TODO: Abfrage, ob Band 2 frei ist */) {
       hal->set_motor(MOTOR_RIGHT);
       new (this) b1_token_ready_for_b2(this->m_token);
     }
@@ -265,8 +272,8 @@ b1_exit::b1_exit(token* t) : state::state(t) {
 b1_exit::~b1_exit() { }
 
 // b1_token_upside_down !!!!!!!!!! TODO: Wird ausgelagert in eigenen Fehlerzustand !!!!!!!!!!!
-
 b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b1_token_upside_down()" << std::endl;
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_BUTTON_START);
@@ -275,12 +282,12 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
 b1_token_upside_down::~b1_token_upside_down() { }
 
 void b1_token_upside_down::dispatched_event_button_start() {
-  // TODO:
-  // Wenn erfolgreich gewendet -> b1_token_ready_for_b2
+  // TODO: Wenn Wendevorgang erfolgreich -> b1_token_ready_for_b2
 }
 
 // b1_token_ready_for_b2
 b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b1_token_ready_for_b2()" << std::endl;
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
@@ -293,7 +300,7 @@ void b1_token_ready_for_b2::dispatched_event_sensor_entrance() {
   // TODO:
   // 1. Define fuer Band 2 abfragen
   // 2. Band 2 muss leer sein (Queue von Band 2 mit Groesse 1 muss leer sein / anonymous_token)
-        // 3. Wenn alles OK, Motor starten: hal->set_motor(MOTOR_RIGHT);
+  // 3. Wenn alles OK, Motor starten: hal->set_motor(MOTOR_RIGHT);
 
   // Telegramm fuer den Versand erstellen
   telegram* tg = new telegram;
@@ -310,12 +317,9 @@ void b1_token_ready_for_b2::dispatched_event_sensor_entrance() {
 }
 
 
-
 /******************************************************************************
  *                                BAND 2 FSM                                  *
  ******************************************************************************/
-
-
 // b2_receive_data
 b2_receive_data::b2_receive_data(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
@@ -353,7 +357,6 @@ void b2_realized_object::dispatched_event_sensor_height() {
   // m_token->set_is_upside_down(hal->get_is_upside_down()); // FIXME
   new (this) b2_height_measurement(this->m_token);
 }
-
 
 // b2_height_measurement
 b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
@@ -431,7 +434,6 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance() {
   // TODO: Entfernungs-Vorgang einleiten und dort Puck zu anonymous_token machen
   // new (this) err_remove_token(this->m_token);
 }
-
 
 // b2_is_correct_order
 b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
