@@ -148,13 +148,12 @@ anonymous_token::anonymous_token(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
 
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_STOP);
-
 #ifdef IS_CONVEYOR_1
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
 #endif
 #ifdef IS_CONVEYOR_2
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->set_motor(MOTOR_STOP);
   new (this) b2_receive_data(this->m_token);
 #endif
 
