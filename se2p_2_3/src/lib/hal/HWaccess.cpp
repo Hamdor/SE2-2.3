@@ -78,6 +78,10 @@ void hwaccess::set_motor(enum motor_modes mode) {
     m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_SLOW), false);
     return;
   }
+  //FIXME
+  if(mode != MOTOR_STOP){
+	  m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_STOP), false);
+  }
   const uint8_t bit = static_cast<uint8_t>(mode);
   m_io->outbit(PORTA, bit, true);
 }

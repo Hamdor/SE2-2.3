@@ -134,8 +134,6 @@ class b1_token_ready_for_b2 : public state {
  public:
   b1_token_ready_for_b2(token* t);
   ~b1_token_ready_for_b2();
-
-  virtual void dispatched_event_sensor_entrance();
 };
 
 

@@ -156,10 +156,15 @@ void anonymous_token::dispatched_event_sensor_entrance() {
   std::cout << "Aufruf von anonymous_token::dispatched_event_sensor_entrance()" << std::endl; //FIXME
   // ID zuweisen und Motor des Laufbands im Rechtslauf starten
   m_token->set_id(m_token->get_next_id());
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_RIGHT);
   // Wechsel in den naechsten Zustand
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->set_motor(MOTOR_STOP);
+#ifdef IS_CONVEYOR_1
   new (this) b1_realized_object(this->m_token);
+#endif
+#ifdef IS_CONVEYOR_2
+  new (this) b2_receive_data(this->m_token);
+#endif
 }
 
 
@@ -176,7 +181,7 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   disp->register_listener(this->m_token, EVENT_SENSOR_HEIGHT);
 
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_FAST);
+  hal->set_motor(MOTOR_RIGHT);
 }
 
 b1_realized_object::~b1_realized_object() { }
@@ -215,7 +220,7 @@ b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
   disp->register_listener(this->m_token, EVENT_SENSOR_SLIDE);
 
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-//  hal->set_motor(MOTOR_FAST); FIXME
+  hal->set_motor(MOTOR_FAST);
 }
 
 b1_token_too_small::~b1_token_too_small() { }
@@ -232,7 +237,7 @@ b1_valid_height::b1_valid_height(token* t) : state::state(t) {
   disp->register_listener(this->m_token, EVENT_SENSOR_SWITCH);
 
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-//  hal->set_motor(MOTOR_FAST); FIXME
+  hal->set_motor(MOTOR_FAST);
 }
 
 b1_valid_height::~b1_valid_height() { }
@@ -240,7 +245,6 @@ b1_valid_height::~b1_valid_height() { }
 void b1_valid_height::dispatched_event_sensor_switch() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->open_switch();
-  hal->set_motor(MOTOR_FAST); //FIXME hier entfernen?
   m_token->set_is_metal(hal->obj_has_metal());
   new (this) b1_metal_detection(this->m_token);
 }
@@ -257,6 +261,7 @@ b1_metal_detection::~b1_metal_detection() { }
 
 void b1_metal_detection::dispatched_event_sensor_exit() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->set_motor(MOTOR_STOP);
   hal->close_switch();
   new (this) b1_exit(this->m_token);
 }
@@ -266,13 +271,13 @@ b1_exit::b1_exit(token* t) : state::state(t) {
   std::cout << "Konstruktor von b1_exit()" << std::endl; //FIXME
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
 
-  if (m_token->get_is_upside_down()) {
+  if (m_token->get_is_upside_down()) { //FIXME upside_down abruf einbauen aus der hal
     hal->set_motor(MOTOR_STOP);
     // TODO: Hier in Fehlerbehandlung springen
     new (this) b1_token_upside_down(this->m_token);
   } else {
     if (1/* TODO: Abfrage, ob Band 2 frei ist */) {
-      hal->set_motor(MOTOR_RIGHT);
+//      hal->set_motor(MOTOR_RIGHT);
       new (this) b1_token_ready_for_b2(this->m_token);
     }
   }
@@ -297,14 +302,7 @@ void b1_token_upside_down::dispatched_event_button_start() {
 // b1_token_ready_for_b2
 b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   std::cout << "Konstruktor von b1_token_ready_for_b2()" << std::endl;
-  // Beginne mit Lauschen auf geeignete Events
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
-}
 
-b1_token_ready_for_b2::~b1_token_ready_for_b2() { }
-
-void b1_token_ready_for_b2::dispatched_event_sensor_entrance() {
   serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
   // TODO:
   // 1. Define fuer Band 2 abfragen
@@ -319,12 +317,22 @@ void b1_token_ready_for_b2::dispatched_event_sensor_entrance() {
 
   serial->send_telegram(&tg); // Fertiges Telegramm an Band 2 schicken
 
-  // TODO: Ausgabe der Puck Daten auf dem Terminal
+//   TODO: Ausgabe der Puck Daten auf dem Terminal
 
-  // XXX: Pruefen, ob der Puck auf Band 1 anonymisiert werden muss
-  //new (this) b2_receive_data(this->m_token);
+//   XXX: Pruefen, ob der Puck auf Band 1 anonymisiert werden muss
+//  new (this) b2_receive_data(this->m_token);
+
+  std::cout << "b1_token_ready_for_b2() vor set_motor(right)" << std::endl;
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->set_motor(MOTOR_FAST);
+  hal->set_motor(MOTOR_RIGHT);
+  hal->set_light(RED,1);
+  std::cout << "b1_token_ready_for_b2() MOTOR_FAST wurde gesetzt" << std::endl;
   new (this) anonymous_token(this->m_token);
 }
+
+b1_token_ready_for_b2::~b1_token_ready_for_b2() { }
+
 #endif
 
 /******************************************************************************
@@ -476,6 +484,10 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   hal->set_motor(MOTOR_STOP);
   hal->close_switch();
   // new (this) token_finished(this->m_token); // Entfernungs-Vorgang einleiten und Puck zu anonymous_token machen
+  std::cout << "TOKEN ID = " << m_token->get_id() << std::endl; //FIXME
+  std::cout << "HOEHE 1 = " << m_token->get_height1() << std::endl; //FIXME
+  std::cout << "HOEHE 2 = " << m_token->get_height2()  << std::endl; //FIXME
+
 }
 #endif
 
