@@ -47,7 +47,6 @@ timer_handler::timer_handler() {
 timer_handler::~timer_handler() {
   for (std::vector<timer_wrapper*>::iterator it = timers.begin();
        it != timers.end(); ++it) {
-    (*it)->delete_timer();
     delete *it;
   }
   timers.clear();
@@ -73,10 +72,8 @@ void timer_handler::change_channel(int chid) {
 
 void timer_handler::delete_timer(size_t pos) {
   if (pos < timers.size()) {
-    timer_wrapper* temp = timers[pos];
-    temp->delete_timer();
-    timers.erase(timers.begin() + pos);
-    delete temp;
+    delete timers[pos];
+    timers.erase(timers.begin()+pos);
   }
 }
 

@@ -23,7 +23,6 @@
  **/
 
 #include "lib/timer/timer_wrapper.hpp"
-#include "lib/util/singleton_mgr.hpp"
 #include "lib/util/logging.hpp"
 
 using namespace se2;
@@ -31,106 +30,79 @@ using namespace timer;
 using namespace se2::util;
 
 
-timer_wrapper::timer_wrapper(duration time, duration interval_value,
-                             int pulse_value, int chid)
-    : is_running(false)
-    , is_paused(true) {
-  m_coid = ConnectAttach(0, 0, chid, 0, 0);
-  SIGEV_PULSE_INIT(&m_event, m_coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, pulse_value);
+timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
+    : m_coid(0), m_started(false), m_paused(false) {
+  m_coid = ConnectAttach(0, 0, chid, _NTO_SIDE_CHANNEL, 0);
+  if (m_coid == -1) {
+    LOG_ERROR("ConnectAttach() failed in timer_wrapper()")
+  }
+  SIGEV_PULSE_INIT(&m_event, m_coid,
+                   SIGEV_PULSE_PRIO_INHERIT, TIMER, pulse_value);
   int rc = timer_create(CLOCK_REALTIME, &m_event, &m_timerid);
   if (rc == -1) {
-    LOG_ERROR("timer_create() failed")
+    LOG_ERROR("timer_create() failed in timer_wrapper()")
   }
-  //set_time(&m_temp_pause_timer, time, interval_value);
-  set_time(&m_timer, time, interval_value);
-  start_timer();
+  m_duration = time;
+  reset_timer();
 }
 
 timer_wrapper::~timer_wrapper() {
-  ConnectDetach(m_coid);
-  timer_delete(m_timerid);
+  int rc = ConnectDetach(m_coid);
+  if (rc == -1) {
+    LOG_ERROR("ConnectDetach() failed in ~timer_wrapper()")
+  }
+  rc = timer_delete(m_timerid);
+  if (rc == -1) {
+    LOG_ERROR("timer_delete() failed in ~timer_wrapper()")
+  }
+}
+
+void timer_wrapper::reset_timer() {
+  m_timer.it_value.tv_sec = m_duration.sec;
+  m_timer.it_value.tv_sec = m_duration.msec * 1000;
+  m_timer.it_interval.tv_sec = 0;
+  m_timer.it_interval.tv_nsec = 0;
 }
 
 void timer_wrapper::start_timer() {
-  if (!is_running) {
+  if (!m_started) {
     int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
     if (rc == -1) {
-      LOG_ERROR("timer_settime() in start_timer failed")
-    } else {
-      is_running = true;
+      LOG_ERROR("timer_settime() failed in start_timer()")
     }
+    // todo move to stop timer
+    m_timer.it_value.tv_sec = 0;
+    m_timer.it_value.tv_sec = 0;
+    m_timer.it_interval.tv_sec = 0;
+    m_timer.it_interval.tv_nsec = 0;
+    m_started = true;
   }
 }
 
-void timer_wrapper::delete_timer() {
-  if (is_running) {
-    timer_delete(m_timerid);
+void timer_wrapper::stop_timer() {
+  int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
+  if (rc == -1) {
+    LOG_ERROR("timer_settime() failed in stop_timer()")
   }
+  reset_timer();
 }
 
 void timer_wrapper::pause_timer() {
-  if (!is_paused) {
-    int rc = timer_gettime(m_timerid, &m_temp_pause_timer);
-    if (rc == -1){
-      LOG_ERROR("timer_gettime() in pause_timer failed")
-    } else {
-      rc = timer_delete(m_timerid);
-      if (rc == -1) {
-        LOG_ERROR("timer_delete() in pause_timer failed")
-      } else {
-        is_paused = true;
-      }
+  if (!m_paused) {
+    int rc = timer_settime(m_timerid, 0, &m_timer, &m_temp_timer);
+    if (rc == -1) {
+      LOG_ERROR("timer_settime() failed in pause_timer()")
     }
+    m_paused = true;
   }
 }
 
 void timer_wrapper::continue_timer() {
-  if (is_paused) {
-    int rc = timer_settime(m_timerid, 0, &m_temp_pause_timer, 0);
+  if (m_paused) {
+    int rc = timer_settime(m_timerid, 0, &m_temp_timer, NULL);
     if (rc == -1) {
-      LOG_ERROR("timer_settime() in continue_timer failed")
-    } else {
-      is_paused = false;
+      LOG_ERROR("timer_settime() failed in continue_timer()")
     }
+    m_paused = false;
   }
-}
-
-void timer_wrapper::change_timer(duration time) {
-  set_time(&m_timer, time);
-  int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
-  if (rc == -1) {
-    LOG_ERROR("timer_settime() in change_timer failed")
-  }
-}
-
-void timer_wrapper::add_time(duration time) {
-  if(is_running) {
-    m_timer.it_value.tv_sec += time.sec;
-    m_timer.it_value.tv_nsec += time.msec * 1000;
-  } else {
-    m_temp_pause_timer.it_value.tv_sec += time.sec;
-    m_temp_pause_timer.it_value.tv_nsec += time.msec * 1000;
-  }
-}
-
-void timer_wrapper::sub_time(duration time) {
-  if(is_running) {
-    m_timer.it_value.tv_sec -= time.sec;
-    m_timer.it_value.tv_nsec -= time.msec * 1000;
-  } else {
-    m_temp_pause_timer.it_value.tv_sec -= time.sec;
-    m_temp_pause_timer.it_value.tv_nsec -= time.msec * 1000;
-  }
-}
-
-void timer_wrapper::set_time(itimerspec* spec, duration time) {
-  spec->it_value.tv_sec = time.sec;
-  spec->it_value.tv_nsec = time.msec * 1000;
-}
-
-void timer_wrapper::set_time(itimerspec* spec, duration time, duration interval) {
-  spec->it_value.tv_sec = time.sec;
-  spec->it_value.tv_nsec = time.msec * 1000;
-  spec->it_interval.tv_sec = interval.sec;
-  spec->it_interval.tv_nsec = interval.msec * 1000;
 }

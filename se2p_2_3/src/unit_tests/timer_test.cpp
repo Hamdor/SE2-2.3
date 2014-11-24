@@ -43,14 +43,13 @@ timer_test::~timer_test() {
 }
 
 int timer_test::before_class() {
-
+  m_chid = ChannelCreate(0);
+  m_timer = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  m_timer->change_channel(m_chid);
   return 0;
 }
 
 int timer_test::before() {
-  m_chid = ChannelCreate(0);
-  m_timer = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  m_timer->change_channel(m_chid);
   return 0;
 }
 
@@ -64,7 +63,6 @@ int timer_test::init() {
 }
 
 int timer_test::after() {
-  singleton_mgr::shutdown();
   return 0;
 }
 

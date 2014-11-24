@@ -90,31 +90,6 @@ friend class util::singleton_mgr;
    * Setzt alle registrierten Timer fort
    **/
   void continue_all();
-  /**
-   * Addiert auf Timer die Werte
-   * @param pos Position des Timers
-   * @param time zu addierende Werte
-   **/
-  void add_time(size_t pos, duration time);
-
-  /**
-   * Addiert auf alle Timer die Zeit
-   * @param time zu addierende Zeit
-   **/
-  void add_all(duration time);
-
-  /**
-   * Subtrahiert auf Timer die Werte
-   * @param pos Position des Timers
-   * @param time zu subtrahierende Werte
-   **/
-  void sub_time(size_t pos, duration time);
-
-  /**
-   * Subtrahiert auf alle Timer die Zeit
-   * @param time zu subtrahierende Zeit
-   **/
-  void sub_all(duration time);
 
 
 private:

@@ -40,8 +40,7 @@ class timer_wrapper {
    * @param interval_value gibt den Interval des Timers an
    * @param pulse_value Wert der die Pulse Message senden soll
    **/
-  timer_wrapper(duration time, duration interval_value,
-                int pulse_value, int chid);
+  timer_wrapper(duration time, int pulse_value, int chid);
 
   /**
    * Default Destruktor
@@ -59,7 +58,7 @@ class timer_wrapper {
   /**
    * Stopt den Timer
    **/
-  void delete_timer();
+  void stop_timer();
 
   /**
    * Pausiert den Timer
@@ -71,27 +70,10 @@ class timer_wrapper {
    **/
   void continue_timer();
 
-  /**
-   * Veraendert timer auf neue Werte
-   * @param time neue Werte fuer den Timer
-   **/
-  void change_timer(duration time);
 
-  /**
-   * Addiert auf Timer die Werte
-   * @param time zu addierende Werte
-   **/
-  void add_time(duration time);
-
-  /**
-   * Subtrahiert auf Timer die Werte
-   * @param time zu subtrahierende Werte
-   **/
-  void sub_time(duration time);
+  void reset_timer();
 
  private:
-
-
   /**
    * Timer ID
    **/
@@ -105,7 +87,7 @@ class timer_wrapper {
   /**
    * Temp-Timer fuer Pausierung
    **/
-  itimerspec m_temp_pause_timer;
+  itimerspec m_temp_timer;
 
   /**
    * Zu ausfuerendes Event
@@ -116,10 +98,9 @@ class timer_wrapper {
    * Connection id
    **/
   int m_coid;
-  void set_time(itimerspec* spec, duration time);
-  void set_time(itimerspec* spec, duration time, duration interval);
-  bool is_running;
-  bool is_paused;
+  bool m_started;
+  bool m_paused;
+  duration m_duration;
 };
 } // namespace timer
 } // namespace se2
