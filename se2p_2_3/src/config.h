@@ -74,7 +74,4 @@
  * ----------------------------------------------------------------------------
  **/
 
-#define IS_CONVEYOR_1 // Laufband 1
-#define IS_CONVEYOR_2 // Laufband 2
-
 #endif // SE2_CONFIG_H
