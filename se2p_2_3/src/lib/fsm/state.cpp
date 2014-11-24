@@ -147,11 +147,15 @@ anonymous_token::anonymous_token(token* t) : state::state(t) {
   std::cout << "Konstruktor von anonymous_token()" << std::endl; //FIXME
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->set_motor(MOTOR_STOP);
+
 #ifdef IS_CONVEYOR_1
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
 #endif
 #ifdef IS_CONVEYOR_2
-  new (this) b2_received_object(this->m_token);
+  new (this) b2_receive_data(this->m_token);
 #endif
 
 }
@@ -163,8 +167,6 @@ void anonymous_token::dispatched_event_sensor_entrance() {
   // ID zuweisen und Motor des Laufbands im Rechtslauf starten
   m_token->set_id(m_token->get_next_id());
   // Wechsel in den naechsten Zustand
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_STOP);
 #ifdef IS_CONVEYOR_1
   new (this) b1_realized_object(this->m_token);
 #endif
@@ -347,6 +349,8 @@ b1_token_ready_for_b2::~b1_token_ready_for_b2() { }
 // b2_receive_data
 b2_receive_data::b2_receive_data(token* t) : state::state(t) {
   std::cout << "Konstruktor von b2_receive_data" << std::endl;
+  // Beginne mit Lauschen auf serielle Schnittstelle
+  TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SERIAL_DATA);
@@ -373,12 +377,6 @@ b2_received_object::b2_received_object(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
 
-
-  serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
-  // Werte aus Telegramm holen
-  telegram tg = serial->get_telegram();
-  this->m_token->set_id(tg.m_id);
-  this->m_token->set_height1(tg.m_height1);
   std::cout << "b2_received_object::b2_received_object : hinter get telegram()" << std::endl;
 
 }
@@ -416,7 +414,7 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_FAST);
 
-  if (1 /* hal->obj_is_upside_down() */) {
+  if (0 /* hal->obj_is_upside_down() */) {
     hal->close_switch();
     new (this) b2_token_upside_down(this->m_token);
   } else {
@@ -459,7 +457,7 @@ void b2_valid_height::dispatched_event_sensor_switch() {
 b2_metal_detection::b2_metal_detection(token* t) : state::state(t) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
 
-  if (1 /* wrong_order */) { // FIXME
+  if (0 /* wrong_order */) { // FIXME
     hal->set_motor(MOTOR_LEFT);
     new (this) b2_is_wrong_order(this->m_token);
   } else {
@@ -505,6 +503,8 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   std::cout << "TOKEN ID = " << m_token->get_id() << std::endl; //FIXME
   std::cout << "HOEHE 1 = " << m_token->get_height1() << std::endl; //FIXME
   std::cout << "HOEHE 2 = " << m_token->get_height2()  << std::endl; //FIXME
+
+  new (this) anonymous_token(this->m_token);
 
 }
 #endif
