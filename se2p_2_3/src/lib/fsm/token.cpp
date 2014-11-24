@@ -30,7 +30,7 @@ using namespace se2::hal;
 int token::get_id() { return m_id; }
 void token::set_id(int id) { m_id = id; }
 
-int token::get_next_id() { return ++m_id_counter; }
+int token::get_next_id() { return m_id_counter++; }
 
 int token::get_height1() { return m_height1; }
 void token::set_height1(int height1) { m_height1 = height1; }
