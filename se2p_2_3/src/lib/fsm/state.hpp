@@ -151,6 +151,14 @@ class b2_receive_data : public state {
   virtual void dispatched_event_serial_data();
 };
 
+class b2_received_object : public state {
+ public:
+  b2_received_object(token* t);
+  ~b2_received_object();
+
+  virtual void dispatched_event_sensor_entrance();
+};
+
 class b2_realized_object : public state {
  public:
   b2_realized_object(token* t);

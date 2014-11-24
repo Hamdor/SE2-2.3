@@ -90,7 +90,6 @@ void state::dispatched_event_sensor_slide() {
   // nop
 }
 
-
 void state::dispatched_event_sensor_exit() {
   // nop
 }
@@ -174,6 +173,9 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_HEIGHT);
+
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->set_motor(MOTOR_FAST);
 }
 
 b1_realized_object::~b1_realized_object() { }
@@ -191,11 +193,10 @@ void b1_realized_object::dispatched_event_sensor_height() {
 b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   std::cout << "Konstruktor von b1_height_measurement()" << std::endl; //FIXME
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_FAST);
+  m_token->set_height1(hal->get_height_value());
 
-  if(this->m_token->is_valid()) {
-  // if (hal->obj_has_valid_height()) { FIXME: Hier korrekte Hoehe feststellen!
-    m_token->set_height1(hal->get_height_value());
+
+  if (m_token->get_height1() <= TOO_SMALL &&  m_token->get_height1() >= HOLE_BOTTOM_UP) { //FIXME: Hier korrekte Hoehe feststellen!
     new (this) b1_valid_height(this->m_token);
   } else {
     hal->close_switch();
@@ -211,6 +212,9 @@ b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_SLIDE);
+
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+//  hal->set_motor(MOTOR_FAST); FIXME
 }
 
 b1_token_too_small::~b1_token_too_small() { }
@@ -225,6 +229,9 @@ b1_valid_height::b1_valid_height(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_SWITCH);
+
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+//  hal->set_motor(MOTOR_FAST); FIXME
 }
 
 b1_valid_height::~b1_valid_height() { }
@@ -232,6 +239,7 @@ b1_valid_height::~b1_valid_height() { }
 void b1_valid_height::dispatched_event_sensor_switch() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->open_switch();
+  hal->set_motor(MOTOR_FAST); //FIXME hier entfernen?
   m_token->set_is_metal(hal->obj_has_metal());
   new (this) b1_metal_detection(this->m_token);
 }
@@ -303,17 +311,18 @@ void b1_token_ready_for_b2::dispatched_event_sensor_entrance() {
   // 3. Wenn alles OK, Motor starten: hal->set_motor(MOTOR_RIGHT);
 
   // Telegramm fuer den Versand erstellen
-  telegram* tg = new telegram;
-  tg->m_type = DATA;                      // Daten sollen verschickt werden
-  tg->m_id = m_token->get_id();           // ID mitschicken
-  tg->m_height1 = m_token->get_height1(); // Hoehe 1 mitschicken
+  telegram tg;
+  tg.m_type = DATA;                      // Daten sollen verschickt werden
+  tg.m_id = m_token->get_id();           // ID mitschicken
+  tg.m_height1 = m_token->get_height1(); // Hoehe 1 mitschicken
 
-  serial->send_telegram(tg); // Fertiges Telegramm an Band 2 schicken
+  serial->send_telegram(&tg); // Fertiges Telegramm an Band 2 schicken
 
   // TODO: Ausgabe der Puck Daten auf dem Terminal
 
   // XXX: Pruefen, ob der Puck auf Band 1 anonymisiert werden muss
-  new (this) b2_receive_data(this->m_token);
+  //new (this) b2_receive_data(this->m_token);
+  new (this) anonymous_token(this->m_token);
 }
 
 
@@ -337,6 +346,21 @@ void b2_receive_data::dispatched_event_serial_data() {
   this->m_token->set_id(tg.m_id);
   this->m_token->set_height1(tg.m_height1);
 
+  new (this) b2_received_object(this->m_token);
+}
+
+// b2_received_object
+b2_received_object::b2_received_object(token* t) : state::state(t) {
+  // Beginne mit Lauschen auf geeignete Events
+  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
+}
+
+b2_received_object::~b2_received_object() { }
+
+void b2_received_object::dispatched_event_sensor_entrance() {
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->set_motor(MOTOR_FAST);
   new (this) b2_realized_object(this->m_token);
 }
 

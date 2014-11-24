@@ -54,6 +54,13 @@ int main(int argc, char *argv[]) {
    * Token Test
    **/
 
+  /* Werte der Hoehenmessung auslesen
+  while(1) {
+    hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+    std::cout << hal->get_height_value() << std::endl;
+  }
+  */
+
   // Ampel ansteuern
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_light(GREEN, 1);

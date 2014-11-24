@@ -150,7 +150,7 @@ void hwaccess::init_isr() {
     LOG_ERROR("ChannelCreate() failed!")
     return;
   }
-  // Channel öffnen
+  // Channel oeffnen
   m_isr->m_coid = ConnectAttach(0, 0, m_isr->m_chid, 0, 0);
   if (m_isr->m_coid == -1) {
     LOG_ERROR("ConnectAttach() failed!")
@@ -158,9 +158,9 @@ void hwaccess::init_isr() {
   }
   isr_coid = m_isr->m_coid; // globale variable setzen...
                             // die isr kennt die hal nicht
-  // Interrupts zurücksetzen
+  // Interrupts zuruecksetzen
   m_io->outbyte(IRQ_CLEAR_REG, 0);
-  // IRQ für Port B und Port C aktivieren
+  // IRQ fuer Port B und Port C aktivieren
   m_io->outbyte(IRQ_ENABLE_REG, IRQ_ENABLE_MASK);
   // Initialisiert event struktur auf isr pulse message
   SIGEV_PULSE_INIT(&m_isr->m_event, m_isr->m_coid, SIGEV_PULSE_PRIO_INHERIT,
