@@ -67,7 +67,7 @@ void hwaccess::change_stub(abstract_inout* ptr) {
 }
 
 /**
- * Für die anzusteuernden Bits kann das übergebene
+ * Fuer die anzusteuernden Bits kann das uebergebene
  * enum einfach zu einem Int gecastet werden. Sonderfall hier
  * ist `motor_fast`, hierbei muss Bit 2 entfernt werden.
  **/
@@ -78,9 +78,9 @@ void hwaccess::set_motor(enum motor_modes mode) {
     m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_SLOW), false);
     return;
   }
-  //FIXME
+
   if(mode != MOTOR_STOP){
-	  m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_STOP), false);
+    m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_STOP), false);
   }
   const uint8_t bit = static_cast<uint8_t>(mode);
   m_io->outbit(PORTA, bit, true);

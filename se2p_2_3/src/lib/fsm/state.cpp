@@ -147,7 +147,13 @@ anonymous_token::anonymous_token(token* t) : state::state(t) {
   std::cout << "Konstruktor von anonymous_token()" << std::endl; //FIXME
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+#ifdef IS_CONVEYOR_1
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
+#endif
+#ifdef IS_CONVEYOR_2
+  new (this) b2_received_object(this->m_token);
+#endif
+
 }
 
 anonymous_token::~anonymous_token() { }
@@ -162,9 +168,8 @@ void anonymous_token::dispatched_event_sensor_entrance() {
 #ifdef IS_CONVEYOR_1
   new (this) b1_realized_object(this->m_token);
 #endif
-#ifdef IS_CONVEYOR_2
-  new (this) b2_receive_data(this->m_token);
-#endif
+
+
 }
 
 
@@ -341,6 +346,7 @@ b1_token_ready_for_b2::~b1_token_ready_for_b2() { }
 #ifdef IS_CONVEYOR_2
 // b2_receive_data
 b2_receive_data::b2_receive_data(token* t) : state::state(t) {
+  std::cout << "Konstruktor von b2_receive_data" << std::endl;
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SERIAL_DATA);
@@ -349,8 +355,9 @@ b2_receive_data::b2_receive_data(token* t) : state::state(t) {
 b2_receive_data::~b2_receive_data() { }
 
 void b2_receive_data::dispatched_event_serial_data() {
+  std::cout << "b2_receive_data::dispatched_event_serial_data()" << std::endl;
   serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
-
+  std::cout << "b2_receive_data::dispatched_event_serial_data() : Pointer erstellt" << std::endl;
   // Werte aus Telegramm holen
   telegram tg = serial->get_telegram();
   this->m_token->set_id(tg.m_id);
@@ -362,15 +369,26 @@ void b2_receive_data::dispatched_event_serial_data() {
 // b2_received_object
 b2_received_object::b2_received_object(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
+  std::cout << "Konstruktor von b2_received_object" << std::endl;
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
+
+
+  serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
+  // Werte aus Telegramm holen
+  telegram tg = serial->get_telegram();
+  this->m_token->set_id(tg.m_id);
+  this->m_token->set_height1(tg.m_height1);
+  std::cout << "b2_received_object::b2_received_object : hinter get telegram()" << std::endl;
+
 }
 
 b2_received_object::~b2_received_object() { }
 
 void b2_received_object::dispatched_event_sensor_entrance() {
+  std::cout << "b2_received_object dispatched_event_sensor_entrance " << std::endl;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_FAST);
+  hal->set_motor(MOTOR_RIGHT);
   new (this) b2_realized_object(this->m_token);
 }
 
