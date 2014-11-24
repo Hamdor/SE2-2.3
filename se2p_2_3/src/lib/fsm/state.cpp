@@ -167,6 +167,7 @@ void anonymous_token::dispatched_event_sensor_entrance() {
 /******************************************************************************
  *                                BAND 1 FSM                                  *
  ******************************************************************************/
+#ifdef IS_CONVEYOR_1
 // b1_realized_object
 b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   std::cout << "Konstruktor von b1_realized_object()" << std::endl; //FIXME
@@ -324,11 +325,12 @@ void b1_token_ready_for_b2::dispatched_event_sensor_entrance() {
   //new (this) b2_receive_data(this->m_token);
   new (this) anonymous_token(this->m_token);
 }
-
+#endif
 
 /******************************************************************************
  *                                BAND 2 FSM                                  *
  ******************************************************************************/
+#ifdef IS_CONVEYOR_2
 // b2_receive_data
 b2_receive_data::b2_receive_data(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
@@ -475,7 +477,7 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   hal->close_switch();
   // new (this) token_finished(this->m_token); // Entfernungs-Vorgang einleiten und Puck zu anonymous_token machen
 }
-
+#endif
 
 /******************************************************************************
  *                                ERROR FSM                                   *
