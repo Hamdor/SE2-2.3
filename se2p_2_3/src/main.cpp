@@ -8,9 +8,6 @@
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/singleton_mgr.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
-#include "lib/fsm/events.hpp"
-#include "lib/fsm/token.hpp"
-#include "lib/fsm/state.hpp"
 
 #include "unit_tests/irq_test.hpp"
 #include "unit_tests/test_suite.hpp"
@@ -18,9 +15,12 @@
 #include "unit_tests/hal_test_stub1.hpp"
 #include "unit_tests/hal_test_stub2.hpp"
 #include "unit_tests/dispatcher_test.hpp"
+#include "unit_tests/timer_test.hpp"
 
-#include <iostream>
-#include <cstdlib>
+#include "lib/fsm/events.hpp"
+#include "lib/fsm/token.hpp"
+#include "lib/fsm/state.hpp"
+
 #include <unistd.h>
 
 using namespace std;
@@ -30,6 +30,7 @@ using namespace se2::dispatch;
 using namespace se2::hal;
 using namespace se2::util;
 using namespace se2::unit_tests;
+using namespace se2::timer;
 
 /**
  * Unit tests starten
@@ -43,6 +44,8 @@ void run_tests() {
   //     << test_suite<irq_test>().run()        << endl;
   cout << "run `dispatcher_test` errors: "
        << test_suite<dispatcher_test>().run() << endl;
+  cout << "run `timer_test`      errors: "
+       << test_suite<timer_test>().run()      << endl;
   #ifdef HAS_SERIAL_INTERFACE
   cout << "run `serial_test`     errors: "
        << test_suite<serial_test>().run()     << endl;
@@ -129,11 +132,11 @@ int main(int argc, char *argv[]) {
 #endif
   //print_hoehe();
   run_tests();
-  main_program();
+  //main_program();
   singleton_mgr::shutdown();
 #ifdef SIMULATION
   IOaccess_close();
 #endif
   cout << "End of main()" << std::endl;
-  return EXIT_SUCCESS;
+  return 0;
 }

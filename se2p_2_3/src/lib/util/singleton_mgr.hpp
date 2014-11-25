@@ -29,6 +29,7 @@
 
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/logging.hpp"
+#include "lib/timer/timer_handler.hpp"
 #include "lib/serial_bus/serial_channel.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
 
@@ -43,12 +44,14 @@ enum module_type {
   HAL_PLUGIN,
   LOGGER_PLUGIN,
   SERIAL_PLUGIN,
-  DISPATCHER_PLUGIN
+  DISPATCHER_PLUGIN,
+  TIMER_PLUGIN
 };
 
 class singleton_mgr {
   static mutex s_lock_hal;
   static mutex s_lock_log;
+  static mutex s_lock_timer;
   static mutex s_lock_serial;
   static mutex s_lock_dispatcher;
  public:
@@ -70,6 +73,7 @@ class singleton_mgr {
 
 #define TO_HAL(ptr) static_cast<se2::hal::hwaccess*>(ptr)
 #define TO_LOG(ptr) static_cast<se2::util::logging*>(ptr)
+#define TO_TIMER(ptr) static_cast<se2::timer::timer_handler*>(ptr)
 #define TO_SERIAL(ptr) static_cast<se2::serial_bus::serial_channel*>(ptr)
 #define TO_DISPATCHER(ptr) static_cast<se2::dispatch::dispatcher*>(ptr)
 

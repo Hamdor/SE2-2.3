@@ -16,74 +16,94 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    irq_test.hpp
+ * @file    timer_wrapper.hpp
  * @version 0.1
  *
- * Unit tests der ISR/IRQ
+ * Wrapper fuer timer struct
  **/
 
-#ifndef SE2_IRQ_TEST_HPP
-#define SE2_IRQ_TEST_HPP
-
-#include "config.h"
-
-#include "lib/hal/HWaccess.hpp"
-#include "unit_tests/abstract_test.hpp"
+#ifndef SE2_TIMER_WAPPER_HPP
+#define SE2_TIMER_WAPPER_HPP
+#include <time.h>
+#include <sys/neutrino.h>
+#include "lib/constants.hpp"
 
 namespace se2 {
-namespace unit_tests {
+namespace timer {
+class timer_handler;
 
-class irq_test : public abstract_test<irq_test> {
+class timer_wrapper {
+  friend class timer_handler;
+  /**
+   * Konstruktor
+   * @param time dauer des timers
+   * @param interval_value gibt den Interval des Timers an
+   * @param pulse_value Wert der die Pulse Message senden soll
+   **/
+  timer_wrapper(duration time, int pulse_value, int chid);
+
+  /**
+   * Default Destruktor
+   **/
+  ~timer_wrapper();
+
+
  public:
+
   /**
-   * Constructor
+   * Startet Timer
    **/
-  irq_test();
+  void start_timer();
 
   /**
-   * Destructor
+   * Stopt den Timer
    **/
-  virtual ~irq_test();
+  void stop_timer();
 
   /**
-   * Wird einmalig für alle ausgeführt
-   * @return 0 wenn erfolgreich
-   */
-  virtual int before_class();
+   * Pausiert den Timer
+   **/
+  void pause_timer();
 
   /**
-   * Funktion wird vor jedem test ausgeführt
-   * @return 0 wenn erfolgreich
-   */
-  virtual int before();
+   * Setzt den Timer fort
+   **/
+  void continue_timer();
 
   /**
-   * Initialisiert den Funktionsvektor
-   * @return 0 wenn erfolgreich
-   */
-  virtual int init();
-
-  /**
-   * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
-  virtual int after();
-
-  /**
-   * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
-  virtual int after_class();
+   * resetet timer
+   **/
+  void reset_timer();
 
  private:
-  int open_switch();
-  int close_switch();
+  /**
+   * Timer ID
+   **/
+  timer_t m_timerid;
 
-  hal::hwaccess* m_hal;
-  int m_error;
+  /**
+   * Timer Daten
+   **/
+  itimerspec m_timer;
+
+  /**
+   * Temp-Timer fuer Pausierung
+   **/
+  itimerspec m_temp_timer;
+
+  /**
+   * Zu ausfuerendes Event
+   **/
+  sigevent m_event;
+
+  /**
+   * Connection id
+   **/
+  int m_coid;
+  bool m_started;
+  bool m_paused;
+  duration m_duration;
 };
-
-} // namespace unit_test
-} // namepsace se2
-
-#endif // SE2_IRQ_TEST_HPP
+} // namespace timer
+} // namespace se2
+#endif // SE2_TIMER_WAPPER_HPP
