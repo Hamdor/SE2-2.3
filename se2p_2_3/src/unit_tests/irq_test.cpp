@@ -67,6 +67,13 @@ int irq_test::after_class() {
   return 0;
 }
 
+/**
+ * TODO:
+ * Als FSM implementieren. Das Problem ist wahrscheinlich,
+ * dass der Dispatcher die Pulse Message bekommt. Deshalb
+ * sollte hier eine FSM sein die sich bei dem Dispatcher
+ * anmelden kann...
+ **/
 int irq_test::open_switch() {
   m_hal->open_switch();
   struct _pulse msg;
