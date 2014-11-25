@@ -184,14 +184,19 @@ enum height_values {
   //METAL_BUTTOM_UP_HI  = , // Mit Metall (Falsch herum) (Max)
   METAL_LOW           = 3515, // Mit Metall (Richtig herum) (Min)
   METAL_HI            = 3535  // Mit Metall (Richtig herum) (Max)
+#elif defined(FESTO_5)
+  TOO_SMALL_LOW = 2774,
+  TOO_SMALL_HI = 2833,
+  HOLE_BOTTOM_UP_LOW = 2533,
+  HOLE_BOTTOM_UP_HI = 2571,
+  HOLE_LOW = 3572,
+  HOLE_HI = 3612,
+  METAL_BOTTOM_UP_LOW = 2514,
+  METAL_BOTTOM_UP_HI = 2573,
+  METAL_LOW = 3587,
+  METAL_HI = 3642
 #else
-  TOO_SMALL = 2784,
-  HOLE_BOTTOM_UP = 2515,
-  METAL_BOTTOM_UP = 2552,
-  HOLE = 3548,
-  METAL = 3575
-//  HOLE_BOTTOM_UP =
-  // TODO: Default Werte? Mittelwert?
+  // nop
 #endif
 };
 
