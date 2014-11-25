@@ -47,16 +47,6 @@ friend class util::singleton_mgr;
    * @return Position des neuen Timers
    **/
   int register_timer(duration time, int value);
-
-  /**
-   * Registriert timer
-   * @param time Dauer des Timers
-   * @param interval Intervall des Timers
-   * @param value Wert der die Pulsemsg senden soll
-   * @return Position des neuen Timers
-   **/
-  int register_timer(duration time, duration interval, int value);
-
   /**
    * Wechselt den Pulse Message Channel
    * @param channel id
@@ -92,29 +82,29 @@ friend class util::singleton_mgr;
   void continue_all();
 
 
-private:
-static timer_handler* instance;
-std::vector<timer_wrapper*> timers;
-int m_chid;
-/**
- * Initialisierung des Singletons
- **/
-virtual void initialize();
+ private:
+  static timer_handler* instance;
+  std::vector<timer_wrapper*> timers;
+  int m_chid;
+  /**
+   * Initialisierung des Singletons
+   **/
+  virtual void initialize();
 
-/**
- * Zerstoerung des Singleton
- **/
-virtual void destroy();
+  /**
+   * Zerstoerung des Singleton
+   **/
+  virtual void destroy();
 
- /**
-  * Konstruktor
-  **/
- timer_handler();
+   /**
+    * Konstruktor
+    **/
+   timer_handler();
 
-/**
- * Default Destruktor
- * */
- ~timer_handler();
+  /**
+   * Default Destruktor
+   * */
+   ~timer_handler();
 };
 
 } // namespace timer

@@ -55,10 +55,8 @@ int timer_test::before() {
 
 int timer_test::init() {
   m_test_functions.push_back(&timer_test::test_timer_1msec);
-  m_test_functions.push_back(&timer_test::test_timer_intervall);
   m_test_functions.push_back(&timer_test::test_timer_pause);
   m_test_functions.push_back(&timer_test::test_timer_continue);
-  m_test_functions.push_back(&timer_test::test_timer_add);
   return 0;
 }
 
@@ -77,26 +75,6 @@ int timer_test::test_timer_1msec() {
   time.msec = 1;
   m_timer->register_timer(time, 42);
   struct _pulse buffer;
-  MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
-  if (buffer.value.sival_int != 42) {
-    m_error++;
-  }
-  return m_error;
-}
-
-int timer_test::test_timer_intervall() {
-  duration time;
-  time.sec = 0;
-  time.msec = 1;
-  duration interval;
-  interval.sec = 1;
-  interval.msec = 0;
-  m_timer->register_timer(time, interval, 42);
-  struct _pulse buffer;
-  MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
-  if (buffer.value.sival_int != 42) {
-    m_error++;
-  }
   MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
   if (buffer.value.sival_int != 42) {
     m_error++;
@@ -147,26 +125,4 @@ int timer_test::test_timer_continue() {
   return m_error;
 }
 
-int timer_test::test_timer_add() {
-  int timeoutmsg = 53;
-  int timemsg = 42;
-  duration time;
-  time.sec = 0;
-  time.msec = 1;
-  duration add;
-  add.sec = 1;
-  add.msec = 0;
-  duration timeout;
-  timeout.sec = 2;
-  timeout.msec = 0;
-  int index = m_timer->register_timer(time, timemsg);
-  m_timer->register_timer(timeout, timeoutmsg);
-  m_timer->add_time(index, add);
-  struct _pulse buffer;
-  MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
-  if (buffer.value.sival_int == timeoutmsg) {
-    m_error++;
-  }
-  return m_error;
-}
 

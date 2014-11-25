@@ -54,15 +54,7 @@ timer_handler::~timer_handler() {
 }
 
 int timer_handler::register_timer(duration time, int value) {
-  duration dur;
-  dur.msec = 0;
-  dur.sec  = 0;
-  return register_timer(time, dur, value);
-}
-
-int timer_handler::register_timer(duration time, duration interval,
-                                  int value) {
-  timers.push_back (new timer_wrapper(time, interval, value, m_chid));
+  timers.push_back (new timer_wrapper(time, value, m_chid));
   return timers.size() - 1;
 }
 
@@ -102,26 +94,3 @@ void timer_handler::continue_all() {
   }
 }
 
-void timer_handler::add_time(size_t pos, duration time) {
-  if (pos < timers.size()) {
-    timers[pos]->add_time(time);
-  }
-}
-void timer_handler::add_all(duration time) {
-  for (std::vector<timer_wrapper*>::iterator it = timers.begin();
-       it != timers.end(); ++it) {
-    (*it)->add_time(time);
-  }
-}
-
-void timer_handler::sub_time(size_t pos, duration time) {
-  if (pos < timers.size()) {
-    timers[pos]->sub_time(time);
-  }
-}
-void timer_handler::sub_all(duration time) {
-  for (std::vector<timer_wrapper*>::iterator it = timers.begin();
-       it != timers.end(); ++it) {
-    (*it)->sub_time(time);
-  }
-}

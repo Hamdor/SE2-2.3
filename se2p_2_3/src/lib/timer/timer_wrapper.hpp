@@ -70,7 +70,9 @@ class timer_wrapper {
    **/
   void continue_timer();
 
-
+  /**
+   * resetet timer
+   **/
   void reset_timer();
 
  private:

@@ -28,7 +28,7 @@
 using namespace se2;
 using namespace timer;
 using namespace se2::util;
-
+#define MILISEC_TO_NANOSEC 1000
 
 timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
     : m_coid(0), m_started(false), m_paused(false) {
@@ -44,6 +44,7 @@ timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
   }
   m_duration = time;
   reset_timer();
+  start_timer();
 }
 
 timer_wrapper::~timer_wrapper() {
@@ -59,7 +60,7 @@ timer_wrapper::~timer_wrapper() {
 
 void timer_wrapper::reset_timer() {
   m_timer.it_value.tv_sec = m_duration.sec;
-  m_timer.it_value.tv_sec = m_duration.msec * 1000;
+  m_timer.it_value.tv_nsec = m_duration.msec * MILISEC_TO_NANOSEC;
   m_timer.it_interval.tv_sec = 0;
   m_timer.it_interval.tv_nsec = 0;
 }
@@ -70,16 +71,15 @@ void timer_wrapper::start_timer() {
     if (rc == -1) {
       LOG_ERROR("timer_settime() failed in start_timer()")
     }
-    // todo move to stop timer
-    m_timer.it_value.tv_sec = 0;
-    m_timer.it_value.tv_sec = 0;
-    m_timer.it_interval.tv_sec = 0;
-    m_timer.it_interval.tv_nsec = 0;
     m_started = true;
   }
 }
 
 void timer_wrapper::stop_timer() {
+  m_timer.it_value.tv_sec = 0;
+  m_timer.it_value.tv_sec = 0;
+  m_timer.it_interval.tv_sec = 0;
+  m_timer.it_interval.tv_nsec = 0;
   int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
   if (rc == -1) {
     LOG_ERROR("timer_settime() failed in stop_timer()")
