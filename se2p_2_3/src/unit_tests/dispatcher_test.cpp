@@ -208,7 +208,6 @@ class state : public se2::fsm::events {
     disp->register_listener(this, next);
   }
 
-#define PRINT_TRANSITIONS
   void dispatched_event_button_start() {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_button_start()" << std::endl;
