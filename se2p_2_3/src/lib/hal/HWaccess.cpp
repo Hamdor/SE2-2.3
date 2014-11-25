@@ -72,15 +72,22 @@ void hwaccess::change_stub(abstract_inout* ptr) {
  * ist `motor_fast`, hierbei muss Bit 2 entfernt werden.
  **/
 void hwaccess::set_motor(enum motor_modes mode) {
+  if (mode != MOTOR_STOP) {
+    // unset motor stop
+    m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_STOP), false);
+  }
   if (mode == MOTOR_FAST) {
     // Motor soll wieder schnell laufen
     // setze Bit 2 auf 0
     m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_SLOW), false);
     return;
   }
-
-  if(mode != MOTOR_STOP){
-    m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_STOP), false);
+  if (mode == MOTOR_RIGHT) {
+    // unset motor left
+    m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_LEFT), false);
+  }
+  if (mode == MOTOR_LEFT) {
+    m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_RIGHT), false);
   }
   const uint8_t bit = static_cast<uint8_t>(mode);
   m_io->outbit(PORTA, bit, true);
