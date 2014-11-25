@@ -208,6 +208,7 @@ class state : public se2::fsm::events {
     disp->register_listener(this, next);
   }
 
+#define PRINT_TRANSITIONS
   void dispatched_event_button_start() {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_button_start()" << std::endl;
@@ -400,6 +401,7 @@ int dispatcher_test::test_small_fsm() {
 
 int dispatcher_test::dispatcher_thread_test() {
   ::fsm f;
+  dispatcher_test::s_assumed_next = EVENT_BUTTON_START;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   int coid = ConnectAttach(0, 0, hal->get_isr_channel(), 0, 0);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_START);
@@ -424,7 +426,7 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_TURN_TOKEN);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_REMOVE_TOKEN);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_TOKEN_FINISHED);
-  sleep(1); // 1 sek warten damit die FSM auch fertig ist
+  sleep(1);// 1 sek warten damit die FSM auch fertig ist
             // Das ausloesen der Uebergaenge wird von dem Dispatcher Thread
             // gemacht. Deshalb ist dieser Teil asynchron.
   if (dispatcher_test::s_assumed_next != EVENT_TOKEN_FINISHED) {
