@@ -130,7 +130,7 @@ struct hwaccess : public util::abstract_singleton {
    * @param led Bestimmt die LED
    * @param on  Bestimmt ob an der aus
    **/
-  void set_led_state(enum button_leds led, bool on);
+  void set_led_state(enum leds led, bool on);
 
   /**
    * Prüft ob ein Button gedrückt ist

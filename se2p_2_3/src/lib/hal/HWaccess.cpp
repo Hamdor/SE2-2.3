@@ -53,10 +53,7 @@ hwaccess::~hwaccess() {
   hwaccess::instance = NULL;
 }
 
-// Diese Funktion ist eine NOP funktion
-// solange `UNIT_TESTS` nicht definiert ist
 void hwaccess::change_stub(abstract_inout* ptr) {
-#ifdef UNIT_TESTS
   if (!ptr) {
     LOG_ERROR("invalid stub");
     return;
@@ -67,13 +64,10 @@ void hwaccess::change_stub(abstract_inout* ptr) {
   }
   m_io = reinterpret_cast<abstract_inout*>(ptr);
   initialize();
-#else
-  // nop
-#endif
 }
 
 /**
- * Für die anzusteuernden Bits kann das übergebene
+ * Fuer die anzusteuernden Bits kann das uebergebene
  * enum einfach zu einem Int gecastet werden. Sonderfall hier
  * ist `motor_fast`, hierbei muss Bit 2 entfernt werden.
  **/
@@ -83,6 +77,10 @@ void hwaccess::set_motor(enum motor_modes mode) {
     // setze Bit 2 auf 0
     m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_SLOW), false);
     return;
+  }
+
+  if(mode != MOTOR_STOP){
+    m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_STOP), false);
   }
   const uint8_t bit = static_cast<uint8_t>(mode);
   m_io->outbit(PORTA, bit, true);
@@ -129,7 +127,7 @@ bool hwaccess::is_switch_open() const {
   return !m_io->inbit(PORTB, SWITCH_OPEN_BIT);
 }
 
-void hwaccess::set_led_state(enum button_leds led, bool on) {
+void hwaccess::set_led_state(enum leds led, bool on) {
   m_io->outbit(PORTC, static_cast<uint8_t>(led), on);
 }
 
@@ -156,7 +154,7 @@ void hwaccess::init_isr() {
     LOG_ERROR("ChannelCreate() failed!")
     return;
   }
-  // Channel öffnen
+  // Channel oeffnen
   m_isr->m_coid = ConnectAttach(0, 0, m_isr->m_chid, 0, 0);
   if (m_isr->m_coid == -1) {
     LOG_ERROR("ConnectAttach() failed!")
@@ -164,9 +162,9 @@ void hwaccess::init_isr() {
   }
   isr_coid = m_isr->m_coid; // globale variable setzen...
                             // die isr kennt die hal nicht
-  // Interrupts zurücksetzen
+  // Interrupts zuruecksetzen
   m_io->outbyte(IRQ_CLEAR_REG, 0);
-  // IRQ für Port B und Port C aktivieren
+  // IRQ fuer Port B und Port C aktivieren
   m_io->outbyte(IRQ_ENABLE_REG, IRQ_ENABLE_MASK);
   // Initialisiert event struktur auf isr pulse message
   SIGEV_PULSE_INIT(&m_isr->m_event, m_isr->m_coid, SIGEV_PULSE_PRIO_INHERIT,
@@ -207,6 +205,5 @@ void hwaccess::initialize() {
 }
 
 void hwaccess::destroy() {
-  LOG_TRACE("")
   stop_isr();
 }

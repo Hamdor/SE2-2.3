@@ -16,48 +16,75 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    isr.h
+ * @file    dispatcher_test.hpp
  * @version 0.1
  *
- * Implementierung der ISR
+ * Unit tests des Dispatchers
  **/
+
+#ifndef SE2_DISPATCHER_TEST_HPP
+#define SE2_DISPATCHER_TEST_HPP
 
 #include "config.h"
 
-#include "lib/constants.hpp"
+#include "lib/dispatcher/dispatcher.hpp"
+#include "unit_tests/abstract_test.hpp"
 
-#ifndef SE2_ISR_H
-#define SE2_ISR_H
+namespace se2 {
+namespace unit_tests {
 
-using namespace se2;
-using namespace se2::hal;
+class dispatcher_test : public abstract_test<dispatcher_test> {
+ public:
+  /**
+   * Constructor
+   **/
+  dispatcher_test();
 
-int isr_coid = 0;
-int port_old = 0;
+  /**
+   * Default Destructor
+   **/
+  ~dispatcher_test();
 
-const struct sigevent* isr(void* arg, int id) {
-  struct sigevent* event = static_cast<struct sigevent*>(arg);
-  uint8_t irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
-  out8(static_cast<uint16_t>(IRQ_CLEAR_REG), 0); // Interrupt zuruecksetzen
-  if (irq_val == PORTB_INTERRUPT || irq_val == PORTC_INTERRUPT) {
-    uint16_t ports = (in8(static_cast<uint16_t>(PORTB)) << 8) |
-                      in8(static_cast<uint16_t>(PORTC));
-    event->sigev_notify = SIGEV_PULSE;
-    event->__sigev_un1.__sigev_coid = isr_coid;
-    event->__sigev_un2.__st.__sigev_code = INTERRUPT;
-    int changed_bit = port_old ^ ports;
-    event->sigev_value.sival_int = changed_bit;
-    // update port_old
-#ifdef SIMULATION
-    // port_old = ports & ~changed_bit; // FIXME: Erzeugt falsche Event Values
-#else
-    port_old = ports;
-#endif
-  } else {
-    // Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren
-    event = NULL;
-  }
-  return event;
-}
+  virtual int before_class();
+  virtual int before();
+  virtual int init();
+  virtual int after();
+  virtual int after_class();
 
-#endif // SE2_ISR_H
+  /**
+   * Werte werden fuer die Mini FSM benoetigt
+   **/
+  static int s_error;
+  static hal::event_values s_assumed_next;
+ private:
+  /**
+   * Test fuer das mapping von `event_values` zu `dispatcher_events`.
+   * Das Mapping wird von der Funktion `dispatcher::map_from_event_values()`
+   * uebernommen.
+   **/
+  int test_mapping();
+
+  /**
+   * Testet die Belegung im `m_functions` array von `dispatcher`.
+   **/
+  int test_function_address_reg();
+
+  /**
+   * Eine kleine FSM die alle Events einmal benötigt
+   **/
+  int test_small_fsm();
+
+  /**
+   * Test fuer den Dispatcher Thread bzw. die verteilung
+   * ueber Pulse Messages
+   **/
+  int dispatcher_thread_test();
+
+  dispatch::dispatcher* m_dispatcher;
+  int m_error;
+};
+
+} // namespace unit_tests
+} // namespace se2
+
+#endif // SE2_DISPATCHER_TEST_HPP

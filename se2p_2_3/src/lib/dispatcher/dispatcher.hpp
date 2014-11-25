@@ -16,36 +16,41 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_dispatcher.hpp
+ * @file    dispatcher.hpp
  * @version 0.1
  *
- * Dispatcher Interface
+ * Dispatcher
  **/
 
-#ifndef SE2_ABSTRACT_DISPATCHER
-#define SE2_ABSTRACT_DISPATCHER
+#ifndef SE2_DISPATCHER
+#define SE2_DISPATCHER
 
 #include "config.h"
-#include "lib/constants.hpp"
+#include "lib/dispatcher/abstract_dispatcher.hpp"
+#include "lib/util/abstract_singleton.hpp"
+#include "lib/util/HAWThread.hpp"
+
+#include <queue>
+#include <cstddef>
 
 namespace se2 {
-namespace fsm {
-class events;
+namespace unit_tests {
+class dispatcher_test;
+}
+namespace util {
+class singleton_mgr;
 }
 namespace dispatch {
 
-typedef void (fsm::events::*func_t)();
-
-/**
- * Dispatcher Interface
- **/
-struct abstract_dispatcher {
+struct dispatcher : public abstract_dispatcher
+                  , public util::abstract_singleton
+                  , public util::HAWThread {
+  friend unit_tests::dispatcher_test;
+  friend util::singleton_mgr;
   /**
-   * Default Destruktor
+   * Default Destuktor
    **/
-  virtual ~abstract_dispatcher() {
-    // nop
-  }
+  virtual ~dispatcher();
 
   /**
    * Registriert einen Listener fuer ein Event.
@@ -58,16 +63,57 @@ struct abstract_dispatcher {
    *                 dieses Event erreicht ist
    **/
   virtual bool register_listener(fsm::events* listener,
-                                 hal::event_values event) = 0;
+                                 hal::event_values event);
 
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
    * @param Event welches ausgeloest werden soll
+   *        da dann synchronisation zwischen dem Dispatcher Thread
+   *        und dem aufrufendem Thread benoetigt wird.
    **/
-  virtual void direct_call_event(hal::event_values event) = 0;
+  virtual void direct_call_event(hal::event_values event);
+
+  /**
+   * Mappt von `event_values` auf `dispatcher_events`
+   * fuer zugriff auf Matrix
+   * @param  val der Wert der in `dispatcher_events` abgebildet werden soll
+   * @return gibt den Wert in `dispatcher_events` zurueck
+   **/
+  static dispatcher_events map_from_event_values(hal::event_values val);
+ private:
+  /**
+   * Default Konstruktor (private)
+   **/
+  dispatcher();
+
+  static dispatcher* instance;
+
+  /**
+   * Initialisierung des Singletons
+   **/
+  virtual void initialize();
+
+  /**
+   * Zerstoerung des Singleton
+   **/
+  virtual void destroy();
+
+  /**
+   * Diese Funktion behandelt eventuelle Sonderfaelle der einzelnen
+   * Signale. Intern durch ein Switch/Case abgedeckt.
+   * @param buffer eine Referenz auf eine Pulse Message
+   **/
+  void special_case_handling(const _pulse& buffer);
+
+  virtual void execute(void*);
+
+  virtual void shutdown();
+
+  std::queue<fsm::events*> m_listeners[DISPATCHED_EVENT_MAX];
+  func_t                   m_functions[DISPATCHED_EVENT_MAX];
 };
 
 } // namespace dispatch
 } // namespace se2
 
-#endif // SE2_ABSTRACT_DISPATCHER
+#endif // SE2_DISPATCHER

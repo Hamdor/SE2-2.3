@@ -68,23 +68,23 @@ int hal_test_stub2::after_class() {
 }
 
 int hal_test_stub2::light_barrier_interrupted_test() {
-  if (!m_hal->obj_in_light_barrier(ENTRACE_SENSOR)) {
+  if (!m_hal->obj_in_light_barrier(SENSOR_ENTRANCE)) {
     m_error++;
     LOG_ERROR("obj is not entrace_sensor")
   }
-  if (!m_hal->obj_in_light_barrier(HEIGHT_SENSOR)) {
+  if (!m_hal->obj_in_light_barrier(SENSOR_HEIGHT)) {
     m_error++;
     LOG_ERROR("obj is not in height_sensor")
   }
-  if (!m_hal->obj_in_light_barrier(SWITCH_SENSOR)) {
+  if (!m_hal->obj_in_light_barrier(SENSOR_SWITCH)) {
     m_error++;
     LOG_ERROR("obj is not in switch_sensor")
   }
-  if (!m_hal->obj_in_light_barrier(SLIGHT_SENSOR)) {
+  if (!m_hal->obj_in_light_barrier(SENSOR_SLIDE)) {
     m_error++;
     LOG_ERROR("obj is not inslight_sensor")
   }
-  if (!m_hal->obj_in_light_barrier(EXIT_SENSOR)) {
+  if (!m_hal->obj_in_light_barrier(SENSOR_EXIT)) {
     m_error++;
     LOG_ERROR("obj is not in exit_sensor")
   }

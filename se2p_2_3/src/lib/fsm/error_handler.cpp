@@ -16,48 +16,12 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    isr.h
+ * @file    error_handler.cpp
  * @version 0.1
  *
- * Implementierung der ISR
+ * Klasse fuer Fehler Zustandsautomaten
  **/
 
-#include "config.h"
-
-#include "lib/constants.hpp"
-
-#ifndef SE2_ISR_H
-#define SE2_ISR_H
+#include "error_handler.hpp"
 
 using namespace se2;
-using namespace se2::hal;
-
-int isr_coid = 0;
-int port_old = 0;
-
-const struct sigevent* isr(void* arg, int id) {
-  struct sigevent* event = static_cast<struct sigevent*>(arg);
-  uint8_t irq_val = in8(static_cast<uint16_t>(IRQ_CLEAR_REG));
-  out8(static_cast<uint16_t>(IRQ_CLEAR_REG), 0); // Interrupt zuruecksetzen
-  if (irq_val == PORTB_INTERRUPT || irq_val == PORTC_INTERRUPT) {
-    uint16_t ports = (in8(static_cast<uint16_t>(PORTB)) << 8) |
-                      in8(static_cast<uint16_t>(PORTC));
-    event->sigev_notify = SIGEV_PULSE;
-    event->__sigev_un1.__sigev_coid = isr_coid;
-    event->__sigev_un2.__st.__sigev_code = INTERRUPT;
-    int changed_bit = port_old ^ ports;
-    event->sigev_value.sival_int = changed_bit;
-    // update port_old
-#ifdef SIMULATION
-    // port_old = ports & ~changed_bit; // FIXME: Erzeugt falsche Event Values
-#else
-    port_old = ports;
-#endif
-  } else {
-    // Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren
-    event = NULL;
-  }
-  return event;
-}
-
-#endif // SE2_ISR_H

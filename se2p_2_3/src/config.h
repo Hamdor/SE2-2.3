@@ -26,11 +26,6 @@
 #ifndef SE2_CONFIG_H
 #define SE2_CONFIG_H
 
-#define UNIT_TESTS   // Aktiviert die Unit Tests anstelle des Hauptprogrammes
-                       // Wirkt sich auf `main.cpp` sowie `hwaccess.cpp` aus.
-                       // In `hwaccess` wird dadurch die Funktion
-                       // `change_stub()` zu einer nicht NOP Funktion.
-
 #define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test für
                            // die Serielle chnittstelle
 
@@ -41,6 +36,11 @@
                        // `DetachInterrupt()` nicht verwendet werden.
                        // Statt­des­sen werden diese Funktionen auf eigene fuer
                        // die Simulation ueberschrieben.
+
+
+//#define PRINT_TRANSITIONS_UNIT_TEST // Aktiviert die Ausgabe der Uebergaenge
+                                      // im Dispatcher Unit Test
+
 /**
  * ----------------------------------------------------------------------------
  * Logging Spezifische Defines

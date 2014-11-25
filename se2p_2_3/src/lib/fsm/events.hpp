@@ -16,26 +16,48 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    token.hpp
+ * @file    events.hpp
  * @version 0.1
  *
- * Token/Puk Klasse
+ * Interface/Abstrakte Klasse fuer Events
  **/
 
-#ifndef SE2_TOKEN_HPP
-#define SE2_TOKEN_HPP
+#ifndef SE2_EVENTS_HPP
+#define SE2_EVENTS_HPP
 
 namespace se2 {
+namespace fsm {
 
-struct token {
-  int m_id;
-  int m_wert1;
-  int m_wert2;
-  bool is_valid() const {
-    return !(m_id == 0 && m_wert1 == 0 && m_wert2 == 0);
+class events {
+ public:
+  virtual ~events(){
+    // nop
   }
+
+  virtual void dispatched_event_button_start()    = 0;
+  virtual void dispatched_event_button_stop()     = 0;
+  virtual void dispatched_event_button_reset()    = 0;
+  virtual void dispatched_event_button_e_stop()   = 0;
+  virtual void dispatched_event_sensor_entrance() = 0;
+  virtual void dispatched_event_sensor_height()   = 0;
+  virtual void dispatched_event_sensor_switch()   = 0;
+  virtual void dispatched_event_sensor_slide()    = 0;
+  virtual void dispatched_event_sensor_exit()     = 0;
+  virtual void dispatched_event_serial_data()     = 0;
+  virtual void dispatched_event_serial_msg()      = 0;
+  virtual void dispatched_event_serial_err()      = 0;
+  virtual void dispatched_event_serial_unk()      = 0;
+  virtual void dispatched_event_seg1_exceeded()   = 0;
+  virtual void dispatched_event_seg2_exceeded()   = 0;
+  virtual void dispatched_event_seg3_exceeded()   = 0;
+  virtual void dispatched_event_slide_full()      = 0;
+  virtual void dispatched_event_open_switch()     = 0;
+  virtual void dispatched_event_turn_token()      = 0;
+  virtual void dispatched_event_remove_token()    = 0;
+  virtual void dispatched_event_token_finished()  = 0;
 };
 
+} // namespace fsm
 } // namespace se2
 
-#endif // SE2_TOKEN_HPP
+#endif // SE2_EVENTS_HPP
