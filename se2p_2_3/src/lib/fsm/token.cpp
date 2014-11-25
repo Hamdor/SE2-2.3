@@ -25,7 +25,6 @@
 #include "token.hpp"
 
 using namespace se2::fsm;
-using namespace se2::hal;
 
 int token::get_id() { return m_id; }
 void token::set_id(int id) { m_id = id; }

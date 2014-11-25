@@ -23,6 +23,7 @@
  **/
 
 #include "state.hpp"
+#include "constants.hpp"
 
 using namespace se2;
 using namespace se2::fsm;
@@ -173,8 +174,6 @@ void anonymous_token::dispatched_event_sensor_entrance() {
 
 }
 
-
-
 /******************************************************************************
  *                                BAND 1 FSM                                  *
  ******************************************************************************/
@@ -206,13 +205,16 @@ b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   std::cout << "Konstruktor von b1_height_measurement()" << std::endl; //FIXME
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   m_token->set_height1(hal->get_height_value());
-
-
-  if (m_token->get_height1() <= TOO_SMALL &&  m_token->get_height1() >= HOLE_BOTTOM_UP) { //FIXME: Hier korrekte Hoehe feststellen!
-    new (this) b1_valid_height(this->m_token);
-  } else {
+  int height = m_token->get_height1();
+  if (TOO_SMALL_LOW <= height && height <= TOO_SMALL_HI) {
     hal->close_switch();
     new (this) b1_token_too_small(this->m_token);
+  } else if ((HOLE_LOW <= height && height <= HOLE_HI)
+          || (METAL_LOW <= height && height <= METAL_HI)
+          || (HOLE_BOTTOM_UP_LOW <= height && height <= HOLE_BOTTOM_UP_HI)
+          || (METAL_BOTTOM_UP_LOW <= height && height <= METAL_BOTTOM_UP_HI)) {
+    // TODO: evtl falsch herum ;)
+    new (this) b1_valid_height(this->m_token);
   }
 }
 
@@ -324,16 +326,16 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   serial->send_telegram(&tg); // Fertiges Telegramm an Band 2 schicken
 
 //   TODO: Ausgabe der Puck Daten auf dem Terminal
-
 //   XXX: Pruefen, ob der Puck auf Band 1 anonymisiert werden muss
 //  new (this) b2_receive_data(this->m_token);
 
-  std::cout << "b1_token_ready_for_b2() vor set_motor(right)" << std::endl;
+  //std::cout << "b1_token_ready_for_b2() vor set_motor(right)" << std::endl;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_FAST);
-  hal->set_motor(MOTOR_RIGHT);
-  hal->set_light(RED,1);
-  std::cout << "b1_token_ready_for_b2() MOTOR_FAST wurde gesetzt" << std::endl;
+  //hal->set_motor(MOTOR_FAST);
+  //hal->set_motor(MOTOR_RIGHT);
+  //hal->set_light(RED,1);
+  //std::cout << "b1_token_ready_for_b2() MOTOR_FAST wurde gesetzt" << std::endl;
+  hal->set_motor(MOTOR_STOP);
   new (this) anonymous_token(this->m_token);
 }
 
@@ -502,9 +504,7 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   std::cout << "TOKEN ID = " << m_token->get_id() << std::endl; //FIXME
   std::cout << "HOEHE 1 = " << m_token->get_height1() << std::endl; //FIXME
   std::cout << "HOEHE 2 = " << m_token->get_height2()  << std::endl; //FIXME
-
   new (this) anonymous_token(this->m_token);
-
 }
 #endif
 

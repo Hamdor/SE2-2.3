@@ -25,7 +25,6 @@
 #ifndef SE2_TOKEN_HPP
 #define SE2_TOKEN_HPP
 
-#include "constants.hpp"
 #include "events.hpp"
 
 namespace se2 {
