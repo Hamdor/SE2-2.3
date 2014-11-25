@@ -48,11 +48,7 @@ const struct sigevent* isr(void* arg, int id) {
     int changed_bit = port_old ^ ports;
     event->sigev_value.sival_int = changed_bit;
     // update port_old
-#ifdef SIMULATION
-    // port_old = ports & ~changed_bit; // FIXME: Erzeugt falsche Event Values
-#else
     port_old = ports;
-#endif
   } else {
     // Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren
     event = NULL;
