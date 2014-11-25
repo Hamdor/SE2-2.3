@@ -26,7 +26,7 @@
 #ifndef SE2_CONFIG_H
 #define SE2_CONFIG_H
 
-#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test für
+//#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test für
                            // die Serielle chnittstelle
 
 //#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur
@@ -56,7 +56,7 @@
  * ----------------------------------------------------------------------------
  * Serielle Schnittstelle Spezifische Defines
  **/
-#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
+//#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
 #define SERIAL_CHAR_DEV "/dev/ser1" // Pfad zum Char Device der Seriellen
                                     // Schnittstelle. In der VM NICHT verfügbar
 /**
@@ -70,6 +70,11 @@
 //#define FESTO_9      // Aktiviert spezifisch gemessene Werte fuer Festo 9
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
+
+#define FESTO_5        // Aktiviert spezifisch gemessene Werte fuer Festo 5
+                       // Unter anderem Daten fuer Hoehenmessung
+                       // definiert in `constants.hpp` (height_values)
+
 /**
  * ----------------------------------------------------------------------------
  **/
