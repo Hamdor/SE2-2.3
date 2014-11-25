@@ -26,7 +26,10 @@
 #ifndef SE2_CONFIG_H
 #define SE2_CONFIG_H
 
-//#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test für
+#define IS_CONVEYOR_1      // Foerderband 1 FSM aktivieren
+#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren
+
+//#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test fuer
                            // die Serielle chnittstelle
 
 //#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur
