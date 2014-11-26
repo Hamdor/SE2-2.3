@@ -64,11 +64,11 @@ void token_mgr::update() {
   } else {
     TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_FAST);
   }
-  if (m_motor_stop) {
+  /*if (m_motor_stop) {
     TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_STOP);
   } else {
     TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
-  }
+  }*/
   if (m_alife == 0) {
     TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_STOP);
   }

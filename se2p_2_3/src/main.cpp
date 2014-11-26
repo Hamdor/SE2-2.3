@@ -110,22 +110,6 @@ void get_heights() {
 }
 
 /**
- * Test fuer einen einzelnen Token durchlauf
- **/
-void single_token_test() {
-  // Ampel ansteuern
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_light(GREEN, 1);
-  std::cout << "main: Ampel wurde auf Gruen geschaltet" << std::endl;
-  token* t = new token();
-  t->set_state(new anonymous_token(t));
-  std::cout << "main: Token wurde erstellt und auf Status anonymous_token gesetzt" << std::endl;
-  while(1) {
-    sleep(1);
-  }
-}
-
-/**
  * Hauptprogamm
  **/
 void main_program() {
@@ -139,10 +123,9 @@ int main(int argc, char *argv[]) {
 #ifdef SIMULATION
   IOaccess_open();
 #endif
-  get_heights();
+  //get_heights();
   //run_tests();
-  //main_program();
-  //single_token_test();
+  main_program();
   singleton_mgr::shutdown();
 #ifdef SIMULATION
   IOaccess_close();
