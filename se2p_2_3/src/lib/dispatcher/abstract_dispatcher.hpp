@@ -62,7 +62,7 @@ struct abstract_dispatcher {
 
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
-   * @param Event welches ausgeloest werden soll
+   * @param event welches ausgeloest werden soll
    **/
   virtual void direct_call_event(hal::event_values event) = 0;
 };

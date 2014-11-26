@@ -37,8 +37,8 @@ class timer_wrapper {
   /**
    * Konstruktor
    * @param time dauer des timers
-   * @param interval_value gibt den Interval des Timers an
    * @param pulse_value Wert der die Pulse Message senden soll
+   * @param chid ist die channel id
    **/
   timer_wrapper(duration time, int pulse_value, int chid);
 

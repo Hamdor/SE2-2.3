@@ -49,7 +49,7 @@ friend class util::singleton_mgr;
   int register_timer(duration time, int value);
   /**
    * Wechselt den Pulse Message Channel
-   * @param channel id
+   * @param chid ist channel id
    **/
   void change_channel(int chid);
 

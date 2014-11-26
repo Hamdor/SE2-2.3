@@ -67,7 +67,7 @@ struct dispatcher : public abstract_dispatcher
 
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
-   * @param Event welches ausgeloest werden soll
+   * @param event welches ausgeloest werden soll
    *        da dann synchronisation zwischen dem Dispatcher Thread
    *        und dem aufrufendem Thread benoetigt wird.
    **/
