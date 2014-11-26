@@ -46,13 +46,13 @@ namespace hal {
 struct hwaccess : public util::abstract_singleton {
   friend class util::singleton_mgr;
   /**
-   * Control Klasse für den ISR Teil der HAL
-   * Diese Klasse ist nur von `hwaccess` zugänglich
-   * Kapselt alle benötigten Daten für die ISR
+   * Control Klasse fuerr den ISR Teil der HAL
+   * Diese Klasse ist nur von `hwaccess` zugaenglich
+   * Kapselt alle benoetigten Daten fuer die ISR
    **/
   struct isr_control {
-    int m_chid;              // Channel ID für Pulse Messages
-    int m_coid;              // Connection ID für Channel Connection
+    int m_chid;              // Channel ID fuer Pulse Messages
+    int m_coid;              // Connection ID fuer Channel Connection
     int m_interruptid;       // Interrupt ID (IRQ 11)
     struct sigevent m_event; // sigevent Struct
   };
@@ -74,12 +74,12 @@ struct hwaccess : public util::abstract_singleton {
   void set_motor(enum motor_modes mode);
 
   /**
-   * Öffnet die Weiche, wenn Weiche offen keine weitere Reaktion
+   * Oeffnet die Weiche, wenn Weiche offen keine weitere Reaktion
    **/
   void open_switch();
 
   /**
-   * Schließt die Weiche, wenn Weiche geschlossen keine weitere Reaktion
+   * Schliesst die Weiche, wenn Weiche geschlossen keine weitere Reaktion
    **/
   void close_switch();
 
@@ -91,7 +91,7 @@ struct hwaccess : public util::abstract_singleton {
   void set_light(enum light_colors light, bool on);
 
   /**
-   * Prüft ob die angegebene Lichtschranke unterbrochen ist
+   * Prueft ob die angegebene Lichtschranke unterbrochen ist
    * @param  barrier Gibt die Lichtschranke an
    * @return TRUE  wenn Lichtschranke durchbrochen,
    *         FALSE wenn Lichtschranke geschlossen
@@ -99,14 +99,14 @@ struct hwaccess : public util::abstract_singleton {
   bool obj_in_light_barrier(enum light_barriers barrier) const;
 
   /**
-   * Prüft ob das Objekt im Tolleranzbereich ist
+   * Prueft ob das Objekt im Tolleranzbereich ist
    * @return TRUE  wenn Objekt im Tolleranzbereich
    *         FALSE wenn Objekt nicht im Tolleranzbereich
    **/
   bool obj_has_valid_height() const;
 
   /**
-   * Ruft den absoluten Höhenwert des Sensors ab
+   * Ruft den absoluten Hoehenwert des Sensors ab
    * @return Ein 16 bit unsigned Integer als Absolutwert
    **/
   uint16_t get_height_value();
@@ -119,8 +119,8 @@ struct hwaccess : public util::abstract_singleton {
   bool obj_has_metal() const;
 
   /**
-   * Prüft ob die Weiche offen ist
-   * @return TRUE  wenn Weiche geöffnet
+   * Prueft ob die Weiche offen ist
+   * @return TRUE  wenn Weiche geoeffnet
    *         FALSE wenn Weiche geschlossen
    **/
   bool is_switch_open() const;
@@ -133,15 +133,15 @@ struct hwaccess : public util::abstract_singleton {
   void set_led_state(enum leds led, bool on);
 
   /**
-   * Prüft ob ein Button gedrückt ist
-   * @param  key Bestimmt den zu prüfenden Button
-   * @return TRUE  wenn Button gedrückt
-   *         FALSE wenn Button nicht gedrückt
+   * Prueft ob ein Button gedrueckt ist
+   * @param  key Bestimmt den zu pruefenden Button
+   * @return TRUE  wenn Button gedrueckt
+   *         FALSE wenn Button nicht gedrueckt
    **/
   bool is_button_pressed(enum buttons key) const;
 
   /**
-   * Gibt den die Channel ID des Channels zurück
+   * Gibt den die Channel ID des Channels zurueck
    * den die ISR benutzt
    **/
   int get_isr_channel() const;
@@ -154,7 +154,7 @@ struct hwaccess : public util::abstract_singleton {
   virtual void initialize();
 
   /**
-   * Zerst�rung des Singleton
+   * Zerstoerrung des Singleton
    **/
   virtual void destroy();
 
