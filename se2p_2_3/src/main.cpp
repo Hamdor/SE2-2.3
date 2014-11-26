@@ -55,7 +55,7 @@ void run_tests() {
 /**
  * Initialisierung fuer Puck hoehen
  **/
-void print_hoehe() {
+void get_heights() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   std::string puck_names[] = {
       "TOO_SMALL_LOW",       "TOO_SMALL_HI",
@@ -86,7 +86,7 @@ void print_hoehe() {
     // MIN - MAX holen
     min = 0xFFFFFFFF;
     max = 0;
-    while(!hal->is_button_pressed(BUTTON_START)) {
+    for (int i = 0; i < 250000; ++i) {
       size_t cur = hal->get_height_value();
       max = std::max(max, cur);
       min = std::min(min, cur);
@@ -139,9 +139,9 @@ int main(int argc, char *argv[]) {
 #ifdef SIMULATION
   IOaccess_open();
 #endif
-  //print_hoehe();
+  get_heights();
   //run_tests();
-  main_program();
+  //main_program();
   //single_token_test();
   singleton_mgr::shutdown();
 #ifdef SIMULATION
