@@ -45,8 +45,34 @@ class token_mgr : public util::abstract_singleton {
   virtual void initialize();
   virtual void destroy();
 
+  void update();
+
+ public:
+  /**
+   * Mit dieser Funktion meldet sich der neue `token`
+   * einmal bei dem `token_mgr` an.
+   **/
+  void notify_exsistens();
+
+  /**
+   * Mit dieser Funktion meldet sich der `token`
+   * vom `token_mgr` ab.
+   **/
+  void notify_death();
+
+  void request_fast_motor();
+  void request_slow_motor();
+
+  void request_stop_motor();
+  void unrequest_stop_motor();
+
+ private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
+
+  int  m_alife;
+  int  m_motor_slow;
+  bool m_motor_stop;
 };
 
 }

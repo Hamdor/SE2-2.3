@@ -33,7 +33,7 @@ class token : public fsm::events {
  public:
   token()
       : m_state(0), m_id(0), m_height1(0), m_height2(0)
-      , m_is_metal(false), m_is_upside_down(0) {
+      , m_is_metal(false), m_is_upside_down(false) {
     // nop
   }
 
@@ -57,6 +57,8 @@ class token : public fsm::events {
   bool get_is_metal();
   void set_is_metal(bool metal);
   bool is_valid();
+
+  void reset();
 
   virtual void dispatched_event_button_start();
   virtual void dispatched_event_button_stop();

@@ -142,7 +142,7 @@ int main(int argc, char *argv[]) {
   //print_hoehe();
   //run_tests();
   main_program();
-  single_token_test();
+  //single_token_test();
   singleton_mgr::shutdown();
 #ifdef SIMULATION
   IOaccess_close();

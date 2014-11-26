@@ -25,12 +25,18 @@
 #include "lib/token_mgr.hpp"
 #include "lib/fsm/state.hpp"
 
+#include "lib/util/singleton_mgr.hpp"
+#include "lib/hal/HWaccess.hpp"
+
 using namespace se2;
 using namespace se2::fsm;
+using namespace se2::hal;
+using namespace se2::util;
 
 token_mgr* token_mgr::instance = 0;
 
-token_mgr::token_mgr() {
+token_mgr::token_mgr() : m_alife(0), m_motor_slow(0)
+                       , m_motor_stop(false) {
   // Initialisiere alle Token mit anonymous token
   for (int i = 0; i < NUM_OF_TOKENS; ++i) {
     m_tokens[i].set_state(new anonymous_token(&m_tokens[i]));
@@ -47,4 +53,56 @@ void token_mgr::initialize() {
 
 void token_mgr::destroy() {
   // nop
+}
+
+void token_mgr::update() {
+  if (m_alife > 0) {
+    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
+  }
+  if (m_motor_slow > 0) {
+    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_SLOW);
+  } else {
+    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_FAST);
+  }
+  if (m_motor_stop) {
+    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_STOP);
+  } else {
+    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
+  }
+  if (m_alife == 0) {
+    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_STOP);
+  }
+  if (m_alife < 0) {
+    LOG_ERROR("m_alife is under 0")
+  }
+}
+
+void token_mgr::notify_exsistens() {
+  ++m_alife;
+  update();
+}
+
+void token_mgr::notify_death() {
+  --m_alife;
+  update();
+}
+
+void token_mgr::request_fast_motor() {
+  --m_motor_slow;
+  update();
+}
+
+void token_mgr::request_slow_motor() {
+  ++m_motor_slow;
+  update();
+}
+
+void token_mgr::request_stop_motor() {
+  m_motor_stop = true;
+  update();
+}
+
+void token_mgr::unrequest_stop_motor() {
+  m_motor_stop = false;
+  update();
 }

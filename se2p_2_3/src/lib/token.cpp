@@ -76,6 +76,14 @@ bool token::is_valid() {
   return !(m_id == 0 || m_height1 == 0 || m_height2 == 0);
 }
 
+void token::reset() {
+  m_id             = 0;
+  m_height1        = 0;
+  m_height2        = 0;
+  m_is_metal       = false;
+  m_is_upside_down = false;
+}
+
 void token::dispatched_event_button_start() {
   m_state->dispatched_event_button_start();
 }
