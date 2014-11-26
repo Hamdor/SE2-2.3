@@ -37,9 +37,13 @@ class token : public fsm::events {
     // nop
   }
 
-  ~token() { delete m_state; }
+  ~token() {
+    delete m_state;
+  }
 
-  virtual void set_state(fsm::events* state) { m_state = state; }
+  virtual void set_state(fsm::events* state) {
+    m_state = state;
+  }
 
   int get_id();
   void set_id(int id);

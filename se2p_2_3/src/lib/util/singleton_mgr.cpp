@@ -17,9 +17,9 @@
  ******************************************************************************/
 /**
  * @file    singleton_mgr.cpp
- * @version 0.1
+ * @version 0.2
  *
- * Interface/Abstrakte Klasse f�r Singletons
+ * Interface/Abstrakte Klasse fuer Singletons
  **/
 
 #include "lib/util/singleton_mgr.hpp"
@@ -35,6 +35,7 @@ mutex singleton_mgr::s_lock_log;
 mutex singleton_mgr::s_lock_timer;
 mutex singleton_mgr::s_lock_serial;
 mutex singleton_mgr::s_lock_dispatcher;
+mutex singleton_mgr::s_lock_token_mgr;
 
 abstract_singleton* singleton_mgr::get_instance(module_type module) {
   if (module == HAL_PLUGIN) {
@@ -85,6 +86,15 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
       }
     }
     return timer_handler::instance;
+  } else if (module == TOKEN_PLUGIN) {
+    if (!token_mgr::instance) {
+      lock_guard guard(s_lock_token_mgr);
+      if (!token_mgr::instance) {
+        token_mgr::instance = new token_mgr();
+        token_mgr::instance->initialize();
+      }
+    }
+    return token_mgr::instance;
   }
   return NULL;
 }
@@ -104,12 +114,16 @@ void singleton_mgr::shutdown() {
     hwaccess::instance->destroy();
     delete hwaccess::instance;
   }
-  if (logging::instance) {
-    logging::instance->destroy();
-    delete logging::instance;
+  if (token_mgr::instance) {
+    token_mgr::instance->destroy();
+    delete token_mgr::instance;
   }
   if (timer_handler::instance) {
     timer_handler::instance->destroy();
     delete timer_handler::instance;
+  }
+  if (logging::instance) {
+    logging::instance->destroy();
+    delete logging::instance;
   }
 }

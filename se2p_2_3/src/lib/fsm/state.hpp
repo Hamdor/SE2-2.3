@@ -39,7 +39,9 @@ class state : public events {
   token* m_token;
 
  public:
-  state(token* t) : m_token(t) { }
+  state(token* t) : m_token(t) {
+    // nop
+  }
   virtual ~state() {
     delete m_token;
   }

@@ -26,8 +26,13 @@
 #ifndef SE2_CONFIG_H
 #define SE2_CONFIG_H
 
+#define NUM_OF_TOKENS 20   // Anzahl an vordefinierten Tokens
+                           // Die Logik kann niemals mehr als diese Anzahl an
+                           // Tokens verwalten, da keine dynamische Allokierung
+                           // stattfindet
+
 #define IS_CONVEYOR_1      // Foerderband 1 FSM aktivieren
-#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren
+//#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren
 
 //#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test fuer
                            // die Serielle chnittstelle

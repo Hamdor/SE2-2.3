@@ -129,7 +129,10 @@ void single_token_test() {
  * Hauptprogamm
  **/
 void main_program() {
-
+  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  while(1) {
+    sleep(1);
+  }
 }
 
 int main(int argc, char *argv[]) {
