@@ -132,9 +132,8 @@ b1_metal_detection::b1_metal_detection(token* t) : state::state(t) {
 
 void b1_metal_detection::dispatched_event_sensor_exit() {
   LOG_TRACE("")
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_STOP);
-  hal->close_switch();
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->close_switch();
+  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_stop_motor();
   new (this) b1_exit(this->m_token);
 }
 
@@ -143,7 +142,6 @@ b1_exit::b1_exit(token* t) : state::state(t) {
   LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   if (m_token->get_is_upside_down()) { //FIXME upside_down abruf einbauen aus der hal
-    hal->set_motor(MOTOR_STOP);
     // TODO: Hier in Fehlerbehandlung springen
     new (this) b1_token_upside_down(this->m_token);
   } else {
@@ -158,7 +156,7 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(this->m_token, EVENT_BUTTON_START);
+  disp->register_listener(m_token, EVENT_BUTTON_START);
 }
 
 void b1_token_upside_down::dispatched_event_button_start() {
