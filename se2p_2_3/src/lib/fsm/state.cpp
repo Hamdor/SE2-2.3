@@ -32,123 +32,11 @@ using namespace se2::util;
 using namespace se2::dispatch;
 using namespace se2::serial_bus;
 
-state::~state() { delete m_token; }
-
-/* Zu implementierende Funktionen
- *
-void dispatched_event_button_start();
-void dispatched_event_button_stop();
-void dispatched_event_button_reset();
-void dispatched_event_button_e_stop();
-void dispatched_event_sensor_entrance();
-void dispatched_event_sensor_height();
-void dispatched_event_sensor_switch();
-void dispatched_event_sensor_slide();
-void dispatched_event_sensor_exit();
-void dispatched_event_serial_data();
-void dispatched_event_serial_msg();
-void dispatched_event_serial_err();
-void dispatched_event_serial_unk();
-void dispatched_event_seg1_exceeded();
-void dispatched_event_seg2_exceeded();
-void dispatched_event_seg3_exceeded();
-void dispatched_event_slide_full();
-void dispatched_event_open_switch();
-void dispatched_event_turn_token();
-void dispatched_event_remove_token();
-void dispatched_event_token_finished();
-*/
-
-void state::dispatched_event_button_start() {
-  // nop
-}
-
-void state::dispatched_event_button_stop() {
-  // nop
-}
-
-void state::dispatched_event_button_reset() {
-  // nop
-}
-
-void state::dispatched_event_button_e_stop() {
-  // nop
-}
-
-void state::dispatched_event_sensor_entrance() {
-  // nop
-}
-
-void state::dispatched_event_sensor_height() {
-  // nop
-}
-
-void state::dispatched_event_sensor_switch() {
-  // nop
-}
-
-void state::dispatched_event_sensor_slide() {
-  // nop
-}
-
-void state::dispatched_event_sensor_exit() {
-  // nop
-}
-
-void state::dispatched_event_serial_data() {
-  // nop
-}
-
-void state::dispatched_event_serial_msg() {
-  // nop
-}
-
-void state::dispatched_event_serial_err() {
-  // nop
-}
-
-void state::dispatched_event_serial_unk() {
-  // nop
-}
-
-void state::dispatched_event_seg1_exceeded() {
-  // nop
-}
-
-void state::dispatched_event_seg2_exceeded() {
-  // nop
-}
-
-void state::dispatched_event_seg3_exceeded() {
-  // nop
-}
-
-void state::dispatched_event_slide_full() {
-  // nop
-}
-
-void state::dispatched_event_open_switch() {
-  // nop
-}
-
-void state::dispatched_event_turn_token() {
-  // nop
-}
-
-void state::dispatched_event_remove_token() {
-  // nop
-}
-
-void state::dispatched_event_token_finished() {
-  // nop
-}
-
 // anonymous_token
 anonymous_token::anonymous_token(token* t) : state::state(t) {
   std::cout << "Konstruktor von anonymous_token()" << std::endl; //FIXME
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-
 #ifdef IS_CONVEYOR_1
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
 #endif
@@ -157,10 +45,7 @@ anonymous_token::anonymous_token(token* t) : state::state(t) {
   hal->set_motor(MOTOR_STOP);
   new (this) b2_receive_data(this->m_token);
 #endif
-
 }
-
-anonymous_token::~anonymous_token() { }
 
 void anonymous_token::dispatched_event_sensor_entrance() {
   std::cout << "Aufruf von anonymous_token::dispatched_event_sensor_entrance()" << std::endl; //FIXME
@@ -170,8 +55,6 @@ void anonymous_token::dispatched_event_sensor_entrance() {
 #ifdef IS_CONVEYOR_1
   new (this) b1_realized_object(this->m_token);
 #endif
-
-
 }
 
 /******************************************************************************
@@ -188,8 +71,6 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_RIGHT);
 }
-
-b1_realized_object::~b1_realized_object() { }
 
 void b1_realized_object::dispatched_event_sensor_height() {
   std::cout << "b1_realized_object::dispatched_event_sensor_height()" << std::endl; //FIXME
@@ -218,8 +99,6 @@ b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   }
 }
 
-b1_height_measurement::~b1_height_measurement() { }
-
 // b1_token_too_small
 b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
   std::cout << "Konstruktor von b1_token_too_small()" << std::endl; //FIXME
@@ -230,8 +109,6 @@ b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_motor(MOTOR_FAST);
 }
-
-b1_token_too_small::~b1_token_too_small() { }
 
 void b1_token_too_small::dispatched_event_sensor_slide() {
   new (this) anonymous_token(this->m_token);
@@ -248,8 +125,6 @@ b1_valid_height::b1_valid_height(token* t) : state::state(t) {
   hal->set_motor(MOTOR_FAST);
 }
 
-b1_valid_height::~b1_valid_height() { }
-
 void b1_valid_height::dispatched_event_sensor_switch() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->open_switch();
@@ -264,8 +139,6 @@ b1_metal_detection::b1_metal_detection(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_EXIT);
 }
-
-b1_metal_detection::~b1_metal_detection() { }
 
 void b1_metal_detection::dispatched_event_sensor_exit() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
@@ -291,8 +164,6 @@ b1_exit::b1_exit(token* t) : state::state(t) {
   }
 }
 
-b1_exit::~b1_exit() { }
-
 // b1_token_upside_down !!!!!!!!!! TODO: Wird ausgelagert in eigenen Fehlerzustand !!!!!!!!!!!
 b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   std::cout << "Konstruktor von b1_token_upside_down()" << std::endl;
@@ -300,8 +171,6 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_BUTTON_START);
 }
-
-b1_token_upside_down::~b1_token_upside_down() { }
 
 void b1_token_upside_down::dispatched_event_button_start() {
   // TODO: Wenn Wendevorgang erfolgreich -> b1_token_ready_for_b2
@@ -339,8 +208,6 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   new (this) anonymous_token(this->m_token);
 }
 
-b1_token_ready_for_b2::~b1_token_ready_for_b2() { }
-
 #endif
 
 /******************************************************************************
@@ -356,8 +223,6 @@ b2_receive_data::b2_receive_data(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SERIAL_DATA);
 }
-
-b2_receive_data::~b2_receive_data() { }
 
 void b2_receive_data::dispatched_event_serial_data() {
   std::cout << "b2_receive_data::dispatched_event_serial_data()" << std::endl;
@@ -382,8 +247,6 @@ b2_received_object::b2_received_object(token* t) : state::state(t) {
 
 }
 
-b2_received_object::~b2_received_object() { }
-
 void b2_received_object::dispatched_event_sensor_entrance() {
   std::cout << "b2_received_object dispatched_event_sensor_entrance " << std::endl;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
@@ -397,8 +260,6 @@ b2_realized_object::b2_realized_object(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_HEIGHT);
 }
-
-b2_realized_object::~b2_realized_object() { }
 
 void b2_realized_object::dispatched_event_sensor_height() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
@@ -424,16 +285,12 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   }
 }
 
-b2_height_measurement::~b2_height_measurement() { }
-
 // b2_token_upside_down
 b2_token_upside_down::b2_token_upside_down(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_SLIDE);
 }
-
-b2_token_upside_down::~b2_token_upside_down() { }
 
 void b2_token_upside_down::dispatched_event_sensor_slide() {
   new (this) anonymous_token(this->m_token);
@@ -445,8 +302,6 @@ b2_valid_height::b2_valid_height(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_SWITCH);
 }
-
-b2_valid_height::~b2_valid_height() { }
 
 void b2_valid_height::dispatched_event_sensor_switch() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
@@ -467,16 +322,12 @@ b2_metal_detection::b2_metal_detection(token* t) : state::state(t) {
   }
 }
 
-b2_metal_detection::~b2_metal_detection() { }
-
 // b2_is_wrong_order
 b2_is_wrong_order::b2_is_wrong_order(token* t) : state::state(t) {
   // Beginne mit Lauschen auf geeignete Events
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
 }
-
-b2_is_wrong_order::~b2_is_wrong_order() { }
 
 void b2_is_wrong_order::dispatched_event_sensor_entrance() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
@@ -488,12 +339,11 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance() {
 
 // b2_is_correct_order
 b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
-    // Beginne mit Lauschen auf geeignete Events
-    dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-    disp->register_listener(this->m_token, EVENT_SENSOR_EXIT);
-  }
+  // Beginne mit Lauschen auf geeignete Events
+  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(this->m_token, EVENT_SENSOR_EXIT);
+}
 
-b2_is_correct_order::~b2_is_correct_order() { }
 
 void b2_is_correct_order::dispatched_event_sensor_exit() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
