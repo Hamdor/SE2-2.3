@@ -28,9 +28,8 @@
 #include "events.hpp"
 
 namespace se2 {
-namespace fsm {
 
-class token : public events {
+class token : public fsm::events {
  public:
   token()
       : m_state(0), m_id(0), m_height1(0), m_height2(0)
@@ -40,7 +39,7 @@ class token : public events {
 
   ~token() { delete m_state; }
 
-  virtual void set_state(events* state) { m_state = state; }
+  virtual void set_state(fsm::events* state) { m_state = state; }
 
   int get_id();
   void set_id(int id);
@@ -87,7 +86,6 @@ class token : public events {
   bool m_is_upside_down;
 };
 
-} // namespace fsm
 } // namespace se2
 
 #endif // SE2_TOKEN_HPP

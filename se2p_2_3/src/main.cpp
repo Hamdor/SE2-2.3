@@ -17,9 +17,8 @@
 #include "unit_tests/dispatcher_test.hpp"
 #include "unit_tests/timer_test.hpp"
 
-#include "lib/fsm/events.hpp"
-#include "lib/fsm/token.hpp"
 #include "lib/fsm/state.hpp"
+#include "lib/token.hpp"
 
 #include <unistd.h>
 
@@ -111,9 +110,9 @@ void print_hoehe() {
 }
 
 /**
- * Hauptprogamm
+ * Test fuer einen einzelnen Token durchlauf
  **/
-void main_program() {
+void single_token_test() {
   // Ampel ansteuern
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->set_light(GREEN, 1);
@@ -126,13 +125,21 @@ void main_program() {
   }
 }
 
+/**
+ * Hauptprogamm
+ **/
+void main_program() {
+
+}
+
 int main(int argc, char *argv[]) {
 #ifdef SIMULATION
   IOaccess_open();
 #endif
   //print_hoehe();
-  run_tests();
-  //main_program();
+  //run_tests();
+  main_program();
+  single_token_test();
   singleton_mgr::shutdown();
 #ifdef SIMULATION
   IOaccess_close();

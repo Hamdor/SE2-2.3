@@ -24,6 +24,7 @@
 
 #include "token.hpp"
 
+using namespace se2;
 using namespace se2::fsm;
 
 int token::get_id() { return m_id; }
