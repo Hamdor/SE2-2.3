@@ -64,13 +64,22 @@ class state : public events {
   virtual void dispatched_event_sensor_height() {
     // nop
   }
+  virtual void dispatched_event_sensor_height_rising() {
+    // nop
+  }
   virtual void dispatched_event_sensor_switch() {
     // nop
   }
   virtual void dispatched_event_sensor_slide() {
     // nop
   }
+  virtual void dispatched_event_sensor_slide_rising() {
+    // nop
+  }
   virtual void dispatched_event_sensor_exit() {
+    // nop
+  }
+  virtual void dispatched_event_sensor_exit_rising() {
     // nop
   }
   virtual void dispatched_event_serial_data() {

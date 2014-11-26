@@ -27,25 +27,53 @@
 using namespace se2;
 using namespace se2::fsm;
 
-int token::get_id() { return m_id; }
-void token::set_id(int id) { m_id = id; }
+int token::m_id_counter = 0;
 
-int token::get_next_id() { return m_id_counter++; }
+int token::get_id() {
+  return m_id;
+}
+void token::set_id(int id) {
+  m_id = id;
+}
 
-int token::get_height1() { return m_height1; }
-void token::set_height1(int height1) { m_height1 = height1; }
+int token::get_next_id() {
+  return ++m_id_counter;
+}
 
-int token::get_height2() { return m_height2; }
-void token::set_height2(int height2) { m_height2 = height2; }
+int token::get_height1() {
+  return m_height1;
+}
 
-bool token::get_is_upside_down() { return m_is_upside_down; }
-void token::set_is_upside_down(bool b) { m_is_upside_down = b; }
+void token::set_height1(int height1) {
+  m_height1 = height1;
+}
 
-bool token::get_is_metal() { return m_is_metal; }
-void token::set_is_metal(bool b) { m_is_metal = b; }
+int token::get_height2() {
+  return m_height2;
+}
+
+void token::set_height2(int height2) {
+  m_height2 = height2;
+}
+
+bool token::get_is_upside_down() {
+  return m_is_upside_down;
+}
+
+void token::set_is_upside_down(bool value) {
+  m_is_upside_down = value;
+}
+
+bool token::get_is_metal() {
+  return m_is_metal;
+}
+
+void token::set_is_metal(bool metal) {
+  m_is_metal = metal;
+}
 
 bool token::is_valid() {
-  return !(m_id == 0 && m_height1 == 0 && m_height2 == 0);
+  return !(m_id == 0 || m_height1 == 0 || m_height2 == 0);
 }
 
 void token::dispatched_event_button_start() {
@@ -72,6 +100,10 @@ void token::dispatched_event_sensor_height() {
   m_state->dispatched_event_sensor_height();
 }
 
+void token::dispatched_event_sensor_height_rising() {
+  m_state->dispatched_event_sensor_height_rising();
+}
+
 void token::dispatched_event_sensor_switch() {
   m_state->dispatched_event_sensor_switch();
 }
@@ -80,8 +112,16 @@ void token::dispatched_event_sensor_slide() {
   m_state->dispatched_event_sensor_slide();
 }
 
+void token::dispatched_event_sensor_slide_rising() {
+  m_state->dispatched_event_sensor_slide_rising();
+}
+
 void token::dispatched_event_sensor_exit() {
   m_state->dispatched_event_sensor_exit();
+}
+
+void token::dispatched_event_sensor_exit_rising() {
+  m_state->dispatched_event_sensor_exit_rising();
 }
 
 void token::dispatched_event_serial_data() {
@@ -131,5 +171,3 @@ void token::dispatched_event_remove_token() {
 void token::dispatched_event_token_finished() {
   m_state->dispatched_event_token_finished();
 }
-
-int token::m_id_counter = 1; // Beginne fortlaufende ID's der Pucks bei 1

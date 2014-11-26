@@ -68,8 +68,9 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(this->m_token, EVENT_SENSOR_HEIGHT);
 
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_motor(MOTOR_RIGHT);
+  //hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  //hal->set_motor(MOTOR_RIGHT);
+  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_exsistens();
 }
 
 void b1_realized_object::dispatched_event_sensor_height() {
@@ -204,7 +205,8 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   //hal->set_motor(MOTOR_RIGHT);
   //hal->set_light(RED,1);
   //std::cout << "b1_token_ready_for_b2() MOTOR_FAST wurde gesetzt" << std::endl;
-  hal->set_motor(MOTOR_STOP);
+  //hal->set_motor(MOTOR_STOP);
+  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_death();
   new (this) anonymous_token(this->m_token);
 }
 

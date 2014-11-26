@@ -53,9 +53,9 @@ class token : public fsm::events {
   int get_height2();
   void set_height2(int height2);
   bool get_is_upside_down();
-  void set_is_upside_down(bool b);
+  void set_is_upside_down(bool value);
   bool get_is_metal();
-  void set_is_metal(bool b);
+  void set_is_metal(bool metal);
   bool is_valid();
 
   virtual void dispatched_event_button_start();
@@ -64,9 +64,12 @@ class token : public fsm::events {
   virtual void dispatched_event_button_e_stop();
   virtual void dispatched_event_sensor_entrance();
   virtual void dispatched_event_sensor_height();
+  virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
   virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_sensor_slide_rising();
   virtual void dispatched_event_sensor_exit();
+  virtual void dispatched_event_sensor_exit_rising();
   virtual void dispatched_event_serial_data();
   virtual void dispatched_event_serial_msg();
   virtual void dispatched_event_serial_err();
