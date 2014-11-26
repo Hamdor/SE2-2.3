@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['has_5fserial_5finterface',['HAS_SERIAL_INTERFACE',['../config_8h.html#a912ce68b02718695eb1176a43e0cd2d9',1,'config.h']]],
-  ['height_5fbit',['HEIGHT_BIT',['../constants_8hpp.html#ab70fec455a7b64053bbbf6ab6a0c7c2d',1,'constants.hpp']]]
+  ['event_5fbase',['EVENT_BASE',['../constants_8hpp.html#a0ea30b569d5ec8bc618c9ee4309c6422',1,'constants.hpp']]],
+  ['event_5fport_5fa_5foffset',['EVENT_PORT_A_OFFSET',['../constants_8hpp.html#a1a4866817291387ddea20ab02106e86a',1,'constants.hpp']]],
+  ['event_5fport_5fc_5foffset',['EVENT_PORT_C_OFFSET',['../constants_8hpp.html#a1b92fc0e03b20fdca689b4afdcde5c41',1,'constants.hpp']]],
+  ['event_5fserial_5fstart',['EVENT_SERIAL_START',['../constants_8hpp.html#a01ff979dfbb368230a4dd7dc87e23ea7',1,'constants.hpp']]]
 ];

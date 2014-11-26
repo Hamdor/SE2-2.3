@@ -1,11 +1,7 @@
 var searchData=
 [
-  ['serial_5fchannel_2ecpp',['serial_channel.cpp',['../serial__channel_8cpp.html',1,'']]],
-  ['serial_5fchannel_2ehpp',['serial_channel.hpp',['../serial__channel_8hpp.html',1,'']]],
-  ['serial_5finterface_2ecpp',['serial_interface.cpp',['../serial__interface_8cpp.html',1,'']]],
-  ['serial_5finterface_2ehpp',['serial_interface.hpp',['../serial__interface_8hpp.html',1,'']]],
-  ['serial_5ftest_2ecpp',['serial_test.cpp',['../serial__test_8cpp.html',1,'']]],
-  ['serial_5ftest_2ehpp',['serial_test.hpp',['../serial__test_8hpp.html',1,'']]],
-  ['singleton_5fmgr_2ecpp',['singleton_mgr.cpp',['../singleton__mgr_8cpp.html',1,'']]],
-  ['singleton_5fmgr_2ehpp',['singleton_mgr.hpp',['../singleton__mgr_8hpp.html',1,'']]]
+  ['lock_5fguard_2ecpp',['lock_guard.cpp',['../lock__guard_8cpp.html',1,'']]],
+  ['lock_5fguard_2ehpp',['lock_guard.hpp',['../lock__guard_8hpp.html',1,'']]],
+  ['logging_2ecpp',['logging.cpp',['../logging_8cpp.html',1,'']]],
+  ['logging_2ehpp',['logging.hpp',['../logging_8hpp.html',1,'']]]
 ];

@@ -1,4 +1,27 @@
 var searchData=
 [
-  ['valid_5fheight_5ftest',['valid_height_test',['../classse2_1_1unit__tests_1_1hal__test__stub2.html#aa3791f18c226f60823289b7fdd9542a6',1,'se2::unit_tests::hal_test_stub2']]]
+  ['send_5ftelegram',['send_telegram',['../classse2_1_1serial__bus_1_1serial__channel.html#a52a4561ec6c2fa292b016070d9f659a4',1,'se2::serial_bus::serial_channel']]],
+  ['serial_5fchannel',['serial_channel',['../classse2_1_1serial__bus_1_1serial__channel.html#a70c29697056c74bb172f36e1a1772d1f',1,'se2::serial_bus::serial_channel']]],
+  ['serial_5finterface',['serial_interface',['../classse2_1_1serial__bus_1_1serial__interface.html#a983be2ca80cdc1e5985d2f7c428e0642',1,'se2::serial_bus::serial_interface']]],
+  ['serial_5ftest',['serial_test',['../classse2_1_1unit__tests_1_1serial__test.html#a4991c91eaf5f1192658515e4dae90ea6',1,'se2::unit_tests::serial_test']]],
+  ['set_5fheight1',['set_height1',['../classse2_1_1token.html#aa98101c803b5130f04b02341fe8b509f',1,'se2::token']]],
+  ['set_5fheight2',['set_height2',['../classse2_1_1token.html#a805bb7d3b1fb660b25e065f7afee196e',1,'se2::token']]],
+  ['set_5fid',['set_id',['../classse2_1_1token.html#a88a94d694272eaeaf29acbe1ab96b653',1,'se2::token']]],
+  ['set_5fis_5fmetal',['set_is_metal',['../classse2_1_1token.html#abdafc13e70abe3662f312ed2808d8a17',1,'se2::token']]],
+  ['set_5fis_5fupside_5fdown',['set_is_upside_down',['../classse2_1_1token.html#a296f6c0e0e9de3543487997c67b00d61',1,'se2::token']]],
+  ['set_5fled_5fstate',['set_led_state',['../structse2_1_1hal_1_1hwaccess.html#a0da4f0ca7d6a8607c831f4b8417617fa',1,'se2::hal::hwaccess']]],
+  ['set_5flight',['set_light',['../structse2_1_1hal_1_1hwaccess.html#a8a02dad6b7277f35de94793c62da4514',1,'se2::hal::hwaccess']]],
+  ['set_5fmotor',['set_motor',['../structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1',1,'se2::hal::hwaccess']]],
+  ['set_5fstate',['set_state',['../classse2_1_1token.html#ad58cdbcc08674bec84ed2dd27eb5c3d9',1,'se2::token']]],
+  ['shutdown',['shutdown',['../structse2_1_1dispatch_1_1dispatcher.html#a1fc42f2d8cc3d8e9630f94f2a9191788',1,'se2::dispatch::dispatcher::shutdown()'],['../classse2_1_1serial__bus_1_1serial__channel.html#ae515edd804a0c3aa3c29d9218bdf56f5',1,'se2::serial_bus::serial_channel::shutdown()'],['../classse2_1_1util_1_1_h_a_w_thread.html#a7eb3e4a0c237c8eb4a88f00de654c518',1,'se2::util::HAWThread::shutdown()'],['../classse2_1_1util_1_1singleton__mgr.html#a672c7d6ccd3389e22d47e748910de4e3',1,'se2::util::singleton_mgr::shutdown()']]],
+  ['shutdownall',['shutdownAll',['../classse2_1_1util_1_1_h_a_w_thread.html#a519b1ae4b86f100bba4f8237b959396f',1,'se2::util::HAWThread']]],
+  ['signal',['signal',['../structse2_1_1util_1_1condvar.html#a822b8a1dcdb91c1d54df02982f6e8006',1,'se2::util::condvar']]],
+  ['special_5fcase_5fhandling',['special_case_handling',['../structse2_1_1dispatch_1_1dispatcher.html#aa974085fc9661a0f3afed2f2039536c2',1,'se2::dispatch::dispatcher']]],
+  ['start',['start',['../classse2_1_1util_1_1_h_a_w_thread.html#ac5effcdfb3115fb2220eae8844a27a4f',1,'se2::util::HAWThread']]],
+  ['start_5ftimer',['start_timer',['../classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1',1,'se2::timer::timer_wrapper']]],
+  ['state',['state',['../classse2_1_1fsm_1_1state.html#a64e3a2f07826aba8b290d975f8a77ac0',1,'se2::fsm::state']]],
+  ['stop',['stop',['../classse2_1_1util_1_1_h_a_w_thread.html#a9ad87c33fd2344143444feb28a136a11',1,'se2::util::HAWThread']]],
+  ['stop_5fisr',['stop_isr',['../structse2_1_1hal_1_1hwaccess.html#af76f789541b4643fccf56ed947114ad6',1,'se2::hal::hwaccess']]],
+  ['stop_5ftimer',['stop_timer',['../classse2_1_1timer_1_1timer__wrapper.html#a3229ea4d4c6c81d2f2e1eeba818c47bd',1,'se2::timer::timer_wrapper']]],
+  ['switch_5ftest',['switch_test',['../classse2_1_1unit__tests_1_1hal__test__stub1.html#a5d2a46ae2dad21acccca7451efb0b29f',1,'se2::unit_tests::hal_test_stub1']]]
 ];

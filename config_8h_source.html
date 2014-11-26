@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.2-Milestone3</span>
+   &#160;<span id="projectnumber">0.3-Milestone4</span>
    </div>
   </td>
  </tr>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,39 +109,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#ifndef SE2_CONFIG_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define SE2_CONFIG_H</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="config_8h.html#a8fd24f56528333b035faeb173d24319f">   29</a></span>&#160;<span class="preprocessor">#define UNIT_TESTS   // Aktiviert die Unit Tests anstelle des Hauptprogrammes</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span>                       <span class="comment">// Wirkt sich auf `main.cpp` sowie `hwaccess.cpp` aus.</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                       <span class="comment">// In `hwaccess` wird dadurch die Funktion</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                       <span class="comment">// `change_stub()` zu einer nicht NOP Funktion.</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="config_8h.html#abcd684cc94658ec1810bf3147dd563b3">   29</a></span>&#160;<span class="preprocessor">#define NUM_OF_TOKENS 20   // Anzahl an vordefinierten Tokens</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor"></span>                           <span class="comment">// Die Logik kann niemals mehr als diese Anzahl an</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                           <span class="comment">// Tokens verwalten, da keine dynamische Allokierung</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                           <span class="comment">// stattfindet</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="config_8h.html#aabcbe1ba7ea1912d1317d58c41f698a8">   34</a></span>&#160;<span class="preprocessor">#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test für</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span>                           <span class="comment">// die Serielle chnittstelle</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="config_8h.html#ae3630971a17bb0b83f095e17de6f3042">   34</a></span>&#160;<span class="preprocessor">#define IS_CONVEYOR_1      // Foerderband 1 FSM aktivieren</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor"></span><span class="comment">//#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                       <span class="comment">// Folge dass `ioaccess.h` in `abstract_inout.hpp`</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                       <span class="comment">// inkludiert wird. Dadurch koennen die Original</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                       <span class="comment">// `in8()`, `out8` sowie `AttachInterrupt()`,</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                       <span class="comment">// `DetachInterrupt()` nicht verwendet werden.</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                       <span class="comment">// Statt­des­sen werden diese Funktionen auf eigene fuer</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                       <span class="comment">// die Simulation ueberschrieben.</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="config_8h.html#a0da4d1de3808cee665d84ded695b8fd9">   48</a></span>&#160;<span class="comment"></span><span class="preprocessor">#define DISABLE_LOGGING // Deaktiviert das schreiben auf das File System.</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor"></span>                        <span class="comment">// Es wird nur eine Ausgabe in der Console erzeugt.</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="config_8h.html#a2889e8288a815b7468172bbf1cec1ead">   50</a></span>&#160;<span class="preprocessor">#define LOG_FILE_PATH &quot;/root/logs/&quot; // Gibt den Pfad zum Logfile Ordner an</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span>                                    <span class="comment">// Das generierte Logfile hat einen prefix</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                                    <span class="comment">// Der Name des generieten Logfiles setzt</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                                    <span class="comment">// sich wie folgt zusammen:</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                    <span class="comment">// &quot;log_{prozess ID}_{UNIX_TIME}.log&quot;</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="config_8h.html#a912ce68b02718695eb1176a43e0cd2d9">   59</a></span>&#160;<span class="comment"></span><span class="preprocessor">#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="config_8h.html#a049693a215b10d5f1ae060044694f183">   60</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define SERIAL_CHAR_DEV &quot;/dev/ser1&quot; // Pfad zum Char Device der Seriellen</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"></span>                                    <span class="comment">// Schnittstelle. In der VM NICHT verfügbar</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span><span class="comment">//#define FESTO_3      // Aktiviert spezifisch gemessene Werte fuer Festo 3</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">//#define FESTO_9      // Aktiviert spezifisch gemessene Werte fuer Festo 9</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="comment"></span><span class="preprocessor">#endif // SE2_CONFIG_H</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">//#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test fuer</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                           <span class="comment">// die Serielle chnittstelle</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">//#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                       <span class="comment">// Folge dass `ioaccess.h` in `abstract_inout.hpp`</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                       <span class="comment">// inkludiert wird. Dadurch koennen die Original</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                       <span class="comment">// `in8()`, `out8` sowie `AttachInterrupt()`,</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                       <span class="comment">// `DetachInterrupt()` nicht verwendet werden.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                       <span class="comment">// Statt­des­sen werden diese Funktionen auf eigene fuer</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                       <span class="comment">// die Simulation ueberschrieben.</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//#define PRINT_TRANSITIONS_UNIT_TEST // Aktiviert die Ausgabe der Uebergaenge</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                                      <span class="comment">// im Dispatcher Unit Test</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="config_8h.html#a0da4d1de3808cee665d84ded695b8fd9">   56</a></span>&#160;<span class="preprocessor">#define DISABLE_LOGGING // Deaktiviert das schreiben auf das File System.</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor"></span>                        <span class="comment">// Es wird nur eine Ausgabe in der Console erzeugt.</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="config_8h.html#a2889e8288a815b7468172bbf1cec1ead">   58</a></span>&#160;<span class="preprocessor">#define LOG_FILE_PATH &quot;/root/logs/&quot; // Gibt den Pfad zum Logfile Ordner an</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor"></span>                                    <span class="comment">// Das generierte Logfile hat einen prefix</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                                    <span class="comment">// Der Name des generieten Logfiles setzt</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                    <span class="comment">// sich wie folgt zusammen:</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                    <span class="comment">// &quot;log_{prozess ID}_{UNIX_TIME}.log&quot;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment"></span><span class="comment">//#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="config_8h.html#a049693a215b10d5f1ae060044694f183">   68</a></span>&#160;<span class="preprocessor">#define SERIAL_CHAR_DEV &quot;/dev/ser1&quot; // Pfad zum Char Device der Seriellen</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"></span>                                    <span class="comment">// Schnittstelle. In der VM NICHT verfügbar</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span><span class="comment">//#define FESTO_3      // Aktiviert spezifisch gemessene Werte fuer Festo 3</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="comment">//#define FESTO_9      // Aktiviert spezifisch gemessene Werte fuer Festo 9</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="config_8h.html#a0e5c83068d816b3cfee186a1b4f062a5">   82</a></span>&#160;<span class="preprocessor">#define FESTO_5        // Aktiviert spezifisch gemessene Werte fuer Festo 5</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor"></span>                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#endif // SE2_CONFIG_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

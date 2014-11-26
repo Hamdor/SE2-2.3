@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['change_5fchannel',['change_channel',['../classse2_1_1timer_1_1timer__handler.html#ad9910899c0e9582e3d4fbcba13229465',1,'se2::timer::timer_handler']]],
   ['change_5fstub',['change_stub',['../structse2_1_1hal_1_1hwaccess.html#ad7f97ae6e52f2dfa88d2426b91e17d3b',1,'se2::hal::hwaccess']]],
   ['close_5fswitch',['close_switch',['../structse2_1_1hal_1_1hwaccess.html#a30ddc4b49f4488fb773ec4be3a8c4e9b',1,'se2::hal::hwaccess::close_switch()'],['../classse2_1_1unit__tests_1_1irq__test.html#afd20929172d3ffcaa9c5e190d9c0ba52',1,'se2::unit_tests::irq_test::close_switch()']]],
   ['condvar',['condvar',['../structse2_1_1util_1_1mutex.html#ab6face571679bdaa3f1269425dd01b72',1,'se2::util::mutex::condvar()'],['../structse2_1_1util_1_1condvar.html#a09058793d3d1fff9d1a5e8459234ded8',1,'se2::util::condvar::condvar(mutex &amp;mutex)'],['../structse2_1_1util_1_1condvar.html#a8a6568ee847ed9e795592c00e72f56ce',1,'se2::util::condvar::condvar()'],['../structse2_1_1util_1_1condvar.html#a2ff8be38c3b34c2901efe7533b91da6c',1,'se2::util::condvar::condvar(const condvar &amp;)']]],
@@ -9,5 +10,7 @@ var searchData=
   ['config',['config',['../classse2_1_1serial__bus_1_1serial__interface.html#a4be646d22ddcb0e4ed60f5d1b648d35a',1,'se2::serial_bus::serial_interface']]],
   ['config_2eh',['config.h',['../config_8h.html',1,'']]],
   ['constants_2ehpp',['constants.hpp',['../constants_8hpp.html',1,'']]],
-  ['cont',['cont',['../classse2_1_1util_1_1_h_a_w_thread.html#a8aecf71f3fbca6fbb7815739fba9165c',1,'se2::util::HAWThread']]]
+  ['cont',['cont',['../classse2_1_1util_1_1_h_a_w_thread.html#a8aecf71f3fbca6fbb7815739fba9165c',1,'se2::util::HAWThread']]],
+  ['continue_5fall',['continue_all',['../classse2_1_1timer_1_1timer__handler.html#a2dbf7f49e7250d444faa8efea34c29a9',1,'se2::timer::timer_handler']]],
+  ['continue_5ftimer',['continue_timer',['../classse2_1_1timer_1_1timer__handler.html#a04c5f36b1a72a3a41b1da37c98b9f395',1,'se2::timer::timer_handler::continue_timer()'],['../classse2_1_1timer_1_1timer__wrapper.html#ab7b2b2a2c5861c5eb40c4136770d4283',1,'se2::timer::timer_wrapper::continue_timer()']]]
 ];

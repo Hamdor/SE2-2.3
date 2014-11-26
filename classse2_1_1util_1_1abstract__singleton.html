@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.2-Milestone3</span>
+   &#160;<span id="projectnumber">0.3-Milestone4</span>
    </div>
   </td>
  </tr>
@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,9 +103,12 @@ Inheritance diagram for se2::util::abstract_singleton:</div>
  <div class="center">
   <img src="classse2_1_1util_1_1abstract__singleton.png" usemap="#se2::util::abstract_singleton_map" alt=""/>
   <map id="se2::util::abstract_singleton_map" name="se2::util::abstract_singleton_map">
-<area href="structse2_1_1hal_1_1hwaccess.html" alt="se2::hal::hwaccess" shape="rect" coords="0,56,185,80"/>
-<area href="classse2_1_1serial__bus_1_1serial__channel.html" alt="se2::serial_bus::serial_channel" shape="rect" coords="195,56,380,80"/>
-<area href="classse2_1_1util_1_1logging.html" alt="se2::util::logging" shape="rect" coords="390,56,575,80"/>
+<area href="structse2_1_1dispatch_1_1dispatcher.html" alt="se2::dispatch::dispatcher" shape="rect" coords="0,56,185,80"/>
+<area href="structse2_1_1hal_1_1hwaccess.html" alt="se2::hal::hwaccess" shape="rect" coords="195,56,380,80"/>
+<area href="classse2_1_1serial__bus_1_1serial__channel.html" alt="se2::serial_bus::serial_channel" shape="rect" coords="390,56,575,80"/>
+<area href="classse2_1_1timer_1_1timer__handler.html" alt="se2::timer::timer_handler" shape="rect" coords="585,56,770,80"/>
+<area href="classse2_1_1token__mgr.html" alt="se2::token_mgr" shape="rect" coords="780,56,965,80"/>
+<area href="classse2_1_1util_1_1logging.html" alt="se2::util::logging" shape="rect" coords="975,56,1160,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -120,7 +123,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a050a72a39baed80cf299e80d4a4f5671"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisierung des Singletons.  <a href="#a050a72a39baed80cf299e80d4a4f5671">More...</a><br/></td></tr>
 <tr class="separator:a050a72a39baed80cf299e80d4a4f5671"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a752730b510e3e985ba61fca22aadaf94"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1util_1_1abstract__singleton.html#a752730b510e3e985ba61fca22aadaf94">destroy</a> ()=0</td></tr>
-<tr class="memdesc:a752730b510e3e985ba61fca22aadaf94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zerstörung des Singleton.  <a href="#a752730b510e3e985ba61fca22aadaf94">More...</a><br/></td></tr>
+<tr class="memdesc:a752730b510e3e985ba61fca22aadaf94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zerstoerung des Singleton.  <a href="#a752730b510e3e985ba61fca22aadaf94">More...</a><br/></td></tr>
 <tr class="separator:a752730b510e3e985ba61fca22aadaf94"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -177,9 +180,9 @@ Private Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Zerstörung des Singleton. </p>
+<p>Zerstoerung des Singleton. </p>
 
-<p>Implemented in <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a36d65ba6b404df0f559f780f9009ae3d">se2::hal::hwaccess</a>, <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#afd343360a4ae4be2223b2b6a14522bcd">se2::serial_bus::serial_channel</a>, and <a class="el" href="classse2_1_1util_1_1logging.html#a0ab01de2c709398933308acbba547c18">se2::util::logging</a>.</p>
+<p>Implemented in <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a36d65ba6b404df0f559f780f9009ae3d">se2::hal::hwaccess</a>, <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a60fdf81e5756e2ceed44e3dbcf811241">se2::dispatch::dispatcher</a>, <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a5eb852fbc6a793c04138b73ce526ec62">se2::timer::timer_handler</a>, <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#afd343360a4ae4be2223b2b6a14522bcd">se2::serial_bus::serial_channel</a>, <a class="el" href="classse2_1_1util_1_1logging.html#a0ab01de2c709398933308acbba547c18">se2::util::logging</a>, and <a class="el" href="classse2_1_1token__mgr.html#a4ce003c1c185f2458865f4e74454e8ef">se2::token_mgr</a>.</p>
 
 </div>
 </div>
@@ -206,7 +209,7 @@ Private Member Functions</h2></td></tr>
 
 <p>Initialisierung des Singletons. </p>
 
-<p>Implemented in <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a03bc7e838186bb97c930fff1c167554e">se2::hal::hwaccess</a>, <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#aca81f37d83804507ac523d7beb29a24a">se2::serial_bus::serial_channel</a>, and <a class="el" href="classse2_1_1util_1_1logging.html#a0b04a1690e83d3ef092e0148cd7be419">se2::util::logging</a>.</p>
+<p>Implemented in <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a03bc7e838186bb97c930fff1c167554e">se2::hal::hwaccess</a>, <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#aff19cc34d8ea0b00eb2ea4a020a473d4">se2::dispatch::dispatcher</a>, <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a1d866bd97de1fc02feb728a9b61d104d">se2::timer::timer_handler</a>, <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#aca81f37d83804507ac523d7beb29a24a">se2::serial_bus::serial_channel</a>, <a class="el" href="classse2_1_1util_1_1logging.html#a0b04a1690e83d3ef092e0148cd7be419">se2::util::logging</a>, and <a class="el" href="classse2_1_1token__mgr.html#a9709170fd548f59071b6c19c68847cbb">se2::token_mgr</a>.</p>
 
 </div>
 </div>

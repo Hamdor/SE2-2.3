@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.2-Milestone3</span>
+   &#160;<span id="projectnumber">0.3-Milestone4</span>
    </div>
   </td>
  </tr>
@@ -79,7 +79,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_m"><span>m</span></a></li>
-      <li class="current"><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li class="current"><a href="#index_t"><span>t</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -88,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Macros</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Macros</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -102,36 +103,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
 <li>instance
-: <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a677f875922ead3ae0ec29cc348bfbfc5">se2::hal::hwaccess</a>
+: <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#afce4954d6fc14da0dad295af5f59d295">se2::dispatch::dispatcher</a>
+, <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a677f875922ead3ae0ec29cc348bfbfc5">se2::hal::hwaccess</a>
 , <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#a27dd225daa1792577de1c62ba8bd1374">se2::serial_bus::serial_channel</a>
+, <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a98d08e2ed021fc197a7591ad0664e69b">se2::timer::timer_handler</a>
+, <a class="el" href="classse2_1_1token__mgr.html#a2d94dd25789dce9d612d9aff2ae0c4d1">se2::token_mgr</a>
 , <a class="el" href="classse2_1_1util_1_1logging.html#a7a9f82fafe7ced4cc88365dbb747e06f">se2::util::logging</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>m_alife
+: <a class="el" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr</a>
+</li>
 <li>m_arg
 : <a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">se2::util::HAWThread</a>
 </li>
 <li>m_chid
 : <a class="el" href="structse2_1_1hal_1_1hwaccess_1_1isr__control.html#a7312ae79da71930db94443ad884e074e">se2::hal::hwaccess::isr_control</a>
+, <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">se2::timer::timer_handler</a>
+, <a class="el" href="classse2_1_1unit__tests_1_1timer__test.html#afc4ade56f5381df0bbcab1442fb29e03">se2::unit_tests::timer_test</a>
 </li>
 <li>m_coid
 : <a class="el" href="structse2_1_1hal_1_1hwaccess_1_1isr__control.html#ad86b653a5c8804b700e64f2206bc5d74">se2::hal::hwaccess::isr_control</a>
+, <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">se2::timer::timer_wrapper</a>
 </li>
 <li>m_cond
 : <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#ad89bae4443a63423e206322d42c23058">se2::serial_bus::serial_channel</a>
 , <a class="el" href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">se2::util::condvar</a>
 </li>
+<li>m_dispatcher
+: <a class="el" href="classse2_1_1unit__tests_1_1dispatcher__test.html#a204f4e7cd375f4417b08ad1fcfed9d18">se2::unit_tests::dispatcher_test</a>
+</li>
+<li>m_duration
+: <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">se2::timer::timer_wrapper</a>
+</li>
 <li>m_error
-: <a class="el" href="classse2_1_1unit__tests_1_1hal__test__stub1.html#acd9c535237993622318379972171ea16">se2::unit_tests::hal_test_stub1</a>
+: <a class="el" href="classse2_1_1unit__tests_1_1dispatcher__test.html#a7a6ba410db0920e99dd6c47386f34bee">se2::unit_tests::dispatcher_test</a>
+, <a class="el" href="classse2_1_1unit__tests_1_1hal__test__stub1.html#acd9c535237993622318379972171ea16">se2::unit_tests::hal_test_stub1</a>
 , <a class="el" href="classse2_1_1unit__tests_1_1hal__test__stub2.html#a698a31bd6e3efdae1f1185d07e6d1081">se2::unit_tests::hal_test_stub2</a>
 , <a class="el" href="classse2_1_1unit__tests_1_1irq__test.html#ab7783508ca97430ca36fe07607056861">se2::unit_tests::irq_test</a>
 , <a class="el" href="classse2_1_1unit__tests_1_1serial__test.html#a27f908f34a270367c00767458b23c9dd">se2::unit_tests::serial_test</a>
 , <a class="el" href="classse2_1_1unit__tests_1_1test__suite.html#a65008ffb80757d3072fb100c00e9e3d7">se2::unit_tests::test_suite&lt; T &gt;</a>
+, <a class="el" href="classse2_1_1unit__tests_1_1timer__test.html#ac10e843cfe2cbbba0e00ae0aedcc9d09">se2::unit_tests::timer_test</a>
 </li>
 <li>m_event
 : <a class="el" href="structse2_1_1hal_1_1hwaccess_1_1isr__control.html#abeb5e335314ad927cc7b1d05a94f8657">se2::hal::hwaccess::isr_control</a>
+, <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a3991126042e2c674bb7d22e1193e5585">se2::timer::timer_wrapper</a>
 </li>
 <li>m_exit
 : <a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">se2::util::HAWThread</a>
@@ -142,6 +161,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_fstream
 : <a class="el" href="classse2_1_1util_1_1logging.html#aaf3640cbe8d1d387459d9bf1bb2d3ee8">se2::util::logging</a>
 </li>
+<li>m_functions
+: <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#aed126c3e2c786d43377901623d8a9e0d">se2::dispatch::dispatcher</a>
+</li>
 <li>m_hal
 : <a class="el" href="classse2_1_1unit__tests_1_1hal__test__stub1.html#a4a625ce4ae8d6326ef8f2ebd810b960d">se2::unit_tests::hal_test_stub1</a>
 , <a class="el" href="classse2_1_1unit__tests_1_1hal__test__stub2.html#a346100f5c4ef88c324e0c41f905a3dd8">se2::unit_tests::hal_test_stub2</a>
@@ -149,13 +171,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>m_height1
 : <a class="el" href="structse2_1_1serial__bus_1_1telegram.html#a4b3e58eb676e3a8e55946b211e5c854b">se2::serial_bus::telegram</a>
+, <a class="el" href="classse2_1_1token.html#a18f8a01560a164c9fb335e8f4357ebaf">se2::token</a>
 </li>
 <li>m_height2
 : <a class="el" href="structse2_1_1serial__bus_1_1telegram.html#abb75eb46ad7c0fd734db8dca6f4b2e32">se2::serial_bus::telegram</a>
+, <a class="el" href="classse2_1_1token.html#af5f782867c5ab4c34476eb4373c22737">se2::token</a>
 </li>
 <li>m_id
 : <a class="el" href="structse2_1_1serial__bus_1_1telegram.html#a0aeb960d71026ac0ed720e2b1b76013a">se2::serial_bus::telegram</a>
-, <a class="el" href="structse2_1_1token.html#a922e65a3933f58333451db6c7472ccea">se2::token</a>
+, <a class="el" href="classse2_1_1token.html#a922e65a3933f58333451db6c7472ccea">se2::token</a>
+</li>
+<li>m_id_counter
+: <a class="el" href="classse2_1_1token.html#a0e259fd58acf0099c67236b372712bde">se2::token</a>
 </li>
 <li>m_interface
 : <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#ad7004fcd7a993c4f4271d6217f748244">se2::serial_bus::serial_channel</a>
@@ -166,19 +193,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_io
 : <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a8d5e1bc24950f0f587d8a59af6ae5b9c">se2::hal::hwaccess</a>
 </li>
+<li>m_is_metal
+: <a class="el" href="classse2_1_1token.html#a846b1a79bde6404e25c1fcaa62bcbaa5">se2::token</a>
+</li>
+<li>m_is_upside_down
+: <a class="el" href="classse2_1_1token.html#a1bb9ee27387f9ae1ee871911244d27ff">se2::token</a>
+</li>
 <li>m_isr
 : <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a7b314e2979e21c5a2988bfe32e4c79be">se2::hal::hwaccess</a>
+</li>
+<li>m_listeners
+: <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a56c0bda4b74708a2a3a3c57f3e32aaff">se2::dispatch::dispatcher</a>
 </li>
 <li>m_lock
 : <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#a838f5a44f8352d814fdb94e119bee419">se2::serial_bus::serial_channel</a>
 , <a class="el" href="structse2_1_1util_1_1condvar.html#a5b7fb7253f47d6e2886030a808af3b70">se2::util::condvar</a>
 , <a class="el" href="classse2_1_1util_1_1logging.html#a5d1950ec87be363d4fce942c4b3ba7b3">se2::util::logging</a>
 </li>
+<li>m_motor_slow
+: <a class="el" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr</a>
+</li>
+<li>m_motor_stop
+: <a class="el" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr</a>
+</li>
 <li>m_msg
 : <a class="el" href="structse2_1_1serial__bus_1_1telegram.html#a3a7d5a9cf062ae1e40056079809fe452">se2::serial_bus::telegram</a>
 </li>
 <li>m_mutex
 : <a class="el" href="structse2_1_1util_1_1mutex.html#a36dc2dc19355432a4b01770680051925">se2::util::mutex</a>
+</li>
+<li>m_paused
+: <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">se2::timer::timer_wrapper</a>
 </li>
 <li>m_port_a
 : <a class="el" href="structse2_1_1hal_1_1iostub.html#a5288763531326cb4ad513d2c5d5eeaba">se2::hal::iostub</a>
@@ -201,6 +246,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_serial
 : <a class="el" href="classse2_1_1unit__tests_1_1serial__test.html#ae7cb8b74918684baa29d24376b2983d3">se2::unit_tests::serial_test</a>
 </li>
+<li>m_started
+: <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a53ec6c111453e8916530a378c7e3ba19">se2::timer::timer_wrapper</a>
+</li>
+<li>m_state
+: <a class="el" href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">fsm</a>
+, <a class="el" href="classse2_1_1token.html#acce41f000b649af235b9ffc41f07257f">se2::token</a>
+</li>
+<li>m_temp_timer
+: <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">se2::timer::timer_wrapper</a>
+</li>
 <li>m_test
 : <a class="el" href="classse2_1_1unit__tests_1_1test__suite.html#ac0cf071598ee99c32b13cde66033f474">se2::unit_tests::test_suite&lt; T &gt;</a>
 </li>
@@ -210,21 +265,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_tid
 : <a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread</a>
 </li>
+<li>m_timer
+: <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper</a>
+, <a class="el" href="classse2_1_1unit__tests_1_1timer__test.html#ac081d269372a068a7ee374c594ed742a">se2::unit_tests::timer_test</a>
+</li>
+<li>m_timerid
+: <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper</a>
+</li>
+<li>m_token
+: <a class="el" href="classse2_1_1fsm_1_1state.html#a58d6e719330914e6526335ccbd740e9d">se2::fsm::state</a>
+</li>
+<li>m_tokens
+: <a class="el" href="classse2_1_1token__mgr.html#a7264dbb9e11781165156e9b86f096c12">se2::token_mgr</a>
+</li>
 <li>m_type
 : <a class="el" href="structse2_1_1serial__bus_1_1telegram.html#a05442e8478ddc5d10db955c389d8944e">se2::serial_bus::telegram</a>
 </li>
-<li>m_wert1
-: <a class="el" href="structse2_1_1token.html#aa56068a9eb88926ebf825e5b50b0d11f">se2::token</a>
-</li>
-<li>m_wert2
-: <a class="el" href="structse2_1_1token.html#ada8d9d93eaa25dd90af4a32543b595e3">se2::token</a>
+<li>msec
+: <a class="el" href="structse2_1_1timer_1_1duration.html#afd19755c5be0c72bae59a126f9cfeebc">se2::timer::duration</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>s_assumed_next
+: <a class="el" href="classse2_1_1unit__tests_1_1dispatcher__test.html#a837b6017ea859d18cd8574832dc94a5c">se2::unit_tests::dispatcher_test</a>
+</li>
+<li>s_error
+: <a class="el" href="classse2_1_1unit__tests_1_1dispatcher__test.html#a0692909fdbe8c438aa98d33b67aa884c">se2::unit_tests::dispatcher_test</a>
+</li>
 <li>s_exit
 : <a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">se2::util::HAWThread</a>
+</li>
+<li>s_lock_dispatcher
+: <a class="el" href="classse2_1_1util_1_1singleton__mgr.html#ab72c1dc573e218395bbf2c72cc11d525">se2::util::singleton_mgr</a>
 </li>
 <li>s_lock_hal
 : <a class="el" href="classse2_1_1util_1_1singleton__mgr.html#aa055404d695f9a817c0db40e7889158d">se2::util::singleton_mgr</a>
@@ -235,11 +309,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>s_lock_serial
 : <a class="el" href="classse2_1_1util_1_1singleton__mgr.html#a75d2cafb3a8f17f094236217d03c56ef">se2::util::singleton_mgr</a>
 </li>
+<li>s_lock_timer
+: <a class="el" href="classse2_1_1util_1_1singleton__mgr.html#af01bdf767cf0798bd83c83245cdf02c3">se2::util::singleton_mgr</a>
+</li>
+<li>s_lock_token_mgr
+: <a class="el" href="classse2_1_1util_1_1singleton__mgr.html#a6847da6f5c989e6a98f39f35f141863b">se2::util::singleton_mgr</a>
+</li>
+<li>sec
+: <a class="el" href="structse2_1_1timer_1_1duration.html#a8202e5e42c03a8ab2a61136cd43ea951">se2::timer::duration</a>
+</li>
 <li>serial_channel
 : <a class="el" href="classse2_1_1serial__bus_1_1serial__interface.html#a5f90f29390a9b1aa789feef3e80f97ea">se2::serial_bus::serial_interface</a>
 </li>
 <li>singleton_mgr
 : <a class="el" href="classse2_1_1util_1_1logging.html#a363b1d2265e409f6ddc15771d1731fce">se2::util::logging</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>timers
+: <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler</a>
+</li>
+<li>token
+: <a class="el" href="classse2_1_1token__mgr.html#a47d2064bfa9b2ac33b069f68a2115631">se2::token_mgr</a>
 </li>
 </ul>
 </div><!-- contents -->
