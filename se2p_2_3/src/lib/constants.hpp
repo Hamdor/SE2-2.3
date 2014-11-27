@@ -54,6 +54,17 @@
 #define IOBASE    0x300         // IO Base Register
 
 /**
+ * Bitposition des Bits was von dem Hoehensensor gesetzt wird,
+ * sobald der Wert im Register steht
+ **/
+#define HEIGHT_SENSOR_OK_MASK 0x01 << 7
+
+/**
+ * Maximale Anzahl an loops bis der Hoehenwert gelesen wird
+ **/
+#define HEIGHT_SENSOR_MAX_LOOPS 100
+
+/**
  * Addresse des Control-Registers
  **/
 #define IOCTLADDR IOBASE + 0x03 // Register zum definieren der Ports

@@ -117,9 +117,9 @@ uint16_t hwaccess::get_height_value() {
   LOG_TRACE("");
   // Sensor sagen, er soll Wert in Register schreiben
   m_io->outbyte(ANALOG_PORT_A, START_HEIGHT_MEASURE);
-  uint8_t  mask   = 0x01 << 7;
-  size_t   loop   = 0;
-  while(loop++ < 100 && (m_io->inbyte(ANALOG_BASE) & mask) == 0) {
+  size_t loop = 0;
+  while(++loop < HEIGHT_SENSOR_MAX_LOOPS
+      && (m_io->inbyte(ANALOG_BASE) & HEIGHT_SENSOR_OK_MASK) == 0) {
     // nop
   }
   // Wert sollte nun im Register stehen
