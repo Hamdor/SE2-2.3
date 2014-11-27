@@ -29,18 +29,11 @@ using namespace se2::fsm;
 
 int token::m_id_counter = 0;
 
-int token::get_id() {
+int token::get_id() const {
   return m_id;
 }
-void token::set_id(int id) {
-  m_id = id;
-}
 
-int token::get_next_id() {
-  return ++m_id_counter;
-}
-
-int token::get_height1() {
+int token::get_height1() const {
   return m_height1;
 }
 
@@ -48,7 +41,7 @@ void token::set_height1(int height1) {
   m_height1 = height1;
 }
 
-int token::get_height2() {
+int token::get_height2() const {
   return m_height2;
 }
 
@@ -56,7 +49,7 @@ void token::set_height2(int height2) {
   m_height2 = height2;
 }
 
-bool token::get_is_upside_down() {
+bool token::get_is_upside_down() const {
   return m_is_upside_down;
 }
 
@@ -64,7 +57,7 @@ void token::set_is_upside_down(bool value) {
   m_is_upside_down = value;
 }
 
-bool token::get_is_metal() {
+bool token::get_is_metal() const {
   return m_is_metal;
 }
 
@@ -72,16 +65,13 @@ void token::set_is_metal(bool metal) {
   m_is_metal = metal;
 }
 
-bool token::is_valid() {
-  return !(m_id == 0 || m_height1 == 0 || m_height2 == 0);
-}
-
 void token::reset() {
-  m_id             = 0;
+  m_id             = ++m_id_counter;
   m_height1        = 0;
   m_height2        = 0;
   m_is_metal       = false;
   m_is_upside_down = false;
+  m_valid_height   = false;
 }
 
 void token::dispatched_event_button_start() {
@@ -114,6 +104,10 @@ void token::dispatched_event_sensor_height_rising() {
 
 void token::dispatched_event_sensor_switch() {
   m_state->dispatched_event_sensor_switch();
+}
+
+void token::dispatched_event_sensor_switch_rising() {
+  m_state->dispatched_event_sensor_switch_rising();
 }
 
 void token::dispatched_event_sensor_slide() {

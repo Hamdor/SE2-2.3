@@ -97,6 +97,8 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_SENSOR_HEIGHT_R);
   m_error += test_single_mapping_equal(EVENT_SENSOR_SWITCH,
                                        DISPATCHED_EVENT_SENSOR_SWITCH);
+  m_error += test_single_mapping_equal(EVENT_SENSOR_SWITCH_R,
+                                       DISPATCHED_EVENT_SENSOR_SWITCH_R);
   m_error += test_single_mapping_equal(EVENT_SENSOR_SLIDE,
                                        DISPATCHED_EVENT_SENSOR_SLIDE);
   m_error += test_single_mapping_equal(EVENT_SENSOR_SLIDE_R,
@@ -161,6 +163,9 @@ int dispatcher_test::test_function_address_reg() {
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_SWITCH],
       &fsm::events::dispatched_event_sensor_switch);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_SWITCH_R],
+      &fsm::events::dispatched_event_sensor_switch_rising);
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_SLIDE],
       &fsm::events::dispatched_event_sensor_slide);
@@ -276,7 +281,14 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_sensor_switch()" << std::endl;
 #endif
-    register_for_next(EVENT_SENSOR_SWITCH, EVENT_SENSOR_SLIDE);
+    register_for_next(EVENT_SENSOR_SWITCH, EVENT_SENSOR_SWITCH_R);
+  }
+
+  void dispatched_event_sensor_switch_rising() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_sensor_switch()" << std::endl;
+#endif
+    register_for_next(EVENT_SENSOR_SWITCH_R, EVENT_SENSOR_SLIDE);
   }
 
   void dispatched_event_sensor_slide() {
@@ -418,6 +430,7 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_SENSOR_HEIGHT);
   m_dispatcher->direct_call_event(EVENT_SENSOR_HEIGHT_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_SWITCH);
+  m_dispatcher->direct_call_event(EVENT_SENSOR_SWITCH_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_SLIDE);
   m_dispatcher->direct_call_event(EVENT_SENSOR_SLIDE_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_EXIT);
@@ -451,6 +464,7 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_HEIGHT);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_HEIGHT_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_SWITCH);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_SWITCH_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_SLIDE);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_SLIDE_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_EXIT);

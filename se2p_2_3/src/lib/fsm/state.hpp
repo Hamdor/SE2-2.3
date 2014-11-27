@@ -70,6 +70,9 @@ class state : public events {
   virtual void dispatched_event_sensor_switch() {
     // nop
   }
+  virtual void dispatched_event_sensor_switch_rising() {
+    // nop
+  }
   virtual void dispatched_event_sensor_slide() {
     // nop
   }
@@ -180,6 +183,7 @@ class b1_metal_detection : public state {
     // nop
   }
 
+  virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
 };
 

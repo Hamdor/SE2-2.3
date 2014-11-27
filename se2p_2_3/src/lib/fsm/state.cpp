@@ -33,25 +33,21 @@ using namespace se2::util;
 using namespace se2::dispatch;
 using namespace se2::serial_bus;
 
-// anonymous_token
 anonymous_token::anonymous_token(token* t) : state::state(t) {
   LOG_TRACE("")
   m_token->reset();
 #ifdef IS_CONVEYOR_1
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(this->m_token, EVENT_SENSOR_ENTRANCE);
+  disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
 #endif
 #ifdef IS_CONVEYOR_2
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_stop_motor();
-  new (this) b2_receive_data(this->m_token);
+  new (this) b2_receive_data(m_token);
 #endif
 }
 
 void anonymous_token::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
-  // ID zuweisen und Motor des Laufbands im Rechtslauf starten
-  m_token->set_id(m_token->get_next_id());
-  // Wechsel in den naechsten Zustand
 #ifdef IS_CONVEYOR_1
   new (this) b1_realized_object(this->m_token);
 #endif
@@ -63,9 +59,9 @@ void anonymous_token::dispatched_event_sensor_entrance() {
 #ifdef IS_CONVEYOR_1
 b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   LOG_TRACE("")
-  // Beginne mit Lauschen auf geeignete Events
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(this->m_token, EVENT_SENSOR_HEIGHT);
+  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(
+      DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT);
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_exsistens();
 }
 
@@ -73,33 +69,33 @@ void b1_realized_object::dispatched_event_sensor_height() {
   LOG_TRACE("")
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_slow_motor();
   // TODO: Pruefen, ob Timer fuer die langsame Strecke notwendig ist
-  // TODO: Funktion in der HAL fuer is_upside_down implementieren m_token->set_is_upside_down(*** HAL -> get_is_upside_down() ***)
   new (this) b1_height_measurement(this->m_token);
 }
 
 b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  m_token->set_height1(hal->get_height_value());
-  int height = m_token->get_height1();
+  int height = hal->get_height_value();
+  m_token->set_height1(height);
   if (TOO_SMALL_LOW <= height && height <= TOO_SMALL_HI) {
-    hal->close_switch();
-    new (this) b1_token_too_small(this->m_token);
+    new (this) b1_token_too_small(m_token);
   } else if ((HOLE_LOW <= height && height <= HOLE_HI)
-          || (METAL_LOW <= height && height <= METAL_HI)
-          || (HOLE_BOTTOM_UP_LOW <= height && height <= HOLE_BOTTOM_UP_HI)
+          || (METAL_LOW <= height && height <= METAL_HI)) {
+    m_token->set_is_upside_down(false);
+  } else if ((HOLE_BOTTOM_UP_LOW <= height && height <= HOLE_BOTTOM_UP_HI)
           || (METAL_BOTTOM_UP_LOW <= height && height <= METAL_BOTTOM_UP_HI)) {
-    // TODO: evtl falsch herum ;)
-    new (this) b1_valid_height(this->m_token);
+    m_token->set_is_upside_down(true);
   }
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
+  new (this) b1_valid_height(m_token);
 }
 
 b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
   LOG_TRACE("")
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->close_switch();
+  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
 }
 
 void b1_token_too_small::dispatched_event_sensor_slide() {
@@ -119,42 +115,41 @@ void b1_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->open_switch();
-  m_token->set_is_metal(hal->obj_has_metal());
   new (this) b1_metal_detection(m_token);
 }
 
-// b1_metal_detection
 b1_metal_detection::b1_metal_detection(token* t) : state::state(t) {
   LOG_TRACE("")
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  m_token->set_is_metal(hal->obj_has_metal());
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(this->m_token, EVENT_SENSOR_EXIT);
+  disp->register_listener(m_token, EVENT_SENSOR_SWITCH_R);
+  disp->register_listener(m_token, EVENT_SENSOR_EXIT);
+}
+
+void b1_metal_detection::dispatched_event_sensor_switch_rising() {
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->close_switch();
 }
 
 void b1_metal_detection::dispatched_event_sensor_exit() {
   LOG_TRACE("")
-  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->close_switch();
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_stop_motor();
-  new (this) b1_exit(this->m_token);
+  new (this) b1_exit(m_token);
 }
 
-// b1_exit
 b1_exit::b1_exit(token* t) : state::state(t) {
   LOG_TRACE("")
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  if (m_token->get_is_upside_down()) { //FIXME upside_down abruf einbauen aus der hal
-    // TODO: Hier in Fehlerbehandlung springen
-    new (this) b1_token_upside_down(this->m_token);
+  if (m_token->get_is_upside_down()) {
+    new (this) b1_token_upside_down(m_token);
   } else {
-    if (1/* TODO: Abfrage, ob Band 2 frei ist */) {
-      new (this) b1_token_ready_for_b2(this->m_token);
-    }
+    new (this) b1_token_ready_for_b2(m_token);
   }
 }
 
-// b1_token_upside_down !!!!!!!!!! TODO: Wird ausgelagert in eigenen Fehlerzustand !!!!!!!!!!!
 b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
-  // Beginne mit Lauschen auf geeignete Events
+  // TODO: Hier in Fehlerbehandlung springen
+  std::cout << "MUSS GEDREHT WERDEN!" << std::endl;
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_START);
 }
@@ -164,7 +159,6 @@ void b1_token_upside_down::dispatched_event_button_start() {
   // TODO: Wenn Wendevorgang erfolgreich -> b1_token_ready_for_b2
 }
 
-// b1_token_ready_for_b2
 b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   LOG_TRACE("")
   serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
@@ -180,18 +174,7 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   tg.m_height1 = m_token->get_height1(); // Hoehe 1 mitschicken
 
   serial->send_telegram(&tg); // Fertiges Telegramm an Band 2 schicken
-
-//   TODO: Ausgabe der Puck Daten auf dem Terminal
-//   XXX: Pruefen, ob der Puck auf Band 1 anonymisiert werden muss
-//  new (this) b2_receive_data(this->m_token);
-
-  //std::cout << "b1_token_ready_for_b2() vor set_motor(right)" << std::endl;
-  //hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  //hal->set_motor(MOTOR_FAST);
-  //hal->set_motor(MOTOR_RIGHT);
-  //hal->set_light(RED,1);
-  //std::cout << "b1_token_ready_for_b2() MOTOR_FAST wurde gesetzt" << std::endl;
-  //hal->set_motor(MOTOR_STOP);
+  std::cout << "telegram gesendet!" << std::endl;
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_death();
   new (this) anonymous_token(m_token);
 }

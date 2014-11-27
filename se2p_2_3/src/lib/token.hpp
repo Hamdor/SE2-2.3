@@ -32,8 +32,8 @@ namespace se2 {
 class token : public fsm::events {
  public:
   token()
-      : m_state(0), m_id(0), m_height1(0), m_height2(0)
-      , m_is_metal(false), m_is_upside_down(false) {
+      : m_state(0), m_id(++m_id_counter), m_height1(0), m_height2(0)
+      , m_is_metal(false), m_is_upside_down(false), m_valid_height(false) {
     // nop
   }
 
@@ -45,18 +45,21 @@ class token : public fsm::events {
     m_state = state;
   }
 
-  int get_id();
-  void set_id(int id);
-  int get_next_id();
-  int get_height1();
+  int get_id() const;
+
   void set_height1(int height1);
-  int get_height2();
+  int get_height1() const;
+
   void set_height2(int height2);
-  bool get_is_upside_down();
+  int get_height2() const;
+
+
   void set_is_upside_down(bool value);
-  bool get_is_metal();
+  bool get_is_upside_down() const;
+
+
   void set_is_metal(bool metal);
-  bool is_valid();
+  bool get_is_metal() const;
 
   void reset();
 
@@ -68,6 +71,7 @@ class token : public fsm::events {
   virtual void dispatched_event_sensor_height();
   virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
+  virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_slide();
   virtual void dispatched_event_sensor_slide_rising();
   virtual void dispatched_event_sensor_exit();
@@ -93,6 +97,7 @@ class token : public fsm::events {
   int m_height2;
   bool m_is_metal;
   bool m_is_upside_down;
+  bool m_valid_height;
 };
 
 } // namespace se2
