@@ -16,69 +16,75 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    dispatcher_test.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Unit tests des Dispatchers
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_DISPATCHER_TEST_HPP
+#define SE2_DISPATCHER_TEST_HPP
 
 #include "config.h"
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include "lib/dispatcher/dispatcher.hpp"
+#include "unit_tests/abstract_test.hpp"
 
 namespace se2 {
-namespace serial_bus {
+namespace unit_tests {
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
+class dispatcher_test : public abstract_test<dispatcher_test> {
+ public:
+  /**
+   * Constructor
+   **/
+  dispatcher_test();
+
+  /**
+   * Default Destructor
+   **/
+  ~dispatcher_test();
+
+  virtual int before_class();
+  virtual int before();
+  virtual int init();
+  virtual int after();
+  virtual int after_class();
+
+  /**
+   * Werte werden fuer die Mini FSM benoetigt
+   **/
+  static int s_error;
+  static hal::event_values s_assumed_next;
  private:
   /**
-   * Default Konstruktor  
+   * Test fuer das mapping von `event_values` zu `dispatcher_events`.
+   * Das Mapping wird von der Funktion `dispatcher::map_from_event_values()`
+   * uebernommen.
    **/
-  serial_interface();
+  int test_mapping();
 
   /**
-   * Default Destruktor
+   * Testet die Belegung im `m_functions` array von `dispatcher`.
    **/
-  ~serial_interface();
+  int test_function_address_reg();
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Eine kleine FSM die alle Events einmal benötigt
    **/
-  bool write(telegram* data);
+  int test_small_fsm();
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Test fuer den Dispatcher Thread bzw. die verteilung
+   * ueber Pulse Messages
    **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
+  int dispatcher_thread_test();
 
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
+  dispatch::dispatcher* m_dispatcher;
+  int m_error;
 };
 
-} // namespace serial_bus
+} // namespace unit_tests
 } // namespace se2
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_DISPATCHER_TEST_HPP

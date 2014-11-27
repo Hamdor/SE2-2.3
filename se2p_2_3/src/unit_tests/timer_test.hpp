@@ -16,69 +16,96 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    timer_test.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Unit tests des Timers
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_TIMER_TEST_HPP
+#define SE2_TIMER_TEST_HPP
 
 #include "config.h"
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include "lib/timer/timer_handler.hpp"
+#include "unit_tests/abstract_test.hpp"
 
 namespace se2 {
-namespace serial_bus {
+namespace unit_tests {
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
+class timer_test : public abstract_test<timer_test> {
+
+public:
+  /**
+   * Constructor
+   **/
+  timer_test();
+
+  /**
+   * Destructor
+   **/
+  virtual ~timer_test();
+
+  /**
+   * Wird einmalig für alle ausgeführt
+   * @return 0 wenn erfolgreich
+   */
+  virtual int before_class();
+
+  /**
+   * Funktion wird vor jedem test ausgeführt
+   * @return 0 wenn erfolgreich
+   */
+  virtual int before();
+
+  /**
+   * Initialisiert den Funktionsvektor
+   * @return 0 wenn erfolgreich
+   */
+  virtual int init();
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
+  virtual int after();
+
+  /**
+   * Aufräumen der Unit Tests
+   * @return 0 wenn erfolgreich
+   */
+  virtual int after_class();
+
  private:
   /**
-   * Default Konstruktor  
+   * One shot Test
    **/
-  serial_interface();
+  int test_timer_1msec();
 
   /**
-   * Default Destruktor
+   * Intervall Test
    **/
-  ~serial_interface();
+  int test_timer_intervall();
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Pause Test
    **/
-  bool write(telegram* data);
+  int test_timer_pause();
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Continue Test
    **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
+  int test_timer_continue();
 
   /**
-   * Konfiguriert die Serielle Schnittstelle
+   * Test zum Timer erhoen
    **/
-  void config();
+  int test_timer_add();
+
+  timer::timer_handler* m_timer;
+  int m_chid;
+  int m_error;
 };
-
-} // namespace serial_bus
+} // namespace unit_tests
 } // namespace se2
-
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_TIMER_TEST_HPP

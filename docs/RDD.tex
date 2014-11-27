@@ -650,7 +650,7 @@ Spezifikation der Architektur und Definition der System-Schnittstellen in einem 
 % 6.1.1 Automat für Band 1
 \begin{figure}
 	\subsubsection{Automat für Band 1}
-	\centering\vfill\includegraphics[angle=0,scale=0.7]{imgs/Band1_FSM.png}
+	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Band1_FSM.png}
 \end{figure}
 
 % 6.1.2 Automat für Band 2
@@ -696,8 +696,7 @@ Anmerkung: Bitte KEINE ganze Programme hierhin kopieren!}}
 
 % 7.2 Patterns
 \subsection{Patterns}
-Scoped Locking, DCLP, Singelton, Delegator \newline
-\textcolor{red}{\textbf{Wichtige Patterns, die Sie implementiert haben.}}
+Scoped Locking, DCLP, Singelton, Delegator, Factory, Dispatcher- / Reactor-Pattern und GoF-State-Pattern nach Pareigis.
 
 % 7.3 Mapping Rules
 \subsection{Mapping Rules}
@@ -710,6 +709,36 @@ Die ISR soll eine Pulse Message generieren. Diese landet im Pulse Message Channe
 Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach Links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
 \newpage
 
+% 7.5 Dispatcher Implementierung
+\subsection{Dispatcher Implementierung}
+Die Implementierung des Dispatchers verteilt Events (Eingangsereignisse) an angemeldete Zustände.
+Als Quellen für Eingangssignale dienen ISR, Timer, Serielle Schnittstelle. Intern werden die Signale
+nur an den ersten Zustand einer Fifo weitergereicht. Für jeden anmeldbaren Zustand gibt es eine eigene Fifo.
+Als Fifo Container wurde die std::queue benutzt. Jede Queue geht über Pointer-to-Memberfunctions.
+Im System exsistiert ein Pulse Message Channel, die Eingangssignal Quellen schreiben Pulse Messages in den Channel.
+Der Dispatcher implementiert einen eigenen Thread der diese Pulse Messages aus dem Channel liest und die passende
+Pointer-to-Memberfunctions aufruft.
+
+% 7.6 Automaten Implementierung
+\subsection{Automaten Implementierung}
+Die Automaten werden nach dem GoF-State-Pattern nach Pareigis umgesetzt. Die Transition findet durch den
+Placement-New Operator statt. Die Kontext-Klasse \emph{token} dient der Abbildung eines Pucks. In ihr werden die
+Eigenschaften des Pucks und dessen Zustand gespeichert.\newline
+Die Zustände des Automaten werden durch die Klasse \emph{state} repräsentiert. Sie leitet sich von der Klasse
+\emph{events} ab, die die Transitionen in Form von \emph{pure virtual} Funktionen vorgibt.\newline
+Jeder Subzustand von \emph{state} meldet sich für ein Event beim Dispatcher an und implementiert die Transition
+für diesen.\newline
+Der Start- und Endzustand eines jeden Tokens ist \emph{anonymous\_token}.\newline
+Der Dispatcher führt eine Queue über die Anzahl der maximal auf einem Laufband befindlichen Tokens, die mit dem Zustand
+\emph{anonymous\_token} vorinitialisiert werden.
+
+% 7.7 Timer Implementierung
+\subsection{Timer Implementierung}
+Die QNX eigenen Timer-Funktionen werden in \emph{timer\_wrapper} gewrapped, um von dem \emph{imer\_handler} 
+verwaltet zu werden. Bei diesem \emph{timer\_handler} können Timer mit einer Zeitspanne registriert werden.
+Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und gestoppt werden.
+ 
+
 % 8. Testen
 \section{Testen}
 \textcolor{red}{\textbf{Machen Sie sich Gedanken über Unit-Test, Komponenten-Test,
@@ -717,7 +746,36 @@ Integrationtest, Systemtest, Regressions-Test und Abnahmetest.}}
 
 % 8.1 Unit-Test/Komponenten-Test
 \subsection{Unit-Test/Komponenten-Test}
-\textcolor{red}{\textbf{Test Szenario eines Laufbands.}}
+Es gibt Testfälle für die einzelnen Komponenten. Für die Unit Test steht eine Testumgebung zur Verfügung.
+Jeder Unit Test muss unser Unit Test Interface implementieren, damit diese automatisiert ausgeführt werden
+können.
+
+\subsubsection{HAL}
+Im Unit Test für die HAL werden 2 verschiedene Stubs verwendet. Die Hardware wird dafür nicht verwendet,
+da die Stubs das verhalten der Hardware emulieren. Alle Funktionen der HAL werden bei dem Test einmal durchlaufen
+und es wird geprüft ob die Funktionen die erwarteten Rückgabewerte liefern.
+
+\subsubsection{IRQ}
+Der automatisierte IRQ/ISR Test öffnet einmal die Weiche. Dabei wird die Lichtschranke der Weiche unterbrochen,
+das generiert eine Pulse Message. Diese muss im Channel liegen.
+
+\subsubsection{Dispatcher}
+Für den Dispatcher gibt es verschiedene Unit Test. Zum einen wird getestet
+ob das Mapping vom Event enum zum internen Dispatched Event enum passt.
+Außerdem wird geprüft ob in dem Funktionsadressen Array die korrekten Adressen liegen.
+Ein Test prüft ob der Dispatcher die Events sequenziell verteilt. Dazu gibt es eine
+FSM die nur aus einem Zustand besteht, jedoch für jede Eingabe eine Transition auf sich selbst hat.
+Bei der Transition wird geprüft ob das erhaltene Eingangssignal das erwartete Eingangssignal ist.
+Die FSM wird zwei mal durchlaufen. Einmal wird der Dispatcher Thread umfahren indem die Events
+direkt aufgerufen werden. Das zweite mal schreibt Pulse Messages in den Channel die vom Dispatcher
+verteilt werden.
+
+\subsubsection{Timer}
+Bei dem Timer werden die Grundfunktionalitäten getestet.
+Zum Testen der Registrierungsfunktion wird ein Timer gestartet und auf die Pulse Message gewartet.
+Um die Funktionen add, sub, pause und continue zu testen, wird jedoch ein weiterer Timer registriert.
+Dieser zusätzliche Timer sendet eine andere Message beim Ablaufen, dadurch wird verhindert, dass kein Interrupt
+geworfen wird.
 
 % 8.2 Integrations-Test/System-Test
 \subsection{Integrations-Test/System-Test}

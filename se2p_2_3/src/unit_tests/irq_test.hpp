@@ -43,7 +43,7 @@ class irq_test : public abstract_test<irq_test> {
   /**
    * Destructor
    **/
-  ~irq_test();
+  virtual ~irq_test();
 
   /**
    * Wird einmalig für alle ausgeführt

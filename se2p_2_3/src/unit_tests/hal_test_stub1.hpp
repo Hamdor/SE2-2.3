@@ -44,7 +44,7 @@ class hal_test_stub1 : public abstract_test<hal_test_stub1> {
   /**
    * Default Destructor
    **/
-  ~hal_test_stub1();
+  virtual ~hal_test_stub1();
 
   virtual int before_class();
   virtual int before();
@@ -54,7 +54,7 @@ class hal_test_stub1 : public abstract_test<hal_test_stub1> {
 
  private:
   /**
-   * Test für die funktionsfähigkeit des Motors
+   * Test fuer die funktionsfaehigkeit des Motors
    * @return fehlgeschlagene Anzahl
    **/
    int motor_test();
@@ -66,37 +66,37 @@ class hal_test_stub1 : public abstract_test<hal_test_stub1> {
    int switch_test();
 
    /**
-    * Test für die LEDs der Tasten
+    * Test fuer die LEDs der Tasten
     * @return fehlgeschlagene Anzahl
     **/
    int button_led_test();
 
    /**
-    * Test für die Ampeln
+    * Test fuer die Ampeln
     * @return fehlgeschlagene Anzahl
     **/
    int light_test();
 
    /**
-    * Tests der funktionsfähigkeit der Lichtschranken
+    * Tests der funktionsfaehigkeit der Lichtschranken
     * @return fehlgeschlagene Anzahl
     **/
    int light_barrier_test();
 
    /**
-    * Tests für nicht gedrückte Tasten
+    * Tests fuer nicht gedrueckte Tasten
     * @return fehlgeschlagene Anzahl
     **/
    int buttons_not_pressed_test();
 
    /**
-    * Test der Höhe außerhalb des toleranzbereichs
+    * Test der Hoehe ausserhalb des toleranzbereichs
     * @return fehlgeschlagene Anzahl
     **/
    int invalid_heigt_test();
 
    /**
-    * Test des Metallsensors für kein metall
+    * Test des Metallsensors fuer kein metall
     * @return fehlgeschlagene Anzahl
     **/
    int no_metal_test();

@@ -43,9 +43,6 @@ logging::logging() : m_fstream(), m_lock() {
   std::ostringstream fname;
   fname << output_file << getpid() << "_" << time(0) << ".log";
   m_fstream.open(fname.str().c_str(), std::ios::out | std::ios::app);
-  m_lock.acquire();
-  m_fstream << "[Started logfile]" << std::endl;
-  m_lock.release();
 #endif
 }
 
@@ -93,10 +90,7 @@ void logging::log(const char* str, loglevel lvl,
 
 logging::~logging() {
 #ifndef DISABLE_LOGGING
-  m_lock.acquire();
-  m_fstream << "[END Logfile]" << std::endl;
   m_fstream.close();
-  m_lock.release();
 #endif
   instance = NULL;
 }

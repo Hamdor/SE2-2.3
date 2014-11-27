@@ -16,37 +16,97 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_singleton.hpp
+ * @file    timer_handler.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse f�r Singletons
+ *  Handler fuer timer
  **/
 
-#ifndef SE2_ABSTRACT_SINGLETON_HPP
-#define SE2_ABSTRACT_SINGLETON_HPP
+#ifndef SE2_TIMER_HANDLER_HPP
+#define SE2_TIMER_HANDLER_HPP
 
-#include "config.h"
+#include "lib/util/abstract_singleton.hpp"
+#include "lib/timer/timer_wrapper.hpp"
+#include "lib/constants.hpp"
+
+#include <vector>
 
 namespace se2 {
 namespace util {
+class singleton_mgr;
+} // namespace util
+namespace timer {
 
-class abstract_singleton {
+class timer_handler : public util::abstract_singleton {
+friend class util::singleton_mgr;
+ public:
+  /**
+   * Registriert timer
+   * @param time Dauer des Timers
+   * @param value Wert der die Pulsemsg senden soll
+   * @return Position des neuen Timers
+   **/
+  int register_timer(duration time, int value);
+  /**
+   * Wechselt den Pulse Message Channel
+   * @param chid ist channel id
+   **/
+  void change_channel(int chid);
+
+  /**
+   * Stopt den Timer
+   * @param pos Position des Timers
+   **/
+  void delete_timer(size_t pos);
+
+  /**
+   * Pausiert den Timer
+   * @param pos Position des Timers
+   **/
+  void pause_timer(size_t pos);
+
+  /**
+   * Pausiert alle registrierten Timer
+   **/
+  void pause_all();
+
+  /**
+   * Setzt den Timer fort
+   * @param pos Position des Timers
+   **/
+  void continue_timer(size_t pos);
+
+  /**
+   * Setzt alle registrierten Timer fort
+   **/
+  void continue_all();
+
+
+ private:
+  static timer_handler* instance;
+  std::vector<timer_wrapper*> timers;
+  int m_chid;
   /**
    * Initialisierung des Singletons
    **/
-  virtual void initialize() = 0;
+  virtual void initialize();
 
   /**
    * Zerstoerung des Singleton
    **/
-  virtual void destroy() = 0;
- public:
-  virtual ~abstract_singleton() {
-    // nop
-  }
+  virtual void destroy();
+
+   /**
+    * Konstruktor
+    **/
+   timer_handler();
+
+  /**
+   * Default Destruktor
+   * */
+   ~timer_handler();
 };
 
-} // namespace util
+} // namespace timer
 } // namespace se2
-
-#endif // SE2_ABSTRACT_SINGLETON_HPP
+#endif //SE2_TIMER_HANDLER_HPP

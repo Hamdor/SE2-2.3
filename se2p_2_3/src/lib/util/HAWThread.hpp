@@ -82,6 +82,11 @@ class HAWThread
    */
   void cont();
 
+  /**
+   * sets the GLOBAL_EXIT flag to true.
+   */
+  static inline void shutdownAll() { s_exit = true; }
+
 protected:
   /** This is called when the thread is started.
    * It calls execute an shutdown which are
@@ -122,11 +127,6 @@ protected:
    * the user function execute regularly.
    */
   inline bool isStopped() const { return (s_exit || m_exit); }
-
-	/**
-	 * sets the GLOBAL_EXIT flag to true.
-	 */
-  inline void shutdownAll() { s_exit = true; }
 
  private:
   pthread_t            m_tid;     /**< thread id to be passed to pthread_create*/

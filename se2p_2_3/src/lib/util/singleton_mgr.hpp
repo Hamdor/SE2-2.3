@@ -17,9 +17,9 @@
  ******************************************************************************/
 /**
  * @file    abstract_singleton.hpp
- * @version 0.1
+ * @version 0.2
  *
- * Interface/Abstrakte Klasse f�r Singletons
+ * Interface/Abstrakte Klasse fuer Singletons
  **/
 
 #ifndef SE2_SINGLETON_MGR_HPP
@@ -29,7 +29,10 @@
 
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/logging.hpp"
+#include "lib/timer/timer_handler.hpp"
 #include "lib/serial_bus/serial_channel.hpp"
+#include "lib/dispatcher/dispatcher.hpp"
+#include "lib/token_mgr.hpp"
 
 #include "lib/util/mutex.hpp"
 #include "lib/util/lock_guard.hpp"
@@ -41,13 +44,19 @@ namespace util {
 enum module_type {
   HAL_PLUGIN,
   LOGGER_PLUGIN,
-  SERIAL_PLUGIN
+  SERIAL_PLUGIN,
+  DISPATCHER_PLUGIN,
+  TIMER_PLUGIN,
+  TOKEN_PLUGIN
 };
 
 class singleton_mgr {
   static mutex s_lock_hal;
   static mutex s_lock_log;
+  static mutex s_lock_timer;
   static mutex s_lock_serial;
+  static mutex s_lock_dispatcher;
+  static mutex s_lock_token_mgr;
  public:
   /**
    * Zurgiff auf ein beliebiges Singleton Module
@@ -57,7 +66,7 @@ class singleton_mgr {
   static abstract_singleton* get_instance(module_type module);
 
   /**
-   * Zerst�rt alle Singleton Module
+   * Zerstoert alle Singleton Module
    **/
   static void shutdown();
 };
@@ -67,6 +76,9 @@ class singleton_mgr {
 
 #define TO_HAL(ptr) static_cast<se2::hal::hwaccess*>(ptr)
 #define TO_LOG(ptr) static_cast<se2::util::logging*>(ptr)
+#define TO_TIMER(ptr) static_cast<se2::timer::timer_handler*>(ptr)
 #define TO_SERIAL(ptr) static_cast<se2::serial_bus::serial_channel*>(ptr)
+#define TO_DISPATCHER(ptr) static_cast<se2::dispatch::dispatcher*>(ptr)
+#define TO_TOKEN_MGR(ptr) static_cast<se2::token_mgr*>(ptr)
 
 #endif // SE2_SINGLETON_MGR_HPP

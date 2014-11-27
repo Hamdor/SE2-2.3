@@ -17,20 +17,25 @@
  ******************************************************************************/
 /**
  * @file    singleton_mgr.cpp
- * @version 0.1
+ * @version 0.2
  *
- * Interface/Abstrakte Klasse f�r Singletons
+ * Interface/Abstrakte Klasse fuer Singletons
  **/
 
 #include "lib/util/singleton_mgr.hpp"
 
-using namespace se2::util;
 using namespace se2::hal;
+using namespace se2::util;
+using namespace se2::dispatch;
+using namespace se2::timer;
 using namespace se2::serial_bus;
 
 mutex singleton_mgr::s_lock_hal;
 mutex singleton_mgr::s_lock_log;
+mutex singleton_mgr::s_lock_timer;
 mutex singleton_mgr::s_lock_serial;
+mutex singleton_mgr::s_lock_dispatcher;
+mutex singleton_mgr::s_lock_token_mgr;
 
 abstract_singleton* singleton_mgr::get_instance(module_type module) {
   if (module == HAL_PLUGIN) {
@@ -57,27 +62,68 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
   } else if (module == SERIAL_PLUGIN) {
     if (!serial_channel::instance) {
       lock_guard guard(s_lock_serial);
-      if(!serial_channel::instance) {
+      if (!serial_channel::instance) {
         serial_channel::instance = new serial_channel();
         serial_channel::instance->initialize();
       }
     }
     return serial_channel::instance;
+  } else if (module == DISPATCHER_PLUGIN) {
+    if (!dispatcher::instance) {
+      lock_guard guard(s_lock_dispatcher);
+      if (!dispatcher::instance) {
+        dispatcher::instance = new dispatcher();
+        dispatcher::instance->initialize();
+      }
+    }
+    return dispatcher::instance;
+  } else if (module == TIMER_PLUGIN) {
+    if (!timer_handler::instance) {
+      lock_guard guard(s_lock_timer);
+      if(!timer_handler::instance) {
+        timer_handler::instance = new timer_handler();
+        timer_handler::instance->initialize();
+      }
+    }
+    return timer_handler::instance;
+  } else if (module == TOKEN_PLUGIN) {
+    if (!token_mgr::instance) {
+      lock_guard guard(s_lock_token_mgr);
+      if (!token_mgr::instance) {
+        token_mgr::instance = new token_mgr();
+        token_mgr::instance->initialize();
+      }
+    }
+    return token_mgr::instance;
   }
   return NULL;
 }
 
 void singleton_mgr::shutdown() {
-  if (hwaccess::instance) {
-    hwaccess::instance->destroy();
-    delete hwaccess::instance;
-  }
-  if (logging::instance) {
-    logging::instance->destroy();
-    delete logging::instance;
+  // Shutdown all Threads
+  HAWThread::shutdownAll();
+  if (dispatcher::instance) {
+    dispatcher::instance->destroy();
+    delete dispatcher::instance;
   }
   if (serial_channel::instance) {
     serial_channel::instance->destroy();
     delete serial_channel::instance;
+  }
+  if (hwaccess::instance) {
+    hwaccess::instance->destroy();
+    delete hwaccess::instance;
+  }
+  if (token_mgr::instance) {
+    token_mgr::instance->destroy();
+    delete token_mgr::instance;
+  }
+  if (timer_handler::instance) {
+    timer_handler::instance->destroy();
+    delete timer_handler::instance;
+  }
+  if (logging::instance) {
+    logging::instance->destroy();
+    delete logging::instance;
   }
 }

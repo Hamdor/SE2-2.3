@@ -26,12 +26,15 @@
 #ifndef SE2_CONFIG_H
 #define SE2_CONFIG_H
 
-#define UNIT_TESTS   // Aktiviert die Unit Tests anstelle des Hauptprogrammes
-                       // Wirkt sich auf `main.cpp` sowie `hwaccess.cpp` aus.
-                       // In `hwaccess` wird dadurch die Funktion
-                       // `change_stub()` zu einer nicht NOP Funktion.
+#define NUM_OF_TOKENS 20   // Anzahl an vordefinierten Tokens
+                           // Die Logik kann niemals mehr als diese Anzahl an
+                           // Tokens verwalten, da keine dynamische Allokierung
+                           // stattfindet
 
-#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test für
+#define IS_CONVEYOR_1      // Foerderband 1 FSM aktivieren
+//#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren
+
+//#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test fuer
                            // die Serielle chnittstelle
 
 //#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur
@@ -41,6 +44,11 @@
                        // `DetachInterrupt()` nicht verwendet werden.
                        // Statt­des­sen werden diese Funktionen auf eigene fuer
                        // die Simulation ueberschrieben.
+
+
+//#define PRINT_TRANSITIONS_UNIT_TEST // Aktiviert die Ausgabe der Uebergaenge
+                                      // im Dispatcher Unit Test
+
 /**
  * ----------------------------------------------------------------------------
  * Logging Spezifische Defines
@@ -56,7 +64,7 @@
  * ----------------------------------------------------------------------------
  * Serielle Schnittstelle Spezifische Defines
  **/
-#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
+//#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
 #define SERIAL_CHAR_DEV "/dev/ser1" // Pfad zum Char Device der Seriellen
                                     // Schnittstelle. In der VM NICHT verfügbar
 /**
@@ -70,6 +78,11 @@
 //#define FESTO_9      // Aktiviert spezifisch gemessene Werte fuer Festo 9
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
+
+#define FESTO_5        // Aktiviert spezifisch gemessene Werte fuer Festo 5
+                       // Unter anderem Daten fuer Hoehenmessung
+                       // definiert in `constants.hpp` (height_values)
+
 /**
  * ----------------------------------------------------------------------------
  **/

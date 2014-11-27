@@ -16,69 +16,65 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    token_mgr.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Manager fuer Token
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_TOKEN_MGR_HPP
+#define SE2_TOKEN_MGR_HPP
 
 #include "config.h"
 
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include "lib/token.hpp"
+#include "lib/util/abstract_singleton.hpp"
 
 namespace se2 {
-namespace serial_bus {
+namespace util {
+class singleton_mgr;
+}
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
+class token_mgr : public util::abstract_singleton {
+  friend token;
+  friend util::singleton_mgr;
+
+  token_mgr();
+  virtual ~token_mgr();
+
+  virtual void initialize();
+  virtual void destroy();
+
+  void update();
+
+ public:
+  /**
+   * Mit dieser Funktion meldet sich der neue `token`
+   * einmal bei dem `token_mgr` an.
+   **/
+  void notify_exsistens();
+
+  /**
+   * Mit dieser Funktion meldet sich der `token`
+   * vom `token_mgr` ab.
+   **/
+  void notify_death();
+
+  void request_fast_motor();
+  void request_slow_motor();
+
+  void request_stop_motor();
+  void unrequest_stop_motor();
+
  private:
-  /**
-   * Default Konstruktor  
-   **/
-  serial_interface();
+  static token_mgr* instance;
+  token m_tokens[NUM_OF_TOKENS];
 
-  /**
-   * Default Destruktor
-   **/
-  ~serial_interface();
-
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool write(telegram* data);
-
-  /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
-   **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
-
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
+  int  m_alife;
+  int  m_motor_slow;
+  bool m_motor_stop;
 };
 
-} // namespace serial_bus
-} // namespace se2
+}
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_TOKEN_MGR_HPP

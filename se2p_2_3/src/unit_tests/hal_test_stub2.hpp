@@ -44,16 +44,16 @@ class hal_test_stub2 : public abstract_test<hal_test_stub2> {
   /**
    * Destructor
    **/
-  ~hal_test_stub2();
+  virtual ~hal_test_stub2();
 
   /**
-   * Wird einmalig für alle ausgeführt
+   * Wird einmalig fuer alle ausgeführt
    * @return 0 wenn erfolgreich
    */
   virtual int before_class();
 
   /**
-   * Funktion wird vor jedem test ausgeführt
+   * Funktion wird vor jedem test ausgefuehrt
    * @return 0 wenn erfolgreich
    */
   virtual int before();
@@ -65,38 +65,38 @@ class hal_test_stub2 : public abstract_test<hal_test_stub2> {
   virtual int init();
 
   /**
-   * Aufräumen der Unit Tests
+   * Aufraeumen der Unit Tests
    * @return 0 wenn erfolgreich
    */
   virtual int after();
 
   /**
-   * Aufräumen der Unit Tests
+   * Aufraeumen der Unit Tests
    * @return 0 wenn erfolgreich
    */
   virtual int after_class();
 
  private:
   /**
-    * Test für durchbrochene Lichtschranken
+    * Test fuer durchbrochene Lichtschranken
     * @return fehlgeschlagene Anzahl
     */
   int light_barrier_interrupted_test();
 
   /**
-    * Test für Höhe im Toleranzbereich
+    * Test fuer Hoehe im Toleranzbereich
     * @return fehlgeschlagene Anzahl
     */
   int valid_height_test();
 
   /**
-    * Test für metall
+    * Test fuer metall
     * @return fehlgeschlagene Anzahl
     */
   int metal_detected_test();
 
   /**
-    * Test für gedrückte Tasten
+    * Test fuer gedrueckte Tasten
     * @return fehlgeschlagene Anzahl
     */
   int buttons_pressed_test();

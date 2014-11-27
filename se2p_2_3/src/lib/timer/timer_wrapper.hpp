@@ -16,69 +16,94 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    timer_wrapper.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Wrapper fuer timer struct
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
-
-#include "config.h"
-
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#ifndef SE2_TIMER_WAPPER_HPP
+#define SE2_TIMER_WAPPER_HPP
+#include <time.h>
+#include <sys/neutrino.h>
+#include "lib/constants.hpp"
 
 namespace se2 {
-namespace serial_bus {
+namespace timer {
+class timer_handler;
 
-class serial_channel;
-/**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
- **/
-class serial_interface {
-  friend serial_channel;
- private:
+class timer_wrapper {
+  friend class timer_handler;
   /**
-   * Default Konstruktor  
+   * Konstruktor
+   * @param time dauer des timers
+   * @param pulse_value Wert der die Pulse Message senden soll
+   * @param chid ist die channel id
    **/
-  serial_interface();
+  timer_wrapper(duration time, int pulse_value, int chid);
 
   /**
    * Default Destruktor
    **/
-  ~serial_interface();
+  ~timer_wrapper();
+
+
+ public:
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Startet Timer
    **/
-  bool write(telegram* data);
+  void start_timer();
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Stopt den Timer
    **/
-  bool read(telegram* buffer);
+  void stop_timer();
+
+  /**
+   * Pausiert den Timer
+   **/
+  void pause_timer();
+
+  /**
+   * Setzt den Timer fort
+   **/
+  void continue_timer();
+
+  /**
+   * resetet timer
+   **/
+  void reset_timer();
+
  private:
-  int m_fd;
+  /**
+   * Timer ID
+   **/
+  timer_t m_timerid;
 
   /**
-   * Konfiguriert die Serielle Schnittstelle
+   * Timer Daten
    **/
-  void config();
+  itimerspec m_timer;
+
+  /**
+   * Temp-Timer fuer Pausierung
+   **/
+  itimerspec m_temp_timer;
+
+  /**
+   * Zu ausfuerendes Event
+   **/
+  sigevent m_event;
+
+  /**
+   * Connection id
+   **/
+  int m_coid;
+  bool m_started;
+  bool m_paused;
+  duration m_duration;
 };
-
-} // namespace serial_bus
+} // namespace timer
 } // namespace se2
-
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_TIMER_WAPPER_HPP

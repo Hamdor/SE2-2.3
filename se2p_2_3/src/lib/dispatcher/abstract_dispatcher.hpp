@@ -16,69 +16,58 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_interface.hpp
+ * @file    abstract_dispatcher.hpp
  * @version 0.1
  *
- * Serielle Schnittstelle
+ * Dispatcher Interface
  **/
 
-#ifndef SE2_SERIAL_INTERFACE_HPP
-#define SE2_SERIAL_INTERFACE_HPP
+#ifndef SE2_ABSTRACT_DISPATCHER
+#define SE2_ABSTRACT_DISPATCHER
 
 #include "config.h"
-
-#include "lib/util/logging.hpp"
-#include <unistd.h>
-#include <cstdio>
-#include <errno.h>
+#include "lib/constants.hpp"
 
 namespace se2 {
-namespace serial_bus {
+namespace fsm {
+class events;
+}
+namespace dispatch {
 
-class serial_channel;
+typedef void (fsm::events::*func_t)();
+
 /**
- * Zugriff auf `serial_interface` nur durch `serial_channel`
+ * Dispatcher Interface
  **/
-class serial_interface {
-  friend serial_channel;
- private:
-  /**
-   * Default Konstruktor  
-   **/
-  serial_interface();
-
+struct abstract_dispatcher {
   /**
    * Default Destruktor
    **/
-  ~serial_interface();
+  virtual ~abstract_dispatcher() {
+    // nop
+  }
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param data gibt das zu schreibenden Telegram an
-   * @return TRUE  wenn erfolgreich 
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Registriert einen Listener fuer ein Event.
+   * Der Listener erhaellt Nachricht fuer dieses Event solange er
+   * Registriert ist.
+   * @param listener Pointer auf den Status
+   * @param event    auf welches gehoert werden soll
+   * @return TRUE    nach erfolgreichen hinzufuegen
+   *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
+   *                 dieses Event erreicht ist
    **/
-  bool write(telegram* data);
+  virtual bool register_listener(fsm::events* listener,
+                                 hal::event_values event) = 0;
 
   /**
-   * Schreibt Daten auf den Seriellen bus
-   * @param buffer gibt die zu lesende Telegram an
-   * @return TRUE  wenn erfolgreich  
-   *         FALSE wenn fehlschlaegt
-   *         FALSE wenn ohne `HAS_SERIAL_INTERFACE` kompiliert
+   * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
+   * @param event welches ausgeloest werden soll
    **/
-  bool read(telegram* buffer);
- private:
-  int m_fd;
-
-  /**
-   * Konfiguriert die Serielle Schnittstelle
-   **/
-  void config();
+  virtual void direct_call_event(hal::event_values event) = 0;
 };
 
-} // namespace serial_bus
+} // namespace dispatch
 } // namespace se2
 
-#endif // SE2_SERIAL_INTERFACE_HPP
+#endif // SE2_ABSTRACT_DISPATCHER
