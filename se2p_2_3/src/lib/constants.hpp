@@ -62,7 +62,7 @@
 /**
  * Maximale Anzahl an loops bis der Hoehenwert gelesen wird
  **/
-#define HEIGHT_SENSOR_MAX_LOOPS 100
+#define HEIGHT_SENSOR_MAX_LOOPS 50
 
 /**
  * Addresse des Control-Registers
