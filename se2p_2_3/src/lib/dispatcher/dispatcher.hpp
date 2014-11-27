@@ -70,6 +70,8 @@ struct dispatcher : public abstract_dispatcher
    * @param event welches ausgeloest werden soll
    *        da dann synchronisation zwischen dem Dispatcher Thread
    *        und dem aufrufendem Thread benoetigt wird.
+   * @warning Diese Funktion wird eventuell geloescht. Sollte deshalb
+   *          nicht verwendet werden.
    **/
   virtual void direct_call_event(hal::event_values event);
 
