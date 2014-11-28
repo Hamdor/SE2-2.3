@@ -227,6 +227,7 @@ enum height_values {
                                        << EVENT_PORT_C_OFFSET) | 0x01
 /**
  * Pulse Message Values
+ *   EVENT_ZERO            Nullevent
  * Events Port C:
  *   EVENT_BUTTON_START    Start Button getoggelt
  *   EVENT_BUTTON_STOP     Stop Button getoggelt
@@ -262,6 +263,7 @@ enum height_values {
  *   EVENT_TOKEN_FINISHED  Zeit bis der Puck das Ende von Band 2 erreicht hat
  **/
 enum event_values {
+  EVENT_ZERO            = 0,
   // Port C
   EVENT_BUTTON_START    = EVENT_BASE << BUTTON_START    << EVENT_PORT_A_OFFSET,
   EVENT_BUTTON_STOP     = EVENT_BASE << BUTTON_STOP     << EVENT_PORT_A_OFFSET,

@@ -91,9 +91,8 @@ void dispatcher::direct_call_event(hal::event_values event) {
 dispatcher_events dispatcher::map_from_event_values(
     event_values val) {
   switch(val) {
-  case 0:
-    // TODO: Wo kommt dieser Her?
-    break;
+  case EVENT_ZERO:
+    return DISPATCHED_EVENT_MAX;
   case EVENT_BUTTON_START:
     return DISPATCHED_EVENT_BUTTON_START;
   case EVENT_BUTTON_STOP:
@@ -164,8 +163,7 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
   switch(buffer.code) {
   case INTERRUPT:
     switch(buffer.value.sival_int) {
-    case 0:
-      // TODO: Wo kommt die 0 her?
+    case EVENT_ZERO:
       break;
     case EVENT_BUTTON_START:
       break;
