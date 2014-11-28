@@ -162,8 +162,8 @@ class b1_token_too_small : public state {
   virtual ~b1_token_too_small() {
     // nop
   }
-
   virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_sensor_height_rising();
 };
 
 class b1_valid_height : public state {
@@ -172,7 +172,7 @@ class b1_valid_height : public state {
   virtual ~b1_valid_height() {
     // nop
   }
-
+  virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
 };
 

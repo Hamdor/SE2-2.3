@@ -26,6 +26,7 @@
 #define SE2_CONSTANTS_HPP
 
 #include <cstddef>
+#include "lib/token.hpp"
 
 /**
  * Bit Position der Weiche auf Port A
@@ -373,6 +374,16 @@ enum msg_type {
  * Telegram komplett
  **/
 struct telegram {
+  telegram() : m_type(MSG), m_msg(NOTHING), m_id(0)
+             , m_height1(0)
+             , m_height2(0) {
+    // nop
+  }
+  telegram(const token* t) : m_type(DATA), m_msg(NOTHING), m_id(t->get_id())
+                           , m_height1(t->get_height1())
+                           , m_height2(t->get_height2()) {
+    // nop
+  }
   int m_type;
   int m_msg;
   int m_id;

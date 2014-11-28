@@ -86,15 +86,13 @@ b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
           || (METAL_BOTTOM_UP_LOW <= height && height <= METAL_BOTTOM_UP_HI)) {
     m_token->set_is_upside_down(true);
   }
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
   new (this) b1_valid_height(m_token);
 }
 
 b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
   LOG_TRACE("")
-  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->close_switch();
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
 }
 
@@ -104,10 +102,18 @@ void b1_token_too_small::dispatched_event_sensor_slide() {
   new (this) anonymous_token(m_token);
 }
 
+void b1_token_too_small::dispatched_event_sensor_height_rising() {
+  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
+}
+
 b1_valid_height::b1_valid_height(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
+}
+
+void b1_valid_height::dispatched_event_sensor_height_rising() {
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
 }
 
@@ -160,21 +166,11 @@ void b1_token_upside_down::dispatched_event_button_start() {
 }
 
 b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
+  // TODO: Pruefen ob Band 2 frei
   LOG_TRACE("")
-  serial_channel* serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
-  // TODO:
-  // 1. Define fuer Band 2 abfragen
-  // 2. Band 2 muss leer sein (Queue von Band 2 mit Groesse 1 muss leer sein / anonymous_token)
-  // 3. Wenn alles OK, Motor starten: hal->set_motor(MOTOR_RIGHT);
-
-  // Telegramm fuer den Versand erstellen
-  telegram tg;
-  tg.m_type = DATA;                      // Daten sollen verschickt werden
-  tg.m_id = m_token->get_id();           // ID mitschicken
-  tg.m_height1 = m_token->get_height1(); // Hoehe 1 mitschicken
-
-  serial->send_telegram(&tg); // Fertiges Telegramm an Band 2 schicken
   m_token->pretty_print();
+  telegram tg(m_token);
+  TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_death();
   new (this) anonymous_token(m_token);
 }
@@ -245,10 +241,10 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
 
   if (0 /* hal->obj_is_upside_down() */) {
     hal->close_switch();
-    new (this) b2_token_upside_down(this->m_token);
+    new (this) b2_token_upside_down(m_token);
   } else {
     m_token->set_height2(hal->get_height_value());
-    new (this) b2_valid_height(this->m_token);
+    new (this) b2_valid_height(m_token);
   }
 }
 
