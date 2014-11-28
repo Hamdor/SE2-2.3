@@ -66,6 +66,14 @@ struct dispatcher : public abstract_dispatcher
                                  hal::event_values event);
 
   /**
+   * Mappt von `event_values` auf `dispatcher_events`
+   * fuer zugriff auf Matrix
+   * @param  val der Wert der in `dispatcher_events` abgebildet werden soll
+   * @return gibt den Wert in `dispatcher_events` zurueck
+   **/
+  static dispatcher_events map_from_event_values(hal::event_values val);
+ private:
+  /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
    * @param event welches ausgeloest werden soll
    *        da dann synchronisation zwischen dem Dispatcher Thread
@@ -75,14 +83,6 @@ struct dispatcher : public abstract_dispatcher
    **/
   virtual void direct_call_event(hal::event_values event);
 
-  /**
-   * Mappt von `event_values` auf `dispatcher_events`
-   * fuer zugriff auf Matrix
-   * @param  val der Wert der in `dispatcher_events` abgebildet werden soll
-   * @return gibt den Wert in `dispatcher_events` zurueck
-   **/
-  static dispatcher_events map_from_event_values(hal::event_values val);
- private:
   /**
    * Default Konstruktor (private)
    **/
