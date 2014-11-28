@@ -24,6 +24,8 @@
 
 #include "token.hpp"
 
+#include <iostream>
+
 using namespace se2;
 using namespace se2::fsm;
 
@@ -72,6 +74,16 @@ void token::reset() {
   m_is_metal       = false;
   m_is_upside_down = false;
   m_valid_height   = false;
+}
+
+void token::pretty_print() const {
+  std::cout << "[[TOKEN] m_id: "     << m_id
+            << " m_height1: "        << m_height1
+            << " m_height2: "        << m_height2
+            << " m_is_metal: "       << (m_is_metal ? "true" : "false")
+            << " m_is_upside_down: " << (m_is_upside_down ? "true" : "false")
+            << " m_valid_height: "   << (m_valid_height ? "true" : "false")
+            << std::endl;
 }
 
 void token::dispatched_event_button_start() {
