@@ -114,6 +114,7 @@ b1_valid_height::b1_valid_height(token* t) : state::state(t) {
 }
 
 void b1_valid_height::dispatched_event_sensor_height_rising() {
+  LOG_TRACE("")
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
 }
 
@@ -134,6 +135,7 @@ b1_metal_detection::b1_metal_detection(token* t) : state::state(t) {
 }
 
 void b1_metal_detection::dispatched_event_sensor_switch_rising() {
+  LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->close_switch();
 }
