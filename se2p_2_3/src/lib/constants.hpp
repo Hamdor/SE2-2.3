@@ -235,10 +235,14 @@ enum height_values {
  *
  * Events Port B:
  *   EVENT_SENSOR_ENTRANCE Lichtschranke am Band einlauf getoggelt
- *   EVENT_SENSOR_HEIGHT   Lichtschranke am Hoehensensor getoggelt
- *   EVENT_SENSOR_SWITCH   Lichtschranke am Switch getoggelt
- *   EVENT_SENSOR_SLIDE    Lichtschranke der Rutsche getoggelt
- *   EVENT_SENSOR_EXIT     Lichtschranke am Ausgang des Bandes getoggelt
+ *   EVENT_SENSOR_HEIGHT   Lichtschranke am Hoehensensor (Fallende Flanke)
+ *   EVENT_SENSOR_HEIGHT_R Lichtschranke am Hoehensensor (Steigende Flanke)
+ *   EVENT_SENSOR_SWITCH   Lichtschranke am Switch (Fallende Flanke)
+ *   EVENT_SENSOR_SWITCH_R Lichtschranke am Switch (Steigende Flanke)
+ *   EVENT_SENSOR_SLIDE    Lichtschranke der Rutsche (Fallende Flanke)
+ *   EVENT_SENSOR_SLIDE_R  Lichtschranke der Rutsche (Steigende Flanke)
+ *   EVENT_SENSOR_EXIT     Lichtschranke am Ausgang (Fallende Flanke)
+ *   EVENT_SENSOR_EXIT_R   Lichtschranke am Ausgang (Steigende Flanke)
  *
  * Serielle Schnittstelle:
  *   EVENT_SERIAL_DATA     Daten empfangen     (Token Daten)
