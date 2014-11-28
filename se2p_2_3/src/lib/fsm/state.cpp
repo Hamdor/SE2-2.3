@@ -174,7 +174,7 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   tg.m_height1 = m_token->get_height1(); // Hoehe 1 mitschicken
 
   serial->send_telegram(&tg); // Fertiges Telegramm an Band 2 schicken
-  std::cout << "telegram gesendet!" << std::endl;
+  m_token->pretty_print();
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_death();
   new (this) anonymous_token(m_token);
 }

@@ -36,7 +36,7 @@ class token : public fsm::events {
    * Default Konstruktor
    **/
   token()
-      : m_state(0), m_id(++m_id_counter), m_height1(0), m_height2(0)
+      : m_state(0), m_id(0), m_height1(0), m_height2(0)
       , m_is_metal(false), m_is_upside_down(false), m_valid_height(false) {
     // nop
   }

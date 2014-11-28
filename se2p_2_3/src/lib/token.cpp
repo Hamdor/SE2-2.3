@@ -83,7 +83,7 @@ void token::pretty_print() const {
             << " m_is_metal: "       << (m_is_metal ? "true" : "false")
             << " m_is_upside_down: " << (m_is_upside_down ? "true" : "false")
             << " m_valid_height: "   << (m_valid_height ? "true" : "false")
-            << std::endl;
+            << " ]"                  << std::endl;
 }
 
 void token::dispatched_event_button_start() {
