@@ -25,11 +25,10 @@
 #ifndef SE2_STATE_HPP
 #define SE2_STATE_HPP
 
-#include "events.hpp"
-#include "token.hpp"
+#include "lib/token.hpp"
+#include "lib/fsm/events.hpp"
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/singleton_mgr.hpp"
-#include "lib/dispatcher/dispatcher.hpp"
 
 namespace se2 {
 namespace fsm {
@@ -39,6 +38,9 @@ class state : public events {
   token* m_token;
 
  public:
+  state() : m_token(NULL) {
+    // nop
+  }
   state(token* t) : m_token(t) {
     // nop
   }
@@ -55,9 +57,8 @@ class state : public events {
   virtual void dispatched_event_button_reset() {
     // nop
   }
-  virtual void dispatched_event_button_e_stop() {
-    // nop
-  }
+  virtual void dispatched_event_button_e_stop();
+  virtual void dispatched_event_button_e_stop_rising();
   virtual void dispatched_event_sensor_entrance() {
     // nop
   }

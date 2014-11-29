@@ -22,7 +22,7 @@
  * Kontext Klasse fuer Puck/Token
  **/
 
-#include "token.hpp"
+#include "lib/token.hpp"
 
 #include <iostream>
 
@@ -100,6 +100,10 @@ void token::dispatched_event_button_reset() {
 
 void token::dispatched_event_button_e_stop() {
   m_state->dispatched_event_button_e_stop();
+}
+
+void token::dispatched_event_button_e_stop_rising() {
+  m_state->dispatched_event_button_e_stop_rising();
 }
 
 void token::dispatched_event_sensor_entrance() {

@@ -39,27 +39,28 @@ dispatcher::dispatcher() {
   m_functions[1]  = &fsm::events::dispatched_event_button_stop;
   m_functions[2]  = &fsm::events::dispatched_event_button_reset;
   m_functions[3]  = &fsm::events::dispatched_event_button_e_stop;
-  m_functions[4]  = &fsm::events::dispatched_event_sensor_entrance;
-  m_functions[5]  = &fsm::events::dispatched_event_sensor_height;
-  m_functions[6]  = &fsm::events::dispatched_event_sensor_height_rising;
-  m_functions[7]  = &fsm::events::dispatched_event_sensor_switch;
-  m_functions[8]  = &fsm::events::dispatched_event_sensor_switch_rising;
-  m_functions[9]  = &fsm::events::dispatched_event_sensor_slide;
-  m_functions[10] = &fsm::events::dispatched_event_sensor_slide_rising;
-  m_functions[11] = &fsm::events::dispatched_event_sensor_exit;
-  m_functions[12] = &fsm::events::dispatched_event_sensor_exit_rising;
-  m_functions[13] = &fsm::events::dispatched_event_serial_data;
-  m_functions[14] = &fsm::events::dispatched_event_serial_msg;
-  m_functions[15] = &fsm::events::dispatched_event_serial_err;
-  m_functions[16] = &fsm::events::dispatched_event_serial_unk;
-  m_functions[17] = &fsm::events::dispatched_event_seg1_exceeded;
-  m_functions[18] = &fsm::events::dispatched_event_seg2_exceeded;
-  m_functions[19] = &fsm::events::dispatched_event_seg3_exceeded;
-  m_functions[20] = &fsm::events::dispatched_event_slide_full;
-  m_functions[21] = &fsm::events::dispatched_event_open_switch;
-  m_functions[22] = &fsm::events::dispatched_event_turn_token;
-  m_functions[23] = &fsm::events::dispatched_event_remove_token;
-  m_functions[24] = &fsm::events::dispatched_event_token_finished;
+  m_functions[4]  = &fsm::events::dispatched_event_button_e_stop_rising;
+  m_functions[5]  = &fsm::events::dispatched_event_sensor_entrance;
+  m_functions[6]  = &fsm::events::dispatched_event_sensor_height;
+  m_functions[7]  = &fsm::events::dispatched_event_sensor_height_rising;
+  m_functions[8]  = &fsm::events::dispatched_event_sensor_switch;
+  m_functions[9]  = &fsm::events::dispatched_event_sensor_switch_rising;
+  m_functions[10] = &fsm::events::dispatched_event_sensor_slide;
+  m_functions[11] = &fsm::events::dispatched_event_sensor_slide_rising;
+  m_functions[12] = &fsm::events::dispatched_event_sensor_exit;
+  m_functions[13] = &fsm::events::dispatched_event_sensor_exit_rising;
+  m_functions[14] = &fsm::events::dispatched_event_serial_data;
+  m_functions[15] = &fsm::events::dispatched_event_serial_msg;
+  m_functions[16] = &fsm::events::dispatched_event_serial_err;
+  m_functions[17] = &fsm::events::dispatched_event_serial_unk;
+  m_functions[18] = &fsm::events::dispatched_event_seg1_exceeded;
+  m_functions[19] = &fsm::events::dispatched_event_seg2_exceeded;
+  m_functions[20] = &fsm::events::dispatched_event_seg3_exceeded;
+  m_functions[21] = &fsm::events::dispatched_event_slide_full;
+  m_functions[22] = &fsm::events::dispatched_event_open_switch;
+  m_functions[23] = &fsm::events::dispatched_event_turn_token;
+  m_functions[24] = &fsm::events::dispatched_event_remove_token;
+  m_functions[25] = &fsm::events::dispatched_event_token_finished;
 }
 
 dispatcher::~dispatcher() {
@@ -101,6 +102,8 @@ dispatcher_events dispatcher::map_from_event_values(
     return DISPATCHED_EVENT_BUTTON_RESET;
   case EVENT_BUTTON_E_STOP:
     return DISPATCHED_EVENT_BUTTON_E_STOP;
+  case EVENT_BUTTON_E_STOP_R:
+    return DISPATCHED_EVENT_BUTTON_E_STOP_R;
   case EVENT_SENSOR_ENTRANCE:
     return DISPATCHED_EVENT_SENSOR_ENTRANCE;
   case EVENT_SENSOR_HEIGHT:
@@ -172,6 +175,8 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_BUTTON_RESET:
       break;
     case EVENT_BUTTON_E_STOP:
+      break;
+    case EVENT_BUTTON_E_STOP_R:
       break;
     case EVENT_SENSOR_ENTRANCE:
       break;

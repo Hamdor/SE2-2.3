@@ -22,8 +22,10 @@
  * Klasse fuer Zustandsautomaten
  **/
 
-#include "state.hpp"
-#include "constants.hpp"
+#include "config.h"
+
+#include "lib/fsm/state.hpp"
+#include "lib/constants.hpp"
 #include "lib/util/logging.hpp"
 
 using namespace se2;
@@ -32,6 +34,18 @@ using namespace se2::hal;
 using namespace se2::util;
 using namespace se2::dispatch;
 using namespace se2::serial_bus;
+
+void state::dispatched_event_button_e_stop() {
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->reregister_e_stop();
+  mgr->enter_safe_state();
+}
+
+void state::dispatched_event_button_e_stop_rising() {
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(se2::util::TOKEN_PLUGIN));
+  mgr->reregister_e_stop_rising();
+  mgr->exit_safe_state();
+}
 
 anonymous_token::anonymous_token(token* t) : state::state(t) {
   LOG_TRACE("")

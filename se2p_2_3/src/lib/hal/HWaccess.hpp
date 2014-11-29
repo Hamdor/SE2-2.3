@@ -126,6 +126,13 @@ struct hwaccess : public util::abstract_singleton {
   bool is_switch_open() const;
 
   /**
+   * Prueft ob der Motor laeft
+   * @return TRUE  wenn der Motor laeuft
+   *         FALSE wenn der Motor nicht laeuft
+   **/
+  bool is_motor_running() const;
+
+  /**
    * Setzt eine LED auf an oder aus
    * @param led Bestimmt die LED
    * @param on  Bestimmt ob an der aus

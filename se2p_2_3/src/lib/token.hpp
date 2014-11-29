@@ -25,7 +25,7 @@
 #ifndef SE2_TOKEN_HPP
 #define SE2_TOKEN_HPP
 
-#include "events.hpp"
+#include "lib/fsm/events.hpp"
 
 namespace se2 {
 
@@ -126,10 +126,14 @@ class token : public fsm::events {
    **/
   void pretty_print() const;
 
+  /**
+   * AUfrufe die an den Zustand delegiert werden
+   **/
   virtual void dispatched_event_button_start();
   virtual void dispatched_event_button_stop();
   virtual void dispatched_event_button_reset();
   virtual void dispatched_event_button_e_stop();
+  virtual void dispatched_event_button_e_stop_rising();
   virtual void dispatched_event_sensor_entrance();
   virtual void dispatched_event_sensor_height();
   virtual void dispatched_event_sensor_height_rising();

@@ -72,9 +72,12 @@ void hwaccess::change_stub(abstract_inout* ptr) {
  * ist `motor_fast`, hierbei muss Bit 2 entfernt werden.
  **/
 void hwaccess::set_motor(enum motor_modes mode) {
-  if (mode != MOTOR_STOP) {
+  if (mode == MOTOR_RIGHT || mode == MOTOR_LEFT || mode == MOTOR_RESUME) {
     // unset motor stop
     m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_STOP), false);
+    if (mode == MOTOR_RESUME) {
+      return;
+    }
   }
   if (mode == MOTOR_FAST) {
     // Motor soll wieder schnell laufen
@@ -89,8 +92,7 @@ void hwaccess::set_motor(enum motor_modes mode) {
   if (mode == MOTOR_LEFT) {
     m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_RIGHT), false);
   }
-  const uint8_t bit = static_cast<uint8_t>(mode);
-  m_io->outbit(PORTA, bit, true);
+  m_io->outbit(PORTA, static_cast<uint8_t>(mode), true);
 }
 
 void hwaccess::open_switch() {
@@ -131,7 +133,11 @@ bool hwaccess::obj_has_metal() const {
 }
 
 bool hwaccess::is_switch_open() const {
-  return !m_io->inbit(PORTB, SWITCH_OPEN_BIT);
+  return m_io->inbit(PORTB, SWITCH_OPEN_BIT);
+}
+
+bool hwaccess::is_motor_running() const {
+  return !m_io->inbit(PORTA, MOTOR_STOP);
 }
 
 void hwaccess::set_led_state(enum leds led, bool on) {

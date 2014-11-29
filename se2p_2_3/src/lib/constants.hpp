@@ -127,11 +127,12 @@ enum port_num {
  * Verfuegbare Modi des Motor
  **/
 enum motor_modes {
-  MOTOR_RIGHT = 0,
-  MOTOR_LEFT  = 1,
-  MOTOR_SLOW  = 2,
-  MOTOR_STOP  = 3,
-  MOTOR_FAST  = 4
+  MOTOR_RIGHT  = 0,
+  MOTOR_LEFT   = 1,
+  MOTOR_SLOW   = 2,
+  MOTOR_STOP   = 3,
+  MOTOR_FAST   = 4,
+  MOTOR_RESUME = 5
 };
 
 /**
@@ -234,6 +235,7 @@ enum height_values {
  *   EVENT_BUTTON_STOP     Stop Button getoggelt
  *   EVENT_BUTTON_RESET    Reset Button getoggelt
  *   EVENT_BUTTON_E_STOP   E-Stop getoggelt
+ *   EVENT_BUTTON_E_STOP_R E-Stop getoggelt (Steigende Flanke)
  *
  * Events Port B:
  *   EVENT_SENSOR_ENTRANCE Lichtschranke am Band einlauf getoggelt
@@ -270,6 +272,7 @@ enum event_values {
   EVENT_BUTTON_STOP     = EVENT_BASE << BUTTON_STOP     << EVENT_PORT_A_OFFSET,
   EVENT_BUTTON_RESET    = EVENT_BASE << BUTTON_RESET    << EVENT_PORT_A_OFFSET,
   EVENT_BUTTON_E_STOP   = EVENT_BASE << BUTTON_ESTOP    << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_E_STOP_R = (EVENT_BASE<<BUTTON_ESTOP<< EVENT_PORT_A_OFFSET) | 1,
   // Port B
   EVENT_SENSOR_ENTRANCE = EVENT_BASE << SENSOR_ENTRANCE << EVENT_PORT_C_OFFSET,
   EVENT_SENSOR_HEIGHT   = EVENT_BASE << SENSOR_HEIGHT   << EVENT_PORT_C_OFFSET,
@@ -308,7 +311,8 @@ enum dispatcher_events {
   DISPATCHED_EVENT_BUTTON_START = 0,
   DISPATCHED_EVENT_BUTTON_STOP,
   DISPATCHED_EVENT_BUTTON_RESET,
-  DISPATCHED_EVENT_BUTTON_E_STOP,
+  DISPATCHED_EVENT_BUTTON_E_STOP,   // Fallende Flanke
+  DISPATCHED_EVENT_BUTTON_E_STOP_R, // Steigende Flanke
   DISPATCHED_EVENT_SENSOR_ENTRANCE,
   DISPATCHED_EVENT_SENSOR_HEIGHT,   // Fallende Flanke
   DISPATCHED_EVENT_SENSOR_HEIGHT_R, // Steigende Flanke

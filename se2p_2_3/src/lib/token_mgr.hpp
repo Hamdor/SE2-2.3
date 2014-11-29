@@ -31,13 +31,26 @@
 #include "lib/util/abstract_singleton.hpp"
 
 namespace se2 {
+namespace fsm {
+class state;
+}
 namespace util {
 class singleton_mgr;
 }
-
 class token_mgr : public util::abstract_singleton {
   friend token;
   friend util::singleton_mgr;
+
+  /**
+   * `safe_state` Speichert alle wichtigen Zustaende
+   * der Maschine zum zeitpunkt des drucks auf den E-Stop.
+   **/
+  struct safe_state {
+    bool m_switch_open;
+    bool m_motor_running;
+    bool m_motor_slow;
+    bool m_motor_left;
+  };
 
   token_mgr();
   virtual ~token_mgr();
@@ -66,13 +79,24 @@ class token_mgr : public util::abstract_singleton {
   void request_stop_motor();
   void unrequest_stop_motor();
 
+  void reregister_e_stop();
+  void reregister_e_stop_rising();
+
+  void enter_safe_state();
+  void exit_safe_state();
+
  private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
+  /**
+   * Dieser Zustand ist permanent und wartet nur auf den E-Stop
+   **/
+  fsm::state* e_stop_listener;
 
   int  m_alife;
   int  m_motor_slow;
   bool m_motor_stop;
+  safe_state m_safe;
 };
 
 }

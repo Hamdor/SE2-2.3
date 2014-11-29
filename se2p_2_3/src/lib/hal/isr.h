@@ -49,7 +49,8 @@ const struct sigevent* isr(void* arg, int id) {
     event->sigev_value.sival_int = changed_bit;
     if (port_old < ports) {
       // steigende flanke
-      if (changed_bit == EVENT_SENSOR_HEIGHT
+      if (changed_bit == EVENT_BUTTON_E_STOP
+          || changed_bit == EVENT_SENSOR_HEIGHT
           || changed_bit == EVENT_SENSOR_SWITCH
           || changed_bit == EVENT_SENSOR_SLIDE
           || changed_bit == EVENT_SENSOR_EXIT) {
