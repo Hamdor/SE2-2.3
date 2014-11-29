@@ -48,18 +48,27 @@ class token_mgr : public util::abstract_singleton {
   struct safe_state {
     bool m_switch_open;
     bool m_motor_running;
-    bool m_motor_slow;
-    bool m_motor_left;
   };
 
+  /**
+   * Default Konstruktor
+   **/
   token_mgr();
+
+  /**
+   * Destruktor
+   **/
   virtual ~token_mgr();
 
   virtual void initialize();
   virtual void destroy();
 
+  /**
+   * Motoreinstellungen aktualisieren, dieses geschieht
+   * abhaengig der Werte von `m_alife`, `m_motor_slow` sowie
+   * `m_motor_stop`.
+   **/
   void update();
-
  public:
   /**
    * Mit dieser Funktion meldet sich der neue `token`
@@ -73,18 +82,45 @@ class token_mgr : public util::abstract_singleton {
    **/
   void notify_death();
 
+  /**
+   * Schnellen Motor anfragen
+   **/
   void request_fast_motor();
+
+  /**
+   * Langsamen Motor anfragen
+   **/
   void request_slow_motor();
 
+  /**
+   * Motor stop anfragen
+   **/
   void request_stop_motor();
+
+  /**
+   * Motor stop anfrage zurueckziehen
+   **/
   void unrequest_stop_motor();
 
+  /**
+   * Neu an E-Stop event registrieren (Gedrueckt)
+   **/
   void reregister_e_stop();
+
+  /**
+   * Neu an E-Stop event registrieren (Nicht mehr gedrueckt)
+   **/
   void reregister_e_stop_rising();
 
+  /**
+   * System in sicheren Zustand bringen
+   **/
   void enter_safe_state();
-  void exit_safe_state();
 
+  /**
+   * System wieder in alten Zustand bringen
+   **/
+  void exit_safe_state();
  private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
@@ -93,9 +129,9 @@ class token_mgr : public util::abstract_singleton {
    **/
   fsm::state* e_stop_listener;
 
-  int  m_alife;
-  int  m_motor_slow;
-  bool m_motor_stop;
+  int        m_alife;
+  int        m_motor_slow;
+  bool       m_motor_stop;
   safe_state m_safe;
 };
 
