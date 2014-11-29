@@ -296,7 +296,9 @@ enum event_values {
   EVENT_OPEN_SWITCH,                          // EVENT_SERIAL_UNK + 0x05
   EVENT_TURN_TOKEN,                           // EVENT_SERIAL_UNK + 0x06
   EVENT_REMOVE_TOKEN,                         // EVENT_SERIAL_UNK + 0x07
-  EVENT_TOKEN_FINISHED                        // EVENT_SERIAL_UNK + 0x08
+  EVENT_TOKEN_FINISHED,                       // EVENT_SERIAL_UNK + 0x08
+  // Unkown / Not handled inputs
+  EVENT_UNKOWN1 = 8192                        // Ich weiss nicht woher dieses Event kommt...
 };
 
 } // namespace hal
