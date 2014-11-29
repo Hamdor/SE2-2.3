@@ -26,10 +26,13 @@
 #define SE2_DISPATCHER
 
 #include "config.h"
-#include "lib/dispatcher/abstract_dispatcher.hpp"
-#include "lib/util/abstract_singleton.hpp"
-#include "lib/util/HAWThread.hpp"
 
+#include "lib/constants.hpp"
+#include "lib/util/HAWThread.hpp"
+#include "lib/util/abstract_singleton.hpp"
+#include "lib/dispatcher/abstract_dispatcher.hpp"
+
+#include <map>
 #include <queue>
 #include <cstddef>
 
@@ -45,8 +48,8 @@ namespace dispatch {
 struct dispatcher : public abstract_dispatcher
                   , public util::abstract_singleton
                   , public util::HAWThread {
-  friend unit_tests::dispatcher_test;
   friend util::singleton_mgr;
+  friend unit_tests::dispatcher_test;
   /**
    * Default Destuktor
    **/
@@ -68,10 +71,13 @@ struct dispatcher : public abstract_dispatcher
   /**
    * Mappt von `event_values` auf `dispatcher_events`
    * fuer zugriff auf Matrix
+   * @param  map Referenz auf zu durchsuchende map
    * @param  val der Wert der in `dispatcher_events` abgebildet werden soll
    * @return gibt den Wert in `dispatcher_events` zurueck
    **/
-  static dispatcher_events map_from_event_values(hal::event_values val);
+  static dispatcher_events map_from_event_values(
+      const std::map<hal::event_values, dispatcher_events>& map,
+      hal::event_values val);
  private:
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
@@ -113,6 +119,7 @@ struct dispatcher : public abstract_dispatcher
 
   std::queue<fsm::events*> m_listeners[DISPATCHED_EVENT_MAX];
   func_t                   m_functions[DISPATCHED_EVENT_MAX];
+  std::map<hal::event_values, dispatcher_events> m_mapping;
 };
 
 } // namespace dispatch

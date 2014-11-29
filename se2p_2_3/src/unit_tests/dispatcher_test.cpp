@@ -76,8 +76,12 @@ int dispatcher_test::after_class() {
   return 0;
 }
 
-int test_single_mapping_equal(event_values lhs, dispatcher_events rhs) {
-  return (dispatcher::map_from_event_values(lhs) == rhs) ? 0 : 1;
+int dispatcher_test::test_single_mapping_equal(event_values lhs,
+                                               dispatcher_events rhs) {
+  dispatcher* disp = TO_DISPATCHER(
+      singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  return
+      (dispatcher::map_from_event_values(disp->m_mapping,lhs) == rhs) ? 0 : 1;
 }
 
 int dispatcher_test::test_mapping() {

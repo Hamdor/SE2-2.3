@@ -80,6 +80,9 @@ class dispatcher_test : public abstract_test<dispatcher_test> {
    **/
   int dispatcher_thread_test();
 
+  int test_single_mapping_equal(hal::event_values lhs,
+                                dispatch::dispatcher_events rhs);
+
   dispatch::dispatcher* m_dispatcher;
   int m_error;
 };
