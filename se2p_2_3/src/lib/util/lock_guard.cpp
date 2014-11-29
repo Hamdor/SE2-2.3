@@ -22,7 +22,7 @@
  * Implementierung des `Scoped Locking` Pattern
  **/
 
-#include "lock_guard.hpp"
+#include "lib/util/lock_guard.hpp"
 
 using namespace se2::util;
 

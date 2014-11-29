@@ -24,9 +24,13 @@
 
 #ifndef SE2_TIMER_WAPPER_HPP
 #define SE2_TIMER_WAPPER_HPP
+
+#include "config.h"
+
+#include "lib/constants.hpp"
+
 #include <time.h>
 #include <sys/neutrino.h>
-#include "lib/constants.hpp"
 
 namespace se2 {
 namespace timer {

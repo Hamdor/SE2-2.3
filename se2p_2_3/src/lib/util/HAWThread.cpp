@@ -16,7 +16,7 @@
  * Die Originalversion dieser Datei befindet sich im Pub.                     *
  ******************************************************************************/
 
-#include "HAWThread.hpp"
+#include "lib/util/HAWThread.hpp"
 
 using namespace se2::util;
 
