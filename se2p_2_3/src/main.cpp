@@ -113,6 +113,7 @@ void get_heights() {
  * Hauptprogamm
  **/
 void main_program() {
+  singleton_mgr::force_initialization(SERIAL_PLUGIN);
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   while(1) {
     sleep(1);

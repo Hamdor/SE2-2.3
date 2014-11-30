@@ -127,3 +127,7 @@ void singleton_mgr::shutdown() {
     delete logging::instance;
   }
 }
+
+void singleton_mgr::force_initialization(module_type module) {
+  singleton_mgr::get_instance(module);
+}
