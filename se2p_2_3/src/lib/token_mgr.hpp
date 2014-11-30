@@ -51,6 +51,18 @@ class token_mgr : public util::abstract_singleton {
   };
 
   /**
+   * Enum fuer den als naechstes erwarteten Token,
+   * ALL     - Egal welcher Token (da vorher noch keiner auf dem Band war)
+   * METAL   - Nur Metall wird akzeptiert
+   * PLASTIC - Nur Plastic wird akzeptiert
+   **/
+  enum expected_token {
+    ALL,
+    METAL,
+    PLASTIC
+  };
+
+  /**
    * Default Konstruktor
    **/
   token_mgr();
@@ -73,34 +85,60 @@ class token_mgr : public util::abstract_singleton {
   /**
    * Mit dieser Funktion meldet sich der neue `token`
    * einmal bei dem `token_mgr` an.
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
    **/
-  void notify_exsistens();
+  void notify_existence(bool update = true);
 
   /**
    * Mit dieser Funktion meldet sich der `token`
    * vom `token_mgr` ab.
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
    **/
-  void notify_death();
+  void notify_death(bool update = true);
 
   /**
    * Schnellen Motor anfragen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
    **/
-  void request_fast_motor();
+  void request_fast_motor(bool update = true);
 
   /**
    * Langsamen Motor anfragen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
    **/
-  void request_slow_motor();
+  void request_slow_motor(bool update = true);
+
+  /**
+   * Motor linkslauf anfragen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
+   **/
+  void request_left_motor(bool update = true);
+
+  /**
+   * Motor linkslauf zurueckziehen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
+   **/
+  void unrequest_left_motor(bool update = true);
 
   /**
    * Motor stop anfragen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
    **/
-  void request_stop_motor();
+  void request_stop_motor(bool update = true);
 
   /**
    * Motor stop anfrage zurueckziehen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
    **/
-  void unrequest_stop_motor();
+  void unrequest_stop_motor(bool update = true);
 
   /**
    * Neu an E-Stop event registrieren (Gedrueckt)
@@ -121,6 +159,15 @@ class token_mgr : public util::abstract_singleton {
    * System wieder in alten Zustand bringen
    **/
   void exit_safe_state();
+
+  /**
+   * Prueft ob das aktueller Token zur korrekten
+   * Reihenfolge gehoert.
+   * @param  metal beschreibt ob das aktueller Token aus Metall ist
+   * @return TRUE  wenn Reihenfolge korrekt
+   *         FALSE wenn Reihenfolge nicht korrekt
+   **/
+  bool check_order(bool metal);
  private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
@@ -129,10 +176,12 @@ class token_mgr : public util::abstract_singleton {
    **/
   fsm::state* e_stop_listener;
 
-  int        m_alife;
-  int        m_motor_slow;
-  bool       m_motor_stop;
-  safe_state m_safe;
+  int            m_alife;
+  int            m_motor_slow;
+  bool           m_motor_stop;
+  bool           m_motor_left;
+  safe_state     m_safe;
+  expected_token m_expected_token;
 };
 
 }

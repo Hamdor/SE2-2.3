@@ -264,6 +264,7 @@ class b2_token_upside_down : public state {
     // nop
   }
 
+  virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_slide();
 };
 
@@ -274,6 +275,7 @@ class b2_valid_height : public state {
     // nop
   }
 
+  virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
 };
 
@@ -293,6 +295,7 @@ class b2_is_wrong_order : public state {
   }
 
   virtual void dispatched_event_sensor_entrance();
+  virtual void dispatched_event_sensor_entrance_rising();
 };
 
 class b2_is_correct_order : public state {
@@ -302,6 +305,7 @@ class b2_is_correct_order : public state {
     // nop
   }
 
+  virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
 };
 

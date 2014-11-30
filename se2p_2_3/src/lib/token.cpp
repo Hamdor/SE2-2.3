@@ -23,6 +23,7 @@
  **/
 
 #include "lib/token.hpp"
+#include "lib/constants.hpp"
 
 #include <iostream>
 
@@ -30,6 +31,12 @@ using namespace se2;
 using namespace se2::fsm;
 
 int token::m_id_counter = 0;
+
+void token::set_vals_from_telegram(const serial_bus::telegram& tel) {
+  m_id      = tel.m_id;
+  m_height1 = tel.m_height1;
+  m_height2 = tel.m_height2;
+}
 
 int token::get_id() const {
   return m_id;
@@ -51,7 +58,7 @@ void token::set_height2(int height2) {
   m_height2 = height2;
 }
 
-bool token::get_is_upside_down() const {
+bool token::is_upside_down() const {
   return m_is_upside_down;
 }
 
@@ -59,7 +66,7 @@ void token::set_is_upside_down(bool value) {
   m_is_upside_down = value;
 }
 
-bool token::get_is_metal() const {
+bool token::is_metal() const {
   return m_is_metal;
 }
 
@@ -73,17 +80,15 @@ void token::reset() {
   m_height2        = 0;
   m_is_metal       = false;
   m_is_upside_down = false;
-  m_valid_height   = false;
 }
 
 void token::pretty_print() const {
-  std::cout << "[[TOKEN] m_id: "     << m_id
-            << " m_height1: "        << m_height1
-            << " m_height2: "        << m_height2
-            << " m_is_metal: "       << (m_is_metal ? "true" : "false")
-            << " m_is_upside_down: " << (m_is_upside_down ? "true" : "false")
-            << " m_valid_height: "   << (m_valid_height ? "true" : "false")
-            << " ]"                  << std::endl;
+  std::cout << "[(token) m_id: "      << m_id
+            << ", m_height1: "        << m_height1
+            << ", m_height2: "        << m_height2
+            << ", m_is_metal: "       << (m_is_metal ? "true" : "false")
+            << ", m_is_upside_down: " << (m_is_upside_down ? "true" : "false")
+            << " ]"                   << std::endl;
 }
 
 void token::dispatched_event_button_start() {

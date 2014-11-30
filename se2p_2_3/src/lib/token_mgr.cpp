@@ -39,7 +39,9 @@ token_mgr* token_mgr::instance = 0;
 
 token_mgr::token_mgr() : e_stop_listener(new state)
                        , m_alife(0), m_motor_slow(0)
-                       , m_motor_stop(false) {
+                       , m_motor_stop(false)
+                       , m_motor_left(false)
+                       , m_expected_token(ALL) {
   dispatcher* disp = TO_DISPATCHER
       (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(e_stop_listener, EVENT_BUTTON_E_STOP);
@@ -64,55 +66,93 @@ void token_mgr::destroy() {
 }
 
 void token_mgr::update() {
+  hwaccess* hal = TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN));
   if (m_alife > 0) {
-    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
+    hal->set_motor(MOTOR_RIGHT);
   }
   if (m_motor_slow > 0) {
-    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_SLOW);
+    hal->set_motor(MOTOR_SLOW);
   } else {
-    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_FAST);
+    hal->set_motor(MOTOR_FAST);
+  }
+  if (m_motor_left) {
+    hal->set_motor(MOTOR_LEFT);
+  } else {
+    hal->set_motor(MOTOR_RIGHT);
   }
   if (m_motor_stop) {
-    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_STOP);
+    hal->set_motor(MOTOR_STOP);
   } else {
-    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RESUME);
+    hal->set_motor(MOTOR_RESUME);
   }
   if (m_alife == 0) {
-    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_STOP);
+    hal->set_motor(MOTOR_STOP);
   }
   if (m_alife < 0) {
     LOG_ERROR("m_alife is under 0")
   }
+#if defined (IS_CONVEYOR_2)
+  if (m_alife == 0) {
+    // TODO: Hier muss (per Serieller Schnittstelle) eine Nachricht an Band 1
+    // gesendet werden, dass auf dem Band 2 wieder Platz fuer einen Token ist.
+  }
+#endif
 }
 
-void token_mgr::notify_exsistens() {
+void token_mgr::notify_existence(bool update) {
   ++m_alife;
-  update();
+  if (update) {
+    this->update();
+  }
 }
 
-void token_mgr::notify_death() {
+void token_mgr::notify_death(bool update) {
   --m_alife;
-  update();
+  if (update) {
+    this->update();
+  }
 }
 
-void token_mgr::request_fast_motor() {
+void token_mgr::request_fast_motor(bool update) {
   --m_motor_slow;
-  update();
+  if (update) {
+    this->update();
+  }
 }
 
-void token_mgr::request_slow_motor() {
+void token_mgr::request_slow_motor(bool update) {
   ++m_motor_slow;
-  update();
+  if (update) {
+    this->update();
+  }
 }
 
-void token_mgr::request_stop_motor() {
+void token_mgr::request_left_motor(bool update) {
+  m_motor_left = true;
+  if (update) {
+    this->update();
+  }
+}
+
+void token_mgr::unrequest_left_motor(bool update) {
+  m_motor_left = false;
+  if (update) {
+    this->update();
+  }
+}
+
+void token_mgr::request_stop_motor(bool update) {
   m_motor_stop = true;
-  update();
+  if (update) {
+    this->update();
+  }
 }
 
-void token_mgr::unrequest_stop_motor() {
+void token_mgr::unrequest_stop_motor(bool update) {
   m_motor_stop = false;
-  update();
+  if (update) {
+    this->update();
+  }
 }
 
 void token_mgr::reregister_e_stop() {
@@ -134,7 +174,7 @@ void token_mgr::enter_safe_state() {
   hal->close_switch();
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
-  // TODO: Pause/Stop all Timers
+  TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->pause_all();
 }
 
 void token_mgr::exit_safe_state() {
@@ -146,5 +186,30 @@ void token_mgr::exit_safe_state() {
     token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
     mgr->unrequest_stop_motor();
   }
-  // TODO: Resume all Timers
+  TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->continue_all();
+}
+
+bool token_mgr::check_order(bool metal) {
+  if (m_expected_token == ALL) {
+    m_expected_token = (metal ? PLASTIC : METAL);
+    return true;
+  } else if (m_expected_token == METAL) {
+    if (metal) {
+      m_expected_token = PLASTIC;
+      return true;
+    } else {
+      return false;
+    }
+  } else if (m_expected_token == PLASTIC) {
+    if (metal) {
+      return false;
+    } else {
+      m_expected_token = METAL;
+      return true;
+    }
+  } else {
+    // Kann gar nicht passieren
+    LOG_ERROR("nicht beruecksichtigte Kombination")
+    return false;
+  }
 }

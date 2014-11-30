@@ -28,16 +28,18 @@
 #include "lib/fsm/events.hpp"
 
 namespace se2 {
+namespace serial_bus {
+class telegram;
+}
 
 class token : public fsm::events {
  public:
-
   /**
    * Default Konstruktor
    **/
   token()
       : m_state(0), m_id(0), m_height1(0), m_height2(0)
-      , m_is_metal(false), m_is_upside_down(false), m_valid_height(false) {
+      , m_is_metal(false), m_is_upside_down(false) {
     // nop
   }
 
@@ -55,6 +57,12 @@ class token : public fsm::events {
   void set_state(fsm::events* state) {
     m_state = state;
   }
+
+  /**
+   * Setzt alle Token werde von einem Telegram
+   * @param tel Referenz auf ein `telegram`
+   **/
+  void set_vals_from_telegram(const serial_bus::telegram& tel);
 
   /**
    * Gibt die id des Tokens zurueck.
@@ -98,7 +106,7 @@ class token : public fsm::events {
    * @return TRUE  wenn der Token falsch herum liegt
    *         FALSE wenn der Token richtig herum liegt
    **/
-  bool get_is_upside_down() const;
+  bool is_upside_down() const;
 
   /**
    * Setzt den Metallwert des Tokens
@@ -111,7 +119,7 @@ class token : public fsm::events {
    * @return TRUE  wenn Metall im Token
    *         FALSE wenn kein Metall im Token
    **/
-  bool get_is_metal() const;
+  bool is_metal() const;
 
   /**
    * Resetet den Token, dieses geschieht beim uebergang
@@ -164,7 +172,6 @@ class token : public fsm::events {
   int m_height2;
   bool m_is_metal;
   bool m_is_upside_down;
-  bool m_valid_height;
 };
 
 } // namespace se2
