@@ -207,7 +207,19 @@ b2_receive_data::b2_receive_data(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(
       singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SERIAL_DATA);
+#ifdef CONVEYOR_2_SINGLEMOD
+  disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
+#endif
 }
+
+#ifdef CONVEYOR_2_SINGLEMOD
+void b2_receive_data::dispatched_event_sensor_entrance() {
+  LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->notify_existence();
+  new (this) b2_realized_object(m_token);
+}
+#endif
 
 void b2_receive_data::dispatched_event_serial_data() {
   LOG_TRACE("")
@@ -252,12 +264,12 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   } else if ((HOLE_LOW <= height && height <= HOLE_HI)
           || (METAL_LOW <= height && height <= METAL_HI)) {
     m_token->set_is_upside_down(false);
-    new (this) b2_valid_height(m_token);
   } else if ((HOLE_BOTTOM_UP_LOW <= height && height <= HOLE_BOTTOM_UP_HI)
           || (METAL_BOTTOM_UP_LOW <= height && height <= METAL_BOTTOM_UP_HI)) {
     m_token->set_is_upside_down(true);
     new (this) b2_token_upside_down(m_token);
   }
+  new (this) b2_valid_height(m_token);
 }
 
 b2_token_upside_down::b2_token_upside_down(token* t) : state::state(t) {
@@ -332,6 +344,8 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_left_motor(false);
   mgr->unrequest_stop_motor(false);
+  // TODO: Muss jetzt erst erneut die start Taste gedrueckt werden?
+  // wie steht das in den Requirements?
   mgr->notify_death();
   new (this) anonymous_token(m_token);
 }
@@ -353,6 +367,7 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_death();
+  m_token->pretty_print();
   new (this) anonymous_token(m_token);
 }
 #endif

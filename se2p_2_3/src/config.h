@@ -39,6 +39,10 @@
 #error Entweder IS_CONVEYOR_1 oder IS_CONVEYOR_2 definieren
 #endif
 
+//#define CONVEYOR_2_SINGLEMOD // Wenn definiert wartet Conveyor 2 nicht nur
+                               // auf ein Ereignis der Seriellen Schnittstelle
+                               // sondern auch auf Sensor Entrance.
+
 //#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test fuer
                            // die Serielle chnittstelle
 
@@ -49,6 +53,10 @@
                        // `DetachInterrupt()` nicht verwendet werden.
                        // Statt­des­sen werden diese Funktionen auf eigene fuer
                        // die Simulation ueberschrieben.
+
+#if defined(SIMULATION)
+#warning SIMULATION ist definiert, richtige Hardware wird nicht funktionieren
+#endif
 
 
 //#define PRINT_TRANSITIONS_UNIT_TEST // Aktiviert die Ausgabe der Uebergaenge

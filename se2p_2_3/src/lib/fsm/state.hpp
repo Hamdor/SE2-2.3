@@ -226,6 +226,9 @@ class b2_receive_data : public state {
     // nop
   }
 
+#ifdef CONVEYOR_2_SINGLEMOD
+  virtual void dispatched_event_sensor_entrance();
+#endif
   virtual void dispatched_event_serial_data();
 };
 
