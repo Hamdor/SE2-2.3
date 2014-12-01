@@ -39,15 +39,17 @@ using namespace se2::serial_bus;
 
 token_mgr* token_mgr::instance = 0;
 
-token_mgr::token_mgr() : e_stop_listener(new state)
+token_mgr::token_mgr() : m_e_stop_listener(new state)
+                       , m_conveyor_free_listener(new state)
                        , m_alife(0), m_motor_slow(0)
                        , m_motor_stop(false)
                        , m_motor_left(false)
-                       , m_expected_token(ALL) {
+                       , m_expected_token(ALL)
+                       , m_is_b2_ready(true) {
   dispatcher* disp = TO_DISPATCHER
       (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(e_stop_listener, EVENT_BUTTON_E_STOP);
-  disp->register_listener(e_stop_listener, EVENT_BUTTON_E_STOP_R);
+  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP);
+  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP_R);
   // Initialisiere alle Token mit anonymous token
   for (int i = 0; i < NUM_OF_TOKENS; ++i) {
     m_tokens[i].set_state(new anonymous_token(&m_tokens[i]));
@@ -55,7 +57,7 @@ token_mgr::token_mgr() : e_stop_listener(new state)
 }
 
 token_mgr::~token_mgr() {
-  delete e_stop_listener;
+  delete m_e_stop_listener;
   token_mgr::instance = 0;
 }
 
@@ -162,13 +164,13 @@ void token_mgr::unrequest_stop_motor(bool update) {
 void token_mgr::reregister_e_stop() {
   dispatch::dispatcher* disp = TO_DISPATCHER
       (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(e_stop_listener, EVENT_BUTTON_E_STOP);
+  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP);
 }
 
 void token_mgr::reregister_e_stop_rising() {
   dispatch::dispatcher* disp = TO_DISPATCHER
       (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(e_stop_listener, EVENT_BUTTON_E_STOP_R);
+  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP_R);
 }
 
 void token_mgr::enter_safe_state() {
@@ -218,4 +220,16 @@ bool token_mgr::check_order(bool metal) {
     LOG_ERROR("nicht beruecksichtigte Kombination")
     return false;
   }
+}
+
+bool token_mgr::check_conveyor2_ready() const {
+  return m_is_b2_ready;
+}
+
+void token_mgr::notify_token_trasition() {
+  m_is_b2_ready = false;
+}
+
+void token_mgr::notify_ready_for_next() {
+  m_is_b2_ready = true;
 }

@@ -47,6 +47,11 @@ void state::dispatched_event_button_e_stop_rising() {
   mgr->exit_safe_state();
 }
 
+void state::dispatched_event_serial_next_ok() {
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->notify_ready_for_next();
+}
+
 anonymous_token::anonymous_token(token* t) : state::state(t) {
   LOG_TRACE("")
   m_token->reset();
@@ -187,11 +192,18 @@ void b1_token_upside_down::dispatched_event_button_start() {
 }
 
 b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
-  // TODO: Pruefen ob Band 2 frei
   LOG_TRACE("")
   m_token->pretty_print();
   telegram tg(m_token);
   TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  while (!mgr->check_conveyor2_ready()) {
+    // TODO: Vernuenftig behandeln
+    // also ohne polling!
+    mgr->request_stop_motor();
+  }
+  mgr->unrequest_stop_motor();
+  // TODO erst motor stoppen wenn steigende flanke vom exit
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_death();
   new (this) anonymous_token(m_token);
 }

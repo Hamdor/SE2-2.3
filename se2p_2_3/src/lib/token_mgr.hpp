@@ -168,13 +168,33 @@ class token_mgr : public util::abstract_singleton {
    *         FALSE wenn Reihenfolge nicht korrekt
    **/
   bool check_order(bool metal);
+
+  /**
+   * Prueft ob Conveyor 2 bereit fuer einen neuen Token ist.
+   * @return TRUE  wenn conveyor 2 einen neuen Token bearbeiten kann
+   *         FALSE wenn ein Token auf Conveyor 2 liegt
+   **/
+  bool check_conveyor2_ready() const;
+
+  /**
+   * Gibt dem `token_mgr` bescheid, dass ein Token an Conveyor 2
+   * uebergeben wurde.
+   **/
+  void notify_token_trasition();
+
+  /**
+   * Wird aufgerufen sobald `B2_FREE` per Serieller Schnittstelle
+   * empfangen wurde.
+   **/
+  void notify_ready_for_next();
  private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
   /**
    * Dieser Zustand ist permanent und wartet nur auf den E-Stop
    **/
-  fsm::state* e_stop_listener;
+  fsm::state* m_e_stop_listener;
+  fsm::state* m_conveyor_free_listener;
 
   int            m_alife;
   int            m_motor_slow;
@@ -182,6 +202,7 @@ class token_mgr : public util::abstract_singleton {
   bool           m_motor_left;
   safe_state     m_safe;
   expected_token m_expected_token;
+  bool           m_is_b2_ready;
 };
 
 }
