@@ -32,7 +32,7 @@
                            // stattfindet
 
 //#define IS_CONVEYOR_1      // Foerderband 1 FSM aktivieren
-//#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren
+#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren
 
 #if (defined(IS_CONVEYOR_1) && defined(IS_CONVEYOR_2)) \
      || (!defined(IS_CONVEYOR_1) && !defined(IS_CONVEYOR_2))
@@ -77,7 +77,7 @@
  * ----------------------------------------------------------------------------
  * Serielle Schnittstelle Spezifische Defines
  **/
-//#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
+#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
 #define SERIAL_CHAR_DEV "/dev/ser1" // Pfad zum Char Device der Seriellen
                                     // Schnittstelle. In der VM NICHT verfügbar
 /**
@@ -92,9 +92,14 @@
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
 
-#define FESTO_5        // Aktiviert spezifisch gemessene Werte fuer Festo 5
+#define FESTO_7        // Aktiviert spezifisch gemessene Werte fuer Festo 7
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
+
+//#define FESTO_5      // Aktiviert spezifisch gemessene Werte fuer Festo 5
+                       // Unter anderem Daten fuer Hoehenmessung
+                       // definiert in `constants.hpp` (height_values)
+
 
 /**
  * ----------------------------------------------------------------------------
