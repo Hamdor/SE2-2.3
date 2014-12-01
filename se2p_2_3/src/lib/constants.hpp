@@ -406,6 +406,10 @@ struct telegram {
              , m_height2(0) {
     // nop
   }
+  telegram(msg_type msg) : m_type(MSG), m_msg(msg), m_id(0)
+                         , m_height1(0), m_height2(0) {
+    // nop
+  }
   telegram(const token* t) : m_type(DATA), m_msg(NOTHING), m_id(t->get_id())
                            , m_height1(t->get_height1())
                            , m_height2(t->get_height2()) {

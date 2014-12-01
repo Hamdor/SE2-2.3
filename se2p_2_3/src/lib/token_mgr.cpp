@@ -28,12 +28,14 @@
 #include "lib/util/singleton_mgr.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
 #include "lib/hal/HWaccess.hpp"
+#include "lib/serial_bus/serial_channel.hpp"
 
 using namespace se2;
 using namespace se2::fsm;
 using namespace se2::hal;
 using namespace se2::util;
 using namespace se2::dispatch;
+using namespace se2::serial_bus;
 
 token_mgr* token_mgr::instance = 0;
 
@@ -93,7 +95,10 @@ void token_mgr::update() {
   }
 #if defined (IS_CONVEYOR_2)
   if (m_alife == 0) {
-
+    serial_channel* serial =
+        TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
+    telegram tel(B2_FREE);
+    serial->send_telegram(&tel);
   }
 #endif
 }

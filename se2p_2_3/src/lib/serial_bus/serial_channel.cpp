@@ -77,7 +77,11 @@ void serial_channel::execute(void*) {
     m_interface->read(&data);
     event_values value;
     if (data.m_type == MSG) {
-      value = EVENT_SERIAL_MSG;
+      if (data.m_msg == B2_FREE) {
+        value = EVENT_SERIAL_NEXT_OK;
+      } else {
+        value = EVENT_SERIAL_MSG;
+      }
     } else if (data.m_type == DATA) {
       value = EVENT_SERIAL_DATA;
     } else if (data.m_type == ERR) {
