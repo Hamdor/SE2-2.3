@@ -198,9 +198,6 @@ enum height_values {
   HOLE_BOTTOM_UP_HI   = 2470, // Bohrung (Falsch herum) (Max)
   HOLE_LOW            = 3475, // Bohrung (Richtig herum) (Min)
   HOLE_HI             = 3490, // Bohrung (Richtig herum) (Max)
-  // (WURDEN NICHT GEMESSEN)
-  //METAL_BUTTOM_UP_LOW = , // Mit Metall (Falsch herum) (Min)
-  //METAL_BUTTOM_UP_HI  = , // Mit Metall (Falsch herum) (Max)
   METAL_LOW           = 3515, // Mit Metall (Richtig herum) (Min)
   METAL_HI            = 3535  // Mit Metall (Richtig herum) (Max)
 #elif defined(FESTO_5)
@@ -225,6 +222,17 @@ enum height_values {
   METAL_BOTTOM_UP_HI = 2617,
   METAL_LOW = 3595,
   METAL_HI = 3665
+#elif defined(FESTO_1)
+  TOO_SMALL_LOW = 2799,
+  TOO_SMALL_HI = 2826,
+  HOLE_BOTTOM_UP_LOW = 2521,
+  HOLE_BOTTOM_UP_HI = 2574,
+  HOLE_LOW = 3577,
+  HOLE_HI = 3625,
+  METAL_BOTTOM_UP_LOW = 2560,
+  METAL_BOTTOM_UP_HI = 2585,
+  METAL_LOW = 3623,
+  METAL_HI = 3663
 #else
   // nop
 #endif

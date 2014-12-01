@@ -181,6 +181,8 @@ void token_mgr::exit_safe_state() {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   if (m_safe.m_switch_open) {
     hal->open_switch();
+  } else {
+    hal->close_switch();
   }
   if (m_safe.m_motor_running) {
     token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));

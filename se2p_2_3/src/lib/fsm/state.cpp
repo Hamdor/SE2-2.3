@@ -91,6 +91,7 @@ b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   m_token->set_height1(height);
   if (TOO_SMALL_LOW <= height && height <= TOO_SMALL_HI) {
     new (this) b1_token_too_small(m_token);
+    return;
   } else if ((HOLE_LOW <= height && height <= HOLE_HI)
           || (METAL_LOW <= height && height <= METAL_HI)) {
     m_token->set_is_upside_down(false);

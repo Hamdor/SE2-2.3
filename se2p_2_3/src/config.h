@@ -51,7 +51,7 @@
                        // inkludiert wird. Dadurch koennen die Original
                        // `in8()`, `out8` sowie `AttachInterrupt()`,
                        // `DetachInterrupt()` nicht verwendet werden.
-                       // Statt­des­sen werden diese Funktionen auf eigene fuer
+                       // Stattaedeassen werden diese Funktionen auf eigene fuer
                        // die Simulation ueberschrieben.
 
 #if defined(SIMULATION)
@@ -92,7 +92,15 @@
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
 
-#define FESTO_7        // Aktiviert spezifisch gemessene Werte fuer Festo 7
+//#define FESTO_7      // Aktiviert spezifisch gemessene Werte fuer Festo 7
+                       // Unter anderem Daten fuer Hoehenmessung
+		       // definiert in `constants.hpp` (height_values)
+
+//#define FESTO_5      // Aktiviert spezifisch gemessene Werte fuer Festo 5
+                       // Unter anderem Daten fuer Hoehenmessung
+                       // definiert in `constants.hpp` (height_values)
+
+//#define FESTO_1      // Aktiviert spezifisch gemessene Werte fuer Festo 1
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
 
