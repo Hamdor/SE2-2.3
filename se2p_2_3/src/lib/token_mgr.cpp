@@ -40,7 +40,6 @@ using namespace se2::serial_bus;
 token_mgr* token_mgr::instance = 0;
 
 token_mgr::token_mgr() : m_e_stop_listener(new state)
-                       , m_conveyor_free_listener(new state)
                        , m_alife(0), m_motor_slow(0)
                        , m_motor_stop(false)
                        , m_motor_left(false)

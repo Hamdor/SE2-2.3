@@ -49,11 +49,6 @@ void state::dispatched_event_button_e_stop_rising() {
   mgr->exit_safe_state();
 }
 
-void state::dispatched_event_serial_next_ok() {
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->notify_ready_for_next();
-}
-
 anonymous_token::anonymous_token(token* t) : state::state(t) {
   LOG_TRACE("")
   m_token->reset();
@@ -199,18 +194,35 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   telegram tg(m_token);
   TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  while (!mgr->check_conveyor2_ready()) {
-    // TODO: Vernuenftig behandeln (ohne polling!)
+  if (!mgr->check_conveyor2_ready()) {
     mgr->request_stop_motor();
+    dispatcher* disp =
+        TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+    disp->register_listener(m_token, EVENT_SERIAL_NEXT_OK);
+  } else {
+    token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+    mgr->notify_token_trasition();
+    sleep(1); // FIXME
+    mgr->notify_death();
+    new (this) anonymous_token(m_token);
   }
+}
+
+void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
+  LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);
 }
 
 void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
-  sleep(1); // Bei manchen maschinen ist der Sensor nicht ganz am Ende...
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_death();
+  LOG_TRACE("")
+  sleep(1); // FIXME: Bei manchen maschinen ist der Sensor nicht ganz am Ende...
+            // Am besten mit einem Timer loesen...
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->notify_death();
+  mgr->notify_token_trasition();
   new (this) anonymous_token(m_token);
 }
 

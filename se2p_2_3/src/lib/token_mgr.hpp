@@ -194,7 +194,6 @@ class token_mgr : public util::abstract_singleton {
    * Dieser Zustand ist permanent und wartet nur auf den E-Stop
    **/
   fsm::state* m_e_stop_listener;
-  fsm::state* m_conveyor_free_listener;
 
   int            m_alife;
   int            m_motor_slow;
