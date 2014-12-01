@@ -28,6 +28,8 @@
 #include "lib/constants.hpp"
 #include "lib/util/logging.hpp"
 
+#include <unistd.h>
+
 using namespace se2;
 using namespace se2::fsm;
 using namespace se2::hal;
@@ -198,12 +200,16 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   while (!mgr->check_conveyor2_ready()) {
-    // TODO: Vernuenftig behandeln
-    // also ohne polling!
+    // TODO: Vernuenftig behandeln (ohne polling!)
     mgr->request_stop_motor();
   }
   mgr->unrequest_stop_motor();
-  // TODO erst motor stoppen wenn steigende flanke vom exit
+  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);
+}
+
+void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
+  sleep(1); // Bei manchen maschinen ist der Sensor nicht ganz am Ende...
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_death();
   new (this) anonymous_token(m_token);
 }
