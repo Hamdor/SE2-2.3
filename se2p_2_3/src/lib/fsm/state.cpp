@@ -243,14 +243,13 @@ void b2_receive_data::dispatched_event_serial_data() {
 
 b2_received_object::b2_received_object(token* t) : state::state(t) {
   LOG_TRACE("")
+  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_existence();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
 }
 
 void b2_received_object::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->notify_existence();
   new (this) b2_realized_object(m_token);
 }
 
@@ -332,6 +331,7 @@ b2_metal_detection::b2_metal_detection(token* t) : state::state(t) {
     new (this) b2_is_correct_order(m_token);
   } else {
     new (this) b2_is_wrong_order(m_token);
+    TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->close_switch();
   }
 }
 
