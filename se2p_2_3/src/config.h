@@ -51,7 +51,7 @@
                        // inkludiert wird. Dadurch koennen die Original
                        // `in8()`, `out8` sowie `AttachInterrupt()`,
                        // `DetachInterrupt()` nicht verwendet werden.
-                       // Statt­des­sen werden diese Funktionen auf eigene fuer
+                       // Stattaedeassen werden diese Funktionen auf eigene fuer
                        // die Simulation ueberschrieben.
 
 #if defined(SIMULATION)
@@ -77,7 +77,7 @@
  * ----------------------------------------------------------------------------
  * Serielle Schnittstelle Spezifische Defines
  **/
-//#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
+#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle
 #define SERIAL_CHAR_DEV "/dev/ser1" // Pfad zum Char Device der Seriellen
                                     // Schnittstelle. In der VM NICHT verfügbar
 /**
@@ -92,7 +92,11 @@
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
 
-#define FESTO_5        // Aktiviert spezifisch gemessene Werte fuer Festo 5
+//#define FESTO_5      // Aktiviert spezifisch gemessene Werte fuer Festo 5
+                       // Unter anderem Daten fuer Hoehenmessung
+                       // definiert in `constants.hpp` (height_values)
+
+//#define FESTO_1      // Aktiviert spezifisch gemessene Werte fuer Festo 1
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
 
