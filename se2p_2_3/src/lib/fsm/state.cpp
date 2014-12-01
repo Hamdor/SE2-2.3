@@ -249,13 +249,18 @@ void b2_receive_data::dispatched_event_serial_data() {
 
 b2_received_object::b2_received_object(token* t) : state::state(t) {
   LOG_TRACE("")
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_existence();
+  // FIXME: Hier sollte eigentlich ueber den `token_mgr` gegangen werden,
+  // problem ist, dass der Motor aktiviert werden muss bevor die
+  // Eingagnslichtschranke durchbrochen werden konnte...
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
 }
 
 void b2_received_object::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->notify_existence();
   new (this) b2_realized_object(m_token);
 }
 
@@ -363,9 +368,11 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_left_motor(false);
   mgr->unrequest_stop_motor(false);
+  mgr->notify_death();
   // TODO: Muss jetzt erst erneut die start Taste gedrueckt werden?
   // wie steht das in den Requirements?
-  mgr->notify_death();
+  // Wenn ja, dann sollte send_free() auch erst dort aufgerufen werden...
+  mgr->send_free();
   new (this) anonymous_token(m_token);
 }
 
@@ -374,6 +381,7 @@ b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH_R);
   disp->register_listener(m_token, EVENT_SENSOR_EXIT);
+  disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);
 }
 
 void b2_is_correct_order::dispatched_event_sensor_switch_rising() {
@@ -387,6 +395,12 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_death();
   m_token->pretty_print();
+}
+
+void b2_is_correct_order::dispatched_event_sensor_exit_rising() {
+  LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->send_free();
   new (this) anonymous_token(m_token);
 }
 #endif

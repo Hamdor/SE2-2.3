@@ -83,6 +83,11 @@ class token_mgr : public util::abstract_singleton {
   void update();
  public:
   /**
+   * Sendet an conveyor 1 dass wieder Platz fuer einen Token ist
+   **/
+  void send_free();
+
+  /**
    * Mit dieser Funktion meldet sich der neue `token`
    * einmal bei dem `token_mgr` an.
    * @param update sollte FALSE sein wenn `update()` nicht

@@ -313,6 +313,7 @@ class b2_is_correct_order : public state {
 
   virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
+  virtual void dispatched_event_sensor_exit_rising();
 };
 
 } // namespace fsm
