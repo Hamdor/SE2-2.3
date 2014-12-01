@@ -213,6 +213,8 @@ class b1_token_ready_for_b2 : public state {
   virtual ~b1_token_ready_for_b2() {
     // nop
   }
+
+  virtual void dispatched_event_sensor_exit_rising();
 };
 
 
