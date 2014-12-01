@@ -93,8 +93,7 @@ void token_mgr::update() {
   }
 #if defined (IS_CONVEYOR_2)
   if (m_alife == 0) {
-    // TODO: Hier muss (per Serieller Schnittstelle) eine Nachricht an Band 1
-    // gesendet werden, dass auf dem Band 2 wieder Platz fuer einen Token ist.
+
   }
 #endif
 }

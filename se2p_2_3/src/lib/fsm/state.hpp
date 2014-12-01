@@ -95,6 +95,9 @@ class state : public events {
   virtual void dispatched_event_serial_err() {
     // nop
   }
+  virtual void dispatched_event_serial_next_ok() {
+    // nop
+  }
   virtual void dispatched_event_serial_unk() {
     // nop
   }

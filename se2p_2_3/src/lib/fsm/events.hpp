@@ -51,6 +51,7 @@ class events {
   virtual void dispatched_event_serial_data()     = 0;
   virtual void dispatched_event_serial_msg()      = 0;
   virtual void dispatched_event_serial_err()      = 0;
+  virtual void dispatched_event_serial_next_ok()  = 0;
   virtual void dispatched_event_serial_unk()      = 0;
   virtual void dispatched_event_seg1_exceeded()   = 0;
   virtual void dispatched_event_seg2_exceeded()   = 0;

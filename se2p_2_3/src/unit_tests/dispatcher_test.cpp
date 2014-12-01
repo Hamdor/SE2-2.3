@@ -117,6 +117,8 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_SERIAL_DATA);
   m_error += test_single_mapping_equal(EVENT_SERIAL_MSG,
                                        DISPATCHED_EVENT_SERIAL_MSG);
+  m_error += test_single_mapping_equal(EVENT_SERIAL_NEXT_OK,
+                                       DISPATCHED_EVENT_SERIAL_NEXT_OK);
   m_error += test_single_mapping_equal(EVENT_SERIAL_ERR,
                                        DISPATCHED_EVENT_SERIAL_ERR);
   m_error += test_single_mapping_equal(EVENT_SERIAL_UNK,
@@ -193,6 +195,9 @@ int dispatcher_test::test_function_address_reg() {
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_MSG],
       &fsm::events::dispatched_event_serial_msg);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_NEXT_OK],
+      &fsm::events::dispatched_event_serial_next_ok);
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_ERR],
       &fsm::events::dispatched_event_serial_err);
@@ -346,7 +351,14 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_serial_msg()" << std::endl;
 #endif
-    register_for_next(EVENT_SERIAL_MSG, EVENT_SERIAL_ERR);
+    register_for_next(EVENT_SERIAL_MSG, EVENT_SERIAL_NEXT_OK);
+  }
+
+  void dispatched_event_serial_next_ok() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_serial_next_ok()" << std::endl;
+#endif
+    register_for_next(EVENT_SERIAL_NEXT_OK, EVENT_SERIAL_UNK);
   }
 
   void dispatched_event_serial_err() {
@@ -454,6 +466,7 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_SENSOR_EXIT_R);
   m_dispatcher->direct_call_event(EVENT_SERIAL_DATA);
   m_dispatcher->direct_call_event(EVENT_SERIAL_MSG);
+  m_dispatcher->direct_call_event(EVENT_SERIAL_NEXT_OK);
   m_dispatcher->direct_call_event(EVENT_SERIAL_ERR);
   m_dispatcher->direct_call_event(EVENT_SERIAL_UNK);
   m_dispatcher->direct_call_event(EVENT_SEG1_EXCEEDED);
@@ -490,6 +503,7 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_DATA);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_MSG);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_ERR);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_NEXT_OK);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_UNK);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG1_EXCEEDED);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG2_EXCEEDED);

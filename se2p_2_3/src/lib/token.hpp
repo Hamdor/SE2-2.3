@@ -154,6 +154,7 @@ class token : public fsm::events {
   virtual void dispatched_event_serial_data();
   virtual void dispatched_event_serial_msg();
   virtual void dispatched_event_serial_err();
+  virtual void dispatched_event_serial_next_ok();
   virtual void dispatched_event_serial_unk();
   virtual void dispatched_event_seg1_exceeded();
   virtual void dispatched_event_seg2_exceeded();

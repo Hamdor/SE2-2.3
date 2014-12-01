@@ -57,15 +57,16 @@ dispatcher::dispatcher() {
   m_functions[14] = &fsm::events::dispatched_event_serial_data;
   m_functions[15] = &fsm::events::dispatched_event_serial_msg;
   m_functions[16] = &fsm::events::dispatched_event_serial_err;
-  m_functions[17] = &fsm::events::dispatched_event_serial_unk;
-  m_functions[18] = &fsm::events::dispatched_event_seg1_exceeded;
-  m_functions[19] = &fsm::events::dispatched_event_seg2_exceeded;
-  m_functions[20] = &fsm::events::dispatched_event_seg3_exceeded;
-  m_functions[21] = &fsm::events::dispatched_event_slide_full;
-  m_functions[22] = &fsm::events::dispatched_event_open_switch;
-  m_functions[23] = &fsm::events::dispatched_event_turn_token;
-  m_functions[24] = &fsm::events::dispatched_event_remove_token;
-  m_functions[25] = &fsm::events::dispatched_event_token_finished;
+  m_functions[17] = &fsm::events::dispatched_event_serial_next_ok;
+  m_functions[18] = &fsm::events::dispatched_event_serial_unk;
+  m_functions[19] = &fsm::events::dispatched_event_seg1_exceeded;
+  m_functions[20] = &fsm::events::dispatched_event_seg2_exceeded;
+  m_functions[21] = &fsm::events::dispatched_event_seg3_exceeded;
+  m_functions[22] = &fsm::events::dispatched_event_slide_full;
+  m_functions[23] = &fsm::events::dispatched_event_open_switch;
+  m_functions[24] = &fsm::events::dispatched_event_turn_token;
+  m_functions[25] = &fsm::events::dispatched_event_remove_token;
+  m_functions[26] = &fsm::events::dispatched_event_token_finished;
   // Map fuer mapping von event_values => dispatcher_events fuellen
   map_insert(m_mapping, EVENT_ZERO, DISPATCHED_EVENT_MAX);
   map_insert(m_mapping, EVENT_BUTTON_START, DISPATCHED_EVENT_BUTTON_START);
@@ -89,6 +90,7 @@ dispatcher::dispatcher() {
   map_insert(m_mapping, EVENT_SERIAL_DATA, DISPATCHED_EVENT_SERIAL_DATA);
   map_insert(m_mapping, EVENT_SERIAL_MSG, DISPATCHED_EVENT_SERIAL_MSG);
   map_insert(m_mapping, EVENT_SERIAL_ERR, DISPATCHED_EVENT_SERIAL_ERR);
+  map_insert(m_mapping, EVENT_SERIAL_NEXT_OK, DISPATCHED_EVENT_SERIAL_NEXT_OK);
   map_insert(m_mapping, EVENT_SERIAL_UNK, DISPATCHED_EVENT_SERIAL_UNK);
   map_insert(m_mapping, EVENT_SEG1_EXCEEDED, DISPATCHED_EVENT_SEG1_EXCEEDED);
   map_insert(m_mapping, EVENT_SEG2_EXCEEDED, DISPATCHED_EVENT_SEG2_EXCEEDED);
@@ -195,6 +197,8 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_SERIAL_MSG:
       break;
     case EVENT_SERIAL_ERR:
+      break;
+    case EVENT_SERIAL_NEXT_OK:
       break;
     case EVENT_SERIAL_UNK:
       break;
