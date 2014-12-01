@@ -94,14 +94,15 @@ void token_mgr::update() {
   if (m_alife < 0) {
     LOG_ERROR("m_alife is under 0")
   }
-#if defined (IS_CONVEYOR_2)
+}
+
+void token_mgr::send_free() {
   if (m_alife == 0) {
     serial_channel* serial =
         TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
     telegram tel(B2_FREE);
     serial->send_telegram(&tel);
   }
-#endif
 }
 
 void token_mgr::notify_existence(bool update) {
