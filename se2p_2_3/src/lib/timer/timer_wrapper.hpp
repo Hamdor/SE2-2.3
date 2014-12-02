@@ -38,6 +38,7 @@ class timer_handler;
 
 class timer_wrapper {
   friend class timer_handler;
+
   /**
    * Konstruktor
    * @param time dauer des timers
@@ -79,6 +80,12 @@ class timer_wrapper {
    **/
   void reset_timer();
 
+  /**
+   * Addiert die angegebene Zeit
+   *  @param time zu addierende Zeit
+   **/
+  void add_time(duration time);
+
  private:
   /**
    * Timer ID
@@ -104,7 +111,6 @@ class timer_wrapper {
    * Connection id
    **/
   int m_coid;
-  bool m_started;
   bool m_paused;
   duration m_duration;
 };

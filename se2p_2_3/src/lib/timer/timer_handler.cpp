@@ -93,4 +93,18 @@ void timer_handler::continue_all() {
     (*it)->continue_timer();
   }
 }
+void timer_handler::add_time(size_t pos, duration time) {
+  if (pos < timers.size()) {
+    timers[pos]->add_time(time);
+  }
+}
+
+void timer_handler::add_all(duration time) {
+  for (std::vector<timer_wrapper*>::iterator it = timers.begin();
+       it != timers.end(); ++it) {
+    (*it)->add_time(time);
+  }
+}
+
+
 

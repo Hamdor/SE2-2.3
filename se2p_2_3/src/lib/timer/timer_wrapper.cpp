@@ -31,7 +31,7 @@ using namespace se2::util;
 #define MILISEC_TO_NANOSEC 1000
 
 timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
-    : m_coid(0), m_started(false), m_paused(false) {
+    : m_coid(0), m_paused(false) {
   m_coid = ConnectAttach(0, 0, chid, _NTO_SIDE_CHANNEL, 0);
   if (m_coid == -1) {
     LOG_ERROR("ConnectAttach() failed in timer_wrapper()")
@@ -66,12 +66,9 @@ void timer_wrapper::reset_timer() {
 }
 
 void timer_wrapper::start_timer() {
-  if (!m_started) {
-    int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
-    if (rc == -1) {
-      LOG_ERROR("timer_settime() failed in start_timer()")
-    }
-    m_started = true;
+  int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
+  if (rc == -1) {
+    LOG_ERROR("timer_settime() failed in start_timer()")
   }
 }
 
@@ -105,4 +102,12 @@ void timer_wrapper::continue_timer() {
     }
     m_paused = false;
   }
+}
+
+void timer_wrapper::add_time(duration timer) {
+  timer_gettime(m_timerid, &m_timer);
+  stop_timer();
+  m_timer.it_value.tv_sec += timer.sec;
+  m_timer.it_value.tv_sec += timer.msec * MILISEC_TO_NANOSEC ;
+  start_timer();
 }
