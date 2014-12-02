@@ -60,8 +60,18 @@
 \end{small}
 }
 
-% Titelseite: Versionshistorie aufbauen
-\publishers{
+% Titelseite mit Datum und Version erstellen
+\date{\today\thanks{Dokument-Version: 0.9}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
+\maketitle
+
+% Versionsverlauf aufbauen
+\thispagestyle{empty}
+% Ueberschrift
+\begin{center}
+  \Large{\textbf{\underline{Versionsverlauf}}}
+\end{center}
+
+% Tabelle
 \begin{small}
  \begin{tabular}{|c|c|c|L{6cm}|}
   \hline
@@ -81,16 +91,25 @@
   \hline
   0.7 & Eugen Winter & 13.11.2014 & Interrupt Implementierung und Automaten Diagramme hinzugefügt.\\
   \hline
+  0.8 & Alle Team-Mitglieder & 27.11.2014 & Implementierungen von Dispatcher, Automaten und Timer hinzugefügt. Unit-/Komponenten-Tests für HAL, IRQ, Dispatcher und Timer hinzugefügt.\\
+  \hline
+  0.5 & Anne-Lena Kowalka & 05.11.2014 & Diverse Updates, Softwarearchitektur konkretisiert in Komponenten"=Diagramm, Testprotokoll hinzugefügt \\
+  \hline
+  0.6 & Eugen Winter & 11.11.2014 & Umlaute in .tex-Datei geändert und Formatierungen an den Tabellen vorgenommen.\\
+  \hline
+  0.7 & Eugen Winter & 13.11.2014 & Interrupt Implementierung und Automaten Diagramme hinzugefügt.\\
+  \hline
+  0.8 & Alle Team-Mitglieder & 27.11.2014 & Implementierungen von Dispatcher, Automaten und Timer hinzugefügt. Unit-/Komponenten-Tests für HAL, IRQ, Dispatcher und Timer hinzugefügt.\\
+  \hline
+  0.9 & Eugen Winter & 02.12.2014 & Timer-Werte und Öffnungsdauer der Weiche in den Nicht-funktionalen Anforderungen angepasst und separate Seite für den Versionsverlauf im RDD erstellt.\\
+  \hline
  \end{tabular}
 \end{small}
-}
 
-% Titelseite mit Datum und Version erstellen und Seitenzahl bei 1 beginnen
-\date{\today\thanks{Dokument-Version: 0.7}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
-\maketitle
+\newpage
+
+% Inhaltsverzeichnis anlegen und bei Seitenzahl 1 beginnen lassen
 \setcounter{page}{1}
-
-% Inhaltsverzeichnis anlegen
 \tableofcontents
 
 \newpage
@@ -341,9 +360,9 @@ C++ (nur STL)
   \hline
   NFR-001 & Timer für das Wenden eines Werkstücks am Ende von Band 1 & Sensorik & Nachdem erkannt wird, dass ein Werkstück mit der Bohrung nach unten auf Band 1 liegt, wird es in die Lichtschranke am Ende von Band 1 gefahren und es läuft ein Timer für 60 Sekunden. In dieser Zeit muss das Werkstück vom Personal gewendet werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
   \hline
-  \rowcolor{lightgray} NFR-002 & Timer für das Entfernen eines Werkstücks in falscher Reihenfolge am Anfang von Band 2 & Sensorik & Nachdem das korrekt sortierte Werkstück in falscher Reihenfolge auf Band 2 erkannt wurde, fährt es in die Lichtschranke am Anfang von Band 2 zurück und es läuft ein Timer für 60 Sekunden. In dieser Zeit muss das Werkstück vom Personal entfernt werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
+  \rowcolor{lightgray} NFR-002 & Timer für das Entfernen eines Werkstücks in falscher Reihenfolge am Anfang von Band 2 & Sensorik & Nachdem das korrekt sortierte Werkstück in falscher Reihenfolge auf Band 2 erkannt wurde, fährt es in die Lichtschranke am Anfang von Band 2 zurück und es läuft ein Timer für 15 Sekunden. In dieser Zeit muss das Werkstück vom Personal entfernt werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
   \hline
-  NFR-003 & Timer für das Entfernen eines korrekt sortierten Werkstücks am Ende von Band 2 & Sensorik & Nachdem das korrekt sortierte Werkstück das Ende der Lichtschranke von Band 2 erreicht hat, läuft ein Timer für 60 Sekunden. In dieser Zeit muss das Werkstück vom Personal entfernt werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
+  NFR-003 & Timer für das Entfernen eines korrekt sortierten Werkstücks am Ende von Band 2 & Sensorik & Nachdem das korrekt sortierte Werkstück das Ende der Lichtschranke von Band 2 erreicht hat, läuft ein Timer für 15 Sekunden. In dieser Zeit muss das Werkstück vom Personal entfernt werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
   \hline
   \rowcolor{lightgray} NFR-004.1 & Timer für die Beförderung eines Werkstücks durch die Werkstück"=Sortieranlage & Sensorik & Ein korrektes Werkstück durchläuft die einzelnen Bänder der Werkstück"=Sortieranlage jeweils innerhalb eines Intervalls von 4-5 Sekunden.\\
   \hline
@@ -359,7 +378,9 @@ C++ (nur STL)
   \hline
   \rowcolor{lightgray} NFR-006.3 & Toleranz für die Höhe eines Werkstücks & Sensorik & Die Toleranz für die Höhe eines Werkstücks mit Bohrung nach unten liegt bei 25-30 Millimetern.\\
   \hline
-  NFR-007 & Öffnungsdauer der Weiche & Sensorik & Für das Durchlassen korrekter Werkstücke wird die Weiche für 2 Sekunden lang geöffnet.\\
+  NFR-007 & Öffnungsdauer der Weiche & Sensorik & Für das Durchlassen gültiger Werkstücke wird die Weiche geöffnet, nachdem ein gültiges Werkstück den Sensor
+  für den Weichen-Bereich durchbrochen hat und wieder geschlossen, sobald das
+  gültige Werkstück den Sensor des Weichen-Bereichs wieder verlassen hat.\\
   \hline
  \end{longtable}
 \end{small}
