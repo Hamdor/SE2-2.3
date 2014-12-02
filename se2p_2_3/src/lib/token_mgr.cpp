@@ -90,6 +90,9 @@ void token_mgr::update() {
   }
   if (m_alife == 0) {
     hal->set_motor(MOTOR_STOP);
+#if defined(IS_CONVEYOR_2)
+    send_free();
+#endif
   }
   if (m_alife < 0) {
     LOG_ERROR("m_alife is under 0")

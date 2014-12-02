@@ -292,6 +292,7 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
           || (METAL_BOTTOM_UP_LOW <= height && height <= METAL_BOTTOM_UP_HI)) {
     m_token->set_is_upside_down(true);
     new (this) b2_token_upside_down(m_token);
+    return;
   }
   new (this) b2_valid_height(m_token);
 }
@@ -299,9 +300,9 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
 b2_token_upside_down::b2_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
 }
-
 
 void b2_token_upside_down::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
@@ -311,6 +312,10 @@ void b2_token_upside_down::dispatched_event_sensor_height_rising() {
 
 void b2_token_upside_down::dispatched_event_sensor_slide() {
   LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->notify_death();
+  // TODO: Wenn zu lange unterbrochen, dann in error springen,
+  // da die rutsche voll.
   new (this) anonymous_token(m_token);
 }
 
@@ -373,7 +378,6 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {
   // TODO: Muss jetzt erst erneut die start Taste gedrueckt werden?
   // wie steht das in den Requirements?
   // Wenn ja, dann sollte send_free() auch erst dort aufgerufen werden...
-  mgr->send_free();
   new (this) anonymous_token(m_token);
 }
 
@@ -393,15 +397,13 @@ void b2_is_correct_order::dispatched_event_sensor_switch_rising() {
 
 void b2_is_correct_order::dispatched_event_sensor_exit() {
   LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->notify_death();
   m_token->pretty_print();
 }
 
 void b2_is_correct_order::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->send_free();
+  mgr->notify_death();
   new (this) anonymous_token(m_token);
 }
 #endif
