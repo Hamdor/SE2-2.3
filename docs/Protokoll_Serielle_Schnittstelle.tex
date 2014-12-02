@@ -10,56 +10,60 @@
 % Beginn des Dokuments
 \begin{document}
   \section*{\small{Software Engineering II \\ Wintersemester 2014/2015: Gruppe 2.3 \\ Marian Triebe}}
-  \section*{Protokoll der seriellen Schnittstelle}
+  \section*{Protokoll der seriellen Schnittstelle (Version 2)}
   \textbf{\\ {\large Protokoll}}\\
   \newline
   \begin{tabular}{|l|l|}
     \hline
     \rowcolor{lightgray}\textbf{Wert} & \textbf{Beschreibung}\\
     \hline
-    0xFF & Synchronisation\\
+    0x00 & ERR\_STOP - Band signalisiert Fehler\\
     \hline
-    0x01 & Start der Daten\\
+    0x01 & ERR\_QUIT - Band signalisiert Quettierung des Fehlers\\
     \hline
-    0x02 & Erfolgreiche Datenübertragung\\
+    0x02 & RESUME - Band kann weiterlaufen (Start-Taste)\\
     \hline
-    0x03 & Fehlerhafte Datenübertragung\\
+    0x03 & B2\_FREE - Band 2 kann einen neuen Puck verarbeiten\\
     \hline
-    0x04 & Fehler einer Maschine (stoppt die andere Maschine)\\
+    0x04 & E\_STOP - E-Stopp wurde auf einem Band gedrückt\\
     \hline
-    0x05 & Fehler einer Maschine behoben (setzt Betrieb fort)\\
+    0x05 & STOP - Stopp Taster wurde auf einem Band gedrückt\\
+    \hline
+    0x06 & NOTHING - Keine Nachricht\\
     \hline
   \end{tabular}
   \newline \newline
-  \textbf{Anmerkungen:}
-  \newline
-  Während einer Datenübertragung kann keine Synchronisation erfolgen. Sollte der Empfänger eines Datenblocks mit "0x03" \space antworten,
-  dann sendet der Sender wieder "0x01" \space und die Daten.\\
   
-  \textbf{\\ {\large Header}}\\
+  \textbf{\\ {\large Nachrichten-Typen}}\\
   \newline
-  \begin{tabular}{|l|p{1cm}|l|}
+  \begin{tabular}{|l|l|}
     \hline
-    \rowcolor{lightgray}\textbf{Name} & \textbf\centering{Größe (Byte)} & \textbf{Beschreibung}\\
+    \rowcolor{lightgray}\textbf{Wert} & \textbf{Beschreibung}\\
     \hline
-    Version & \centering 1 & Protokoll Version / Gilt auch für Header\\
+    0x00 & MSG - Nachricht ohne Daten-Block\\
     \hline
-    Größe & \centering 1 & Anzahl der Bytes, die im Header folgen\\
+    0x01 & DATA - Nachricht mit Daten-Block\\
+    \hline
+    0x02 & ERR - Fehlerhafte Übertragung\\
     \hline
   \end{tabular}
   \newline \newline
  
   \textbf{\\ {\large Datenblock}}\\
   \newline
-  \begin{tabular}{|l|p{1cm}|l|}
+  \begin{tabular}{|l|p{1.4cm}|l|}
     \hline
-    \rowcolor{lightgray}\textbf{Name} & \textbf\centering{Größe (Byte)} & \textbf{Beschreibung}\\
+    \rowcolor{lightgray}\textbf{Name} & \textbf\centering{Datentyp} & \textbf{Beschreibung}\\
     \hline
-    ID & \centering 1 & ID des Tokens (sollte 0xFF erreicht werden, ost der Nachfolgende 0x00)\\
+    m\_type & \centering int & Typ des Telegrams\\
     \hline
-    Typ & \centering 1 & Typ des Tokens (Kunststoff, Metall, etc.)\\
+    m\_msg & \centering int & Nachricht\\
     \hline
-    Höhenwert & \centering 2 & Wert der ersten Höhenmessung\\
+    m\_id & \centering int & ID des Tokens dessen Daten übertragen werden\\
+    \hline
+    m\_height1 & \centering int & Höhenwert 1 des Tokens\\
+    \hline
+    m\_height2 & \centering int & Höhenwert 2 des Tokens (immer 0, da noch nicht bekannt)\\
     \hline
   \end{tabular}
 \end{document}
