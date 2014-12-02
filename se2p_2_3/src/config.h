@@ -58,7 +58,6 @@
 #warning SIMULATION ist definiert, richtige Hardware wird nicht funktionieren
 #endif
 
-
 //#define PRINT_TRANSITIONS_UNIT_TEST // Aktiviert die Ausgabe der Uebergaenge
                                       // im Dispatcher Unit Test
 
@@ -94,25 +93,19 @@
 
 //#define FESTO_7      // Aktiviert spezifisch gemessene Werte fuer Festo 7
                        // Unter anderem Daten fuer Hoehenmessung
-		       // definiert in `constants.hpp` (height_values)
-
-//#define FESTO_5      // Aktiviert spezifisch gemessene Werte fuer Festo 5
-                       // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
 
 //#define FESTO_1      // Aktiviert spezifisch gemessene Werte fuer Festo 1
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
 
-//#define FESTO_6        // Aktiviert spezifisch gemessene Werte fuer Festo 5
+//#define FESTO_6      // Aktiviert spezifisch gemessene Werte fuer Festo 6
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
-
 
 //#define FESTO_5      // Aktiviert spezifisch gemessene Werte fuer Festo 5
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
-
 
 /**
  * ----------------------------------------------------------------------------
