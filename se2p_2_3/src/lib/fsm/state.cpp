@@ -167,13 +167,16 @@ b1_exit::b1_exit(token* t) : state::state(t) {
 
 b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
-  std::cout << "MUSS GEDREHT WERDEN!" << std::endl;
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->request_stop_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_START);
 }
 
 void b1_token_upside_down::dispatched_event_button_start() {
   LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->unrequest_stop_motor();
   new (this) b1_token_ready_for_b2(m_token);
 }
 
