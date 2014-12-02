@@ -181,10 +181,8 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       break;
     case EVENT_SENSOR_EXIT:
       break;
-    case EVENT_SENSOR_EXIT_R: {
-      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-      mgr->notify_ready_for_next();
-    } break;
+    case EVENT_SENSOR_EXIT_R:
+      break;
     case EVENT_UNKOWN1:
       break;
     default:
@@ -200,8 +198,10 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       break;
     case EVENT_SERIAL_ERR:
       break;
-    case EVENT_SERIAL_NEXT_OK:
-      break;
+    case EVENT_SERIAL_NEXT_OK: {
+        token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+        mgr->notify_ready_for_next();
+    } break;
     case EVENT_SERIAL_UNK:
       break;
     default:
