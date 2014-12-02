@@ -91,14 +91,19 @@ b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   int height = hal->get_height_value();
   m_token->set_height1(height);
-  if (TOO_SMALL_LOW <= height && height <= TOO_SMALL_HI) {
+  if (TOO_SMALL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+      && height <= TOO_SMALL_HI + HEIGHT_SENSOR_TOLERANCE_MAX) {
     new (this) b1_token_too_small(m_token);
     return;
-  } else if ((HOLE_LOW <= height && height <= HOLE_HI)
-          || (METAL_LOW <= height && height <= METAL_HI)) {
+  } else if ((HOLE_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+         && height <= HOLE_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
+     || (METAL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+         && height <= METAL_HI + HEIGHT_SENSOR_TOLERANCE_MAX)) {
     m_token->set_is_upside_down(false);
-  } else if ((HOLE_BOTTOM_UP_LOW <= height && height <= HOLE_BOTTOM_UP_HI)
-          || (METAL_BOTTOM_UP_LOW <= height && height <= METAL_BOTTOM_UP_HI)) {
+  } else if ((HOLE_BOTTOM_UP_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+         && height <= HOLE_BOTTOM_UP_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
+          || (METAL_BOTTOM_UP_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+         && height <= METAL_BOTTOM_UP_HI + HEIGHT_SENSOR_TOLERANCE_MAX)) {
     m_token->set_is_upside_down(true);
   }
   new (this) b1_valid_height(m_token);
@@ -287,14 +292,18 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   int height = hal->get_height_value();
   m_token->set_height2(height);
-  if (TOO_SMALL_LOW <= height && height <= TOO_SMALL_HI) {
+  if (TOO_SMALL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+      && height <= TOO_SMALL_HI + HEIGHT_SENSOR_TOLERANCE_MAX) {
     // darf nicht passieren
-  } else if ((HOLE_LOW <= height && height <= HOLE_HI)
-          || (METAL_LOW <= height && height <= METAL_HI)) {
+  } else if ((HOLE_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+         && height <= HOLE_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
+     || (METAL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+         && height <= METAL_HI + HEIGHT_SENSOR_TOLERANCE_MAX)) {
     m_token->set_is_upside_down(false);
-  } else if ((HOLE_BOTTOM_UP_LOW <= height && height <= HOLE_BOTTOM_UP_HI)
-          || (METAL_BOTTOM_UP_LOW <= height && height <= METAL_BOTTOM_UP_HI)) {
-    m_token->set_is_upside_down(true);
+  } else if ((HOLE_BOTTOM_UP_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+         && height <= HOLE_BOTTOM_UP_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
+          || (METAL_BOTTOM_UP_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
+         && height <= METAL_BOTTOM_UP_HI + HEIGHT_SENSOR_TOLERANCE_MAX)) {
     new (this) b2_token_upside_down(m_token);
     return;
   }
