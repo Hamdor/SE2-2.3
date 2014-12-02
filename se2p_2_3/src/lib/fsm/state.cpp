@@ -400,12 +400,15 @@ void b2_is_correct_order::dispatched_event_sensor_switch_rising() {
 
 void b2_is_correct_order::dispatched_event_sensor_exit() {
   LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->request_stop_motor();
   m_token->pretty_print();
 }
 
 void b2_is_correct_order::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->unrequest_stop_motor(false);
   mgr->notify_death();
   new (this) anonymous_token(m_token);
 }

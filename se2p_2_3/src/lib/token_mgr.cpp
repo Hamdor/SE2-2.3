@@ -100,12 +100,10 @@ void token_mgr::update() {
 }
 
 void token_mgr::send_free() {
-  if (m_alife == 0) {
-    serial_channel* serial =
-        TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
-    telegram tel(B2_FREE);
-    serial->send_telegram(&tel);
-  }
+  serial_channel* serial =
+      TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
+  telegram tel(B2_FREE);
+  serial->send_telegram(&tel);
 }
 
 void token_mgr::notify_existence(bool update) {
