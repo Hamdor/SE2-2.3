@@ -140,29 +140,18 @@ void b1_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->open_switch();
-  new (this) b1_metal_detection(m_token);
-}
-
-b1_metal_detection::b1_metal_detection(token* t) : state::state(t) {
-  LOG_TRACE("")
-#ifdef IS_CONVEYOR_2
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  m_token->set_is_metal(hal->obj_has_metal());
-#else
-  // Metall erkennung wird erst auf Band 2 verwendet
-#endif
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH_R);
   disp->register_listener(m_token, EVENT_SENSOR_EXIT);
 }
 
-void b1_metal_detection::dispatched_event_sensor_switch_rising() {
+void b1_valid_height::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->close_switch();
 }
 
-void b1_metal_detection::dispatched_event_sensor_exit() {
+void b1_valid_height::dispatched_event_sensor_exit() {
   LOG_TRACE("")
   new (this) b1_exit(m_token);
 }

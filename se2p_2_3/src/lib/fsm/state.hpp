@@ -178,15 +178,6 @@ class b1_valid_height : public state {
   }
   virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
-};
-
-class b1_metal_detection : public state {
- public:
-  b1_metal_detection(token* t);
-  virtual ~b1_metal_detection() {
-    // nop
-  }
-
   virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
 };

@@ -32,7 +32,7 @@
                            // stattfindet
 
 //#define IS_CONVEYOR_1      // Foerderband 1 FSM aktivieren
-#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren
+//#define IS_CONVEYOR_2      // Foerderband 2 FSM aktivieren
 
 #if (defined(IS_CONVEYOR_1) && defined(IS_CONVEYOR_2)) \
      || (!defined(IS_CONVEYOR_1) && !defined(IS_CONVEYOR_2))
