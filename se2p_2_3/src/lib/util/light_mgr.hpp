@@ -16,106 +16,58 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    timer_wrapper.hpp
+ * @file    light_mgr.hpp
  * @version 0.1
  *
- * Wrapper fuer timer struct
+ * Der `light_mgr` soll die Ansteuerung der Ampelanlage uebernehmen
  **/
 
-#ifndef SE2_TIMER_WAPPER_HPP
-#define SE2_TIMER_WAPPER_HPP
+#ifndef SE2_LIGHT_MGR_HPP
+#define SE2_LIGHT_MGR_HPP
 
-#include "config.h"
-
+#include "lib/util/abstract_singleton.hpp"
+#include "lib/util/HAWThread.hpp"
+#include "lib/timer/timer_wrapper.hpp"
 #include "lib/constants.hpp"
-
-#include <time.h>
-#include <sys/neutrino.h>
 
 namespace se2 {
 namespace util {
-class light_mgr;
-}
-namespace timer {
-class timer_handler;
 
-class timer_wrapper {
-  friend class timer_handler;
-  friend class util::light_mgr;
+class light_mgr : public abstract_singleton
+                , public HAWThread {
+  friend abstract_singleton;
   /**
-   * Konstruktor
-   * @param time dauer des timers
-   * @param pulse_value Wert der die Pulse Message senden soll
-   * @param chid ist die channel id
+   * Default Konstruktor
    **/
-  timer_wrapper(duration time, int pulse_value, int chid);
-
+  light_mgr();
   /**
    * Default Destruktor
    **/
-  ~timer_wrapper();
+  virtual ~light_mgr();
+
+  virtual void initialize();
+  virtual void destroy();
+
+  virtual void execute(void*);
+  virtual void shutdown();
+
+  static light_mgr* instance;
+
+  int                   m_chid;
+  bool                  m_tick; // tick/tock
+  timer::timer_wrapper* m_timer;
+  light_states          m_state;
 
  public:
-
   /**
-   * Startet Timer
+   * Aendert das licht der Ampelanlage
+   * @param state beschreibt den State in dem sich die Ampelanlage
+   *        befinden soll
    **/
-  void start_timer();
-
-  /**
-   * Stopt den Timer
-   **/
-  void stop_timer();
-
-  /**
-   * Pausiert den Timer
-   **/
-  void pause_timer();
-
-  /**
-   * Setzt den Timer fort
-   **/
-  void continue_timer();
-
-  /**
-   * resetet timer
-   **/
-  void reset_timer();
-
-  /**
-   * Addiert die angegebene Zeit
-   *  @param time zu addierende Zeit
-   **/
-  void add_time(duration time);
-
- private:
-  /**
-   * Timer ID
-   **/
-  timer_t m_timerid;
-
-  /**
-   * Timer Daten
-   **/
-  itimerspec m_timer;
-
-  /**
-   * Temp-Timer fuer Pausierung
-   **/
-  itimerspec m_temp_timer;
-
-  /**
-   * Zu ausfuerendes Event
-   **/
-  sigevent m_event;
-
-  /**
-   * Connection id
-   **/
-  int m_coid;
-  bool m_paused;
-  duration m_duration;
+  void set_state(light_states state);
 };
-} // namespace timer
+
+} // namespace util
 } // namespace se2
-#endif // SE2_TIMER_WAPPER_HPP
+
+#endif // SE2_LIGHT_MGR_HPP
