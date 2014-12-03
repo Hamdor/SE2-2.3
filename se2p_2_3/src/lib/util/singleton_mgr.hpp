@@ -33,6 +33,7 @@
 #include "lib/serial_bus/serial_channel.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
 #include "lib/token_mgr.hpp"
+#include "lib/util/light_mgr.hpp"
 
 #include "lib/util/mutex.hpp"
 #include "lib/util/lock_guard.hpp"
@@ -47,7 +48,8 @@ enum module_type {
   SERIAL_PLUGIN,
   DISPATCHER_PLUGIN,
   TIMER_PLUGIN,
-  TOKEN_PLUGIN
+  TOKEN_PLUGIN,
+  LIGHT_PLUGIN
 };
 
 class singleton_mgr {
@@ -57,6 +59,7 @@ class singleton_mgr {
   static mutex s_lock_serial;
   static mutex s_lock_dispatcher;
   static mutex s_lock_token_mgr;
+  static mutex s_lock_light_mgr;
  public:
   /**
    * Zurgiff auf ein beliebiges Singleton Module
@@ -88,5 +91,6 @@ class singleton_mgr {
 #define TO_SERIAL(ptr) static_cast<se2::serial_bus::serial_channel*>(ptr)
 #define TO_DISPATCHER(ptr) static_cast<se2::dispatch::dispatcher*>(ptr)
 #define TO_TOKEN_MGR(ptr) static_cast<se2::token_mgr*>(ptr)
+#define TO_LIGHT(ptr) static_cast<se2::util::light_mgr*>(ptr)
 
 #endif // SE2_SINGLETON_MGR_HPP

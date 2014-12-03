@@ -32,10 +32,10 @@
 
 namespace se2 {
 namespace util {
-
+class singleton_mgr;
 class light_mgr : public abstract_singleton
                 , public HAWThread {
-  friend abstract_singleton;
+  friend class singleton_mgr;
   /**
    * Default Konstruktor
    **/

@@ -24,20 +24,26 @@
 
 #include "lib/util/light_mgr.hpp"
 #include "lib/util/logging.hpp"
-#include "lib/hal/hwaccess.hpp"
+#include "lib/hal/HWaccess.hpp"
 
 #include <cstring>
 
+using namespace se2::hal;
 using namespace se2::util;
+using namespace se2::timer;
+
+#define TIMER_TICK_MSG 42
 
 light_mgr* light_mgr::instance = 0;
 
-light_mgr::light_mgr() : m_chid(0), m_tick(0), m_timer(NULL) {
+light_mgr::light_mgr() : m_chid(0), m_tick(0), m_timer(NULL)
+                       , m_state(NO_LIGHTS) {
   // nop
 }
 
 light_mgr::~light_mgr() {
   delete m_timer;
+  ChannelDestroy(m_chid);
   instance = 0;
 }
 
@@ -59,26 +65,53 @@ void light_mgr::execute(void*) {
     hal::hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
     std::memset(&buffer, 0, sizeof(buffer));
     MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
-    if (m_tick) {
-      switch(m_state) {
+    switch(m_state) {
       case NO_LIGHTS: {
-
+        hal->set_light(GREEN, false);
+        hal->set_light(YELLOW, false);
+        hal->set_light(RED, false);
       } break;
-      case READY_TO_USE:
-        break;
-      case TURN_TOKEN:
-        break;
-      case REMOVE_TOKEN:
-        break;
-      case ERROR_NOT_RESOLVED:
-        break;
+      case READY_TO_USE: {
+        hal->set_light(GREEN, true);
+        hal->set_light(YELLOW, false);
+        hal->set_light(RED, false);
+      } break;
+      case TURN_TOKEN: {
+        hal->set_light(GREEN, false);
+        hal->set_light(YELLOW, true);
+        hal->set_light(RED, false);
+      } break;
+      case REMOVE_TOKEN: {
+        if (m_tick) {
+          hal->set_light(GREEN, false);
+          hal->set_light(YELLOW, false);
+          hal->set_light(RED, false);
+        } else {
+          hal->set_light(GREEN, false);
+          hal->set_light(YELLOW, true);
+          hal->set_light(RED, false);
+        }
+      } break;
       case ERROR_GONE:
-        break;
-      case ERROR_RESOLVED:
-        break;
-      }
+      case ERROR_NOT_RESOLVED: {
+        if (m_tick) {
+          hal->set_light(GREEN, false);
+          hal->set_light(YELLOW, false);
+          hal->set_light(RED, false);
+        } else {
+          hal->set_light(GREEN, false);
+          hal->set_light(YELLOW, false);
+          hal->set_light(RED, true);
+        }
+      } break;
+      case ERROR_RESOLVED: {
+        hal->set_light(GREEN, false);
+        hal->set_light(YELLOW, false);
+        hal->set_light(RED, true);
+      } break;
     }
   }
+  m_tick = !m_tick;
 }
 
 void light_mgr::shutdown() {
@@ -86,5 +119,9 @@ void light_mgr::shutdown() {
 }
 
 void light_mgr::set_state(light_states state) {
-
+  m_state = state;
+  // unnoetiger `size_t` cast damit GCC 4.7 auch happy ist. :@)
+  duration dur = { state == ERROR_GONE ? (size_t)2 : (size_t)1, 0 };
+  new (m_timer) timer_wrapper(dur, TIMER_TICK_MSG, m_chid);
+  m_timer->start_timer();
 }

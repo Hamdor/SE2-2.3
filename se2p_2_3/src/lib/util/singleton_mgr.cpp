@@ -36,6 +36,7 @@ mutex singleton_mgr::s_lock_timer;
 mutex singleton_mgr::s_lock_serial;
 mutex singleton_mgr::s_lock_dispatcher;
 mutex singleton_mgr::s_lock_token_mgr;
+mutex singleton_mgr::s_lock_light_mgr;
 
 abstract_singleton* singleton_mgr::get_instance(module_type module) {
   if (module == HAL_PLUGIN) {
@@ -95,6 +96,15 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
       }
     }
     return token_mgr::instance;
+  } else if (module == LIGHT_PLUGIN) {
+    if (!token_mgr::instance) {
+      lock_guard guard(s_lock_light_mgr);
+      if (!light_mgr::instance) {
+        light_mgr::instance = new light_mgr();
+        light_mgr::instance->initialize();
+      }
+    }
+    return light_mgr::instance;
   }
   return NULL;
 }
@@ -102,6 +112,10 @@ abstract_singleton* singleton_mgr::get_instance(module_type module) {
 void singleton_mgr::shutdown() {
   // Shutdown all Threads
   HAWThread::shutdownAll();
+  if (light_mgr::instance) {
+    light_mgr::instance->destroy();
+    delete light_mgr::instance;
+  }
   if (dispatcher::instance) {
     dispatcher::instance->destroy();
     delete dispatcher::instance;
