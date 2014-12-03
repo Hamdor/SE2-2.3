@@ -39,7 +39,7 @@ class abstract_test {
    * Default Destruktor
    */
   virtual ~abstract_test() {
-    m_test_functions.clear();
+    // nop
   }
 
   /**

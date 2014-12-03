@@ -25,7 +25,7 @@
 #ifndef SE2_ERROR_HANDLER_HPP
 #define SE2_ERROR_HANDLER_HPP
 
-#include "state.hpp"
+#include "lib/fsm/state.hpp"
 
 namespace se2 {
 

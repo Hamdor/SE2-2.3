@@ -25,11 +25,10 @@
 #ifndef SE2_STATE_HPP
 #define SE2_STATE_HPP
 
-#include "events.hpp"
-#include "token.hpp"
+#include "lib/token.hpp"
+#include "lib/fsm/events.hpp"
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/singleton_mgr.hpp"
-#include "lib/dispatcher/dispatcher.hpp"
 
 namespace se2 {
 namespace fsm {
@@ -39,6 +38,9 @@ class state : public events {
   token* m_token;
 
  public:
+  state() : m_token(NULL) {
+    // nop
+  }
   state(token* t) : m_token(t) {
     // nop
   }
@@ -55,9 +57,8 @@ class state : public events {
   virtual void dispatched_event_button_reset() {
     // nop
   }
-  virtual void dispatched_event_button_e_stop() {
-    // nop
-  }
+  virtual void dispatched_event_button_e_stop();
+  virtual void dispatched_event_button_e_stop_rising();
   virtual void dispatched_event_sensor_entrance() {
     // nop
   }
@@ -68,6 +69,9 @@ class state : public events {
     // nop
   }
   virtual void dispatched_event_sensor_switch() {
+    // nop
+  }
+  virtual void dispatched_event_sensor_switch_rising() {
     // nop
   }
   virtual void dispatched_event_sensor_slide() {
@@ -89,6 +93,9 @@ class state : public events {
     // nop
   }
   virtual void dispatched_event_serial_err() {
+    // nop
+  }
+  virtual void dispatched_event_serial_next_ok() {
     // nop
   }
   virtual void dispatched_event_serial_unk() {
@@ -159,8 +166,8 @@ class b1_token_too_small : public state {
   virtual ~b1_token_too_small() {
     // nop
   }
-
   virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_sensor_height_rising();
 };
 
 class b1_valid_height : public state {
@@ -169,17 +176,9 @@ class b1_valid_height : public state {
   virtual ~b1_valid_height() {
     // nop
   }
-
+  virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
-};
-
-class b1_metal_detection : public state {
- public:
-  b1_metal_detection(token* t);
-  virtual ~b1_metal_detection() {
-    // nop
-  }
-
+  virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
 };
 
@@ -207,6 +206,9 @@ class b1_token_ready_for_b2 : public state {
   virtual ~b1_token_ready_for_b2() {
     // nop
   }
+
+  virtual void dispatched_event_serial_next_ok();
+  virtual void dispatched_event_sensor_exit_rising();
 };
 
 
@@ -221,6 +223,9 @@ class b2_receive_data : public state {
     // nop
   }
 
+#ifdef CONVEYOR_2_SINGLEMOD
+  virtual void dispatched_event_sensor_entrance();
+#endif
   virtual void dispatched_event_serial_data();
 };
 
@@ -259,6 +264,7 @@ class b2_token_upside_down : public state {
     // nop
   }
 
+  virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_slide();
 };
 
@@ -269,6 +275,7 @@ class b2_valid_height : public state {
     // nop
   }
 
+  virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
 };
 
@@ -288,6 +295,7 @@ class b2_is_wrong_order : public state {
   }
 
   virtual void dispatched_event_sensor_entrance();
+  virtual void dispatched_event_sensor_entrance_rising();
 };
 
 class b2_is_correct_order : public state {
@@ -297,7 +305,9 @@ class b2_is_correct_order : public state {
     // nop
   }
 
+  virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
+  virtual void dispatched_event_sensor_exit_rising();
 };
 
 } // namespace fsm

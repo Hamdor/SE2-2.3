@@ -1,0 +1,36 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[utf8x]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc} % T1-encoded fonts: Auch Wörter mit Umlauten trennen
+\usepackage{colortbl}    % Für farbige Zeilen/Reihen in Tabellen
+\usepackage{xcolor}      % Definitionen von Farben
+\thispagestyle{empty}    % Keine Kopf- und Fusszeile
+
+% Beginn des Dokuments
+\begin{document}
+  \section*{\small{Software Engineering II \\ Wintersemester 2014/2015: Gruppe 2.3 \\ Katja Kirstein}}
+  \section*{Testprotokoll 2.12.14}
+  Verwendete Hardware Geme 8 mit Festo 5 als Band 1 und Geme 7 mit Festo 6 als Band 2.\\
+  Alle Tests wurden bestanden, ohne Blinken der Ampel und Button LEDs, da diese zu diesem Stand noch nicht implementiert wurden.
+  \newline
+\begin{enumerate}
+ \item  Puks fahren in abwechselnder Reihenfolge bis ans Ende von Band 2
+    \begin{itemize}
+    \item Metall, Nicht Metall
+    \item Nicht Metall, Metall
+   \end{itemize}
+ \item Puks die außerhalb des Toleranzbereichs werden auf Band 1 mit Hilfe der Weiche aussortiert
+ \item Ein Puk der falschherum auf Band 1 gelegt wird, fährt bis ans Ende von Band 1, wartet, wird umgedreht,wieder gestartet 
+    und durchläuft Band 2 bis zum Ende
+ \item Ein Puk der falschherum am Ende von Band 1 ankommt, wird nicht umgedreht und auf Band 2 durch die Weiche aussortiert
+ \item Wenn auf Band 2 falsche Reihenfolge der Puks ankommt fährt der 2 Puk nach links bis zum Anfang von Band 2
+   \begin{itemize}
+    \item Metall, Metall
+    \item Nicht Metall, Nicht Metall
+   \end{itemize}
+ \item Mehrere Puks auf Band 1, sowie nur ein Puk auf Band 2. Band 1 wartet sobald der nächste Puk am Ende des Bandes ist, bis Band 2 wieder frei ist 
+\end{enumerate}
+
+
+\end{document}

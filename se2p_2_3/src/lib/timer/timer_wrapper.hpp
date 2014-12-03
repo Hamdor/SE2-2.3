@@ -24,9 +24,13 @@
 
 #ifndef SE2_TIMER_WAPPER_HPP
 #define SE2_TIMER_WAPPER_HPP
+
+#include "config.h"
+
+#include "lib/constants.hpp"
+
 #include <time.h>
 #include <sys/neutrino.h>
-#include "lib/constants.hpp"
 
 namespace se2 {
 namespace timer {
@@ -34,6 +38,7 @@ class timer_handler;
 
 class timer_wrapper {
   friend class timer_handler;
+
   /**
    * Konstruktor
    * @param time dauer des timers
@@ -75,6 +80,12 @@ class timer_wrapper {
    **/
   void reset_timer();
 
+  /**
+   * Addiert die angegebene Zeit
+   *  @param time zu addierende Zeit
+   **/
+  void add_time(duration time);
+
  private:
   /**
    * Timer ID
@@ -100,7 +111,6 @@ class timer_wrapper {
    * Connection id
    **/
   int m_coid;
-  bool m_started;
   bool m_paused;
   duration m_duration;
 };

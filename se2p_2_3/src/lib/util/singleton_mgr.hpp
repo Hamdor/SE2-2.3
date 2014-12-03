@@ -69,6 +69,14 @@ class singleton_mgr {
    * Zerstoert alle Singleton Module
    **/
   static void shutdown();
+
+  /**
+   * Erzwingt das erstellen eines noch nicht initialisierten
+   * Singleton Modules. Sollte bei Modulen verwendet werden die
+   * einen eigenen Thread haben.
+   * @param module Beschreibt das zu initialisierende Module
+   **/
+  static void force_initialization(module_type module);
 };
 
 }

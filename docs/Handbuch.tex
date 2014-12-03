@@ -1,0 +1,129 @@
+\documentclass[oneside,a4paper,titlepage]{scrartcl} % Format fuer Titelseite und Dokument (Koma-Script)
+\usepackage[ngerman]{babel}                         % Sprache
+\usepackage[utf8]{inputenc}                         % Direkte Eingabe von Umlauten Dokument
+\usepackage[T1]{fontenc}                            % Silbentrennung auch bei Woertern mit Umlauten
+\usepackage{graphicx}                               % Bilder
+\usepackage{listings}                               % Aufzaehlungen
+\usepackage{xcolor}                                 % Farbgebung des Sourcodes
+\usepackage{lmodern}                                % Formatierung des Sourcecodes
+\usepackage{longtable}                              % Fuer mehrseitige Tabellen
+\usepackage{booktabs}                               % Fuer mehrseitige Tabellen
+\usepackage{colortbl}                               % Fuer farbige Zeilen/Reihen in Tabellen
+
+% Formatierung fuer Tabellen
+\usepackage{tabularx}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}} % L fuer linksbuendig mit Breitenangabe
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}   % C fuer zentriert mit Breitenangabe
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}  % R fuer rechtsbuendig mit Breitenangabe
+
+% Fuer den automatischen Umbruch an einem Bindestrich, wie z.B. bei "Werkstueck-Sortieranlage", statt - die Zeichen "= verwenden
+
+% Beginn des Dokuments
+\begin{document}
+
+% Titelseite aufbauen
+\titlehead{\flushright}
+\subject{Software Engineering II\\Wintersemester 2014/2015}
+\title{Handbuch für die Werkstück-Sortieranlage} 
+\subtitle{ Praktikums-Gruppe: 2.3}
+
+% Titelseite: Autoren aufbauen
+\author{
+\begin{small}
+ \begin{tabular}{|l|l|c|L{6cm}|}
+  \hline
+  \rowcolor{lightgray}\textbf{Name} & \textbf{Vorname} & \textbf{Matrikel-Nr.} & \textbf{E-Mail}\\
+  \hline
+  \rowcolor{white}Kirstein & Katja & 2125137 & katja.kirstein@haw-hamburg.de\\
+  \hline
+  Kowalka & Anne-Lena & 2081899 & anne-lena.kowalka@haw-hamburg.de\\
+  \hline
+  Triebe & Marian & 2124897 & marian.triebe@haw-hamburg.de\\
+  \hline
+  Winter & Eugen & 2081992 & eugen.winter@haw-hamburg.de\\
+  \hline
+ \end{tabular}
+\end{small}
+}
+
+% Titelseite mit Datum und Version erstellen und Seitenzahl bei 1 beginnen
+\date{\today}
+\maketitle
+\setcounter{page}{1}
+
+% Inhaltsverzeichnis anlegen
+\tableofcontents
+
+\newpage
+
+\section{Einleitung}
+\textbf{Technische Änderungen und Ergänzungen der      Beschreibung/Anleitung sind vorbehalten. \newline
+Für den Inhalt wird keine Haftung übernommen, insbesondere für Schäden durch vorhandene, nicht 
+vorhandene oder fehlerhafte Angaben. \newline
+Weitergabe und Ergänzung dieser Beschreibung/ B Betriebsanleitung sind nicht gestattet, soweit nicht    ausdrücklich genehmigt.}
+
+\newpage 
+
+\section{Sicherheit}
+\textbf{Es ist darauf zu achten, dass die Anlage gemäß dieser Anleitung verwendet wird. Unsachgemäße Verwendung
+kann zu unerwartetem Verhalten führen und sollte vermieden werden.}
+
+\subsection{Stoppen}
+\textbf{Die Anlage kann jederzeit durch die Betätigung des Not- bzw. E-Stop-Knopfes zum Stillstand gebremst werden, sodass beide Laufbänder stehen bleiben.\newline
+Nach einer Betätigung dieses Knopfes müssen alle Werkstücke von beiden Bändern entnommen werden, sodass die Anlage neu gestartet werden kann.}
+
+\subsection{Warnsignale}
+\textbf{Die Sortierbänder verfügen über jeweils eine Ampel, über die der aktuelle Zustand des Laufbands mitgeteilt wird. Die Ampelbeleuchtung hat dabei folgende Bedeutung: }
+
+\subsubsection{Warnsignal grün}
+\textbf{Die Anlage befindet sich im Normalbetrieb und arbeitet fehlerfrei.}
+
+\subsubsection{Warnsignal gelb- blinken}
+\textbf{Wenn die gelbe Signalleuchte blinkt, ist eine Handlung des Personals erforderlich, um den Normalbetrieb fortzusetzen.}
+\newline
+
+\subsubsection{Warnsignal rot - blinken}
+%beide Ampeln: Meeting protocol 7.10.2014
+\textbf{Sobald beide Ampeln rot blinken, ist auf einem Laufband ein unquittierter Fehler aufgetreten. Hierbei ist darauf zu achten, ob die Ampel schnell (1 HZ) oder langsam (0,5 HZ) blinkt. \newline
+Schnelles Blinken zeigt an, dass ein unquittierter Fehler vorliegt, \newline
+während langsames Blinken einen unquittierten Fehler signalisiert, der "von selbst" gegangen ist.}\newline
+
+\subsubsection{Warnsignal rot - dauerhaft}
+\textbf{Es ist ein Fehler aufgetreten, der bereits quittiert wurde.}
+\newline
+\newline
+
+\section{Aufbau}
+\textbf{Die Anlage besteht aus zwei Sortierbändern, die hintereinander aufgestellt werden und durch die jeweils zugehörige (\#define IS\_CONVEYOR\_?) Software gesteuert werden. Die Kommunikation der Bänder ist über die serielle Schnittstelle gewährleistet. }
+\newpage
+
+\section{Betrieb}
+\subsection{Normalbetrieb}
+\textbf{Im Normalbetrieb legt das Personal Werkstücke an den Anfang von Band eins. Dieses startet automatisch den Motor und beginnt mit der Aussortierung von zu kleinen Werkstücken. Hierbei ist darauf zu achten, dass die Werkstücke mit genügend Abstand (ca 15-20 cm) in richtiger Reihenfolge in die Eingangslichtschranke gelegt werden. \newline
+Erreicht ein Werkstück das Ende von Band eins, wird es an Band zwei übergeben, sofern dieses frei ist. Andernfalls wartet das Werkstück am Ende von Band eins. \newline
+Sobald das Werkstück das Ende von Band zwei erreicht hat, blinkt die gelbe Signalleuchte und das Werkstück muss vom Personal entnommen werden.\newline
+Die zu dem jeweiligen Werkstück gehörigen Daten werden von dem zu Band zwei gehörigen Programm ausgegeben.}
+
+\subsection{Fehlerbehandlung}
+\subsubsection{Verschwinden von Werkstücken}
+\textbf{Wird ein Werkstück während des laufenden Normalbetriebs von einem Sortierband entnommen, wird dies als Fehler festgestellt, die Sortierbänder stoppen und die roten Warnleuchten blinken schnell. Dieser Fehler muss mittels Reset-Taster quittiert werden, sodass die roten Warnleuchten in ein dauerhaftes Leuchten übergehen. Abschließend wird die Anlage über die Starttaste neu gestartet. }
+
+\subsubsection{Hinzufügen von Werkstücken}
+\textbf{Wird ein Werkstück während des laufenden Normalbetriebs "mitten" auf ein Laufband gelegt, wird dies als Fehler festgestellt, die Sortierbänder stoppen und die roten Warnleuchten blinken schnell. Dieser Fehler muss mittels Reset-Taster quittiert werden, sodass die roten Warnleuchten in ein dauerhaftes Leuchten übergehen. Das Personal muss anschließend das Werkstück, das hinzugefügt wurde, entfernen und die Anlage über die Starttaste neu starten.}
+
+\subsubsection{Rutsche ist voll}
+\textbf{Sobald die Rutsche eines Sortierbandes voll ist, wird dies als Fehler festgestellt, die Sortierbänder stoppen und die roten Warnleuchten blinken schnell. Dieser Fehler muss mittels Reset-Taster quittiert werden, sodass die roten Warnleuchten in ein dauerhaftes Leuchten übergehen. Sobald das Personal die Rutsche min. ein Werkstück aus der vollen Rutsche entnommen hat, kann die Anlage über die Starttaste neu gestartet werden. }
+
+\subsubsection{Werkstück mit Bohrung nach unten auf Band eins}
+\textbf{Sobald auf Band eins ein Werkstück mit der Bohrung nach unten erkannt wird, wird dieses Werkstück an das Bandende befördert. Sobald dieses Werkstück die Lichtschranke durchbricht, stoppt das Band und die gelbe Signalleuchte blinkt. Das Personal muss das Werkstück wenden und zurück auf das Ende von Band eins legen, damit der Normalbetrieb fortsetzen kann. }
+
+\subsubsection{Werkstücke in falscher Reihenfolge auf Band zwei}
+%TODO Spezifizierung notwendig
+\textbf{Wird von Band zwei eine falsche Reihenfolge der Werkstücke erkannt, wird ein betreffendes Werkstück zurück an den Anfang von Band zwei befördert und die gelbe Signalleuchte blinkt. Das Personal muss dieses Werkstück entnehmen, damit der Normalbetrieb fortsetzen kann.}
+
+\subsubsection{Sonstige}
+\textbf{Sollten während des Betriebes Fehler auftreten, deren Ursache unklar sind, empfiehlt es sich, den Resettaster zu betätigen, alle Werkstücke beider Sortierbänder zu entnehmen und die Anlage anschließend neuzustarten.}
+
+
+\end{document}
+}

@@ -19,7 +19,7 @@
  * @file    abstract_singleton.hpp
  * @version 0.1
  *
- * Interface/Abstrakte Klasse f�r Singletons
+ * Interface/Abstrakte Klasse fuer Singletons
  **/
 
 #ifndef SE2_ABSTRACT_SINGLETON_HPP

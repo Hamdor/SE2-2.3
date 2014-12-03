@@ -22,7 +22,7 @@
  * `pthread_mutex_t` Wrapper
  **/
 
-#include "mutex.hpp"
+#include "lib/util/mutex.hpp"
 
 using namespace se2::util;
 

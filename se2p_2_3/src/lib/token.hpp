@@ -25,49 +25,128 @@
 #ifndef SE2_TOKEN_HPP
 #define SE2_TOKEN_HPP
 
-#include "events.hpp"
+#include "lib/fsm/events.hpp"
 
 namespace se2 {
+namespace serial_bus {
+class telegram;
+}
 
 class token : public fsm::events {
  public:
+  /**
+   * Default Konstruktor
+   **/
   token()
       : m_state(0), m_id(0), m_height1(0), m_height2(0)
       , m_is_metal(false), m_is_upside_down(false) {
     // nop
   }
 
-  ~token() {
+  /**
+   * Default Destruktor
+   **/
+  virtual ~token() {
     delete m_state;
   }
 
-  virtual void set_state(fsm::events* state) {
+  /**
+   * Setzt den Token auf einen neuen Zustand
+   * @param state ist ein Pointer auf den neuen Zustand
+   **/
+  void set_state(fsm::events* state) {
     m_state = state;
   }
 
-  int get_id();
-  void set_id(int id);
-  int get_next_id();
-  int get_height1();
-  void set_height1(int height1);
-  int get_height2();
-  void set_height2(int height2);
-  bool get_is_upside_down();
-  void set_is_upside_down(bool value);
-  bool get_is_metal();
-  void set_is_metal(bool metal);
-  bool is_valid();
+  /**
+   * Setzt alle Token werde von einem Telegram
+   * @param tel Referenz auf ein `telegram`
+   **/
+  void set_vals_from_telegram(const serial_bus::telegram& tel);
 
+  /**
+   * Gibt die id des Tokens zurueck.
+   * @return eine unique ID
+   **/
+  int get_id() const;
+
+  /**
+   * Setzt den ersten Hoehenwert fuer diesen Token
+   * @param height1 der erste Hoehenwert des Tokens als Integer
+   **/
+  void set_height1(int height1);
+
+  /**
+   * Gibt den ersten Hoehenwert des Tokens zurueck.
+   * @returns den ersten Hoehenwert des Tokens
+   **/
+  int get_height1() const;
+
+  /**
+   * Setzt den zweiten Hoehenwert fuer diesen Token
+   * @param height2 der zweiten Hoehenwert des Tokens als Integer
+   **/
+  void set_height2(int height2);
+
+  /**
+   * Gibt den zweiten Hoehenwert des Tokens zurueck.
+   * @returns den zweiten Hoehenwert des Tokens
+   **/
+  int get_height2() const;
+
+
+  /**
+   * Setzt den Token auf verkehrt herum
+   * @param value gibt an ob der Token richtig oder falsch herum liegt
+   **/
+  void set_is_upside_down(bool value);
+
+  /**
+   * Fragt ab ob der Token richtig oder falsch herum liegt
+   * @return TRUE  wenn der Token falsch herum liegt
+   *         FALSE wenn der Token richtig herum liegt
+   **/
+  bool is_upside_down() const;
+
+  /**
+   * Setzt den Metallwert des Tokens
+   * @param metal ist der neue Metallwert des Tokens
+   **/
+  void set_is_metal(bool metal);
+
+  /**
+   * Gibt an ob der Token einen Metallring besitzt
+   * @return TRUE  wenn Metall im Token
+   *         FALSE wenn kein Metall im Token
+   **/
+  bool is_metal() const;
+
+  /**
+   * Resetet den Token, dieses geschieht beim uebergang
+   * vom benutzten Token zurueck auf `anonymous_token`.
+   * Ausserdem wird eine neue ID an den Token vergeben.
+   **/
   void reset();
 
+  /**
+   * Gibt alle Informationen des Tokens auf ueber
+   * den standard output aus. (std::cout)
+   **/
+  void pretty_print() const;
+
+  /**
+   * AUfrufe die an den Zustand delegiert werden
+   **/
   virtual void dispatched_event_button_start();
   virtual void dispatched_event_button_stop();
   virtual void dispatched_event_button_reset();
   virtual void dispatched_event_button_e_stop();
+  virtual void dispatched_event_button_e_stop_rising();
   virtual void dispatched_event_sensor_entrance();
   virtual void dispatched_event_sensor_height();
   virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
+  virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_slide();
   virtual void dispatched_event_sensor_slide_rising();
   virtual void dispatched_event_sensor_exit();
@@ -75,6 +154,7 @@ class token : public fsm::events {
   virtual void dispatched_event_serial_data();
   virtual void dispatched_event_serial_msg();
   virtual void dispatched_event_serial_err();
+  virtual void dispatched_event_serial_next_ok();
   virtual void dispatched_event_serial_unk();
   virtual void dispatched_event_seg1_exceeded();
   virtual void dispatched_event_seg2_exceeded();

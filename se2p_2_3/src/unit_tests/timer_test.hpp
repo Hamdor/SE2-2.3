@@ -83,11 +83,6 @@ public:
   int test_timer_1msec();
 
   /**
-   * Intervall Test
-   **/
-  int test_timer_intervall();
-
-  /**
    * Pause Test
    **/
   int test_timer_pause();

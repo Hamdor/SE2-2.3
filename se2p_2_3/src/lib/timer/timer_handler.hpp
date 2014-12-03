@@ -81,6 +81,19 @@ friend class util::singleton_mgr;
    **/
   void continue_all();
 
+  /**
+   * Addiert die angegebene Zeit
+   * @param pos Position des Timers
+   * @param time zu addierende Zeit
+   **/
+  void add_time(size_t pos, duration time);
+
+  /**
+   * Addiert die angegebene Zeit auf alle Timer
+   * @param time zu addierende Zeit
+   **/
+  void add_all(duration time);
+
 
  private:
   static timer_handler* instance;

@@ -26,6 +26,7 @@
 #define SE2_CONSTANTS_HPP
 
 #include <cstddef>
+#include "lib/token.hpp"
 
 /**
  * Bit Position der Weiche auf Port A
@@ -62,7 +63,13 @@
 /**
  * Maximale Anzahl an loops bis der Hoehenwert gelesen wird
  **/
-#define HEIGHT_SENSOR_MAX_LOOPS 100
+#define HEIGHT_SENSOR_MAX_LOOPS 50
+
+/**
+ * Maximale und minimale Toleranz fuer den Puck/Hoehenwert
+ **/
+#define HEIGHT_SENSOR_TOLERANCE_MIN 50
+#define HEIGHT_SENSOR_TOLERANCE_MAX 50
 
 /**
  * Addresse des Control-Registers
@@ -120,11 +127,12 @@ enum port_num {
  * Verfuegbare Modi des Motor
  **/
 enum motor_modes {
-  MOTOR_RIGHT = 0,
-  MOTOR_LEFT  = 1,
-  MOTOR_SLOW  = 2,
-  MOTOR_STOP  = 3,
-  MOTOR_FAST  = 4
+  MOTOR_RIGHT  = 0,
+  MOTOR_LEFT   = 1,
+  MOTOR_SLOW   = 2,
+  MOTOR_STOP   = 3,
+  MOTOR_FAST   = 4,
+  MOTOR_RESUME = 5
 };
 
 /**
@@ -190,9 +198,6 @@ enum height_values {
   HOLE_BOTTOM_UP_HI   = 2470, // Bohrung (Falsch herum) (Max)
   HOLE_LOW            = 3475, // Bohrung (Richtig herum) (Min)
   HOLE_HI             = 3490, // Bohrung (Richtig herum) (Max)
-  // (WURDEN NICHT GEMESSEN)
-  //METAL_BUTTOM_UP_LOW = , // Mit Metall (Falsch herum) (Min)
-  //METAL_BUTTOM_UP_HI  = , // Mit Metall (Falsch herum) (Max)
   METAL_LOW           = 3515, // Mit Metall (Richtig herum) (Min)
   METAL_HI            = 3535  // Mit Metall (Richtig herum) (Max)
 #elif defined(FESTO_5)
@@ -206,6 +211,39 @@ enum height_values {
   METAL_BOTTOM_UP_HI = 2573,
   METAL_LOW = 3587,
   METAL_HI = 3642
+#elif defined(FESTO_7)
+  TOO_SMALL_LOW = 2804,
+  TOO_SMALL_HI = 2831,
+  HOLE_BOTTOM_UP_LOW = 2532,
+  HOLE_BOTTOM_UP_HI = 2583,
+  HOLE_LOW = 3553,
+  HOLE_HI = 3617,
+  METAL_BOTTOM_UP_LOW = 2556,
+  METAL_BOTTOM_UP_HI = 2617,
+  METAL_LOW = 3595,
+  METAL_HI = 3665
+#elif defined(FESTO_1)
+  TOO_SMALL_LOW = 2799,
+  TOO_SMALL_HI = 2826,
+  HOLE_BOTTOM_UP_LOW = 2521,
+  HOLE_BOTTOM_UP_HI = 2574,
+  HOLE_LOW = 3577,
+  HOLE_HI = 3625,
+  METAL_BOTTOM_UP_LOW = 2560,
+  METAL_BOTTOM_UP_HI = 2585,
+  METAL_LOW = 3623,
+  METAL_HI = 3663
+#elif defined(FESTO_6)
+  TOO_SMALL_LOW = 2805,
+  TOO_SMALL_HI = 2833,
+  HOLE_BOTTOM_UP_LOW = 2551,
+  HOLE_BOTTOM_UP_HI = 2580,
+  HOLE_LOW = 3586,
+  HOLE_HI = 3613,
+  METAL_BOTTOM_UP_LOW = 2543,
+  METAL_BOTTOM_UP_HI = 2571,
+  METAL_LOW = 3473,
+  METAL_HI = 3598
 #else
   // nop
 #endif
@@ -221,18 +259,24 @@ enum height_values {
                                        << EVENT_PORT_C_OFFSET) | 0x01
 /**
  * Pulse Message Values
+ *   EVENT_ZERO            Nullevent
  * Events Port C:
  *   EVENT_BUTTON_START    Start Button getoggelt
  *   EVENT_BUTTON_STOP     Stop Button getoggelt
  *   EVENT_BUTTON_RESET    Reset Button getoggelt
  *   EVENT_BUTTON_E_STOP   E-Stop getoggelt
+ *   EVENT_BUTTON_E_STOP_R E-Stop getoggelt (Steigende Flanke)
  *
  * Events Port B:
  *   EVENT_SENSOR_ENTRANCE Lichtschranke am Band einlauf getoggelt
- *   EVENT_SENSOR_HEIGHT   Lichtschranke am Hoehensensor getoggelt
- *   EVENT_SENSOR_SWITCH   Lichtschranke am Switch getoggelt
- *   EVENT_SENSOR_SLIDE    Lichtschranke der Rutsche getoggelt
- *   EVENT_SENSOR_EXIT     Lichtschranke am Ausgang des Bandes getoggelt
+ *   EVENT_SENSOR_HEIGHT   Lichtschranke am Hoehensensor (Fallende Flanke)
+ *   EVENT_SENSOR_HEIGHT_R Lichtschranke am Hoehensensor (Steigende Flanke)
+ *   EVENT_SENSOR_SWITCH   Lichtschranke am Switch (Fallende Flanke)
+ *   EVENT_SENSOR_SWITCH_R Lichtschranke am Switch (Steigende Flanke)
+ *   EVENT_SENSOR_SLIDE    Lichtschranke der Rutsche (Fallende Flanke)
+ *   EVENT_SENSOR_SLIDE_R  Lichtschranke der Rutsche (Steigende Flanke)
+ *   EVENT_SENSOR_EXIT     Lichtschranke am Ausgang (Fallende Flanke)
+ *   EVENT_SENSOR_EXIT_R   Lichtschranke am Ausgang (Steigende Flanke)
  *
  * Serielle Schnittstelle:
  *   EVENT_SERIAL_DATA     Daten empfangen     (Token Daten)
@@ -252,16 +296,19 @@ enum height_values {
  *   EVENT_TOKEN_FINISHED  Zeit bis der Puck das Ende von Band 2 erreicht hat
  **/
 enum event_values {
+  EVENT_ZERO            = 0,
   // Port C
   EVENT_BUTTON_START    = EVENT_BASE << BUTTON_START    << EVENT_PORT_A_OFFSET,
   EVENT_BUTTON_STOP     = EVENT_BASE << BUTTON_STOP     << EVENT_PORT_A_OFFSET,
   EVENT_BUTTON_RESET    = EVENT_BASE << BUTTON_RESET    << EVENT_PORT_A_OFFSET,
   EVENT_BUTTON_E_STOP   = EVENT_BASE << BUTTON_ESTOP    << EVENT_PORT_A_OFFSET,
+  EVENT_BUTTON_E_STOP_R = (EVENT_BASE<<BUTTON_ESTOP<< EVENT_PORT_A_OFFSET) | 1,
   // Port B
   EVENT_SENSOR_ENTRANCE = EVENT_BASE << SENSOR_ENTRANCE << EVENT_PORT_C_OFFSET,
   EVENT_SENSOR_HEIGHT   = EVENT_BASE << SENSOR_HEIGHT   << EVENT_PORT_C_OFFSET,
   EVENT_SENSOR_HEIGHT_R = (EVENT_BASE<<SENSOR_HEIGHT<<EVENT_PORT_C_OFFSET) | 1,
   EVENT_SENSOR_SWITCH   = EVENT_BASE << SENSOR_SWITCH   << EVENT_PORT_C_OFFSET,
+  EVENT_SENSOR_SWITCH_R = (EVENT_BASE<<SENSOR_SWITCH<<EVENT_PORT_C_OFFSET) | 1,
   EVENT_SENSOR_SLIDE    = EVENT_BASE << SENSOR_SLIDE    << EVENT_PORT_C_OFFSET,
   EVENT_SENSOR_SLIDE_R  = (EVENT_BASE<< SENSOR_SLIDE<<EVENT_PORT_C_OFFSET) | 1,
   EVENT_SENSOR_EXIT     = EVENT_BASE << SENSOR_EXIT     << EVENT_PORT_C_OFFSET,
@@ -270,7 +317,8 @@ enum event_values {
   EVENT_SERIAL_DATA     = EVENT_SERIAL_START, // EVENT_SERIAL_START + 0x00
   EVENT_SERIAL_MSG,                           // EVENT_SERIAL_START + 0x01
   EVENT_SERIAL_ERR,                           // EVENT_SERIAL_START + 0x02
-  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x03
+  EVENT_SERIAL_NEXT_OK,                       // EVENT_SERIAL_START + 0x03
+  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x04
   // Timer
   EVENT_SEG1_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x01
   EVENT_SEG2_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x02
@@ -279,7 +327,9 @@ enum event_values {
   EVENT_OPEN_SWITCH,                          // EVENT_SERIAL_UNK + 0x05
   EVENT_TURN_TOKEN,                           // EVENT_SERIAL_UNK + 0x06
   EVENT_REMOVE_TOKEN,                         // EVENT_SERIAL_UNK + 0x07
-  EVENT_TOKEN_FINISHED                        // EVENT_SERIAL_UNK + 0x08
+  EVENT_TOKEN_FINISHED,                       // EVENT_SERIAL_UNK + 0x08
+  // Unkown / Not handled inputs
+  EVENT_UNKOWN1 = 8192                        // Ich weiss nicht woher dieses Event kommt...
 };
 
 } // namespace hal
@@ -294,11 +344,13 @@ enum dispatcher_events {
   DISPATCHED_EVENT_BUTTON_START = 0,
   DISPATCHED_EVENT_BUTTON_STOP,
   DISPATCHED_EVENT_BUTTON_RESET,
-  DISPATCHED_EVENT_BUTTON_E_STOP,
+  DISPATCHED_EVENT_BUTTON_E_STOP,   // Fallende Flanke
+  DISPATCHED_EVENT_BUTTON_E_STOP_R, // Steigende Flanke
   DISPATCHED_EVENT_SENSOR_ENTRANCE,
   DISPATCHED_EVENT_SENSOR_HEIGHT,   // Fallende Flanke
   DISPATCHED_EVENT_SENSOR_HEIGHT_R, // Steigende Flanke
-  DISPATCHED_EVENT_SENSOR_SWITCH,
+  DISPATCHED_EVENT_SENSOR_SWITCH,   // Fallende Flanke
+  DISPATCHED_EVENT_SENSOR_SWITCH_R, // Steigende Flanke
   DISPATCHED_EVENT_SENSOR_SLIDE,    // Fallende Flanke
   DISPATCHED_EVENT_SENSOR_SLIDE_R,  // Steigende Flanke
   DISPATCHED_EVENT_SENSOR_EXIT,     // Fallende Flanke
@@ -306,6 +358,7 @@ enum dispatcher_events {
   DISPATCHED_EVENT_SERIAL_DATA,
   DISPATCHED_EVENT_SERIAL_MSG,
   DISPATCHED_EVENT_SERIAL_ERR,
+  DISPATCHED_EVENT_SERIAL_NEXT_OK,
   DISPATCHED_EVENT_SERIAL_UNK,
   DISPATCHED_EVENT_SEG1_EXCEEDED,
   DISPATCHED_EVENT_SEG2_EXCEEDED,
@@ -359,6 +412,20 @@ enum msg_type {
  * Telegram komplett
  **/
 struct telegram {
+  telegram() : m_type(MSG), m_msg(NOTHING), m_id(0)
+             , m_height1(0)
+             , m_height2(0) {
+    // nop
+  }
+  telegram(msg_type msg) : m_type(MSG), m_msg(msg), m_id(0)
+                         , m_height1(0), m_height2(0) {
+    // nop
+  }
+  telegram(const token* t) : m_type(DATA), m_msg(NOTHING), m_id(t->get_id())
+                           , m_height1(t->get_height1())
+                           , m_height2(t->get_height2()) {
+    // nop
+  }
   int m_type;
   int m_msg;
   int m_id;
