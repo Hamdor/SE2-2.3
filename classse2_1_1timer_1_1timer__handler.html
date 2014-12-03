@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone4</span>
+   &#160;<span id="projectnumber">0.3-Milestone5</span>
    </div>
   </td>
  </tr>
@@ -133,6 +133,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2dbf7f49e7250d444faa8efea34c29a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__handler.html#a2dbf7f49e7250d444faa8efea34c29a9">continue_all</a> ()</td></tr>
 <tr class="memdesc:a2dbf7f49e7250d444faa8efea34c29a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setzt alle registrierten Timer fort.  <a href="#a2dbf7f49e7250d444faa8efea34c29a9">More...</a><br/></td></tr>
 <tr class="separator:a2dbf7f49e7250d444faa8efea34c29a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef3123f936a589b5a9624d51a65c8136"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__handler.html#aef3123f936a589b5a9624d51a65c8136">add_time</a> (size_t pos, <a class="el" href="structse2_1_1timer_1_1duration.html">duration</a> time)</td></tr>
+<tr class="memdesc:aef3123f936a589b5a9624d51a65c8136"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addiert die angegebene Zeit.  <a href="#aef3123f936a589b5a9624d51a65c8136">More...</a><br/></td></tr>
+<tr class="separator:aef3123f936a589b5a9624d51a65c8136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03b76bb229f58cd61f08c7af5053342c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__handler.html#a03b76bb229f58cd61f08c7af5053342c">add_all</a> (<a class="el" href="structse2_1_1timer_1_1duration.html">duration</a> time)</td></tr>
+<tr class="memdesc:a03b76bb229f58cd61f08c7af5053342c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addiert die angegebene Zeit auf alle Timer.  <a href="#a03b76bb229f58cd61f08c7af5053342c">More...</a><br/></td></tr>
+<tr class="separator:a03b76bb229f58cd61f08c7af5053342c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classse2_1_1util_1_1abstract__singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classse2_1_1util_1_1abstract__singleton')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classse2_1_1util_1_1abstract__singleton.html">se2::util::abstract_singleton</a></td></tr>
 <tr class="memitem:a376766d50568ae08879d9b916adf0454 inherit pub_methods_classse2_1_1util_1_1abstract__singleton"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1util_1_1abstract__singleton.html#a376766d50568ae08879d9b916adf0454">~abstract_singleton</a> ()</td></tr>
 <tr class="separator:a376766d50568ae08879d9b916adf0454 inherit pub_methods_classse2_1_1util_1_1abstract__singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -200,9 +206,9 @@ Friends</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                             {</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">m_chid</a> = <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>))-&gt;get_isr_channel();</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
-<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00077">singleton_mgr.hpp:77</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00045">singleton_mgr.hpp:45</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a99aa7545d2e5c74e3d5cec868bf66049"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">se2::timer::timer_handler::m_chid</a></div><div class="ttdeci">int m_chid</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00088">timer_handler.hpp:88</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00090">singleton_mgr.hpp:90</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00048">singleton_mgr.hpp:48</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a99aa7545d2e5c74e3d5cec868bf66049"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">se2::timer::timer_handler::m_chid</a></div><div class="ttdeci">int m_chid</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00101">timer_handler.hpp:101</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -238,12 +244,88 @@ Friends</h2></td></tr>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>.clear();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a98d08e2ed021fc197a7591ad0664e69b">instance</a> = 0;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00087">timer_handler.hpp:87</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a98d08e2ed021fc197a7591ad0664e69b"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a98d08e2ed021fc197a7591ad0664e69b">se2::timer::timer_handler::instance</a></div><div class="ttdeci">static timer_handler * instance</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00086">timer_handler.hpp:86</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a98d08e2ed021fc197a7591ad0664e69b"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a98d08e2ed021fc197a7591ad0664e69b">se2::timer::timer_handler::instance</a></div><div class="ttdeci">static timer_handler * instance</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00099">timer_handler.hpp:99</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a03b76bb229f58cd61f08c7af5053342c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void timer_handler::add_all </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structse2_1_1timer_1_1duration.html">duration</a>&#160;</td>
+          <td class="paramname"><em>time</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Addiert die angegebene Zeit auf alle Timer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>zu addierende Zeit </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="timer__handler_8cpp_source.html#l00102">102</a> of file <a class="el" href="timer__handler_8cpp_source.html">timer_handler.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                                         {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keywordflow">for</span> (std::vector&lt;timer_wrapper*&gt;::iterator it = <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>.begin();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;       it != <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>.end(); ++it) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    (*it)-&gt;add_time(time);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aef3123f936a589b5a9624d51a65c8136"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void timer_handler::add_time </td>
+          <td>(</td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structse2_1_1timer_1_1duration.html">duration</a>&#160;</td>
+          <td class="paramname"><em>time</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Addiert die angegebene Zeit. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>Position des Timers </td></tr>
+    <tr><td class="paramname">time</td><td>zu addierende Zeit </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="timer__handler_8cpp_source.html#l00096">96</a> of file <a class="el" href="timer__handler_8cpp_source.html">timer_handler.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                                                      {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordflow">if</span> (pos &lt; <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>.size()) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>[pos]-&gt;add_time(time);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="ad9910899c0e9582e3d4fbcba13229465"></a>
 <div class="memitem">
 <div class="memproto">
@@ -270,7 +352,7 @@ Friends</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                           {</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">m_chid</a> = chid;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a99aa7545d2e5c74e3d5cec868bf66049"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">se2::timer::timer_handler::m_chid</a></div><div class="ttdeci">int m_chid</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00088">timer_handler.hpp:88</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a99aa7545d2e5c74e3d5cec868bf66049"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">se2::timer::timer_handler::m_chid</a></div><div class="ttdeci">int m_chid</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00101">timer_handler.hpp:101</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -296,7 +378,7 @@ Friends</h2></td></tr>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    (*it)-&gt;continue_timer();</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  }</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00087">timer_handler.hpp:87</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -328,7 +410,7 @@ Friends</h2></td></tr>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>[pos]-&gt;continue_timer();</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  }</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00087">timer_handler.hpp:87</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -361,7 +443,7 @@ Friends</h2></td></tr>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>.erase(<a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>.begin()+pos);</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  }</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00087">timer_handler.hpp:87</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -451,7 +533,7 @@ Friends</h2></td></tr>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    (*it)-&gt;pause_timer();</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00087">timer_handler.hpp:87</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -483,7 +565,7 @@ Friends</h2></td></tr>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>[pos]-&gt;pause_timer();</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  }</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00087">timer_handler.hpp:87</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -526,9 +608,9 @@ Friends</h2></td></tr>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>.push_back (<span class="keyword">new</span> <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html">timer_wrapper</a>(time, value, <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">m_chid</a>));</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">timers</a>.size() - 1;</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html">se2::timer::timer_wrapper</a></div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00035">timer_wrapper.hpp:35</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00087">timer_handler.hpp:87</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a99aa7545d2e5c74e3d5cec868bf66049"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">se2::timer::timer_handler::m_chid</a></div><div class="ttdeci">int m_chid</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00088">timer_handler.hpp:88</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html">se2::timer::timer_wrapper</a></div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00039">timer_wrapper.hpp:39</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a5377815cccfc7d969af4330e5245f5f1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler::timers</a></div><div class="ttdeci">std::vector&lt; timer_wrapper * &gt; timers</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00100">timer_handler.hpp:100</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__handler_html_a99aa7545d2e5c74e3d5cec868bf66049"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">se2::timer::timer_handler::m_chid</a></div><div class="ttdeci">int m_chid</div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00101">timer_handler.hpp:101</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -574,7 +656,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timer__handler_8hpp_source.html#l00086">86</a> of file <a class="el" href="timer__handler_8hpp_source.html">timer_handler.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__handler_8hpp_source.html#l00099">99</a> of file <a class="el" href="timer__handler_8hpp_source.html">timer_handler.hpp</a>.</p>
 
 </div>
 </div>
@@ -596,7 +678,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timer__handler_8hpp_source.html#l00088">88</a> of file <a class="el" href="timer__handler_8hpp_source.html">timer_handler.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__handler_8hpp_source.html#l00101">101</a> of file <a class="el" href="timer__handler_8hpp_source.html">timer_handler.hpp</a>.</p>
 
 </div>
 </div>
@@ -618,7 +700,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timer__handler_8hpp_source.html#l00087">87</a> of file <a class="el" href="timer__handler_8hpp_source.html">timer_handler.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__handler_8hpp_source.html#l00100">100</a> of file <a class="el" href="timer__handler_8hpp_source.html">timer_handler.hpp</a>.</p>
 
 </div>
 </div>

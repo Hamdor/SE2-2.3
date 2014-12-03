@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone4</span>
+   &#160;<span id="projectnumber">0.3-Milestone5</span>
    </div>
   </td>
  </tr>
@@ -133,43 +133,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">event</span>-&gt;sigev_value.sival_int = changed_bit;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="isr_8h.html#ab2fa0d551bb7554816cdae5ed0834308">port_old</a> &lt; ports) {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      <span class="comment">// steigende flanke</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      <span class="keywordflow">if</span> (changed_bit == <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ab630c5b25ea56cf5bccb99c3567484a4">EVENT_SENSOR_HEIGHT</a></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;          || changed_bit == <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a202ad767c82b9483fdf871dfaa267123">EVENT_SENSOR_SLIDE</a></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;          || changed_bit == <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac4e103d879964c98b639ef0c29805ae1">EVENT_SENSOR_EXIT</a>) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// die wollen wir trotzdem haben</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="comment">// Die Steigenden Flanken werden durch `changed_bit` | 1</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">// signalisiert</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">event</span>-&gt;sigev_value.sival_int = changed_bit | 1;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">event</span> = NULL;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="comment">// fallende flanke</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="comment">// update port_old</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="isr_8h.html#ab2fa0d551bb7554816cdae5ed0834308">port_old</a> = ports;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="comment">// Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">event</span> = NULL;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keywordflow">return</span> event;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;}</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif // SE2_ISR_H</span></div>
-<div class="ttc" id="constants_8hpp_html_a5130a017ce900f831d0bb027872217f7"><div class="ttname"><a href="constants_8hpp.html#a5130a017ce900f831d0bb027872217f7">PORTC_INTERRUPT</a></div><div class="ttdeci">#define PORTC_INTERRUPT</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00078">constants.hpp:78</a></div></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;      <span class="keywordflow">if</span> (changed_bit == <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456">EVENT_BUTTON_E_STOP</a></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;          || changed_bit == <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ab630c5b25ea56cf5bccb99c3567484a4">EVENT_SENSOR_HEIGHT</a></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;          || changed_bit == <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a2db17e9bf8499f89e2bc8f0637b6db56">EVENT_SENSOR_SWITCH</a></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;          || changed_bit == <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a202ad767c82b9483fdf871dfaa267123">EVENT_SENSOR_SLIDE</a></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;          || changed_bit == <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac4e103d879964c98b639ef0c29805ae1">EVENT_SENSOR_EXIT</a>) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="comment">// die wollen wir trotzdem haben</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="comment">// Die Steigenden Flanken werden durch `changed_bit` | 1</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="comment">// signalisiert</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">event</span>-&gt;sigev_value.sival_int = changed_bit | 1;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">event</span> = NULL;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="comment">// fallende flanke</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="comment">// update port_old</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="isr_8h.html#ab2fa0d551bb7554816cdae5ed0834308">port_old</a> = ports;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="comment">// Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">event</span> = NULL;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keywordflow">return</span> event;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;}</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif // SE2_ISR_H</span></div>
+<div class="ttc" id="constants_8hpp_html_a5130a017ce900f831d0bb027872217f7"><div class="ttname"><a href="constants_8hpp.html#a5130a017ce900f831d0bb027872217f7">PORTC_INTERRUPT</a></div><div class="ttdeci">#define PORTC_INTERRUPT</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00096">constants.hpp:96</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456">se2::hal::EVENT_BUTTON_E_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00304">constants.hpp:304</a></div></div>
 <div class="ttc" id="isr_8h_html_a33a30a4f7cfb0acfb9235996a7b8b1bc"><div class="ttname"><a href="isr_8h.html#a33a30a4f7cfb0acfb9235996a7b8b1bc">isr_coid</a></div><div class="ttdeci">int isr_coid</div><div class="ttdef"><b>Definition:</b> <a href="isr_8h_source.html#l00035">isr.h:35</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc">se2::hal::PORTB</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00099">constants.hpp:99</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa3ac5d40e5a063d295338b43f0cc000bc">se2::hal::PORTB</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00117">constants.hpp:117</a></div></div>
 <div class="ttc" id="config_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004ab630c5b25ea56cf5bccb99c3567484a4"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ab630c5b25ea56cf5bccb99c3567484a4">se2::hal::EVENT_SENSOR_HEIGHT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00251">constants.hpp:251</a></div></div>
-<div class="ttc" id="constants_8hpp_html_a9e58537ed5fcfbef21e7b62272709201"><div class="ttname"><a href="constants_8hpp.html#a9e58537ed5fcfbef21e7b62272709201">PORTB_INTERRUPT</a></div><div class="ttdeci">#define PORTB_INTERRUPT</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00077">constants.hpp:77</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004ac4e103d879964c98b639ef0c29805ae1"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac4e103d879964c98b639ef0c29805ae1">se2::hal::EVENT_SENSOR_EXIT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00256">constants.hpp:256</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47">se2::hal::IRQ_CLEAR_REG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00102">constants.hpp:102</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda">se2::hal::PORTC</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00100">constants.hpp:100</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004a202ad767c82b9483fdf871dfaa267123"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a202ad767c82b9483fdf871dfaa267123">se2::hal::EVENT_SENSOR_SLIDE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00254">constants.hpp:254</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004ab630c5b25ea56cf5bccb99c3567484a4"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ab630c5b25ea56cf5bccb99c3567484a4">se2::hal::EVENT_SENSOR_HEIGHT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00308">constants.hpp:308</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004a2db17e9bf8499f89e2bc8f0637b6db56"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a2db17e9bf8499f89e2bc8f0637b6db56">se2::hal::EVENT_SENSOR_SWITCH</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00310">constants.hpp:310</a></div></div>
+<div class="ttc" id="constants_8hpp_html_a9e58537ed5fcfbef21e7b62272709201"><div class="ttname"><a href="constants_8hpp.html#a9e58537ed5fcfbef21e7b62272709201">PORTB_INTERRUPT</a></div><div class="ttdeci">#define PORTB_INTERRUPT</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00095">constants.hpp:95</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004ac4e103d879964c98b639ef0c29805ae1"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac4e103d879964c98b639ef0c29805ae1">se2::hal::EVENT_SENSOR_EXIT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00314">constants.hpp:314</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35fa4d63ef25ca014becd7b81a8751660f47">se2::hal::IRQ_CLEAR_REG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00120">constants.hpp:120</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda"><div class="ttname"><a href="namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda">se2::hal::PORTC</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00118">constants.hpp:118</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004a202ad767c82b9483fdf871dfaa267123"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a202ad767c82b9483fdf871dfaa267123">se2::hal::EVENT_SENSOR_SLIDE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00312">constants.hpp:312</a></div></div>
 <div class="ttc" id="constants_8hpp_html"><div class="ttname"><a href="constants_8hpp.html">constants.hpp</a></div></div>
 <div class="ttc" id="isr_8h_html_ab2fa0d551bb7554816cdae5ed0834308"><div class="ttname"><a href="isr_8h.html#ab2fa0d551bb7554816cdae5ed0834308">port_old</a></div><div class="ttdeci">int port_old</div><div class="ttdef"><b>Definition:</b> <a href="isr_8h_source.html#l00036">isr.h:36</a></div></div>
 <div class="ttc" id="isr_8h_html_a677f3df2ebd663ac8c54823fb6844157"><div class="ttname"><a href="isr_8h.html#a677f3df2ebd663ac8c54823fb6844157">isr</a></div><div class="ttdeci">const struct sigevent * isr(void *arg, int id)</div><div class="ttdef"><b>Definition:</b> <a href="isr_8h_source.html#l00038">isr.h:38</a></div></div>
-<div class="ttc" id="namespacese2_html_a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0"><div class="ttname"><a href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0">se2::INTERRUPT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00087">constants.hpp:87</a></div></div>
+<div class="ttc" id="namespacese2_html_a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0"><div class="ttname"><a href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a8b0648429fc53d7557dbaae2ceb39cb0">se2::INTERRUPT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00105">constants.hpp:105</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

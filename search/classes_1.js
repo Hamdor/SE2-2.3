@@ -2,7 +2,6 @@ var searchData=
 [
   ['b1_5fexit',['b1_exit',['../classse2_1_1fsm_1_1b1__exit.html',1,'se2::fsm']]],
   ['b1_5fheight_5fmeasurement',['b1_height_measurement',['../classse2_1_1fsm_1_1b1__height__measurement.html',1,'se2::fsm']]],
-  ['b1_5fmetal_5fdetection',['b1_metal_detection',['../classse2_1_1fsm_1_1b1__metal__detection.html',1,'se2::fsm']]],
   ['b1_5frealized_5fobject',['b1_realized_object',['../classse2_1_1fsm_1_1b1__realized__object.html',1,'se2::fsm']]],
   ['b1_5ftoken_5fready_5ffor_5fb2',['b1_token_ready_for_b2',['../classse2_1_1fsm_1_1b1__token__ready__for__b2.html',1,'se2::fsm']]],
   ['b1_5ftoken_5ftoo_5fsmall',['b1_token_too_small',['../classse2_1_1fsm_1_1b1__token__too__small.html',1,'se2::fsm']]],

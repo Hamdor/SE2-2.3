@@ -1,6 +1,7 @@
 var searchData=
 [
   ['e_5fstop',['E_STOP',['../namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73',1,'se2::serial_bus']]],
+  ['enter_5fsafe_5fstate',['enter_safe_state',['../classse2_1_1token__mgr.html#a2129e6a54f8b309965a4ea02fdb57ec3',1,'se2::token_mgr']]],
   ['entrypoint',['entryPoint',['../classse2_1_1util_1_1_h_a_w_thread.html#ab582a0dbecfab57f1141c8655cd46c34',1,'se2::util::HAWThread']]],
   ['err',['ERR',['../namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9edad141e204efb0f459bf8b75b9b3995131',1,'se2::serial_bus']]],
   ['err_5ffinished_5ftoken_5fnot_5fremoved',['err_finished_token_not_removed',['../classse2_1_1err__finished__token__not__removed.html',1,'se2']]],
@@ -21,6 +22,7 @@ var searchData=
   ['error_5fhandler_2ehpp',['error_handler.hpp',['../error__handler_8hpp.html',1,'']]],
   ['event_5fbase',['EVENT_BASE',['../constants_8hpp.html#a0ea30b569d5ec8bc618c9ee4309c6422',1,'constants.hpp']]],
   ['event_5fbutton_5fe_5fstop',['EVENT_BUTTON_E_STOP',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456',1,'se2::hal']]],
+  ['event_5fbutton_5fe_5fstop_5fr',['EVENT_BUTTON_E_STOP_R',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae',1,'se2::hal']]],
   ['event_5fbutton_5freset',['EVENT_BUTTON_RESET',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a71055ea76e6573a0e7650d2e09414408',1,'se2::hal']]],
   ['event_5fbutton_5fstart',['EVENT_BUTTON_START',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aabc6b0e827320c88dec20fabe37b67dc',1,'se2::hal']]],
   ['event_5fbutton_5fstop',['EVENT_BUTTON_STOP',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac6684b02ec9653e47211530f5d224df3',1,'se2::hal']]],
@@ -39,17 +41,23 @@ var searchData=
   ['event_5fsensor_5fslide',['EVENT_SENSOR_SLIDE',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a202ad767c82b9483fdf871dfaa267123',1,'se2::hal']]],
   ['event_5fsensor_5fslide_5fr',['EVENT_SENSOR_SLIDE_R',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a716117d4278796b786484d80364384da',1,'se2::hal']]],
   ['event_5fsensor_5fswitch',['EVENT_SENSOR_SWITCH',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a2db17e9bf8499f89e2bc8f0637b6db56',1,'se2::hal']]],
+  ['event_5fsensor_5fswitch_5fr',['EVENT_SENSOR_SWITCH_R',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a5664c0b85cd9f6f56533c1810e26fcfd',1,'se2::hal']]],
   ['event_5fserial_5fdata',['EVENT_SERIAL_DATA',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa2fd86c0980707be15d24a67b5bbbee8',1,'se2::hal']]],
   ['event_5fserial_5ferr',['EVENT_SERIAL_ERR',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aff402f85e9892df5f4917c550b3bbba7',1,'se2::hal']]],
   ['event_5fserial_5fmsg',['EVENT_SERIAL_MSG',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3ed7b89c82a50e176835a60c3919b0f6',1,'se2::hal']]],
+  ['event_5fserial_5fnext_5fok',['EVENT_SERIAL_NEXT_OK',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a96c6e267c7822d4d8e1bc1df00463278',1,'se2::hal']]],
   ['event_5fserial_5fstart',['EVENT_SERIAL_START',['../constants_8hpp.html#a01ff979dfbb368230a4dd7dc87e23ea7',1,'constants.hpp']]],
   ['event_5fserial_5funk',['EVENT_SERIAL_UNK',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4b6cd089fb81ad0f5828b18c1a536160',1,'se2::hal']]],
   ['event_5fslide_5ffull',['EVENT_SLIDE_FULL',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa94f91cf0bc577e61cd1e1c1161a4da6',1,'se2::hal']]],
   ['event_5fsource',['event_source',['../namespacese2.html#a8b8153f14e875cb44bc6084edf126894',1,'se2']]],
   ['event_5ftoken_5ffinished',['EVENT_TOKEN_FINISHED',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ad0bf3a5449edc78509c96c4c8ec1c5ff',1,'se2::hal']]],
   ['event_5fturn_5ftoken',['EVENT_TURN_TOKEN',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac246aa2ac4cfe8ab0fef792f285797e1',1,'se2::hal']]],
+  ['event_5funkown1',['EVENT_UNKOWN1',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa5d8ea7bee2b4f951c635dde8fa5458d',1,'se2::hal']]],
   ['event_5fvalues',['event_values',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004',1,'se2::hal']]],
+  ['event_5fzero',['EVENT_ZERO',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a6710bd3528525757d4e76a988a912ecd',1,'se2::hal']]],
   ['events',['events',['../classse2_1_1fsm_1_1events.html',1,'se2::fsm']]],
   ['events_2ehpp',['events.hpp',['../events_8hpp.html',1,'']]],
-  ['execute',['execute',['../structse2_1_1dispatch_1_1dispatcher.html#a762b0d29e231bd72a3a75fd39963d522',1,'se2::dispatch::dispatcher::execute()'],['../classse2_1_1serial__bus_1_1serial__channel.html#a74426d17c76df0e61cae2478a9301be0',1,'se2::serial_bus::serial_channel::execute()'],['../classse2_1_1util_1_1_h_a_w_thread.html#a8c6c7feb4951eecb48ccdba89646e7a0',1,'se2::util::HAWThread::execute()']]]
+  ['execute',['execute',['../structse2_1_1dispatch_1_1dispatcher.html#a762b0d29e231bd72a3a75fd39963d522',1,'se2::dispatch::dispatcher::execute()'],['../classse2_1_1serial__bus_1_1serial__channel.html#a74426d17c76df0e61cae2478a9301be0',1,'se2::serial_bus::serial_channel::execute()'],['../classse2_1_1util_1_1_h_a_w_thread.html#a8c6c7feb4951eecb48ccdba89646e7a0',1,'se2::util::HAWThread::execute()']]],
+  ['exit_5fsafe_5fstate',['exit_safe_state',['../classse2_1_1token__mgr.html#a979e89b0b6d54f3b4cac31307a455c2c',1,'se2::token_mgr']]],
+  ['expected_5ftoken',['expected_token',['../classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550',1,'se2::token_mgr']]]
 ];

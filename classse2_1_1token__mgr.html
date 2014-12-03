@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone4</span>
+   &#160;<span id="projectnumber">0.3-Milestone5</span>
    </div>
   </td>
  </tr>
@@ -88,7 +88,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#pri-static-attribs">Static Private Attributes</a> &#124;
@@ -109,31 +111,89 @@ Inheritance diagram for se2::token_mgr:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1token__mgr_1_1safe__state.html">safe_state</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code><a class="el" href="structse2_1_1token__mgr_1_1safe__state.html" title="safe_state Speichert alle wichtigen Zustaende der Maschine zum zeitpunkt des drucks auf den E-Stop...">safe_state</a></code> Speichert alle wichtigen Zustaende der Maschine zum zeitpunkt des drucks auf den E-Stop.  <a href="structse2_1_1token__mgr_1_1safe__state.html#details">More...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa57546e4db204c16cde9c6659024a6e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#aa57546e4db204c16cde9c6659024a6e6">notify_exsistens</a> ()</td></tr>
-<tr class="memdesc:aa57546e4db204c16cde9c6659024a6e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mit dieser Funktion meldet sich der neue <code>token</code> einmal bei dem <code><a class="el" href="classse2_1_1token__mgr.html">token_mgr</a></code> an.  <a href="#aa57546e4db204c16cde9c6659024a6e6">More...</a><br/></td></tr>
-<tr class="separator:aa57546e4db204c16cde9c6659024a6e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab9b8ebeaa72bf0fdfd3fa80c41705c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#aab9b8ebeaa72bf0fdfd3fa80c41705c3">notify_death</a> ()</td></tr>
-<tr class="memdesc:aab9b8ebeaa72bf0fdfd3fa80c41705c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mit dieser Funktion meldet sich der <code>token</code> vom <code><a class="el" href="classse2_1_1token__mgr.html">token_mgr</a></code> ab.  <a href="#aab9b8ebeaa72bf0fdfd3fa80c41705c3">More...</a><br/></td></tr>
-<tr class="separator:aab9b8ebeaa72bf0fdfd3fa80c41705c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2aac992e7e557e1e89706a9daadca8de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a2aac992e7e557e1e89706a9daadca8de">request_fast_motor</a> ()</td></tr>
-<tr class="separator:a2aac992e7e557e1e89706a9daadca8de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66f44fdddb500b793d7eda68061ee0f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a66f44fdddb500b793d7eda68061ee0f5">request_slow_motor</a> ()</td></tr>
-<tr class="separator:a66f44fdddb500b793d7eda68061ee0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe95bcd653b71219c6204304c47a513f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#afe95bcd653b71219c6204304c47a513f">request_stop_motor</a> ()</td></tr>
-<tr class="separator:afe95bcd653b71219c6204304c47a513f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ac72ca52c01b86469f0bbcc1957a921"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a3ac72ca52c01b86469f0bbcc1957a921">unrequest_stop_motor</a> ()</td></tr>
-<tr class="separator:a3ac72ca52c01b86469f0bbcc1957a921"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab787cae423bec07a7fbaf31373175489"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#ab787cae423bec07a7fbaf31373175489">send_free</a> ()</td></tr>
+<tr class="memdesc:ab787cae423bec07a7fbaf31373175489"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sendet an conveyor 1 dass wieder Platz fuer einen Token ist.  <a href="#ab787cae423bec07a7fbaf31373175489">More...</a><br/></td></tr>
+<tr class="separator:ab787cae423bec07a7fbaf31373175489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af99e65a7f0a90cdb73201ec1ea1edba3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#af99e65a7f0a90cdb73201ec1ea1edba3">notify_existence</a> (bool <a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>=true)</td></tr>
+<tr class="memdesc:af99e65a7f0a90cdb73201ec1ea1edba3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mit dieser Funktion meldet sich der neue <code>token</code> einmal bei dem <code><a class="el" href="classse2_1_1token__mgr.html">token_mgr</a></code> an.  <a href="#af99e65a7f0a90cdb73201ec1ea1edba3">More...</a><br/></td></tr>
+<tr class="separator:af99e65a7f0a90cdb73201ec1ea1edba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a326cf722a596dda94efdf407e6b0d82a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a326cf722a596dda94efdf407e6b0d82a">notify_death</a> (bool <a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>=true)</td></tr>
+<tr class="memdesc:a326cf722a596dda94efdf407e6b0d82a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mit dieser Funktion meldet sich der <code>token</code> vom <code><a class="el" href="classse2_1_1token__mgr.html">token_mgr</a></code> ab.  <a href="#a326cf722a596dda94efdf407e6b0d82a">More...</a><br/></td></tr>
+<tr class="separator:a326cf722a596dda94efdf407e6b0d82a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc1a2ccdcbc44016cb146559d7f67bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a2dc1a2ccdcbc44016cb146559d7f67bd">request_fast_motor</a> (bool <a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>=true)</td></tr>
+<tr class="memdesc:a2dc1a2ccdcbc44016cb146559d7f67bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Schnellen Motor anfragen.  <a href="#a2dc1a2ccdcbc44016cb146559d7f67bd">More...</a><br/></td></tr>
+<tr class="separator:a2dc1a2ccdcbc44016cb146559d7f67bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cf22c04d6eb888a800f666f10da3df0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a7cf22c04d6eb888a800f666f10da3df0">request_slow_motor</a> (bool <a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>=true)</td></tr>
+<tr class="memdesc:a7cf22c04d6eb888a800f666f10da3df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Langsamen Motor anfragen.  <a href="#a7cf22c04d6eb888a800f666f10da3df0">More...</a><br/></td></tr>
+<tr class="separator:a7cf22c04d6eb888a800f666f10da3df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0935ce7dc8d2ad42178b22105671472"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#aa0935ce7dc8d2ad42178b22105671472">request_left_motor</a> (bool <a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>=true)</td></tr>
+<tr class="memdesc:aa0935ce7dc8d2ad42178b22105671472"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor linkslauf anfragen.  <a href="#aa0935ce7dc8d2ad42178b22105671472">More...</a><br/></td></tr>
+<tr class="separator:aa0935ce7dc8d2ad42178b22105671472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81c50ac34e2876760d680959776381b9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a81c50ac34e2876760d680959776381b9">unrequest_left_motor</a> (bool <a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>=true)</td></tr>
+<tr class="memdesc:a81c50ac34e2876760d680959776381b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor linkslauf zurueckziehen.  <a href="#a81c50ac34e2876760d680959776381b9">More...</a><br/></td></tr>
+<tr class="separator:a81c50ac34e2876760d680959776381b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1ccc1fe94142d3508bfc3d56a35652c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#ab1ccc1fe94142d3508bfc3d56a35652c">request_stop_motor</a> (bool <a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>=true)</td></tr>
+<tr class="memdesc:ab1ccc1fe94142d3508bfc3d56a35652c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor stop anfragen.  <a href="#ab1ccc1fe94142d3508bfc3d56a35652c">More...</a><br/></td></tr>
+<tr class="separator:ab1ccc1fe94142d3508bfc3d56a35652c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a189cf8190227accc0f33a82d243588ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a189cf8190227accc0f33a82d243588ff">unrequest_stop_motor</a> (bool <a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>=true)</td></tr>
+<tr class="memdesc:a189cf8190227accc0f33a82d243588ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motor stop anfrage zurueckziehen.  <a href="#a189cf8190227accc0f33a82d243588ff">More...</a><br/></td></tr>
+<tr class="separator:a189cf8190227accc0f33a82d243588ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b1e5485d01ce1a266883bba0eb502fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a5b1e5485d01ce1a266883bba0eb502fc">reregister_e_stop</a> ()</td></tr>
+<tr class="memdesc:a5b1e5485d01ce1a266883bba0eb502fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neu an E-Stop event registrieren (Gedrueckt)  <a href="#a5b1e5485d01ce1a266883bba0eb502fc">More...</a><br/></td></tr>
+<tr class="separator:a5b1e5485d01ce1a266883bba0eb502fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c7162b24939ac9a6cd88a20bc9a7e7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a4c7162b24939ac9a6cd88a20bc9a7e7c">reregister_e_stop_rising</a> ()</td></tr>
+<tr class="memdesc:a4c7162b24939ac9a6cd88a20bc9a7e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Neu an E-Stop event registrieren (Nicht mehr gedrueckt)  <a href="#a4c7162b24939ac9a6cd88a20bc9a7e7c">More...</a><br/></td></tr>
+<tr class="separator:a4c7162b24939ac9a6cd88a20bc9a7e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2129e6a54f8b309965a4ea02fdb57ec3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a2129e6a54f8b309965a4ea02fdb57ec3">enter_safe_state</a> ()</td></tr>
+<tr class="memdesc:a2129e6a54f8b309965a4ea02fdb57ec3"><td class="mdescLeft">&#160;</td><td class="mdescRight">System in sicheren Zustand bringen.  <a href="#a2129e6a54f8b309965a4ea02fdb57ec3">More...</a><br/></td></tr>
+<tr class="separator:a2129e6a54f8b309965a4ea02fdb57ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a979e89b0b6d54f3b4cac31307a455c2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a979e89b0b6d54f3b4cac31307a455c2c">exit_safe_state</a> ()</td></tr>
+<tr class="memdesc:a979e89b0b6d54f3b4cac31307a455c2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">System wieder in alten Zustand bringen.  <a href="#a979e89b0b6d54f3b4cac31307a455c2c">More...</a><br/></td></tr>
+<tr class="separator:a979e89b0b6d54f3b4cac31307a455c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a060ea5e4590c9cfd09c89f2b33f304e6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a060ea5e4590c9cfd09c89f2b33f304e6">check_order</a> (bool metal)</td></tr>
+<tr class="memdesc:a060ea5e4590c9cfd09c89f2b33f304e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prueft ob das aktueller Token zur korrekten Reihenfolge gehoert.  <a href="#a060ea5e4590c9cfd09c89f2b33f304e6">More...</a><br/></td></tr>
+<tr class="separator:a060ea5e4590c9cfd09c89f2b33f304e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d269c7ab6ae1c58f301712b2d1a546b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a7d269c7ab6ae1c58f301712b2d1a546b">check_conveyor2_ready</a> () const </td></tr>
+<tr class="memdesc:a7d269c7ab6ae1c58f301712b2d1a546b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prueft ob Conveyor 2 bereit fuer einen neuen Token ist.  <a href="#a7d269c7ab6ae1c58f301712b2d1a546b">More...</a><br/></td></tr>
+<tr class="separator:a7d269c7ab6ae1c58f301712b2d1a546b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b75326e798c71e52d23e4baa234728"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a45b75326e798c71e52d23e4baa234728">notify_token_trasition</a> ()</td></tr>
+<tr class="memdesc:a45b75326e798c71e52d23e4baa234728"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gibt dem <code><a class="el" href="classse2_1_1token__mgr.html">token_mgr</a></code> bescheid, dass ein Token an Conveyor 2 uebergeben wurde.  <a href="#a45b75326e798c71e52d23e4baa234728">More...</a><br/></td></tr>
+<tr class="separator:a45b75326e798c71e52d23e4baa234728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae46875e696120835002f977820a1f089"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#ae46875e696120835002f977820a1f089">notify_ready_for_next</a> ()</td></tr>
+<tr class="memdesc:ae46875e696120835002f977820a1f089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wird aufgerufen sobald <code>B2_FREE</code> per Serieller Schnittstelle empfangen wurde.  <a href="#ae46875e696120835002f977820a1f089">More...</a><br/></td></tr>
+<tr class="separator:ae46875e696120835002f977820a1f089"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classse2_1_1util_1_1abstract__singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classse2_1_1util_1_1abstract__singleton')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classse2_1_1util_1_1abstract__singleton.html">se2::util::abstract_singleton</a></td></tr>
 <tr class="memitem:a376766d50568ae08879d9b916adf0454 inherit pub_methods_classse2_1_1util_1_1abstract__singleton"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1util_1_1abstract__singleton.html#a376766d50568ae08879d9b916adf0454">~abstract_singleton</a> ()</td></tr>
 <tr class="separator:a376766d50568ae08879d9b916adf0454 inherit pub_methods_classse2_1_1util_1_1abstract__singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a1d5e85ae1b665fe21726b9efa6135550"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550">expected_token</a> { <br/>
+&#160;&#160;<a class="el" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f">ALL</a>, 
+<br/>
+&#160;&#160;<a class="el" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586">METAL</a>, 
+<br/>
+&#160;&#160;<a class="el" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473">PLASTIC</a>
+<br/>
+ }</td></tr>
+<tr class="memdesc:a1d5e85ae1b665fe21726b9efa6135550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum fuer den als naechstes erwarteten Token, ALL - Egal welcher Token (da vorher noch keiner auf dem Band war) METAL - Nur Metall wird akzeptiert PLASTIC - Nur Plastic wird akzeptiert.  <a href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550">More...</a><br/></td></tr>
+<tr class="separator:a1d5e85ae1b665fe21726b9efa6135550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a13e2805b5a9fa0fb1adfb095610d4608"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a13e2805b5a9fa0fb1adfb095610d4608">token_mgr</a> ()</td></tr>
+<tr class="memdesc:a13e2805b5a9fa0fb1adfb095610d4608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Konstruktor.  <a href="#a13e2805b5a9fa0fb1adfb095610d4608">More...</a><br/></td></tr>
 <tr class="separator:a13e2805b5a9fa0fb1adfb095610d4608"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1a54fffd06a45b4aa15340214916900"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#ac1a54fffd06a45b4aa15340214916900">~token_mgr</a> ()</td></tr>
+<tr class="memdesc:ac1a54fffd06a45b4aa15340214916900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor.  <a href="#ac1a54fffd06a45b4aa15340214916900">More...</a><br/></td></tr>
 <tr class="separator:ac1a54fffd06a45b4aa15340214916900"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9709170fd548f59071b6c19c68847cbb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a9709170fd548f59071b6c19c68847cbb">initialize</a> ()</td></tr>
 <tr class="memdesc:a9709170fd548f59071b6c19c68847cbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisierung des Singletons.  <a href="#a9709170fd548f59071b6c19c68847cbb">More...</a><br/></td></tr>
@@ -142,6 +202,7 @@ Private Member Functions</h2></td></tr>
 <tr class="memdesc:a4ce003c1c185f2458865f4e74454e8ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zerstoerung des Singleton.  <a href="#a4ce003c1c185f2458865f4e74454e8ef">More...</a><br/></td></tr>
 <tr class="separator:a4ce003c1c185f2458865f4e74454e8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c746671ee4de6aa63fbf21283ac8cce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a> ()</td></tr>
+<tr class="memdesc:a3c746671ee4de6aa63fbf21283ac8cce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von <code>m_alife</code>, <code>m_motor_slow</code> sowie <code>m_motor_stop</code>.  <a href="#a3c746671ee4de6aa63fbf21283ac8cce">More...</a><br/></td></tr>
 <tr class="separator:a3c746671ee4de6aa63fbf21283ac8cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
@@ -150,12 +211,23 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a47d2064bfa9b2ac33b069f68a2115631"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7264dbb9e11781165156e9b86f096c12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classse2_1_1token.html">token</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a7264dbb9e11781165156e9b86f096c12">m_tokens</a> [<a class="el" href="config_8h.html#abcd684cc94658ec1810bf3147dd563b3">NUM_OF_TOKENS</a>]</td></tr>
 <tr class="separator:a7264dbb9e11781165156e9b86f096c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a177b839217db9bdbd5c4de0fbf783d9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classse2_1_1fsm_1_1state.html">fsm::state</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">m_e_stop_listener</a></td></tr>
+<tr class="memdesc:a177b839217db9bdbd5c4de0fbf783d9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dieser Zustand ist permanent und wartet nur auf den E-Stop.  <a href="#a177b839217db9bdbd5c4de0fbf783d9d">More...</a><br/></td></tr>
+<tr class="separator:a177b839217db9bdbd5c4de0fbf783d9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeebfbeec262c549aeaccf1204fa2c79d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a></td></tr>
 <tr class="separator:aeebfbeec262c549aeaccf1204fa2c79d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a17b678209bb792a8b350b8df11e684be"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a></td></tr>
 <tr class="separator:a17b678209bb792a8b350b8df11e684be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac17349f09c1b593c19c1d520d6e495dd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">m_motor_stop</a></td></tr>
 <tr class="separator:ac17349f09c1b593c19c1d520d6e495dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42a92ca0f3bad85371e5024759437317"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">m_motor_left</a></td></tr>
+<tr class="separator:a42a92ca0f3bad85371e5024759437317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf252240ae940c612c48b5aa3f7df0bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structse2_1_1token__mgr_1_1safe__state.html">safe_state</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#aaf252240ae940c612c48b5aa3f7df0bd">m_safe</a></td></tr>
+<tr class="separator:aaf252240ae940c612c48b5aa3f7df0bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25378b3839224379a0c3929e480fbe19"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550">expected_token</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">m_expected_token</a></td></tr>
+<tr class="separator:a25378b3839224379a0c3929e480fbe19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee826537e2e74a5aa1896dcf98c35ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">m_is_b2_ready</a></td></tr>
+<tr class="separator:adee826537e2e74a5aa1896dcf98c35ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
 Static Private Attributes</h2></td></tr>
@@ -164,8 +236,49 @@ Static Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00038">38</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00040">40</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="a1d5e85ae1b665fe21726b9efa6135550"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550">se2::token_mgr::expected_token</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enum fuer den als naechstes erwarteten Token, ALL - Egal welcher Token (da vorher noch keiner auf dem Band war) METAL - Nur Metall wird akzeptiert PLASTIC - Nur Plastic wird akzeptiert. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f"></a>ALL</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586"></a>METAL</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473"></a>PLASTIC</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00059">59</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                      {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f">ALL</a>,</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586">METAL</a>,</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473">PLASTIC</a></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  };</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f"><div class="ttname"><a href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f">se2::token_mgr::ALL</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00060">token_mgr.hpp:60</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586"><div class="ttname"><a href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586">se2::token_mgr::METAL</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00061">token_mgr.hpp:61</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473"><div class="ttname"><a href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473">se2::token_mgr::PLASTIC</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00062">token_mgr.hpp:62</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a13e2805b5a9fa0fb1adfb095610d4608"></a>
 <div class="memitem">
 <div class="memproto">
@@ -187,21 +300,43 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00038">38</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                     : <a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a>(0), <a class="code" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a>(0)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                       , <a class="code" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">m_motor_stop</a>(<span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  <span class="comment">// Initialisiere alle Token mit anonymous token</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="config_8h.html#abcd684cc94658ec1810bf3147dd563b3">NUM_OF_TOKENS</a>; ++i) {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="classse2_1_1token__mgr.html#a7264dbb9e11781165156e9b86f096c12">m_tokens</a>[i].<a class="code" href="classse2_1_1token.html#ad58cdbcc08674bec84ed2dd27eb5c3d9">set_state</a>(<span class="keyword">new</span> <a class="code" href="classse2_1_1fsm_1_1anonymous__token.html">anonymous_token</a>(&amp;<a class="code" href="classse2_1_1token__mgr.html#a7264dbb9e11781165156e9b86f096c12">m_tokens</a>[i]));</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  }</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1fsm_1_1anonymous__token_html"><div class="ttname"><a href="classse2_1_1fsm_1_1anonymous__token.html">se2::fsm::anonymous_token</a></div><div class="ttdef"><b>Definition:</b> <a href="state_8hpp_source.html#l00123">state.hpp:123</a></div></div>
+<p>Default Konstruktor. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00042">42</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                     : <a class="code" href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">m_e_stop_listener</a>(<span class="keyword">new</span> <a class="code" href="classse2_1_1fsm_1_1state.html">state</a>)</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                       , <a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a>(0), <a class="code" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a>(0)</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                       , <a class="code" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">m_motor_stop</a>(<span class="keyword">false</span>)</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                       , <a class="code" href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">m_motor_left</a>(<span class="keyword">false</span>)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                       , <a class="code" href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">m_expected_token</a>(<a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f">ALL</a>)</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                       , <a class="code" href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">m_is_b2_ready</a>(<span class="keyword">true</span>) {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <a class="code" href="structse2_1_1dispatch_1_1dispatcher.html">dispatcher</a>* disp = <a class="code" href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      (singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">DISPATCHER_PLUGIN</a>));</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  disp-&gt;<a class="code" href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">register_listener</a>(<a class="code" href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">m_e_stop_listener</a>, <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456">EVENT_BUTTON_E_STOP</a>);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  disp-&gt;<a class="code" href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">register_listener</a>(<a class="code" href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">m_e_stop_listener</a>, <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae">EVENT_BUTTON_E_STOP_R</a>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="comment">// Initialisiere alle Token mit anonymous token</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="config_8h.html#abcd684cc94658ec1810bf3147dd563b3">NUM_OF_TOKENS</a>; ++i) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="classse2_1_1token__mgr.html#a7264dbb9e11781165156e9b86f096c12">m_tokens</a>[i].<a class="code" href="classse2_1_1token.html#ac9c4828b3956e23065d7585fd9ffc12c">set_state</a>(<span class="keyword">new</span> <a class="code" href="classse2_1_1fsm_1_1anonymous__token.html">anonymous_token</a>(&amp;<a class="code" href="classse2_1_1token__mgr.html#a7264dbb9e11781165156e9b86f096c12">m_tokens</a>[i]));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f"><div class="ttname"><a href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f">se2::token_mgr::ALL</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00060">token_mgr.hpp:60</a></div></div>
+<div class="ttc" id="classse2_1_1fsm_1_1anonymous__token_html"><div class="ttname"><a href="classse2_1_1fsm_1_1anonymous__token.html">se2::fsm::anonymous_token</a></div><div class="ttdef"><b>Definition:</b> <a href="state_8hpp_source.html#l00130">state.hpp:130</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456">se2::hal::EVENT_BUTTON_E_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00304">constants.hpp:304</a></div></div>
+<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html_ae7eb0e0a8e2114fc634c212f5338e25c"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">se2::dispatch::dispatcher::register_listener</a></div><div class="ttdeci">virtual bool register_listener(fsm::events *listener, hal::event_values event)</div><div class="ttdoc">Registriert einen Listener fuer ein Event. </div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8cpp_source.html#l00109">dispatcher.cpp:109</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a42a92ca0f3bad85371e5024759437317"><div class="ttname"><a href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">se2::token_mgr::m_motor_left</a></div><div class="ttdeci">bool m_motor_left</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00206">token_mgr.hpp:206</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a177b839217db9bdbd5c4de0fbf783d9d"><div class="ttname"><a href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">se2::token_mgr::m_e_stop_listener</a></div><div class="ttdeci">fsm::state * m_e_stop_listener</div><div class="ttdoc">Dieser Zustand ist permanent und wartet nur auf den E-Stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00201">token_mgr.hpp:201</a></div></div>
 <div class="ttc" id="config_8h_html_abcd684cc94658ec1810bf3147dd563b3"><div class="ttname"><a href="config_8h.html#abcd684cc94658ec1810bf3147dd563b3">NUM_OF_TOKENS</a></div><div class="ttdeci">#define NUM_OF_TOKENS</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00029">config.h:29</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a17b678209bb792a8b350b8df11e684be"><div class="ttname"><a href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr::m_motor_slow</a></div><div class="ttdeci">int m_motor_slow</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00074">token_mgr.hpp:74</a></div></div>
-<div class="ttc" id="classse2_1_1token_html_ad58cdbcc08674bec84ed2dd27eb5c3d9"><div class="ttname"><a href="classse2_1_1token.html#ad58cdbcc08674bec84ed2dd27eb5c3d9">se2::token::set_state</a></div><div class="ttdeci">virtual void set_state(fsm::events *state)</div><div class="ttdef"><b>Definition:</b> <a href="token_8hpp_source.html#l00044">token.hpp:44</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a7264dbb9e11781165156e9b86f096c12"><div class="ttname"><a href="classse2_1_1token__mgr.html#a7264dbb9e11781165156e9b86f096c12">se2::token_mgr::m_tokens</a></div><div class="ttdeci">token m_tokens[NUM_OF_TOKENS]</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00071">token_mgr.hpp:71</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_ac17349f09c1b593c19c1d520d6e495dd"><div class="ttname"><a href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr::m_motor_stop</a></div><div class="ttdeci">bool m_motor_stop</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00075">token_mgr.hpp:75</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_aeebfbeec262c549aeaccf1204fa2c79d"><div class="ttname"><a href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr::m_alife</a></div><div class="ttdeci">int m_alife</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00073">token_mgr.hpp:73</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_ab4ba35dc6b423c3069067425e582bf1e"><div class="ttname"><a href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a></div><div class="ttdeci">#define TO_DISPATCHER(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00094">singleton_mgr.hpp:94</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a17b678209bb792a8b350b8df11e684be"><div class="ttname"><a href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr::m_motor_slow</a></div><div class="ttdeci">int m_motor_slow</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00204">token_mgr.hpp:204</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a7264dbb9e11781165156e9b86f096c12"><div class="ttname"><a href="classse2_1_1token__mgr.html#a7264dbb9e11781165156e9b86f096c12">se2::token_mgr::m_tokens</a></div><div class="ttdeci">token m_tokens[NUM_OF_TOKENS]</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00197">token_mgr.hpp:197</a></div></div>
+<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html">se2::dispatch::dispatcher</a></div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8hpp_source.html#l00048">dispatcher.hpp:48</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_ac17349f09c1b593c19c1d520d6e495dd"><div class="ttname"><a href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr::m_motor_stop</a></div><div class="ttdeci">bool m_motor_stop</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00205">token_mgr.hpp:205</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae">se2::hal::EVENT_BUTTON_E_STOP_R</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00305">constants.hpp:305</a></div></div>
+<div class="ttc" id="classse2_1_1fsm_1_1state_html"><div class="ttname"><a href="classse2_1_1fsm_1_1state.html">se2::fsm::state</a></div><div class="ttdef"><b>Definition:</b> <a href="state_8hpp_source.html#l00036">state.hpp:36</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">se2::util::DISPATCHER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00051">singleton_mgr.hpp:51</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a25378b3839224379a0c3929e480fbe19"><div class="ttname"><a href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">se2::token_mgr::m_expected_token</a></div><div class="ttdeci">expected_token m_expected_token</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00208">token_mgr.hpp:208</a></div></div>
+<div class="ttc" id="classse2_1_1token_html_ac9c4828b3956e23065d7585fd9ffc12c"><div class="ttname"><a href="classse2_1_1token.html#ac9c4828b3956e23065d7585fd9ffc12c">se2::token::set_state</a></div><div class="ttdeci">void set_state(fsm::events *state)</div><div class="ttdoc">Setzt den Token auf einen neuen Zustand. </div><div class="ttdef"><b>Definition:</b> <a href="token_8hpp_source.html#l00057">token.hpp:57</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_aeebfbeec262c549aeaccf1204fa2c79d"><div class="ttname"><a href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr::m_alife</a></div><div class="ttdeci">int m_alife</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00203">token_mgr.hpp:203</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_adee826537e2e74a5aa1896dcf98c35ae"><div class="ttname"><a href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">se2::token_mgr::m_is_b2_ready</a></div><div class="ttdeci">bool m_is_b2_ready</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00209">token_mgr.hpp:209</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -226,15 +361,99 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00046">46</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                      {</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a2d94dd25789dce9d612d9aff2ae0c4d1">token_mgr::instance</a> = 0;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a2d94dd25789dce9d612d9aff2ae0c4d1"><div class="ttname"><a href="classse2_1_1token__mgr.html#a2d94dd25789dce9d612d9aff2ae0c4d1">se2::token_mgr::instance</a></div><div class="ttdeci">static token_mgr * instance</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00070">token_mgr.hpp:70</a></div></div>
+<p>Destruktor. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00058">58</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                      {</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keyword">delete</span> <a class="code" href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">m_e_stop_listener</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a2d94dd25789dce9d612d9aff2ae0c4d1">token_mgr::instance</a> = 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a177b839217db9bdbd5c4de0fbf783d9d"><div class="ttname"><a href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">se2::token_mgr::m_e_stop_listener</a></div><div class="ttdeci">fsm::state * m_e_stop_listener</div><div class="ttdoc">Dieser Zustand ist permanent und wartet nur auf den E-Stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00201">token_mgr.hpp:201</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a2d94dd25789dce9d612d9aff2ae0c4d1"><div class="ttname"><a href="classse2_1_1token__mgr.html#a2d94dd25789dce9d612d9aff2ae0c4d1">se2::token_mgr::instance</a></div><div class="ttdeci">static token_mgr * instance</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00196">token_mgr.hpp:196</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a7d269c7ab6ae1c58f301712b2d1a546b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool token_mgr::check_conveyor2_ready </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prueft ob Conveyor 2 bereit fuer einen neuen Token ist. </p>
+<dl class="section return"><dt>Returns</dt><dd>TRUE wenn conveyor 2 einen neuen Token bearbeiten kann FALSE wenn ein Token auf Conveyor 2 liegt </dd></dl>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00226">226</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;                                            {</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;  <span class="keywordflow">return</span> <a class="code" href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">m_is_b2_ready</a>;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_adee826537e2e74a5aa1896dcf98c35ae"><div class="ttname"><a href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">se2::token_mgr::m_is_b2_ready</a></div><div class="ttdeci">bool m_is_b2_ready</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00209">token_mgr.hpp:209</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a060ea5e4590c9cfd09c89f2b33f304e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool token_mgr::check_order </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>metal</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prueft ob das aktueller Token zur korrekten Reihenfolge gehoert. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">metal</td><td>beschreibt ob das aktueller Token aus Metall ist </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE wenn Reihenfolge korrekt FALSE wenn Reihenfolge nicht korrekt </dd></dl>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00201">201</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                                      {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">m_expected_token</a> == <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f">ALL</a>) {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="code" href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">m_expected_token</a> = (metal ? <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473">PLASTIC</a> : <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586">METAL</a>);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">m_expected_token</a> == <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586">METAL</a>) {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordflow">if</span> (metal) {</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;      <a class="code" href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">m_expected_token</a> = <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473">PLASTIC</a>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;  } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">m_expected_token</a> == <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473">PLASTIC</a>) {</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    <span class="keywordflow">if</span> (metal) {</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;      <a class="code" href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">m_expected_token</a> = <a class="code" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586">METAL</a>;</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    }</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="comment">// Kann gar nicht passieren</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;nicht beruecksichtigte Kombination&quot;</span>)</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    return false;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;  }</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f"><div class="ttname"><a href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ab38a2aca066a45dc7e00832ed19b584f">se2::token_mgr::ALL</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00060">token_mgr.hpp:60</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586"><div class="ttname"><a href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550ae251079ad74d2ca0f70cc7a3cefa2586">se2::token_mgr::METAL</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00061">token_mgr.hpp:61</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473"><div class="ttname"><a href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550af0e55bfff6700423e3829971b0ef3473">se2::token_mgr::PLASTIC</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00062">token_mgr.hpp:62</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a25378b3839224379a0c3929e480fbe19"><div class="ttname"><a href="classse2_1_1token__mgr.html#a25378b3839224379a0c3929e480fbe19">se2::token_mgr::m_expected_token</a></div><div class="ttdeci">expected_token m_expected_token</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00208">token_mgr.hpp:208</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="a4ce003c1c185f2458865f4e74454e8ef"></a>
 <div class="memitem">
 <div class="memproto">
@@ -260,10 +479,99 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classse2_1_1util_1_1abstract__singleton.html#a752730b510e3e985ba61fca22aadaf94">se2::util::abstract_singleton</a>.</p>
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00054">54</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                        {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="comment">// nop</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00067">67</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                        {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="comment">// nop</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a2129e6a54f8b309965a4ea02fdb57ec3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::enter_safe_state </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>System in sicheren Zustand bringen. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00177">177</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;                                 {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  <a class="code" href="structse2_1_1hal_1_1hwaccess.html">hwaccess</a>* hal = <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>));</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#aaf252240ae940c612c48b5aa3f7df0bd">m_safe</a>.<a class="code" href="structse2_1_1token__mgr_1_1safe__state.html#a112b5fae8a41a9115d23f07fd3db024e">m_switch_open</a>   = hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a0e79c7866ebb092d5109cd1d5fc67159">is_switch_open</a>();</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#aaf252240ae940c612c48b5aa3f7df0bd">m_safe</a>.<a class="code" href="structse2_1_1token__mgr_1_1safe__state.html#a477f53218a5926d7fb22d13923da7432">m_motor_running</a> = hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a66f7148aff7483730d6939c96f5e0ef1">is_motor_running</a>();</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;  hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a30ddc4b49f4488fb773ec4be3a8c4e9b">close_switch</a>();</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html">token_mgr</a>* mgr = <a class="code" href="singleton__mgr_8hpp.html#ae45a7e650b29ed49f2ed8c4996904158">TO_TOKEN_MGR</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81">TOKEN_PLUGIN</a>));</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;  mgr-&gt;<a class="code" href="classse2_1_1token__mgr.html#ab1ccc1fe94142d3508bfc3d56a35652c">request_stop_motor</a>();</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;  <a class="code" href="singleton__mgr_8hpp.html#a1859ae4b979f49ac9a3ac3ef93400607">TO_TIMER</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa63da2ff13a5325cc6f0f57edecd3ef0e">TIMER_PLUGIN</a>))-&gt;pause_all();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;}</div>
+<div class="ttc" id="singleton__mgr_8hpp_html_ae45a7e650b29ed49f2ed8c4996904158"><div class="ttname"><a href="singleton__mgr_8hpp.html#ae45a7e650b29ed49f2ed8c4996904158">TO_TOKEN_MGR</a></div><div class="ttdeci">#define TO_TOKEN_MGR(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00095">singleton_mgr.hpp:95</a></div></div>
+<div class="ttc" id="structse2_1_1token__mgr_1_1safe__state_html_a112b5fae8a41a9115d23f07fd3db024e"><div class="ttname"><a href="structse2_1_1token__mgr_1_1safe__state.html#a112b5fae8a41a9115d23f07fd3db024e">se2::token_mgr::safe_state::m_switch_open</a></div><div class="ttdeci">bool m_switch_open</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00049">token_mgr.hpp:49</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00090">singleton_mgr.hpp:90</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html"><div class="ttname"><a href="classse2_1_1token__mgr.html">se2::token_mgr</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00040">token_mgr.hpp:40</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html">se2::hal::hwaccess</a></div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8hpp_source.html#l00046">HWaccess.hpp:46</a></div></div>
+<div class="ttc" id="structse2_1_1token__mgr_1_1safe__state_html_a477f53218a5926d7fb22d13923da7432"><div class="ttname"><a href="structse2_1_1token__mgr_1_1safe__state.html#a477f53218a5926d7fb22d13923da7432">se2::token_mgr::safe_state::m_motor_running</a></div><div class="ttdeci">bool m_motor_running</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00050">token_mgr.hpp:50</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a1859ae4b979f49ac9a3ac3ef93400607"><div class="ttname"><a href="singleton__mgr_8hpp.html#a1859ae4b979f49ac9a3ac3ef93400607">TO_TIMER</a></div><div class="ttdeci">#define TO_TIMER(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00092">singleton_mgr.hpp:92</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa63da2ff13a5325cc6f0f57edecd3ef0e"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa63da2ff13a5325cc6f0f57edecd3ef0e">se2::util::TIMER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00052">singleton_mgr.hpp:52</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a66f7148aff7483730d6939c96f5e0ef1"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a66f7148aff7483730d6939c96f5e0ef1">se2::hal::hwaccess::is_motor_running</a></div><div class="ttdeci">bool is_motor_running() const </div><div class="ttdoc">Prueft ob der Motor laeft. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00139">HWaccess.cpp:139</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_ab1ccc1fe94142d3508bfc3d56a35652c"><div class="ttname"><a href="classse2_1_1token__mgr.html#ab1ccc1fe94142d3508bfc3d56a35652c">se2::token_mgr::request_stop_motor</a></div><div class="ttdeci">void request_stop_motor(bool update=true)</div><div class="ttdoc">Motor stop anfragen. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00151">token_mgr.cpp:151</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_aaf252240ae940c612c48b5aa3f7df0bd"><div class="ttname"><a href="classse2_1_1token__mgr.html#aaf252240ae940c612c48b5aa3f7df0bd">se2::token_mgr::m_safe</a></div><div class="ttdeci">safe_state m_safe</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00207">token_mgr.hpp:207</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00048">singleton_mgr.hpp:48</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a30ddc4b49f4488fb773ec4be3a8c4e9b"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a30ddc4b49f4488fb773ec4be3a8c4e9b">se2::hal::hwaccess::close_switch</a></div><div class="ttdeci">void close_switch()</div><div class="ttdoc">Schliesst die Weiche, wenn Weiche geschlossen keine weitere Reaktion. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00102">HWaccess.cpp:102</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a0e79c7866ebb092d5109cd1d5fc67159"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a0e79c7866ebb092d5109cd1d5fc67159">se2::hal::hwaccess::is_switch_open</a></div><div class="ttdeci">bool is_switch_open() const </div><div class="ttdoc">Prueft ob die Weiche offen ist. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00135">HWaccess.cpp:135</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81">se2::util::TOKEN_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00053">singleton_mgr.hpp:53</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a979e89b0b6d54f3b4cac31307a455c2c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::exit_safe_state </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>System wieder in alten Zustand bringen. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00187">187</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;                                {</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;  <a class="code" href="structse2_1_1hal_1_1hwaccess.html">hwaccess</a>* hal = <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>));</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#aaf252240ae940c612c48b5aa3f7df0bd">m_safe</a>.<a class="code" href="structse2_1_1token__mgr_1_1safe__state.html#a112b5fae8a41a9115d23f07fd3db024e">m_switch_open</a>) {</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a31a9c2c63ea05cf6726ea93004dd0128">open_switch</a>();</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a30ddc4b49f4488fb773ec4be3a8c4e9b">close_switch</a>();</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;  }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#aaf252240ae940c612c48b5aa3f7df0bd">m_safe</a>.<a class="code" href="structse2_1_1token__mgr_1_1safe__state.html#a477f53218a5926d7fb22d13923da7432">m_motor_running</a>) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <a class="code" href="classse2_1_1token__mgr.html">token_mgr</a>* mgr = <a class="code" href="singleton__mgr_8hpp.html#ae45a7e650b29ed49f2ed8c4996904158">TO_TOKEN_MGR</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81">TOKEN_PLUGIN</a>));</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    mgr-&gt;<a class="code" href="classse2_1_1token__mgr.html#a189cf8190227accc0f33a82d243588ff">unrequest_stop_motor</a>();</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;  }</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;  <a class="code" href="singleton__mgr_8hpp.html#a1859ae4b979f49ac9a3ac3ef93400607">TO_TIMER</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa63da2ff13a5325cc6f0f57edecd3ef0e">TIMER_PLUGIN</a>))-&gt;continue_all();</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;}</div>
+<div class="ttc" id="singleton__mgr_8hpp_html_ae45a7e650b29ed49f2ed8c4996904158"><div class="ttname"><a href="singleton__mgr_8hpp.html#ae45a7e650b29ed49f2ed8c4996904158">TO_TOKEN_MGR</a></div><div class="ttdeci">#define TO_TOKEN_MGR(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00095">singleton_mgr.hpp:95</a></div></div>
+<div class="ttc" id="structse2_1_1token__mgr_1_1safe__state_html_a112b5fae8a41a9115d23f07fd3db024e"><div class="ttname"><a href="structse2_1_1token__mgr_1_1safe__state.html#a112b5fae8a41a9115d23f07fd3db024e">se2::token_mgr::safe_state::m_switch_open</a></div><div class="ttdeci">bool m_switch_open</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00049">token_mgr.hpp:49</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00090">singleton_mgr.hpp:90</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a189cf8190227accc0f33a82d243588ff"><div class="ttname"><a href="classse2_1_1token__mgr.html#a189cf8190227accc0f33a82d243588ff">se2::token_mgr::unrequest_stop_motor</a></div><div class="ttdeci">void unrequest_stop_motor(bool update=true)</div><div class="ttdoc">Motor stop anfrage zurueckziehen. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00158">token_mgr.cpp:158</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html"><div class="ttname"><a href="classse2_1_1token__mgr.html">se2::token_mgr</a></div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00040">token_mgr.hpp:40</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html">se2::hal::hwaccess</a></div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8hpp_source.html#l00046">HWaccess.hpp:46</a></div></div>
+<div class="ttc" id="structse2_1_1token__mgr_1_1safe__state_html_a477f53218a5926d7fb22d13923da7432"><div class="ttname"><a href="structse2_1_1token__mgr_1_1safe__state.html#a477f53218a5926d7fb22d13923da7432">se2::token_mgr::safe_state::m_motor_running</a></div><div class="ttdeci">bool m_motor_running</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00050">token_mgr.hpp:50</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a1859ae4b979f49ac9a3ac3ef93400607"><div class="ttname"><a href="singleton__mgr_8hpp.html#a1859ae4b979f49ac9a3ac3ef93400607">TO_TIMER</a></div><div class="ttdeci">#define TO_TIMER(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00092">singleton_mgr.hpp:92</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa63da2ff13a5325cc6f0f57edecd3ef0e"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa63da2ff13a5325cc6f0f57edecd3ef0e">se2::util::TIMER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00052">singleton_mgr.hpp:52</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_aaf252240ae940c612c48b5aa3f7df0bd"><div class="ttname"><a href="classse2_1_1token__mgr.html#aaf252240ae940c612c48b5aa3f7df0bd">se2::token_mgr::m_safe</a></div><div class="ttdeci">safe_state m_safe</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00207">token_mgr.hpp:207</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00048">singleton_mgr.hpp:48</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a30ddc4b49f4488fb773ec4be3a8c4e9b"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a30ddc4b49f4488fb773ec4be3a8c4e9b">se2::hal::hwaccess::close_switch</a></div><div class="ttdeci">void close_switch()</div><div class="ttdoc">Schliesst die Weiche, wenn Weiche geschlossen keine weitere Reaktion. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00102">HWaccess.cpp:102</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81">se2::util::TOKEN_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00053">singleton_mgr.hpp:53</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a31a9c2c63ea05cf6726ea93004dd0128"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a31a9c2c63ea05cf6726ea93004dd0128">se2::hal::hwaccess::open_switch</a></div><div class="ttdeci">void open_switch()</div><div class="ttdoc">Oeffnet die Weiche, wenn Weiche offen keine weitere Reaktion. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00098">HWaccess.cpp:98</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -292,138 +600,269 @@ Static Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classse2_1_1util_1_1abstract__singleton.html#a050a72a39baed80cf299e80d4a4f5671">se2::util::abstract_singleton</a>.</p>
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00050">50</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                           {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="comment">// nop</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00063">63</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;                           {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <span class="comment">// nop</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="aab9b8ebeaa72bf0fdfd3fa80c41705c3"></a>
+<a class="anchor" id="a326cf722a596dda94efdf407e6b0d82a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void token_mgr::notify_death </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>update</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Mit dieser Funktion meldet sich der <code>token</code> vom <code><a class="el" href="classse2_1_1token__mgr.html">token_mgr</a></code> ab. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>sollte FALSE sein wenn <code><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce" title="Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. ">update()</a></code> nicht ausgefuehrt werden soll (Default: TRUE) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00085">85</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                             {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  --<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00058">token_mgr.cpp:58</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_aeebfbeec262c549aeaccf1204fa2c79d"><div class="ttname"><a href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr::m_alife</a></div><div class="ttdeci">int m_alife</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00073">token_mgr.hpp:73</a></div></div>
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00116">116</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                                        {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  --<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>) {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    this-&gt;<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  }</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00071">token_mgr.cpp:71</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_aeebfbeec262c549aeaccf1204fa2c79d"><div class="ttname"><a href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr::m_alife</a></div><div class="ttdeci">int m_alife</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00203">token_mgr.hpp:203</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="aa57546e4db204c16cde9c6659024a6e6"></a>
+<a class="anchor" id="af99e65a7f0a90cdb73201ec1ea1edba3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void token_mgr::notify_exsistens </td>
+          <td class="memname">void token_mgr::notify_existence </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>update</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Mit dieser Funktion meldet sich der neue <code>token</code> einmal bei dem <code><a class="el" href="classse2_1_1token__mgr.html">token_mgr</a></code> an. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>sollte FALSE sein wenn <code><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce" title="Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. ">update()</a></code> nicht ausgefuehrt werden soll (Default: TRUE) </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00080">80</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                                 {</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  ++<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00058">token_mgr.cpp:58</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_aeebfbeec262c549aeaccf1204fa2c79d"><div class="ttname"><a href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr::m_alife</a></div><div class="ttdeci">int m_alife</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00073">token_mgr.hpp:73</a></div></div>
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00109">109</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                                            {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  ++<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    this-&gt;<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00071">token_mgr.cpp:71</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_aeebfbeec262c549aeaccf1204fa2c79d"><div class="ttname"><a href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr::m_alife</a></div><div class="ttdeci">int m_alife</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00203">token_mgr.hpp:203</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a2aac992e7e557e1e89706a9daadca8de"></a>
+<a class="anchor" id="ae46875e696120835002f977820a1f089"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::notify_ready_for_next </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Wird aufgerufen sobald <code>B2_FREE</code> per Serieller Schnittstelle empfangen wurde. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00234">234</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                                      {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">m_is_b2_ready</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_adee826537e2e74a5aa1896dcf98c35ae"><div class="ttname"><a href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">se2::token_mgr::m_is_b2_ready</a></div><div class="ttdeci">bool m_is_b2_ready</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00209">token_mgr.hpp:209</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a45b75326e798c71e52d23e4baa234728"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::notify_token_trasition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gibt dem <code><a class="el" href="classse2_1_1token__mgr.html">token_mgr</a></code> bescheid, dass ein Token an Conveyor 2 uebergeben wurde. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00230">230</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;                                       {</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">m_is_b2_ready</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_adee826537e2e74a5aa1896dcf98c35ae"><div class="ttname"><a href="classse2_1_1token__mgr.html#adee826537e2e74a5aa1896dcf98c35ae">se2::token_mgr::m_is_b2_ready</a></div><div class="ttdeci">bool m_is_b2_ready</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00209">token_mgr.hpp:209</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a2dc1a2ccdcbc44016cb146559d7f67bd"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void token_mgr::request_fast_motor </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>update</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00090">90</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                                   {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  --<a class="code" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a17b678209bb792a8b350b8df11e684be"><div class="ttname"><a href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr::m_motor_slow</a></div><div class="ttdeci">int m_motor_slow</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00074">token_mgr.hpp:74</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00058">token_mgr.cpp:58</a></div></div>
+<p>Schnellen Motor anfragen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>sollte FALSE sein wenn <code><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce" title="Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. ">update()</a></code> nicht ausgefuehrt werden soll (Default: TRUE) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00123">123</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                                              {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;  --<a class="code" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>) {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    this-&gt;<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;  }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a17b678209bb792a8b350b8df11e684be"><div class="ttname"><a href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr::m_motor_slow</a></div><div class="ttdeci">int m_motor_slow</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00204">token_mgr.hpp:204</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00071">token_mgr.cpp:71</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a66f44fdddb500b793d7eda68061ee0f5"></a>
+<a class="anchor" id="aa0935ce7dc8d2ad42178b22105671472"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::request_left_motor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>update</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Motor linkslauf anfragen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>sollte FALSE sein wenn <code><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce" title="Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. ">update()</a></code> nicht ausgefuehrt werden soll (Default: TRUE) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00137">137</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                                              {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">m_motor_left</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>) {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    this-&gt;<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a42a92ca0f3bad85371e5024759437317"><div class="ttname"><a href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">se2::token_mgr::m_motor_left</a></div><div class="ttdeci">bool m_motor_left</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00206">token_mgr.hpp:206</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00071">token_mgr.cpp:71</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7cf22c04d6eb888a800f666f10da3df0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void token_mgr::request_slow_motor </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>update</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00095">95</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                                   {</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;  ++<a class="code" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a>;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a17b678209bb792a8b350b8df11e684be"><div class="ttname"><a href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr::m_motor_slow</a></div><div class="ttdeci">int m_motor_slow</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00074">token_mgr.hpp:74</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00058">token_mgr.cpp:58</a></div></div>
+<p>Langsamen Motor anfragen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>sollte FALSE sein wenn <code><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce" title="Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. ">update()</a></code> nicht ausgefuehrt werden soll (Default: TRUE) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00130">130</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                              {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  ++<a class="code" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a>;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>) {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    this-&gt;<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a17b678209bb792a8b350b8df11e684be"><div class="ttname"><a href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr::m_motor_slow</a></div><div class="ttdeci">int m_motor_slow</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00204">token_mgr.hpp:204</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00071">token_mgr.cpp:71</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="afe95bcd653b71219c6204304c47a513f"></a>
+<a class="anchor" id="ab1ccc1fe94142d3508bfc3d56a35652c"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void token_mgr::request_stop_motor </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>update</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00100">100</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                                   {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">m_motor_stop</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00058">token_mgr.cpp:58</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_ac17349f09c1b593c19c1d520d6e495dd"><div class="ttname"><a href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr::m_motor_stop</a></div><div class="ttdeci">bool m_motor_stop</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00075">token_mgr.hpp:75</a></div></div>
+<p>Motor stop anfragen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>sollte FALSE sein wenn <code><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce" title="Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. ">update()</a></code> nicht ausgefuehrt werden soll (Default: TRUE) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00151">151</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                                              {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">m_motor_stop</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>) {</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    this-&gt;<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  }</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00071">token_mgr.cpp:71</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_ac17349f09c1b593c19c1d520d6e495dd"><div class="ttname"><a href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr::m_motor_stop</a></div><div class="ttdeci">bool m_motor_stop</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00205">token_mgr.hpp:205</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a class="anchor" id="a3ac72ca52c01b86469f0bbcc1957a921"></a>
+<a class="anchor" id="a5b1e5485d01ce1a266883bba0eb502fc"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void token_mgr::unrequest_stop_motor </td>
+          <td class="memname">void token_mgr::reregister_e_stop </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -431,13 +870,149 @@ Static Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00105">105</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                                     {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">m_motor_stop</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00058">token_mgr.cpp:58</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_ac17349f09c1b593c19c1d520d6e495dd"><div class="ttname"><a href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr::m_motor_stop</a></div><div class="ttdeci">bool m_motor_stop</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00075">token_mgr.hpp:75</a></div></div>
+<p>Neu an E-Stop event registrieren (Gedrueckt) </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00165">165</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                                  {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;  <a class="code" href="structse2_1_1dispatch_1_1dispatcher.html">dispatch::dispatcher</a>* disp = <a class="code" href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;      (singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">DISPATCHER_PLUGIN</a>));</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  disp-&gt;<a class="code" href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">register_listener</a>(<a class="code" href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">m_e_stop_listener</a>, <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456">EVENT_BUTTON_E_STOP</a>);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;}</div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456">se2::hal::EVENT_BUTTON_E_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00304">constants.hpp:304</a></div></div>
+<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html_ae7eb0e0a8e2114fc634c212f5338e25c"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">se2::dispatch::dispatcher::register_listener</a></div><div class="ttdeci">virtual bool register_listener(fsm::events *listener, hal::event_values event)</div><div class="ttdoc">Registriert einen Listener fuer ein Event. </div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8cpp_source.html#l00109">dispatcher.cpp:109</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a177b839217db9bdbd5c4de0fbf783d9d"><div class="ttname"><a href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">se2::token_mgr::m_e_stop_listener</a></div><div class="ttdeci">fsm::state * m_e_stop_listener</div><div class="ttdoc">Dieser Zustand ist permanent und wartet nur auf den E-Stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00201">token_mgr.hpp:201</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_ab4ba35dc6b423c3069067425e582bf1e"><div class="ttname"><a href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a></div><div class="ttdeci">#define TO_DISPATCHER(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00094">singleton_mgr.hpp:94</a></div></div>
+<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html">se2::dispatch::dispatcher</a></div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8hpp_source.html#l00048">dispatcher.hpp:48</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">se2::util::DISPATCHER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00051">singleton_mgr.hpp:51</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a4c7162b24939ac9a6cd88a20bc9a7e7c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::reregister_e_stop_rising </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Neu an E-Stop event registrieren (Nicht mehr gedrueckt) </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00171">171</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                                         {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;  <a class="code" href="structse2_1_1dispatch_1_1dispatcher.html">dispatch::dispatcher</a>* disp = <a class="code" href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;      (singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">DISPATCHER_PLUGIN</a>));</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;  disp-&gt;<a class="code" href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">register_listener</a>(<a class="code" href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">m_e_stop_listener</a>, <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae">EVENT_BUTTON_E_STOP_R</a>);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html_ae7eb0e0a8e2114fc634c212f5338e25c"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">se2::dispatch::dispatcher::register_listener</a></div><div class="ttdeci">virtual bool register_listener(fsm::events *listener, hal::event_values event)</div><div class="ttdoc">Registriert einen Listener fuer ein Event. </div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8cpp_source.html#l00109">dispatcher.cpp:109</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a177b839217db9bdbd5c4de0fbf783d9d"><div class="ttname"><a href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">se2::token_mgr::m_e_stop_listener</a></div><div class="ttdeci">fsm::state * m_e_stop_listener</div><div class="ttdoc">Dieser Zustand ist permanent und wartet nur auf den E-Stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00201">token_mgr.hpp:201</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_ab4ba35dc6b423c3069067425e582bf1e"><div class="ttname"><a href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a></div><div class="ttdeci">#define TO_DISPATCHER(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00094">singleton_mgr.hpp:94</a></div></div>
+<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html">se2::dispatch::dispatcher</a></div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8hpp_source.html#l00048">dispatcher.hpp:48</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae">se2::hal::EVENT_BUTTON_E_STOP_R</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00305">constants.hpp:305</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">se2::util::DISPATCHER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00051">singleton_mgr.hpp:51</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ab787cae423bec07a7fbaf31373175489"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::send_free </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sendet an conveyor 1 dass wieder Platz fuer einen Token ist. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00102">102</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                          {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <a class="code" href="classse2_1_1serial__bus_1_1serial__channel.html">serial_channel</a>* serial =</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;      <a class="code" href="singleton__mgr_8hpp.html#ab7a264a8a1c447ab3b85c7233883bd5f">TO_SERIAL</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62">SERIAL_PLUGIN</a>));</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <a class="code" href="structse2_1_1serial__bus_1_1telegram.html">telegram</a> tel(<a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804">B2_FREE</a>);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  serial-&gt;<a class="code" href="classse2_1_1serial__bus_1_1serial__channel.html#a52a4561ec6c2fa292b016070d9f659a4">send_telegram</a>(&amp;tel);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="ttc" id="structse2_1_1serial__bus_1_1telegram_html"><div class="ttname"><a href="structse2_1_1serial__bus_1_1telegram.html">se2::serial_bus::telegram</a></div><div class="ttdoc">Telegram komplett. </div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00414">constants.hpp:414</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62">se2::util::SERIAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00050">singleton_mgr.hpp:50</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804">se2::serial_bus::B2_FREE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00405">constants.hpp:405</a></div></div>
+<div class="ttc" id="classse2_1_1serial__bus_1_1serial__channel_html"><div class="ttname"><a href="classse2_1_1serial__bus_1_1serial__channel.html">se2::serial_bus::serial_channel</a></div><div class="ttdef"><b>Definition:</b> <a href="serial__channel_8hpp_source.html#l00047">serial_channel.hpp:47</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_ab7a264a8a1c447ab3b85c7233883bd5f"><div class="ttname"><a href="singleton__mgr_8hpp.html#ab7a264a8a1c447ab3b85c7233883bd5f">TO_SERIAL</a></div><div class="ttdeci">#define TO_SERIAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00093">singleton_mgr.hpp:93</a></div></div>
+<div class="ttc" id="classse2_1_1serial__bus_1_1serial__channel_html_a52a4561ec6c2fa292b016070d9f659a4"><div class="ttname"><a href="classse2_1_1serial__bus_1_1serial__channel.html#a52a4561ec6c2fa292b016070d9f659a4">se2::serial_bus::serial_channel::send_telegram</a></div><div class="ttdeci">void send_telegram(telegram *tel)</div><div class="ttdoc">Sendet ein telegram. </div><div class="ttdef"><b>Definition:</b> <a href="serial__channel_8cpp_source.html#l00109">serial_channel.cpp:109</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a81c50ac34e2876760d680959776381b9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::unrequest_left_motor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>update</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Motor linkslauf zurueckziehen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>sollte FALSE sein wenn <code><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce" title="Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. ">update()</a></code> nicht ausgefuehrt werden soll (Default: TRUE) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00144">144</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                                                {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">m_motor_left</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>) {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    this-&gt;<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;  }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a42a92ca0f3bad85371e5024759437317"><div class="ttname"><a href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">se2::token_mgr::m_motor_left</a></div><div class="ttdeci">bool m_motor_left</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00206">token_mgr.hpp:206</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00071">token_mgr.cpp:71</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a189cf8190227accc0f33a82d243588ff"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void token_mgr::unrequest_stop_motor </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>update</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Motor stop anfrage zurueckziehen. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">update</td><td>sollte FALSE sein wenn <code><a class="el" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce" title="Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. ">update()</a></code> nicht ausgefuehrt werden soll (Default: TRUE) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00158">158</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                                                {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  <a class="code" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">m_motor_stop</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>) {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    this-&gt;<a class="code" href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">update</a>();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  }</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a3c746671ee4de6aa63fbf21283ac8cce"><div class="ttname"><a href="classse2_1_1token__mgr.html#a3c746671ee4de6aa63fbf21283ac8cce">se2::token_mgr::update</a></div><div class="ttdeci">void update()</div><div class="ttdoc">Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von m_alife, m_motor_slow sowie m_motor_stop. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00071">token_mgr.cpp:71</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_ac17349f09c1b593c19c1d520d6e495dd"><div class="ttname"><a href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr::m_motor_stop</a></div><div class="ttdeci">bool m_motor_stop</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00205">token_mgr.hpp:205</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -462,38 +1037,56 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00058">58</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                       {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a> &gt; 0) {</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">util::singleton_mgr::get_instance</a>(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>))-&gt;set_motor(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">MOTOR_RIGHT</a>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  }</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a> &gt; 0) {</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">util::singleton_mgr::get_instance</a>(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>))-&gt;set_motor(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d">MOTOR_SLOW</a>);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">util::singleton_mgr::get_instance</a>(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>))-&gt;set_motor(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb">MOTOR_FAST</a>);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="comment">/*if (m_motor_stop) {</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))-&gt;set_motor(MOTOR_STOP);</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">  } else {</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">    TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN))-&gt;set_motor(MOTOR_RIGHT);</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">  }*/</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a> == 0) {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">util::singleton_mgr::get_instance</a>(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>))-&gt;set_motor(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">MOTOR_STOP</a>);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a> &lt; 0) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;m_alife is under 0&quot;</span>)</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;}</div>
-<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00077">singleton_mgr.hpp:77</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">se2::hal::MOTOR_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00115">constants.hpp:115</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d">se2::hal::MOTOR_SLOW</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00114">constants.hpp:114</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb">se2::hal::MOTOR_FAST</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00116">constants.hpp:116</a></div></div>
+<p>Motoreinstellungen aktualisieren, dieses geschieht abhaengig der Werte von <code>m_alife</code>, <code>m_motor_slow</code> sowie <code>m_motor_stop</code>. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8cpp_source.html#l00071">71</a> of file <a class="el" href="token__mgr_8cpp_source.html">token_mgr.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                       {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  <a class="code" href="structse2_1_1hal_1_1hwaccess.html">hwaccess</a>* hal = <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">util::singleton_mgr::get_instance</a>(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>));</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a> &gt; 0) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">MOTOR_RIGHT</a>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">m_motor_slow</a> &gt; 0) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d">MOTOR_SLOW</a>);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb">MOTOR_FAST</a>);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">m_motor_left</a>) {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c">MOTOR_LEFT</a>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">MOTOR_RIGHT</a>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">m_motor_stop</a>) {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">MOTOR_STOP</a>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba9de65c634b0f12a50ae0fd9e2932f007">MOTOR_RESUME</a>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a> == 0) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">MOTOR_STOP</a>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">#if defined(IS_CONVEYOR_2)</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor"></span>    <a class="code" href="classse2_1_1token__mgr.html#ab787cae423bec07a7fbaf31373175489">send_free</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor"></span>  }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">m_alife</a> &lt; 0) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;m_alife is under 0&quot;</span>)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00090">singleton_mgr.hpp:90</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">se2::hal::MOTOR_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00133">constants.hpp:133</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba00698db5c6888387497c29f468a2677d">se2::hal::MOTOR_SLOW</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00132">constants.hpp:132</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html">se2::hal::hwaccess</a></div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8hpp_source.html#l00046">HWaccess.hpp:46</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a42a92ca0f3bad85371e5024759437317"><div class="ttname"><a href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">se2::token_mgr::m_motor_left</a></div><div class="ttdeci">bool m_motor_left</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00206">token_mgr.hpp:206</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba1589d676a6a51569bbb50ddda9b918eb">se2::hal::MOTOR_FAST</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00134">constants.hpp:134</a></div></div>
 <div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00040">singleton_mgr.cpp:40</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_a17b678209bb792a8b350b8df11e684be"><div class="ttname"><a href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr::m_motor_slow</a></div><div class="ttdeci">int m_motor_slow</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00074">token_mgr.hpp:74</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">se2::hal::MOTOR_RIGHT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00112">constants.hpp:112</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00045">singleton_mgr.hpp:45</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_a17b678209bb792a8b350b8df11e684be"><div class="ttname"><a href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr::m_motor_slow</a></div><div class="ttdeci">int m_motor_slow</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00204">token_mgr.hpp:204</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a303125efc29bdba874316616263313d1"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">se2::hal::hwaccess::set_motor</a></div><div class="ttdeci">void set_motor(enum motor_modes mode)</div><div class="ttdoc">Setzt den Motor Modus (Aus, Rechtslauf, Linkslauf) </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00074">HWaccess.cpp:74</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_ab787cae423bec07a7fbaf31373175489"><div class="ttname"><a href="classse2_1_1token__mgr.html#ab787cae423bec07a7fbaf31373175489">se2::token_mgr::send_free</a></div><div class="ttdeci">void send_free()</div><div class="ttdoc">Sendet an conveyor 1 dass wieder Platz fuer einen Token ist. </div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8cpp_source.html#l00102">token_mgr.cpp:102</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64ba9de65c634b0f12a50ae0fd9e2932f007"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64ba9de65c634b0f12a50ae0fd9e2932f007">se2::hal::MOTOR_RESUME</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00135">constants.hpp:135</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_ac17349f09c1b593c19c1d520d6e495dd"><div class="ttname"><a href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr::m_motor_stop</a></div><div class="ttdeci">bool m_motor_stop</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00205">token_mgr.hpp:205</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c">se2::hal::MOTOR_LEFT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00131">constants.hpp:131</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">se2::hal::MOTOR_RIGHT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00130">constants.hpp:130</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00048">singleton_mgr.hpp:48</a></div></div>
 <div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
-<div class="ttc" id="classse2_1_1token__mgr_html_aeebfbeec262c549aeaccf1204fa2c79d"><div class="ttname"><a href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr::m_alife</a></div><div class="ttdeci">int m_alife</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00073">token_mgr.hpp:73</a></div></div>
+<div class="ttc" id="classse2_1_1token__mgr_html_aeebfbeec262c549aeaccf1204fa2c79d"><div class="ttname"><a href="classse2_1_1token__mgr.html#aeebfbeec262c549aeaccf1204fa2c79d">se2::token_mgr::m_alife</a></div><div class="ttdeci">int m_alife</div><div class="ttdef"><b>Definition:</b> <a href="token__mgr_8hpp_source.html#l00203">token_mgr.hpp:203</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -516,7 +1109,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00070">70</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00196">196</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
 
 </div>
 </div>
@@ -538,7 +1131,97 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00073">73</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00203">203</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a177b839217db9bdbd5c4de0fbf783d9d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classse2_1_1fsm_1_1state.html">fsm::state</a>* se2::token_mgr::m_e_stop_listener</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Dieser Zustand ist permanent und wartet nur auf den E-Stop. </p>
+
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00201">201</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a25378b3839224379a0c3929e480fbe19"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classse2_1_1token__mgr.html#a1d5e85ae1b665fe21726b9efa6135550">expected_token</a> se2::token_mgr::m_expected_token</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00208">208</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adee826537e2e74a5aa1896dcf98c35ae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool se2::token_mgr::m_is_b2_ready</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00209">209</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a42a92ca0f3bad85371e5024759437317"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool se2::token_mgr::m_motor_left</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00206">206</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
 
 </div>
 </div>
@@ -560,7 +1243,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00074">74</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00204">204</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
 
 </div>
 </div>
@@ -582,7 +1265,29 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00075">75</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00205">205</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aaf252240ae940c612c48b5aa3f7df0bd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structse2_1_1token__mgr_1_1safe__state.html">safe_state</a> se2::token_mgr::m_safe</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00207">207</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
 
 </div>
 </div>
@@ -604,7 +1309,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00071">71</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00197">197</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
 
 </div>
 </div>
@@ -626,7 +1331,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00039">39</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
+<p>Definition at line <a class="el" href="token__mgr_8hpp_source.html#l00041">41</a> of file <a class="el" href="token__mgr_8hpp_source.html">token_mgr.hpp</a>.</p>
 
 </div>
 </div>

@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone4</span>
+   &#160;<span id="projectnumber">0.3-Milestone5</span>
    </div>
   </td>
  </tr>
@@ -177,14 +177,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    (*it)-&gt;continue_timer();</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  }</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00077">singleton_mgr.hpp:77</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html">se2::timer::timer_wrapper</a></div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00035">timer_wrapper.hpp:35</a></div></div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classse2_1_1timer_1_1timer__handler.html#aef3123f936a589b5a9624d51a65c8136">   96</a></span>&#160;<span class="keywordtype">void</span> timer_handler::add_time(<span class="keywordtype">size_t</span> pos, <a class="code" href="structse2_1_1timer_1_1duration.html">duration</a> time) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;  <span class="keywordflow">if</span> (pos &lt; timers.size()) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    timers[pos]-&gt;add_time(time);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;  }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classse2_1_1timer_1_1timer__handler.html#a03b76bb229f58cd61f08c7af5053342c">  102</a></span>&#160;<span class="keywordtype">void</span> timer_handler::add_all(<a class="code" href="structse2_1_1timer_1_1duration.html">duration</a> time) {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="keywordflow">for</span> (std::vector&lt;timer_wrapper*&gt;::iterator it = timers.begin();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;       it != timers.end(); ++it) {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    (*it)-&gt;add_time(time);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00090">singleton_mgr.hpp:90</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html">se2::timer::timer_wrapper</a></div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00039">timer_wrapper.hpp:39</a></div></div>
 <div class="ttc" id="singleton__mgr_8hpp_html"><div class="ttname"><a href="singleton__mgr_8hpp.html">singleton_mgr.hpp</a></div></div>
-<div class="ttc" id="structse2_1_1timer_1_1duration_html"><div class="ttname"><a href="structse2_1_1timer_1_1duration.html">se2::timer::duration</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00361">constants.hpp:361</a></div></div>
+<div class="ttc" id="structse2_1_1timer_1_1duration_html"><div class="ttname"><a href="structse2_1_1timer_1_1duration.html">se2::timer::duration</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00439">constants.hpp:439</a></div></div>
 <div class="ttc" id="_h_waccess_8hpp_html"><div class="ttname"><a href="_h_waccess_8hpp.html">HWaccess.hpp</a></div></div>
 <div class="ttc" id="timer__handler_8hpp_html"><div class="ttname"><a href="timer__handler_8hpp.html">timer_handler.hpp</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00045">singleton_mgr.hpp:45</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00048">singleton_mgr.hpp:48</a></div></div>
 <div class="ttc" id="classse2_1_1timer_1_1timer__handler_html"><div class="ttname"><a href="classse2_1_1timer_1_1timer__handler.html">se2::timer::timer_handler</a></div><div class="ttdef"><b>Definition:</b> <a href="timer__handler_8hpp_source.html#l00040">timer_handler.hpp:40</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

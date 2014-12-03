@@ -12,8 +12,10 @@ var searchData=
   ['iowrapper',['iowrapper',['../structse2_1_1hal_1_1iowrapper.html#abc075b5ba004ddb74446ecfa0713600a',1,'se2::hal::iowrapper']]],
   ['irq_5ftest',['irq_test',['../classse2_1_1unit__tests_1_1irq__test.html#a9d551b776b19266311bff1a7ddabafd7',1,'se2::unit_tests::irq_test']]],
   ['is_5fbutton_5fpressed',['is_button_pressed',['../structse2_1_1hal_1_1hwaccess.html#a00b933055fc87da122d3aabc954ecd89',1,'se2::hal::hwaccess']]],
+  ['is_5fmetal',['is_metal',['../classse2_1_1token.html#aee9e1ad76a7ccfdc0237ca4fb462b6ef',1,'se2::token']]],
+  ['is_5fmotor_5frunning',['is_motor_running',['../structse2_1_1hal_1_1hwaccess.html#a66f7148aff7483730d6939c96f5e0ef1',1,'se2::hal::hwaccess']]],
   ['is_5fswitch_5fopen',['is_switch_open',['../structse2_1_1hal_1_1hwaccess.html#a0e79c7866ebb092d5109cd1d5fc67159',1,'se2::hal::hwaccess']]],
-  ['is_5fvalid',['is_valid',['../classse2_1_1token.html#aade1ee46fe505ad8f42a2b6a03b07b2f',1,'se2::token']]],
+  ['is_5fupside_5fdown',['is_upside_down',['../classse2_1_1token.html#a1990ff8f4e4dcf734d3e4d32f9e4521a',1,'se2::token']]],
   ['isr',['isr',['../isr_8h.html#a677f3df2ebd663ac8c54823fb6844157',1,'isr.h']]],
   ['isstopped',['isStopped',['../classse2_1_1util_1_1_h_a_w_thread.html#afa70fb89fec6daa647c6d13c6ef53243',1,'se2::util::HAWThread']]]
 ];

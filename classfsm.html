@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone4</span>
+   &#160;<span id="projectnumber">0.3-Milestone5</span>
    </div>
   </td>
  </tr>
@@ -106,7 +106,7 @@ Public Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="dispatcher__test_8cpp_source.html#l00397">397</a> of file <a class="el" href="dispatcher__test_8cpp_source.html">dispatcher_test.cpp</a>.</p>
+<p>Definition at line <a class="el" href="dispatcher__test_8cpp_source.html#l00437">437</a> of file <a class="el" href="dispatcher__test_8cpp_source.html">dispatcher_test.cpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a186a9a7368d04e7d98e6976c870baca1"></a>
 <div class="memitem">
@@ -121,19 +121,19 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="dispatcher__test_8cpp_source.html#l00399">399</a> of file <a class="el" href="dispatcher__test_8cpp_source.html">dispatcher_test.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        : <a class="code" href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">m_state</a>(<span class="keyword">new</span> <a class="code" href="classstate.html">state</a>) {</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    <a class="code" href="structse2_1_1dispatch_1_1dispatcher.html">dispatcher</a>* disp = <a class="code" href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a>(</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;        singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">DISPATCHER_PLUGIN</a>));</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    disp-&gt;<a class="code" href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">register_listener</a>(<a class="code" href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">m_state</a>, <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aabc6b0e827320c88dec20fabe37b67dc">EVENT_BUTTON_START</a>);</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  }</div>
-<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html_ae7eb0e0a8e2114fc634c212f5338e25c"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">se2::dispatch::dispatcher::register_listener</a></div><div class="ttdeci">virtual bool register_listener(fsm::events *listener, hal::event_values event)</div><div class="ttdoc">Registriert einen Listener fuer ein Event. </div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8cpp_source.html#l00068">dispatcher.cpp:68</a></div></div>
-<div class="ttc" id="singleton__mgr_8hpp_html_ab4ba35dc6b423c3069067425e582bf1e"><div class="ttname"><a href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a></div><div class="ttdeci">#define TO_DISPATCHER(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00081">singleton_mgr.hpp:81</a></div></div>
-<div class="ttc" id="classfsm_html_a0f774cd3853e0b6a19be46eb1401c49c"><div class="ttname"><a href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">fsm::m_state</a></div><div class="ttdeci">state * m_state</div><div class="ttdef"><b>Definition:</b> <a href="dispatcher__test_8cpp_source.html#l00407">dispatcher_test.cpp:407</a></div></div>
-<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html">se2::dispatch::dispatcher</a></div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8hpp_source.html#l00045">dispatcher.hpp:45</a></div></div>
-<div class="ttc" id="classstate_html"><div class="ttname"><a href="classstate.html">state</a></div><div class="ttdef"><b>Definition:</b> <a href="dispatcher__test_8cpp_source.html#l00215">dispatcher_test.cpp:215</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004aabc6b0e827320c88dec20fabe37b67dc"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aabc6b0e827320c88dec20fabe37b67dc">se2::hal::EVENT_BUTTON_START</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00245">constants.hpp:245</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">se2::util::DISPATCHER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00048">singleton_mgr.hpp:48</a></div></div>
+<p>Definition at line <a class="el" href="dispatcher__test_8cpp_source.html#l00439">439</a> of file <a class="el" href="dispatcher__test_8cpp_source.html">dispatcher_test.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;        : <a class="code" href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">m_state</a>(<span class="keyword">new</span> <a class="code" href="classstate.html">state</a>) {</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    <a class="code" href="structse2_1_1dispatch_1_1dispatcher.html">dispatcher</a>* disp = <a class="code" href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a>(</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">DISPATCHER_PLUGIN</a>));</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    disp-&gt;<a class="code" href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">register_listener</a>(<a class="code" href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">m_state</a>, <a class="code" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aabc6b0e827320c88dec20fabe37b67dc">EVENT_BUTTON_START</a>);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;  }</div>
+<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html_ae7eb0e0a8e2114fc634c212f5338e25c"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html#ae7eb0e0a8e2114fc634c212f5338e25c">se2::dispatch::dispatcher::register_listener</a></div><div class="ttdeci">virtual bool register_listener(fsm::events *listener, hal::event_values event)</div><div class="ttdoc">Registriert einen Listener fuer ein Event. </div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8cpp_source.html#l00109">dispatcher.cpp:109</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_ab4ba35dc6b423c3069067425e582bf1e"><div class="ttname"><a href="singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e">TO_DISPATCHER</a></div><div class="ttdeci">#define TO_DISPATCHER(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00094">singleton_mgr.hpp:94</a></div></div>
+<div class="ttc" id="classfsm_html_a0f774cd3853e0b6a19be46eb1401c49c"><div class="ttname"><a href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">fsm::m_state</a></div><div class="ttdeci">state * m_state</div><div class="ttdef"><b>Definition:</b> <a href="dispatcher__test_8cpp_source.html#l00447">dispatcher_test.cpp:447</a></div></div>
+<div class="ttc" id="structse2_1_1dispatch_1_1dispatcher_html"><div class="ttname"><a href="structse2_1_1dispatch_1_1dispatcher.html">se2::dispatch::dispatcher</a></div><div class="ttdef"><b>Definition:</b> <a href="dispatcher_8hpp_source.html#l00048">dispatcher.hpp:48</a></div></div>
+<div class="ttc" id="classstate_html"><div class="ttname"><a href="classstate.html">state</a></div><div class="ttdef"><b>Definition:</b> <a href="dispatcher__test_8cpp_source.html#l00234">dispatcher_test.cpp:234</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a59011818b97b3bb7046e4c33b3b02004aabc6b0e827320c88dec20fabe37b67dc"><div class="ttname"><a href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aabc6b0e827320c88dec20fabe37b67dc">se2::hal::EVENT_BUTTON_START</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00301">constants.hpp:301</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">se2::util::DISPATCHER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00051">singleton_mgr.hpp:51</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -150,11 +150,11 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="dispatcher__test_8cpp_source.html#l00404">404</a> of file <a class="el" href="dispatcher__test_8cpp_source.html">dispatcher_test.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;         {</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    <span class="keyword">delete</span> <a class="code" href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">m_state</a>;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;  }</div>
-<div class="ttc" id="classfsm_html_a0f774cd3853e0b6a19be46eb1401c49c"><div class="ttname"><a href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">fsm::m_state</a></div><div class="ttdeci">state * m_state</div><div class="ttdef"><b>Definition:</b> <a href="dispatcher__test_8cpp_source.html#l00407">dispatcher_test.cpp:407</a></div></div>
+<p>Definition at line <a class="el" href="dispatcher__test_8cpp_source.html#l00444">444</a> of file <a class="el" href="dispatcher__test_8cpp_source.html">dispatcher_test.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;         {</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    <span class="keyword">delete</span> <a class="code" href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">m_state</a>;</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  }</div>
+<div class="ttc" id="classfsm_html_a0f774cd3853e0b6a19be46eb1401c49c"><div class="ttname"><a href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">fsm::m_state</a></div><div class="ttdeci">state * m_state</div><div class="ttdef"><b>Definition:</b> <a href="dispatcher__test_8cpp_source.html#l00447">dispatcher_test.cpp:447</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -169,7 +169,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="dispatcher__test_8cpp_source.html#l00407">407</a> of file <a class="el" href="dispatcher__test_8cpp_source.html">dispatcher_test.cpp</a>.</p>
+<p>Definition at line <a class="el" href="dispatcher__test_8cpp_source.html#l00447">447</a> of file <a class="el" href="dispatcher__test_8cpp_source.html">dispatcher_test.cpp</a>.</p>
 
 </div>
 </div>

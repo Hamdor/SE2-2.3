@@ -6,6 +6,7 @@ var searchData=
   ['err_5fstop',['ERR_STOP',['../namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a15646040d812e8138bdac0123338015e',1,'se2::serial_bus']]],
   ['error',['ERROR',['../namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565acfd3ad73a2c089003cf04874047cc25b',1,'se2::util']]],
   ['event_5fbutton_5fe_5fstop',['EVENT_BUTTON_E_STOP',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456',1,'se2::hal']]],
+  ['event_5fbutton_5fe_5fstop_5fr',['EVENT_BUTTON_E_STOP_R',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae',1,'se2::hal']]],
   ['event_5fbutton_5freset',['EVENT_BUTTON_RESET',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a71055ea76e6573a0e7650d2e09414408',1,'se2::hal']]],
   ['event_5fbutton_5fstart',['EVENT_BUTTON_START',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aabc6b0e827320c88dec20fabe37b67dc',1,'se2::hal']]],
   ['event_5fbutton_5fstop',['EVENT_BUTTON_STOP',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac6684b02ec9653e47211530f5d224df3',1,'se2::hal']]],
@@ -22,11 +23,15 @@ var searchData=
   ['event_5fsensor_5fslide',['EVENT_SENSOR_SLIDE',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a202ad767c82b9483fdf871dfaa267123',1,'se2::hal']]],
   ['event_5fsensor_5fslide_5fr',['EVENT_SENSOR_SLIDE_R',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a716117d4278796b786484d80364384da',1,'se2::hal']]],
   ['event_5fsensor_5fswitch',['EVENT_SENSOR_SWITCH',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a2db17e9bf8499f89e2bc8f0637b6db56',1,'se2::hal']]],
+  ['event_5fsensor_5fswitch_5fr',['EVENT_SENSOR_SWITCH_R',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a5664c0b85cd9f6f56533c1810e26fcfd',1,'se2::hal']]],
   ['event_5fserial_5fdata',['EVENT_SERIAL_DATA',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa2fd86c0980707be15d24a67b5bbbee8',1,'se2::hal']]],
   ['event_5fserial_5ferr',['EVENT_SERIAL_ERR',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aff402f85e9892df5f4917c550b3bbba7',1,'se2::hal']]],
   ['event_5fserial_5fmsg',['EVENT_SERIAL_MSG',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3ed7b89c82a50e176835a60c3919b0f6',1,'se2::hal']]],
+  ['event_5fserial_5fnext_5fok',['EVENT_SERIAL_NEXT_OK',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a96c6e267c7822d4d8e1bc1df00463278',1,'se2::hal']]],
   ['event_5fserial_5funk',['EVENT_SERIAL_UNK',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4b6cd089fb81ad0f5828b18c1a536160',1,'se2::hal']]],
   ['event_5fslide_5ffull',['EVENT_SLIDE_FULL',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa94f91cf0bc577e61cd1e1c1161a4da6',1,'se2::hal']]],
   ['event_5ftoken_5ffinished',['EVENT_TOKEN_FINISHED',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ad0bf3a5449edc78509c96c4c8ec1c5ff',1,'se2::hal']]],
-  ['event_5fturn_5ftoken',['EVENT_TURN_TOKEN',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac246aa2ac4cfe8ab0fef792f285797e1',1,'se2::hal']]]
+  ['event_5fturn_5ftoken',['EVENT_TURN_TOKEN',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac246aa2ac4cfe8ab0fef792f285797e1',1,'se2::hal']]],
+  ['event_5funkown1',['EVENT_UNKOWN1',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa5d8ea7bee2b4f951c635dde8fa5458d',1,'se2::hal']]],
+  ['event_5fzero',['EVENT_ZERO',['../namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a6710bd3528525757d4e76a988a912ecd',1,'se2::hal']]]
 ];

@@ -7,7 +7,6 @@ var searchData=
   ['_7eanonymous_5ftoken',['~anonymous_token',['../classse2_1_1fsm_1_1anonymous__token.html#a779b90a4952f1e8aa07b9f7a558586d8',1,'se2::fsm::anonymous_token']]],
   ['_7eb1_5fexit',['~b1_exit',['../classse2_1_1fsm_1_1b1__exit.html#a8c7d52f0fcd6ff68d50f6361b56f070c',1,'se2::fsm::b1_exit']]],
   ['_7eb1_5fheight_5fmeasurement',['~b1_height_measurement',['../classse2_1_1fsm_1_1b1__height__measurement.html#a752265beaf893d11cebdb1199994147e',1,'se2::fsm::b1_height_measurement']]],
-  ['_7eb1_5fmetal_5fdetection',['~b1_metal_detection',['../classse2_1_1fsm_1_1b1__metal__detection.html#aea7b24db5c0af3610d3a2e450b08a51b',1,'se2::fsm::b1_metal_detection']]],
   ['_7eb1_5frealized_5fobject',['~b1_realized_object',['../classse2_1_1fsm_1_1b1__realized__object.html#adaee48f1d8cdfd1bb2e6ded5ca92848a',1,'se2::fsm::b1_realized_object']]],
   ['_7eb1_5ftoken_5fready_5ffor_5fb2',['~b1_token_ready_for_b2',['../classse2_1_1fsm_1_1b1__token__ready__for__b2.html#a725861b52a3b580abef3292576c31c52',1,'se2::fsm::b1_token_ready_for_b2']]],
   ['_7eb1_5ftoken_5ftoo_5fsmall',['~b1_token_too_small',['../classse2_1_1fsm_1_1b1__token__too__small.html#ade830b5ca6f8bb82707c8c4d0e5fa1ea',1,'se2::fsm::b1_token_too_small']]],
@@ -46,6 +45,6 @@ var searchData=
   ['_7etimer_5fhandler',['~timer_handler',['../classse2_1_1timer_1_1timer__handler.html#ac0763cef4a0bb740c4f6e3c727ff38e8',1,'se2::timer::timer_handler']]],
   ['_7etimer_5ftest',['~timer_test',['../classse2_1_1unit__tests_1_1timer__test.html#a0052a3f1962b7e24f185f57f5fa17cf7',1,'se2::unit_tests::timer_test']]],
   ['_7etimer_5fwrapper',['~timer_wrapper',['../classse2_1_1timer_1_1timer__wrapper.html#a7cbb686887aee4a884a82dc5201461d8',1,'se2::timer::timer_wrapper']]],
-  ['_7etoken',['~token',['../classse2_1_1token.html#add8c4ee51ce6bb8cca3095e77fa11c2b',1,'se2::token']]],
+  ['_7etoken',['~token',['../classse2_1_1token.html#ab265b81b8de00d0788f11459204f482f',1,'se2::token']]],
   ['_7etoken_5fmgr',['~token_mgr',['../classse2_1_1token__mgr.html#ac1a54fffd06a45b4aa15340214916900',1,'se2::token_mgr']]]
 ];
