@@ -758,7 +758,17 @@ Der Dispatcher führt eine Queue über die Anzahl der maximal auf einem Laufband
 Die QNX eigenen Timer-Funktionen werden in \emph{timer\_wrapper} gewrapped, um von dem \emph{imer\_handler} 
 verwaltet zu werden. Bei diesem \emph{timer\_handler} können Timer mit einer Zeitspanne registriert werden.
 Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und gestoppt werden.
- 
+ \subsubsection{Diskussion der Hardware und Betriebssystem Timer}
+   QNX stellt 3 Arten von Timern zu Verfügung:
+   \begin{itemize}
+    \item Realtime
+    \item Monotonic
+    \item Softtime
+   \end{itemize}
+   Der Realtime Timer lässt sich durch Zeitänderung ein wenig manipulieren. Der Timer wird aktiv sobald der Zeitpunkt: timer-Zeit plus Startzeitpunkt erreicht wurde.
+   Wenn z.B. die BS Zeit sich während des Timers synchronisiert und dadurch um einen Augenblick erhöht, so schlägt der Realtime trozdem an dem errechneten Zeitpunkt an, auch wenn die Zeit in Wirklichkeit noch nicht verstrichen ist.
+   Hingegen der Monotonic Timer lässt sich nicht von diesen Zeiten beeinflussen, er zählt seine Takte und wenn diese erreicht wurrden wird er aktiv.
+   Softtime ist nur aktiv wenn auch die CPU läuft, dieser Timer kann die CPU nicht wecken und schlägt erst alarm wenn er wieder Aktiv ist.
 
 % 8. Testen
 \section{Testen}
@@ -767,7 +777,8 @@ Integrationtest, Systemtest, Regressions-Test und Abnahmetest.}}
 
 % 8.1 Unit-Test/Komponenten-Test
 \subsection{Unit-Test/Komponenten-Test}
-Es gibt Testfälle für die einzelnen Komponenten. Für die Unit Test steht eine Testumgebung zur Verfügung.
+Es gibt Testfälle für die einzelnen Komponenten. Für die Unit Test steht eine Testumgebung zur 
+.
 Jeder Unit Test muss unser Unit Test Interface implementieren, damit diese automatisiert ausgeführt werden
 können.
 
