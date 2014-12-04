@@ -103,6 +103,8 @@
   \hline
   0.9 & Eugen Winter & 02.12.2014 & Timer-Werte und Öffnungsdauer der Weiche in den Nicht-funktionalen Anforderungen angepasst und separate Seite für den Versionsverlauf im RDD erstellt.\\
   \hline
+   0.91 & Anne-Lena Kowalka & 03.12.2014 & Allgemeine Überarbeitung, Repository-Konzept aktualisiert, Requirements angepasst (Button bei Bohrung nach unten entfernt), System-Test-Szenarien hinzugefügt\\
+   \hline
  \end{tabular}
 \end{small}
 
@@ -197,9 +199,7 @@ Testen: Katja Kirstein, Anne-Lena Kowalka, Marian Triebe, Eugen Winter\newline
 % 3.2 Repository-Konzept
 \subsection{Repository-Konzept}
 Coding Style: Google C++ Style Guide, konkrete Beschreibung im Anhang\newline
-Branching Strategie: Auf dem \emph{master} Branch befindet sich nur der aktuelle Milestone.\newline
-Aktuelle Entwicklungen finden auf dem \emph{develop} Branch statt.\newline
-Es gibt die Möglichkeit Feature-Branches auf Basis des \emph{develop} Branches zu erstellen.
+Branching Strategie: Die aktuelle Entwicklung findet auf dem \emph{develop}-Branch statt. Es gibt die Möglichkeit, Feature-Branches auf Basis des \emph{develop}-Branches zu erstellen. Rechtzeitig zu einem Praktikumstermin wird der aktuelle Entwicklungsstand auf den \emph{master}-Branch verschoben.  
 
 % 3.3 Qualitätssicherung
 \subsection{Qualitätssicherung}
@@ -268,15 +268,15 @@ C++ (nur STL)
   \hline
   FR-007.1 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Sensorik & Mit Hilfe der Höhenmessung erkennt Band 1, ob ein Werkstück mit der Bohrung nach oben oder unten auf das Band gelegt wurde.\\
   \hline
-  FR-007.2 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Anlage & Das verkehrt liegende Werkstück mit der Bohrung nach unten wird an das Ende von Band 1 befördert und die Anlage hält an.\\
+  FR-007.2 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Anlage & Das verkehrt liegende Werkstück mit der Bohrung nach unten wird an das Ende von Band 1 befördert und Band 1 hält an.\\
   \hline
   FR-007.3 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Anzeige & Die gelbe Signalleuchte der Ampelanlage von Band 1 signalisiert mit einem Blinken dem Personal, dass ein Wenden des Werkstücks notwendig ist.\\
   \hline
   FR-007.4 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Sensorik & Ein Timer wird beim Eintreten in den wartenden Zustand gestartet und räumt dem Personal zum Wenden des Werkstücks eine vordefinierte Zeitspanne ein.\\
   \hline
-  FR-007.5 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Personal & Das Personal wendet das Werkstück von Hand mit der Bohrung nach oben, quittiert den Hinweis und startet die Anlage wieder.\\
+  FR-007.5 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Personal & Das Personal wendet das Werkstück von Hand mit der Bohrung nach oben und legt es zurück in die Ausgangslichtschranke von Band 1\\
   \hline
-  FR-007.6 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Fehler & Es kommt zu einer Fehlermeldung, wenn das Werkstück nicht innerhalb der vordefinierten Zeitspanne wieder zurück auf das Ende von Band 1 gelegt worden ist.\\
+  FR-007.6 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Fehler & Es kommt zu einer Fehlermeldung, wenn das Werkstück nicht innerhalb der vordefinierten Zeitspanne zurück auf das Ende von Band 1 gelegt worden ist.\\
   \hline
   \rowcolor{lightgray} FR-008.1 & Erkennen und Aussortieren verkehrt liegender Werkstücke & Sensorik & Mit Hilfe der Höhenmessung erkennt Band 2, ob ein Werkstück mit der Bohrung nach unten auf dem Band liegt.\\
   \hline
@@ -288,7 +288,7 @@ C++ (nur STL)
   \hline
   FR-009.3 & Einhalten der korrekten Reihenfolge der Werkstücke & Anzeige & Die gelbe Signalleuchte der Ampelanlage von Band 2 signalisiert mit einem Blinken dem Personal, dass ein Entfernen des Werkstücks notwendig ist.\\
   \hline
-  FR-009.4 & Einhalten der korrekten Reihenfolge der Werkstücke & Personal & Das Personal entfernt das betroffene Werkstück von Hand, quittiert den Hinweis und startet die Anlage erneut.\\
+  FR-009.4 & Einhalten der korrekten Reihenfolge der Werkstücke & Personal & Das Personal entfernt das betroffene Werkstück von Hand\\
   \hline
   \rowcolor{lightgray} FR-010 & Hinzufügen von Werkstücken auf Anfang von Band 1 & Anlage & Es dürfen, sobald der Anfang mit der Lichtschranke von Band 1 frei ist, weitere Werkstücke auf den Anfang von Band 1 gelegt werden.\\
   \hline
@@ -310,7 +310,7 @@ C++ (nur STL)
   \hline
   \rowcolor{lightgray} FR-018.1 & Gelbe Signalleuchte & Anzeige & Die gelbe Signalleuchte von Band 1 signalisiert einen Hinweis an das Personal das Werkstück von Hand mit der Bohrung nach oben zu drehen.\\
   \hline
-  \rowcolor{lightgray} FR-018.2 & Gelbe Signalleuchte & Anzeige & Die gelbe Signalleuchte von Band 2 signalisiert einen Hinweis an das Personal das Werkstück vom Ende des Bandes zu entfernen.\\
+  \rowcolor{lightgray} FR-018.2 & Gelbe Signalleuchte & Anzeige & Die gelbe Signalleuchte von Band 2 signalisiert einen Hinweis an das Personal das Werkstück vom Anfang (bei falscher Reihenfolge) oder  Ende (bei Beendigung eines Durchlaufs) des Bandes zu entfernen.\\
   \hline
   FR-019.1 & Rote Signalleuchte & Anzeige & Die Anlage besitzt eine rote Signalleuchte um zu signalisieren, dass ein Fehler aufgetreten ist: Rutsche voll; zu lange Laufzeit; zu kurze Laufzeit.\\
   \hline
@@ -651,8 +651,8 @@ C++ (nur STL)
 
 % 5.5 Systemanalyse
 \subsection{Systemanalyse}
-Das System wird über ein C++-Programm gesteuert, welches auf einem, bzw. zwei (bei Nutzung von zwei Förderbändern) GEME-Rechnern läuft. Die Aktorik und Sensorik werden über 3 Ports angesteuert, wobei die Sensoren die Werte mittels Interrupts dem System mitteilen.\newline
-Die Kommunikation der beiden Förderbänder läuft über eine serielle Schnittstelle. Es werden hier z.B. die Messergebnisse von Band 1 an Band 2 übergeben, damit, wenn ein Puk das Ende von Band 2 erreicht, seine zugehörigen Daten ausgegeben werden können.\newline
+Das System wird über ein C++-Programm gesteuert, welches auf einem bzw. zwei (bei Nutzung von zwei Förderbändern) GEME-Rechnern läuft. Die Aktorik und Sensorik werden über 3 Ports angesteuert, wobei die Sensoren die Werte mittels Interrupts dem System mitteilen.\newline
+Die Kommunikation der beiden Förderbänder läuft über eine serielle Schnittstelle. Es werden hier z.B. die Messergebnisse von Band 1 an Band 2 übergeben, damit, wenn ein Puk das Ende von Band 2 erreicht, seine zugehörigen Daten ausgegeben werden können. Nachrichteneingänge über die serielle Schnittstelle werden ebenfalls durch Interrupts realisiert.\newline
 \newline
 \textcolor{red}{\textbf{Was muss man über das technische System (aus Sicht der zu entwickelnden Software) wissen?
 Wie sieht die Struktur aus? Wie der Systemkontext? Welche Schnittstellen betrachten Sie?}}
@@ -731,7 +731,7 @@ um aus Ihrem Design entsprechenden Code zu erstellen.}}
 % 7.4 Interrupt Implementierung
 \subsection{Interrupt Implementierung}
 Die ISR soll eine Pulse Message generieren. Diese landet im Pulse Message Channel, der vom Dispatcher abgehört wird.
-Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach Links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
+Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach Links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port-Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
 \newpage
 
 % 7.5 Dispatcher Implementierung
@@ -740,16 +740,16 @@ Die Implementierung des Dispatchers verteilt Events (Eingangsereignisse) an ange
 Als Quellen für Eingangssignale dienen ISR, Timer, Serielle Schnittstelle. Intern werden die Signale
 nur an den ersten Zustand einer Fifo weitergereicht. Für jeden anmeldbaren Zustand gibt es eine eigene Fifo.
 Als Fifo Container wurde die std::queue benutzt. Jede Queue geht über Pointer-to-Memberfunctions.
-Im System exsistiert ein Pulse Message Channel, die Eingangssignal Quellen schreiben Pulse Messages in den Channel.
-Der Dispatcher implementiert einen eigenen Thread der diese Pulse Messages aus dem Channel liest und die passende
-Pointer-to-Memberfunctions aufruft.
+Im System exsistiert ein Pulse-Message-Channel, in den die Eingangssignalquellen Pulse-Messages schreiben.
+Der Dispatcher implementiert einen eigenen Thread, der diese Pulse-Messages aus dem Channel liest und die passende
+Pointer-to-Memberfunktion aufruft.
 
 % 7.6 Automaten Implementierung
 \subsection{Automaten Implementierung}
 Die Automaten werden nach dem GoF-State-Pattern nach Pareigis umgesetzt. Die Transition findet durch den
 Placement-New Operator statt. Die Kontext-Klasse \emph{token} dient der Abbildung eines Pucks. In ihr werden die
 Eigenschaften des Pucks und dessen Zustand gespeichert.\newline
-Die Zustände des Automaten werden durch die Klasse \emph{state} repräsentiert. Sie leitet sich von der Klasse
+Die Zustände des Pucks werden durch die Klasse \emph{state} repräsentiert. Sie leitet sich von der Klasse
 \emph{events} ab, die die Transitionen in Form von \emph{pure virtual} Funktionen vorgibt.\newline
 Jeder Subzustand von \emph{state} meldet sich für ein Event beim Dispatcher an und implementiert die Transition
 für diesen.\newline
@@ -759,7 +759,7 @@ Der Dispatcher führt eine Queue über die Anzahl der maximal auf einem Laufband
 
 % 7.7 Timer Implementierung
 \subsection{Timer Implementierung}
-Die QNX eigenen Timer-Funktionen werden in \emph{timer\_wrapper} gewrapped, um von dem \emph{imer\_handler} 
+Die QNX eigenen Timer-Funktionen werden in \emph{timer\_wrapper} gewrapped, um von dem \emph{timer\_handler} 
 verwaltet zu werden. Bei diesem \emph{timer\_handler} können Timer mit einer Zeitspanne registriert werden.
 Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und gestoppt werden.
  \subsubsection{Diskussion der Hardware und Betriebssystem Timer}
@@ -769,10 +769,10 @@ Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und 
     \item Monotonic
     \item Softtime
    \end{itemize}
-   Der Realtime Timer lässt sich durch Zeitänderung ein wenig manipulieren. Der Timer wird aktiv sobald der Zeitpunkt: Timer-Zeit plus Startzeitpunkt erreicht wurde.
-   Wenn z.B. die BS Zeit sich während des Timers synchronisiert und dadurch um einen Augenblick erhöht, so schlägt der Realtime trotzdem an dem errechneten Zeitpunkt an, auch wenn die Zeit in Wirklichkeit noch nicht verstrichen ist.
-   Hingegen der Monotonic Timer lässt sich nicht von diesen Zeiten beeinflussen. Er zählt seine Takte und wenn diese erreicht wurden wird er aktiv.
-   Softtime ist nur aktiv wenn auch die CPU läuft. Dieser Timer kann die CPU nicht wecken und schlägt erst Alarm, wenn er wieder Aktiv ist.
+   Der Realtime-Timer lässt sich durch Zeitänderung ein wenig manipulieren. Der Timer wird aktiv, sobald der Zeitpunkt: Timer-Zeit plus Startzeitpunkt erreicht wurde.
+   Wenn z.B. die BS Zeit sich während des Timers synchronisiert und dadurch um einen Augenblick erhöht, so schlägt der Realtime-Timer trotzdem an dem errechneten Zeitpunkt an, auch wenn die Zeit in Wirklichkeit noch nicht verstrichen ist.\newline
+   Der Monotonic-Timer hingegen lässt sich nicht von diesen Zeiten beeinflussen. Er zählt seine Takte und wenn diese erreicht wurden, wird er aktiv.\newline
+   Ein Softtime-Timer ist nur aktiv, wenn auch die CPU läuft. Dieser Timer kann die CPU nicht wecken und schlägt erst Alarm, wenn er wieder aktiv ist.
 
 % 8. Testen
 \section{Testen}
@@ -781,40 +781,54 @@ Integrationtest, Systemtest, Regressions-Test und Abnahmetest.}}
 
 % 8.1 Unit-Test/Komponenten-Test
 \subsection{Unit-Test/Komponenten-Test}
-Es gibt Testfälle für die einzelnen Komponenten. Für die Unit Test steht eine Testumgebung zur 
-.
-Jeder Unit Test muss unser Unit Test Interface implementieren, damit diese automatisiert ausgeführt werden
+Es gibt Testfälle für die einzelnen Komponenten. Für die Unit-Tests steht eine Testumgebung zur Verfügung.
+Jeder Unit Test muss das Unit-Test-Interface implementieren, damit diese automatisiert ausgeführt werden
 können.
 
 \subsubsection{HAL}
 Im Unit Test für die HAL werden 2 verschiedene Stubs verwendet. Die Hardware wird dafür nicht verwendet,
-da die Stubs das verhalten der Hardware emulieren. Alle Funktionen der HAL werden bei dem Test einmal durchlaufen
-und es wird geprüft ob die Funktionen die erwarteten Rückgabewerte liefern.
+da diese Stubs das Verhalten der Hardware emulieren. Alle Funktionen der HAL werden bei dem Test einmal durchlaufen
+und es wird geprüft, ob die Funktionen die erwarteten Rückgabewerte liefern.
 
 \subsubsection{IRQ}
 Der automatisierte IRQ/ISR Test öffnet einmal die Weiche. Dabei wird die Lichtschranke der Weiche unterbrochen,
-das generiert eine Pulse Message. Diese muss im Channel liegen.
+was eine Pulse-Message  generiert. Diese muss im Channel liegen.
 
 \subsubsection{Dispatcher}
-Für den Dispatcher gibt es verschiedene Unit Test. Zum einen wird getestet
-ob das Mapping vom Event enum zum internen Dispatched Event enum passt.
-Außerdem wird geprüft ob in dem Funktionsadressen Array die korrekten Adressen liegen.
-Ein Test prüft ob der Dispatcher die Events sequenziell verteilt. Dazu gibt es eine
-FSM die nur aus einem Zustand besteht, jedoch für jede Eingabe eine Transition auf sich selbst hat.
+Für den Dispatcher gibt es verschiedene Unit-Tests. Zum einen wird getestet,
+ob das Mapping vom Event-enum zum internen Dispatched-Event-enum passt.
+Außerdem wird geprüft, ob in dem Funktionsadressen-Array die korrekten Adressen liegen.
+Ein weiterer Test prüft ob, der Dispatcher die Events sequenziell verteilt. Dazu gibt es eine
+FSM, die nur aus einem Zustand besteht, jedoch für jede Eingabe eine Transition auf sich selbst hat.
 Bei der Transition wird geprüft ob das erhaltene Eingangssignal das erwartete Eingangssignal ist.
-Die FSM wird zwei mal durchlaufen. Einmal wird der Dispatcher Thread umfahren indem die Events
-direkt aufgerufen werden. Das zweite mal schreibt Pulse Messages in den Channel die vom Dispatcher
+Die FSM wird zweimal durchlaufen. Beim ersten Mal wird der Dispatcher-Thread umgangen, indem die Events
+direkt aufgerufen werden. Das zweite Mal schreibt Pulse Messages in den Channel, die vom Dispatcher
 verteilt werden.
 
 \subsubsection{Timer}
-Bei dem Timer werden die Grundfunktionalitäten getestet.
-Zum Testen der Registrierungsfunktion wird ein Timer gestartet und auf die Pulse Message gewartet.
+Beim Timer werden die Grundfunktionalitäten getestet.\newline
+Zum Testen der Registrierungsfunktion wird ein Timer gestartet und auf die Pulse Message gewartet.\newline
 Um die Funktionen add, sub, pause und continue zu testen, wird jedoch ein weiterer Timer registriert.
-Dieser zusätzliche Timer sendet eine andere Message beim Ablaufen, dadurch wird verhindert, dass kein Interrupt
+Dieser zusätzliche Timer sendet eine andere Message beim Ablaufen,wodurch verhindert wird, dass kein Interrupt
 geworfen wird.
 
 % 8.2 Integrations-Test/System-Test
 \subsection{Integrations-Test/System-Test}
+\textbf{Beim Systemtest werden folgende Szenarien getestet:}\\
+\begin{enumerate}
+    \item Es werden zu flache Pucks auf Band 1 gelegt, um zu prüfen, ob diese von Band 1 aussortiert werden.
+    \item Es werden mehrere Werkstücke gleichzeitig auf Band 1 gelegt. Dabei wird überprüft, ob Band 1 stoppt und mit der Übergabe der Pucks wartet, bis Band 2 frei ist.
+    \item Es werden Werkstücke in richtiger und falscher Reihenfolge auf Band 1 gelegt. Dabei wird überprüft, ob Band 2 ein betreffendes Puck zurück an den Anfang fährt und auf dessen Entnahme wartet, um die richtige Reihenfolge wiederherzustellen.
+    \item Es werden Werkstücke mit der Bohrung nach unten auf Band 1 gelegt. Dabei wird überprüft, ob Band 1 stoppt, damit das Personal den Puck wenden kann, und bei Zurücklegen des Pucks weiterfährt, sofern Band 2 frei ist.
+    \item Es werden Werkstücke mit der Bohrung nach unten auf Band 1 gelegt, die nicht vom Personal gewendet werden, um zu prüfen, ob diese Pucks von Band 2 aussortiert werden.
+    \item Es werden Pucks im laufenden Betrieb an allen Segmenten entnommen oder hinzugefügt, um zu prüfen, ob die Zeitüberwachung dieser Segmente richtig arbeitet.
+    \item Es werden zu flache Pucks auf Band 1 gelegt, bis die Rutsche voll ist, um zu prüfen, ob dessen Fehlerabarbeitung von Band 1 richtig arbeitet.
+    \item Pucks mit der Bohrung nach unten werden am Ende von Band 2 nicht gewendet, bis die Rutsche von Band 2 voll ist, um zu prüfen, ob dessen Fehlerbearbeitung von Band 2 richtig arbeitet. 
+    \newline
+    \newline
+    \newline
+    \newline
+\end{enumerate}
 \textcolor{red}{\textbf{Test Szenarien mit beiden Laufbändern.}}
 
 % 8.3 Regressions-Test
