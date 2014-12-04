@@ -378,7 +378,7 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_ENTRACE_R);
+  disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE_R);
 }
 
 void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {

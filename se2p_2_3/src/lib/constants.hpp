@@ -259,41 +259,42 @@ enum height_values {
                                        << EVENT_PORT_C_OFFSET) | 0x01
 /**
  * Pulse Message Values
- *   EVENT_ZERO            Nullevent
+ *   EVENT_ZERO              Nullevent
  * Events Port C:
- *   EVENT_BUTTON_START    Start Button getoggelt
- *   EVENT_BUTTON_STOP     Stop Button getoggelt
- *   EVENT_BUTTON_RESET    Reset Button getoggelt
- *   EVENT_BUTTON_E_STOP   E-Stop getoggelt
- *   EVENT_BUTTON_E_STOP_R E-Stop getoggelt (Steigende Flanke)
+ *   EVENT_BUTTON_START      Start Button getoggelt
+ *   EVENT_BUTTON_STOP       Stop Button getoggelt
+ *   EVENT_BUTTON_RESET      Reset Button getoggelt
+ *   EVENT_BUTTON_E_STOP     E-Stop getoggelt
+ *   EVENT_BUTTON_E_STOP_R   E-Stop getoggelt (Steigende Flanke)
  *
  * Events Port B:
- *   EVENT_SENSOR_ENTRANCE Lichtschranke am Band einlauf getoggelt
- *   EVENT_SENSOR_HEIGHT   Lichtschranke am Hoehensensor (Fallende Flanke)
- *   EVENT_SENSOR_HEIGHT_R Lichtschranke am Hoehensensor (Steigende Flanke)
- *   EVENT_SENSOR_SWITCH   Lichtschranke am Switch (Fallende Flanke)
- *   EVENT_SENSOR_SWITCH_R Lichtschranke am Switch (Steigende Flanke)
- *   EVENT_SENSOR_SLIDE    Lichtschranke der Rutsche (Fallende Flanke)
- *   EVENT_SENSOR_SLIDE_R  Lichtschranke der Rutsche (Steigende Flanke)
- *   EVENT_SENSOR_EXIT     Lichtschranke am Ausgang (Fallende Flanke)
- *   EVENT_SENSOR_EXIT_R   Lichtschranke am Ausgang (Steigende Flanke)
+ *   EVENT_SENSOR_ENTRANCE   Lichtschranke am Band einlauf (Fallende Flanke)
+ *   EVENT_SENSOR_ENTRANCE_R Lichtschranke am Band einlauf (Steigende Flanke)
+ *   EVENT_SENSOR_HEIGHT     Lichtschranke am Hoehensensor (Fallende Flanke)
+ *   EVENT_SENSOR_HEIGHT_R   Lichtschranke am Hoehensensor (Steigende Flanke)
+ *   EVENT_SENSOR_SWITCH     Lichtschranke am Switch (Fallende Flanke)
+ *   EVENT_SENSOR_SWITCH_R   Lichtschranke am Switch (Steigende Flanke)
+ *   EVENT_SENSOR_SLIDE      Lichtschranke der Rutsche (Fallende Flanke)
+ *   EVENT_SENSOR_SLIDE_R    Lichtschranke der Rutsche (Steigende Flanke)
+ *   EVENT_SENSOR_EXIT       Lichtschranke am Ausgang (Fallende Flanke)
+ *   EVENT_SENSOR_EXIT_R     Lichtschranke am Ausgang (Steigende Flanke)
  *
  * Serielle Schnittstelle:
- *   EVENT_SERIAL_DATA     Daten empfangen     (Token Daten)
- *   EVENT_SERIAL_MSG      Nachricht empfangen (Keine Daten)
- *   EVENT_SERIAL_ERR      Errornachricht empfagen
- *   EVENT_SERIAL_UNK      Unbekannte Nachricht empfangen
- *                         (Fehlerhafte Nachricht?)
+ *   EVENT_SERIAL_DATA       Daten empfangen     (Token Daten)
+ *   EVENT_SERIAL_MSG        Nachricht empfangen (Keine Daten)
+ *   EVENT_SERIAL_ERR        Errornachricht empfagen
+ *   EVENT_SERIAL_UNK        Unbekannte Nachricht empfangen
+ *                           (Fehlerhafte Nachricht?)
  *
  * Timer Events:
- *   EVENT_SEG1_EXCEEDED   Token zwischen Einlauf und Hoehenmessung (Segment 1)
- *   EVENT_SEG2_EXCEEDED   Token zwischen Hoehenmessung und Weiche  (Segment 2)
- *   EVENT_SEG3_EXCEEDED   Token zwischen Weiche und Auslauf (Segment 3)
- *   EVENT_SLIDE_FULL      Rutsche ist voll wenn abgelaufen
- *   EVENT_OPEN_SWITCH     Oeffnungsdauer der Weiche
- *   EVENT_TURN_TOKEN      Zeit zum Wenden eines Pucks
- *   EVENT_REMOVE_TOKEN    Zeit zum Entfernen eines Pucks
- *   EVENT_TOKEN_FINISHED  Zeit bis der Puck das Ende von Band 2 erreicht hat
+ *   EVENT_SEG1_EXCEEDED     Token zwischen Einlauf und Hoehenmessung (Segment 1)
+ *   EVENT_SEG2_EXCEEDED     Token zwischen Hoehenmessung und Weiche  (Segment 2)
+ *   EVENT_SEG3_EXCEEDED     Token zwischen Weiche und Auslauf (Segment 3)
+ *   EVENT_SLIDE_FULL        Rutsche ist voll wenn abgelaufen
+ *   EVENT_OPEN_SWITCH       Oeffnungsdauer der Weiche
+ *   EVENT_TURN_TOKEN        Zeit zum Wenden eines Pucks
+ *   EVENT_REMOVE_TOKEN      Zeit zum Entfernen eines Pucks
+ *   EVENT_TOKEN_FINISHED    Zeit bis der Puck das Ende von Band 2 erreicht hat
  **/
 enum event_values {
   EVENT_ZERO            = 0,
@@ -305,6 +306,7 @@ enum event_values {
   EVENT_BUTTON_E_STOP_R = (EVENT_BASE<<BUTTON_ESTOP<< EVENT_PORT_A_OFFSET) | 1,
   // Port B
   EVENT_SENSOR_ENTRANCE = EVENT_BASE << SENSOR_ENTRANCE << EVENT_PORT_C_OFFSET,
+  EVENT_SENSOR_ENTRANCE_R=(EVENT_BASE<<SENSOR_ENTRANCE<<EVENT_PORT_C_OFFSET)|1,
   EVENT_SENSOR_HEIGHT   = EVENT_BASE << SENSOR_HEIGHT   << EVENT_PORT_C_OFFSET,
   EVENT_SENSOR_HEIGHT_R = (EVENT_BASE<<SENSOR_HEIGHT<<EVENT_PORT_C_OFFSET) | 1,
   EVENT_SENSOR_SWITCH   = EVENT_BASE << SENSOR_SWITCH   << EVENT_PORT_C_OFFSET,
@@ -346,7 +348,8 @@ enum dispatcher_events {
   DISPATCHED_EVENT_BUTTON_RESET,
   DISPATCHED_EVENT_BUTTON_E_STOP,   // Fallende Flanke
   DISPATCHED_EVENT_BUTTON_E_STOP_R, // Steigende Flanke
-  DISPATCHED_EVENT_SENSOR_ENTRANCE,
+  DISPATCHED_EVENT_SENSOR_ENTRANCE,   // Fallende Flanke
+  DISPATCHED_EVENT_SENSOR_ENTRANCE_R, // Steigende Flnake
   DISPATCHED_EVENT_SENSOR_HEIGHT,   // Fallende Flanke
   DISPATCHED_EVENT_SENSOR_HEIGHT_R, // Steigende Flanke
   DISPATCHED_EVENT_SENSOR_SWITCH,   // Fallende Flanke

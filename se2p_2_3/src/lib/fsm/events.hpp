@@ -39,7 +39,8 @@ class events {
   virtual void dispatched_event_button_reset()    = 0;
   virtual void dispatched_event_button_e_stop()   = 0;      // fallende flanke
   virtual void dispatched_event_button_e_stop_rising() = 0; // steigende flanke
-  virtual void dispatched_event_sensor_entrance() = 0;
+  virtual void dispatched_event_sensor_entrance() = 0;      // fallende Flanke
+  virtual void dispatched_event_sensor_entrance_rising() = 0; // steigende Flanke
   virtual void dispatched_event_sensor_height()   = 0;      // fallende flanke
   virtual void dispatched_event_sensor_height_rising() = 0; // steigende flanke
   virtual void dispatched_event_sensor_switch()   = 0;      // fallende flanke

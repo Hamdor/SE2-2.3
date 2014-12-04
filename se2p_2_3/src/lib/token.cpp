@@ -115,6 +115,10 @@ void token::dispatched_event_sensor_entrance() {
   m_state->dispatched_event_sensor_entrance();
 }
 
+void token::dispatched_event_sensor_entrance_rising() {
+  m_state->dispatched_event_sensor_entrance_rising();
+}
+
 void token::dispatched_event_sensor_height() {
   m_state->dispatched_event_sensor_height();
 }
