@@ -262,9 +262,6 @@ void b2_receive_data::dispatched_event_serial_data() {
 
 b2_received_object::b2_received_object(token* t) : state::state(t) {
   LOG_TRACE("")
-  // FIXME: Hier sollte eigentlich ueber den `token_mgr` gegangen werden,
-  // problem ist, dass der Motor aktiviert werden muss bevor die
-  // Eingagnslichtschranke durchbrochen werden konnte...
   TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
@@ -274,7 +271,6 @@ void b2_received_object::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_existence();
-  // B2_TRANS_FIN senden
   new (this) b2_realized_object(m_token);
 }
 
