@@ -44,8 +44,9 @@ class state : public events {
   state(token* t) : m_token(t) {
     // nop
   }
-  virtual ~state() {
-    delete m_token;
+
+  ~state() {
+    // nop
   }
 
   virtual void dispatched_event_button_start() {

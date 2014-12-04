@@ -79,6 +79,8 @@ void serial_channel::execute(void*) {
     if (data.m_type == MSG) {
       if (data.m_msg == B2_FREE) {
         value = EVENT_SERIAL_NEXT_OK;
+      } else if (data.m_msg == B2_TRANS_FIN) {
+        value = EVENT_SERIAL_TRANSFER_FIN;
       } else {
         value = EVENT_SERIAL_MSG;
       }

@@ -189,6 +189,9 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   LOG_TRACE("")
   m_token->pretty_print();
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SERIAL_TRANSFER_FIN);
   if (!mgr->check_conveyor2_ready()) {
     mgr->request_stop_motor();
     dispatcher* disp =
@@ -198,9 +201,6 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
     telegram tg(m_token);
     TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
     mgr->notify_token_trasition();
-    dispatcher* disp =
-        TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-    disp->register_listener(m_token, EVENT_SERIAL_TRANSFER_FIN);
   }
 }
 
@@ -212,7 +212,6 @@ void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
   telegram tg(m_token);
   TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
   disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);
-  disp->register_listener(m_token, EVENT_SERIAL_TRANSFER_FIN);
 }
 
 void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
