@@ -68,8 +68,8 @@
 /**
  * Maximale und minimale Toleranz fuer den Puck/Hoehenwert
  **/
-#define HEIGHT_SENSOR_TOLERANCE_MIN 50
-#define HEIGHT_SENSOR_TOLERANCE_MAX 50
+#define HEIGHT_SENSOR_TOLERANCE_MIN 70
+#define HEIGHT_SENSOR_TOLERANCE_MAX 70
 
 /**
  * Addresse des Control-Registers
@@ -244,6 +244,17 @@ enum height_values {
   METAL_BOTTOM_UP_HI = 2571,
   METAL_LOW = 3473,
   METAL_HI = 3598
+#elif defined(FESTO_4)
+  TOO_SMALL_LOW = 2742,
+  TOO_SMALL_HI = 2797,
+  HOLE_BOTTOM_UP_LOW = 2492,
+  HOLE_BOTTOM_UP_HI = 2547,
+  HOLE_LOW = 3545,
+  HOLE_HI = 3590,
+  METAL_BOTTOM_UP_LOW = 2520,
+  METAL_BOTTOM_UP_HI = 2561,
+  METAL_LOW = 3583,
+  METAL_HI = 3636
 #else
   // nop
 #endif

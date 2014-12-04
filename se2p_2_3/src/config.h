@@ -107,6 +107,10 @@
                        // Unter anderem Daten fuer Hoehenmessung
                        // definiert in `constants.hpp` (height_values)
 
+//#define FESTO_4      // Aktiviert spezifisch gemessene Werte fuer Festo 4
+                       // Unter anderem Daten fuer Hoehenmessung
+                       // definiert in `constants.hpp` (height_values)
+
 /**
  * ----------------------------------------------------------------------------
  **/
