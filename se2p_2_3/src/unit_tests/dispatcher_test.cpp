@@ -97,6 +97,8 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_BUTTON_E_STOP_R);
   m_error += test_single_mapping_equal(EVENT_SENSOR_ENTRANCE,
                                        DISPATCHED_EVENT_SENSOR_ENTRANCE);
+  m_error += test_single_mapping_equal(EVENT_SENSOR_ENTRANCE_R,
+                                       DISPATCHED_EVENT_SENSOR_ENTRANCE_R);
   m_error += test_single_mapping_equal(EVENT_SENSOR_HEIGHT,
                                        DISPATCHED_EVENT_SENSOR_HEIGHT);
   m_error += test_single_mapping_equal(EVENT_SENSOR_HEIGHT_R,
@@ -165,6 +167,9 @@ int dispatcher_test::test_function_address_reg() {
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_ENTRANCE],
       &fsm::events::dispatched_event_sensor_entrance);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_ENTRANCE_R],
+      &fsm::events::dispatched_event_sensor_entrance_rising);
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_HEIGHT],
       &fsm::events::dispatched_event_sensor_height);
@@ -281,7 +286,14 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_sensor_entrance()" << std::endl;
 #endif
-    register_for_next(EVENT_SENSOR_ENTRANCE, EVENT_SENSOR_HEIGHT);
+    register_for_next(EVENT_SENSOR_ENTRANCE, EVENT_SENSOR_ENTRANCE_R);
+  }
+
+  void dispatched_event_sensor_entrance_rising() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_sensor_entrance_rising()" << std::endl;
+#endif
+    register_for_next(EVENT_SENSOR_ENTRANCE_R, EVENT_SENSOR_HEIGHT);
   }
 
   void dispatched_event_sensor_height() {
@@ -456,6 +468,7 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP);
   m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_ENTRANCE);
+  m_dispatcher->direct_call_event(EVENT_SENSOR_ENTRANCE_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_HEIGHT);
   m_dispatcher->direct_call_event(EVENT_SENSOR_HEIGHT_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_SWITCH);
@@ -492,6 +505,8 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_E_STOP_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT,
                EVENT_SENSOR_ENTRANCE);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT,
+               EVENT_SENSOR_ENTRANCE_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_HEIGHT);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_HEIGHT_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_SWITCH);

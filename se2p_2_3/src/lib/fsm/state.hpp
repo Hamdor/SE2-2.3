@@ -62,6 +62,9 @@ class state : public events {
   virtual void dispatched_event_sensor_entrance() {
     // nop
   }
+  virtual void dispatched_event_sensor_entrance_rising() {
+    // nop
+  }
   virtual void dispatched_event_sensor_height() {
     // nop
   }

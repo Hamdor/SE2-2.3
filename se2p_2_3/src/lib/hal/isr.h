@@ -50,6 +50,7 @@ const struct sigevent* isr(void* arg, int id) {
     if (port_old < ports) {
       // steigende flanke
       if (changed_bit == EVENT_BUTTON_E_STOP
+          || changed_bit == EVENT_SENSOR_ENTRANCE
           || changed_bit == EVENT_SENSOR_HEIGHT
           || changed_bit == EVENT_SENSOR_SWITCH
           || changed_bit == EVENT_SENSOR_SLIDE
