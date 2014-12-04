@@ -101,6 +101,9 @@ class state : public events {
   virtual void dispatched_event_serial_next_ok() {
     // nop
   }
+  virtual void dispatched_event_serial_transfer_fin() {
+    // nop
+  }
   virtual void dispatched_event_serial_unk() {
     // nop
   }
@@ -212,6 +215,7 @@ class b1_token_ready_for_b2 : public state {
 
   virtual void dispatched_event_serial_next_ok();
   virtual void dispatched_event_sensor_exit_rising();
+  virtual void dispatched_event_serial_transfer_fin();
 };
 
 

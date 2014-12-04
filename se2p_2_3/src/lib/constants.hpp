@@ -428,13 +428,14 @@ enum telegram_type {
  * Nachricht Typen
  **/
 enum msg_type {
-  ERR_STOP = 0,  // Fehler auf einem Band, stoppen
-  ERR_QUIT = 1,  // Fehler quittiert
-  RESUME   = 2,  // Weiterlaufen/Start
-  B2_FREE  = 3,  // Band 2 wieder frei von Puck
-  E_STOP   = 4,  // E-Stop gedrueckt
-  STOP     = 5,  // Stop Taste gedrueckt
-  NOTHING  = 6   // Keine MSG
+  ERR_STOP     = 0,  // Fehler auf einem Band, stoppen
+  ERR_QUIT     = 1,  // Fehler quittiert
+  RESUME       = 2,  // Weiterlaufen/Start
+  B2_FREE      = 3,  // Band 2 wieder frei von Puck
+  B2_TRANS_FIN = 4,  // Lichtschranke auf Band 2 ist durchbrochen
+  E_STOP       = 5,  // E-Stop gedrueckt
+  STOP         = 6,  // Stop Taste gedrueckt
+  NOTHING      = 7   // Keine MSG
 };
 
 /**

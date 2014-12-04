@@ -370,7 +370,14 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_serial_next_ok()" << std::endl;
 #endif
-    register_for_next(EVENT_SERIAL_NEXT_OK, EVENT_SERIAL_UNK);
+    register_for_next(EVENT_SERIAL_NEXT_OK, EVENT_SERIAL_TRANSFER_FIN);
+  }
+
+  void dispatched_event_serial_transfer_fin() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_serial_transfer_fin()" << std::endl;
+#endif
+    register_for_next(EVENT_SERIAL_TRANSFER_FIN, EVENT_SERIAL_UNK);
   }
 
   void dispatched_event_serial_err() {
@@ -480,6 +487,7 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_SERIAL_DATA);
   m_dispatcher->direct_call_event(EVENT_SERIAL_MSG);
   m_dispatcher->direct_call_event(EVENT_SERIAL_NEXT_OK);
+  m_dispatcher->direct_call_event(EVENT_SERIAL_TRANSFER_FIN);
   m_dispatcher->direct_call_event(EVENT_SERIAL_ERR);
   m_dispatcher->direct_call_event(EVENT_SERIAL_UNK);
   m_dispatcher->direct_call_event(EVENT_SEG1_EXCEEDED);
@@ -519,6 +527,7 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_MSG);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_ERR);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_NEXT_OK);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_TRANSFER_FIN);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_UNK);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG1_EXCEEDED);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG2_EXCEEDED);

@@ -204,29 +204,27 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   }
 }
 
-void b1_token_ready_for_b2::dispatched_event_serial_transfer_fin() {
-  LOG_TRACE("")
-  mgr->notify_death();
-  new (this) anonymous_token(m_token);
-}
-
 void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);
   telegram tg(m_token);
   TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
+  disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);
+  disp->register_listener(m_token, EVENT_SERIAL_TRANSFER_FIN);
 }
 
 void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
-  //sleep(1); // FIXME: Bei manchen maschinen ist der Sensor nicht ganz am Ende...
-            // Am besten mit einem Timer loesen...
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->notify_token_trasition();
+}
+
+void b1_token_ready_for_b2::dispatched_event_serial_transfer_fin() {
+  LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_death();
-  mgr->notify_token_trasition();
   new (this) anonymous_token(m_token);
 }
 
@@ -277,6 +275,7 @@ void b2_received_object::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_existence();
+  // B2_TRANS_FIN senden
   new (this) b2_realized_object(m_token);
 }
 

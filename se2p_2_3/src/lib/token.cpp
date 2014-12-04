@@ -167,6 +167,10 @@ void token::dispatched_event_serial_next_ok() {
   m_state->dispatched_event_serial_next_ok();
 }
 
+void token::dispatched_event_serial_transfer_fin() {
+  m_state->dispatched_event_serial_transfer_fin();
+}
+
 void token::dispatched_event_serial_unk() {
   m_state->dispatched_event_serial_unk();
 }

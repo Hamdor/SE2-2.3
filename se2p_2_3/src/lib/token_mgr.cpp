@@ -111,6 +111,13 @@ void token_mgr::notify_existence(bool update) {
   if (update) {
     this->update();
   }
+#ifdef IS_CONVEYOR_2
+  // Band 1 signalisieren das uebergabe komplett
+  serial_channel* serial =
+      TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
+  telegram tel(B2_TRANS_FIN);
+  serial->send_telegram(&tel);
+#endif
 }
 
 void token_mgr::notify_death(bool update) {
