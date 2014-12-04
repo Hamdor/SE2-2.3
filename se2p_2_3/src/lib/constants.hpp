@@ -63,7 +63,7 @@
 /**
  * Maximale Anzahl an loops bis der Hoehenwert gelesen wird
  **/
-#define HEIGHT_SENSOR_MAX_LOOPS 50
+#define HEIGHT_SENSOR_MAX_LOOPS 25
 
 /**
  * Maximale und minimale Toleranz fuer den Puck/Hoehenwert

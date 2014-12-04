@@ -88,6 +88,8 @@ void b1_realized_object::dispatched_event_sensor_height() {
 
 b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   LOG_TRACE("")
+  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   int height = hal->get_height_value();
   m_token->set_height1(height);
@@ -113,7 +115,6 @@ b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
 }
 
@@ -132,7 +133,6 @@ void b1_token_too_small::dispatched_event_sensor_height_rising() {
 b1_valid_height::b1_valid_height(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
 }
 
@@ -289,6 +289,8 @@ void b2_realized_object::dispatched_event_sensor_height() {
 
 b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   LOG_TRACE("")
+  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   int height = hal->get_height_value();
   m_token->set_height2(height);
@@ -313,7 +315,6 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
 b2_token_upside_down::b2_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
 }
 
@@ -335,7 +336,6 @@ void b2_token_upside_down::dispatched_event_sensor_slide() {
 b2_valid_height::b2_valid_height(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
 }
 
