@@ -108,11 +108,15 @@
 
 \newpage
 
-% Inhaltsverzeichnis anlegen und bei Seitenzahl 1 beginnen lassen
-\setcounter{page}{1}
+% Inhaltsverzeichnis ohne Seitenzahlen anlegen
+\pagestyle{empty}
 \tableofcontents
 
 \newpage
+
+% Anfang des Inhalts bei Seitenzahl 1 beginnen lassen
+\pagestyle{plain}
+\setcounter{page}{1}
 
 % 1. Motivation
 \section{Motivation}
@@ -671,7 +675,7 @@ Spezifikation der Architektur und Definition der System-Schnittstellen in einem 
 % 6.1.1 Automat für Band 1
 \begin{figure}
 	\subsubsection{Automat für Band 1}
-	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Band1_FSM.png}
+	\centering\vfill\includegraphics[angle=90,scale=0.6]{imgs/Band1_FSM.png}
 \end{figure}
 
 % 6.1.2 Automat für Band 2
@@ -765,10 +769,10 @@ Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und 
     \item Monotonic
     \item Softtime
    \end{itemize}
-   Der Realtime Timer lässt sich durch Zeitänderung ein wenig manipulieren. Der Timer wird aktiv sobald der Zeitpunkt: timer-Zeit plus Startzeitpunkt erreicht wurde.
-   Wenn z.B. die BS Zeit sich während des Timers synchronisiert und dadurch um einen Augenblick erhöht, so schlägt der Realtime trozdem an dem errechneten Zeitpunkt an, auch wenn die Zeit in Wirklichkeit noch nicht verstrichen ist.
-   Hingegen der Monotonic Timer lässt sich nicht von diesen Zeiten beeinflussen, er zählt seine Takte und wenn diese erreicht wurrden wird er aktiv.
-   Softtime ist nur aktiv wenn auch die CPU läuft, dieser Timer kann die CPU nicht wecken und schlägt erst alarm wenn er wieder Aktiv ist.
+   Der Realtime Timer lässt sich durch Zeitänderung ein wenig manipulieren. Der Timer wird aktiv sobald der Zeitpunkt: Timer-Zeit plus Startzeitpunkt erreicht wurde.
+   Wenn z.B. die BS Zeit sich während des Timers synchronisiert und dadurch um einen Augenblick erhöht, so schlägt der Realtime trotzdem an dem errechneten Zeitpunkt an, auch wenn die Zeit in Wirklichkeit noch nicht verstrichen ist.
+   Hingegen der Monotonic Timer lässt sich nicht von diesen Zeiten beeinflussen. Er zählt seine Takte und wenn diese erreicht wurden wird er aktiv.
+   Softtime ist nur aktiv wenn auch die CPU läuft. Dieser Timer kann die CPU nicht wecken und schlägt erst Alarm, wenn er wieder Aktiv ist.
 
 % 8. Testen
 \section{Testen}
