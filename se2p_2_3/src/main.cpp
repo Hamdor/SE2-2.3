@@ -1,6 +1,6 @@
 /* 
  * @file    main.cpp
- * @version 0.1
+ * @version 0.2
  */
 
 #include "config.h"
@@ -8,6 +8,7 @@
 #include "lib/hal/HWaccess.hpp"
 #include "lib/util/singleton_mgr.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
+#include "lib/util/light_mgr.hpp"
 
 #include "unit_tests/irq_test.hpp"
 #include "unit_tests/test_suite.hpp"
@@ -114,6 +115,12 @@ void get_heights() {
  **/
 void main_program() {
   singleton_mgr::force_initialization(SERIAL_PLUGIN);
+  singleton_mgr::force_initialization(LIGHT_PLUGIN);
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  while(!hal->is_button_pressed(BUTTON_START)) {
+    // nop
+  }
+  TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN))->set_state(READY_TO_USE);
   TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   while(1) {
     sleep(1);

@@ -53,6 +53,8 @@ void light_mgr::initialize() {
     LOG_ERROR("ChannelCreate() failed!")
     return;
   }
+  set_state(NO_LIGHTS);
+  start(NULL);
 }
 
 void light_mgr::destroy() {
@@ -110,8 +112,10 @@ void light_mgr::execute(void*) {
         hal->set_light(RED, true);
       } break;
     }
+    m_tick = !m_tick;
+    m_timer->reset_timer();
+    m_timer->start_timer();
   }
-  m_tick = !m_tick;
 }
 
 void light_mgr::shutdown() {
@@ -121,7 +125,7 @@ void light_mgr::shutdown() {
 void light_mgr::set_state(light_states state) {
   m_state = state;
   // unnoetiger `size_t` cast damit GCC 4.7 auch happy ist. :@)
+  delete m_timer;
   duration dur = { state == ERROR_GONE ? (size_t)2 : (size_t)1, 0 };
-  new (m_timer) timer_wrapper(dur, TIMER_TICK_MSG, m_chid);
-  m_timer->start_timer();
+  m_timer = new timer_wrapper(dur, TIMER_TICK_MSG, m_chid);
 }

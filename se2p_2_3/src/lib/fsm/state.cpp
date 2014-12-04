@@ -27,8 +27,7 @@
 #include "lib/fsm/state.hpp"
 #include "lib/constants.hpp"
 #include "lib/util/logging.hpp"
-
-#include <unistd.h>
+#include "lib/util/light_mgr.hpp"
 
 using namespace se2;
 using namespace se2::fsm;
@@ -172,7 +171,9 @@ b1_exit::b1_exit(token* t) : state::state(t) {
 
 b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(TURN_TOKEN);
+  token_mgr* mgr  = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_START);
@@ -182,6 +183,8 @@ void b1_token_upside_down::dispatched_event_button_start() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(READY_TO_USE);
   new (this) b1_token_ready_for_b2(m_token);
 }
 
@@ -371,6 +374,8 @@ b2_is_wrong_order::b2_is_wrong_order(token* t) : state::state(t) {
   mgr->request_left_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(REMOVE_TOKEN);
 }
 
 void b2_is_wrong_order::dispatched_event_sensor_entrance() {
@@ -391,6 +396,8 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {
   // TODO: Muss jetzt erst erneut die start Taste gedrueckt werden?
   // wie steht das in den Requirements?
   // Wenn ja, dann sollte send_free() auch erst dort aufgerufen werden...
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(READY_TO_USE);
   new (this) anonymous_token(m_token);
 }
 
