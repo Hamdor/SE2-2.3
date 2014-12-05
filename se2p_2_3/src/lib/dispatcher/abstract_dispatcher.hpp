@@ -60,6 +60,32 @@ struct abstract_dispatcher {
   virtual bool register_listener(fsm::events* listener,
                                  hal::event_values event) = 0;
 
+  /**
+   * Registriert einen Listener fuer ein Event.
+   * Dieser Listener bekommt alle Nachrichten fuer dieses
+   * Event solange er angemeldet ist. Normal angemeldete Zustaende
+   * bekommen diese Events nicht.
+   * @param listener Pointer auf den Status
+   * @param event    auf welches gehoert werden soll
+   * @return TRUE    nach erfolgreichen hinzufuegen
+   *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
+   *                 dieses Event erreicht ist
+   **/
+  virtual bool register_prior_listener(fsm::events* listener,
+                                       hal::event_values event) = 0;
+
+  /**
+   * Unregistriert einen priorisierten Listener von einem Event.
+   * Normal registrierte Listener bekommen wieder Event Nachrichten.
+   * @param listener Pointer auf den Status
+   * @param event    auf welches gehoert werden soll
+   * @return TRUE    nach erfolgreichen hinzufuegen
+   *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
+   *                 dieses Event erreicht ist
+   **/
+  virtual bool unregister_prior_listener(fsm::events* listener,
+                                         hal::event_values event) = 0;
+
  private:
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert

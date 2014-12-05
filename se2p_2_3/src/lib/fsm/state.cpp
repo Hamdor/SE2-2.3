@@ -180,37 +180,16 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   lmgr->set_state(TURN_TOKEN);
   token_mgr* mgr  = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_START);
-  // TODO: Hier muesste tatsaechlich so etwas wie ein Errorhandler
-  // Problem ist, dass sobald der Token gedreht wird, der Token der (richtig rum)
-  // direkt dahinter liegt, auf das Exit Event fallend sowie steigend sensitiv ist.
-  // Ich koennte mir eine moegliche loesung so vorstellen:
-  //
+  // TODO: Folgendes Scenario noch einmal Testen!
   // Reihenfolge der Pucks:
   // Richtig Herum => Falsch Herum
   // (Zweiter)     => (Erster)
-  //
   // !NUN MUSS DER TOKEN GEDREHT WERDEN!
-  //
-  // dispatcher::set_prior(event*, state) {
-  //   priorarray[state] = event;
-  // }
-  //
-  // dispatcher::remove_prior(event* state) {
-  //   priorarray[state] = NULL;
-  // }
-  //
-  // dann im call vom dispatcher:
-  //
-  // disp::direct_call(...) {
-  //   ...
-  //   if priorarray[event] != NULL {
-  //     priorarray[event]->event ausloesen
-  //     RETURN
-  //   }
-  //   ...
-  // }
+  disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT);
+  disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
 }
 
 void b1_token_upside_down::dispatched_event_button_start() {
@@ -219,6 +198,10 @@ void b1_token_upside_down::dispatched_event_button_start() {
   mgr->unrequest_stop_motor();
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->unregister_prior_listener(m_token, EVENT_SENSOR_EXIT);
+  disp->unregister_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
   new (this) b1_token_ready_for_b2(m_token);
 }
 

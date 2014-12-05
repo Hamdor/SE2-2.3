@@ -40,6 +40,8 @@ void map_insert(std::map<event_values, dispatcher_events>& map,
 }
 
 dispatcher::dispatcher() {
+  std::memset(m_prior_listners, 0,
+      sizeof(m_prior_listners[0]) * DISPATCHED_EVENT_MAX);
   m_functions[0]  = &fsm::events::dispatched_event_button_start;
   m_functions[1]  = &fsm::events::dispatched_event_button_stop;
   m_functions[2]  = &fsm::events::dispatched_event_button_reset;
@@ -122,10 +124,36 @@ bool dispatcher::register_listener(fsm::events* listener,
   return true;
 }
 
+bool dispatcher::register_prior_listener(fsm::events* listener,
+                                         hal::event_values event) {
+  dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
+      event);
+  if (devent == DISPATCHED_EVENT_MAX || m_prior_listners[devent] != NULL) {
+    return false;
+  }
+  m_prior_listners[devent] = listener;
+  return true;
+}
+
+bool dispatcher::unregister_prior_listener(fsm::events* listener,
+                                           hal::event_values event) {
+  dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
+      event);
+  if (devent == DISPATCHED_EVENT_MAX || m_prior_listners[devent] != listener) {
+    return false;
+  }
+  m_prior_listners[devent] = NULL;
+  return true;
+}
+
 void dispatcher::direct_call_event(hal::event_values event) {
   dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
       event);
   if (devent == DISPATCHED_EVENT_MAX) {
+    return;
+  }
+  if (m_prior_listners[devent] != NULL) {
+    (m_prior_listners[devent]->*m_functions[devent])();
     return;
   }
   if (m_listeners[devent].empty()) {

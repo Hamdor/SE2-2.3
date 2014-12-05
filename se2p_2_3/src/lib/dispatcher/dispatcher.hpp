@@ -58,6 +58,12 @@ struct dispatcher : public abstract_dispatcher
   virtual bool register_listener(fsm::events* listener,
                                  hal::event_values event);
 
+  virtual bool register_prior_listener(fsm::events* listener,
+                                       hal::event_values event);
+
+  virtual bool unregister_prior_listener(fsm::events* listener,
+                                         hal::event_values event);
+
   /**
    * Mappt von `event_values` auf `dispatcher_events`
    * fuer zugriff auf Matrix
@@ -69,7 +75,6 @@ struct dispatcher : public abstract_dispatcher
       const std::map<hal::event_values, dispatcher_events>& map,
       hal::event_values val);
  private:
-
   virtual void direct_call_event(hal::event_values event);
 
   /**
@@ -100,6 +105,7 @@ struct dispatcher : public abstract_dispatcher
 
   virtual void shutdown();
 
+  fsm::events*             m_prior_listners[DISPATCHED_EVENT_MAX];
   std::queue<fsm::events*> m_listeners[DISPATCHED_EVENT_MAX];
   func_t                   m_functions[DISPATCHED_EVENT_MAX];
   std::map<hal::event_values, dispatcher_events> m_mapping;
