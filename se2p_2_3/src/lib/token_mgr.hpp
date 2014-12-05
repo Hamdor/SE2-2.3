@@ -146,6 +146,34 @@ class token_mgr : public util::abstract_singleton {
   void unrequest_stop_motor(bool update = true);
 
   /**
+   * Weiche oeffnen anfragen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
+   **/
+  void request_open_switch(bool update = true);
+
+  /**
+   * Weiche oeffnen anfrage zurueckziehen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
+   **/
+  void unrequest_open_switch(bool update = true);
+
+  /**
+   * Token drehen anfragen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
+   **/
+  void request_turnover(bool update = true);
+
+  /**
+   * Token drehen anfrage zurueckziehen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
+   **/
+  void unrequest_turnover(bool update = true);
+
+  /**
    * Neu an E-Stop event registrieren (Gedrueckt)
    **/
   void reregister_e_stop();
@@ -200,10 +228,12 @@ class token_mgr : public util::abstract_singleton {
    **/
   fsm::state* m_e_stop_listener;
 
-  int            m_alife;
-  int            m_motor_slow;
-  bool           m_motor_stop;
-  bool           m_motor_left;
+  volatile int   m_alife;
+  volatile int   m_motor_slow;
+  volatile int   m_switch_open;
+  volatile int   m_wait_turnover;
+  volatile bool  m_motor_stop;
+  volatile bool  m_motor_left;
   safe_state     m_safe;
   expected_token m_expected_token;
   bool           m_is_b2_ready;

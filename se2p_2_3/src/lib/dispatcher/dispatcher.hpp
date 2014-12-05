@@ -55,16 +55,6 @@ struct dispatcher : public abstract_dispatcher
    **/
   virtual ~dispatcher();
 
-  /**
-   * Registriert einen Listener fuer ein Event.
-   * Der Listener erhaellt Nachricht fuer dieses Event solange er
-   * Registriert ist.
-   * @param listener Pointer auf den Status
-   * @param event    auf welches gehoert werden soll
-   * @return TRUE    nach erfolgreichen hinzufuegen
-   *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
-   *                 dieses Event erreicht ist
-   **/
   virtual bool register_listener(fsm::events* listener,
                                  hal::event_values event);
 
@@ -79,14 +69,7 @@ struct dispatcher : public abstract_dispatcher
       const std::map<hal::event_values, dispatcher_events>& map,
       hal::event_values val);
  private:
-  /**
-   * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
-   * @param event welches ausgeloest werden soll
-   *        da dann synchronisation zwischen dem Dispatcher Thread
-   *        und dem aufrufendem Thread benoetigt wird.
-   * @warning Diese Funktion wird eventuell geloescht. Sollte deshalb
-   *          nicht verwendet werden.
-   **/
+
   virtual void direct_call_event(hal::event_values event);
 
   /**

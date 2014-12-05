@@ -191,6 +191,8 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_SENSOR_EXIT_R:
       break;
     case EVENT_UNKOWN1:
+    case EVENT_UNKOWN2:
+    case EVENT_UNKOWN3:
       break;
     default:
       LOG_WARNING("Unkown Interrupt Value")

@@ -63,13 +63,13 @@
 /**
  * Maximale Anzahl an loops bis der Hoehenwert gelesen wird
  **/
-#define HEIGHT_SENSOR_MAX_LOOPS 25
+#define HEIGHT_SENSOR_MAX_LOOPS 100
 
 /**
  * Maximale und minimale Toleranz fuer den Puck/Hoehenwert
  **/
-#define HEIGHT_SENSOR_TOLERANCE_MIN 70
-#define HEIGHT_SENSOR_TOLERANCE_MAX 70
+#define HEIGHT_SENSOR_TOLERANCE_MIN 100
+#define HEIGHT_SENSOR_TOLERANCE_MAX 100
 
 /**
  * Addresse des Control-Registers
@@ -354,7 +354,9 @@ enum event_values {
   EVENT_REMOVE_TOKEN,                         // EVENT_SERIAL_UNK + 0x07
   EVENT_TOKEN_FINISHED,                       // EVENT_SERIAL_UNK + 0x08
   // Unkown / Not handled inputs
-  EVENT_UNKOWN1 = 8192                        // Ich weiss nicht woher dieses Event kommt...
+  EVENT_UNKOWN1 = 1024,
+  EVENT_UNKOWN2 = 4096,
+  EVENT_UNKOWN3 = 8192
 };
 
 } // namespace hal

@@ -59,6 +59,7 @@ struct abstract_dispatcher {
    **/
   virtual bool register_listener(fsm::events* listener,
                                  hal::event_values event) = 0;
+
  private:
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert

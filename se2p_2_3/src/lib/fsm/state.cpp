@@ -87,7 +87,8 @@ void b1_realized_object::dispatched_event_sensor_height() {
 
 b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   LOG_TRACE("")
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  dispatcher* disp =
+    TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   int height = hal->get_height_value();
@@ -115,6 +116,7 @@ b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
+  disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
 }
 
 void b1_token_too_small::dispatched_event_sensor_slide() {
@@ -142,17 +144,20 @@ void b1_valid_height::dispatched_event_sensor_height_rising() {
 
 void b1_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->open_switch();
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->request_open_switch();
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH_R);
-  disp->register_listener(m_token, EVENT_SENSOR_EXIT);
 }
 
 void b1_valid_height::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->close_switch();
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->unrequest_open_switch();
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SENSOR_EXIT);
 }
 
 void b1_valid_height::dispatched_event_sensor_exit() {
@@ -177,6 +182,35 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   mgr->request_stop_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_START);
+  // TODO: Hier muesste tatsaechlich so etwas wie ein Errorhandler
+  // Problem ist, dass sobald der Token gedreht wird, der Token der (richtig rum)
+  // direkt dahinter liegt, auf das Exit Event fallend sowie steigend sensitiv ist.
+  // Ich koennte mir eine moegliche loesung so vorstellen:
+  //
+  // Reihenfolge der Pucks:
+  // Richtig Herum => Falsch Herum
+  // (Zweiter)     => (Erster)
+  //
+  // !NUN MUSS DER TOKEN GEDREHT WERDEN!
+  //
+  // dispatcher::set_prior(event*, state) {
+  //   priorarray[state] = event;
+  // }
+  //
+  // dispatcher::remove_prior(event* state) {
+  //   priorarray[state] = NULL;
+  // }
+  //
+  // dann im call vom dispatcher:
+  //
+  // disp::direct_call(...) {
+  //   ...
+  //   if priorarray[event] != NULL {
+  //     priorarray[event]->event ausloesen
+  //     RETURN
+  //   }
+  //   ...
+  // }
 }
 
 void b1_token_upside_down::dispatched_event_button_start() {
@@ -211,7 +245,8 @@ void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   telegram tg(m_token);
   TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
   disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);

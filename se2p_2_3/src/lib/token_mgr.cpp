@@ -41,6 +41,8 @@ token_mgr* token_mgr::instance = 0;
 
 token_mgr::token_mgr() : m_e_stop_listener(new state)
                        , m_alife(0), m_motor_slow(0)
+                       , m_switch_open(0)
+                       , m_wait_turnover(0)
                        , m_motor_stop(false)
                        , m_motor_left(false)
                        , m_expected_token(ALL)
@@ -78,6 +80,11 @@ void token_mgr::update() {
   } else {
     hal->set_motor(MOTOR_FAST);
   }
+  if (m_switch_open > 0) {
+    hal->open_switch();
+  } else {
+    hal->close_switch();
+  }
   if (m_motor_left) {
     hal->set_motor(MOTOR_LEFT);
   } else {
@@ -86,7 +93,9 @@ void token_mgr::update() {
   if (m_motor_stop) {
     hal->set_motor(MOTOR_STOP);
   } else {
-    hal->set_motor(MOTOR_RESUME);
+    if (m_wait_turnover == 0) {
+      hal->set_motor(MOTOR_RESUME);
+    }
   }
   if (m_alife == 0) {
     hal->set_motor(MOTOR_STOP);
@@ -164,6 +173,35 @@ void token_mgr::request_stop_motor(bool update) {
 
 void token_mgr::unrequest_stop_motor(bool update) {
   m_motor_stop = false;
+  if (update) {
+    this->update();
+  }
+}
+
+void token_mgr::request_open_switch(bool update) {
+  ++m_switch_open;
+  if (update) {
+    this->update();
+  }
+}
+
+void token_mgr::unrequest_open_switch(bool update) {
+  --m_switch_open;
+  if (update) {
+    this->update();
+  }
+}
+
+void token_mgr::request_turnover(bool update) {
+  ++m_wait_turnover;
+  if (update) {
+    this->update();
+  }
+}
+
+
+void token_mgr::unrequest_turnover(bool update) {
+  --m_wait_turnover;
   if (update) {
     this->update();
   }
