@@ -368,8 +368,8 @@ void b2_valid_height::dispatched_event_sensor_height_rising() {
 
 void b2_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->open_switch();
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->request_open_switch();
   new (this) b2_metal_detection(m_token);
 }
 
@@ -382,7 +382,6 @@ b2_metal_detection::b2_metal_detection(token* t) : state::state(t) {
     new (this) b2_is_correct_order(m_token);
   } else {
     new (this) b2_is_wrong_order(m_token);
-    TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->close_switch();
   }
 }
 
@@ -429,8 +428,8 @@ b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
 
 void b2_is_correct_order::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->close_switch();
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->unrequest_open_switch();
 }
 
 void b2_is_correct_order::dispatched_event_sensor_exit() {
