@@ -43,7 +43,7 @@ token_mgr::token_mgr() : m_e_stop_listener(new state)
                        , m_alife(0), m_motor_slow(0)
                        , m_switch_open(0)
                        , m_wait_turnover(0)
-                       , m_motor_stop(false)
+                       , m_motor_stop(0)
                        , m_motor_left(false)
                        , m_expected_token(ALL)
                        , m_is_b2_ready(true) {
@@ -90,7 +90,7 @@ void token_mgr::update() {
   } else {
     hal->set_motor(MOTOR_RIGHT);
   }
-  if (m_motor_stop) {
+  if (m_motor_stop > 0) {
     hal->set_motor(MOTOR_STOP);
   } else {
     if (m_wait_turnover == 0) {
@@ -165,14 +165,14 @@ void token_mgr::unrequest_left_motor(bool update) {
 }
 
 void token_mgr::request_stop_motor(bool update) {
-  m_motor_stop = true;
+  ++m_motor_stop;
   if (update) {
     this->update();
   }
 }
 
 void token_mgr::unrequest_stop_motor(bool update) {
-  m_motor_stop = false;
+  --m_motor_stop;
   if (update) {
     this->update();
   }
@@ -199,24 +199,11 @@ void token_mgr::request_turnover(bool update) {
   }
 }
 
-
 void token_mgr::unrequest_turnover(bool update) {
   --m_wait_turnover;
   if (update) {
     this->update();
   }
-}
-
-void token_mgr::reregister_e_stop() {
-  dispatch::dispatcher* disp = TO_DISPATCHER
-      (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP);
-}
-
-void token_mgr::reregister_e_stop_rising() {
-  dispatch::dispatcher* disp = TO_DISPATCHER
-      (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP_R);
 }
 
 void token_mgr::enter_safe_state() {

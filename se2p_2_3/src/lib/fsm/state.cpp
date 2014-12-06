@@ -28,6 +28,7 @@
 #include "lib/constants.hpp"
 #include "lib/util/logging.hpp"
 #include "lib/util/light_mgr.hpp"
+#include "lib/hal/HWaccess.hpp"
 
 using namespace se2;
 using namespace se2::fsm;
@@ -35,18 +36,6 @@ using namespace se2::hal;
 using namespace se2::util;
 using namespace se2::dispatch;
 using namespace se2::serial_bus;
-
-void state::dispatched_event_button_e_stop() {
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->reregister_e_stop();
-  mgr->enter_safe_state();
-}
-
-void state::dispatched_event_button_e_stop_rising() {
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->reregister_e_stop_rising();
-  mgr->exit_safe_state();
-}
 
 anonymous_token::anonymous_token(token* t) : state::state(t) {
   LOG_TRACE("")

@@ -174,16 +174,6 @@ class token_mgr : public util::abstract_singleton {
   void unrequest_turnover(bool update = true);
 
   /**
-   * Neu an E-Stop event registrieren (Gedrueckt)
-   **/
-  void reregister_e_stop();
-
-  /**
-   * Neu an E-Stop event registrieren (Nicht mehr gedrueckt)
-   **/
-  void reregister_e_stop_rising();
-
-  /**
    * System in sicheren Zustand bringen
    **/
   void enter_safe_state();
@@ -232,7 +222,7 @@ class token_mgr : public util::abstract_singleton {
   volatile int   m_motor_slow;
   volatile int   m_switch_open;
   volatile int   m_wait_turnover;
-  volatile bool  m_motor_stop;
+  volatile int   m_motor_stop;
   volatile bool  m_motor_left;
   safe_state     m_safe;
   expected_token m_expected_token;

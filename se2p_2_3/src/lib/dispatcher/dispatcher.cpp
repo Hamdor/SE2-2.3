@@ -194,10 +194,14 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       break;
     case EVENT_BUTTON_RESET:
       break;
-    case EVENT_BUTTON_E_STOP:
-      break;
-    case EVENT_BUTTON_E_STOP_R:
-      break;
+    case EVENT_BUTTON_E_STOP: {
+      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+      mgr->enter_safe_state();
+    } break;
+    case EVENT_BUTTON_E_STOP_R: {
+      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+      mgr->exit_safe_state();
+    } break;
     case EVENT_SENSOR_ENTRANCE:
       break;
     case EVENT_SENSOR_ENTRANCE_R:
