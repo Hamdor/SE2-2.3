@@ -213,10 +213,6 @@ class token_mgr : public util::abstract_singleton {
  private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
-  /**
-   * Dieser Zustand ist permanent und wartet nur auf den E-Stop
-   **/
-  fsm::state* m_e_stop_listener;
 
   volatile int   m_alife;
   volatile int   m_motor_slow;
@@ -227,6 +223,8 @@ class token_mgr : public util::abstract_singleton {
   safe_state     m_safe;
   expected_token m_expected_token;
   bool           m_is_b2_ready;
+  bool           m_safe_state;
+  bool           m_update_req;
 };
 
 }
