@@ -211,7 +211,7 @@ void token_mgr::unrequest_turnover(bool update) {
   }
 }
 
-void token_mgr::enter_safe_state() {
+void token_mgr::enter_safe_state(bool send_serial) {
   m_safe_state = true;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   m_safe.m_switch_open   = hal->is_switch_open();
@@ -220,9 +220,13 @@ void token_mgr::enter_safe_state() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
   TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->pause_all();
+  if (send_serial) {
+    telegram tel(E_STOP);
+    TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tel);
+  }
 }
 
-void token_mgr::exit_safe_state() {
+void token_mgr::exit_safe_state(bool send_serial) {
   m_safe_state = false;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   if (m_safe.m_switch_open) {
@@ -241,6 +245,10 @@ void token_mgr::exit_safe_state() {
     update();
   }
   TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->continue_all();
+  if (send_serial) {
+    telegram tel(E_STOP_GONE);
+    TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tel);
+  }
 }
 
 bool token_mgr::check_order(bool metal) {

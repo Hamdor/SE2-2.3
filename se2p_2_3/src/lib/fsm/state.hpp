@@ -108,6 +108,12 @@ class state : public events {
   virtual void dispatched_event_serial_transfer_fin() {
     // nop
   }
+  virtual void dispatched_event_serial_e_stopp() {
+    // nop
+  }
+  virtual void dispatched_event_serial_e_stopp_gone() {
+    // nop
+  }
   virtual void dispatched_event_serial_unk() {
     // nop
   }

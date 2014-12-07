@@ -10,7 +10,7 @@
 % Beginn des Dokuments
 \begin{document}
   \section*{\small{Software Engineering II \\ Wintersemester 2014/2015: Gruppe 2.3 \\ Marian Triebe}}
-  \section*{Protokoll der seriellen Schnittstelle (Version 2)}
+  \section*{Protokoll der seriellen Schnittstelle (Version 2.1)}
   \textbf{\\ {\large Protokoll}}\\
   \newline
   \begin{tabular}{|l|l|}
@@ -25,11 +25,15 @@
     \hline
     0x03 & B2\_FREE - Band 2 kann einen neuen Puck verarbeiten\\
     \hline
-    0x04 & E\_STOP - E-Stopp wurde auf einem Band gedrückt\\
+    0x04 & B2\_TRANS\_FIN - Transfer des Pucks zu Band 2 abgeschlossen\\
     \hline
-    0x05 & STOP - Stopp Taster wurde auf einem Band gedrückt\\
+    0x05 & E\_STOP - E-Stopp wurde auf einem Band gedrückt\\
     \hline
-    0x06 & NOTHING - Keine Nachricht\\
+    0x06 & E\_STOP\_GONE - E-Stopp wurde auf einem Band entsichert\\
+    \hline
+    0x07 & STOP - Stopp Taster wurde auf einem Band gedrückt\\
+    \hline
+    0x08 & NOTHING - Keine Nachricht\\
     \hline
   \end{tabular}
   \newline \newline

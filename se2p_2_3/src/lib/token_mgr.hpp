@@ -175,13 +175,19 @@ class token_mgr : public util::abstract_singleton {
 
   /**
    * System in sicheren Zustand bringen
+   * @param send_serial beschreibt ob die Information, dass
+   *        der `safe_state` betreten wurde, ueber die Serielle-
+   *        Schnittstelle gesendet werden soll. (Default: TRUE)
    **/
-  void enter_safe_state();
+  void enter_safe_state(bool send_serial = true);
 
   /**
    * System wieder in alten Zustand bringen
+   * @param send_serial beschreibt ob die Information, dass
+   *        der `safe_state` verlassen wurde, ueber die Serielle-
+   *        Schnittstelle gesendet werden soll. (Default: TRUE)
    **/
-  void exit_safe_state();
+  void exit_safe_state(bool send_serial = true);
 
   /**
    * Prueft ob das aktueller Token zur korrekten

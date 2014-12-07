@@ -343,7 +343,9 @@ enum event_values {
   EVENT_SERIAL_ERR,                           // EVENT_SERIAL_START + 0x02
   EVENT_SERIAL_NEXT_OK,                       // EVENT_SERIAL_START + 0x03
   EVENT_SERIAL_TRANSFER_FIN,                  // EVENT_SERIAL_START + 0x04
-  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x05
+  EVENT_SERIAL_E_STOPP,                       // EVENT_SERIAL_START + 0x05
+  EVENT_SERIAL_E_STOPP_GONE,                  // EVENT_SERIAL_START + 0x06
+  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x07
   // Timer
   EVENT_SEG1_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x01
   EVENT_SEG2_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x02
@@ -388,6 +390,8 @@ enum dispatcher_events {
   DISPATCHED_EVENT_SERIAL_ERR,
   DISPATCHED_EVENT_SERIAL_NEXT_OK,
   DISPATCHED_EVENT_SERIAL_TRANSFER_FIN,
+  DISPATCHED_EVENT_SERIAL_E_STOPP,
+  DISPATCHED_EVENT_SERIAL_E_STOPP_GONE,
   DISPATCHED_EVENT_SERIAL_UNK,
   DISPATCHED_EVENT_SEG1_EXCEEDED,
   DISPATCHED_EVENT_SEG2_EXCEEDED,
@@ -447,8 +451,9 @@ enum msg_type {
   B2_FREE      = 3,  // Band 2 wieder frei von Puck
   B2_TRANS_FIN = 4,  // Lichtschranke auf Band 2 ist durchbrochen
   E_STOP       = 5,  // E-Stop gedrueckt
-  STOP         = 6,  // Stop Taste gedrueckt
-  NOTHING      = 7   // Keine MSG
+  E_STOP_GONE  = 6,  // E-Stop entriegelt
+  STOP         = 7,  // Stop Taste gedrueckt
+  NOTHING      = 8   // Keine MSG
 };
 
 /**
