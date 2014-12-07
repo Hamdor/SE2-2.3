@@ -161,6 +161,9 @@ int hwaccess::get_isr_channel() const {
 
 void hwaccess::init_isr() {
   LOG_TRACE("")
+  if (!m_isr) {
+    m_isr = new isr_control;
+  }
   // Channel erstellen
   m_isr->m_chid = ChannelCreate(0);
   if (m_isr->m_chid == -1) {
@@ -210,6 +213,8 @@ void hwaccess::stop_isr() {
   if (rc) {
     LOG_ERROR("ChannelDestroy() failed!")
   }
+  delete m_isr;
+  m_isr = NULL;
 }
 
 void hwaccess::initialize() {

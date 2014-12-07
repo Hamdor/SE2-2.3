@@ -265,7 +265,8 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_button_reset()" << std::endl;
 #endif
-    register_for_next(EVENT_BUTTON_RESET, EVENT_BUTTON_E_STOP);
+    //register_for_next(EVENT_BUTTON_RESET, EVENT_BUTTON_E_STOP);
+    register_for_next(EVENT_BUTTON_RESET, EVENT_SENSOR_ENTRANCE);
   }
 
   void dispatched_event_button_e_stop() {
@@ -472,8 +473,8 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_BUTTON_START);
   m_dispatcher->direct_call_event(EVENT_BUTTON_STOP);
   m_dispatcher->direct_call_event(EVENT_BUTTON_RESET);
-  m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP);
-  m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP_R);
+  //m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP);
+  //m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_ENTRANCE);
   m_dispatcher->direct_call_event(EVENT_SENSOR_ENTRANCE_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_HEIGHT);
@@ -509,8 +510,8 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_START);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_STOP);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_RESET);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_E_STOP);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_E_STOP_R);
+  //MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_E_STOP);
+  //MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_E_STOP_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT,
                EVENT_SENSOR_ENTRANCE);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT,
