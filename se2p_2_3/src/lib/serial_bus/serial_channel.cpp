@@ -96,7 +96,7 @@ void serial_channel::execute(void*) {
       // unkown ...
       value = EVENT_SERIAL_UNK;
     }
-    if (data.m_msg == DATA) {
+    if (data.m_type == DATA) {
       lock_guard lock(m_lock);
       m_queue.push(data);
       m_cond.broadcast();
