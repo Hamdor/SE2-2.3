@@ -235,6 +235,10 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_SWITCH_METAL_CONCURRENT: {
       direct_call_event(EVENT_SENSOR_SWITCH_R);
     } break;
+    case EVENT_SWITCH_ENTRANCE_CONCURRENT: {
+      direct_call_event(EVENT_SENSOR_SWITCH_R);
+      direct_call_event(EVENT_SENSOR_ENTRANCE);
+    } break;
     default:
       std::cout << buffer.value.sival_int << std::endl;
       LOG_WARNING("Unkown Interrupt Value")

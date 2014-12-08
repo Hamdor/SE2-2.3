@@ -358,6 +358,8 @@ enum event_values {
   // Unkown / Not handled inputs
   EVENT_UNKOWN1 = 1024,
   EVENT_UNKOWN2 = 4096,
+  EVENT_SWITCH_ENTRANCE_CONCURRENT = 4352, // "Werkstueck in Weiche und entrance
+                                           // Sensor zeitgleich"
   EVENT_SWITCH_METAL_CONCURRENT = 6144, // "Werkstueck in Weiche und ist Metall
                                         // zeitgleich"
   EVENT_UNKOWN3 = 8192
@@ -494,20 +496,21 @@ struct duration {
 
 /**
  * Erwartete Zeiten zwischen den Segmenten
- * TODO: Mit echten Zeitwerten der FESTOs ersetzen
  **/
-#define SEGMENT1_SEC__HAS_TO_EXPIRE 10
-#define SEGMENT1_MSEC_HAS_TO_EXPIRE 10
-#define SEGMENT1_SEC__TOO_LATE      20
-#define SEGMENT1_MSEC_TOO_LATE      20
-#define SEGMENT2_SEC__HAS_TO_EXPIRE 10
-#define SEGMENT2_MSEC_HAS_TO_EXPIRE 10
-#define SEGMENT2_SEC__TOO_LATE      20
-#define SEGMENT2_MSEC_TOO_LATE      20
-#define SEGMENT3_SEC__HAS_TO_EXPIRE 10
-#define SEGMENT3_MSEC_HAS_TO_EXPIRE 10
-#define SEGMENT3_SEC__TOO_LATE      20
-#define SEGMENT3_MSEC_TOO_LATE      20
+#if defined(FESTO_6)
+#define SEGMENT1_SEC__HAS_TO_EXPIRE 3
+#define SEGMENT1_MSEC_HAS_TO_EXPIRE 35
+#define SEGMENT1_SEC__TOO_LATE 3
+#define SEGMENT1_MSEC_TOO_LATE 40
+#define SEGMENT2_SEC__HAS_TO_EXPIRE 1
+#define SEGMENT2_MSEC_HAS_TO_EXPIRE 4
+#define SEGMENT2_SEC__TOO_LATE 1
+#define SEGMENT2_MSEC_TOO_LATE 454
+#define SEGMENT3_SEC__HAS_TO_EXPIRE 1
+#define SEGMENT3_MSEC_HAS_TO_EXPIRE 35
+#define SEGMENT3_SEC__TOO_LATE 1
+#define SEGMENT3_MSEC_TOO_LATE 39
+#endif
 
 #define SLIDE_SEC__TIMEOUT           1
 #define SLIDE_MSEC_TIMEOUT         500
