@@ -233,7 +233,7 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_UNKOWN3:
       break;
     case EVENT_SWITCH_METAL_CONCURRENT: {
-      direct_call_event(EVENT_SENSOR_SWITCH);
+      direct_call_event(EVENT_SENSOR_SWITCH_R);
     } break;
     default:
       std::cout << buffer.value.sival_int << std::endl;
