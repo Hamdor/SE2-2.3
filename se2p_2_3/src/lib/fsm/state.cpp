@@ -357,8 +357,6 @@ void b2_valid_height::dispatched_event_sensor_height_rising() {
 
 void b2_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->request_open_switch();
   new (this) b2_metal_detection(m_token);
 }
 
@@ -409,6 +407,8 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {
 
 b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
   LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->request_open_switch();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH_R);
   disp->register_listener(m_token, EVENT_SENSOR_EXIT);
