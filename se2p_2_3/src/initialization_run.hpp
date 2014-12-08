@@ -60,10 +60,9 @@ class initialization_run {
 
   /**
    * Gibt einen Zeitwert auf der Konsole aus.
-   * @param time ist eine Referenz auf ein `my_time` struct welches
-   *        die Zeitwerte enthaellt.
+   * @param time ist ein Array auf die Zeit werte
    **/
-  void print_time(const my_times& time);
+  void print_time(const my_times time[]);
 
   /**
    * Startet alle Unit-Tests

@@ -484,10 +484,31 @@ struct telegram {
 } // namespace serial_bus
 
 namespace timer {
+
 struct duration {
   size_t sec;
   size_t msec;
 };
+
+/**
+ * Erwartete Zeiten zwischen den Segmenten
+ * TODO: Mit echten Zeitwerten der FESTOs ersetzen
+ **/
+#define SEGMENT1_SEC__HAS_TO_EXPIRE 10
+#define SEGMENT1_MSEC_HAS_TO_EXPIRE 10
+#define SEGMENT1_SEC__TOO_LATE      20
+#define SEGMENT1_MSEC_TOO_LATE      20
+#define SEGMENT2_SEC__HAS_TO_EXPIRE 10
+#define SEGMENT2_MSEC_HAS_TO_EXPIRE 10
+#define SEGMENT2_SEC__TOO_LATE      20
+#define SEGMENT2_MSEC_TOO_LATE      20
+#define SEGMENT3_SEC__HAS_TO_EXPIRE 10
+#define SEGMENT3_MSEC_HAS_TO_EXPIRE 10
+#define SEGMENT3_SEC__TOO_LATE      20
+#define SEGMENT3_MSEC_TOO_LATE      20
+
+#define SLIDE_SEC__TIMEOUT           1
+#define SLIDE_MSEC_TIMEOUT         500
 
 } // namespace timer
 } // namespace se2

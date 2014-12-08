@@ -34,6 +34,8 @@
 #include "unit_tests/dispatcher_test.hpp"
 #include "unit_tests/timer_test.hpp"
 
+#include <cstring>
+
 using namespace se2;
 using namespace se2::hal;
 using namespace se2::util;
@@ -97,7 +99,7 @@ void initialization_run::get_heights() {
 
 void initialization_run::get_times() {
   std::cout << "====== Start of `get_times` ======" << std::endl;
-  my_times times[10];
+  my_times times[3];
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   while (!hal->obj_in_light_barrier(SENSOR_ENTRANCE)) {
     // nop
@@ -109,25 +111,24 @@ void initialization_run::get_times() {
     // nop
   }
   times[0] = get_curr_time();
-  print_time(times[0]);
   while (!hal->obj_in_light_barrier(SENSOR_SWITCH)) {
     // nop
   }
   hal->open_switch();
   times[1] = get_curr_time();
-  print_time(times[1]);
   while (hal->obj_in_light_barrier(SENSOR_SWITCH)) {
     // nop
   }
   hal->close_switch();
   times[2] = get_curr_time();
-  print_time(times[2]);
   while (!hal->obj_in_light_barrier(SENSOR_EXIT)) {
     // nop
   }
   hal->set_motor(MOTOR_STOP);
-  times[3] = get_curr_time();
-  print_time(times[3]);
+  while (hal->obj_in_light_barrier(SENSOR_EXIT)) {
+    // nop
+  }
+  print_time(times);
   std::cout << "======  End of `get_times`  ======" << std::endl;
 }
 
@@ -135,6 +136,8 @@ my_times initialization_run::get_curr_time() {
   static timespec oldspec;
   timespec curspec;
   timespec diffspec;
+  std::memset(&curspec, 0, sizeof(timespec));
+  std::memset(&diffspec, 0, sizeof(timespec));
   clock_gettime(CLOCK_REALTIME, &curspec);
   diffspec.tv_sec  = curspec.tv_sec - oldspec.tv_sec;
   diffspec.tv_nsec = curspec.tv_nsec - oldspec.tv_nsec;
@@ -143,9 +146,48 @@ my_times initialization_run::get_curr_time() {
   return t;
 }
 
-void initialization_run::print_time(const my_times& time) {
-  std::cout << "sec: "  << time.sec  << " "
-            << "msec: " << time.msec << std::endl;
+#define REM_TO_EXPIRE_SEC  0
+#define REM_TO_EXPIRE_MSEC 200
+
+#define ADD_TO_LATE_SEC    0
+#define ADD_TO_LATE_MSEC   250
+
+#define UNDERFLOW_CHECK(o,n) std::min(o,n)
+
+void initialization_run::print_time(const my_times time[]) {
+  std::string time_names[] = {
+      "SEGMENT1_SEC__HAS_TO_EXPIRE", "SEGMENT1_MSEC_HAS_TO_EXPIRE",
+      "SEGMENT1_SEC__TOO_LATE",      "SEGMENT1_MSEC_TOO_LATE",
+      "SEGMENT2_SEC__HAS_TO_EXPIRE", "SEGMENT2_MSEC_HAS_TO_EXPIRE",
+      "SEGMENT2_SEC__TOO_LATE",      "SEGMENT2_MSEC_TOO_LATE",
+      "SEGMENT3_SEC__HAS_TO_EXPIRE", "SEGMENT3_MSEC_HAS_TO_EXPIRE",
+      "SEGMENT3_SEC__TOO_LATE",      "SEGMENT3_MSEC_TOO_LATE",
+      "SLIDE_SEC__TIMEOUT",          "SLIDE_MSEC_TIMEOUT"
+  };
+  size_t idx   = 0;
+  size_t ntime = 0;
+  for (size_t i = 0; i < 3; ++i) {
+    std::cout << "#define "   << time_names[idx++] << " "
+              << time[i].sec - REM_TO_EXPIRE_SEC   << std::endl;
+    ntime = time[i].msec - REM_TO_EXPIRE_MSEC;
+    ntime = UNDERFLOW_CHECK(time[i].msec, ntime);
+    if (ntime > 1000) {
+      // kp was da los is...
+      ntime /= 100;
+    }
+    std::cout << "#define "   << time_names[idx++] << " "
+              << ntime << std::endl;
+    std::cout << "#define "   << time_names[idx++] << " "
+              << time[i].sec + ADD_TO_LATE_SEC
+              << std::endl;
+    ntime = time[i].msec + ADD_TO_LATE_MSEC;
+    if (ntime > 1000) {
+      // kp was da los is...
+      ntime /= 100;
+    }
+    std::cout << "#define "   << time_names[idx++] << " "
+              << ntime << std::endl;
+  }
 }
 
 void initialization_run::run_tests() {
@@ -173,7 +215,7 @@ void initialization_run::start_init() {
 #ifndef SIMULATION
   // Die Simulation hat keinen Motor Linsklauf
   // ausserdem sind die Hoehenwerte in der Simulation falsch.
-  get_heights();
+  //get_heights();
 #endif
   get_times();
   HAWThread::reset_shutdown_flag();
