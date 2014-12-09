@@ -201,7 +201,20 @@ class b1_token_too_small : public state {
     // nop
   }
   virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_sensor_switch();
   virtual void dispatched_event_sensor_height_rising();
+  virtual void dispatched_event_seg2_has_to_expire();
+};
+
+class b1_token_too_small_seg2_ok : public state {
+ public:
+  b1_token_too_small_seg2_ok(token* t);
+  virtual ~b1_token_too_small_seg2_ok() {
+    // nop
+  }
+
+  virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_seg2_too_late();
 };
 
 class b1_valid_height : public state {
