@@ -195,24 +195,32 @@ void token::dispatched_event_serial_unk() {
   m_state->dispatched_event_serial_unk();
 }
 
-void token::dispatched_event_seg1_exceeded() {
-  m_state->dispatched_event_seg1_exceeded();
+void token::dispatched_event_seg1_has_to_expire() {
+  m_state->dispatched_event_seg1_has_to_expire();
 }
 
-void token::dispatched_event_seg2_exceeded() {
-  m_state->dispatched_event_seg2_exceeded();
+void token::dispatched_event_seg2_has_to_expire() {
+  m_state->dispatched_event_seg2_has_to_expire();
 }
 
-void token::dispatched_event_seg3_exceeded() {
-  m_state->dispatched_event_seg3_exceeded();
+void token::dispatched_event_seg3_has_to_expire() {
+  m_state->dispatched_event_seg3_has_to_expire();
 }
 
-void token::dispatched_event_slide_full() {
-  m_state->dispatched_event_slide_full();
+void token::dispatched_event_seg1_too_late() {
+  m_state->dispatched_event_seg1_too_late();
 }
 
-void token::dispatched_event_open_switch() {
-  m_state->dispatched_event_open_switch();
+void token::dispatched_event_seg2_too_late() {
+  m_state->dispatched_event_seg2_too_late();
+}
+
+void token::dispatched_event_seg3_too_late() {
+  m_state->dispatched_event_seg3_too_late();
+}
+
+void token::dispatched_event_slide_full_timeout() {
+  m_state->dispatched_event_slide_full_timeout();
 }
 
 void token::dispatched_event_turn_token() {
@@ -221,8 +229,4 @@ void token::dispatched_event_turn_token() {
 
 void token::dispatched_event_remove_token() {
   m_state->dispatched_event_remove_token();
-}
-
-void token::dispatched_event_token_finished() {
-  m_state->dispatched_event_token_finished();
 }

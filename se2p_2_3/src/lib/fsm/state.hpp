@@ -117,19 +117,25 @@ class state : public events {
   virtual void dispatched_event_serial_unk() {
     // nop
   }
-  virtual void dispatched_event_seg1_exceeded() {
+  virtual void dispatched_event_seg1_has_to_expire() {
     // nop
   }
-  virtual void dispatched_event_seg2_exceeded() {
+  virtual void dispatched_event_seg2_has_to_expire() {
     // nop
   }
-  virtual void dispatched_event_seg3_exceeded() {
+  virtual void dispatched_event_seg3_has_to_expire() {
     // nop
   }
-  virtual void dispatched_event_slide_full() {
+  virtual void dispatched_event_seg1_too_late() {
     // nop
   }
-  virtual void dispatched_event_open_switch() {
+  virtual void dispatched_event_seg2_too_late() {
+    // nop
+  }
+  virtual void dispatched_event_seg3_too_late() {
+    // nop
+  }
+  virtual void dispatched_event_slide_full_timeout() {
     // nop
   }
   virtual void dispatched_event_turn_token() {

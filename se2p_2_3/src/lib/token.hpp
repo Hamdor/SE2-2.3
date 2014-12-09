@@ -169,14 +169,15 @@ class token : public fsm::events {
   virtual void dispatched_event_serial_e_stopp();
   virtual void dispatched_event_serial_e_stopp_gone();
   virtual void dispatched_event_serial_unk();
-  virtual void dispatched_event_seg1_exceeded();
-  virtual void dispatched_event_seg2_exceeded();
-  virtual void dispatched_event_seg3_exceeded();
-  virtual void dispatched_event_slide_full();
-  virtual void dispatched_event_open_switch();
+  virtual void dispatched_event_seg1_has_to_expire();
+  virtual void dispatched_event_seg2_has_to_expire();
+  virtual void dispatched_event_seg3_has_to_expire();
+  virtual void dispatched_event_seg1_too_late();
+  virtual void dispatched_event_seg2_too_late();
+  virtual void dispatched_event_seg3_too_late();
+  virtual void dispatched_event_slide_full_timeout();
   virtual void dispatched_event_turn_token();
   virtual void dispatched_event_remove_token();
-  virtual void dispatched_event_token_finished();
 
  private:
   events*    m_state;
