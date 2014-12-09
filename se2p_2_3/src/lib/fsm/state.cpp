@@ -65,6 +65,8 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(
       DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_HEIGHT);
+  disp->register_listener(m_token, EVENT_SEG1_HAS_TO_EXPIRE);
+  disp->register_listener(m_token, EVENT_SEG1_TOO_LATE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_existence();
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
@@ -82,6 +84,8 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
  **/
 void b1_realized_object::dispatched_event_seg1_has_to_expire() {
   LOG_TRACE("");
+  std::cout << "b1_realized_object::dispatched_event_seg1_has_to_expire"
+            << std::endl;
   new (this) b1_realized_object_seg1_ok(m_token);
 }
 
