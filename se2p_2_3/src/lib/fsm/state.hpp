@@ -167,11 +167,23 @@ class anonymous_token : public state {
 class b1_realized_object : public state {
  public:
   b1_realized_object(token* t);
-  virtual~b1_realized_object() {
+  virtual ~b1_realized_object() {
+    // nop
+  }
+
+  virtual void dispatched_event_seg1_has_to_expire();
+  virtual void dispatched_event_sensor_height();
+};
+
+class b1_realized_object_seg1_ok : public state {
+ public:
+  b1_realized_object_seg1_ok(token* t);
+  virtual ~b1_realized_object_seg1_ok() {
     // nop
   }
 
   virtual void dispatched_event_sensor_height();
+  virtual void dispatched_event_seg1_too_late();
 };
 
 class b1_height_measurement : public state {
