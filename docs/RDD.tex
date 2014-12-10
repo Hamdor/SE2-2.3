@@ -105,6 +105,8 @@
   \hline
    0.91 & Anne-Lena Kowalka & 03.12.2014 & Allgemeine Überarbeitung, Repository-Konzept aktualisiert, Requirements angepasst (Button bei Bohrung nach unten entfernt), System-Test-Szenarien hinzugefügt\\
    \hline
+   0.92 & Anne-Lena Kowalka & 10.12.2014 & Update Requirements, Use Case hinzugefügt (UC4), Use Case Diagramm angepasst\\
+   \hline
  \end{tabular}
 \end{small}
 
@@ -260,7 +262,9 @@ C++ (nur STL)
   \hline
   \rowcolor{lightgray} FR-004 & Zuführung eines Werkstücks in die Werkstück"=Sortieranlage & Anlage & Das Werkstück wird vom Personal an den Anfang von Band 1 in den Bereich der Lichtschranke gelegt.\\
   \hline
-  FR-005 & Entnahme eines Werkstücks aus der Werkstück"=Sortieranlage & Anlage & Nach dem erfolgreichen Durchlaufen der Sortieranlage, wird das Werkstück am Ende von Band 2 vom Personal entnommen.\\
+  FR-005.1 & Entnahme eines Werkstücks aus der Werkstück"=Sortieranlage & Anlage & Nach dem erfolgreichen Durchlaufen der Sortieranlage, wird das Werkstück am Ende von Band 2 vom Personal entnommen.\\
+  \hline
+  FR-005.2 & Entnahme eines Werkstücks aus der Werkstück"=Sortieranlage & Anlage & Sobald ein Werkstück vom Ende von Band zwei entnommen wurde, läuft dieses weiter, sofern auf Band eins noch Werkstücke darauf warten, dass Band zwei leer ist.\\
   \hline
   \rowcolor{lightgray} FR-006.1 & Erkennen und Aussortieren von zu flachen Werkstücken & Sensorik & Zu flache Werkstücke werden auf Band 1 mit Hilfe der Höhenmessung erkannt.\\
   \hline
@@ -276,7 +280,9 @@ C++ (nur STL)
   \hline
   FR-007.5 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Personal & Das Personal wendet das Werkstück von Hand mit der Bohrung nach oben und legt es zurück in die Ausgangslichtschranke von Band 1\\
   \hline
-  FR-007.6 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Fehler & Es kommt zu einer Fehlermeldung, wenn das Werkstück nicht innerhalb der vordefinierten Zeitspanne zurück auf das Ende von Band 1 gelegt worden ist.\\
+  FR-007.6 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Personal & Nachdem das Personal das Werkstück gewendet und zurückgelegt hat, betätigt es den Start-Taster, um den Betrieb fortzusetzen.\\
+  \hline
+  FR-007.7 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Fehler & Es kommt zu einer Fehlermeldung, wenn das Werkstück nicht innerhalb der vordefinierten Zeitspanne zurück auf das Ende von Band 1 gelegt worden ist.\\
   \hline
   \rowcolor{lightgray} FR-008.1 & Erkennen und Aussortieren verkehrt liegender Werkstücke & Sensorik & Mit Hilfe der Höhenmessung erkennt Band 2, ob ein Werkstück mit der Bohrung nach unten auf dem Band liegt.\\
   \hline
@@ -302,7 +308,9 @@ C++ (nur STL)
   \hline
   \rowcolor{lightgray} FR-014 & Zusammensetzung der Werkstück-Eigenschaften & Anlage & Die Werkstück-Eigenschaften beinhalten: ID aus fortlaufender Zahl, Typ des Werkstücks (zu flach, mit Metalleinsatz, ohne Metalleinsatz, Bohrung nach oben, Bohrung nach unten) und den Höhenmesswerten von Band 1 und Band 2.\\
   \hline
-  FR-015 & Ausgeben der Werkstück-Eigenschaften & Anlage & Wenn ein Werkstück das Ende von Band 2 erreicht hat, werden die ID, der Typ und die Höhenmesswerte von Band 1 und Band 2 auf der Konsole ausgegeben.\\
+  FR-015.1 & Ausgeben der Werkstück-Eigenschaften & Anlage & Wenn ein Werkstück das Ende von Band 1 erreicht hat, werden die ID und der Höhenmesswert von Band 1 auf der Konsole ausgegeben.\\
+  \hline
+  FR-015.2 & Ausgeben der Werkstück-Eigenschaften & Anlage & Wenn ein Werkstück das Ende von Band 2 erreicht hat, werden die ID, der Typ und die Höhenmesswerte von Band 1 und Band 2 auf der Konsole ausgegeben.\\
   \hline
   \rowcolor{lightgray} FR-016 & Ampelanlage & Anzeige & Die Werkstück"=Sortieranlage besitzt an beiden Bändern jeweils eine Ampelanlage, mit der sich der Betriebszustand des jeweiligen Bandes und der gesamten Anlage abbilden lässt.\\
   \hline
@@ -353,6 +361,7 @@ C++ (nur STL)
  \end{longtable}
 \end{small}
 
+
 % 5.2.2 Nicht-funktionale Anforderungen
 \subsubsection{Nicht-funktionale Anforderungen}
 \begin{small}
@@ -362,13 +371,13 @@ C++ (nur STL)
   \toprule
   \endhead
   \hline
-  NFR-001 & Timer für das Wenden eines Werkstücks am Ende von Band 1 & Sensorik & Nachdem erkannt wird, dass ein Werkstück mit der Bohrung nach unten auf Band 1 liegt, wird es in die Lichtschranke am Ende von Band 1 gefahren und es läuft ein Timer für 60 Sekunden. In dieser Zeit muss das Werkstück vom Personal gewendet werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
+  NFR-001 & Timer für das Wenden eines Werkstücks am Ende von Band 1 & Sensorik & Nachdem erkannt wird, dass ein Werkstück mit der Bohrung nach unten auf Band 1 liegt, wird es in die Lichtschranke am Ende von Band 1 gefahren und es läuft ein Timer für 15 Sekunden. In dieser Zeit muss das Werkstück vom Personal gewendet werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
   \hline
   \rowcolor{lightgray} NFR-002 & Timer für das Entfernen eines Werkstücks in falscher Reihenfolge am Anfang von Band 2 & Sensorik & Nachdem das korrekt sortierte Werkstück in falscher Reihenfolge auf Band 2 erkannt wurde, fährt es in die Lichtschranke am Anfang von Band 2 zurück und es läuft ein Timer für 15 Sekunden. In dieser Zeit muss das Werkstück vom Personal entfernt werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
   \hline
   NFR-003 & Timer für das Entfernen eines korrekt sortierten Werkstücks am Ende von Band 2 & Sensorik & Nachdem das korrekt sortierte Werkstück das Ende der Lichtschranke von Band 2 erreicht hat, läuft ein Timer für 15 Sekunden. In dieser Zeit muss das Werkstück vom Personal entfernt werden, ansonsten wird eine Fehlermeldung ausgelöst.\\
   \hline
-  \rowcolor{lightgray} NFR-004.1 & Timer für die Beförderung eines Werkstücks durch die Werkstück"=Sortieranlage & Sensorik & Ein korrektes Werkstück durchläuft die einzelnen Bänder der Werkstück"=Sortieranlage jeweils innerhalb eines Intervalls von 4-5 Sekunden.\\
+  \rowcolor{lightgray} NFR-004.1 & Timer für die Beförderung eines Werkstücks durch die Werkstück"=Sortieranlage & Sensorik & Ein korrektes Werkstück durchläuft die einzelnen Bänder der Werkstück"=Sortieranlage jeweils innerhalb eines Intervalls von 12 Sekunden.\\
   \hline
   \rowcolor{lightgray} NFR-004.2 & Timer für die Beförderung eines Werkstücks durch die Werkstück"=Sortieranlage & Sensorik & Eine Laufzeitmessung durch die Lichtschranken von weniger als 4-5 Sekunden bedeutet, dass ein weiteres Werkstück unter Fremdeinwirkung auf das Band gelegt worden ist. Das Band wird angehalten und es wird eine Fehlermeldung ausgelöst.\\
   \hline
@@ -491,11 +500,37 @@ C++ (nur STL)
  \item Das Werkstück wird am Ende von Band 1 von der Lichtschranke registriert
  \item Das Laufband bleibt stehen und die gelbe Signalleuchte blinkt. A[6]=1
  \item Das Personal dreht das Werkstück per Hand mit der Bohrung nach oben um
+ \item Das Personal betätigt den Start-Taster.
 \end{enumerate}
 
-\newpage
-
 \subsubsection{UC4}
+\begin{tabbing}
+    Links \= Mitte \= Rechts \kill
+    \textbf{Titel:} \> \> Falsche Reihenfolge auf Band 2(Metall-Metall oder Nicht-Metall - Nicht-Metall)\\
+    \textbf{Akteur:} \> \> Personal\\
+    \textbf{Ziel:} \> \> Werkstücke mit Metall und ohne Metall kommen abwechselnd am Ende von Band 2 an\\
+    \textbf{Auslöser:} \> \> Metallsensor erfasst zwei Mal denselben Typ. B[2]\\
+\end{tabbing}
+\textbf{Vorbedingung:}
+\begin{enumerate}
+    \item Laufband 2 befindet sich im Betriebszustand
+    \item Werkstücke in falscher Reihenfolge auf Band 1
+\end{enumerate}
+\textbf{Nachbedingung:}
+\begin{itemize}
+    \item Die richtige Reihenfolge der Werkstücke ist wieder hergestellt.
+\end{itemize}
+\textbf{Erfolgsszenario:}
+\begin{enumerate}
+ \item Der Werksücktyp wird ermittelt. B[4]
+ \item Es wird erkannt, dass zweimal hintereinander derselbe Typ erfasst wurde.
+ \item Das Werkstück fährt rückwärts an den Anfang von Band 2.
+ \item Das Werkstück wird am Anfang von Band 2 von der Lichtschranke registriert
+ \item Das Laufband bleibt stehen und die gelbe Signalleuchte blinkt. A[6]=1
+ \item Das Personal entnimmt das Werkstück.
+\end{enumerate}
+
+\subsubsection{UC5}
 \begin{tabbing}
  Links \= Mitte \= Rechts \kill
  \textbf{Titel:} \> \> Rutsche voll\\
@@ -529,9 +564,8 @@ C++ (nur STL)
  \item Der Fehler wird quittiert und die Anlage gestartet, ohne dass die Rutsche geleert wurde
 \end{enumerate}
 
-\newpage
 
-\subsubsection{UC5}
+\subsubsection{UC6}
 \begin{tabbing}
  Links \= Mitte \= Rechts \kill
  \textbf{Titel:} \> \> Verschwinden von Werkstücken\\
@@ -557,7 +591,7 @@ C++ (nur STL)
  \item Anlage läuft wieder $\rightarrow$ Grüne Signalleuchte leuchtet. A[7]=0 und A[5]=1
 \end{enumerate}
 
-\subsubsection{UC6}
+\subsubsection{UC7}
 \begin{tabbing}
  Links \= Mitte \= Rechts \kill
  \textbf{Titel:} \> \> Hinzufügen von Werkstücken mitten auf dem Band\\
@@ -574,8 +608,6 @@ C++ (nur STL)
 \begin{itemize}
  \item Laufband läuft wieder (nur die grüne Signalleuchte leuchtet). A[5]=1
 \end{itemize}
-
-\newpage
 
 \textbf{Erfolgsszenario:}
 \begin{enumerate}
@@ -696,37 +728,32 @@ siehe Automatendiagramme
 	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Error_FSM.png}
     \newpage
 \end{figure}
-
+\newpage
 
 % 7. Implementierung
 \section{Implementierung}
 
-% 7.1 Algorithmen
-\subsection{Algorithmen}
-\textcolor{red}{\textbf{Wichtige Algorithmen, die Sie hier benutzt haben.}}
-
-% 7.2 Patterns
+% 7.1 Patterns
 \subsection{Patterns}
 Scoped Locking, DCLP, Singelton, Delegator, Factory, Dispatcher- / Reactor-Pattern und GoF-State-Pattern nach Pareigis.
 
 
-% 7.4 Interrupt Implementierung
+% 7.2 Interrupt Implementierung
 \subsection{Interrupt-Implementierung}
 Die ISR soll eine Pulse Message generieren. Diese landet im Pulse Message Channel, der vom Dispatcher abgehört wird.
 Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach Links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port-Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
 \newpage
 
-% 7.5 Dispatcher Implementierung
+% 7.3 Dispatcher Implementierung
 \subsection{Dispatcher-Implementierung}
 Die Implementierung des Dispatchers verteilt Events (Eingangsereignisse) an angemeldete Zustände.
 Als Quellen für Eingangssignale dienen ISR, Timer, Serielle Schnittstelle. Intern werden die Signale
-nur an den ersten Zustand einer Fifo weitergereicht. Für jeden anmeldbaren Zustand gibt es eine eigene Fifo.
+nur an den ersten Zustand einer Fifo weitergereicht. Für jeden anmeldbaren Zustand gibt es eine eigene Fifo. \newline
 Als Fifo Container wurde die std::queue benutzt. Jede Queue geht über Pointer-to-Memberfunctions.
 Im System exsistiert ein Pulse-Message-Channel, in den die Eingangssignalquellen Pulse-Messages schreiben.
-Der Dispatcher implementiert einen eigenen Thread, der diese Pulse-Messages aus dem Channel liest und die passende
-Pointer-to-Memberfunktion aufruft.
+Der Dispatcher implementiert einen eigenen Thread, der diese Pulse-Messages aus dem Channel liest und die passende Pointer-to-Memberfunktion aufruft.
 
-% 7.6 Automaten Implementierung
+% 7.4 Automaten Implementierung
 \subsection{Automaten-Implementierung}
 Die Automaten werden nach dem GoF-State-Pattern nach Pareigis umgesetzt. Die Transition findet durch den
 Placement-New Operator statt. Die Kontext-Klasse \emph{token} dient der Abbildung eines Pucks. In ihr werden die
@@ -739,11 +766,17 @@ Der Start- und Endzustand eines jeden Tokens ist \emph{anonymous\_token}.\newlin
 Der Dispatcher führt eine Queue über die Anzahl der maximal auf einem Laufband befindlichen Tokens, die mit dem Zustand
 \emph{anonymous\_token} vorinitialisiert werden.
 
-% 7.7 Timer Implementierung
+% 7.5 Timer Implementierung
 \subsection{Timer Implementierung}
-Die QNX eigenen Timer-Funktionen werden in \emph{timer\_wrapper} gewrapped, um von dem \emph{timer\_handler} 
-verwaltet zu werden. Bei diesem \emph{timer\_handler} können Timer mit einer Zeitspanne registriert werden.
-Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und gestoppt werden.
+Die QNX eigenen Timer-Funktionen werden in \emph{timer\_wrapper} gewrapped, um von dem \emph{timer\_handler} verwaltet zu werden. Bei diesem \emph{timer\_handler} können Timer mit einer Zeitspanne registriert werden.
+Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und gestoppt werden.\newline
+Timer werden eingesetzt:
+\begin{itemize}
+    \item um zu prüfen, ob Werkstücke hinzugefügt oder entfernt wurden
+    \item um zu prüfen, ob die Rutsche voll ist
+    \item um die Ampel blinken zu lassen
+\end{itemize}
+
  \subsubsection{Diskussion der Hardware und Betriebssystem Timer}
    QNX stellt 3 Arten von Timern zu Verfügung:
    \begin{itemize}
@@ -755,14 +788,6 @@ Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und 
    Wenn z.B. die BS Zeit sich während des Timers synchronisiert und dadurch um einen Augenblick erhöht, so schlägt der Realtime-Timer trotzdem an dem errechneten Zeitpunkt an, auch wenn die Zeit in Wirklichkeit noch nicht verstrichen ist.\newline
    Der Monotonic-Timer hingegen lässt sich nicht von diesen Zeiten beeinflussen. Er zählt seine Takte und wenn diese erreicht wurden, wird er aktiv.\newline
    Ein Softtime-Timer ist nur aktiv, wenn auch die CPU läuft. Dieser Timer kann die CPU nicht wecken und schlägt erst Alarm, wenn er wieder aktiv ist.\newline
-   Die Timer werden für folgende Funktionalitäten genutzt :
-   \begin{itemize}
-       \item prüfen, ob die Rutsche voll ist
-       \item prüfen, ob ein Werkstück hinzugefügt oder entfernt wurde; hierfür wurde ein Laufband in drei Segmente geteilt, und die Laufzeit eines Werkstück in diesen wird ausgewertet
-       \item weitere?
-    \end{itemize}
-   
-   
 
 % 8. Testen
 \section{Testen}
@@ -835,6 +860,7 @@ Mögliche Regressionstests für die serielle Schnittstelle
  \item Höhensensor emulieren
  \item Metallsensor emulieren
 \end{enumerate}
+Die Regressionstests wurden in den Unit-Tests umgesetzt.
 
 % 8.4 Abnahme-Test
 \subsection{Abnahme-Test}
