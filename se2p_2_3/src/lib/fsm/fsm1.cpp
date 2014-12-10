@@ -327,8 +327,8 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
                                SEGMENT3_MSEC_HAS_TO_EXPIRE };
   const duration too_late  = { SEGMENT3_SEC__TOO_LATE,
                                SEGMENT3_MSEC_TOO_LATE };
-  hdl->register_timer(to_expire, EVENT_SEG3_HAS_TO_EXPIRE);
-  hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE);
+  m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG3_HAS_TO_EXPIRE));
+  m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE));
 }
 
 /**
