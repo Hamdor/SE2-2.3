@@ -195,6 +195,8 @@ void dispatcher::destroy() {
   shutdown();
 }
 
+#define ISR_USED_BITS 16
+#define ISR_CONCURRENT_HANDLE_START_MASK 0x01
 void dispatcher::special_case_handling(const _pulse& buffer) {
   // Fuer eventuelle Spezialfaelle in den Signalen
   switch(buffer.code) {
@@ -247,10 +249,24 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       direct_call_event(EVENT_SENSOR_SWITCH_R);
       direct_call_event(EVENT_SENSOR_ENTRANCE);
     } break;
-    default:
-      std::cout << buffer.value.sival_int << std::endl;
+    default: {
       LOG_WARNING("Unkown Interrupt Value")
-      break;
+      // Unkown Event, diese Funktion schiebt einzele
+      // Masken um zu schauen welche Events zeitgleich
+      // ausgeloest wurden und fuehrt diese aus...
+      // TODO: Evtl `EVENT_SWITCH_METAL_CONCURRENT` sowie
+      //       `EVENT_SWITCH_ENTRANCE_CONCURRENT` loeschen.
+      //       da ja jetzt nicht mehr benoetigt ;-)
+      int event = 0;
+      int mask  = ISR_CONCURRENT_HANDLE_START_MASK;
+      for (int i = 0; i < ISR_USED_BITS; ++i) {
+        event = mask & buffer.value.sival_int;
+        if (event) {
+          direct_call_event(event);
+        }
+        mask <<= i;
+      }
+    } break;
     }
     break;
   case SERIAL:
