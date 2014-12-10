@@ -23,42 +23,71 @@
  **/
 
 #include "lib/fsm/error_states.hpp"
+#include "lib/util/singleton_mgr.hpp"
 
 using namespace se2;
 using namespace se2::fsm;
+using namespace se2::util;
 
 err_slide_full::err_slide_full(token* t) : state::state(t) {
-  // nop
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_NOT_RESOLVED);
+  // TODO:
+  // - Register Quittieren
+  // - Alleine Weg gehen registieren
 }
 
 err_slide_full_quitted::err_slide_full_quitted(token* t) : state::state(t) {
-  // nop
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_RESOLVED);
+  // TODO:
+  // - Register start button
 }
 
 err_token_not_removed_from_end::err_token_not_removed_from_end(token* t)
     : state::state(t) {
-  // nop
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_NOT_RESOLVED);
+  // TODO:
+  // - Register exit sensor
+  // - Quittierung
 }
 
 err_token_not_removed_from_end_quitted::
-  err_token_not_removed_from_end_quitted(token* t) : state::state(t) {
-  // nop
+err_token_not_removed_from_end_quitted(token* t) : state::state(t) {
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_RESOLVED);
+  // TODO:
+  // - Register start button
 }
 
 err_runtime_too_long::err_runtime_too_long(token* t) : state::state(t) {
-  // nop
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_NOT_RESOLVED);
+  // TODO:
+  // - Register Quittieren
 }
 
 err_runtime_too_long_quitted
   ::err_runtime_too_long_quitted(token* t) : state::state(t) {
-  // nop
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_RESOLVED);
+  // TODO:
+  // - Register start
 }
 
 err_runtime_too_short::err_runtime_too_short(token* t) : state::state(t) {
-  // nop
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_NOT_RESOLVED);
+  // TODO:
+  // - Register entfernen
+  // - Register quittieren
 }
 
 err_runtime_too_short_quitted::err_runtime_too_short_quitted(token* t)
     : state::state(t) {
-  // nop
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_RESOLVED);
+  // TODO:
+  // - Register start
 }
