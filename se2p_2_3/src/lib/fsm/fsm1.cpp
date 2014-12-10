@@ -17,7 +17,7 @@
  ******************************************************************************/
 /**
  * @file    state.cpp
- * @version 0.1
+ * @version 0.2
  *
  * Klasse fuer Zustandsautomaten
  **/
@@ -315,7 +315,6 @@ void b1_valid_height::dispatched_event_sensor_switch() {
  * - Evtl einen Timer erstellen der `unrequest_open_switch()` ausloest,
  *   auf manchen Baendern bleibt das Werkstueck in der Weiche haengen da
  *   entweder der Motor zu schwach ist, oder die Weiche zu stark.
- * - Timer starten der Segment 3 ueberwacht.
  **/
 void b1_valid_height::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
@@ -324,6 +323,15 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_EXIT);
+  disp->register_listener(m_token, EVENT_SEG3_HAS_TO_EXPIRE);
+  disp->register_listener(m_token, EVENT_SEG3_TOO_LATE);
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration to_expire = { SEGMENT3_SEC__HAS_TO_EXPIRE,
+                               SEGMENT3_MSEC_HAS_TO_EXPIRE };
+  const duration too_late  = { SEGMENT3_SEC__TOO_LATE,
+                               SEGMENT3_MSEC_TOO_LATE };
+  hdl->register_timer(to_expire, EVENT_SEG3_HAS_TO_EXPIRE);
+  hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE);
 }
 
 /**
@@ -332,11 +340,41 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
  * - Wenn dieser Zustand erreicht ist, ohne das der Timer
  *   des Segmentes 3 abgelaufen ist, dann ist dieses hier
  *   ein Fehlerzustand. In Fehlerbehandlung springen
- * - Code in noch zu erstellenden Zustand `b1_valid_heihgt_seg3_ok` auslagern.
  **/
 void b1_valid_height::dispatched_event_sensor_exit() {
+  // TODO: Zu frueh in Fehlerbehandlung springen...
+}
+
+/**
+ * Werkstueck kam nicht zu frueh an.
+ **/
+void b1_valid_height::dispatched_event_seg3_has_to_expire() {
+  LOG_TRACE("")
+  new (this) b1_valid_height_seg3_ok(m_token);
+}
+
+/**
+ * Werkstueck sollte nun im letzten (3ten) Segment sein
+ **/
+b1_valid_height_seg3_ok::b1_valid_height_seg3_ok(token* t) : state::state(t) {
+  // nop
+}
+
+/**
+ * Werkstueck ist zur korrekten Zeit in die Exit-Lichtschranke gekommen.
+ **/
+void b1_valid_height_seg3_ok::dispatched_event_sensor_exit() {
   LOG_TRACE("")
   new (this) b1_exit(m_token);
+}
+
+/**
+ * Werkstueck ist zu spaet. Wurde (a) vom Band entnommen, oder (b)
+ * haengt auf dem Band fest.
+ **/
+void b1_valid_height_seg3_ok::dispatched_event_seg3_too_late() {
+  LOG_TRACE("")
+  // TODO: In Fehlerbehandlung springen...
 }
 
 /**

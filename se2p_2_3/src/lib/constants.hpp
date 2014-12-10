@@ -499,7 +499,6 @@ struct duration {
 /**
  * Erwartete Zeiten zwischen den Segmenten
  **/
-#if defined(FESTO_6)
 #define SEGMENT1_SEC__HAS_TO_EXPIRE 3
 #define SEGMENT1_MSEC_HAS_TO_EXPIRE 35
 #define SEGMENT1_SEC__TOO_LATE 3
@@ -512,7 +511,6 @@ struct duration {
 #define SEGMENT3_MSEC_HAS_TO_EXPIRE 35
 #define SEGMENT3_SEC__TOO_LATE 1
 #define SEGMENT3_MSEC_TOO_LATE 39
-#endif
 
 #define SLIDE_SEC__TIMEOUT           1
 #define SLIDE_MSEC_TIMEOUT         500
