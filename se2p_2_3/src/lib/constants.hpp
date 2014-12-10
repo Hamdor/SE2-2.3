@@ -512,8 +512,13 @@ struct duration {
 #define SEGMENT3_SEC__TOO_LATE 1
 #define SEGMENT3_MSEC_TOO_LATE 39
 
+// Timeout fuer Rutsche voll
 #define SLIDE_SEC__TIMEOUT           1
 #define SLIDE_MSEC_TIMEOUT         500
+
+// Timeout fuer Transfer nach Band 2
+#define TRANSFER_SEC__TIMEOUT        2
+#define TRANSFER_MSEC_TIMEOUT        0
 
 } // namespace timer
 } // namespace se2

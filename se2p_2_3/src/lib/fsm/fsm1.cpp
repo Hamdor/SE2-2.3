@@ -288,7 +288,8 @@ b1_valid_height::b1_valid_height(token* t) : state::state(t) {
  **/
 void b1_valid_height::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->request_fast_motor();
 }
 
 /**
@@ -336,10 +337,6 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
 
 /**
  * Werkstueck hat das Ende des Bandes erreicht.
- * TODO:
- * - Wenn dieser Zustand erreicht ist, ohne das der Timer
- *   des Segmentes 3 abgelaufen ist, dann ist dieses hier
- *   ein Fehlerzustand. In Fehlerbehandlung springen
  **/
 void b1_valid_height::dispatched_event_sensor_exit() {
   // TODO: Zu frueh in Fehlerbehandlung springen...
