@@ -17,7 +17,7 @@
  ******************************************************************************/
 /**
  * @file    error_handler.hpp
- * @version 0.1
+ * @version 0.2
  *
  * Interface/Abstrakte Klasse fuer Fehler Zustandsautomaten
  **/
@@ -29,71 +29,68 @@
 
 namespace se2 {
 
-// TODO: Abgleich mit UML-Diagramm machen
-// TODO: Ampel-Ansteuerung mit implementieren
-
-class error : public fsm::state {
+class err_slide_full : public fsm::state {
  public:
-  virtual ~error() { }
-
-  /**
-   * Wechselt in den naechsten Zustand des Fehler Zustandsautomaten
-   **/
-  virtual void next_state();
- private:
-  // Choice Point erstellen?
-  // History fuer Rueckkehr zum normalen Zustand?
+  err_slide_full(token* t);
+  virtual ~err_slide_full() {
+    // nop
+  }
 };
 
-
-class err_slide_full : public error { // success: recover to b1_end_slide_full
- public:                              // success: recover to b2_end_slide_full
-  void next_state();
+class err_slide_full_quitted : public fsm::state {
+ public:
+  err_slide_full_quitted(token* t);
+  virtual ~err_slide_full_quitted() {
+    // nop
+  }
 };
 
-class err_slide_full_quitted : public error {
+class err_token_not_removed_from_end : public fsm::state {
  public:
-  void next_state();
+  err_token_not_removed_from_end(token* t);
+  virtual ~err_token_not_removed_from_end() {
+    // nop
+  }
 };
 
-class err_slide_full_unquitted : public error {
+class err_token_not_removed_from_end_quitted : public fsm::state {
  public:
-  void next_state();
+  err_token_not_removed_from_end_quitted(token* t);
+  virtual ~err_token_not_removed_from_end_quitted() {
+    // nop
+  }
 };
 
-class err_token_not_turned : public error {
+class err_runtime_too_long : public fsm::state {
  public:
-  void next_state();
+  err_runtime_too_long(token* t);
+  virtual ~err_runtime_too_long() {
+    // nop
+  }
 };
 
-class err_token_needs_to_be_removed : public error { // success: recover b2_waiting_for_quitting_and_remove
+class err_runtime_too_long_quitted : public fsm::state {
  public:
-  void next_state();
+  err_runtime_too_long_quitted(token* t);
+  virtual ~err_runtime_too_long_quitted() {
+    // nop
+  }
 };
 
-class err_finished_token_not_removed : public error {
+class err_runtime_too_short : public fsm::state {
  public:
-  void next_state();
+  err_runtime_too_short(token* t);
+  virtual ~err_runtime_too_short() {
+    // nop
+  }
 };
 
-class err_runtime_too_long : public error {
+class err_runtime_too_short_quitted : public fsm::state {
  public:
-  void next_state();
-};
-
-class err_runtime_too_long_quitted : public error {
- public:
-  void next_state();
-};
-
-class err_runtime_too_short : public error {
- public:
-  void next_state();
-};
-
-class err_runtime_too_short_quitted : public error {
- public:
-  void next_state();
+  err_runtime_too_short_quitted(token* t);
+  virtual ~err_runtime_too_short_quitted() {
+    // nop
+  }
 };
 
 } // namespace se2

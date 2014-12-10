@@ -101,6 +101,7 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   if (TOO_SMALL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
       && height <= TOO_SMALL_HI + HEIGHT_SENSOR_TOLERANCE_MAX) {
     // darf nicht passieren
+    // TODO: In Fehlerbehandlung?
   } else if ((HOLE_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
          && height <= HOLE_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
      || (METAL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
