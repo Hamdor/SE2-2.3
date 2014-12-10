@@ -212,7 +212,7 @@ Durch Testen nach jeder Phase, bzw. Unit-Tests, soll die Qualität sichergestell
 
 % 4.1 Entwicklungsumgebung
 \subsection{Entwicklungsumgebung}
-Momentics IDE für QNX, Doxygen
+Momentics IDE für QNX, Doxygen, Visual Paradigm
 
 % 4.2 Werkzeuge
 \subsection{Werkzeuge}
@@ -653,24 +653,28 @@ C++ (nur STL)
 \subsection{Systemanalyse}
 Das System wird über ein C++-Programm gesteuert, welches auf einem bzw. zwei (bei Nutzung von zwei Förderbändern) GEME-Rechnern läuft. Die Aktorik und Sensorik werden über 3 Ports angesteuert, wobei die Sensoren die Werte mittels Interrupts dem System mitteilen.\newline
 Die Kommunikation der beiden Förderbänder läuft über eine serielle Schnittstelle. Es werden hier z.B. die Messergebnisse von Band 1 an Band 2 übergeben, damit, wenn ein Puk das Ende von Band 2 erreicht, seine zugehörigen Daten ausgegeben werden können. Nachrichteneingänge über die serielle Schnittstelle werden ebenfalls durch Interrupts realisiert.\newline
-\newline
-\textcolor{red}{\textbf{Was muss man über das technische System (aus Sicht der zu entwickelnden Software) wissen?
-Wie sieht die Struktur aus? Wie der Systemkontext? Welche Schnittstellen betrachten Sie?}}
-
 \newpage
 
 % 6. Design
 \section{Design}
-\textcolor{red}{\textbf{Anmerkung: Die Implementierung MUSS mit Ihrem Design-Modell korrespondieren.
-Daher ist ein wohlüberlegtes Design wichtig.}}
 
 % 6.1 System-Architektur
 \subsection{System-Architektur}
-Das System verfügt über folgende Module: HAL zum Ansteuern/Auslesen der Aktorik und Sensorik, Seriellen Bus zur Ansteuerung der seriellen Schnittstelle, FSM zur Anlagensteuerung und util für die Thread-Sicherheit (mutex, condvar und lockguard) bzw. für das Logging. Des weiteren gibt es zugehörige Unit-Tests.\newline
-siehe Komponenten"=Diagramm\newline
-\textcolor{red}{\textbf{Erstellung der System-Architektur. Geben Sie eine kurze Beschreibung Ihrer
-Architektur mit den dazugehörenden Komponenten und Schnittstellen.
-Spezifikation der Architektur und Definition der System-Schnittstellen in einem UML Komponenten"=Diagramm.}}
+Das System verfügt über folgende Module: HAL zum Ansteuern/Auslesen der Aktorik und Sensorik, Seriellen Bus zur Ansteuerung der seriellen Schnittstelle, FSM zur Anlagensteuerun, Dispatcher, der die Pulse Messages entgegennimmt, Timer zur Zeitmessung/-kontrolle und util(mutex, condvar, lockguard, logging, singleton\_mgr, HAWThread, light\_mgr). Des weiteren gibt es zugehörige Unit-Tests.\newpage
+
+\begin{figure}
+    \subsubsection{Komponentendiagramm}
+    \centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Sortieranlage-Komponenten.png}
+    \newline
+\end{figure}
+
+% 6.2 Datenmodell
+\subsection{Datenmodell}
+siehe Klassendiagramm im imgs-Ordner \newline
+
+% 6.2 Datenmodell
+\subsection{Verhaltensmodell}
+siehe Automatendiagramme
 
 % 6.1.1 Automat für Band 1
 \begin{figure}
@@ -690,30 +694,12 @@ Spezifikation der Architektur und Definition der System-Schnittstellen in einem 
 \begin{figure}
 	\subsubsection{Automat für Fehlerbehebung}
 	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Error_FSM.png}
+    \newpage
 \end{figure}
 
-\newpage
-
-% 6.2 Datenmodell
-\subsection{Datenmodell}
-siehe Klassendiagramm \newline
-\textcolor{red}{\textbf{Bestimmung des Datenmodells mit Hilfe von UML Klassendiagrammen
-unter Beachtung der Designprinzipien. Kurze textuelle Beschreibung des Datenmodells und
-deren wichtigsten Klassen und Methoden.}}
-
-% 6.3 Verhaltensmodell
-\subsection{Verhaltensmodell}
-siehe Automatendiagramm \newline
-\textcolor{red}{\textbf{Spezifikation der wichtigsten System-Szenarien anhand von Verhaltensdiagrammen.
-Sie können für die Spezifikation der Prozess-Lenkung entweder Petri-Netze oder hierarchische Automaten nehmen.}}
-
-\newpage
 
 % 7. Implementierung
 \section{Implementierung}
-\textcolor{red}{\textbf{Anmerkung: Wichtige Implementierungsdetails sollen hier erklärt werden.
-Code-Beispiele (snippets) können hier aufgelistet werden, um der Erklärung zu dienen.
-Anmerkung: Bitte KEINE ganze Programme hierhin kopieren!}}
 
 % 7.1 Algorithmen
 \subsection{Algorithmen}
@@ -723,19 +709,15 @@ Anmerkung: Bitte KEINE ganze Programme hierhin kopieren!}}
 \subsection{Patterns}
 Scoped Locking, DCLP, Singelton, Delegator, Factory, Dispatcher- / Reactor-Pattern und GoF-State-Pattern nach Pareigis.
 
-% 7.3 Mapping Rules
-\subsection{Mapping Rules}
-\textcolor{red}{\textbf{Wichtige Mapping Rules, die Sie benutzt haben, z.B.
-um aus Ihrem Design entsprechenden Code zu erstellen.}}
 
 % 7.4 Interrupt Implementierung
-\subsection{Interrupt Implementierung}
+\subsection{Interrupt-Implementierung}
 Die ISR soll eine Pulse Message generieren. Diese landet im Pulse Message Channel, der vom Dispatcher abgehört wird.
 Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach Links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port-Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
 \newpage
 
 % 7.5 Dispatcher Implementierung
-\subsection{Dispatcher Implementierung}
+\subsection{Dispatcher-Implementierung}
 Die Implementierung des Dispatchers verteilt Events (Eingangsereignisse) an angemeldete Zustände.
 Als Quellen für Eingangssignale dienen ISR, Timer, Serielle Schnittstelle. Intern werden die Signale
 nur an den ersten Zustand einer Fifo weitergereicht. Für jeden anmeldbaren Zustand gibt es eine eigene Fifo.
@@ -745,7 +727,7 @@ Der Dispatcher implementiert einen eigenen Thread, der diese Pulse-Messages aus 
 Pointer-to-Memberfunktion aufruft.
 
 % 7.6 Automaten Implementierung
-\subsection{Automaten Implementierung}
+\subsection{Automaten-Implementierung}
 Die Automaten werden nach dem GoF-State-Pattern nach Pareigis umgesetzt. Die Transition findet durch den
 Placement-New Operator statt. Die Kontext-Klasse \emph{token} dient der Abbildung eines Pucks. In ihr werden die
 Eigenschaften des Pucks und dessen Zustand gespeichert.\newline
@@ -772,12 +754,18 @@ Die registrierten Timer können pausiert, fortgesetzt, addiert, subtrahiert und 
    Der Realtime-Timer lässt sich durch Zeitänderung ein wenig manipulieren. Der Timer wird aktiv, sobald der Zeitpunkt: Timer-Zeit plus Startzeitpunkt erreicht wurde.
    Wenn z.B. die BS Zeit sich während des Timers synchronisiert und dadurch um einen Augenblick erhöht, so schlägt der Realtime-Timer trotzdem an dem errechneten Zeitpunkt an, auch wenn die Zeit in Wirklichkeit noch nicht verstrichen ist.\newline
    Der Monotonic-Timer hingegen lässt sich nicht von diesen Zeiten beeinflussen. Er zählt seine Takte und wenn diese erreicht wurden, wird er aktiv.\newline
-   Ein Softtime-Timer ist nur aktiv, wenn auch die CPU läuft. Dieser Timer kann die CPU nicht wecken und schlägt erst Alarm, wenn er wieder aktiv ist.
+   Ein Softtime-Timer ist nur aktiv, wenn auch die CPU läuft. Dieser Timer kann die CPU nicht wecken und schlägt erst Alarm, wenn er wieder aktiv ist.\newline
+   Die Timer werden für folgende Funktionalitäten genutzt :
+   \begin{itemize}
+       \item prüfen, ob die Rutsche voll ist
+       \item prüfen, ob ein Werkstück hinzugefügt oder entfernt wurde; hierfür wurde ein Laufband in drei Segmente geteilt, und die Laufzeit eines Werkstück in diesen wird ausgewertet
+       \item weitere?
+    \end{itemize}
+   
+   
 
 % 8. Testen
 \section{Testen}
-\textcolor{red}{\textbf{Machen Sie sich Gedanken über Unit-Test, Komponenten-Test,
-Integrationtest, Systemtest, Regressions-Test und Abnahmetest.}}
 
 % 8.1 Unit-Test/Komponenten-Test
 \subsection{Unit-Test/Komponenten-Test}
@@ -829,14 +817,10 @@ geworfen wird.
     \newline
     \newline
 \end{enumerate}
-\textcolor{red}{\textbf{Test Szenarien mit beiden Laufbändern.}}
 
 % 8.3 Regressions-Test
 \subsection{Regressions-Test}
-\textcolor{red}{\textbf{Welche Szenarien müssen immer wieder abgetestet werden? Automatisieren Sie Ihre Tests nach
-Möglichkeit}}\\
-\newline
-\textbf{Mögliche Regressions-Tests für serielle Schnittstelle:}\\
+Mögliche Regressionstests für die serielle Schnittstelle
 \begin{enumerate}
  \item Korrektes Telegramm wird übertragen (Länge, Korrektheit)
  \item Fehlerhaftes Telegramm wird übertragen:
@@ -846,6 +830,7 @@ Möglichkeit}}\\
   \item Fehlerhafter Header
   \item Fehlerhafter Inhalt
  \end{enumerate}
+ Weitere Regressionstests:
  \item Synchronisierung
  \item Höhensensor emulieren
  \item Metallsensor emulieren
@@ -858,8 +843,7 @@ die Regressions-Tests und der Normalbetrieb der Anlage vorgeführt.
 
 % 8.5 Testplan
 \subsection{Testplan}
-\textcolor{red}{\textbf{Zeitpunkte für die jeweiligen Teststufen in Ihrer Projektplanung setzen.
-Dazu können Sie die Meilensteine zu Hilfe nehmen.}}
+Da nach dem V-Modell vorgegangen wird, wird zu jedem Milestone die Funktionalität der für den Milestone benötigten Punkte getestet.
 
 % 8.6 Testprotokolle und Auswertungen
 \subsection{Testprotokolle und Auswertungen}
@@ -868,9 +852,7 @@ Nachdem die korrekte Ansteuerung der Aktorik und die serielle Schnittstelle mit 
 \newline
 06.11.2014: Der Interrupt für die Sensorik funktioniert.\\
 \newline
-\textcolor{red}{\textbf{Hier fügen Sie die Test Protokolle bei, auch wenn Fehler bereits beseitigt
-worden sind, ist es schön zu wissen, welche Fehler einst aufgetaucht sind.
-Eventuelle Anmerkung zur Fehlerbehandlung kann für weitere Entwicklungen hilfreich sein.\\
+\textcolor{red}{\textbf{
 Das letzte Testprotokoll ist das Abnahmeprotokoll, das bei der abschließenden Vorführung erstellt
 wird. Es enthält eine Auflistung der erfolgreich vorgeführten Funktionen des Systems sowie eine
 Mängelliste mit Erklärungen der Ursachen der Fehlfunktionen und Vorschlägen zur Abhilfe}}
@@ -885,26 +867,24 @@ Weitere Anregungen und Erkenntnisse durch das Projekt.}}
 
 % 10. Glossar
 \section{Glossar}
-\textcolor{red}{\textbf{Eindeutige Begriffserklärungen.}}
+Werkstück = Puck\newline 
+Förderband, Band = Sortierband des Festo-Typs\newline
+Weiche = Schranke, um Pucks auszusortieren oder durchzulassen\newline
+Rutsche = Lagerplatz für aussortierte Werkstücke\newline
+Bohrung = Aushöhlung der Werkstücke\newline
+Ampel, Signal = Warnsignalanlage der Sortierbänder\newline
+Stakeholder = Gruppen die mit der Anlage interagieren\newline
+Steuerung = Software, um die Hardware zu koordinieren\newline
+Personal = geschultes Personal, das die Sortieranlage bedient\newline
+Interrupts = asynchrone Nachricht einer Systemkomponente\newline
+Singleton – Modell zur Sicherstellung einer singulären Instanz\newline
 
 % 11. Abkürzungen
 \section{Abkürzungen}
 WS = Werkstück\\
-\textcolor{red}{\textbf{Listen Sie alle Abkürzungen auf, die Sie in diesem Dokument benutzt haben.}}
 
 % 12. Anhänge
 \section{Anhänge}
-\begin{enumerate}
- \item Alle Modell-Dateien (VisualParadigm, Petri-Netze, etc.)
- \item Sourcecode und Code-Dokumentationen (z.B. Doxygen)
- \item Test-Protokolle
- \item Meeting-Protokolle
- \item Projektstruktur
- \item etc.
-\end{enumerate}
-\textcolor{red}{\textbf{Auflistung aller Artefakten dieses Projekts.}}
-
-\newpage
 
 % 12.1 Coding Style: Google C++
 \subsection{Coding Style: Google C++}
