@@ -22,7 +22,7 @@
  * Klasse fuer Fehler Zustandsautomaten
  **/
 
-#include "lib/fsm/error_handler.hpp"
+#include "lib/fsm/error_states.hpp"
 
 using namespace se2;
 using namespace se2::fsm;

@@ -29,6 +29,7 @@
 #include "lib/util/logging.hpp"
 #include "lib/util/light_mgr.hpp"
 #include "lib/hal/HWaccess.hpp"
+#include "lib/fsm/error_states.hpp"
 
 using namespace se2;
 using namespace se2::fsm;
@@ -94,9 +95,9 @@ void b1_realized_object::dispatched_event_seg1_has_to_expire() {
  **/
 void b1_realized_object::dispatched_event_sensor_height() {
   LOG_TRACE("");
-  // TODO: Token zu frueh, in Fehlerbehandlung springen...
   std::cout << "b1_realized_object::dispatched_event_sensor_height"
             << std::endl;
+  new (this) err_runtime_too_short(m_token);
 }
 
 /**
@@ -125,9 +126,9 @@ void b1_realized_object_seg1_ok::dispatched_event_sensor_height() {
  **/
 void b1_realized_object_seg1_ok::dispatched_event_seg1_too_late() {
   LOG_TRACE("");
-  // TODO: Token zu spaet, in Fehlerbehandlung springen...
   std::cout << "b1_realized_object_seg1_ok::dispatched_event_seg1_too_late"
             << std::endl;
+  new (this) err_runtime_too_long(m_token);
 }
 
 /**
@@ -213,11 +214,9 @@ void b1_token_too_small::dispatched_event_seg2_has_to_expire() {
 
 /**
  * Werkstueck hat zu frueh die Lichtschranke der Weiche durchbrochen.
- * TODO:
- * - In Fehlerbehandlung springen
  **/
 void b1_token_too_small::dispatched_event_sensor_switch() {
-  // TODO: Fehlerbehandlung
+  new (this) err_runtime_too_short(m_token);
 }
 
 /**
@@ -233,8 +232,7 @@ void b1_token_too_small::dispatched_event_sensor_switch() {
  *   erfolgreicher Fehlerbehandlung
  **/
 void b1_token_too_small::dispatched_event_sensor_slide() {
-  // TODO:
-  // Zu fruhe, in Fehlerbehandlung springen!
+  new (this) err_runtime_too_short(m_token);
 }
 
 /**
@@ -263,12 +261,10 @@ void b1_token_too_small_seg2_ok::dispatched_event_sensor_slide() {
 /**
  * Werkstueck hat die Lichtschranke der Rutsche nicht durchbrochen und
  * wurde (a) vom Band entfernt oder (b) haengt auf dem Band fest
- * TODO:
- * - Fehlerbehandlung implementieren
  **/
 void b1_token_too_small_seg2_ok::dispatched_event_seg2_too_late() {
   LOG_TRACE("")
-  // TODO FEHLERBEHANDLUNG
+  new (this) err_runtime_too_long(m_token);
 }
 
 /**
@@ -339,7 +335,7 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
  * Werkstueck hat das Ende des Bandes erreicht.
  **/
 void b1_valid_height::dispatched_event_sensor_exit() {
-  // TODO: Zu frueh in Fehlerbehandlung springen...
+  new (this) err_runtime_too_short(m_token);
 }
 
 /**
@@ -371,7 +367,7 @@ void b1_valid_height_seg3_ok::dispatched_event_sensor_exit() {
  **/
 void b1_valid_height_seg3_ok::dispatched_event_seg3_too_late() {
   LOG_TRACE("")
-  // TODO: In Fehlerbehandlung springen...
+  new (this) err_runtime_too_long(m_token);
 }
 
 /**
