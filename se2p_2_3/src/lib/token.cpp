@@ -83,6 +83,7 @@ void token::reset() {
   m_height2        = 0;
   m_is_metal       = false;
   m_is_upside_down = false;
+  m_seg2_ok        = false;
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   for (size_t i = 0; i < m_timer_ids.size(); ++i) {
     hdl->delete_timer(m_timer_ids[i]);

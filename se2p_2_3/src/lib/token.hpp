@@ -29,6 +29,11 @@
 #include <vector>
 
 namespace se2 {
+namespace fsm {
+class b1_valid_height_seg2_ok;
+class b1_valid_height_seg3_ok;
+class b1_token_too_small_seg2_ok;
+}
 namespace serial_bus {
 class telegram;
 }
@@ -36,13 +41,16 @@ class telegram;
 typedef std::vector<int> ivec;
 
 class token : public fsm::events {
+  friend class fsm::b1_valid_height_seg2_ok;
+  friend class fsm::b1_valid_height_seg3_ok;
+  friend class fsm::b1_token_too_small_seg2_ok;
  public:
   /**
    * Default Konstruktor
    **/
   token()
       : m_state(0), m_id(0), m_height1(0), m_height2(0)
-      , m_is_metal(false), m_is_upside_down(false) {
+      , m_is_metal(false), m_is_upside_down(false), m_seg2_ok(false) {
     // nop
   }
 
@@ -188,6 +196,7 @@ class token : public fsm::events {
   bool       m_is_metal;
   bool       m_is_upside_down;
   ivec       m_timer_ids;
+  bool       m_seg2_ok;
 };
 
 } // namespace se2
