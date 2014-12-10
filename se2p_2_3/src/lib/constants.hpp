@@ -359,10 +359,6 @@ enum event_values {
   // Unkown / Not handled inputs
   EVENT_UNKOWN1 = 1024,
   EVENT_UNKOWN2 = 4096,
-  EVENT_SWITCH_ENTRANCE_CONCURRENT = 4352, // "Werkstueck in Weiche und
-                                           // entrance Sensor zeitgleich"
-  EVENT_SWITCH_METAL_CONCURRENT = 6144, // "Werkstueck in Weiche und ist Metall
-                                        // zeitgleich"
   EVENT_UNKOWN3 = 8192
 };
 

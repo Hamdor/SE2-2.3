@@ -242,21 +242,11 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_UNKOWN2:
     case EVENT_UNKOWN3:
       break;
-    case EVENT_SWITCH_METAL_CONCURRENT: {
-      direct_call_event(EVENT_SENSOR_SWITCH_R);
-    } break;
-    case EVENT_SWITCH_ENTRANCE_CONCURRENT: {
-      direct_call_event(EVENT_SENSOR_SWITCH_R);
-      direct_call_event(EVENT_SENSOR_ENTRANCE);
-    } break;
     default: {
       LOG_WARNING("Unkown Interrupt Value")
       // Unkown Event, diese Funktion schiebt einzele
       // Masken um zu schauen welche Events zeitgleich
       // ausgeloest wurden und fuehrt diese aus...
-      // TODO: Evtl `EVENT_SWITCH_METAL_CONCURRENT` sowie
-      //       `EVENT_SWITCH_ENTRANCE_CONCURRENT` loeschen.
-      //       da ja jetzt nicht mehr benoetigt ;-)
       int event = 0;
       int mask  = ISR_CONCURRENT_HANDLE_START_MASK;
       for (int i = 0; i < ISR_USED_BITS; ++i) {
