@@ -74,11 +74,7 @@ void light_mgr::update_light() {
       hal->set_light(YELLOW, false);
       hal->set_light(RED, false);
     } break;
-    case TURN_TOKEN: {
-      hal->set_light(GREEN, false);
-      hal->set_light(YELLOW, true);
-      hal->set_light(RED, false);
-    } break;
+    case TURN_TOKEN:
     case REMOVE_TOKEN: {
       if (m_tick) {
         hal->set_light(GREEN, false);

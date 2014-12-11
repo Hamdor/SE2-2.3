@@ -413,7 +413,7 @@ namespace util {
 enum light_states {
   NO_LIGHTS,          // Nichts Leuchtet
   READY_TO_USE,       // Nur Gruen leuchtet
-  TURN_TOKEN,         // Gelb auf Band 1 (Band 2 ist Gruen)
+  TURN_TOKEN,         // Gelb blinkt mit 1Hz
   REMOVE_TOKEN,       // Gelb blinkt mit 1Hz
   ERROR_NOT_RESOLVED, // Rot blinkt mit 1Hz
   ERROR_GONE,         // Rot blinkt mit 0,5Hz (selbst gegangen)
