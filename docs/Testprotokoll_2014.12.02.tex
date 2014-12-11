@@ -1,0 +1,35 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[utf8x]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc} % T1-encoded fonts: Auch Wörter mit Umlauten trennen
+\usepackage{colortbl}    % Für farbige Zeilen/Reihen in Tabellen
+\usepackage{xcolor}      % Definitionen von Farben
+\thispagestyle{empty}    % Keine Kopf- und Fusszeile
+
+% Beginn des Dokuments
+\begin{document}
+
+\section*{\small{Software Engineering II \\ Wintersemester 2014/2015: Gruppe 2.3 \\ Katja Kirstein}}
+\section*{Testprotokoll 02.12.2014}
+\textbf{Verwendete Hardware:} GEME 8 mit Festo 5 als Band 1 und GEME 7 mit Festo 6 als Band 2.\\
+Alle Tests wurden bestanden, ohne Blinken der Ampel und Button LEDs, da diese zu diesem Zeitpunkt noch nicht implementiert waren.
+\newline
+\begin{enumerate}
+  \item  Pucks fahren in abwechselnder Reihenfolge bis ans Ende von Band 2
+  \begin{itemize}
+    \item Metall, Nicht-Metall
+    \item Nicht-Metall, Metall
+  \end{itemize}
+  \item Pucks außerhalb des Toleranzbereichs werden auf Band 1 mit Hilfe der Weiche aussortiert
+  \item Ein Puck, der falsch herum auf Band 1 gelegt wird, fährt bis ans Ende von Band 1, wartet und wird umgedreht. Nach dem Wenden wird Band 1 wieder gestartet und der Puck durchläuft Band 2 bis zum Ende
+  \item Ein Puck, der falsch herum am Ende von Band 1 ankommt, wird \textbf{nicht} umgedreht und auf Band 2 durch die Weiche aussortiert
+  \item Ein Puck, der auf Band 2 in der falschen Reihenfolge ankommt, fährt nach links bis zum Anfang von Band 2
+  \begin{itemize}
+    \item Metall, Metall
+    \item Nicht-Metall, Nicht-Metall
+  \end{itemize}
+  \item Befinden sich mehrere Pucks auf Band 1, sowie nur ein Puck auf Band 2, wartet Band 1, wenn ein Puck das Ende des Bandes erreicht hat, bis Band 2 wieder frei ist.
+\end{enumerate}
+
+\end{document}
