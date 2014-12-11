@@ -189,7 +189,7 @@ void dispatcher::destroy() {
   shutdown();
 }
 
-#define ISR_USED_BITS 16
+#define ISR_USED_BITS 21
 #define ISR_CONCURRENT_HANDLE_START_MASK 0x01
 void dispatcher::special_case_handling(const _pulse& buffer) {
   // Fuer eventuelle Spezialfaelle in den Signalen
