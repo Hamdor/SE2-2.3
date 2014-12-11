@@ -209,22 +209,29 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       mgr->enter_safe_state();
     } break;
     case EVENT_SENSOR_ENTRANCE:
-      break;
+    case EVENT_SENSOR_HEIGHT:
+    case EVENT_SENSOR_SWITCH:
+    case EVENT_SENSOR_SLIDE:
+    case EVENT_SENSOR_EXIT: {
+      dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
+          static_cast<event_values>(buffer.value.sival_int));
+      if (devent == DISPATCHED_EVENT_MAX) {
+        break;
+      }
+      if (!m_prior_listners[devent] && m_listeners[devent].empty()) {
+        token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+        mgr->notify_pseudo_token_not_known_event();
+        break;
+      }
+    } break;
     case EVENT_SENSOR_ENTRANCE_R:
       break;
-    case EVENT_SENSOR_HEIGHT:
       break;
     case EVENT_SENSOR_HEIGHT_R:
       break;
-    case EVENT_SENSOR_SWITCH:
-      break;
     case EVENT_SENSOR_SWITCH_R:
       break;
-    case EVENT_SENSOR_SLIDE:
-      break;
     case EVENT_SENSOR_SLIDE_R:
-      break;
-    case EVENT_SENSOR_EXIT:
       break;
     case EVENT_SENSOR_EXIT_R:
       break;

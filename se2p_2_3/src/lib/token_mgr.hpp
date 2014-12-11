@@ -208,9 +208,18 @@ class token_mgr : public util::abstract_singleton {
    * empfangen wurde.
    **/
   void notify_ready_for_next();
+
+  /**
+   * Ein Event wurde ausgeloest wo nicht sicher ist welches Werkstueck
+   * es ausgeloest hat. Wahrscheinlich wurde ein Werkstueck mitten auf
+   * das Band gelegt und hat eine Schranke durchbrochen auf die von
+   * keinem anderen Werkstueck gehoert wurde.
+   **/
+  void notify_pseudo_token_not_known_event();
  private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
+  token m_pseudo_token;
 
   volatile int   m_alife;
   volatile int   m_motor_slow;

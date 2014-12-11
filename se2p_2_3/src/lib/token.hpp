@@ -66,6 +66,7 @@ class token : public fsm::events {
    * @param state ist ein Pointer auf den neuen Zustand
    **/
   void set_state(fsm::events* state) {
+    delete m_state;
     m_state = state;
   }
 

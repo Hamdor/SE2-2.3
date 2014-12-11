@@ -24,6 +24,7 @@
 
 #include "lib/token_mgr.hpp"
 #include "lib/fsm/state.hpp"
+#include "lib/fsm/error_states.hpp"
 
 #include "lib/util/singleton_mgr.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
@@ -39,7 +40,9 @@ using namespace se2::serial_bus;
 
 token_mgr* token_mgr::instance = 0;
 
-token_mgr::token_mgr() : m_alife(0), m_motor_slow(0)
+token_mgr::token_mgr() : m_pseudo_token()
+                       , m_alife(0)
+                       , m_motor_slow(0)
                        , m_switch_open(0)
                        , m_wait_turnover(0)
                        , m_motor_stop(0)
@@ -255,4 +258,8 @@ void token_mgr::notify_token_trasition() {
 
 void token_mgr::notify_ready_for_next() {
   m_is_b2_ready = true;
+}
+
+void token_mgr::notify_pseudo_token_not_known_event() {
+  m_pseudo_token.set_state(new err_unexpected_token(&m_pseudo_token));
 }

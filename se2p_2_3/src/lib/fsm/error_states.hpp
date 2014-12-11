@@ -93,6 +93,22 @@ class err_runtime_too_short_quitted : public fsm::state {
   }
 };
 
+class err_unexpected_token : public fsm::state {
+ public:
+  err_unexpected_token(token* t);
+  virtual ~err_unexpected_token() {
+    // nop
+  }
+};
+
+class err_unexpected_token_quitted : public fsm::state {
+ public:
+  err_unexpected_token_quitted(token* t);
+  virtual ~err_unexpected_token_quitted() {
+    // nop
+  }
+};
+
 } // namespace se2
 
 #endif // SE2_ERROR_HANDLER_HPP
