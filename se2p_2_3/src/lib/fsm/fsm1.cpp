@@ -294,9 +294,9 @@ void b1_valid_height::dispatched_event_sensor_height_rising() {
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
   disp->register_listener(m_token, EVENT_SEG2_HAS_TO_EXPIRE);
   disp->register_listener(m_token, EVENT_SEG2_TOO_LATE);
-  const duration to_expire = { SEGMENT2_SEC__HAS_TO_EXPIRE - 1,
+  const duration to_expire = { SEGMENT2_SEC__HAS_TO_EXPIRE,
                               SEGMENT2_MSEC_HAS_TO_EXPIRE };
-  const duration too_late = { SEGMENT2_SEC__TOO_LATE + 1,
+  const duration too_late = { SEGMENT2_SEC__TOO_LATE,
                               SEGMENT2_MSEC_TOO_LATE };
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG2_HAS_TO_EXPIRE));
@@ -346,7 +346,7 @@ void b1_valid_height_seg2_ok::dispatched_event_sensor_switch_rising() {
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   const duration to_expire = { SEGMENT3_SEC__HAS_TO_EXPIRE,
                                SEGMENT3_MSEC_HAS_TO_EXPIRE };
-  const duration too_late  = { SEGMENT3_SEC__TOO_LATE + 2,
+  const duration too_late  = { SEGMENT3_SEC__TOO_LATE,
                                SEGMENT3_MSEC_TOO_LATE };
   m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG3_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE));

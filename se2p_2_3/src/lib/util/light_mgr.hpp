@@ -48,6 +48,8 @@ class light_mgr : public abstract_singleton
   virtual void initialize();
   virtual void destroy();
 
+  void update_light();
+
   virtual void execute(void*);
   virtual void shutdown();
 

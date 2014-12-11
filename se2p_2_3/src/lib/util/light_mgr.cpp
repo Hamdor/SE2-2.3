@@ -61,61 +61,66 @@ void light_mgr::destroy() {
   // nop
 }
 
-void light_mgr::execute(void*) {
-  struct _pulse buffer;
-  while(!isStopped()) {
-    hal::hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-    std::memset(&buffer, 0, sizeof(buffer));
-    MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
-    switch(m_state) {
-      case NO_LIGHTS: {
+void light_mgr::update_light() {
+  hal::hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  switch(m_state) {
+    case NO_LIGHTS: {
+      hal->set_light(GREEN, false);
+      hal->set_light(YELLOW, false);
+      hal->set_light(RED, false);
+    } break;
+    case READY_TO_USE: {
+      hal->set_light(GREEN, true);
+      hal->set_light(YELLOW, false);
+      hal->set_light(RED, false);
+    } break;
+    case TURN_TOKEN: {
+      hal->set_light(GREEN, false);
+      hal->set_light(YELLOW, true);
+      hal->set_light(RED, false);
+    } break;
+    case REMOVE_TOKEN: {
+      if (m_tick) {
         hal->set_light(GREEN, false);
         hal->set_light(YELLOW, false);
         hal->set_light(RED, false);
-      } break;
-      case READY_TO_USE: {
-        hal->set_light(GREEN, true);
-        hal->set_light(YELLOW, false);
-        hal->set_light(RED, false);
-      } break;
-      case TURN_TOKEN: {
+      } else {
         hal->set_light(GREEN, false);
         hal->set_light(YELLOW, true);
         hal->set_light(RED, false);
-      } break;
-      case REMOVE_TOKEN: {
-        if (m_tick) {
-          hal->set_light(GREEN, false);
-          hal->set_light(YELLOW, false);
-          hal->set_light(RED, false);
-        } else {
-          hal->set_light(GREEN, false);
-          hal->set_light(YELLOW, true);
-          hal->set_light(RED, false);
-        }
-      } break;
-      case ERROR_GONE:
-      case ERROR_NOT_RESOLVED: {
-        if (m_tick) {
-          hal->set_light(GREEN, false);
-          hal->set_light(YELLOW, false);
-          hal->set_light(RED, false);
-        } else {
-          hal->set_light(GREEN, false);
-          hal->set_light(YELLOW, false);
-          hal->set_light(RED, true);
-        }
-      } break;
-      case ERROR_RESOLVED: {
+      }
+    } break;
+    case ERROR_GONE:
+    case ERROR_NOT_RESOLVED: {
+      if (m_tick) {
+        hal->set_light(GREEN, false);
+        hal->set_light(YELLOW, false);
+        hal->set_light(RED, false);
+      } else {
         hal->set_light(GREEN, false);
         hal->set_light(YELLOW, false);
         hal->set_light(RED, true);
-      } break;
-    }
+      }
+    } break;
+    case ERROR_RESOLVED: {
+      hal->set_light(GREEN, false);
+      hal->set_light(YELLOW, false);
+      hal->set_light(RED, true);
+    } break;
+  }
+}
+
+void light_mgr::execute(void*) {
+  struct _pulse buffer;
+  while(!isStopped()) {
+    std::memset(&buffer, 0, sizeof(buffer));
+    MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
+    update_light();
     m_tick = !m_tick;
     m_timer->reset_timer();
     m_timer->start_timer();
   }
+  update_light();
 }
 
 void light_mgr::shutdown() {
