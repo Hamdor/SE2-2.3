@@ -220,6 +220,8 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(REMOVE_TOKEN);
   m_token->pretty_print();
 }
 
@@ -228,5 +230,7 @@ void b2_is_correct_order::dispatched_event_sensor_exit_rising() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor(false);
   mgr->notify_death();
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(READY_TO_USE);
   new (this) anonymous_token(m_token);
 }
