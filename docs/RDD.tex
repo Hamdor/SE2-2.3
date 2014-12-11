@@ -36,7 +36,7 @@
 \begin{document}
 
 % Titelseite aufbauen
-\titlehead{\flushright\includegraphics[scale=.3]{imgs/HAW_logo.png}}
+\titlehead{\flushright\includegraphics[scale=.75]{imgs/HAW_logo.png}}
 \subject{Software Engineering II\\Wintersemester 2014/2015}
 \title{Requirements and Design Documentation}
 \subtitle{Praktikums-Gruppe: 2.3}
@@ -61,7 +61,7 @@
 }
 
 % Titelseite mit Datum und Version erstellen
-\date{\today\thanks{Dokument-Version: 0.9}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
+\date{\today\thanks{Dokument-Version: 0.92}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
 \maketitle
 
 % Versionsverlauf aufbauen
@@ -264,7 +264,7 @@ C++ (nur STL)
   \hline
   FR-005.1 & Entnahme eines Werkstücks aus der Werkstück"=Sortieranlage & Anlage & Nach dem erfolgreichen Durchlaufen der Sortieranlage, wird das Werkstück am Ende von Band 2 vom Personal entnommen.\\
   \hline
-  FR-005.2 & Entnahme eines Werkstücks aus der Werkstück"=Sortieranlage & Anlage & Sobald ein Werkstück vom Ende von Band zwei entnommen wurde, läuft dieses weiter, sofern auf Band eins noch Werkstücke darauf warten, dass Band zwei leer ist.\\
+  FR-005.2 & Entnahme eines Werkstücks aus der Werkstück"=Sortieranlage & Anlage & Sobald ein Werkstück am Ende von Band 2 entnommen wurde, läuft Band 2 direkt weiter, sofern auf Band 1 noch ein Werkstück auf den Weitertransport auf Band 2 wartet.\\
   \hline
   \rowcolor{lightgray} FR-006.1 & Erkennen und Aussortieren von zu flachen Werkstücken & Sensorik & Zu flache Werkstücke werden auf Band 1 mit Hilfe der Höhenmessung erkannt.\\
   \hline
@@ -278,7 +278,7 @@ C++ (nur STL)
   \hline
   FR-007.4 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Sensorik & Ein Timer wird beim Eintreten in den wartenden Zustand gestartet und räumt dem Personal zum Wenden des Werkstücks eine vordefinierte Zeitspanne ein.\\
   \hline
-  FR-007.5 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Personal & Das Personal wendet das Werkstück von Hand mit der Bohrung nach oben und legt es zurück in die Ausgangslichtschranke von Band 1\\
+  FR-007.5 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Personal & Das Personal wendet das Werkstück von Hand mit der Bohrung nach oben, legt es zurück in die Ausgangslichtschranke von Band 1 und betätigt den Start-Button.\\
   \hline
   FR-007.6 & Erkennen und Ausrichten verkehrt liegender Werkstücke & Personal & Nachdem das Personal das Werkstück gewendet und zurückgelegt hat, betätigt es den Start-Taster, um den Betrieb fortzusetzen.\\
   \hline
@@ -310,7 +310,7 @@ C++ (nur STL)
   \hline
   FR-015.1 & Ausgeben der Werkstück-Eigenschaften & Anlage & Wenn ein Werkstück das Ende von Band 1 erreicht hat, werden die ID und der Höhenmesswert von Band 1 auf der Konsole ausgegeben.\\
   \hline
-  FR-015.2 & Ausgeben der Werkstück-Eigenschaften & Anlage & Wenn ein Werkstück das Ende von Band 2 erreicht hat, werden die ID, der Typ und die Höhenmesswerte von Band 1 und Band 2 auf der Konsole ausgegeben.\\
+  FR-015.2 & Ausgeben der Werkstück-Eigenschaften & Anlage & Wenn ein Werkstück das Ende von Band 2 erreicht hat, werden die ID, der Typ und die Höhenmesswerte auf den Terminals von Band 1 und Band 2 ausgegeben.\\
   \hline
   \rowcolor{lightgray} FR-016 & Ampelanlage & Anzeige & Die Werkstück"=Sortieranlage besitzt an beiden Bändern jeweils eine Ampelanlage, mit der sich der Betriebszustand des jeweiligen Bandes und der gesamten Anlage abbilden lässt.\\
   \hline
@@ -361,6 +361,7 @@ C++ (nur STL)
  \end{longtable}
 \end{small}
 
+\newpage
 
 % 5.2.2 Nicht-funktionale Anforderungen
 \subsubsection{Nicht-funktionale Anforderungen}
@@ -591,6 +592,8 @@ C++ (nur STL)
  \item Anlage läuft wieder $\rightarrow$ Grüne Signalleuchte leuchtet. A[7]=0 und A[5]=1
 \end{enumerate}
 
+\newpage
+
 \subsubsection{UC7}
 \begin{tabbing}
  Links \= Mitte \= Rechts \kill
@@ -624,7 +627,9 @@ C++ (nur STL)
     \item Personal entfernt das falsche Werkstück
 \end{enumerate}
 
-\subsubsection{UC7}
+\newpage
+
+\subsubsection{UC8}
 \begin{tabbing}
  Links \= Mitte \= Rechts \kill
  \textbf{Titel:} \> \> Zurücksetzen des Laufbands\\
@@ -648,7 +653,7 @@ C++ (nur STL)
  \item Laufband ist Betriebsbereit $\rightarrow$ Grüne Signalleuchte leuchtet. A[5]=1
 \end{enumerate}
 
-\subsubsection{UC8}
+\subsubsection{UC9}
 \begin{tabbing}
  Links \= Mitte \= Rechts \kill
  \textbf{Titel:} \> \> Starten der Anlage nach Schnellabschaltung\\
@@ -696,7 +701,7 @@ Das System verfügt über folgende Module: HAL zum Ansteuern/Auslesen der Aktori
 
 \begin{figure}
     \subsubsection{Komponentendiagramm}
-    \centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Sortieranlage-Komponenten.png}
+    \centering\vfill\includegraphics[angle=0,scale=0.8]{imgs/Sortieranlage-Komponenten.png}
     \newline
 \end{figure}
 
@@ -704,30 +709,24 @@ Das System verfügt über folgende Module: HAL zum Ansteuern/Auslesen der Aktori
 \subsection{Datenmodell}
 siehe Klassendiagramm im imgs-Ordner \newline
 
-% 6.2 Datenmodell
+% 6.3 Datenmodell
 \subsection{Verhaltensmodell}
 siehe Automatendiagramme
 
-% 6.1.1 Automat für Band 1
+% 6.3.1 Automat für Band 1
 \begin{figure}
 	\subsubsection{Automat für Band 1}
 	\centering\vfill\includegraphics[angle=90,scale=0.6]{imgs/Band1_FSM.png}
 \end{figure}
 
-% 6.1.2 Automat für Band 2
+% 6.3.2 Automat für Band 2
 \begin{figure}
 	\subsubsection{Automat für Band 2}
-	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Band2_FSM.png}
-\end{figure}
-
-\newpage
-
-% 6.1.3 Automat für Fehlerbehebung
-\begin{figure}
+	\centering\vfill\includegraphics[angle=0,scale=0.52]{imgs/Band2_FSM.png}
 	\subsubsection{Automat für Fehlerbehebung}
 	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Error_FSM.png}
-    \newpage
 \end{figure}
+
 \newpage
 
 % 7. Implementierung
@@ -736,7 +735,6 @@ siehe Automatendiagramme
 % 7.1 Patterns
 \subsection{Patterns}
 Scoped Locking, DCLP, Singelton, Delegator, Factory, Dispatcher- / Reactor-Pattern und GoF-State-Pattern nach Pareigis.
-
 
 % 7.2 Interrupt Implementierung
 \subsection{Interrupt-Implementierung}
@@ -777,6 +775,8 @@ Timer werden eingesetzt:
     \item um die Ampel blinken zu lassen
 \end{itemize}
 
+\newpage
+
  \subsubsection{Diskussion der Hardware und Betriebssystem Timer}
    QNX stellt 3 Arten von Timern zu Verfügung:
    \begin{itemize}
@@ -807,6 +807,8 @@ und es wird geprüft, ob die Funktionen die erwarteten Rückgabewerte liefern.
 Der automatisierte IRQ/ISR Test öffnet einmal die Weiche. Dabei wird die Lichtschranke der Weiche unterbrochen,
 was eine Pulse-Message  generiert. Diese muss im Channel liegen.
 
+\newpage
+
 \subsubsection{Dispatcher}
 Für den Dispatcher gibt es verschiedene Unit-Tests. Zum einen wird getestet,
 ob das Mapping vom Event-enum zum internen Dispatched-Event-enum passt.
@@ -825,6 +827,8 @@ Um die Funktionen add, sub, pause und continue zu testen, wird jedoch ein weiter
 Dieser zusätzliche Timer sendet eine andere Message beim Ablaufen,wodurch verhindert wird, dass kein Interrupt
 geworfen wird.
 
+\newpage
+
 % 8.2 Integrations-Test/System-Test
 \subsection{Integrations-Test/System-Test}
 \textbf{Beim Systemtest werden folgende Szenarien getestet:}\\
@@ -837,11 +841,9 @@ geworfen wird.
     \item Es werden Pucks im laufenden Betrieb an allen Segmenten entnommen oder hinzugefügt, um zu prüfen, ob die Zeitüberwachung dieser Segmente richtig arbeitet.
     \item Es werden zu flache Pucks auf Band 1 gelegt, bis die Rutsche voll ist, um zu prüfen, ob dessen Fehlerabarbeitung von Band 1 richtig arbeitet.
     \item Pucks mit der Bohrung nach unten werden am Ende von Band 2 nicht gewendet, bis die Rutsche von Band 2 voll ist, um zu prüfen, ob dessen Fehlerbearbeitung von Band 2 richtig arbeitet. 
-    \newline
-    \newline
-    \newline
-    \newline
 \end{enumerate}
+
+\newpage
 
 % 8.3 Regressions-Test
 \subsection{Regressions-Test}
@@ -949,6 +951,8 @@ if (my_condition) {
  \item When declaring a function, the order of parameters is: outputs, then inputs. This follows the parameter order from the STL.
  \item Never use C-style casts.
 \end{itemize}
+
+\newpage
 
 % 12.1.2 Naming
 \subsubsection{Naming}
