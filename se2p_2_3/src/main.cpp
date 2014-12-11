@@ -41,15 +41,18 @@ int main(int argc, char *argv[]) {
   // Initialisierung (Hoehenwerte/Zeitwerte)
   initialization_run init;
   init.start_init();
-  // Hauptprogram
-  singleton_mgr::force_initialization(SERIAL_PLUGIN);
-  singleton_mgr::force_initialization(LIGHT_PLUGIN);
-  TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN))->set_state(READY_TO_USE);
-  singleton_mgr::force_initialization(TOKEN_PLUGIN);
-  while(1) {
-    usleep(MAIN_LOOP_SLEEP);
-    if (HAWThread::is_global_shutdown()) {
-      break;
+  hal::hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  if (!hal->is_button_pressed(hal::BUTTON_ESTOP)) {
+    // Hauptprogram
+    singleton_mgr::force_initialization(SERIAL_PLUGIN);
+    singleton_mgr::force_initialization(LIGHT_PLUGIN);
+    TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN))->set_state(READY_TO_USE);
+    singleton_mgr::force_initialization(TOKEN_PLUGIN);
+    while(1) {
+      usleep(MAIN_LOOP_SLEEP);
+      if (HAWThread::is_global_shutdown()) {
+        break;
+      }
     }
   }
   singleton_mgr::shutdown();
