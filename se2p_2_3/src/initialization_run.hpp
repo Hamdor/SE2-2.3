@@ -16,106 +16,69 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    timer_wrapper.hpp
+ * @file    initialization_run.hpp
  * @version 0.1
  *
- * Wrapper fuer timer struct
+ * In diesem Modul werden HW-Laufzeiten sowie Hoehensensorwerte
+ * ausgelesen um eine Konfiguration des Hauptprogramms vorzunehmen
  **/
 
-#ifndef SE2_TIMER_WAPPER_HPP
-#define SE2_TIMER_WAPPER_HPP
+#ifndef SE2_INITIALIZATION_RUN_HPP
+#define SE2_INITIALIZATION_RUN_HPP
 
 #include "config.h"
-
-#include "lib/constants.hpp"
-
-#include <time.h>
-#include <sys/neutrino.h>
+#include <unistd.h>
 
 namespace se2 {
-namespace util {
-class light_mgr;
-}
-namespace timer {
-class timer_handler;
 
-class timer_wrapper {
-  friend class timer_handler;
-  friend class util::light_mgr;
-  /**
-   * Konstruktor
-   * @param time dauer des timers
-   * @param pulse_value Wert der die Pulse Message senden soll
-   * @param chid ist die channel id
-   **/
-  timer_wrapper(duration time, int pulse_value, int chid);
-
-  /**
-   * Default Destruktor
-   **/
-  ~timer_wrapper();
-
- public:
-
-  /**
-   * Startet Timer
-   **/
-  void start_timer();
-
-  /**
-   * Stopt den Timer
-   **/
-  void stop_timer();
-
-  /**
-   * Pausiert den Timer
-   **/
-  void pause_timer();
-
-  /**
-   * Setzt den Timer fort
-   **/
-  void continue_timer();
-
-  /**
-   * resetet timer
-   **/
-  void reset_timer();
-
-  /**
-   * Addiert die angegebene Zeit
-   *  @param time zu addierende Zeit
-   **/
-  void add_time(duration time);
-
- private:
-  /**
-   * Timer ID
-   **/
-  timer_t m_timerid;
-
-  /**
-   * Timer Daten
-   **/
-  itimerspec m_timer;
-
-  /**
-   * Temp-Timer fuer Pausierung
-   **/
-  itimerspec m_temp_timer;
-
-  /**
-   * Zu ausfuerendes Event
-   **/
-  sigevent m_event;
-
-  /**
-   * Connection id
-   **/
-  int m_coid;
-  bool m_paused;
-  duration m_duration;
+struct my_times {
+  size_t sec;
+  size_t msec;
 };
-} // namespace timer
+
+class initialization_run {
+  /**
+   * Program zum auslesen des Hoehenwerte Sensors
+   * Benoetigte Puks werden nacheinander auf den Anfang
+   * des Bandes gelegt und durch die Hoehenmessung gefahren.
+   **/
+  void get_heights();
+
+  /**
+   * Program zum Messen der einzelnen Zeitwerte
+   * Puk auf den Anfang des Bandes legen und warten bis
+   * der Puk das Ende des Bandes erreicht hat.
+   **/
+  void get_times();
+
+  /**
+   * Holt die aktuelle Zeit und macht eine differenz zur letzten Zeit
+   * @return `my_times` enthaellt die verstrichenen Sekunden sowie
+   *         die verstrichenen Millisekunden.
+   **/
+  my_times get_curr_time();
+
+  /**
+   * Gibt einen Zeitwert auf der Konsole aus.
+   * @param time ist ein Array auf die Zeit werte
+   **/
+  void print_time(const my_times time[]);
+
+  /**
+   * Startet alle Unit-Tests
+   **/
+  void run_tests();
+ public:
+  /**
+   * Startet die Unterprogramme der Initialisierung, dazu gehoeren:
+   * - `run_tests`   (Anstarten der Unit-Tests)
+   * - `get_heights` (Auslesen der Hoehenwerte)
+   * - `get_times`   (Auslesen der Zeitwerte)
+   * Die Programme werden sequentiell gestartet.
+   **/
+  void start_init();
+};
+
 } // namespace se2
-#endif // SE2_TIMER_WAPPER_HPP
+
+#endif // SE2_INITIALIZATION_RUN_HPP

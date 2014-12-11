@@ -47,6 +47,9 @@ const struct sigevent* isr(void* arg, int id) {
     event->__sigev_un2.__st.__sigev_code = INTERRUPT;
     int changed_bit = port_old ^ ports;
     event->sigev_value.sival_int = changed_bit;
+    if (changed_bit == EVENT_ZERO) {
+      event = NULL;
+    }
     if (port_old < ports) {
       // steigende flanke
       if (changed_bit == EVENT_BUTTON_E_STOP

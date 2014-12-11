@@ -146,24 +146,48 @@ class token_mgr : public util::abstract_singleton {
   void unrequest_stop_motor(bool update = true);
 
   /**
-   * Neu an E-Stop event registrieren (Gedrueckt)
+   * Weiche oeffnen anfragen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
    **/
-  void reregister_e_stop();
+  void request_open_switch(bool update = true);
 
   /**
-   * Neu an E-Stop event registrieren (Nicht mehr gedrueckt)
+   * Weiche oeffnen anfrage zurueckziehen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
    **/
-  void reregister_e_stop_rising();
+  void unrequest_open_switch(bool update = true);
+
+  /**
+   * Token drehen anfragen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
+   **/
+  void request_turnover(bool update = true);
+
+  /**
+   * Token drehen anfrage zurueckziehen
+   * @param update sollte FALSE sein wenn `update()` nicht
+   *               ausgefuehrt werden soll (Default: TRUE)
+   **/
+  void unrequest_turnover(bool update = true);
 
   /**
    * System in sicheren Zustand bringen
+   * @param send_serial beschreibt ob die Information, dass
+   *        der `safe_state` betreten wurde, ueber die Serielle-
+   *        Schnittstelle gesendet werden soll. (Default: TRUE)
    **/
-  void enter_safe_state();
+  void enter_safe_state(bool send_serial = true);
 
   /**
    * System wieder in alten Zustand bringen
+   * @param send_serial beschreibt ob die Information, dass
+   *        der `safe_state` verlassen wurde, ueber die Serielle-
+   *        Schnittstelle gesendet werden soll. (Default: TRUE)
    **/
-  void exit_safe_state();
+  void exit_safe_state(bool send_serial = true);
 
   /**
    * Prueft ob das aktueller Token zur korrekten
@@ -195,18 +219,18 @@ class token_mgr : public util::abstract_singleton {
  private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
-  /**
-   * Dieser Zustand ist permanent und wartet nur auf den E-Stop
-   **/
-  fsm::state* m_e_stop_listener;
 
-  int            m_alife;
-  int            m_motor_slow;
-  bool           m_motor_stop;
-  bool           m_motor_left;
+  volatile int   m_alife;
+  volatile int   m_motor_slow;
+  volatile int   m_switch_open;
+  volatile int   m_wait_turnover;
+  volatile int   m_motor_stop;
+  volatile bool  m_motor_left;
   safe_state     m_safe;
   expected_token m_expected_token;
   bool           m_is_b2_ready;
+  bool           m_safe_state;
+  bool           m_update_req;
 };
 
 }

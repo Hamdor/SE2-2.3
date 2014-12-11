@@ -26,11 +26,14 @@
 #define SE2_TOKEN_HPP
 
 #include "lib/fsm/events.hpp"
+#include <vector>
 
 namespace se2 {
 namespace serial_bus {
 class telegram;
 }
+
+typedef std::vector<int> ivec;
 
 class token : public fsm::events {
  public:
@@ -135,6 +138,12 @@ class token : public fsm::events {
   void pretty_print() const;
 
   /**
+   * Fuegt eine Timer ID zu dieser Context klasse hinzu.
+   * @param idx ID des timers
+   **/
+  void add_timer_id(int idx);
+
+  /**
    * AUfrufe die an den Zustand delegiert werden
    **/
   virtual void dispatched_event_button_start();
@@ -156,6 +165,9 @@ class token : public fsm::events {
   virtual void dispatched_event_serial_msg();
   virtual void dispatched_event_serial_err();
   virtual void dispatched_event_serial_next_ok();
+  virtual void dispatched_event_serial_transfer_fin();
+  virtual void dispatched_event_serial_e_stopp();
+  virtual void dispatched_event_serial_e_stopp_gone();
   virtual void dispatched_event_serial_unk();
   virtual void dispatched_event_seg1_exceeded();
   virtual void dispatched_event_seg2_exceeded();
@@ -167,13 +179,14 @@ class token : public fsm::events {
   virtual void dispatched_event_token_finished();
 
  private:
-  events* m_state;
-  int m_id;
+  events*    m_state;
+  int        m_id;
   static int m_id_counter;
-  int m_height1;
-  int m_height2;
-  bool m_is_metal;
-  bool m_is_upside_down;
+  int        m_height1;
+  int        m_height2;
+  bool       m_is_metal;
+  bool       m_is_upside_down;
+  ivec       m_timer_ids;
 };
 
 } // namespace se2

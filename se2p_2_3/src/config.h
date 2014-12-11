@@ -43,9 +43,6 @@
                                // auf ein Ereignis der Seriellen Schnittstelle
                                // sondern auch auf Sensor Entrance.
 
-//#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test fuer
-                           // die Serielle chnittstelle
-
 //#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur
                        // Folge dass `ioaccess.h` in `abstract_inout.hpp`
                        // inkludiert wird. Dadurch koennen die Original

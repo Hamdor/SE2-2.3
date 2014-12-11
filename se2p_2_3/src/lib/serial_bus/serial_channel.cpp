@@ -79,6 +79,12 @@ void serial_channel::execute(void*) {
     if (data.m_type == MSG) {
       if (data.m_msg == B2_FREE) {
         value = EVENT_SERIAL_NEXT_OK;
+      } else if (data.m_msg == B2_TRANS_FIN) {
+        value = EVENT_SERIAL_TRANSFER_FIN;
+      } else if (data.m_msg == E_STOP) {
+        value = EVENT_SERIAL_E_STOPP;
+      } else if (data.m_msg == E_STOP_GONE) {
+        value = EVENT_SERIAL_E_STOPP_GONE;
       } else {
         value = EVENT_SERIAL_MSG;
       }
@@ -90,7 +96,7 @@ void serial_channel::execute(void*) {
       // unkown ...
       value = EVENT_SERIAL_UNK;
     }
-    {
+    if (data.m_type == DATA) {
       lock_guard lock(m_lock);
       m_queue.push(data);
       m_cond.broadcast();

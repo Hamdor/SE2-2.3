@@ -63,13 +63,13 @@
 /**
  * Maximale Anzahl an loops bis der Hoehenwert gelesen wird
  **/
-#define HEIGHT_SENSOR_MAX_LOOPS 50
+#define HEIGHT_SENSOR_MAX_LOOPS 100
 
 /**
  * Maximale und minimale Toleranz fuer den Puck/Hoehenwert
  **/
-#define HEIGHT_SENSOR_TOLERANCE_MIN 70
-#define HEIGHT_SENSOR_TOLERANCE_MAX 70
+#define HEIGHT_SENSOR_TOLERANCE_MIN 100
+#define HEIGHT_SENSOR_TOLERANCE_MAX 100
 
 /**
  * Addresse des Control-Registers
@@ -255,6 +255,17 @@ enum height_values {
   METAL_BOTTOM_UP_HI = 2561,
   METAL_LOW = 3583,
   METAL_HI = 3636
+#elif defined(FESTO_8)
+  TOO_SMALL_LOW = 2792,
+  TOO_SMALL_HI = 2819,
+  HOLE_BOTTOM_UP_LOW = 2482,
+  HOLE_BOTTOM_UP_HI = 2582,
+  HOLE_LOW = 3541,
+  HOLE_HI = 3605,
+  METAL_BOTTOM_UP_LOW = 2516,
+  METAL_BOTTOM_UP_HI = 2588,
+  METAL_LOW = 3594,
+  METAL_HI = 3646
 #else
   // nop
 #endif
@@ -331,7 +342,10 @@ enum event_values {
   EVENT_SERIAL_MSG,                           // EVENT_SERIAL_START + 0x01
   EVENT_SERIAL_ERR,                           // EVENT_SERIAL_START + 0x02
   EVENT_SERIAL_NEXT_OK,                       // EVENT_SERIAL_START + 0x03
-  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x04
+  EVENT_SERIAL_TRANSFER_FIN,                  // EVENT_SERIAL_START + 0x04
+  EVENT_SERIAL_E_STOPP,                       // EVENT_SERIAL_START + 0x05
+  EVENT_SERIAL_E_STOPP_GONE,                  // EVENT_SERIAL_START + 0x06
+  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x07
   // Timer
   EVENT_SEG1_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x01
   EVENT_SEG2_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x02
@@ -342,7 +356,13 @@ enum event_values {
   EVENT_REMOVE_TOKEN,                         // EVENT_SERIAL_UNK + 0x07
   EVENT_TOKEN_FINISHED,                       // EVENT_SERIAL_UNK + 0x08
   // Unkown / Not handled inputs
-  EVENT_UNKOWN1 = 8192                        // Ich weiss nicht woher dieses Event kommt...
+  EVENT_UNKOWN1 = 1024,
+  EVENT_UNKOWN2 = 4096,
+  EVENT_SWITCH_ENTRANCE_CONCURRENT = 4352, // "Werkstueck in Weiche und entrance
+                                           // Sensor zeitgleich"
+  EVENT_SWITCH_METAL_CONCURRENT = 6144, // "Werkstueck in Weiche und ist Metall
+                                        // zeitgleich"
+  EVENT_UNKOWN3 = 8192
 };
 
 } // namespace hal
@@ -373,6 +393,9 @@ enum dispatcher_events {
   DISPATCHED_EVENT_SERIAL_MSG,
   DISPATCHED_EVENT_SERIAL_ERR,
   DISPATCHED_EVENT_SERIAL_NEXT_OK,
+  DISPATCHED_EVENT_SERIAL_TRANSFER_FIN,
+  DISPATCHED_EVENT_SERIAL_E_STOPP,
+  DISPATCHED_EVENT_SERIAL_E_STOPP_GONE,
   DISPATCHED_EVENT_SERIAL_UNK,
   DISPATCHED_EVENT_SEG1_EXCEEDED,
   DISPATCHED_EVENT_SEG2_EXCEEDED,
@@ -388,6 +411,19 @@ enum dispatcher_events {
 }
 
 namespace util {
+
+/**
+ * Kann im `light_mgr` gesetzt werden um die Ampelanlage zu aendern
+ **/
+enum light_states {
+  NO_LIGHTS,          // Nichts Leuchtet
+  READY_TO_USE,       // Nur Gruen leuchtet
+  TURN_TOKEN,         // Gelb auf Band 1 (Band 2 ist Gruen)
+  REMOVE_TOKEN,       // Gelb blinkt mit 1Hz
+  ERROR_NOT_RESOLVED, // Rot blinkt mit 1Hz
+  ERROR_GONE,         // Rot blinkt mit 0,5Hz (selbst gegangen)
+  ERROR_RESOLVED      // Rot leuchtet permanent (quittiert)
+};
 
 enum loglevel {
   TRACE   = 0,  // Unwichtig
@@ -413,13 +449,15 @@ enum telegram_type {
  * Nachricht Typen
  **/
 enum msg_type {
-  ERR_STOP = 0,  // Fehler auf einem Band, stoppen
-  ERR_QUIT = 1,  // Fehler quittiert
-  RESUME   = 2,  // Weiterlaufen/Start
-  B2_FREE  = 3,  // Band 2 wieder frei von Puck
-  E_STOP   = 4,  // E-Stop gedrueckt
-  STOP     = 5,  // Stop Taste gedrueckt
-  NOTHING  = 6   // Keine MSG
+  ERR_STOP     = 0,  // Fehler auf einem Band, stoppen
+  ERR_QUIT     = 1,  // Fehler quittiert
+  RESUME       = 2,  // Weiterlaufen/Start
+  B2_FREE      = 3,  // Band 2 wieder frei von Puck
+  B2_TRANS_FIN = 4,  // Lichtschranke auf Band 2 ist durchbrochen
+  E_STOP       = 5,  // E-Stop gedrueckt
+  E_STOP_GONE  = 6,  // E-Stop entriegelt
+  STOP         = 7,  // Stop Taste gedrueckt
+  NOTHING      = 8   // Keine MSG
 };
 
 /**
@@ -450,11 +488,32 @@ struct telegram {
 } // namespace serial_bus
 
 namespace timer {
+
 struct duration {
   size_t sec;
   size_t msec;
 };
 
+/**
+ * Erwartete Zeiten zwischen den Segmenten
+ **/
+#if defined(FESTO_6)
+#define SEGMENT1_SEC__HAS_TO_EXPIRE 3
+#define SEGMENT1_MSEC_HAS_TO_EXPIRE 35
+#define SEGMENT1_SEC__TOO_LATE 3
+#define SEGMENT1_MSEC_TOO_LATE 40
+#define SEGMENT2_SEC__HAS_TO_EXPIRE 1
+#define SEGMENT2_MSEC_HAS_TO_EXPIRE 4
+#define SEGMENT2_SEC__TOO_LATE 1
+#define SEGMENT2_MSEC_TOO_LATE 454
+#define SEGMENT3_SEC__HAS_TO_EXPIRE 1
+#define SEGMENT3_MSEC_HAS_TO_EXPIRE 35
+#define SEGMENT3_SEC__TOO_LATE 1
+#define SEGMENT3_MSEC_TOO_LATE 39
+#endif
+
+#define SLIDE_SEC__TIMEOUT           1
+#define SLIDE_MSEC_TIMEOUT         500
 
 } // namespace timer
 } // namespace se2

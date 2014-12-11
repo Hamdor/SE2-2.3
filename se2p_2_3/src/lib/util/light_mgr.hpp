@@ -16,73 +16,58 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    serial_test.cpp
+ * @file    light_mgr.hpp
  * @version 0.1
  *
- * Unit tests der seriellen Schnittstelle
+ * Der `light_mgr` soll die Ansteuerung der Ampelanlage uebernehmen
  **/
 
-#include "unit_tests/serial_test.hpp"
-#include "lib/util/singleton_mgr.hpp"
+#ifndef SE2_LIGHT_MGR_HPP
+#define SE2_LIGHT_MGR_HPP
+
+#include "lib/util/abstract_singleton.hpp"
+#include "lib/util/HAWThread.hpp"
+#include "lib/timer/timer_wrapper.hpp"
 #include "lib/constants.hpp"
 
-using namespace se2::util;
-using namespace se2::unit_tests;
-using namespace se2::serial_bus;
+namespace se2 {
+namespace util {
+class singleton_mgr;
+class light_mgr : public abstract_singleton
+                , public HAWThread {
+  friend class singleton_mgr;
+  /**
+   * Default Konstruktor
+   **/
+  light_mgr();
+  /**
+   * Default Destruktor
+   **/
+  virtual ~light_mgr();
 
-serial_test::serial_test() : m_serial(0), m_error(0) {
-  // nop
-}
+  virtual void initialize();
+  virtual void destroy();
 
-serial_test::~serial_test() {
-  // nop
-}
+  virtual void execute(void*);
+  virtual void shutdown();
 
-int serial_test::before_class() {
-  m_serial = TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
-  return 0;
-}
+  static light_mgr* instance;
 
-int serial_test::before() {
-  return 0;
-}
+  int                   m_chid;
+  bool                  m_tick; // tick/tock
+  timer::timer_wrapper* m_timer;
+  light_states          m_state;
 
-int serial_test::init() {
-  m_test_functions.push_back(&serial_test::test_serial_channel);
-  return 0;
-}
+ public:
+  /**
+   * Aendert das licht der Ampelanlage
+   * @param state beschreibt den State in dem sich die Ampelanlage
+   *        befinden soll
+   **/
+  void set_state(light_states state);
+};
 
-int serial_test::after() {
-  return 0;
-}
+} // namespace util
+} // namespace se2
 
-int serial_test::after_class() {
-  return 0;
-}
-
-int serial_test::test_serial_channel() {
-  telegram tel;
-  tel.m_type = DATA;
-  tel.m_msg  = NOTHING;
-  tel.m_id = 1;
-  tel.m_height1 = 2;
-  tel.m_height2 = 3;
-  m_serial->send_telegram(&tel);
-  telegram recieved = m_serial->get_telegram();
-  if (recieved.m_type != tel.m_type) {
-    ++m_error;
-  }
-  if (recieved.m_msg != tel.m_msg) {
-    ++m_error;
-  }
-  if (recieved.m_id != tel.m_id) {
-    ++m_error;
-  }
-  if (recieved.m_height1 != tel.m_height1) {
-    ++m_error;
-  }
-  if (recieved.m_height2 != tel.m_height2) {
-    ++m_error;
-  }
-  return m_error;
-}
+#endif // SE2_LIGHT_MGR_HPP

@@ -24,11 +24,14 @@
 
 #include "lib/token.hpp"
 #include "lib/constants.hpp"
+#include "lib/util/singleton_mgr.hpp"
 
 #include <iostream>
 
 using namespace se2;
 using namespace se2::fsm;
+using namespace se2::util;
+using namespace se2::timer;
 
 int token::m_id_counter = 0;
 
@@ -80,6 +83,11 @@ void token::reset() {
   m_height2        = 0;
   m_is_metal       = false;
   m_is_upside_down = false;
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  for (size_t i = 0; i < m_timer_ids.size(); ++i) {
+    hdl->delete_timer(m_timer_ids[i]);
+  }
+  m_timer_ids.clear();
 }
 
 void token::pretty_print() const {
@@ -89,6 +97,10 @@ void token::pretty_print() const {
             << ", m_is_metal: "       << (m_is_metal ? "true" : "false")
             << ", m_is_upside_down: " << (m_is_upside_down ? "true" : "false")
             << " ]"                   << std::endl;
+}
+
+void token::add_timer_id(int idx) {
+  m_timer_ids.push_back(idx);
 }
 
 void token::dispatched_event_button_start() {
@@ -165,6 +177,18 @@ void token::dispatched_event_serial_err() {
 
 void token::dispatched_event_serial_next_ok() {
   m_state->dispatched_event_serial_next_ok();
+}
+
+void token::dispatched_event_serial_transfer_fin() {
+  m_state->dispatched_event_serial_transfer_fin();
+}
+
+void token::dispatched_event_serial_e_stopp() {
+  m_state->dispatched_event_serial_e_stopp();
+}
+
+void token::dispatched_event_serial_e_stopp_gone() {
+  m_state->dispatched_event_serial_e_stopp_gone();
 }
 
 void token::dispatched_event_serial_unk() {

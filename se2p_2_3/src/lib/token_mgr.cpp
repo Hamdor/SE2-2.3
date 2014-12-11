@@ -39,16 +39,15 @@ using namespace se2::serial_bus;
 
 token_mgr* token_mgr::instance = 0;
 
-token_mgr::token_mgr() : m_e_stop_listener(new state)
-                       , m_alife(0), m_motor_slow(0)
-                       , m_motor_stop(false)
+token_mgr::token_mgr() : m_alife(0), m_motor_slow(0)
+                       , m_switch_open(0)
+                       , m_wait_turnover(0)
+                       , m_motor_stop(0)
                        , m_motor_left(false)
                        , m_expected_token(ALL)
-                       , m_is_b2_ready(true) {
-  dispatcher* disp = TO_DISPATCHER
-      (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP);
-  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP_R);
+                       , m_is_b2_ready(true)
+                       , m_safe_state(false)
+                       , m_update_req(false) {
   // Initialisiere alle Token mit anonymous token
   for (int i = 0; i < NUM_OF_TOKENS; ++i) {
     m_tokens[i].set_state(new anonymous_token(&m_tokens[i]));
@@ -56,7 +55,6 @@ token_mgr::token_mgr() : m_e_stop_listener(new state)
 }
 
 token_mgr::~token_mgr() {
-  delete m_e_stop_listener;
   token_mgr::instance = 0;
 }
 
@@ -69,6 +67,15 @@ void token_mgr::destroy() {
 }
 
 void token_mgr::update() {
+  if (m_safe_state) {
+    // Nicht updated solange im safe_state,
+    // die Zustand der HW soll nicht aenderbar sein
+    // stattdessen den m_update_req auf `true` setzen.
+    // Beim verlassen des safe_states wird dann `update()`
+    // aufgerufen
+    m_update_req = true;
+    return;
+  }
   hwaccess* hal = TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN));
   if (m_alife > 0) {
     hal->set_motor(MOTOR_RIGHT);
@@ -78,15 +85,22 @@ void token_mgr::update() {
   } else {
     hal->set_motor(MOTOR_FAST);
   }
+  if (m_switch_open > 0) {
+    hal->open_switch();
+  } else {
+    hal->close_switch();
+  }
   if (m_motor_left) {
     hal->set_motor(MOTOR_LEFT);
   } else {
     hal->set_motor(MOTOR_RIGHT);
   }
-  if (m_motor_stop) {
+  if (m_motor_stop > 0) {
     hal->set_motor(MOTOR_STOP);
   } else {
-    hal->set_motor(MOTOR_RESUME);
+    if (m_wait_turnover == 0) {
+      hal->set_motor(MOTOR_RESUME);
+    }
   }
   if (m_alife == 0) {
     hal->set_motor(MOTOR_STOP);
@@ -111,6 +125,13 @@ void token_mgr::notify_existence(bool update) {
   if (update) {
     this->update();
   }
+#ifdef IS_CONVEYOR_2
+  // Band 1 signalisieren das uebergabe komplett
+  serial_channel* serial =
+      TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
+  telegram tel(B2_TRANS_FIN);
+  serial->send_telegram(&tel);
+#endif
 }
 
 void token_mgr::notify_death(bool update) {
@@ -149,32 +170,49 @@ void token_mgr::unrequest_left_motor(bool update) {
 }
 
 void token_mgr::request_stop_motor(bool update) {
-  m_motor_stop = true;
+  ++m_motor_stop;
   if (update) {
     this->update();
   }
 }
 
 void token_mgr::unrequest_stop_motor(bool update) {
-  m_motor_stop = false;
+  --m_motor_stop;
   if (update) {
     this->update();
   }
 }
 
-void token_mgr::reregister_e_stop() {
-  dispatch::dispatcher* disp = TO_DISPATCHER
-      (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP);
+void token_mgr::request_open_switch(bool update) {
+  ++m_switch_open;
+  if (update) {
+    this->update();
+  }
 }
 
-void token_mgr::reregister_e_stop_rising() {
-  dispatch::dispatcher* disp = TO_DISPATCHER
-      (singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_e_stop_listener, EVENT_BUTTON_E_STOP_R);
+void token_mgr::unrequest_open_switch(bool update) {
+  --m_switch_open;
+  if (update) {
+    this->update();
+  }
 }
 
-void token_mgr::enter_safe_state() {
+void token_mgr::request_turnover(bool update) {
+  ++m_wait_turnover;
+  if (update) {
+    this->update();
+  }
+}
+
+void token_mgr::unrequest_turnover(bool update) {
+  --m_wait_turnover;
+  if (update) {
+    this->update();
+  }
+}
+
+void token_mgr::enter_safe_state(bool send_serial) {
+  m_safe_state = true;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   m_safe.m_switch_open   = hal->is_switch_open();
   m_safe.m_motor_running = hal->is_motor_running();
@@ -182,9 +220,14 @@ void token_mgr::enter_safe_state() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
   TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->pause_all();
+  if (send_serial) {
+    telegram tel(E_STOP);
+    TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tel);
+  }
 }
 
-void token_mgr::exit_safe_state() {
+void token_mgr::exit_safe_state(bool send_serial) {
+  m_safe_state = false;
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   if (m_safe.m_switch_open) {
     hal->open_switch();
@@ -195,7 +238,17 @@ void token_mgr::exit_safe_state() {
     token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
     mgr->unrequest_stop_motor();
   }
+  if (m_update_req) {
+    // Waerend des E-Stops sollte auf `update()` zugegriffen werden.
+    // da dieses verhindert wurde, nun einmal `update()` aufrufen.
+    m_update_req = false;
+    update();
+  }
   TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->continue_all();
+  if (send_serial) {
+    telegram tel(E_STOP_GONE);
+    TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tel);
+  }
 }
 
 bool token_mgr::check_order(bool metal) {

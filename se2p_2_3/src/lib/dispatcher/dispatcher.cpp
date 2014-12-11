@@ -40,6 +40,8 @@ void map_insert(std::map<event_values, dispatcher_events>& map,
 }
 
 dispatcher::dispatcher() {
+  std::memset(m_prior_listners, 0,
+      sizeof(m_prior_listners[0]) * DISPATCHED_EVENT_MAX);
   m_functions[0]  = &fsm::events::dispatched_event_button_start;
   m_functions[1]  = &fsm::events::dispatched_event_button_stop;
   m_functions[2]  = &fsm::events::dispatched_event_button_reset;
@@ -59,15 +61,18 @@ dispatcher::dispatcher() {
   m_functions[16] = &fsm::events::dispatched_event_serial_msg;
   m_functions[17] = &fsm::events::dispatched_event_serial_err;
   m_functions[18] = &fsm::events::dispatched_event_serial_next_ok;
-  m_functions[19] = &fsm::events::dispatched_event_serial_unk;
-  m_functions[20] = &fsm::events::dispatched_event_seg1_exceeded;
-  m_functions[21] = &fsm::events::dispatched_event_seg2_exceeded;
-  m_functions[22] = &fsm::events::dispatched_event_seg3_exceeded;
-  m_functions[23] = &fsm::events::dispatched_event_slide_full;
-  m_functions[24] = &fsm::events::dispatched_event_open_switch;
-  m_functions[25] = &fsm::events::dispatched_event_turn_token;
-  m_functions[26] = &fsm::events::dispatched_event_remove_token;
-  m_functions[27] = &fsm::events::dispatched_event_token_finished;
+  m_functions[19] = &fsm::events::dispatched_event_serial_transfer_fin;
+  m_functions[20] = &fsm::events::dispatched_event_serial_e_stopp;
+  m_functions[21] = &fsm::events::dispatched_event_serial_e_stopp_gone;
+  m_functions[22] = &fsm::events::dispatched_event_serial_unk;
+  m_functions[23] = &fsm::events::dispatched_event_seg1_exceeded;
+  m_functions[24] = &fsm::events::dispatched_event_seg2_exceeded;
+  m_functions[25] = &fsm::events::dispatched_event_seg3_exceeded;
+  m_functions[26] = &fsm::events::dispatched_event_slide_full;
+  m_functions[27] = &fsm::events::dispatched_event_open_switch;
+  m_functions[28] = &fsm::events::dispatched_event_turn_token;
+  m_functions[29] = &fsm::events::dispatched_event_remove_token;
+  m_functions[30] = &fsm::events::dispatched_event_token_finished;
   // Map fuer mapping von event_values => dispatcher_events fuellen
   map_insert(m_mapping, EVENT_ZERO, DISPATCHED_EVENT_MAX);
   map_insert(m_mapping, EVENT_BUTTON_START, DISPATCHED_EVENT_BUTTON_START);
@@ -94,6 +99,11 @@ dispatcher::dispatcher() {
   map_insert(m_mapping, EVENT_SERIAL_MSG, DISPATCHED_EVENT_SERIAL_MSG);
   map_insert(m_mapping, EVENT_SERIAL_ERR, DISPATCHED_EVENT_SERIAL_ERR);
   map_insert(m_mapping, EVENT_SERIAL_NEXT_OK, DISPATCHED_EVENT_SERIAL_NEXT_OK);
+  map_insert(m_mapping, EVENT_SERIAL_TRANSFER_FIN,
+      DISPATCHED_EVENT_SERIAL_TRANSFER_FIN);
+  map_insert(m_mapping, EVENT_SERIAL_E_STOPP, DISPATCHED_EVENT_SERIAL_E_STOPP);
+  map_insert(m_mapping, EVENT_SERIAL_E_STOPP_GONE,
+      DISPATCHED_EVENT_SERIAL_E_STOPP_GONE);
   map_insert(m_mapping, EVENT_SERIAL_UNK, DISPATCHED_EVENT_SERIAL_UNK);
   map_insert(m_mapping, EVENT_SEG1_EXCEEDED, DISPATCHED_EVENT_SEG1_EXCEEDED);
   map_insert(m_mapping, EVENT_SEG2_EXCEEDED, DISPATCHED_EVENT_SEG2_EXCEEDED);
@@ -120,10 +130,36 @@ bool dispatcher::register_listener(fsm::events* listener,
   return true;
 }
 
+bool dispatcher::register_prior_listener(fsm::events* listener,
+                                         hal::event_values event) {
+  dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
+      event);
+  if (devent == DISPATCHED_EVENT_MAX || m_prior_listners[devent] != NULL) {
+    return false;
+  }
+  m_prior_listners[devent] = listener;
+  return true;
+}
+
+bool dispatcher::unregister_prior_listener(fsm::events* listener,
+                                           hal::event_values event) {
+  dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
+      event);
+  if (devent == DISPATCHED_EVENT_MAX || m_prior_listners[devent] != listener) {
+    return false;
+  }
+  m_prior_listners[devent] = NULL;
+  return true;
+}
+
 void dispatcher::direct_call_event(hal::event_values event) {
   dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
       event);
   if (devent == DISPATCHED_EVENT_MAX) {
+    return;
+  }
+  if (m_prior_listners[devent] != NULL) {
+    (m_prior_listners[devent]->*m_functions[devent])();
     return;
   }
   if (m_listeners[devent].empty()) {
@@ -164,10 +200,14 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       break;
     case EVENT_BUTTON_RESET:
       break;
-    case EVENT_BUTTON_E_STOP:
-      break;
-    case EVENT_BUTTON_E_STOP_R:
-      break;
+    case EVENT_BUTTON_E_STOP: {
+      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+      mgr->enter_safe_state();
+    } break;
+    case EVENT_BUTTON_E_STOP_R: {
+      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+      mgr->exit_safe_state();
+    } break;
     case EVENT_SENSOR_ENTRANCE:
       break;
     case EVENT_SENSOR_ENTRANCE_R:
@@ -189,8 +229,18 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_SENSOR_EXIT_R:
       break;
     case EVENT_UNKOWN1:
+    case EVENT_UNKOWN2:
+    case EVENT_UNKOWN3:
       break;
+    case EVENT_SWITCH_METAL_CONCURRENT: {
+      direct_call_event(EVENT_SENSOR_SWITCH_R);
+    } break;
+    case EVENT_SWITCH_ENTRANCE_CONCURRENT: {
+      direct_call_event(EVENT_SENSOR_SWITCH_R);
+      direct_call_event(EVENT_SENSOR_ENTRANCE);
+    } break;
     default:
+      std::cout << buffer.value.sival_int << std::endl;
       LOG_WARNING("Unkown Interrupt Value")
       break;
     }
@@ -204,8 +254,18 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_SERIAL_ERR:
       break;
     case EVENT_SERIAL_NEXT_OK: {
-        token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-        mgr->notify_ready_for_next();
+      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+      mgr->notify_ready_for_next();
+    } break;
+    case EVENT_SERIAL_TRANSFER_FIN:
+      break;
+    case EVENT_SERIAL_E_STOPP: {
+      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+      mgr->enter_safe_state(false);
+    } break;
+    case EVENT_SERIAL_E_STOPP_GONE: {
+      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+      mgr->exit_safe_state();
     } break;
     case EVENT_SERIAL_UNK:
       break;
