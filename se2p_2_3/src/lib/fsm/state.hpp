@@ -209,6 +209,8 @@ class b1_token_too_small_seg2_ok : public state {
 
   virtual void dispatched_event_sensor_slide();
   virtual void dispatched_event_seg2_too_late();
+  virtual void dispatched_event_sensor_slide_rising();
+  virtual void dispatched_event_slide_full_timeout();
 };
 
 class b1_valid_height : public state {
