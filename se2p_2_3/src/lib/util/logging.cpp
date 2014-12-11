@@ -82,9 +82,9 @@ void logging::log(const char* str, loglevel lvl,
 #ifndef DISABLE_LOGGING
   m_fstream << ss.str() << " " << str << std::endl;
 #endif
-  if (lvl != TRACE) {
+  //if (lvl != TRACE) {
     std::cerr << ss.str() << " " << str << std::endl;
-  }
+  //}
   m_lock.release();
 }
 

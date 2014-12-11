@@ -65,14 +65,15 @@ dispatcher::dispatcher() {
   m_functions[20] = &fsm::events::dispatched_event_serial_e_stopp;
   m_functions[21] = &fsm::events::dispatched_event_serial_e_stopp_gone;
   m_functions[22] = &fsm::events::dispatched_event_serial_unk;
-  m_functions[23] = &fsm::events::dispatched_event_seg1_exceeded;
-  m_functions[24] = &fsm::events::dispatched_event_seg2_exceeded;
-  m_functions[25] = &fsm::events::dispatched_event_seg3_exceeded;
-  m_functions[26] = &fsm::events::dispatched_event_slide_full;
-  m_functions[27] = &fsm::events::dispatched_event_open_switch;
-  m_functions[28] = &fsm::events::dispatched_event_turn_token;
-  m_functions[29] = &fsm::events::dispatched_event_remove_token;
-  m_functions[30] = &fsm::events::dispatched_event_token_finished;
+  m_functions[23] = &fsm::events::dispatched_event_seg1_has_to_expire;
+  m_functions[24] = &fsm::events::dispatched_event_seg2_has_to_expire;
+  m_functions[25] = &fsm::events::dispatched_event_seg3_has_to_expire;
+  m_functions[26] = &fsm::events::dispatched_event_seg1_too_late;
+  m_functions[27] = &fsm::events::dispatched_event_seg2_too_late;
+  m_functions[28] = &fsm::events::dispatched_event_seg3_too_late;
+  m_functions[29] = &fsm::events::dispatched_event_slide_full_timeout;
+  m_functions[30] = &fsm::events::dispatched_event_turn_token;
+  m_functions[31] = &fsm::events::dispatched_event_remove_token;
   // Map fuer mapping von event_values => dispatcher_events fuellen
   map_insert(m_mapping, EVENT_ZERO, DISPATCHED_EVENT_MAX);
   map_insert(m_mapping, EVENT_BUTTON_START, DISPATCHED_EVENT_BUTTON_START);
@@ -105,14 +106,21 @@ dispatcher::dispatcher() {
   map_insert(m_mapping, EVENT_SERIAL_E_STOPP_GONE,
       DISPATCHED_EVENT_SERIAL_E_STOPP_GONE);
   map_insert(m_mapping, EVENT_SERIAL_UNK, DISPATCHED_EVENT_SERIAL_UNK);
-  map_insert(m_mapping, EVENT_SEG1_EXCEEDED, DISPATCHED_EVENT_SEG1_EXCEEDED);
-  map_insert(m_mapping, EVENT_SEG2_EXCEEDED, DISPATCHED_EVENT_SEG2_EXCEEDED);
-  map_insert(m_mapping, EVENT_SEG3_EXCEEDED, DISPATCHED_EVENT_SEG3_EXCEEDED);
-  map_insert(m_mapping, EVENT_SLIDE_FULL, DISPATCHED_EVENT_SLIDE_FULL);
-  map_insert(m_mapping, EVENT_OPEN_SWITCH, DISPATCHED_EVENT_OPEN_SWITCH);
-  map_insert(m_mapping, EVENT_TURN_TOKEN, DISPATCHED_EVENT_TURN_TOKEN);
-  map_insert(m_mapping, EVENT_REMOVE_TOKEN, DISPATCHED_EVENT_REMOVE_TOKEN);
-  map_insert(m_mapping, EVENT_TOKEN_FINISHED, DISPATCHED_EVENT_TOKEN_FINISHED);
+  map_insert(m_mapping, EVENT_SEG1_HAS_TO_EXPIRE,
+      DISPATCHED_EVENT_SEG1_HAS_TO_EXPIRE);
+  map_insert(m_mapping, EVENT_SEG2_HAS_TO_EXPIRE,
+      DISPATCHED_EVENT_SEG2_HAS_TO_EXPIRE);
+  map_insert(m_mapping, EVENT_SEG3_HAS_TO_EXPIRE,
+      DISPATCHED_EVENT_SEG3_HAS_TO_EXPIRE);
+  map_insert(m_mapping, EVENT_SEG1_TOO_LATE, DISPATCHED_EVENT_SEG1_TOO_LATE);
+  map_insert(m_mapping, EVENT_SEG2_TOO_LATE, DISPATCHED_EVENT_SEG2_TOO_LATE);
+  map_insert(m_mapping, EVENT_SEG3_TOO_LATE, DISPATCHED_EVENT_SEG3_TOO_LATE);
+  map_insert(m_mapping, EVENT_SLIDE_FULL_TIMEOUT,
+      DISPATCHED_EVENT_SLIDE_FULL_TIMEOUT);
+  map_insert(m_mapping, EVENT_TURN_TOKEN_TIMEOUT,
+      DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT);
+  map_insert(m_mapping, EVENT_REMOVE_TOKEN_TIMEOUT,
+      DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT);
 }
 
 dispatcher::~dispatcher() {
@@ -187,6 +195,8 @@ void dispatcher::destroy() {
   shutdown();
 }
 
+#define ISR_USED_BITS 16
+#define ISR_CONCURRENT_HANDLE_START_MASK 0x01
 void dispatcher::special_case_handling(const _pulse& buffer) {
   // Fuer eventuelle Spezialfaelle in den Signalen
   switch(buffer.code) {
@@ -232,17 +242,21 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_UNKOWN2:
     case EVENT_UNKOWN3:
       break;
-    case EVENT_SWITCH_METAL_CONCURRENT: {
-      direct_call_event(EVENT_SENSOR_SWITCH_R);
-    } break;
-    case EVENT_SWITCH_ENTRANCE_CONCURRENT: {
-      direct_call_event(EVENT_SENSOR_SWITCH_R);
-      direct_call_event(EVENT_SENSOR_ENTRANCE);
-    } break;
-    default:
-      std::cout << buffer.value.sival_int << std::endl;
+    default: {
       LOG_WARNING("Unkown Interrupt Value")
-      break;
+      // Unkown Event, diese Funktion schiebt einzele
+      // Masken um zu schauen welche Events zeitgleich
+      // ausgeloest wurden und fuehrt diese aus...
+      int event = 0;
+      int mask  = ISR_CONCURRENT_HANDLE_START_MASK;
+      for (int i = 0; i < ISR_USED_BITS; ++i) {
+        event = mask & buffer.value.sival_int;
+        if (event) {
+          direct_call_event(event);
+        }
+        mask <<= i;
+      }
+    } break;
     }
     break;
   case SERIAL:
@@ -276,21 +290,23 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     break;
   case TIMER:
     switch(buffer.value.sival_int) {
-    case EVENT_SEG1_EXCEEDED:
+    case EVENT_SEG1_HAS_TO_EXPIRE:
       break;
-    case EVENT_SEG2_EXCEEDED:
+    case EVENT_SEG2_HAS_TO_EXPIRE:
       break;
-    case EVENT_SEG3_EXCEEDED:
+    case EVENT_SEG3_HAS_TO_EXPIRE:
       break;
-    case EVENT_SLIDE_FULL:
+    case EVENT_SEG1_TOO_LATE:
       break;
-    case EVENT_OPEN_SWITCH:
+    case EVENT_SEG2_TOO_LATE:
       break;
-    case EVENT_TURN_TOKEN:
+    case EVENT_SEG3_TOO_LATE:
       break;
-    case EVENT_REMOVE_TOKEN:
+    case EVENT_SLIDE_FULL_TIMEOUT:
       break;
-    case EVENT_TOKEN_FINISHED:
+    case EVENT_TURN_TOKEN_TIMEOUT:
+      break;
+    case EVENT_REMOVE_TOKEN_TIMEOUT:
       break;
     default:
       LOG_WARNING("Unkown Timer Value")

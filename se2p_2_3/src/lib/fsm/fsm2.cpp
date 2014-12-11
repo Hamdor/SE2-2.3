@@ -16,10 +16,10 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    state.cpp
- * @version 0.1
+ * @file    fsm2.cpp
+ * @version 0.2
  *
- * Klasse fuer Zustandsautomaten
+ * Klasse fuer Zustandsautomaten (FSM2)
  **/
 
 #include "config.h"
@@ -36,213 +36,7 @@ using namespace se2::hal;
 using namespace se2::util;
 using namespace se2::dispatch;
 using namespace se2::serial_bus;
-
-anonymous_token::anonymous_token(token* t) : state::state(t) {
-  LOG_TRACE("")
-  m_token->reset();
-#if defined(IS_CONVEYOR_1)
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
-#elif defined(IS_CONVEYOR_2)
-  new (this) b2_receive_data(m_token);
-#endif
-}
-
-void anonymous_token::dispatched_event_sensor_entrance() {
-  LOG_TRACE("")
-#if defined(IS_CONVEYOR_1)
-  new (this) b1_realized_object(m_token);
-#endif
-}
-
-/******************************************************************************
- *                                BAND 1 FSM                                  *
- ******************************************************************************/
-#ifdef IS_CONVEYOR_1
-b1_realized_object::b1_realized_object(token* t) : state::state(t) {
-  LOG_TRACE("")
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(
-      DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT);
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_existence();
-}
-
-void b1_realized_object::dispatched_event_sensor_height() {
-  LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->request_slow_motor();
-  new (this) b1_height_measurement(m_token);
-}
-
-b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
-  LOG_TRACE("")
-  dispatcher* disp =
-    TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_HEIGHT_R);
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  int height = hal->get_height_value();
-  m_token->set_height1(height);
-  if (TOO_SMALL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
-      && height <= TOO_SMALL_HI + HEIGHT_SENSOR_TOLERANCE_MAX) {
-    new (this) b1_token_too_small(m_token);
-    return;
-  } else if ((HOLE_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
-         && height <= HOLE_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
-     || (METAL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
-         && height <= METAL_HI + HEIGHT_SENSOR_TOLERANCE_MAX)) {
-    m_token->set_is_upside_down(false);
-  } else if ((HOLE_BOTTOM_UP_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
-         && height <= HOLE_BOTTOM_UP_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
-          || (METAL_BOTTOM_UP_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
-         && height <= METAL_BOTTOM_UP_HI + HEIGHT_SENSOR_TOLERANCE_MAX)) {
-    m_token->set_is_upside_down(true);
-  }
-  new (this) b1_valid_height(m_token);
-}
-
-b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
-  LOG_TRACE("")
-  dispatcher* disp =
-      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
-  disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
-}
-
-void b1_token_too_small::dispatched_event_sensor_slide() {
-  LOG_TRACE("")
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->notify_death();
-  new (this) anonymous_token(m_token);
-}
-
-void b1_token_too_small::dispatched_event_sensor_height_rising() {
-  LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->request_fast_motor();
-}
-
-b1_valid_height::b1_valid_height(token* t) : state::state(t) {
-  LOG_TRACE("")
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
-}
-
-void b1_valid_height::dispatched_event_sensor_height_rising() {
-  LOG_TRACE("")
-  TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN))->request_fast_motor();
-}
-
-void b1_valid_height::dispatched_event_sensor_switch() {
-  LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->request_open_switch();
-  dispatcher* disp =
-      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_SWITCH_R);
-}
-
-void b1_valid_height::dispatched_event_sensor_switch_rising() {
-  LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->unrequest_open_switch();
-  dispatcher* disp =
-      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SENSOR_EXIT);
-}
-
-void b1_valid_height::dispatched_event_sensor_exit() {
-  LOG_TRACE("")
-  new (this) b1_exit(m_token);
-}
-
-b1_exit::b1_exit(token* t) : state::state(t) {
-  LOG_TRACE("")
-  if (m_token->is_upside_down()) {
-    new (this) b1_token_upside_down(m_token);
-  } else {
-    new (this) b1_token_ready_for_b2(m_token);
-  }
-}
-
-b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
-  LOG_TRACE("")
-  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
-  lmgr->set_state(TURN_TOKEN);
-  token_mgr* mgr  = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->request_stop_motor();
-  dispatcher* disp =
-      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_BUTTON_START);
-  // TODO: Folgendes Scenario noch einmal Testen!
-  // Reihenfolge der Pucks:
-  // Richtig Herum => Falsch Herum
-  // (Zweiter)     => (Erster)
-  // !NUN MUSS DER TOKEN GEDREHT WERDEN!
-  disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT);
-  disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
-}
-
-void b1_token_upside_down::dispatched_event_button_start() {
-  LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->unrequest_stop_motor();
-  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
-  lmgr->set_state(READY_TO_USE);
-  dispatcher* disp =
-      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->unregister_prior_listener(m_token, EVENT_SENSOR_EXIT);
-  disp->unregister_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
-  new (this) b1_token_ready_for_b2(m_token);
-}
-
-b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
-  LOG_TRACE("")
-  m_token->pretty_print();
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  dispatcher* disp =
-      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SERIAL_TRANSFER_FIN);
-  if (!mgr->check_conveyor2_ready()) {
-    mgr->request_stop_motor();
-    dispatcher* disp =
-        TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-    disp->register_listener(m_token, EVENT_SERIAL_NEXT_OK);
-  } else {
-    telegram tg(m_token);
-    TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
-    mgr->notify_token_trasition();
-  }
-}
-
-void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
-  LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->unrequest_stop_motor();
-  dispatcher* disp =
-      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  telegram tg(m_token);
-  TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
-  disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);
-}
-
-void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
-  LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->notify_token_trasition();
-}
-
-void b1_token_ready_for_b2::dispatched_event_serial_transfer_fin() {
-  LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->notify_death();
-  new (this) anonymous_token(m_token);
-}
-
-#endif
-
-/******************************************************************************
- *                                BAND 2 FSM                                  *
- ******************************************************************************/
-#ifdef IS_CONVEYOR_2
+using namespace se2::timer;
 
 b2_receive_data::b2_receive_data(token* t) : state::state(t) {
   LOG_TRACE("")
@@ -307,6 +101,7 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   if (TOO_SMALL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
       && height <= TOO_SMALL_HI + HEIGHT_SENSOR_TOLERANCE_MAX) {
     // darf nicht passieren
+    // TODO: In Fehlerbehandlung?
   } else if ((HOLE_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
          && height <= HOLE_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
      || (METAL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
@@ -435,4 +230,3 @@ void b2_is_correct_order::dispatched_event_sensor_exit_rising() {
   mgr->notify_death();
   new (this) anonymous_token(m_token);
 }
-#endif

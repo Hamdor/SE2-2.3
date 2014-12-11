@@ -117,19 +117,25 @@ class state : public events {
   virtual void dispatched_event_serial_unk() {
     // nop
   }
-  virtual void dispatched_event_seg1_exceeded() {
+  virtual void dispatched_event_seg1_has_to_expire() {
     // nop
   }
-  virtual void dispatched_event_seg2_exceeded() {
+  virtual void dispatched_event_seg2_has_to_expire() {
     // nop
   }
-  virtual void dispatched_event_seg3_exceeded() {
+  virtual void dispatched_event_seg3_has_to_expire() {
     // nop
   }
-  virtual void dispatched_event_slide_full() {
+  virtual void dispatched_event_seg1_too_late() {
     // nop
   }
-  virtual void dispatched_event_open_switch() {
+  virtual void dispatched_event_seg2_too_late() {
+    // nop
+  }
+  virtual void dispatched_event_seg3_too_late() {
+    // nop
+  }
+  virtual void dispatched_event_slide_full_timeout() {
     // nop
   }
   virtual void dispatched_event_turn_token() {
@@ -161,11 +167,23 @@ class anonymous_token : public state {
 class b1_realized_object : public state {
  public:
   b1_realized_object(token* t);
-  virtual~b1_realized_object() {
+  virtual ~b1_realized_object() {
+    // nop
+  }
+
+  virtual void dispatched_event_seg1_has_to_expire();
+  virtual void dispatched_event_sensor_height();
+};
+
+class b1_realized_object_seg1_ok : public state {
+ public:
+  b1_realized_object_seg1_ok(token* t);
+  virtual ~b1_realized_object_seg1_ok() {
     // nop
   }
 
   virtual void dispatched_event_sensor_height();
+  virtual void dispatched_event_seg1_too_late();
 };
 
 class b1_height_measurement : public state {
@@ -183,7 +201,20 @@ class b1_token_too_small : public state {
     // nop
   }
   virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_sensor_switch();
   virtual void dispatched_event_sensor_height_rising();
+  virtual void dispatched_event_seg2_has_to_expire();
+};
+
+class b1_token_too_small_seg2_ok : public state {
+ public:
+  b1_token_too_small_seg2_ok(token* t);
+  virtual ~b1_token_too_small_seg2_ok() {
+    // nop
+  }
+
+  virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_seg2_too_late();
 };
 
 class b1_valid_height : public state {
@@ -192,10 +223,37 @@ class b1_valid_height : public state {
   virtual ~b1_valid_height() {
     // nop
   }
+
   virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
   virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
+  virtual void dispatched_event_seg2_has_to_expire();
+  virtual void dispatched_event_seg2_too_late();
+};
+
+class b1_valid_height_seg2_ok : public state {
+ public:
+  b1_valid_height_seg2_ok(token* t);
+  virtual ~b1_valid_height_seg2_ok() {
+    // nop
+  }
+
+  virtual void dispatched_event_sensor_switch();
+  virtual void dispatched_event_sensor_switch_rising();
+  virtual void dispatched_event_seg3_has_to_expire(); // verschieben von `b1_valid_height`
+};
+
+class b1_valid_height_seg3_ok : public state {
+ public:
+  b1_valid_height_seg3_ok(token* t);
+  virtual ~b1_valid_height_seg3_ok() {
+    // nop
+  }
+
+  virtual void dispatched_event_seg2_too_late();
+  virtual void dispatched_event_sensor_exit();
+  virtual void dispatched_event_seg3_too_late();
 };
 
 class b1_exit : public state {

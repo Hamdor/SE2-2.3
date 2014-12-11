@@ -29,6 +29,11 @@
 #include <vector>
 
 namespace se2 {
+namespace fsm {
+class b1_valid_height_seg2_ok;
+class b1_valid_height_seg3_ok;
+class b1_token_too_small_seg2_ok;
+}
 namespace serial_bus {
 class telegram;
 }
@@ -36,13 +41,16 @@ class telegram;
 typedef std::vector<int> ivec;
 
 class token : public fsm::events {
+  friend class fsm::b1_valid_height_seg2_ok;
+  friend class fsm::b1_valid_height_seg3_ok;
+  friend class fsm::b1_token_too_small_seg2_ok;
  public:
   /**
    * Default Konstruktor
    **/
   token()
       : m_state(0), m_id(0), m_height1(0), m_height2(0)
-      , m_is_metal(false), m_is_upside_down(false) {
+      , m_is_metal(false), m_is_upside_down(false), m_seg2_ok(false) {
     // nop
   }
 
@@ -169,14 +177,15 @@ class token : public fsm::events {
   virtual void dispatched_event_serial_e_stopp();
   virtual void dispatched_event_serial_e_stopp_gone();
   virtual void dispatched_event_serial_unk();
-  virtual void dispatched_event_seg1_exceeded();
-  virtual void dispatched_event_seg2_exceeded();
-  virtual void dispatched_event_seg3_exceeded();
-  virtual void dispatched_event_slide_full();
-  virtual void dispatched_event_open_switch();
+  virtual void dispatched_event_seg1_has_to_expire();
+  virtual void dispatched_event_seg2_has_to_expire();
+  virtual void dispatched_event_seg3_has_to_expire();
+  virtual void dispatched_event_seg1_too_late();
+  virtual void dispatched_event_seg2_too_late();
+  virtual void dispatched_event_seg3_too_late();
+  virtual void dispatched_event_slide_full_timeout();
   virtual void dispatched_event_turn_token();
   virtual void dispatched_event_remove_token();
-  virtual void dispatched_event_token_finished();
 
  private:
   events*    m_state;
@@ -187,6 +196,7 @@ class token : public fsm::events {
   bool       m_is_metal;
   bool       m_is_upside_down;
   ivec       m_timer_ids;
+  bool       m_seg2_ok;
 };
 
 } // namespace se2

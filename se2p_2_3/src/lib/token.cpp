@@ -83,6 +83,7 @@ void token::reset() {
   m_height2        = 0;
   m_is_metal       = false;
   m_is_upside_down = false;
+  m_seg2_ok        = false;
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   for (size_t i = 0; i < m_timer_ids.size(); ++i) {
     hdl->delete_timer(m_timer_ids[i]);
@@ -195,24 +196,32 @@ void token::dispatched_event_serial_unk() {
   m_state->dispatched_event_serial_unk();
 }
 
-void token::dispatched_event_seg1_exceeded() {
-  m_state->dispatched_event_seg1_exceeded();
+void token::dispatched_event_seg1_has_to_expire() {
+  m_state->dispatched_event_seg1_has_to_expire();
 }
 
-void token::dispatched_event_seg2_exceeded() {
-  m_state->dispatched_event_seg2_exceeded();
+void token::dispatched_event_seg2_has_to_expire() {
+  m_state->dispatched_event_seg2_has_to_expire();
 }
 
-void token::dispatched_event_seg3_exceeded() {
-  m_state->dispatched_event_seg3_exceeded();
+void token::dispatched_event_seg3_has_to_expire() {
+  m_state->dispatched_event_seg3_has_to_expire();
 }
 
-void token::dispatched_event_slide_full() {
-  m_state->dispatched_event_slide_full();
+void token::dispatched_event_seg1_too_late() {
+  m_state->dispatched_event_seg1_too_late();
 }
 
-void token::dispatched_event_open_switch() {
-  m_state->dispatched_event_open_switch();
+void token::dispatched_event_seg2_too_late() {
+  m_state->dispatched_event_seg2_too_late();
+}
+
+void token::dispatched_event_seg3_too_late() {
+  m_state->dispatched_event_seg3_too_late();
+}
+
+void token::dispatched_event_slide_full_timeout() {
+  m_state->dispatched_event_slide_full_timeout();
 }
 
 void token::dispatched_event_turn_token() {
@@ -221,8 +230,4 @@ void token::dispatched_event_turn_token() {
 
 void token::dispatched_event_remove_token() {
   m_state->dispatched_event_remove_token();
-}
-
-void token::dispatched_event_token_finished() {
-  m_state->dispatched_event_token_finished();
 }

@@ -173,7 +173,7 @@ void initialization_run::print_time(const my_times time[]) {
     ntime = UNDERFLOW_CHECK(time[i].msec, ntime);
     if (ntime > 1000) {
       // kp was da los is...
-      ntime /= 100;
+      ntime /= 10;
     }
     std::cout << "#define "   << time_names[idx++] << " "
               << ntime << std::endl;
@@ -183,7 +183,7 @@ void initialization_run::print_time(const my_times time[]) {
     ntime = time[i].msec + ADD_TO_LATE_MSEC;
     if (ntime > 1000) {
       // kp was da los is...
-      ntime /= 100;
+      ntime /= 10;
     }
     std::cout << "#define "   << time_names[idx++] << " "
               << ntime << std::endl;
@@ -211,12 +211,12 @@ void initialization_run::run_tests() {
 }
 
 void initialization_run::start_init() {
-  run_tests();
+  //run_tests();
 #ifndef SIMULATION
   // Die Simulation hat keinen Motor Linsklauf
   // ausserdem sind die Hoehenwerte in der Simulation falsch.
   //get_heights();
 #endif
-  get_times();
+  //get_times();
   HAWThread::reset_shutdown_flag();
 }
