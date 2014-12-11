@@ -93,8 +93,6 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_BUTTON_RESET);
   m_error += test_single_mapping_equal(EVENT_BUTTON_E_STOP,
                                        DISPATCHED_EVENT_BUTTON_E_STOP);
-  m_error += test_single_mapping_equal(EVENT_BUTTON_E_STOP_R,
-                                       DISPATCHED_EVENT_BUTTON_E_STOP_R);
   m_error += test_single_mapping_equal(EVENT_SENSOR_ENTRANCE,
                                        DISPATCHED_EVENT_SENSOR_ENTRANCE);
   m_error += test_single_mapping_equal(EVENT_SENSOR_ENTRANCE_R,
@@ -123,8 +121,6 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_SERIAL_NEXT_OK);
   m_error += test_single_mapping_equal(EVENT_SERIAL_E_STOPP,
                                        DISPATCHED_EVENT_SERIAL_E_STOPP);
-  m_error += test_single_mapping_equal(EVENT_SERIAL_E_STOPP_GONE,
-                                       DISPATCHED_EVENT_SERIAL_E_STOPP_GONE);
   m_error += test_single_mapping_equal(EVENT_SERIAL_ERR,
                                        DISPATCHED_EVENT_SERIAL_ERR);
   m_error += test_single_mapping_equal(EVENT_SERIAL_UNK,
@@ -168,9 +164,6 @@ int dispatcher_test::test_function_address_reg() {
       m_dispatcher->m_functions[DISPATCHED_EVENT_BUTTON_E_STOP],
       &fsm::events::dispatched_event_button_e_stop);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_BUTTON_E_STOP_R],
-      &fsm::events::dispatched_event_button_e_stop_rising);
-  m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_ENTRANCE],
       &fsm::events::dispatched_event_sensor_entrance);
   m_error += test_single_fun_ptr(
@@ -209,12 +202,6 @@ int dispatcher_test::test_function_address_reg() {
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_NEXT_OK],
       &fsm::events::dispatched_event_serial_next_ok);
-  m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_E_STOPP],
-      &fsm::events::dispatched_event_serial_e_stopp);
-  m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_E_STOPP_GONE],
-      &fsm::events::dispatched_event_serial_e_stopp_gone);
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_ERR],
       &fsm::events::dispatched_event_serial_err);
@@ -393,16 +380,8 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_serial_e_stopp()" << std::endl;
 #endif
-    register_for_next(EVENT_SERIAL_E_STOPP, EVENT_SERIAL_E_STOPP_GONE);
+    register_for_next(EVENT_SERIAL_E_STOPP, EVENT_SERIAL_ERR);
   }
-
-  void dispatched_event_serial_e_stopp_gone() {
-#ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_serial_e_stopp_gone()" << std::endl;
-#endif
-    register_for_next(EVENT_SERIAL_E_STOPP_GONE, EVENT_SERIAL_UNK);
-  }
-
   void dispatched_event_serial_err() {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_serial_err()" << std::endl;
@@ -517,7 +496,6 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_SERIAL_NEXT_OK);
   m_dispatcher->direct_call_event(EVENT_SERIAL_TRANSFER_FIN);
   m_dispatcher->direct_call_event(EVENT_SERIAL_E_STOPP);
-  m_dispatcher->direct_call_event(EVENT_SERIAL_E_STOPP_GONE);
   m_dispatcher->direct_call_event(EVENT_SERIAL_ERR);
   m_dispatcher->direct_call_event(EVENT_SERIAL_UNK);
   m_dispatcher->direct_call_event(EVENT_SEG1_HAS_TO_EXPIRE);
@@ -558,7 +536,6 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_NEXT_OK);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_TRANSFER_FIN);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_E_STOPP);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_E_STOPP_GONE);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_UNK);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG1_HAS_TO_EXPIRE);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG2_HAS_TO_EXPIRE);

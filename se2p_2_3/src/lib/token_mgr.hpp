@@ -182,14 +182,6 @@ class token_mgr : public util::abstract_singleton {
   void enter_safe_state(bool send_serial = true);
 
   /**
-   * System wieder in alten Zustand bringen
-   * @param send_serial beschreibt ob die Information, dass
-   *        der `safe_state` verlassen wurde, ueber die Serielle-
-   *        Schnittstelle gesendet werden soll. (Default: TRUE)
-   **/
-  void exit_safe_state(bool send_serial = true);
-
-  /**
    * Prueft ob das aktueller Token zur korrekten
    * Reihenfolge gehoert.
    * @param  metal beschreibt ob das aktueller Token aus Metall ist
@@ -230,7 +222,6 @@ class token_mgr : public util::abstract_singleton {
   expected_token m_expected_token;
   bool           m_is_b2_ready;
   bool           m_safe_state;
-  bool           m_update_req;
 };
 
 }

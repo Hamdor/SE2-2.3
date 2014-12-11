@@ -120,10 +120,6 @@ void token::dispatched_event_button_e_stop() {
   m_state->dispatched_event_button_e_stop();
 }
 
-void token::dispatched_event_button_e_stop_rising() {
-  m_state->dispatched_event_button_e_stop_rising();
-}
-
 void token::dispatched_event_sensor_entrance() {
   m_state->dispatched_event_sensor_entrance();
 }
@@ -186,10 +182,6 @@ void token::dispatched_event_serial_transfer_fin() {
 
 void token::dispatched_event_serial_e_stopp() {
   m_state->dispatched_event_serial_e_stopp();
-}
-
-void token::dispatched_event_serial_e_stopp_gone() {
-  m_state->dispatched_event_serial_e_stopp_gone();
 }
 
 void token::dispatched_event_serial_unk() {

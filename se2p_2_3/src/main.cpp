@@ -25,11 +25,14 @@
 #include "config.h"
 #include "initialization_run.hpp"
 #include "lib/util/singleton_mgr.hpp"
+#include "lib/util/HAWThread.hpp"
 
 #include <unistd.h>
 
 using namespace se2;
 using namespace se2::util;
+
+#define MAIN_LOOP_SLEEP 250000
 
 int main(int argc, char *argv[]) {
 #ifdef SIMULATION
@@ -44,7 +47,10 @@ int main(int argc, char *argv[]) {
   TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN))->set_state(READY_TO_USE);
   singleton_mgr::force_initialization(TOKEN_PLUGIN);
   while(1) {
-    sleep(1);
+    usleep(MAIN_LOOP_SLEEP);
+    if (HAWThread::is_global_shutdown()) {
+      break;
+    }
   }
   singleton_mgr::shutdown();
 #ifdef SIMULATION

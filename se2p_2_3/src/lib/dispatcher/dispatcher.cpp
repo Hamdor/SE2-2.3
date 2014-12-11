@@ -46,42 +46,38 @@ dispatcher::dispatcher() {
   m_functions[1]  = &fsm::events::dispatched_event_button_stop;
   m_functions[2]  = &fsm::events::dispatched_event_button_reset;
   m_functions[3]  = &fsm::events::dispatched_event_button_e_stop;
-  m_functions[4]  = &fsm::events::dispatched_event_button_e_stop_rising;
-  m_functions[5]  = &fsm::events::dispatched_event_sensor_entrance;
-  m_functions[6]  = &fsm::events::dispatched_event_sensor_entrance_rising;
-  m_functions[7]  = &fsm::events::dispatched_event_sensor_height;
-  m_functions[8]  = &fsm::events::dispatched_event_sensor_height_rising;
-  m_functions[9]  = &fsm::events::dispatched_event_sensor_switch;
-  m_functions[10] = &fsm::events::dispatched_event_sensor_switch_rising;
-  m_functions[11] = &fsm::events::dispatched_event_sensor_slide;
-  m_functions[12] = &fsm::events::dispatched_event_sensor_slide_rising;
-  m_functions[13] = &fsm::events::dispatched_event_sensor_exit;
-  m_functions[14] = &fsm::events::dispatched_event_sensor_exit_rising;
-  m_functions[15] = &fsm::events::dispatched_event_serial_data;
-  m_functions[16] = &fsm::events::dispatched_event_serial_msg;
-  m_functions[17] = &fsm::events::dispatched_event_serial_err;
-  m_functions[18] = &fsm::events::dispatched_event_serial_next_ok;
-  m_functions[19] = &fsm::events::dispatched_event_serial_transfer_fin;
-  m_functions[20] = &fsm::events::dispatched_event_serial_e_stopp;
-  m_functions[21] = &fsm::events::dispatched_event_serial_e_stopp_gone;
-  m_functions[22] = &fsm::events::dispatched_event_serial_unk;
-  m_functions[23] = &fsm::events::dispatched_event_seg1_has_to_expire;
-  m_functions[24] = &fsm::events::dispatched_event_seg2_has_to_expire;
-  m_functions[25] = &fsm::events::dispatched_event_seg3_has_to_expire;
-  m_functions[26] = &fsm::events::dispatched_event_seg1_too_late;
-  m_functions[27] = &fsm::events::dispatched_event_seg2_too_late;
-  m_functions[28] = &fsm::events::dispatched_event_seg3_too_late;
-  m_functions[29] = &fsm::events::dispatched_event_slide_full_timeout;
-  m_functions[30] = &fsm::events::dispatched_event_turn_token;
-  m_functions[31] = &fsm::events::dispatched_event_remove_token;
+  m_functions[4]  = &fsm::events::dispatched_event_sensor_entrance;
+  m_functions[5]  = &fsm::events::dispatched_event_sensor_entrance_rising;
+  m_functions[6]  = &fsm::events::dispatched_event_sensor_height;
+  m_functions[7]  = &fsm::events::dispatched_event_sensor_height_rising;
+  m_functions[8]  = &fsm::events::dispatched_event_sensor_switch;
+  m_functions[9]  = &fsm::events::dispatched_event_sensor_switch_rising;
+  m_functions[10] = &fsm::events::dispatched_event_sensor_slide;
+  m_functions[11] = &fsm::events::dispatched_event_sensor_slide_rising;
+  m_functions[12] = &fsm::events::dispatched_event_sensor_exit;
+  m_functions[13] = &fsm::events::dispatched_event_sensor_exit_rising;
+  m_functions[14] = &fsm::events::dispatched_event_serial_data;
+  m_functions[15] = &fsm::events::dispatched_event_serial_msg;
+  m_functions[16] = &fsm::events::dispatched_event_serial_err;
+  m_functions[17] = &fsm::events::dispatched_event_serial_next_ok;
+  m_functions[18] = &fsm::events::dispatched_event_serial_transfer_fin;
+  m_functions[19] = &fsm::events::dispatched_event_serial_e_stopp;
+  m_functions[20] = &fsm::events::dispatched_event_serial_unk;
+  m_functions[21] = &fsm::events::dispatched_event_seg1_has_to_expire;
+  m_functions[22] = &fsm::events::dispatched_event_seg2_has_to_expire;
+  m_functions[23] = &fsm::events::dispatched_event_seg3_has_to_expire;
+  m_functions[24] = &fsm::events::dispatched_event_seg1_too_late;
+  m_functions[25] = &fsm::events::dispatched_event_seg2_too_late;
+  m_functions[26] = &fsm::events::dispatched_event_seg3_too_late;
+  m_functions[27] = &fsm::events::dispatched_event_slide_full_timeout;
+  m_functions[28] = &fsm::events::dispatched_event_turn_token;
+  m_functions[29] = &fsm::events::dispatched_event_remove_token;
   // Map fuer mapping von event_values => dispatcher_events fuellen
   map_insert(m_mapping, EVENT_ZERO, DISPATCHED_EVENT_MAX);
   map_insert(m_mapping, EVENT_BUTTON_START, DISPATCHED_EVENT_BUTTON_START);
   map_insert(m_mapping, EVENT_BUTTON_STOP, DISPATCHED_EVENT_BUTTON_STOP);
   map_insert(m_mapping, EVENT_BUTTON_RESET, DISPATCHED_EVENT_BUTTON_RESET);
   map_insert(m_mapping, EVENT_BUTTON_E_STOP, DISPATCHED_EVENT_BUTTON_E_STOP);
-  map_insert(m_mapping, EVENT_BUTTON_E_STOP_R,
-             DISPATCHED_EVENT_BUTTON_E_STOP_R);
   map_insert(m_mapping, EVENT_SENSOR_ENTRANCE,
              DISPATCHED_EVENT_SENSOR_ENTRANCE);
   map_insert(m_mapping, EVENT_SENSOR_ENTRANCE_R,
@@ -103,8 +99,6 @@ dispatcher::dispatcher() {
   map_insert(m_mapping, EVENT_SERIAL_TRANSFER_FIN,
       DISPATCHED_EVENT_SERIAL_TRANSFER_FIN);
   map_insert(m_mapping, EVENT_SERIAL_E_STOPP, DISPATCHED_EVENT_SERIAL_E_STOPP);
-  map_insert(m_mapping, EVENT_SERIAL_E_STOPP_GONE,
-      DISPATCHED_EVENT_SERIAL_E_STOPP_GONE);
   map_insert(m_mapping, EVENT_SERIAL_UNK, DISPATCHED_EVENT_SERIAL_UNK);
   map_insert(m_mapping, EVENT_SEG1_HAS_TO_EXPIRE,
       DISPATCHED_EVENT_SEG1_HAS_TO_EXPIRE);
@@ -214,10 +208,6 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
       mgr->enter_safe_state();
     } break;
-    case EVENT_BUTTON_E_STOP_R: {
-      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-      mgr->exit_safe_state();
-    } break;
     case EVENT_SENSOR_ENTRANCE:
       break;
     case EVENT_SENSOR_ENTRANCE_R:
@@ -243,7 +233,9 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_UNKOWN3:
       break;
     default: {
-      LOG_WARNING("Unkown Interrupt Value")
+      std::string err = "Unkown Interrupt Value ";
+      err += buffer.value.sival_int;
+      LOG_WARNING(err.c_str())
       // Unkown Event, diese Funktion schiebt einzele
       // Masken um zu schauen welche Events zeitgleich
       // ausgeloest wurden und fuehrt diese aus...
@@ -276,10 +268,6 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_SERIAL_E_STOPP: {
       token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
       mgr->enter_safe_state(false);
-    } break;
-    case EVENT_SERIAL_E_STOPP_GONE: {
-      token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-      mgr->exit_safe_state();
     } break;
     case EVENT_SERIAL_UNK:
       break;

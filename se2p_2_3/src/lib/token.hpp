@@ -158,7 +158,6 @@ class token : public fsm::events {
   virtual void dispatched_event_button_stop();
   virtual void dispatched_event_button_reset();
   virtual void dispatched_event_button_e_stop();
-  virtual void dispatched_event_button_e_stop_rising();
   virtual void dispatched_event_sensor_entrance();
   virtual void dispatched_event_sensor_entrance_rising();
   virtual void dispatched_event_sensor_height();
@@ -175,7 +174,6 @@ class token : public fsm::events {
   virtual void dispatched_event_serial_next_ok();
   virtual void dispatched_event_serial_transfer_fin();
   virtual void dispatched_event_serial_e_stopp();
-  virtual void dispatched_event_serial_e_stopp_gone();
   virtual void dispatched_event_serial_unk();
   virtual void dispatched_event_seg1_has_to_expire();
   virtual void dispatched_event_seg2_has_to_expire();

@@ -92,6 +92,8 @@ class HAWThread
    **/
   static inline void reset_shutdown_flag() { s_exit = false; }
 
+  static inline bool is_global_shutdown() { return s_exit; }
+
 protected:
   /** This is called when the thread is started.
    * It calls execute an shutdown which are

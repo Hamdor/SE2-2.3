@@ -46,8 +46,7 @@ token_mgr::token_mgr() : m_alife(0), m_motor_slow(0)
                        , m_motor_left(false)
                        , m_expected_token(ALL)
                        , m_is_b2_ready(true)
-                       , m_safe_state(false)
-                       , m_update_req(false) {
+                       , m_safe_state(false) {
   // Initialisiere alle Token mit anonymous token
   for (int i = 0; i < NUM_OF_TOKENS; ++i) {
     m_tokens[i].set_state(new anonymous_token(&m_tokens[i]));
@@ -68,12 +67,6 @@ void token_mgr::destroy() {
 
 void token_mgr::update() {
   if (m_safe_state) {
-    // Nicht updated solange im safe_state,
-    // die Zustand der HW soll nicht aenderbar sein
-    // stattdessen den m_update_req auf `true` setzen.
-    // Beim verlassen des safe_states wird dann `update()`
-    // aufgerufen
-    m_update_req = true;
     return;
   }
   hwaccess* hal = TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN));
@@ -224,31 +217,7 @@ void token_mgr::enter_safe_state(bool send_serial) {
     telegram tel(E_STOP);
     TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tel);
   }
-}
-
-void token_mgr::exit_safe_state(bool send_serial) {
-  m_safe_state = false;
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  if (m_safe.m_switch_open) {
-    hal->open_switch();
-  } else {
-    hal->close_switch();
-  }
-  if (m_safe.m_motor_running) {
-    token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-    mgr->unrequest_stop_motor();
-  }
-  if (m_update_req) {
-    // Waerend des E-Stops sollte auf `update()` zugegriffen werden.
-    // da dieses verhindert wurde, nun einmal `update()` aufrufen.
-    m_update_req = false;
-    update();
-  }
-  TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->continue_all();
-  if (send_serial) {
-    telegram tel(E_STOP_GONE);
-    TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tel);
-  }
+  singleton_mgr::shutdown();
 }
 
 bool token_mgr::check_order(bool metal) {

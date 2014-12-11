@@ -60,9 +60,6 @@ class state : public events {
   virtual void dispatched_event_button_e_stop() {
     // nop
   }
-  virtual void dispatched_event_button_e_stop_rising() {
-    // nop
-  }
   virtual void dispatched_event_sensor_entrance() {
     // nop
   }
@@ -109,9 +106,6 @@ class state : public events {
     // nop
   }
   virtual void dispatched_event_serial_e_stopp() {
-    // nop
-  }
-  virtual void dispatched_event_serial_e_stopp_gone() {
     // nop
   }
   virtual void dispatched_event_serial_unk() {

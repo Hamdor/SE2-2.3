@@ -83,8 +83,6 @@ void serial_channel::execute(void*) {
         value = EVENT_SERIAL_TRANSFER_FIN;
       } else if (data.m_msg == E_STOP) {
         value = EVENT_SERIAL_E_STOPP;
-      } else if (data.m_msg == E_STOP_GONE) {
-        value = EVENT_SERIAL_E_STOPP_GONE;
       } else {
         value = EVENT_SERIAL_MSG;
       }

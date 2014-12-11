@@ -38,7 +38,6 @@ class events {
   virtual void dispatched_event_button_stop()            = 0;
   virtual void dispatched_event_button_reset()           = 0;
   virtual void dispatched_event_button_e_stop()          = 0;
-  virtual void dispatched_event_button_e_stop_rising()   = 0;
   virtual void dispatched_event_sensor_entrance()        = 0;
   virtual void dispatched_event_sensor_entrance_rising() = 0;
   virtual void dispatched_event_sensor_height()          = 0;
@@ -55,7 +54,6 @@ class events {
   virtual void dispatched_event_serial_next_ok()         = 0;
   virtual void dispatched_event_serial_transfer_fin()    = 0;
   virtual void dispatched_event_serial_e_stopp()         = 0;
-  virtual void dispatched_event_serial_e_stopp_gone()    = 0;
   virtual void dispatched_event_serial_unk()             = 0;
   virtual void dispatched_event_seg1_has_to_expire()     = 0;
   virtual void dispatched_event_seg2_has_to_expire()     = 0;

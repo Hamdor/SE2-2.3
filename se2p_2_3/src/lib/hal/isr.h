@@ -52,21 +52,17 @@ const struct sigevent* isr(void* arg, int id) {
     }
     if (port_old < ports) {
       // steigende flanke
-      if (changed_bit == EVENT_BUTTON_E_STOP
-          || changed_bit == EVENT_SENSOR_ENTRANCE
-          || changed_bit == EVENT_SENSOR_HEIGHT
-          || changed_bit == EVENT_SENSOR_SWITCH
-          || changed_bit == EVENT_SENSOR_SLIDE
-          || changed_bit == EVENT_SENSOR_EXIT) {
-        // die wollen wir trotzdem haben
-        // Die Steigenden Flanken werden durch `changed_bit` | 1
-        // signalisiert
-        event->sigev_value.sival_int = changed_bit | 1;
-      } else {
-        event = NULL;
+      if (changed_bit == EVENT_SENSOR_ENTRANCE) {
+        event->sigev_value.sival_int = EVENT_SENSOR_ENTRANCE_R;
+      } else if (changed_bit == EVENT_SENSOR_HEIGHT) {
+        event->sigev_value.sival_int = EVENT_SENSOR_HEIGHT_R;
+      } else if (changed_bit == EVENT_SENSOR_SWITCH) {
+        event->sigev_value.sival_int = EVENT_SENSOR_SWITCH_R;
+      } else if (changed_bit == EVENT_SENSOR_SLIDE) {
+        event->sigev_value.sival_int = EVENT_SENSOR_SLIDE_R;
+      } else if (changed_bit == EVENT_SENSOR_EXIT) {
+        event->sigev_value.sival_int = EVENT_SENSOR_EXIT_R;
       }
-    } else {
-      // fallende flanke
     }
     // update port_old
     port_old = ports;
