@@ -93,9 +93,11 @@ void token_mgr::update() {
   }
   if (m_motor_stop > 0) {
     hal->set_motor(MOTOR_STOP);
+    TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->pause_all();
   } else {
     if (m_wait_turnover == 0) {
       hal->set_motor(MOTOR_RESUME);
+      TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->continue_all();
     }
   }
   if (m_alife == 0) {

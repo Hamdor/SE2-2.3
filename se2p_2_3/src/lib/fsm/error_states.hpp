@@ -45,6 +45,8 @@ class err_slide_full_quitted : public fsm::state {
   virtual ~err_slide_full_quitted() {
     // nop
   }
+
+  virtual void dispatched_event_button_start();
 };
 
 class err_token_not_removed_from_end : public fsm::state {
@@ -87,6 +89,8 @@ class err_runtime_too_long_quitted : public fsm::state {
   virtual ~err_runtime_too_long_quitted() {
     // nop
   }
+
+  virtual void dispatched_event_button_start();
 };
 
 class err_runtime_too_short : public fsm::state {
@@ -105,6 +109,8 @@ class err_runtime_too_short_quitted : public fsm::state {
   virtual ~err_runtime_too_short_quitted() {
     // nop
   }
+
+  virtual void dispatched_event_button_start();
 };
 
 class err_unexpected_token : public fsm::state {
@@ -123,6 +129,8 @@ class err_unexpected_token_quitted : public fsm::state {
   virtual ~err_unexpected_token_quitted() {
     // nop
   }
+
+  virtual void dispatched_event_button_start();
 };
 
 } // namespace se2
