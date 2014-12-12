@@ -48,6 +48,7 @@ timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
 }
 
 timer_wrapper::~timer_wrapper() {
+  stop_timer();
   int rc = ConnectDetach(m_coid);
   if (rc == -1) {
     LOG_ERROR("ConnectDetach() failed in ~timer_wrapper()")
@@ -74,7 +75,7 @@ void timer_wrapper::start_timer() {
 
 void timer_wrapper::stop_timer() {
   m_timer.it_value.tv_sec = 0;
-  m_timer.it_value.tv_sec = 0;
+  m_timer.it_value.tv_nsec = 0;
   m_timer.it_interval.tv_sec = 0;
   m_timer.it_interval.tv_nsec = 0;
   int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
