@@ -154,6 +154,26 @@ bool dispatcher::unregister_prior_listener(fsm::events* listener,
   return true;
 }
 
+void dispatcher::remove_from_all(fsm::events* listener) {
+  for (size_t i = 0; i < DISPATCHED_EVENT_MAX; ++i) {
+    if (m_prior_listners[i] == listener) {
+      LOG_WARNING("m_prior_listener genullt")
+      m_prior_listners[i] = NULL;
+    }
+    if (m_listeners[i].empty()) {
+      continue;
+    }
+    int to_iter = m_listeners[i].size();
+    for (int j = 0; j < to_iter; ++j) {
+      fsm::events* temp = m_listeners[i].front();
+      m_listeners[i].pop();
+      if (temp != listener && temp != NULL) {
+        m_listeners[i].push(temp);
+      }
+    }
+  }
+}
+
 void dispatcher::direct_call_event(hal::event_values event) {
   dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
       event);
@@ -167,8 +187,13 @@ void dispatcher::direct_call_event(hal::event_values event) {
   if (m_listeners[devent].empty()) {
     return;
   }
-  (m_listeners[devent].front()->*m_functions[devent])();
-  m_listeners[devent].pop();
+  fsm::events* obj = m_listeners[devent].front();
+  (obj->*m_functions[devent])();
+  if (!m_listeners[devent].empty() && m_listeners[devent].front() == obj) {
+    // pruefen ob das Object immer noch in der queue,
+    // da diese evtl geaendert worden ist von einem der states...
+    m_listeners[devent].pop();
+  }
 }
 
 dispatcher_events dispatcher::map_from_event_values(

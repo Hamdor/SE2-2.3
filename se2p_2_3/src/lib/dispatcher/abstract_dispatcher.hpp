@@ -86,6 +86,12 @@ struct abstract_dispatcher {
   virtual bool unregister_prior_listener(fsm::events* listener,
                                          hal::event_values event) = 0;
 
+  /**
+   * Entfernt einen Zustand von allen queues
+   * @param listener der Listener/Zustand der entfernt werden soll.
+   **/
+  virtual void remove_from_all(fsm::events* listener) = 0;
+
  private:
   /**
    * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert

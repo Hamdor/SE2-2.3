@@ -64,6 +64,8 @@ struct dispatcher : public abstract_dispatcher
   virtual bool unregister_prior_listener(fsm::events* listener,
                                          hal::event_values event);
 
+  virtual void remove_from_all(fsm::events* listener);
+
   /**
    * Mappt von `event_values` auf `dispatcher_events`
    * fuer zugriff auf Matrix

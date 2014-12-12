@@ -32,6 +32,7 @@ using namespace se2;
 using namespace se2::fsm;
 using namespace se2::util;
 using namespace se2::timer;
+using namespace se2::dispatch;
 
 int token::m_id_counter = 0;
 
@@ -89,6 +90,9 @@ void token::reset() {
     hdl->delete_timer(m_timer_ids[i]);
   }
   m_timer_ids.clear();
+
+  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->remove_from_all(this);
 }
 
 void token::pretty_print() const {
