@@ -132,13 +132,13 @@ class state : public events {
   virtual void dispatched_event_slide_full_timeout() {
     // nop
   }
-  virtual void dispatched_event_turn_token() {
+  virtual void dispatched_event_turn_token_timeout() {
     // nop
   }
-  virtual void dispatched_event_remove_token() {
+  virtual void dispatched_event_remove_token_timeout() {
     // nop
   }
-  virtual void dispatched_event_token_finished() {
+  virtual void dispatched_event_token_finished_timeout() {
     // nop
   }
 };
@@ -268,6 +268,30 @@ class b1_token_upside_down : public state {
   }
 
   virtual void dispatched_event_button_start();
+  virtual void dispatched_event_sensor_exit_rising();
+  virtual void dispatched_event_remove_token_timeout();
+};
+
+class b1_token_upside_down_lift_up : public state {
+ public:
+  b1_token_upside_down_lift_up(token* t);
+  virtual ~b1_token_upside_down_lift_up() {
+    // nop
+  }
+
+  virtual void dispatched_event_sensor_exit();
+  virtual void dispatched_event_turn_token_timeout();
+};
+
+class b1_token_upside_down_put_back : public state {
+ public:
+  b1_token_upside_down_put_back(token* t);
+  virtual ~b1_token_upside_down_put_back() {
+    // nop
+  }
+
+  virtual void dispatched_event_button_start();
+  virtual void dispatched_event_sensor_exit_rising();
 };
 
 class b1_token_ready_for_b2 : public state {

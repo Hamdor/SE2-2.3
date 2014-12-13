@@ -62,8 +62,8 @@ class events {
   virtual void dispatched_event_seg2_too_late()          = 0;
   virtual void dispatched_event_seg3_too_late()          = 0;
   virtual void dispatched_event_slide_full_timeout()     = 0;
-  virtual void dispatched_event_turn_token()             = 0;
-  virtual void dispatched_event_remove_token()           = 0;
+  virtual void dispatched_event_turn_token_timeout()     = 0;
+  virtual void dispatched_event_remove_token_timeout()   = 0;
 };
 
 } // namespace fsm

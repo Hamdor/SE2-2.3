@@ -472,6 +472,10 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   disp->register_listener(m_token, EVENT_BUTTON_START);
   disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT);
   disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
+  // Timer fuer timeout zum entnehmen des Werkstueckes starten
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration dur = { LIFT_UP_SEC__TIMEOUT, LIFT_UP_MSEC_TIMEOUT };
+  m_token->add_timer_id(hdl->register_timer(dur, EVENT_REMOVE_TOKEN_TIMEOUT));
 }
 
 /**
@@ -489,6 +493,86 @@ void b1_token_upside_down::dispatched_event_button_start() {
   disp->unregister_prior_listener(m_token, EVENT_SENSOR_EXIT);
   disp->unregister_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
   new (this) b1_token_ready_for_b2(m_token);
+}
+
+/**
+ * Token wurde hochgehoben und muss nun wieder auf das Band gelegt werden
+ **/
+void b1_token_upside_down::dispatched_event_sensor_exit_rising() {
+  LOG_TRACE("b1_token_upside_down::dispatched_event_sensor_exit_rising")
+  new (this) b1_token_upside_down_lift_up(m_token);
+}
+
+/**
+ * Werkstueck wurde nicht entfernt in der vorgegebenen Zeit vom
+ * Band gehoben.
+ **/
+void b1_token_upside_down::dispatched_event_remove_token_timeout() {
+  LOG_TRACE("b1_token_upside_down::dispatched_event_remove_token_timeout")
+  new (this) err_token_not_removed_from_end(m_token);
+}
+
+/**
+ * Werkstueck wurde vom Band entnommen (Uebergang von
+ * `b1_token_upside_down::dispatched_event_sensor_exit_rising()`
+ * oder `b1_token_upside_down_put_back::dispatched_event_sensor_exit_rising()`
+ **/
+b1_token_upside_down_lift_up::b1_token_upside_down_lift_up(token* t)
+    : state::state(t) {
+  LOG_TRACE("b1_token_upside_down_lift_up::b1_token_upside_down_lift_up")
+  // Timer fuer timeout zum entnehmen des Werkstueckes starten
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration dur = { TURNOVER_SEC__TIMEOUT, TURNOVER_MSEC_TIMEOUT };
+  m_token->add_timer_id(hdl->register_timer(dur, EVENT_TURN_TOKEN_TIMEOUT));
+}
+
+/**
+ * Werkstueck wurde zurueck auf das Band gelegt
+ **/
+void b1_token_upside_down_lift_up::dispatched_event_sensor_exit() {
+  LOG_TRACE("b1_token_upside_down_lift_up::dispatched_event_sensor_exit")
+  new (this) b1_token_upside_down_put_back(m_token);
+}
+
+/**
+ * Werkstueck wurde entfernt und nicht in der gegebenen Zeit gedreht.
+ **/
+void b1_token_upside_down_lift_up::dispatched_event_turn_token_timeout() {
+  LOG_TRACE("b1_token_upside_down_lift_up::dispatched_event_turn_token_timeout")
+  new (this) err_runtime_too_long(m_token);
+}
+
+/**
+ * Werkstueck wurde zurueck auf das Band gelegt (uebergang von
+ * `b1_token_upside_down_lift_up::dispatched_event_sensor_exit()`)
+ **/
+b1_token_upside_down_put_back::b1_token_upside_down_put_back(token* t)
+    : state::state(t) {
+  LOG_TRACE("b1_token_upside_down_put_back")
+}
+
+/**
+ * Werkstueck liegt auf dem Band und es wurde der Start Taster betaetigt.
+ **/
+void b1_token_upside_down_put_back::dispatched_event_button_start() {
+  LOG_TRACE("b1_token_upside_down_put_back::dispatched_event_button_start")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->unrequest_stop_motor();
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(READY_TO_USE);
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->unregister_prior_listener(m_token, EVENT_SENSOR_EXIT);
+  disp->unregister_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
+  new (this) b1_token_ready_for_b2(m_token);
+}
+
+/**
+ * Werkstueck wurde wieder vom Band entfernt...
+ **/
+void b1_token_upside_down_put_back::dispatched_event_sensor_exit_rising() {
+  LOG_TRACE("b1_token_upside_down_put_back::dispatched_event_sensor_exit_rising()")
+  new (this) b1_token_upside_down_lift_up(m_token);
 }
 
 /**

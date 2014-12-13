@@ -183,8 +183,8 @@ class token : public fsm::events {
   virtual void dispatched_event_seg2_too_late();
   virtual void dispatched_event_seg3_too_late();
   virtual void dispatched_event_slide_full_timeout();
-  virtual void dispatched_event_turn_token();
-  virtual void dispatched_event_remove_token();
+  virtual void dispatched_event_turn_token_timeout();
+  virtual void dispatched_event_remove_token_timeout();
 
  private:
   events*    m_state;

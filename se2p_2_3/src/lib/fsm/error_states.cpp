@@ -195,7 +195,8 @@ void err_unexpected_token::dispatched_event_button_reset() {
 }
 
 // TODO VON ALLEN SCHRANKEN ALS PREFFERED TOKEN ABMELDEN
-err_unexpected_token_quitted::err_unexpected_token_quitted(token* t) : state::state(t) {
+err_unexpected_token_quitted::err_unexpected_token_quitted(token* t)
+    : state::state(t) {
   LOG_TRACE("err_unexpected_token_quitted::err_unexpected_token_quitted")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
@@ -211,4 +212,71 @@ void err_unexpected_token_quitted::dispatched_event_button_start() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
   new (this) anonymous_token(m_token);
+}
+
+/**
+ * Werkstueck wurde nicht im Zeitfenster vom Band entnommen
+ * (Zum drehen)
+ * TOOD: - Evtl vom Start button unregistrieren?
+ **/
+err_token_not_removed_turnover::err_token_not_removed_turnover(token* t)
+    : state::state(t) {
+  LOG_TRACE("err_token_not_removed_turnover::err_token_not_removed_turnover")
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_NOT_RESOLVED);
+}
+
+/**
+ * Werkstueck wurde entnommen
+ **/
+void err_token_not_removed_turnover::dispatched_event_sensor_exit_rising() {
+  LOG_TRACE("err_token_not_removed_turnover::dispatched_event_sensor_exit_rising")
+}
+
+/**
+ * Werkstueck wurde zurueckgelegt
+ **/
+void err_token_not_removed_turnover::dispatched_event_sensor_exit() {
+  new (this) err_token_not_removed_turnover_fixed(m_token);
+}
+
+/**
+ * Werkstueck wurde entnommen
+ **/
+err_token_not_removed_turnover_fixed
+::err_token_not_removed_turnover_fixed(token* t) : state::state(t) {
+  LOG_TRACE("err_token_not_removed_turnover_fixed::err_token_not_removed_turnover_fixed")
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_GONE);
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_BUTTON_RESET);
+}
+
+/**
+ * Werkstueck wurde auf Band 1 gelegt und es wurde der Reset button betaetigt
+ **/
+void err_token_not_removed_turnover_fixed::dispatched_event_button_reset() {
+  LOG_TRACE("err_token_not_removed_turnover_fixed::dispatched_event_button_reset")
+  new (this) err_token_not_removed_turnover_quitted(m_token);
+}
+
+/**
+ * Error wurde quittiert
+ **/
+err_token_not_removed_turnover_quitted
+::err_token_not_removed_turnover_quitted(token* t) : state::state(t) {
+  LOG_TRACE("err_token_not_removed_turnover_quitted::err_token_not_removed_turnover_quitted")
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_RESOLVED);
+}
+
+/**
+ * Start Taster wurde wieder betätigt, Band ist wieder bereit.
+ **/
+void err_token_not_removed_turnover_quitted::dispatched_event_button_start() {
+  LOG_TRACE("err_token_not_removed_turnover_quitted::dispatched_event_button_start")
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(READY_TO_USE);
+  new (this) b1_token_ready_for_b2(m_token);
 }

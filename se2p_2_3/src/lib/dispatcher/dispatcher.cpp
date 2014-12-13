@@ -70,8 +70,8 @@ dispatcher::dispatcher() {
   m_functions[25] = &fsm::events::dispatched_event_seg2_too_late;
   m_functions[26] = &fsm::events::dispatched_event_seg3_too_late;
   m_functions[27] = &fsm::events::dispatched_event_slide_full_timeout;
-  m_functions[28] = &fsm::events::dispatched_event_turn_token;
-  m_functions[29] = &fsm::events::dispatched_event_remove_token;
+  m_functions[28] = &fsm::events::dispatched_event_turn_token_timeout;
+  m_functions[29] = &fsm::events::dispatched_event_remove_token_timeout;
   // Map fuer mapping von event_values => dispatcher_events fuellen
   map_insert(m_mapping, EVENT_ZERO, DISPATCHED_EVENT_MAX);
   map_insert(m_mapping, EVENT_BUTTON_START, DISPATCHED_EVENT_BUTTON_START);

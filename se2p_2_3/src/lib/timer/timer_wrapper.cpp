@@ -107,9 +107,11 @@ void timer_wrapper::continue_timer() {
 }
 
 void timer_wrapper::add_time(duration timer) {
+  itimerspec tempsec;
+  timer_gettime(m_timerid, &tempsec);
   stop_timer();
-  timer_gettime(m_timerid, &m_timer);
-  m_timer.it_value.tv_sec  += timer.sec;
-  m_timer.it_value.tv_nsec += timer.msec * MILISEC_TO_NANOSEC;
+  tempsec.it_value.tv_sec  += timer.sec;
+  tempsec.it_value.tv_nsec += timer.msec * MILISEC_TO_NANOSEC;
+  m_timer = tempsec;
   start_timer();
 }

@@ -231,10 +231,10 @@ int dispatcher_test::test_function_address_reg() {
       &fsm::events::dispatched_event_slide_full_timeout);
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT],
-      &fsm::events::dispatched_event_turn_token);
+      &fsm::events::dispatched_event_turn_token_timeout);
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT],
-      &fsm::events::dispatched_event_remove_token);
+      &fsm::events::dispatched_event_remove_token_timeout);
   return m_error;
 }
 
@@ -443,16 +443,16 @@ class state : public se2::fsm::events {
     register_for_next(EVENT_SLIDE_FULL_TIMEOUT, EVENT_TURN_TOKEN_TIMEOUT);
   }
 
-  void dispatched_event_turn_token() {
+  void dispatched_event_turn_token_timeout() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_turn_token()" << std::endl;
+    std::cout << "dispatched_event_turn_token_timeout()" << std::endl;
 #endif
     register_for_next(EVENT_TURN_TOKEN_TIMEOUT, EVENT_REMOVE_TOKEN_TIMEOUT);
   }
 
-  void dispatched_event_remove_token() {
+  void dispatched_event_remove_token_timeout() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_remove_token()" << std::endl;
+    std::cout << "dispatched_event_remove_token_timeout()" << std::endl;
 #endif
     if (dispatcher_test::s_assumed_next != EVENT_REMOVE_TOKEN_TIMEOUT) {
       ++dispatcher_test::s_error;

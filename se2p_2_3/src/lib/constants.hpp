@@ -529,6 +529,14 @@ struct duration {
 #define TRANSFER_SEC__TIMEOUT        2
 #define TRANSFER_MSEC_TIMEOUT        0
 
+// Timeout zum entnehmen des Pucks
+#define LIFT_UP_SEC__TIMEOUT        10
+#define LIFT_UP_MSEC_TIMEOUT         0
+
+// Timeout zum Drehen des Pucks
+#define TURNOVER_SEC__TIMEOUT        5
+#define TURNOVER_MSEC_TIMEOUT        0
+
 } // namespace timer
 } // namespace se2
 

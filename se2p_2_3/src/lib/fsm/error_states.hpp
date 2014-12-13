@@ -133,6 +133,37 @@ class err_unexpected_token_quitted : public fsm::state {
   virtual void dispatched_event_button_start();
 };
 
+class err_token_not_removed_turnover : public fsm::state {
+ public:
+  err_token_not_removed_turnover(token* t);
+  virtual ~err_token_not_removed_turnover() {
+    // nop
+  }
+
+  virtual void dispatched_event_sensor_exit_rising();
+  virtual void dispatched_event_sensor_exit();
+};
+
+class err_token_not_removed_turnover_fixed : public fsm::state {
+ public:
+  err_token_not_removed_turnover_fixed(token* t);
+  virtual ~err_token_not_removed_turnover_fixed() {
+    // nop
+  }
+
+  virtual void dispatched_event_button_reset();
+};
+
+class err_token_not_removed_turnover_quitted : public fsm::state {
+ public:
+  err_token_not_removed_turnover_quitted(token* t);
+  virtual ~err_token_not_removed_turnover_quitted() {
+    // nop
+  }
+
+  virtual void dispatched_event_button_start();
+};
+
 } // namespace se2
 
 #endif // SE2_ERROR_HANDLER_HPP

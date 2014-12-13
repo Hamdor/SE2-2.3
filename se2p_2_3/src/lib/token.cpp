@@ -220,10 +220,10 @@ void token::dispatched_event_slide_full_timeout() {
   m_state->dispatched_event_slide_full_timeout();
 }
 
-void token::dispatched_event_turn_token() {
-  m_state->dispatched_event_turn_token();
+void token::dispatched_event_turn_token_timeout() {
+  m_state->dispatched_event_turn_token_timeout();
 }
 
-void token::dispatched_event_remove_token() {
-  m_state->dispatched_event_remove_token();
+void token::dispatched_event_remove_token_timeout() {
+  m_state->dispatched_event_remove_token_timeout();
 }
