@@ -17,7 +17,7 @@
  ******************************************************************************/
 /**
  * @file    timer_wrapper.hpp
- * @version 0.1
+ * @version 0.2
  *
  * Wrapper fuer timer struct
  **/
