@@ -27,8 +27,9 @@
 #include <cstring>
 
 using namespace se2;
-using namespace timer;
 using namespace se2::util;
+using namespace se2::timer;
+
 #define MILISEC_TO_NANOSEC 1000000
 
 timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)

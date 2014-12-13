@@ -109,15 +109,15 @@ friend class util::singleton_mgr;
    **/
   virtual void destroy();
 
-   /**
-    * Konstruktor
-    **/
-   timer_handler();
+  /**
+   * Konstruktor
+   **/
+  timer_handler();
 
   /**
    * Default Destruktor
    * */
-   ~timer_handler();
+  ~timer_handler();
 };
 
 } // namespace timer
