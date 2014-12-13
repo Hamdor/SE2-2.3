@@ -373,15 +373,13 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_serial_transfer_fin()" << std::endl;
 #endif
-    register_for_next(EVENT_SERIAL_TRANSFER_FIN, EVENT_SERIAL_E_STOPP);
+    register_for_next(EVENT_SERIAL_TRANSFER_FIN, EVENT_SERIAL_ERR);
   }
 
   void dispatched_event_serial_e_stopp() {
-#ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_serial_e_stopp()" << std::endl;
-#endif
-    register_for_next(EVENT_SERIAL_E_STOPP, EVENT_SERIAL_ERR);
+
   }
+
   void dispatched_event_serial_err() {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_serial_err()" << std::endl;
@@ -495,7 +493,6 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_SERIAL_MSG);
   m_dispatcher->direct_call_event(EVENT_SERIAL_NEXT_OK);
   m_dispatcher->direct_call_event(EVENT_SERIAL_TRANSFER_FIN);
-  m_dispatcher->direct_call_event(EVENT_SERIAL_E_STOPP);
   m_dispatcher->direct_call_event(EVENT_SERIAL_ERR);
   m_dispatcher->direct_call_event(EVENT_SERIAL_UNK);
   m_dispatcher->direct_call_event(EVENT_SEG1_HAS_TO_EXPIRE);
@@ -532,10 +529,9 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_EXIT_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_DATA);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_MSG);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_ERR);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_NEXT_OK);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_TRANSFER_FIN);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_E_STOPP);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_ERR);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_UNK);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG1_HAS_TO_EXPIRE);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG2_HAS_TO_EXPIRE);
