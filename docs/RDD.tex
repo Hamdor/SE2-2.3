@@ -61,7 +61,7 @@
 }
 
 % Titelseite mit Datum und Version erstellen
-\date{\today\thanks{Dokument-Version: 0.92}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
+\date{\today\thanks{Dokument-Version: 0.93}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
 \maketitle
 
 % Versionsverlauf aufbauen
@@ -106,6 +106,8 @@
    0.91 & Anne-Lena Kowalka & 03.12.2014 & Allgemeine Überarbeitung, Repository-Konzept aktualisiert, Requirements angepasst (Button bei Bohrung nach unten entfernt), System-Test-Szenarien hinzugefügt\\
    \hline
    0.92 & Anne-Lena Kowalka & 10.12.2014 & Update Requirements, Use Case hinzugefügt (UC4), Use Case Diagramm angepasst\\
+   \hline
+   0.93 & Marian Triebe & 13.12.2014 & Regressionstests aktualisiert, Lessons Learned begonnen\\
    \hline
  \end{tabular}
 \end{small}
@@ -849,20 +851,39 @@ geworfen wird.
 
 % 8.3 Regressions-Test
 \subsection{Regressions-Test}
-Mögliche Regressionstests für die serielle Schnittstelle
+Die wichtigen Hauptkomponenten haben jeweils eigene Regressionstests. Diese sind möglichst
+unabhängig voneinander.
 \begin{enumerate}
- \item Korrektes Telegramm wird übertragen (Länge, Korrektheit)
- \item Fehlerhaftes Telegramm wird übertragen:
+ \item Test der HAL
  \begin{enumerate}
-  \item Ungültige Header-ID
-  \item Ungültige Länge (EOF kommt zu früh oder zu spät)
-  \item Fehlerhafter Header
-  \item Fehlerhafter Inhalt
+  \item Alle HAL Funktionalitäten werden auf ihre positiven Fälle geprüft. (Benötigt keine Hardware, da durch Stubs realisiert)
+  \item Alle HAL Funktionalitäten werden einmal auf Ihr invertiertes Verhalten geprüft. (Benötigt keine Hardware, da durch Stubs realisiert)
  \end{enumerate}
- Weitere Regressionstests:
- \item Synchronisierung
- \item Höhensensor emulieren
- \item Metallsensor emulieren
+ \item Test der ISR/IRQ
+ \begin{enumerate}
+  \item Die Weiche wird per HAL geöffnet. Die Lichtschranke der Weiche durchbrochen, dadurch wird die ISR ausgeführt und eine Pulse Message generiert. Diese wird ausgewertet.
+ \end{enumerate}
+ \item Test des Dispatchers
+ \begin{enumerate}
+  \item Es wird geprüft ob das Enum mapping vom externen Typ `event\_values` zum internen Typ `dispatcher\_events` korrekt funktioniert.
+  \item Es wird geprüft ob im Funktionspointerarray des Dispatchers die korrekten Adressen stehen.
+  \item Die Dispatcher interne Funktion zum ausführen der Funktionspointer wird geprüft, dazu wird jedes Event einmal direkt mit der Funktion aufgerufen.
+  \item Der Dispatcher selbst wird geprüft indem jede gültige Pulse Message in den Channel des Dispatchers geschrieben wird, die korrekte Reihenfolge der Abarbeitung wird hierbei geprüft.
+ \end{enumerate}
+ \item Test der Timer
+ \begin{enumerate}
+  \item Ein normaler Timer wird erstellt, dieser soll nach 1ner Millisekunde einen Wert in einen Pulse Message Channel schreiben. Der Wert der Pulse Message wird geprüft.
+  \item Ein Timer mit kurzer Laufzeit und ein zweiter Timer mit längerer Laufzeit wird erstellt. Der erste Timer wird pausiert. Es wird blockiert bis eine Pulse
+  Message vorhanden ist. Danach wird der kurze Timer fortgesetzt und auf die Pulse Message gewartet.
+  \item Es werden 3 Timer erstellt. Einer mit 500 Millisekunden Laufzeit, einer mit 1 Sekunden Laufzeit, sowie einer mit 3 Sekunden. Nachdem alle gestartet sind, wird
+  dem 500 Millisekunden Timer 1 Sekunde hinzugefügt. Die korrekte Reihenfolge der Pulse Messages wird ausgewertet.
+ \end{enumerate}
+ \item Test der Seriellen Schnittstelle
+ \begin{enumerate}
+  \item Senden/Empfangen eines Datentelegrams
+  \item Auswerten der Daten (Prüfung ob Daten korrekt empfangen wurden)
+  \item Senden/Empfangen im Full-Duplex betrieb
+ \end{enumerate}
 \end{enumerate}
 Die Regressionstests wurden in den Unit-Tests umgesetzt.
 
@@ -882,6 +903,19 @@ Nachdem die korrekte Ansteuerung der Aktorik und die serielle Schnittstelle mit 
 \newline
 06.11.2014: Der Interrupt für die Sensorik funktioniert.\\
 \newline
+04.12.2014: Fehlerhafte Übergabe auf Band 2 bei folgender Werkstück Anordnung: Korrekt liegendes Werkstück, falsch liegendes Werkstück. Werkstück wird am Ende des Bandes gewendet.\\
+\newline
+04.12.2014: Fehlerhaftes Aussortieren von zu großen Werkstücken. Werkstück Anodrnung: Korrekte Höhe, falsche Höhe.\\
+\newline
+08.12.2014: Der Fehler bei der Übergabe von Werkstücken wurde behoben. Dieser Fehler wurde ausgelöst durch einen Zustand der nicht korrekt bei dem Dispatcher
+angemeldet war. Das hatte zur folge, das beim zurücklegen des Werkstückes die Lichtschranke durchbrochen wurde, jedoch das falsche Werkstück auf das Event sensitiv war.\\
+\newline
+08.12.2014: Ein Fehler der Aussortierung wurde behoben. Dieser Fehler wurde ausgelöst dadurch, dass das zu kleine Werkstück (welches auf dem Band vor dem korrekten Werkstück liegt)
+in die Lichtschranke der Weiche gekommen ist, jedoch nicht auf dessen Event sensitiv war. Das nachfolgende Werkstück mit korrekter Höhe war jedoch sensitiv auf dieses Event.
+Das nachfolgende Werkstück hat die Weiche geöffnet, dadurch konnte dann das zu kleine Werkstück die Weiche passieren und den Weichenbereich verlassen. Die Weiche wurde geschlossen
+und das Werkstück mit korrekter Höhe wurde aussortiert.\\
+\newline
+
 \textcolor{red}{\textbf{
 Das letzte Testprotokoll ist das Abnahmeprotokoll, das bei der abschließenden Vorführung erstellt
 wird. Es enthält eine Auflistung der erfolgreich vorgeführten Funktionen des Systems sowie eine
@@ -889,6 +923,12 @@ Mängelliste mit Erklärungen der Ursachen der Fehlfunktionen und Vorschlägen z
 
 % 9. Lessons Learned
 \section{Lessons Learned}
+
+Das Klima im Team war sehr angenehm, wahrscheinlich etwas zu freundlich. Es kam leider nicht zu Architekturdiskussionen,
+was Fehler von vorneherein hätte vermeiden können. Als die Fehler aufkamen war es teilweise schon zu spät grundlegende
+Änderungen vornehmen zu können, was zu kleineren Workarounds geführt hat. Es hat sich herausgestellt, dass es extrem schwierig ist
+das Team zu organisieren wenn die Wissenstände zu unterschiedlich sind.
+
 \textcolor{red}{\textbf{Was lief gut, was lief schlecht in diesem Projekt (technisch und organisatorisch)?\\
 Was haben Sie gelernt?\\
 Weitere Anregungen und Erkenntnisse durch das Projekt.}}
