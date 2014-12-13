@@ -28,7 +28,7 @@
 #include "unit_tests/abstract_test.hpp"
 #include "unit_tests/timer_test.hpp"
 #include "lib/util/singleton_mgr.hpp"
-#include <unistd.h>
+#include <cstring>
 
 using namespace se2::timer;
 using namespace se2::util;
@@ -70,81 +70,90 @@ int timer_test::after_class() {
 }
 
 int timer_test::test_timer_1msec() {
-  duration time;
-  time.sec = 0;
-  time.msec = 1;
-  m_timer->register_timer(time, 42);
-  struct _pulse buffer;
+  duration time = { 0, 1 };
+  int idx = m_timer->register_timer(time, 42);
+  _pulse buffer;
+  std::memset(&buffer, 0, sizeof(_pulse));
   MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
   if (buffer.value.sival_int != 42) {
-    m_error++;
+    ++m_error;
   }
+  m_timer->delete_timer(idx);
   return m_error;
 }
 
 int timer_test::test_timer_pause() {
   int timeoutmsg = 53;
   int timemsg = 42;
-  duration time;
-  time.sec = 0;
-  time.msec = 1;
-  duration timeout;
-  timeout.sec = 5;
-  timeout.msec = 0;
-  int index = m_timer->register_timer(time, timeoutmsg);
-  m_timer->register_timer(timeout, timemsg);
-  m_timer->pause_timer(index);
-  sleep(2);
-  struct _pulse buffer;
+  duration time = { 0, 250 };
+  duration timeout = { 1, 0 };
+  int idx_time    = m_timer->register_timer(time, timemsg);
+  int idx_timeout = m_timer->register_timer(timeout, timeoutmsg);
+  m_timer->pause_timer(idx_time);
+  _pulse buffer;
+  std::memset(&buffer, 0, sizeof(_pulse));
   MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
   if (buffer.value.sival_int != timeoutmsg) {
-    m_error++;
+    ++m_error;
   }
+  m_timer->delete_timer(idx_time);
+  m_timer->delete_timer(idx_timeout);
   return m_error;
 }
 
 int timer_test::test_timer_continue() {
   int timeoutmsg = 53;
   int timemsg = 42;
-  duration time;
-  time.sec = 0;
-  time.msec = 1;
-  duration timeout;
-  timeout.sec = 10;
-  timeout.msec = 0;
-  int index = m_timer->register_timer(time, timemsg);
-  m_timer->register_timer(timeout, timeoutmsg);
-  m_timer->pause_timer(index);
-  sleep(2);
-  m_timer->continue_timer(index);
-  struct _pulse buffer;
+  duration time = { 0, 500 };
+  duration timeout = { 1, 0 };
+  int idx_time    = m_timer->register_timer(time, timemsg);
+  int idx_timeout = m_timer->register_timer(timeout, timeoutmsg);
+  m_timer->pause_timer(idx_time);
+  _pulse buffer;
+  std::memset(&buffer, 0, sizeof(_pulse));
   MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
-  if (buffer.value.sival_int == timeoutmsg) {
-    m_error++;
+  if (buffer.value.sival_int != timeoutmsg) {
+    ++m_error;
   }
+  m_timer->continue_timer(idx_time);
+  MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
+  if (buffer.value.sival_int != timemsg) {
+    ++m_error;
+  }
+  m_timer->delete_timer(idx_time);
+  m_timer->delete_timer(idx_timeout);
   return m_error;
 }
 
 int timer_test::test_timer_add() {
+  int timemsg    = 42;
+  int betweenmsg = 15;
   int timeoutmsg = 53;
-  int timemsg = 42;
-  duration time;
-  time.sec = 1;
-  time.msec = 0;
-  duration add;
-  add.sec = 1;
-  add.msec = 0;
-  duration timeout;
-  timeout.sec = 3;
-  timeout.msec = 0;
-  int index = m_timer->register_timer(time, timemsg);
-  m_timer->register_timer(timeout, timeoutmsg);
-  m_timer->add_time(index, add);
-  struct _pulse buffer;
+  duration time    = { 0, 500 };
+  duration timeout = { 3, 0 };
+  duration between = { 1, 0 };
+  int idx_first   = m_timer->register_timer(time, timemsg);
+  int idx_between = m_timer->register_timer(between, betweenmsg);
+  int idx_timeout = m_timer->register_timer(timeout, timeoutmsg);
+  duration add = { 1, 0 };
+  m_timer->add_time(idx_first, add);
+  _pulse buffer;
+  std::memset(&buffer, 0, sizeof(_pulse));
+  MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
+  if (buffer.value.sival_int != betweenmsg) {
+    ++m_error;
+  }
   MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
   if (buffer.value.sival_int != timemsg) {
-    m_error++;
+    ++m_error;
   }
+  MsgReceivePulse(m_chid, &buffer, sizeof(_pulse), NULL);
+  if (buffer.value.sival_int != timeoutmsg) {
+    ++m_error;
+  }
+  m_timer->delete_timer(idx_first);
+  m_timer->delete_timer(idx_between);
+  m_timer->delete_timer(idx_timeout);
   return m_error;
 }
 

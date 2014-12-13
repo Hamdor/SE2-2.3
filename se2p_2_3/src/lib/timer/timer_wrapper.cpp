@@ -24,11 +24,12 @@
 
 #include "lib/timer/timer_wrapper.hpp"
 #include "lib/util/logging.hpp"
+#include <cstring>
 
 using namespace se2;
 using namespace timer;
 using namespace se2::util;
-#define MILISEC_TO_NANOSEC 1000
+#define MILISEC_TO_NANOSEC 1000000
 
 timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
     : m_coid(0), m_paused(false) {
@@ -74,10 +75,7 @@ void timer_wrapper::start_timer() {
 }
 
 void timer_wrapper::stop_timer() {
-  m_timer.it_value.tv_sec = 0;
-  m_timer.it_value.tv_nsec = 0;
-  m_timer.it_interval.tv_sec = 0;
-  m_timer.it_interval.tv_nsec = 0;
+  std::memset(&m_timer, 0, sizeof(itimerspec));
   int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
   if (rc == -1) {
     LOG_ERROR("timer_settime() failed in stop_timer()")
@@ -87,7 +85,9 @@ void timer_wrapper::stop_timer() {
 
 void timer_wrapper::pause_timer() {
   if (!m_paused) {
-    int rc = timer_settime(m_timerid, 0, &m_timer, &m_temp_timer);
+    itimerspec nullspec;
+    std::memset(&nullspec, 0, sizeof(itimerspec));
+    int rc = timer_settime(m_timerid, 0, &nullspec, &m_temp_timer);
     if (rc == -1) {
       LOG_ERROR("timer_settime() failed in pause_timer()")
     }
@@ -106,9 +106,9 @@ void timer_wrapper::continue_timer() {
 }
 
 void timer_wrapper::add_time(duration timer) {
-  timer_gettime(m_timerid, &m_timer);
   stop_timer();
-  m_timer.it_value.tv_sec += timer.sec;
-  m_timer.it_value.tv_sec += timer.msec * MILISEC_TO_NANOSEC ;
+  timer_gettime(m_timerid, &m_timer);
+  m_timer.it_value.tv_sec  += timer.sec;
+  m_timer.it_value.tv_nsec += timer.msec * MILISEC_TO_NANOSEC;
   start_timer();
 }
