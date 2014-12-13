@@ -153,6 +153,11 @@ class token : public fsm::events {
   void add_timer_id(int idx);
 
   /**
+   * Loescht alle Timer die diesen Token zugeordnet sind.
+   **/
+  void delete_timers();
+
+  /**
    * AUfrufe die an den Zustand delegiert werden
    **/
   virtual void dispatched_event_button_start();

@@ -85,13 +85,9 @@ void token::reset() {
   m_is_metal       = false;
   m_is_upside_down = false;
   m_seg2_ok        = false;
-  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  for (size_t i = 0; i < m_timer_ids.size(); ++i) {
-    hdl->delete_timer(m_timer_ids[i]);
-  }
-  m_timer_ids.clear();
-
-  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  delete_timers();
+  dispatcher* disp =
+    TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->remove_from_all(this);
 }
 
@@ -107,6 +103,14 @@ void token::pretty_print() const {
 void token::add_timer_id(int idx) {
   m_timer_ids.push_back(idx);
 }
+
+void token::delete_timers() {
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  for (size_t i = 0; i < m_timer_ids.size(); ++i) {
+    hdl->delete_timer(m_timer_ids[i]);
+  }
+  m_timer_ids.clear();
+]
 
 void token::dispatched_event_button_start() {
   m_state->dispatched_event_button_start();
