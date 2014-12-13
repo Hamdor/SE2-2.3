@@ -110,7 +110,7 @@ void token::delete_timers() {
     hdl->delete_timer(m_timer_ids[i]);
   }
   m_timer_ids.clear();
-]
+}
 
 void token::dispatched_event_button_start() {
   m_state->dispatched_event_button_start();
