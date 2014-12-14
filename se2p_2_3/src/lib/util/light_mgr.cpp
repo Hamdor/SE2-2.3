@@ -42,9 +42,9 @@ light_mgr::light_mgr() : m_chid(0), m_tick(0), m_timer(NULL)
 }
 
 light_mgr::~light_mgr() {
+  instance = 0;
   delete m_timer;
   ChannelDestroy(m_chid);
-  instance = 0;
 }
 
 void light_mgr::initialize() {

@@ -47,7 +47,8 @@ logging::logging() : m_fstream(), m_lock() {
 }
 
 void logging::log(const char* str, loglevel lvl,
-                  const char* file_name, int line_num) {
+                  const char* file_name, int line_num,
+                  const char* fun_name) {
 #ifndef DISABLE_LOGGING
   if (!m_fstream.is_open()) {
     std::cerr << "Log file already closed!" << std::endl
@@ -77,7 +78,8 @@ void logging::log(const char* str, loglevel lvl,
   std::ostringstream ss;
   ss << prefix
      << " file: " << file_name
-     << ":"       << line_num;
+     << ":"       << line_num
+     << " "       << fun_name;
   m_lock.acquire();
 #ifndef DISABLE_LOGGING
   m_fstream << ss.str() << " " << str << std::endl;

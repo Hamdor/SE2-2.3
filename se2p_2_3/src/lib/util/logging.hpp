@@ -66,8 +66,10 @@ class logging : public abstract_singleton {
    * @param lvl Definiert das Log Level
    * @param file_name Der Aufrufer (File)
    * @param line_num Zeilennummer (Aufrufer)
+   * @param fun_name name der Funktion (Aufrufer)
    **/
-  void log(const char* str, loglevel lvl, const char* file_name, int line_num);
+  void log(const char* str, loglevel lvl, const char* file_name, int line_num,
+           const char* fun_name);
 
   /**
    * Default Destruktor
@@ -91,20 +93,20 @@ class logging : public abstract_singleton {
 #define LOG_TRACE(str)                                                        \
     static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(  \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::TRACE,     \
-                          __FILE__, __LINE__);
+                          __FILE__, __LINE__, __FUNCTION__);
 
 #define LOG_DEBUG(str)                                                        \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::DEBUG,     \
-                                         __FILE__, __LINE__);
+                                         __FILE__, __LINE__, __FUNCTION__);
 
 #define LOG_WARNING(str)                                                      \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::WARNING,   \
-                                         __FILE__, __LINE__);
+                                         __FILE__, __LINE__, __FUNCTION__);
 
 #define LOG_ERROR(str)                                                        \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
-                            se2::util::LOGGER_PLUGIN))->log(str,              \
-                                   se2::util::ERROR, __FILE__, __LINE__);
+                   se2::util::LOGGER_PLUGIN))->log(str,              \
+                   se2::util::ERROR, __FILE__, __LINE__, __FUNCTION__);
 #endif // SE2_LOGGING_HPP
