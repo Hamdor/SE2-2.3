@@ -188,6 +188,12 @@ void b2_valid_height::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_fast_motor();
+  dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SEG2_TOO_LATE);
+  const duration too_late = { SEGMENT2_SEC__TOO_LATE,
+                              SEGMENT2_MSEC_TOO_LATE };
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG2_TOO_LATE));
 }
 
 void b2_valid_height::dispatched_event_sensor_switch() {
@@ -197,6 +203,11 @@ void b2_valid_height::dispatched_event_sensor_switch() {
   } else {
     new (this) err_runtime_too_short(m_token);
   }
+}
+
+void b2_valid_height::dispatched_event_seg2_too_late() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_long(m_token);
 }
 
 b2_metal_detection::b2_metal_detection(token* t) : state::state(t) {
@@ -260,6 +271,14 @@ void b2_is_correct_order::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_open_switch();
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SEG3_TOO_LATE);
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration too_late  = { SEGMENT3_SEC__TOO_LATE,
+                               SEGMENT3_MSEC_TOO_LATE };
+  m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE));
+
 }
 
 void b2_is_correct_order::dispatched_event_sensor_exit() {
@@ -282,4 +301,9 @@ void b2_is_correct_order::dispatched_event_sensor_exit_rising() {
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   new (this) anonymous_token(m_token);
+}
+
+void b2_is_correct_order::dispatched_event_seg3_too_late() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_long(m_token);
 }
