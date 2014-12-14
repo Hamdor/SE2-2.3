@@ -105,6 +105,3 @@ void timer_handler::add_all(duration time) {
     (*it)->add_time(time);
   }
 }
-
-
-

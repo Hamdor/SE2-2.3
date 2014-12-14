@@ -233,7 +233,7 @@ void err_token_not_removed_turnover::dispatched_event_sensor_exit_rising() {
 }
 
 /**
- * Werkstueck wurde zurueckgelegt
+ * Werkstueck wurde zurueck gelegt
  **/
 void err_token_not_removed_turnover::dispatched_event_sensor_exit() {
   LOG_TRACE("")
@@ -272,7 +272,7 @@ err_token_not_removed_turnover_quitted
 }
 
 /**
- * Start Taster wurde wieder betätigt, Band ist wieder bereit.
+ * Start Taster wurde wieder betaetigt, Band ist wieder bereit.
  **/
 void err_token_not_removed_turnover_quitted::dispatched_event_button_start() {
   LOG_TRACE("")

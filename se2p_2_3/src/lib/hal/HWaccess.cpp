@@ -16,7 +16,7 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    HWaccess.hpp
+ * @file    HWaccess.cpp
  * @version 0.1
  *
  * Implementierung der HAL
@@ -68,12 +68,12 @@ void hwaccess::change_stub(abstract_inout* ptr) {
 
 /**
  * Fuer die anzusteuernden Bits kann das uebergebene
- * enum einfach zu einem Int gecastet werden. Sonderfall hier
+ * Enum einfach zu einem Int gecastet werden. Sonderfall hier
  * ist `motor_fast`, hierbei muss Bit 2 entfernt werden.
  **/
 void hwaccess::set_motor(enum motor_modes mode) {
   if (mode == MOTOR_RIGHT || mode == MOTOR_LEFT || mode == MOTOR_RESUME) {
-    // unset motor stop
+    // Unset motor stop
     m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_STOP), false);
     if (mode == MOTOR_RESUME) {
       return;
@@ -86,7 +86,7 @@ void hwaccess::set_motor(enum motor_modes mode) {
     return;
   }
   if (mode == MOTOR_RIGHT) {
-    // unset motor left
+    // Unset motor left
     m_io->outbit(PORTA, static_cast<uint8_t>(MOTOR_LEFT), false);
   }
   if (mode == MOTOR_LEFT) {
@@ -150,7 +150,7 @@ bool hwaccess::is_button_pressed(enum buttons key) const {
     // Invertierte logik (low aktiv)
     return !value;
   } else {
-    // high aktiv
+    // High aktiv
     return value;
   }
 }
@@ -176,16 +176,16 @@ void hwaccess::init_isr() {
     LOG_ERROR("ConnectAttach() failed!")
     return;
   }
-  isr_coid = m_isr->m_coid; // globale variable setzen...
-                            // die isr kennt die hal nicht
+  isr_coid = m_isr->m_coid; // Globale Variable setzen
+                            // die ISR kennt die HAL nicht
   // Interrupts zuruecksetzen
   m_io->outbyte(IRQ_CLEAR_REG, 0);
   // IRQ fuer Port B und Port C aktivieren
   m_io->outbyte(IRQ_ENABLE_REG, IRQ_ENABLE_MASK);
-  // Initialisiert event struktur auf isr pulse message
+  // Initialisiert Eventstruktur auf ISR pulse message
   SIGEV_PULSE_INIT(&m_isr->m_event, m_isr->m_coid, SIGEV_PULSE_PRIO_INHERIT,
-                   0 /* Dieser wert definiert von wo der puls kam */, 0);
-  // Interrupt an isr (Funktion) binden
+                   0 , 0);
+  // Interrupt an ISR (Funktion) binden
   m_isr->m_interruptid = InterruptAttach(IO_IRQ, isr, &m_isr->m_event,
                                          sizeof(m_isr->m_event), 0);
   if (m_isr->m_interruptid == -1) {

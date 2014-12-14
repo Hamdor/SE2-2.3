@@ -74,7 +74,8 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
                                SEGMENT1_MSEC_HAS_TO_EXPIRE };
   const duration too_late  = { SEGMENT1_SEC__TOO_LATE,
                                SEGMENT1_MSEC_TOO_LATE };
-  m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG1_HAS_TO_EXPIRE));
+  m_token->add_timer_id(hdl->register_timer(to_expire,
+                                            EVENT_SEG1_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG1_TOO_LATE));
 }
 
@@ -89,7 +90,7 @@ void b1_realized_object::dispatched_event_seg1_has_to_expire() {
 
 /**
  * EVENT_SENSOR_HEIGHT wurde zu frueh gefeuert, es wurde wahrscheinlich
- * ein neuer Token wild auf das Band gelegt.
+ * ein neuer Token auf das Band gelegt.
  **/
 void b1_realized_object::dispatched_event_sensor_height() {
   LOG_TRACE("");
@@ -195,7 +196,8 @@ void b1_token_too_small::dispatched_event_sensor_height_rising() {
   const duration too_late = { SEGMENT2_SEC__TOO_LATE + 1,
                               SEGMENT2_MSEC_TOO_LATE };
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG2_HAS_TO_EXPIRE));
+  m_token->add_timer_id(hdl->register_timer(to_expire,
+                                            EVENT_SEG2_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG2_TOO_LATE));
 }
 
@@ -208,7 +210,7 @@ void b1_token_too_small::dispatched_event_seg2_has_to_expire() {
 }
 
 /**
- * Werkstueck hat zu frueh die Lichtschranke der Weiche durchbrochen.
+ * Werkstueck hat zu frueh die Lichtschranke der Weiche durchbrochen
  **/
 void b1_token_too_small::dispatched_event_sensor_switch() {
   LOG_TRACE("")
@@ -216,8 +218,8 @@ void b1_token_too_small::dispatched_event_sensor_switch() {
 }
 
 /**
- * Werkstueck ist zu klein und hat gerade ide Lichtschranke der
- * Rutsche durchbrochen.
+ * Werkstueck ist zu klein und hat gerade die Lichtschranke der
+ * Rutsche durchbrochen
  * TODO:
  * - Neuen Zustand der den Timeout der Lichtschranke beschreibt
  *   erstellen
@@ -234,7 +236,7 @@ void b1_token_too_small::dispatched_event_sensor_slide() {
 
 /**
  * Uebergang von `b1_token_too_small::dispatched_event_seg2_has_to_expire()`
- * Werkstueck kam schonmal nicht zu spaet.
+ * Werkstueck kam schonmal nicht zu spaet
  **/
 b1_token_too_small_seg2_ok::b1_token_too_small_seg2_ok(token* t)
     : state::state(t) {
@@ -243,7 +245,7 @@ b1_token_too_small_seg2_ok::b1_token_too_small_seg2_ok(token* t)
 }
 
 /**
- * Good Case, Werkstueck war nicht zu spaet und nicht zu frueh.
+ * Good Case, Werkstueck war nicht zu spaet und nicht zu frueh
  * Werkstueck muss jetzt die Rutsche runterrtuschen
  * TODO:
  * - Timer starten fuer timeout der Rutsche
@@ -314,12 +316,13 @@ void b1_valid_height::dispatched_event_sensor_height_rising() {
   const duration too_late = { SEGMENT2_SEC__TOO_LATE,
                               SEGMENT2_MSEC_TOO_LATE };
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG2_HAS_TO_EXPIRE));
+  m_token->add_timer_id(hdl->register_timer(to_expire,
+                                            EVENT_SEG2_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG2_TOO_LATE));
 }
 
 /**
- * Der erste Timer ist abgelaufen, Werkstueck nicht zu frueh.
+ * Der erste Timer ist abgelaufen, Werkstueck nicht zu frueh
  **/
 void b1_valid_height::dispatched_event_seg2_has_to_expire() {
   LOG_TRACE("")
@@ -327,7 +330,7 @@ void b1_valid_height::dispatched_event_seg2_has_to_expire() {
 }
 
 /**
- * Uebergang von `b1_valid_height`.
+ * Uebergang von `b1_valid_height`
  **/
 b1_valid_height_seg2_ok::b1_valid_height_seg2_ok(token* t) : state::state(t) {
   LOG_TRACE("")
@@ -335,7 +338,7 @@ b1_valid_height_seg2_ok::b1_valid_height_seg2_ok(token* t) : state::state(t) {
 }
 
 /**
- * Good Case, Werkstueck ist nicht zu spaet im Weichen Sensor
+ * Good Case, Werkstueck ist nicht zu spaet im Weichensensor
  **/
 void b1_valid_height_seg2_ok::dispatched_event_sensor_switch() {
   LOG_TRACE("")
@@ -363,7 +366,8 @@ void b1_valid_height_seg2_ok::dispatched_event_sensor_switch_rising() {
                                SEGMENT3_MSEC_HAS_TO_EXPIRE };
   const duration too_late  = { SEGMENT3_SEC__TOO_LATE,
                                SEGMENT3_MSEC_TOO_LATE };
-  m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG3_HAS_TO_EXPIRE));
+  m_token->add_timer_id(hdl->register_timer(to_expire,
+                                            EVENT_SEG3_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE));
 }
 
@@ -376,8 +380,8 @@ void b1_valid_height_seg2_ok::dispatched_event_seg2_too_late() {
 }
 
 /**
- * Werkstueck hat die Lichtschranke der Weiche zu frueh durchbrochen.
- * In Fehlerbehandlung springen.
+ * Werkstueck hat die Lichtschranke der Weiche zu frueh durchbrochen
+ * In Fehlerbehandlung springen
  **/
 void b1_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
@@ -385,7 +389,7 @@ void b1_valid_height::dispatched_event_sensor_switch() {
 }
 
 /**
- * Werkstueck hat Lichtschranke der Weiche verlassen.
+ * Werkstueck hat Lichtschranke der Weiche verlassen
  * TODO:
  * - Evtl einen Timer erstellen der `unrequest_open_switch()` ausloest,
  *   auf manchen Baendern bleibt das Werkstueck in der Weiche haengen da
@@ -396,7 +400,7 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
 }
 
 /**
- * Werkstueck hat das Ende des Bandes erreicht.
+ * Werkstueck hat das Ende des Bandes erreicht
  **/
 void b1_valid_height::dispatched_event_sensor_exit() {
   LOG_TRACE("")
@@ -404,7 +408,7 @@ void b1_valid_height::dispatched_event_sensor_exit() {
 }
 
 /**
- * Werkstueck kam nicht zu frueh an.
+ * Werkstueck kam nicht zu frueh an
  **/
 void b1_valid_height_seg2_ok::dispatched_event_seg3_has_to_expire() {
   LOG_TRACE("")
@@ -419,7 +423,7 @@ b1_valid_height_seg3_ok::b1_valid_height_seg3_ok(token* t) : state::state(t) {
 }
 
 /**
- * Token zu spaet, in Fehlerbehandlung springen...
+ * Token zu spaet, in Fehlerbehandlung springen
  **/
 void b1_valid_height_seg3_ok::dispatched_event_seg2_too_late() {
   LOG_TRACE("")
@@ -429,7 +433,7 @@ void b1_valid_height_seg3_ok::dispatched_event_seg2_too_late() {
 }
 
 /**
- * Werkstueck ist zur korrekten Zeit in die Exit-Lichtschranke gekommen.
+ * Werkstueck ist zur korrekten Zeit in die Exit-Lichtschranke gekommen
  **/
 void b1_valid_height_seg3_ok::dispatched_event_sensor_exit() {
   LOG_TRACE("")
@@ -437,8 +441,8 @@ void b1_valid_height_seg3_ok::dispatched_event_sensor_exit() {
 }
 
 /**
- * Werkstueck ist zu spaet. Wurde (a) vom Band entnommen, oder (b)
- * haengt auf dem Band fest.
+ * Werkstueck ist zu spaet. Wurde (a) vom Band entnommen,
+ * oder (b) haengt auf dem Band fest
  **/
 void b1_valid_height_seg3_ok::dispatched_event_seg3_too_late() {
   LOG_TRACE("")
@@ -480,7 +484,7 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
 }
 
 /**
- * Werkstueck wurde bestaetigt und ist bereit fuer Uebergane
+ * Werkstueck wurde bestaetigt und ist bereit fuer Uebergang
  * nach Band 2
  **/
 void b1_token_upside_down::dispatched_event_button_start() {
@@ -506,7 +510,7 @@ void b1_token_upside_down::dispatched_event_sensor_exit_rising() {
 
 /**
  * Werkstueck wurde nicht entfernt in der vorgegebenen Zeit vom
- * Band gehoben.
+ * Band gehoben
  **/
 void b1_token_upside_down::dispatched_event_remove_token_timeout() {
   LOG_TRACE("")
@@ -521,7 +525,7 @@ void b1_token_upside_down::dispatched_event_remove_token_timeout() {
 b1_token_upside_down_lift_up::b1_token_upside_down_lift_up(token* t)
     : state::state(t) {
   LOG_TRACE("")
-  // Timer fuer timeout zum entnehmen des Werkstueckes starten
+  // Timer fuer timeout zum Entnehmen des Werkstueckes starten
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   const duration dur = { TURNOVER_SEC__TIMEOUT, TURNOVER_MSEC_TIMEOUT };
   m_token->add_timer_id(hdl->register_timer(dur, EVENT_TURN_TOKEN_TIMEOUT));
@@ -536,7 +540,7 @@ void b1_token_upside_down_lift_up::dispatched_event_sensor_exit() {
 }
 
 /**
- * Werkstueck wurde entfernt und nicht in der gegebenen Zeit gedreht.
+ * Werkstueck wurde entfernt und nicht in der gegebenen Zeit gedreht
  **/
 void b1_token_upside_down_lift_up::dispatched_event_turn_token_timeout() {
   LOG_TRACE("")
@@ -544,7 +548,7 @@ void b1_token_upside_down_lift_up::dispatched_event_turn_token_timeout() {
 }
 
 /**
- * Werkstueck wurde zurueck auf das Band gelegt (uebergang von
+ * Werkstueck wurde zurueck auf das Band gelegt (Uebergang von
  * `b1_token_upside_down_lift_up::dispatched_event_sensor_exit()`)
  **/
 b1_token_upside_down_put_back::b1_token_upside_down_put_back(token* t)
@@ -553,7 +557,7 @@ b1_token_upside_down_put_back::b1_token_upside_down_put_back(token* t)
 }
 
 /**
- * Werkstueck liegt auf dem Band und es wurde der Start Taster betaetigt.
+ * Werkstueck liegt auf dem Band und es wurde der Start-Taster betaetigt
  **/
 void b1_token_upside_down_put_back::dispatched_event_button_start() {
   LOG_TRACE("")
@@ -569,7 +573,7 @@ void b1_token_upside_down_put_back::dispatched_event_button_start() {
 }
 
 /**
- * Werkstueck wurde wieder vom Band entfernt...
+ * Werkstueck wurde wieder vom Band entfernt
  **/
 void b1_token_upside_down_put_back::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
@@ -577,7 +581,7 @@ void b1_token_upside_down_put_back::dispatched_event_sensor_exit_rising() {
 }
 
 /**
- * Werkstueck ist bereit fuer Band 2.
+ * Werkstueck ist bereit fuer Band 2
  **/
 b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
   LOG_TRACE("")
@@ -599,7 +603,7 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
 }
 
 /**
- * Band 2 ist wieder frei und kann ein weiteres Werkstueck bearbeiten.
+ * Band 2 ist wieder frei und kann ein weiteres Werkstueck bearbeiten
  **/
 void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
   LOG_TRACE("")
@@ -613,11 +617,11 @@ void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
 }
 
 /**
- * Werkstueck hat Band 1 verlassen.
+ * Werkstueck hat Band 1 verlassen
  * TODO:
  * - Hier Timer starten, falls das Werkstueck zwischen Band 1 und
  *   Band 2 haengen bleibt.
- * - Evtl Timer starten der erkennt ob ein Werkstueck dazwischen gelegt wurde?
+ * - Evtl Timer starten der erkennt ob ein Werkstueck dazwischen gelegt wurde
  **/
 void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")

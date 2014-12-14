@@ -16,7 +16,7 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    timer_test.hpp
+ * @file    timer_test.cpp
  * @version 0.2
  *
  * Unit tests des Timers

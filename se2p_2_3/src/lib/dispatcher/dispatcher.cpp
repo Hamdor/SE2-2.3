@@ -190,8 +190,8 @@ void dispatcher::direct_call_event(hal::event_values event) {
   fsm::events* obj = m_listeners[devent].front();
   (obj->*m_functions[devent])();
   if (!m_listeners[devent].empty() && m_listeners[devent].front() == obj) {
-    // pruefen ob das Object immer noch in der queue,
-    // da diese evtl geaendert worden ist von einem der states...
+    // Pruefen ob das Object immer noch in der Queue,
+    // da diese evtl geaendert worden ist von einem der States...
     m_listeners[devent].pop();
   }
 }
@@ -269,8 +269,8 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       err += buffer.value.sival_int;
       LOG_WARNING(err.c_str())
       // Unkown Event, diese Funktion schiebt einzele
-      // Masken um zu schauen welche Events zeitgleich
-      // ausgeloest wurden und fuehrt diese aus...
+      // Masken, um zu schauen welche Events zeitgleich
+      // ausgeloest wurden und fuehrt diese aus
       int event = 0;
       int mask  = ISR_CONCURRENT_HANDLE_START_MASK;
       for (int i = 0; i < ISR_USED_BITS; ++i) {
@@ -358,7 +358,7 @@ void dispatcher::execute(void*) {
 }
 
 void dispatcher::shutdown() {
-  // Shutdown message in den ISR Pulse message channel schreiben
+  // Shutdown message in den ISR Pulse message channel schreiben,
   // das sollte den Dispatcher entblockieren.
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   int chid = hal->get_isr_channel();

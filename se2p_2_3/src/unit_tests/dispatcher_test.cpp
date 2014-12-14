@@ -544,7 +544,7 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_REMOVE_TOKEN_TIMEOUT);
   sleep(1);// 1 sek warten damit die FSM auch fertig ist
             // Das ausloesen der Uebergaenge wird von dem Dispatcher Thread
-            // gemacht. Deshalb ist dieser Teil asynchron.
+            // gemacht. Deshalb ist dieser Teil asynchron
   if (dispatcher_test::s_assumed_next != EVENT_REMOVE_TOKEN_TIMEOUT) {
     // Pruefen ob FSM alle Signale erhalten hat
     ++s_error;

@@ -37,13 +37,17 @@ class state : public events {
   token* m_token;
 
  public:
-  state() : m_token(NULL) {
-    // nop
-  }
+
+  /**
+   * Default Konstruktor
+   * @param t Pointer auf die Kontextklasse
+   **/
   state(token* t) : m_token(t) {
     // nop
   }
-
+  /**
+   * Default Destruktor
+   **/
   ~state() {
     // nop
   }

@@ -52,7 +52,7 @@
 /**
  * Basis Addresse des IO Registers
  **/
-#define IOBASE    0x300         // IO Base Register
+#define IOBASE 0x300
 
 /**
  * Bitposition des Bits was von dem Hoehensensor gesetzt wird,
@@ -74,7 +74,7 @@
 /**
  * Addresse des Control-Registers
  **/
-#define IOCTLADDR IOBASE + 0x03 // Register zum definieren der Ports
+#define IOCTLADDR IOBASE + 0x03
 
 /**
  * Maske fuer das Control-Register
@@ -91,10 +91,10 @@
 /**
  * Addressen/Defines Interrupt
  **/
-#define IRQ_ENABLE_MASK         0xF9
-#define PORTB_INTERRUPT         2
-#define PORTC_INTERRUPT         8
-#define IO_IRQ                  11
+#define IRQ_ENABLE_MASK 0xF9
+#define PORTB_INTERRUPT 2
+#define PORTC_INTERRUPT 8
+#define IO_IRQ          11
 
 namespace se2 {
 
@@ -113,14 +113,14 @@ namespace hal {
  * Offset der Ports
  **/
 enum port_num {
-  PORTA          = IOBASE + 0x00, // IOBASE + 0x00
-  PORTB          = IOBASE + 0x01, // IOBASE + 0x01
-  PORTC          = IOBASE + 0x02, // IOBASE + 0x02
-  IRQ_ENABLE_REG = IOBASE + 0x0B, // IOBASE + 0x0B
-  IRQ_CLEAR_REG  = IOBASE + 0x0F, // IOBASE + 0x0F
-  IRQ_RNC_REG    = IOBASE + 0x12, // IOBASE + 0x12 (Read and Clear)
-  ANALOG_BASE    = IOANALOG_BASE, // IOANALOG_BASE (0x320)
-  ANALOG_PORT_A  = IOANALOG_BASE + IOANALOG_OFFSET // IOANALOG_BASE + 0x02
+  PORTA          = IOBASE + 0x00,
+  PORTB          = IOBASE + 0x01,
+  PORTC          = IOBASE + 0x02,
+  IRQ_ENABLE_REG = IOBASE + 0x0B,
+  IRQ_CLEAR_REG  = IOBASE + 0x0F,
+  IRQ_RNC_REG    = IOBASE + 0x12, // (Read and Clear)
+  ANALOG_BASE    = IOANALOG_BASE,
+  ANALOG_PORT_A  = IOANALOG_BASE + IOANALOG_OFFSET
 };
 
 /**
@@ -177,7 +177,7 @@ enum light_colors {
 
 /**
  * Rueckgabewerte des Hoehensensors
- * fuer die einzelnen Puck Typen.
+ * fuer die einzelnen Puck Typen
  **/
 enum height_values {
 #if defined(FESTO_3)
@@ -291,8 +291,8 @@ enum height_values {
  *   EVENT_BUTTON_E_STOP     E-Stop getoggelt
  *
  * Events Port B:
- *   EVENT_SENSOR_ENTRANCE   Lichtschranke am Band einlauf (Fallende Flanke)
- *   EVENT_SENSOR_ENTRANCE_R Lichtschranke am Band einlauf (Steigende Flanke)
+ *   EVENT_SENSOR_ENTRANCE   Lichtschranke am Band Einlauf (Fallende Flanke)
+ *   EVENT_SENSOR_ENTRANCE_R Lichtschranke am Band Einlauf (Steigende Flanke)
  *   EVENT_SENSOR_HEIGHT     Lichtschranke am Hoehensensor (Fallende Flanke)
  *   EVENT_SENSOR_HEIGHT_R   Lichtschranke am Hoehensensor (Steigende Flanke)
  *   EVENT_SENSOR_SWITCH     Lichtschranke am Switch (Fallende Flanke)
@@ -410,7 +410,7 @@ enum dispatcher_events {
 namespace util {
 
 /**
- * Kann im `light_mgr` gesetzt werden um die Ampelanlage zu aendern
+ * Kann im `light_mgr` gesetzt werden, um die Ampelanlage zu aendern
  **/
 enum light_states {
   NO_LIGHTS,          // Nichts Leuchtet

@@ -16,7 +16,7 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    token_mgr.hpp
+ * @file    token_mgr.cpp
  * @version 0.1
  *
  * Manager fuer Token
@@ -127,7 +127,7 @@ void token_mgr::notify_existence(bool update) {
     this->update();
   }
 #ifdef IS_CONVEYOR_2
-  // Band 1 signalisieren das uebergabe komplett
+  // Band 1 signalisieren das Uebergabe komplett
   serial_channel* serial =
       TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN));
   telegram tel(B2_TRANS_FIN);
@@ -253,7 +253,7 @@ bool token_mgr::check_order(bool metal) {
       return true;
     }
   } else {
-    // Kann gar nicht passieren
+    // Kann nicht passieren
     LOG_ERROR("nicht beruecksichtigte Kombination")
     return false;
   }

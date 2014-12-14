@@ -20,7 +20,7 @@
  * @version 0.1
  *
  * In diesem Modul werden HW-Laufzeiten sowie Hoehensensorwerte
- * ausgelesen um eine Konfiguration des Hauptprogramms vorzunehmen
+ * ausgelesen, um eine Konfiguration des Hauptprogramms vorzunehmen
  **/
 
 #include "initialization_run.hpp"

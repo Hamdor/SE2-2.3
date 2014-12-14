@@ -71,7 +71,7 @@ class token : public fsm::events {
 
   /**
    * Setzt den Token auf einen neuen Zustand
-   * @param state ist ein Pointer auf den neuen Zustand
+   * @param state Ist ein Pointer auf den neuen Zustand
    **/
   void set_state(fsm::events* state) {
     delete m_state;
@@ -79,45 +79,45 @@ class token : public fsm::events {
   }
 
   /**
-   * Setzt alle Token werde von einem Telegram
+   * Setzt alle Token Werte von einem Telegram
    * @param tel Referenz auf ein `telegram`
    **/
   void set_vals_from_telegram(const serial_bus::telegram& tel);
 
   /**
-   * Gibt die id des Tokens zurueck.
-   * @return eine unique ID
+   * Gibt die ID des Tokens zurueck.
+   * @return Eine unique ID
    **/
   int get_id() const;
 
   /**
    * Setzt den ersten Hoehenwert fuer diesen Token
-   * @param height1 der erste Hoehenwert des Tokens als Integer
+   * @param height1 Der erste Hoehenwert des Tokens als Integer
    **/
   void set_height1(int height1);
 
   /**
-   * Gibt den ersten Hoehenwert des Tokens zurueck.
-   * @returns den ersten Hoehenwert des Tokens
+   * Gibt den ersten Hoehenwert des Tokens zurueck
+   * @returns Den ersten Hoehenwert des Tokens
    **/
   int get_height1() const;
 
   /**
    * Setzt den zweiten Hoehenwert fuer diesen Token
-   * @param height2 der zweiten Hoehenwert des Tokens als Integer
+   * @param height2 Der zweiten Hoehenwert des Tokens als Integer
    **/
   void set_height2(int height2);
 
   /**
-   * Gibt den zweiten Hoehenwert des Tokens zurueck.
-   * @returns den zweiten Hoehenwert des Tokens
+   * Gibt den zweiten Hoehenwert des Tokens zurueck
+   * @returns Den zweiten Hoehenwert des Tokens
    **/
   int get_height2() const;
 
 
   /**
    * Setzt den Token auf verkehrt herum
-   * @param value gibt an ob der Token richtig oder falsch herum liegt
+   * @param value Gibt an ob der Token richtig oder falsch herum liegt
    **/
   void set_is_upside_down(bool value);
 
@@ -130,43 +130,43 @@ class token : public fsm::events {
 
   /**
    * Setzt den Metallwert des Tokens
-   * @param metal ist der neue Metallwert des Tokens
+   * @param metal Ist der neue Metallwert des Tokens
    **/
   void set_is_metal(bool metal);
 
   /**
    * Gibt an ob der Token einen Metallring besitzt
-   * @return TRUE  wenn Metall im Token
-   *         FALSE wenn kein Metall im Token
+   * @return TRUE  Wenn Metall im Token
+   *         FALSE Wenn kein Metall im Token
    **/
   bool is_metal() const;
 
   /**
-   * Resetet den Token, dieses geschieht beim uebergang
-   * vom benutzten Token zurueck auf `anonymous_token`.
-   * Ausserdem wird eine neue ID an den Token vergeben.
+   * Resetet den Token, dieses geschieht beim Uebergang
+   * vom benutzten Token zurueck auf `anonymous_token`
+   * Ausserdem wird eine neue ID an den Token vergeben
    **/
   void reset();
 
   /**
    * Gibt alle Informationen des Tokens auf ueber
-   * den standard output aus. (std::cout)
+   * den standard output aus (std::cout)
    **/
   void pretty_print() const;
 
   /**
-   * Fuegt eine Timer ID zu dieser Context klasse hinzu.
-   * @param idx ID des timers
+   * Fuegt eine Timer ID zu dieser Kontextklasse hinzu
+   * @param idx ID des Timers
    **/
   void add_timer_id(int idx);
 
   /**
-   * Loescht alle Timer die diesen Token zugeordnet sind.
+   * Loescht alle Timer die diesen Token zugeordnet sind
    **/
   void delete_timers();
 
   /**
-   * Initialisiert die Internen Zeiten
+   * Initialisiert die internen Zeiten
    **/
   void init_internal_times();
 
@@ -195,9 +195,9 @@ class token : public fsm::events {
   /**
    * Prueft ob der Token zu frueh dran ist
    * @param  section Nummer des Segmentes
-   * @return TRUE  wenn Token in gueltiger Zeit
-   *         FALSE wenn Token in nicht gueltiger Zeit
-   *               oder wenn `section` ungueltig.
+   * @return TRUE  Wenn Token in gueltiger Zeit
+   *         FALSE Wenn Token in nicht gueltiger Zeit
+   *               oder wenn `section` ungueltig
    **/
   bool check_internal_times(int section);
 

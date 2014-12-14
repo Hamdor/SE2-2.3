@@ -41,7 +41,7 @@ using namespace se2::timer;
 
 /**
  * Werkstueck wurde noch nicht uebergeben und es wurden noch
- * keine Daten uebertragen.
+ * keine Daten uebertragen
  **/
 b2_receive_data::b2_receive_data(token* t) : state::state(t) {
   LOG_TRACE("")
@@ -64,7 +64,7 @@ void b2_receive_data::dispatched_event_sensor_entrance() {
 
 /**
  * Werkstueck wurde noch nicht uebergeben, aber es wurden Daten
- * ueber das Werkstueck empfangen.
+ * ueber das Werkstueck empfangen
  **/
 void b2_receive_data::dispatched_event_serial_data() {
   LOG_TRACE("")
@@ -74,7 +74,7 @@ void b2_receive_data::dispatched_event_serial_data() {
 }
 
 /**
- * Daten ueber das Werkstueck wurden empfangen.
+ * Daten ueber das Werkstueck wurden empfangen
  * (Uebergang von `b2_receive_data::dispatched_event_serial_data()`
  **/
 b2_received_object::b2_received_object(token* t) : state::state(t) {
@@ -82,7 +82,7 @@ b2_received_object::b2_received_object(token* t) : state::state(t) {
   TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
-  // TODO Hier timer fuer die Übergabe starten...
+  // TODO Hier timer fuer die Übergabe starten
 }
 
 /**
@@ -109,7 +109,7 @@ b2_realized_object::b2_realized_object(token* t) : state::state(t) {
 
 /**
  * EVENT_SENSOR_HEIGHT wurde zu frueh gefeuert, es wurde wahrscheinlich
- * ein neuer Token wild auf das Band gelegt.
+ * ein neuer Token auf das Band gelegt
  **/
 void b2_realized_object::dispatched_event_sensor_height() {
   LOG_TRACE("")
@@ -123,7 +123,7 @@ void b2_realized_object::dispatched_event_sensor_height() {
 }
 
 /**
- * Token ist zu spaet und wurde wahrscheinlich vom Band entfernt.
+ * Token ist zu spaet und wurde wahrscheinlich vom Band entfernt
  * Betreffend Segment 1
  **/
 void b2_realized_object::dispatched_event_seg1_too_late() {
@@ -174,7 +174,7 @@ void b2_token_upside_down::dispatched_event_sensor_slide() {
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_death();
   // TODO: Wenn zu lange unterbrochen, dann in error springen,
-  // da die rutsche voll.
+  // da die rutsche voll ist
   new (this) anonymous_token(m_token);
 }
 
@@ -228,7 +228,7 @@ b2_is_wrong_order::b2_is_wrong_order(token* t) : state::state(t) {
   mgr->request_left_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
-  // Auch hier wieder sensetiv damit kein unexpected token ausgeloest wird.
+  // Auch hier wieder sensetiv, damit kein unexpected token ausgeloest wird
   disp->register_listener(m_token, EVENT_SENSOR_HEIGHT);
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(REMOVE_TOKEN);

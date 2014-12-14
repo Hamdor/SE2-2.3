@@ -19,7 +19,7 @@
  * @file    test_suite.hpp
  * @version 0.1
  *
- * Laufzeitumgebung für tests
+ * Laufzeitumgebung für Tests
  **/
 
 #ifndef SE2_TEST_SUITE_HPP
@@ -38,7 +38,7 @@ template<typename T>
 class test_suite {
  public:
   /**
-   * Konstruktor
+   * Default Konstruktor
    **/
   test_suite() : m_test() {
     m_test.init();

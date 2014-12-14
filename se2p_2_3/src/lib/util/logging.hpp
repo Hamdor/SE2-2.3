@@ -55,26 +55,26 @@ class logging : public abstract_singleton {
   virtual void initialize();
 
   /**
-   * Zerst�rung des Singleton
+   * Zerstoerung des Singleton
    **/
   virtual void destroy();
 
  public:
   /**
-   * Fügt einen neuen Eintrag zum Log hinzu.
+   * Fuegt einen neuen Eintrag zum Log hinzu
    * @param str Definiert die Log Message
    * @param lvl Definiert das Log Level
    * @param file_name Der Aufrufer (File)
    * @param line_num Zeilennummer (Aufrufer)
-   * @param fun_name name der Funktion (Aufrufer)
+   * @param fun_name Name der Funktion (Aufrufer)
    **/
   void log(const char* str, loglevel lvl, const char* file_name, int line_num,
            const char* fun_name);
 
   /**
    * Default Destruktor
-   * @warning Muss aufgerufen werden, da log file descriptor
-   *          sonst nicht geschlossen wird.
+   * @warning Muss aufgerufen werden, da log file Descriptor
+   *          sonst nicht geschlossen wird
    **/
   ~logging();
 

@@ -36,44 +36,21 @@ namespace unit_tests {
 class serial_test : public abstract_test<serial_test> {
  public:
   /**
-   * Constructor
+   * Default Konstruktor
    **/
   serial_test();
 
   /**
-   * Destructor
+   * Default Destruktor
    **/
   virtual ~serial_test();
 
-  /**
-   * Wird einmalig für alle ausgeführt
-   * @return 0 wenn erfolgreich
-   */
   virtual int before_class();
-
-  /**
-   * Funktion wird vor jedem test ausgeführt
-   * @return 0 wenn erfolgreich
-   */
   virtual int before();
-
-  /**
-   * Initialisiert den Funktionsvektor
-   * @return 0 wenn erfolgreich
-   */
   virtual int init();
-
-  /**
-   * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
   virtual int after();
-
-  /**
-   * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
   virtual int after_class();
+
  private:
   serial_bus::serial_channel* m_serial;
   int m_error;

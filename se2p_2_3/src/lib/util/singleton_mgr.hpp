@@ -63,8 +63,8 @@ class singleton_mgr {
  public:
   /**
    * Zurgiff auf ein beliebiges Singleton Module
-   * @param  module gibt den `module_type` des angeforderten Modules
-   * @return ein `abstract_singleton` pointer auf das Module
+   * @param  module Gibt den `module_type` des angeforderten Modules
+   * @return Ein `abstract_singleton` Pointer auf das Module
    **/
   static abstract_singleton* get_instance(module_type module);
 
@@ -76,7 +76,7 @@ class singleton_mgr {
   /**
    * Erzwingt das erstellen eines noch nicht initialisierten
    * Singleton Modules. Sollte bei Modulen verwendet werden die
-   * einen eigenen Thread haben.
+   * einen eigenen Thread haben
    * @param module Beschreibt das zu initialisierende Module
    **/
   static void force_initialization(module_type module);

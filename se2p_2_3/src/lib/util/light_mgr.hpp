@@ -56,14 +56,14 @@ class light_mgr : public abstract_singleton
   static light_mgr* instance;
 
   int                   m_chid;
-  bool                  m_tick; // tick/tock
+  bool                  m_tick;
   timer::timer_wrapper* m_timer;
   light_states          m_state;
 
  public:
   /**
-   * Aendert das licht der Ampelanlage
-   * @param state beschreibt den State in dem sich die Ampelanlage
+   * Aendert das Licht der Ampelanlage
+   * @param state Beschreibt den State in dem sich die Ampelanlage
    *        befinden soll
    **/
   void set_state(light_states state);

@@ -50,11 +50,11 @@ struct abstract_dispatcher {
   /**
    * Registriert einen Listener fuer ein Event.
    * Der Listener erhaellt Nachricht fuer dieses Event solange er
-   * Registriert ist.
+   * Registriert ist
    * @param listener Pointer auf den Status
-   * @param event    auf welches gehoert werden soll
-   * @return TRUE    nach erfolgreichen hinzufuegen
-   *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
+   * @param event    Auf welches gehoert werden soll
+   * @return TRUE    Nach erfolgreichen hinzufuegen
+   *         FALSE   Wenn bereits die maximale Anzahl an Listenern fuer
    *                 dieses Event erreicht ist
    **/
   virtual bool register_listener(fsm::events* listener,
@@ -64,11 +64,11 @@ struct abstract_dispatcher {
    * Registriert einen Listener fuer ein Event.
    * Dieser Listener bekommt alle Nachrichten fuer dieses
    * Event solange er angemeldet ist. Normal angemeldete Zustaende
-   * bekommen diese Events nicht.
+   * bekommen diese Events nicht
    * @param listener Pointer auf den Status
-   * @param event    auf welches gehoert werden soll
-   * @return TRUE    nach erfolgreichen hinzufuegen
-   *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
+   * @param event    Auf welches gehoert werden soll
+   * @return TRUE    Nach erfolgreichen hinzufuegen
+   *         FALSE   Wenn bereits die maximale Anzahl an Listenern fuer
    *                 dieses Event erreicht ist
    **/
   virtual bool register_prior_listener(fsm::events* listener,
@@ -78,26 +78,26 @@ struct abstract_dispatcher {
    * Unregistriert einen priorisierten Listener von einem Event.
    * Normal registrierte Listener bekommen wieder Event Nachrichten.
    * @param listener Pointer auf den Status
-   * @param event    auf welches gehoert werden soll
-   * @return TRUE    nach erfolgreichen hinzufuegen
-   *         FALSE   wenn bereits die maximale Anzahl an listenern fuer
+   * @param event    Auf welches gehoert werden soll
+   * @return TRUE    Nach erfolgreichen hinzufuegen
+   *         FALSE   Wenn bereits die maximale Anzahl an Listenern fuer
    *                 dieses Event erreicht ist
    **/
   virtual bool unregister_prior_listener(fsm::events* listener,
                                          hal::event_values event) = 0;
 
   /**
-   * Entfernt einen Zustand von allen queues
-   * @param listener der Listener/Zustand der entfernt werden soll.
+   * Entfernt einen Zustand von allen Queues
+   * @param listener Der Listener/Zustand der entfernt werden soll
    **/
   virtual void remove_from_all(fsm::events* listener) = 0;
 
  private:
   /**
-   * Ruft das event direkt auf, ohne das eine PulseMessage exsistiert
-   * @param event welches ausgeloest werden soll
+   * Ruft das Event direkt auf, ohne das eine PulseMessage exsistiert
+   * @param event Welches ausgeloest werden soll
    * @warning Diese Funktion wird eventuell geloescht. Sollte deshalb
-   *          nicht verwendet werden.
+   *          nicht verwendet werden
    **/
   virtual void direct_call_event(hal::event_values event) = 0;
 };

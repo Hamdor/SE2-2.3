@@ -37,18 +37,18 @@ struct mutex {
   friend struct condvar;
 
   /**
-   * Konstruktor
+   * Default Konstruktor
    */
   mutex();
 
   /**
-   * Destruktor
+   * Default Destruktor
    */
   virtual ~mutex();
 
   /**
-   * Mutex erlangen. Blockiert bis der Aufrufende Thread
-   * das Mutex bekommt.
+   * Mutex erlangen. Blockiert bis der aufrufende Thread
+   * das Mutex bekommt
    * @return EINVAL `pthread_mutex_t` wurde nicht initialisiert
    *         EAGAIN Die maximale Anzahl an Mutexen wurde erreicht
    *         EDEADLK Der aufrufende Thread besitzt das Mutex bereits
@@ -57,7 +57,7 @@ struct mutex {
   int acquire();
 
   /**
-   * Mutex zurückgeben.
+   * Mutex zurückgeben
    * @return EINVAL `pthread_mutex_t` wurde nicht initialisiert
    *         EAGAIN Die maximale Anzahl an Mutexen wurde erreicht
    *         EPERM Der aufrufende Thread besitzt das Mutex nicht

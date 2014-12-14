@@ -33,12 +33,14 @@ namespace util {
 
 struct lock_guard {
   /**
-   * Konstructor, lockt das Mutex
+   * Default Konstructor
+   * lockt das Mutex
    */
   lock_guard(mutex&);
   
   /**
-   * Destruktor, gibt das Mutex frei
+   * Default Destruktor
+   * gibt das Mutex frei
    */
   virtual ~lock_guard();
 

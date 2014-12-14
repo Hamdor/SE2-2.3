@@ -51,7 +51,7 @@ const struct sigevent* isr(void* arg, int id) {
       event = NULL;
     }
     if (port_old < ports) {
-      // steigende flanke
+      // Steigende flanke
       if (changed_bit == EVENT_SENSOR_ENTRANCE) {
         event->sigev_value.sival_int = EVENT_SENSOR_ENTRANCE_R;
       } else if (changed_bit == EVENT_SENSOR_HEIGHT) {
@@ -64,7 +64,7 @@ const struct sigevent* isr(void* arg, int id) {
         event->sigev_value.sival_int = EVENT_SENSOR_EXIT_R;
       }
     }
-    // update port_old
+    // Update port_old
     port_old = ports;
   } else {
     // Ein IRQ von Port A oder etwas anderem auf das wir nicht reagieren

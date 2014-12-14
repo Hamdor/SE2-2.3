@@ -19,7 +19,7 @@
  * @file    abstract_test.hpp
  * @version 0.1
  *
- * interface für tests
+ * Interface für Tests
  **/
 
 #ifndef SE2_ABSTRACT_TEST_HPP
@@ -44,31 +44,31 @@ class abstract_test {
 
   /**
    * Wird einmalig für alle ausgeführt
-   * @return 0 wenn erfolgreich
+   * @return 0 Wenn erfolgreich
    */
   virtual int before_class() = 0;
 
   /**
-   * Funktion wird vor jedem test ausgeführt
-   * @return 0 wenn erfolgreich
+   * Funktion wird vor jedem Test ausgeführt
+   * @return 0 Wenn erfolgreich
    */
   virtual int before() = 0;
 
   /**
    * Initialisiert den Funktionsvektor
-   * @return 0 wenn erfolgreich
+   * @return 0 Wenn erfolgreich
    */
   virtual int init() = 0;
 
   /**
    * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
+   * @return 0 Wenn erfolgreich
    */
   virtual int after() = 0;
 
   /**
    * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
+   * @return 0 Wenn erfolgreich
    */
   virtual int after_class() = 0;
 

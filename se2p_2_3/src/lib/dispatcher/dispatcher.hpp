@@ -68,10 +68,10 @@ struct dispatcher : public abstract_dispatcher
 
   /**
    * Mappt von `event_values` auf `dispatcher_events`
-   * fuer zugriff auf Matrix
+   * fuer Zugriff auf Matrix
    * @param  map Referenz auf zu durchsuchende map
-   * @param  val der Wert der in `dispatcher_events` abgebildet werden soll
-   * @return gibt den Wert in `dispatcher_events` zurueck
+   * @param  val Der Wert der in `dispatcher_events` abgebildet werden soll
+   * @return Gibt den Wert in `dispatcher_events` zurueck
    **/
   static dispatcher_events map_from_event_values(
       const std::map<hal::event_values, dispatcher_events>& map,
@@ -97,9 +97,9 @@ struct dispatcher : public abstract_dispatcher
   virtual void destroy();
 
   /**
-   * Diese Funktion behandelt eventuelle Sonderfaelle der einzelnen
-   * Signale. Intern durch ein Switch/Case abgedeckt.
-   * @param buffer eine Referenz auf eine Pulse Message
+   * Diese Funktion behandelt eventuelle Sonderfaelle der einzelnen Signale
+   * Intern durch ein Switch/Case abgedeckt
+   * @param buffer Eine Referenz auf eine Pulse Message
    **/
   void special_case_handling(const _pulse& buffer);
 

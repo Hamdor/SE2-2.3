@@ -43,10 +43,10 @@ class timer_wrapper {
   friend class timer_handler;
   friend class util::light_mgr;
   /**
-   * Konstruktor
-   * @param time dauer des timers
+   * Default Konstruktor
+   * @param time Dauer des Timers
    * @param pulse_value Wert der die Pulse Message senden soll
-   * @param chid ist die channel id
+   * @param chid Ist die channel ID
    **/
   timer_wrapper(duration time, int pulse_value, int chid);
 
@@ -78,13 +78,13 @@ class timer_wrapper {
   void continue_timer();
 
   /**
-   * resetet timer
+   * Resetet timer
    **/
   void reset_timer();
 
   /**
    * Addiert die angegebene Zeit
-   *  @param time zu addierende Zeit
+   *  @param time Zu addierende Zeit
    **/
   void add_time(duration time);
 

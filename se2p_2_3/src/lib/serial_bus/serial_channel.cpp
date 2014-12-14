@@ -61,7 +61,7 @@ telegram serial_channel::get_telegram() {
 }
 
 void serial_channel::initialize() {
-  start(0); // startet thread
+  start(0); // Startet thread
 }
 
 void serial_channel::destroy() {
@@ -91,7 +91,7 @@ void serial_channel::execute(void*) {
     } else if (data.m_type == ERR) {
       value = EVENT_SERIAL_ERR;
     } else {
-      // unkown ...
+      // Unkown
       value = EVENT_SERIAL_UNK;
     }
     if (data.m_type == DATA) {

@@ -37,67 +37,43 @@ namespace unit_tests {
 class hal_test_stub2 : public abstract_test<hal_test_stub2> {
  public:
   /**
-   * Constructor
+   * Default Konstruktor
    **/
   hal_test_stub2();
 
   /**
-   * Destructor
+   * Default Destruktor
    **/
   virtual ~hal_test_stub2();
 
-  /**
-   * Wird einmalig fuer alle ausgeführt
-   * @return 0 wenn erfolgreich
-   */
   virtual int before_class();
-
-  /**
-   * Funktion wird vor jedem test ausgefuehrt
-   * @return 0 wenn erfolgreich
-   */
   virtual int before();
-
-  /**
-   * Initialisiert den Funktionsvektor
-   * @return 0 wenn erfolgreich
-   */
   virtual int init();
-
-  /**
-   * Aufraeumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
   virtual int after();
-
-  /**
-   * Aufraeumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
   virtual int after_class();
 
  private:
   /**
     * Test fuer durchbrochene Lichtschranken
-    * @return fehlgeschlagene Anzahl
+    * @return Fehlgeschlagene Anzahl
     */
   int light_barrier_interrupted_test();
 
   /**
     * Test fuer Hoehe im Toleranzbereich
-    * @return fehlgeschlagene Anzahl
+    * @return Fehlgeschlagene Anzahl
     */
   int valid_height_test();
 
   /**
-    * Test fuer metall
-    * @return fehlgeschlagene Anzahl
+    * Test fuer Metall
+    * @return Fehlgeschlagene Anzahl
     */
   int metal_detected_test();
 
   /**
     * Test fuer gedrueckte Tasten
-    * @return fehlgeschlagene Anzahl
+    * @return Fehlgeschlagene Anzahl
     */
   int buttons_pressed_test();
 

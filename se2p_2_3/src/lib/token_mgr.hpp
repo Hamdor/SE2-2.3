@@ -43,7 +43,7 @@ class token_mgr : public util::abstract_singleton {
 
   /**
    * `safe_state` Speichert alle wichtigen Zustaende
-   * der Maschine zum zeitpunkt des drucks auf den E-Stop.
+   * der Maschine zum Zeitpunkt des Drucks auf den E-Stop.
    **/
   struct safe_state {
     bool m_switch_open;
@@ -83,129 +83,129 @@ class token_mgr : public util::abstract_singleton {
   void update();
  public:
   /**
-   * Sendet an conveyor 1 dass wieder Platz fuer einen Token ist
+   * Sendet an conveyor 1 das wieder Platz fuer einen Token ist
    **/
   void send_free();
 
   /**
    * Mit dieser Funktion meldet sich der neue `token`
-   * einmal bei dem `token_mgr` an.
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * einmal bei dem `token_mgr` an
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void notify_existence(bool update = true);
 
   /**
    * Mit dieser Funktion meldet sich der `token`
-   * vom `token_mgr` ab.
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * vom `token_mgr` ab
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void notify_death(bool update = true);
 
   /**
    * Schnellen Motor anfragen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void request_fast_motor(bool update = true);
 
   /**
    * Langsamen Motor anfragen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void request_slow_motor(bool update = true);
 
   /**
    * Motor linkslauf anfragen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void request_left_motor(bool update = true);
 
   /**
    * Motor linkslauf zurueckziehen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void unrequest_left_motor(bool update = true);
 
   /**
    * Motor stop anfragen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void request_stop_motor(bool update = true);
 
   /**
-   * Motor stop anfrage zurueckziehen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * Motor stop Anfrage zurueckziehen
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void unrequest_stop_motor(bool update = true);
 
   /**
    * Weiche oeffnen anfragen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void request_open_switch(bool update = true);
 
   /**
-   * Weiche oeffnen anfrage zurueckziehen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * Weiche oeffnen Anfrage zurueckziehen
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void unrequest_open_switch(bool update = true);
 
   /**
    * Token drehen anfragen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void request_turnover(bool update = true);
 
   /**
-   * Token drehen anfrage zurueckziehen
-   * @param update sollte FALSE sein wenn `update()` nicht
+   * Token drehen Anfrage zurueckziehen
+   * @param update Sollte FALSE sein wenn `update()` nicht
    *               ausgefuehrt werden soll (Default: TRUE)
    **/
   void unrequest_turnover(bool update = true);
 
   /**
    * System in sicheren Zustand bringen
-   * @param send_serial beschreibt ob die Information, dass
+   * @param send_serial Beschreibt ob die Information, dass
    *        der `safe_state` betreten wurde, ueber die Serielle-
-   *        Schnittstelle gesendet werden soll. (Default: TRUE)
+   *        Schnittstelle gesendet werden soll (Default: TRUE)
    **/
   void enter_safe_state(bool send_serial = true);
 
   /**
    * Prueft ob das aktueller Token zur korrekten
-   * Reihenfolge gehoert.
-   * @param  metal beschreibt ob das aktueller Token aus Metall ist
-   * @return TRUE  wenn Reihenfolge korrekt
-   *         FALSE wenn Reihenfolge nicht korrekt
+   * Reihenfolge gehoert
+   * @param  metal Beschreibt ob das aktueller Token aus Metall ist
+   * @return TRUE  Wenn Reihenfolge korrekt
+   *         FALSE Wenn Reihenfolge nicht korrekt
    **/
   bool check_order(bool metal);
 
   /**
-   * Prueft ob Conveyor 2 bereit fuer einen neuen Token ist.
-   * @return TRUE  wenn conveyor 2 einen neuen Token bearbeiten kann
-   *         FALSE wenn ein Token auf Conveyor 2 liegt
+   * Prueft ob Conveyor 2 bereit fuer einen neuen Token ist
+   * @return TRUE  Wenn conveyor 2 einen neuen Token bearbeiten kann
+   *         FALSE Wenn ein Token auf Conveyor 2 liegt
    **/
   bool check_conveyor2_ready() const;
 
   /**
    * Gibt dem `token_mgr` bescheid, dass ein Token an Conveyor 2
-   * uebergeben wurde.
+   * uebergeben wurde
    **/
   void notify_token_trasition();
 
   /**
    * Wird aufgerufen sobald `B2_FREE` per Serieller Schnittstelle
-   * empfangen wurde.
+   * empfangen wurde
    **/
   void notify_ready_for_next();
 
@@ -213,7 +213,7 @@ class token_mgr : public util::abstract_singleton {
    * Ein Event wurde ausgeloest wo nicht sicher ist welches Werkstueck
    * es ausgeloest hat. Wahrscheinlich wurde ein Werkstueck mitten auf
    * das Band gelegt und hat eine Schranke durchbrochen auf die von
-   * keinem anderen Werkstueck gehoert wurde.
+   * keinem anderen Werkstueck gehoert wurde
    **/
   void notify_pseudo_token_not_known_event();
  private:
