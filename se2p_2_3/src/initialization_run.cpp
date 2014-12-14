@@ -97,53 +97,85 @@ void initialization_run::get_heights() {
   std::cout << "======  End of `get_heights`  ======" << std::endl;
 }
 
+#define SEC_TO_NSEC 1000000000
+timespec initialization_run::diff(timespec start, timespec end) {
+  timespec temp;
+  if ((end.tv_nsec-start.tv_nsec) < 0) {
+    temp.tv_sec = end.tv_sec - start.tv_sec - 1;
+    temp.tv_nsec = SEC_TO_NSEC + end.tv_nsec - start.tv_nsec;
+  } else {
+    temp.tv_sec = end.tv_sec - start.tv_sec;
+    temp.tv_nsec = end.tv_nsec - start.tv_nsec;
+  }
+  return temp;
+}
+
 void initialization_run::get_times() {
   std::cout << "====== Start of `get_times` ======" << std::endl;
-  my_times times[3];
+  // 0 - 3 sind der schnelle durchlauf
+  // 3 - 5 sind mit höhenmessung langsame
+  timespec times[6];
+  int which_timeintervall = 0;
+  int run_index = 0; // erster lauf ist der schnelle
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  while (!hal->obj_in_light_barrier(SENSOR_ENTRANCE)) {
-    // nop
+  while (run_index <= 1) {
+    std::cout << "Bitte ein Werkstueck einlegen." << std::endl;
+    while (!hal->obj_in_light_barrier(SENSOR_ENTRANCE)) {
+      // nop
+    }
+    if (run_index == 0) {
+      hal->set_motor(MOTOR_RIGHT);
+    }
+    get_curr_time();
+    while (!hal->obj_in_light_barrier(SENSOR_HEIGHT)) {
+      // nop
+    }
+    // ist nun in Hoehenmessung
+    if(run_index == 1) {
+      hal->set_motor(MOTOR_SLOW);
+    }
+    while (!hal->obj_in_light_barrier(SENSOR_HEIGHT)) {
+      // nop
+    }
+    // nicht mehr in Hoehenmessung
+    hal->set_motor(MOTOR_FAST);
+    times[which_timeintervall++] = get_curr_time();
+    while (!hal->obj_in_light_barrier(SENSOR_SWITCH)) {
+      // nop
+    }
+    hal->open_switch();
+    times[which_timeintervall++] = get_curr_time();
+    while (hal->obj_in_light_barrier(SENSOR_SWITCH)) {
+      // nop
+    }
+    hal->close_switch();
+    times[which_timeintervall++] = get_curr_time();
+    while (!hal->obj_in_light_barrier(SENSOR_EXIT)) {
+      // nop
+    }
+    hal->set_motor(MOTOR_STOP);
+    while (hal->obj_in_light_barrier(SENSOR_EXIT)) {
+      // nop
+    }
+    ++run_index;
   }
-  hal->set_motor(MOTOR_RIGHT);
-  hal->set_motor(MOTOR_FAST);
-  get_curr_time();
-  while (!hal->obj_in_light_barrier(SENSOR_HEIGHT)) {
-    // nop
-  }
-  times[0] = get_curr_time();
-  while (!hal->obj_in_light_barrier(SENSOR_SWITCH)) {
-    // nop
-  }
-  hal->open_switch();
-  times[1] = get_curr_time();
-  while (hal->obj_in_light_barrier(SENSOR_SWITCH)) {
-    // nop
-  }
-  hal->close_switch();
-  times[2] = get_curr_time();
-  while (!hal->obj_in_light_barrier(SENSOR_EXIT)) {
-    // nop
-  }
-  hal->set_motor(MOTOR_STOP);
-  while (hal->obj_in_light_barrier(SENSOR_EXIT)) {
-    // nop
+  for (int i = 0; i < 3; ++i) {
+    times[i + 3] = diff(times[i + 3], times[i]);
   }
   print_time(times);
   std::cout << "======  End of `get_times`  ======" << std::endl;
 }
 
-my_times initialization_run::get_curr_time() {
+timespec initialization_run::get_curr_time() {
   static timespec oldspec;
   timespec curspec;
   timespec diffspec;
   std::memset(&curspec, 0, sizeof(timespec));
   std::memset(&diffspec, 0, sizeof(timespec));
   clock_gettime(CLOCK_REALTIME, &curspec);
-  diffspec.tv_sec  = curspec.tv_sec - oldspec.tv_sec;
-  diffspec.tv_nsec = curspec.tv_nsec - oldspec.tv_nsec;
+  diffspec = diff(oldspec, curspec);
   oldspec = curspec;
-  my_times t = { diffspec.tv_sec, diffspec.tv_nsec / (size_t)1.0e6 };
-  return t;
+  return diffspec;
 }
 
 #define REM_TO_EXPIRE_SEC  0
@@ -154,39 +186,21 @@ my_times initialization_run::get_curr_time() {
 
 #define UNDERFLOW_CHECK(o,n) std::min(o,n)
 
-void initialization_run::print_time(const my_times time[]) {
+void initialization_run::print_time(const timespec time[]) {
   std::string time_names[] = {
-      "SEGMENT1_SEC__HAS_TO_EXPIRE", "SEGMENT1_MSEC_HAS_TO_EXPIRE",
-      "SEGMENT1_SEC__TOO_LATE",      "SEGMENT1_MSEC_TOO_LATE",
-      "SEGMENT2_SEC__HAS_TO_EXPIRE", "SEGMENT2_MSEC_HAS_TO_EXPIRE",
-      "SEGMENT2_SEC__TOO_LATE",      "SEGMENT2_MSEC_TOO_LATE",
-      "SEGMENT3_SEC__HAS_TO_EXPIRE", "SEGMENT3_MSEC_HAS_TO_EXPIRE",
-      "SEGMENT3_SEC__TOO_LATE",      "SEGMENT3_MSEC_TOO_LATE",
-      "SLIDE_SEC__TIMEOUT",          "SLIDE_MSEC_TIMEOUT"
+      "SEGMENT1__SEC", "SEGMENT1_NSEC",
+      "SEGMENT2__SEC", "SEGMENT2__NSEC",
+      "SEGMENT3__SEC", "SEGMENT3__NSEC",
+      "HEIGHT_TIME_OFFSET_SEG1_SEC", "HEIGHT_TIME_OFFSET_SEG1_NSEC",
+      "HEIGHT_TIME_OFFSET_SEG2_SEC", "HEIGHT_TIME_OFFSET_SEG2_NSEC",
+      "HEIGHT_TIME_OFFSET_SEG3_SEC", "HEIGHT_TIME_OFFSET_SEG3_NSEC",
   };
   size_t idx   = 0;
-  size_t ntime = 0;
-  for (size_t i = 0; i < 3; ++i) {
+  for (size_t i = 0; i < 6; ++i) {
     std::cout << "#define "   << time_names[idx++] << " "
-              << time[i].sec - REM_TO_EXPIRE_SEC   << std::endl;
-    ntime = time[i].msec - REM_TO_EXPIRE_MSEC;
-    ntime = UNDERFLOW_CHECK(time[i].msec, ntime);
-    if (ntime > 1000) {
-      // kp was da los is...
-      ntime /= 10;
-    }
+              << time[i].tv_sec<< std::endl;
     std::cout << "#define "   << time_names[idx++] << " "
-              << ntime << std::endl;
-    std::cout << "#define "   << time_names[idx++] << " "
-              << time[i].sec + ADD_TO_LATE_SEC
-              << std::endl;
-    ntime = time[i].msec + ADD_TO_LATE_MSEC;
-    if (ntime > 1000) {
-      // kp was da los is...
-      ntime /= 10;
-    }
-    std::cout << "#define "   << time_names[idx++] << " "
-              << ntime << std::endl;
+              << time[i].tv_nsec<< std::endl;
   }
 }
 
@@ -217,6 +231,6 @@ void initialization_run::start_init() {
   // ausserdem sind die Hoehenwerte in der Simulation falsch.
   //get_heights();
 #endif
-  //get_times();
+  get_times();
   HAWThread::reset_shutdown_flag();
 }

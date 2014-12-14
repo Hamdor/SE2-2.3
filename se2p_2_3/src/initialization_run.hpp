@@ -28,13 +28,9 @@
 
 #include "config.h"
 #include <unistd.h>
+#include <time.h>
 
 namespace se2 {
-
-struct my_times {
-  size_t sec;
-  size_t msec;
-};
 
 class initialization_run {
   /**
@@ -52,17 +48,26 @@ class initialization_run {
   void get_times();
 
   /**
+   * Berechnet die differenz zwischen den Zeiten
+   * @param start Anfangs-Zeit
+   * @param end End-Zeit
+   * @return gibt Different-Zeit zurück
+   *
+   * */
+  timespec diff(timespec start, timespec end);
+
+  /**
    * Holt die aktuelle Zeit und macht eine differenz zur letzten Zeit
    * @return `my_times` enthaellt die verstrichenen Sekunden sowie
    *         die verstrichenen Millisekunden.
    **/
-  my_times get_curr_time();
+  timespec get_curr_time();
 
   /**
    * Gibt einen Zeitwert auf der Konsole aus.
    * @param time ist ein Array auf die Zeit werte
    **/
-  void print_time(const my_times time[]);
+  void print_time(const timespec time[]);
 
   /**
    * Startet alle Unit-Tests
