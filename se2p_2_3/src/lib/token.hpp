@@ -26,7 +26,11 @@
 #define SE2_TOKEN_HPP
 
 #include "lib/fsm/events.hpp"
+
 #include <vector>
+#include <cstring>
+#include <time.h>
+#include <unistd.h>
 
 namespace se2 {
 namespace fsm {
@@ -51,7 +55,10 @@ class token : public fsm::events {
   token()
       : m_state(0), m_id(0), m_height1(0), m_height2(0)
       , m_is_metal(false), m_is_upside_down(false), m_seg2_ok(false) {
-    // nop
+    std::memset(&m_timespec_seg1, 0, sizeof(timespec));
+    std::memset(&m_timespec_seg2, 0, sizeof(timespec));
+    std::memset(&m_timespec_seg3, 0, sizeof(timespec));
+    std::memset(&m_timespec_stop, 0, sizeof(timespec));
   }
 
   /**
@@ -158,6 +165,42 @@ class token : public fsm::events {
   void delete_timers();
 
   /**
+   * Initialisiert die Internen Zeiten
+   **/
+  void init_internal_times();
+
+  /**
+   * Setzt die erwarteten Zeiten zrueck
+   **/
+  void reset_internal_times();
+
+  /**
+   * Fuegt Zeit zu den erwarteten Zeiten hinzu
+   * @param sec  Sekunden die addiert werden sollen
+   * @param msec Millisekunden die addiert werden sollen
+   **/
+  void add_internal_times(int sec, int msec);
+
+  /**
+   * Stoppt die erwartete Zeit
+   **/
+  void stop_internal_times();
+
+  /**
+   * Startet die erwartete Zeit
+   **/
+  void start_internal_times();
+
+  /**
+   * Prueft ob der Token zu frueh dran ist
+   * @param  section Nummer des Segmentes
+   * @return TRUE  wenn Token in gueltiger Zeit
+   *         FALSE wenn Token in nicht gueltiger Zeit
+   *               oder wenn `section` ungueltig.
+   **/
+  bool check_internal_times(int section);
+
+  /**
    * AUfrufe die an den Zustand delegiert werden
    **/
   virtual void dispatched_event_button_start();
@@ -201,6 +244,12 @@ class token : public fsm::events {
   bool       m_is_upside_down;
   ivec       m_timer_ids;
   bool       m_seg2_ok;
+
+  // interne erwartete Zeiten, fuer Guard Benutzung
+  timespec   m_timespec_seg1;
+  timespec   m_timespec_seg2;
+  timespec   m_timespec_seg3;
+  timespec   m_timespec_stop;
 };
 
 } // namespace se2

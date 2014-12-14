@@ -89,6 +89,7 @@ void token::reset() {
   dispatcher* disp =
     TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->remove_from_all(this);
+  reset_internal_times();
 }
 
 void token::pretty_print() const {
@@ -110,6 +111,85 @@ void token::delete_timers() {
     hdl->delete_timer(m_timer_ids[i]);
   }
   m_timer_ids.clear();
+}
+
+#define MILISEC_TO_NANOSEC 1000000
+#define SEC_TO_NANOSEC     1000000000
+
+void token::init_internal_times() {
+  clock_gettime(CLOCK_REALTIME, &m_timespec_seg1);
+  m_timespec_seg1.tv_sec  += SEGMENT1__SEC;
+  m_timespec_seg1.tv_nsec += SEGMENT1_NSEC;
+  clock_gettime(CLOCK_REALTIME, &m_timespec_seg2);
+  m_timespec_seg2.tv_sec  += SEGMENT2__SEC;
+  m_timespec_seg2.tv_nsec += SEGMENT2_NSEC;
+  clock_gettime(CLOCK_REALTIME, &m_timespec_seg3);
+  m_timespec_seg3.tv_sec  += SEGMENT3__SEC;
+  m_timespec_seg3.tv_nsec += SEGMENT3_NSEC;
+}
+
+void token::reset_internal_times() {
+  std::memset(&m_timespec_seg1, 0, sizeof(timespec));
+  std::memset(&m_timespec_seg2, 0, sizeof(timespec));
+  std::memset(&m_timespec_seg3, 0, sizeof(timespec));
+  std::memset(&m_timespec_stop, 0, sizeof(timespec));
+}
+
+void token::add_internal_times(int sec, int msec) {
+  m_timespec_seg1.tv_sec  += sec;
+  m_timespec_seg1.tv_nsec += msec * MILISEC_TO_NANOSEC;
+  m_timespec_seg2.tv_sec  += sec;
+  m_timespec_seg2.tv_nsec += msec * MILISEC_TO_NANOSEC;
+  m_timespec_seg3.tv_sec  += sec;
+  m_timespec_seg3.tv_nsec += msec * MILISEC_TO_NANOSEC;
+}
+
+void token::stop_internal_times() {
+  clock_gettime(CLOCK_REALTIME, &m_timespec_stop);
+}
+
+timespec diff(timespec begin, timespec end) {
+  timespec tempspec;
+  if ((end.tv_nsec - begin.tv_nsec) < 0) {
+    tempspec.tv_sec  = end.tv_sec - begin.tv_sec - 1;
+    tempspec.tv_nsec = SEC_TO_NANOSEC + end.tv_nsec - begin.tv_nsec;
+  } else {
+    tempspec.tv_sec  = end.tv_sec  - begin.tv_sec;
+    tempspec.tv_nsec = end.tv_nsec - begin.tv_nsec;
+  }
+  return tempspec;
+}
+
+void token::start_internal_times() {
+  timespec curspec;
+  clock_gettime(CLOCK_REALTIME, &curspec);
+  timespec tempspec = diff(m_timespec_stop, curspec);
+  m_timespec_seg1.tv_sec  += tempspec.tv_sec;
+  m_timespec_seg1.tv_nsec += tempspec.tv_nsec;
+  m_timespec_seg2.tv_sec  += tempspec.tv_sec;
+  m_timespec_seg2.tv_nsec += tempspec.tv_nsec;
+  m_timespec_seg3.tv_sec  += tempspec.tv_sec;
+  m_timespec_seg3.tv_nsec += tempspec.tv_nsec;
+}
+
+bool token::check_internal_times(int section) {
+  timespec curspec;
+  clock_gettime(CLOCK_REALTIME, &curspec);
+  if (section == SEGMENT_1) {
+    timespec diffspec = diff(m_timespec_seg1, curspec);
+    // TODO Pruefen ob zu groß/zu klein
+    return true;
+  } else if (section == SEGMENT_2) {
+    timespec diffspec = diff(m_timespec_seg2, curspec);
+    // TODO Pruefen ob zu groß/zu klein
+    return true;
+  } else if (section == SEGMENT_3) {
+    timespec diffspec = diff(m_timespec_seg3, curspec);
+    // TODO Pruefen ob zu groß/zu klein
+    return true;
+  } else {
+    return false;
+  }
 }
 
 void token::dispatched_event_button_start() {
