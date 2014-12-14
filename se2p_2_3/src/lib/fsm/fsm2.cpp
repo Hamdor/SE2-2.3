@@ -97,6 +97,7 @@ void b2_received_object::dispatched_event_sensor_entrance() {
 
 b2_realized_object::b2_realized_object(token* t) : state::state(t) {
   LOG_TRACE("")
+  m_token->init_internal_times();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_HEIGHT);
   disp->register_listener(m_token, EVENT_SEG1_TOO_LATE);
@@ -114,7 +115,11 @@ void b2_realized_object::dispatched_event_sensor_height() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_slow_motor();
-  new (this) b2_height_measurement(m_token);
+  if (m_token->check_internal_times(SEGMENT_1)) {
+    new (this) b2_height_measurement(m_token);
+  } else {
+    new (this) err_runtime_too_short(m_token);
+  }
 }
 
 /**
@@ -187,7 +192,11 @@ void b2_valid_height::dispatched_event_sensor_height_rising() {
 
 void b2_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
-  new (this) b2_metal_detection(m_token);
+  if (m_token->check_internal_times(SEGMENT_2)) {
+    new (this) b2_metal_detection(m_token);
+  } else {
+    new (this) err_runtime_too_short(m_token);
+  }
 }
 
 b2_metal_detection::b2_metal_detection(token* t) : state::state(t) {
@@ -260,6 +269,9 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(REMOVE_TOKEN);
   m_token->pretty_print();
+  if (!m_token->check_internal_times(SEGMENT_3)) {
+    new (this) err_runtime_too_short(m_token);
+  }
 }
 
 void b2_is_correct_order::dispatched_event_sensor_exit_rising() {

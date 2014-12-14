@@ -483,6 +483,10 @@ struct telegram {
 
 } // namespace serial_bus
 
+#define SEGMENT_1 1
+#define SEGMENT_2 2
+#define SEGMENT_3 3
+
 namespace timer {
 
 struct duration {
@@ -506,6 +510,15 @@ struct duration {
 #define SEGMENT3_MSEC_HAS_TO_EXPIRE 233
 #define SEGMENT3_SEC__TOO_LATE 0
 #define SEGMENT3_MSEC_TOO_LATE 683*/
+
+#define SEGMENT1__SEC 100
+#define SEGMENT1_NSEC   0
+
+#define SEGMENT2__SEC 100
+#define SEGMENT2_NSEC   0
+
+#define SEGMENT3__SEC 100
+#define SEGMENT3_NSEC   0
 
 // Fuer simulation...
 #define SEGMENT1_SEC__HAS_TO_EXPIRE 0
