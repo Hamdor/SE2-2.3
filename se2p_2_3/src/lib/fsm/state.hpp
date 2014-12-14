@@ -225,7 +225,6 @@ class b1_valid_height : public state {
   virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
   virtual void dispatched_event_seg2_has_to_expire();
-  virtual void dispatched_event_seg2_too_late();
 };
 
 class b1_valid_height_seg2_ok : public state {
@@ -238,6 +237,7 @@ class b1_valid_height_seg2_ok : public state {
   virtual void dispatched_event_sensor_switch();
   virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_seg3_has_to_expire(); // verschieben von `b1_valid_height`
+  virtual void dispatched_event_seg2_too_late();
 };
 
 class b1_valid_height_seg3_ok : public state {

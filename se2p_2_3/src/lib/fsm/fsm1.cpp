@@ -296,14 +296,6 @@ b1_valid_height::b1_valid_height(token* t) : state::state(t) {
 }
 
 /**
- * Werkstueck wurde von der Weiche entfernt (Segment 2)
- **/
-void b1_valid_height::dispatched_event_seg2_too_late() {
-  LOG_TRACE("")
-  new (this) err_runtime_too_long(m_token);
-}
-
-/**
  * Werkstueck hat die korrekte Hoehe
  * TODO:
  * - Ab hier einen Timer starten, der bis zur Lichtschranke
@@ -373,6 +365,14 @@ void b1_valid_height_seg2_ok::dispatched_event_sensor_switch_rising() {
                                SEGMENT3_MSEC_TOO_LATE };
   m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG3_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE));
+}
+
+/**
+ * Werkstueck wurde von der Weiche entfernt (Segment 2)
+ **/
+void b1_valid_height_seg2_ok::dispatched_event_seg2_too_late() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_long(m_token);
 }
 
 /**
