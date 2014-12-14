@@ -341,7 +341,19 @@ class b2_realized_object : public state {
     // nop
   }
 
+  virtual void dispatched_event_seg1_has_to_expire();
   virtual void dispatched_event_sensor_height();
+};
+
+class b2_realized_object_seg1_ok : public state {
+ public:
+  b2_realized_object_seg1_ok(token* t);
+  virtual ~b2_realized_object_seg1_ok() {
+    // nop
+  }
+
+  virtual void dispatched_event_sensor_height();
+  virtual void dispatched_event_seg1_too_late();
 };
 
 class b2_height_measurement : public state {
