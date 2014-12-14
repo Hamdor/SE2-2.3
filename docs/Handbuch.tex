@@ -18,6 +18,9 @@
 
 % Fuer den automatischen Umbruch an einem Bindestrich, wie z.B. bei "Werkstueck-Sortieranlage", statt - die Zeichen "= verwenden
 
+% Inhaltsverzeichnis anklickbar machen
+\usepackage[pdftex]{hyperref}
+
 % Beginn des Dokuments
 \begin{document}
 
@@ -93,18 +96,19 @@ kann zu unerwartetem Verhalten führen und sollte vermieden werden. Für Schäde
 
 \subsection{Sicherheitsvorrichtungen}
 Die Anlage verfügt zur Wahrung der Sicherheit der Benutzer über folgende Vorrichtungen
-\subsubsection{E-Stopp-Button (Not-Aus-Button)}
-Die gesamte Anlage kann jederzeit zum Stillstand gebracht werden, indem der E-Stopp-Button (Not-Aus-Button) betätigt wird.\newline
-Nach Betätigung des Buttons muss die gesamte Anlage vor einem erneuten Start zurückgesetzt werden.
+\subsubsection{E-Stopp-Taste}
+Die gesamte Anlage kann jederzeit zum Stillstand gebracht werden, indem die E-Stopp-Taste betätigt wird.\newline
+\textbf{Die laufende Software wird dadurch ebenfalls beendet!}\newline
+Nach Betätigung der E-Stopp-Taste muss daher die gesamte Anlage zurückgesetzt werden, bevor sie erneut in Betrieb genommen werden kann.
 \subsubsection{Ampelanlage}
-Jedes der beiden Fließbänder besitzt eine eigene Ampelanlage, über die sich der aktuelle Zustand des jeweiligen Fließbandes feststellen lässt.
+Jedes der beiden Förderbänder besitzt eine eigene Ampelanlage, über die sich der aktuelle Zustand des jeweiligen Förderbandes feststellen lässt.
 
 \newpage
 
 \section{Bestandteile der Anlage}
-Die gesamte Anlage besteht aus zwei Fließbändern mit jeweils einem eigenen GEME-Rechner und den zu sortierenden Werkstücken.
+Die gesamte Anlage besteht aus zwei Förderbändern mit jeweils einem eigenen GEME-Rechner und den zu sortierenden Werkstücken.
 
-\subsection{Fließband}
+\subsection{Förderband}
 \includegraphics[scale=0.86]{imgs/PUCKMASTER_2000.png}
 \newline
 \newline
@@ -113,7 +117,7 @@ Die gesamte Anlage besteht aus zwei Fließbändern mit jeweils einem eigenen GEM
     \hline
     \rowcolor{lightgray}\textbf{Bauteil} & \textbf{Beschreibung}\\
     \hline
-    \rowcolor{white}\textbf{S1} & Lichtschranken-Sensor für den Einlauf des Fließbandes\\
+    \rowcolor{white}\textbf{S1} & Lichtschranken-Sensor für den Einlauf des Förderbandes\\
     \hline
     \textbf{S2} & Lichtschranken-Sensor für den Bereich der Höhenmessung\\
     \hline
@@ -121,47 +125,47 @@ Die gesamte Anlage besteht aus zwei Fließbändern mit jeweils einem eigenen GEM
     \hline
     \textbf{S4} & Lichtschranken-Sensor für die Rutsche\\
     \hline
-    \textbf{S5} & Lichtschranken-Sensor für den Auslauf des Fließbandes\\
+    \textbf{S5} & Lichtschranken-Sensor für den Auslauf des Förderbandes\\
     \hline
     \textbf{H} & Höhenmesser\\
     \hline
-    \textbf{M} & Metalldetektor\\
+    \textbf{M} & Metallsensor\\
     \hline
     \textbf{W} & Weiche für das Aussortieren von ungültigen Werkstücken\\
     \hline
-    \textbf{B1} & Start-Button (mit LED)\\
+    \textbf{B1} & Start-Taste (mit LED)\\
     \hline
-    \textbf{B2} & Stopp-Button\\
+    \textbf{B2} & Stopp-Taste\\
     \hline
-    \textbf{B3} & Reset-Button (mit LED)\\
+    \textbf{B3} & Reset-Taste (mit LED)\\
     \hline
     \textbf{L1} & LED 1\\
     \hline
     \textbf{L2} & LED 2\\
     \hline
-    \textbf{NOT-AUS} & E-Stopp-Button zum Stoppen der gesamten Anlage\\
+    \textbf{E-STOPP-TASTE} & E-Stopp-Taste zum Stoppen der gesamten Anlage\\
     \hline
     \textbf{RUTSCHE} & Auffangbehältnis für ungültige Werkstücke\\
     \hline
-    \textbf{AMPELANLAGE} & Anzeige für den Betriebs-Zustand des Fließbandes\\
+    \textbf{AMPELANLAGE} & Anzeige für den Betriebs-Zustand des Förderbandes\\
     \hline
   \end{tabular}
 \end{small}
 
-\subsubsection{Funktionsweise des Fließbandes}
-Jedes Fließband ist mit einem eigenen Motor ausgestattet. Befinden sich keine Werkstücke auf dem Fließband oder ist das Sortieren bereits abgeschlossen, schalten sich die Motoren ab um Strom zu sparen.\newline
+\subsubsection{Funktionsweise des Förderbandes}
+Jedes Förderband ist mit einem eigenen Motor ausgestattet. Befinden sich keine Werkstücke auf dem Förderband oder ist das Sortieren bereits abgeschlossen, schalten sich die Motoren ab um Strom zu sparen.\newline
 \newline
-Über die gesamte Länge eines Fließbandes sind mehrere Lichtschranken-Sensoren verteilt, um die aktuelle Position des Werkstückes bestimmen zu können.\newline
+Über die gesamte Länge eines Förderbandes sind mehrere Lichtschranken-Sensoren verteilt, um die aktuelle Position des Werkstückes bestimmen zu können.\newline
 \newline
-Des Weiteren verfügt jedes Fließband über einen Höhenmesser, um die Höhe eines Werkstückes bestimmen zu können.\newline
+Des Weiteren verfügt jedes Förderband über einen Höhenmesser, um die Höhe eines Werkstückes bestimmen zu können.\newline
 \newline
-Ebenso hat jedes Fließband einen Metalldetektor, mit dem erkannt werden kann, ob ein Werkstück einen Metalleinsatz besitzt.\newline
+Ebenso hat jedes Förderband einen Metallsensor, mit dem erkannt werden kann, ob ein Werkstück einen Metalleinsatz besitzt.\newline
 \newline
 Außerdem gibt es eine Weiche, mit deren Hilfe ungültige Werkstücke über eine Rutsche aussortiert werden können.\newline
 \newline
-Die Kommunikation zwischen den Fließbändern erfolgt über die seriellen Schnittstellen der beiden zugehörigen GEME-Rechner, die miteinander verbunden werden.\newline
+Die Kommunikation zwischen den Förderbändern erfolgt über die seriellen Schnittstellen der beiden zugehörigen GEME-Rechner, die miteinander verbunden werden.\newline
 \newline
-Durch die Kommunikation und die Software wird die Reihenfolge der Fließbänder und damit die Art der Sortierung festgelegt.
+Durch die Kommunikation und die Software wird die Reihenfolge der Förderbänder und damit die Art der Sortierung festgelegt.
 
 \subsection{Werkstücke}
 Es gibt folgende Typen von Werkstücken:
@@ -175,67 +179,57 @@ Es gibt folgende Typen von Werkstücken:
 
 \section{Inbetriebnahme der Anlage}
 \subsection{Aufbau der Anlage}
-Für den ordnungsgemäßen Betrieb ist darauf zu achten, dass beide Fließbänder \emph{eben} und \emph{auf gleicher Höhe} hintereinander aufgestellt werden.\newline
+Für den ordnungsgemäßen Betrieb ist darauf zu achten, dass beide Förderbänder \emph{eben} und \emph{auf gleicher Höhe} hintereinander aufgestellt werden.\newline
 \newline
-Die Ports eines Fließbandes (A, B, C) werden mit den jeweiligen Ports des GEME-Rechners verkabelt.\newline
+Die Ports eines Förderbandes (A, B, C) werden mit den jeweiligen Ports des GEME-Rechners verkabelt.\newline
 \newline
 Dann werden beide GEME-Rechner über ein Kabel an den seriellen Schnittstellen miteinander verbunden.\newline
 \newline
 Anschließend werden alle Geräte an das Stromnetz angeschlossen und über die Kippschalter der Netzteile eingeschaltet.\newline
 \newline
-Sind alle Geräte hochgefahren, wird die jeweilige Software für die Ansteuerung des Fließbandes gestartet.\newline
+Sind alle Geräte hochgefahren, wird die jeweilige Software für die Ansteuerung des Förderbandes gestartet.\newline
 \newline
-Die LED des Start-Buttons leuchtet auf, um dem Personal zu signalisieren, dass die Anlage betriebsbereit ist und gestartet werden kann.
-
-\subsection{Initialisierungslauf}
-TODO: Hier wird beschrieben, wie ein Initialisierungslauf durchgeführt wird, bevor man zum Normalbetrieb übergeht.
-%TODO: Hier wird beschrieben, wie ein Initialisierungslauf durchgeführt wird, bevor man zum Normalbetrieb übergeht.
+Die LED der Start-Taste leuchtet auf, um dem Personal zu signalisieren, dass die Anlage betriebsbereit ist und gestartet werden kann.
 
 \newpage
 
 \section{Betrieb}
 \subsection{Normalbetrieb}
-Nach einem erfolgreichen Aufbau der Anlage signalisiert die leuchtende LED des Start-Buttons, dass die Anlage betriebsbereit ist. Durch das Drücken des Start-Buttons wird die Anlage in den Normalbetrieb versetzt.\newline
+Nach einem erfolgreichen Aufbau der Anlage signalisiert die leuchtende LED der Start-Taste, dass die Anlage betriebsbereit ist. Durch das Drücken der Start-Taste wird die Anlage in den Normalbetrieb versetzt.\newline
 \newline
-Die LED des Start-Buttons erlischt und die grüne Signalleuchte der Ampelanlage leuchtet auf.\newline
+Die LED der Start-Taste erlischt und die grüne Signalleuchte der Ampelanlage leuchtet auf.\newline
 \newline
-Das Personal kann nun damit beginnen die zu sortierenden Werkstücke in den Einlauf des ersten Fließbandes zu legen.\newline
+Das Personal kann nun damit beginnen die zu sortierenden Werkstücke in den Einlauf des ersten Förderbandes zu legen.\newline
 \newline
-Wurde ein Werkstück in den Einlauf des ersten Fließbandes gelegt, startet der Motor automatisch und das Aussortieren von zu kleinen Werkstücken beginnt.\newline
-Beim Hinzufügen neuer Werkstücke ist darauf zu achten, dass diese mit genügend Abstand (mindestens 5cm), mit der Bohrung nach oben und abwechselnd in der korrekten Reihenfolge (Metall $\Leftrightarrow$ Nicht-Metall) in den Lichtschranken-Sensor des ersten Fließbandes gelegt werden.\newline
+Wurde ein Werkstück in den Einlauf des ersten Förderbandes gelegt, startet der Motor automatisch und das Aussortieren von zu kleinen Werkstücken beginnt.\newline
+Beim Hinzufügen neuer Werkstücke ist darauf zu achten, dass diese mit genügend Abstand (mindestens 5cm), mit der Bohrung nach oben und abwechselnd in der korrekten Reihenfolge (Metall $\Leftrightarrow$ Nicht-Metall) in den Lichtschranken-Sensor des ersten Förderbandes gelegt werden.\newline
 \newline
-Erreicht ein Werkstück das Ende des ersten Fließbandes, wird es auf das zweite Fließband transportiert, sofern dieses frei ist. Andernfalls wartet das Werkstück am Ende des ersten Fließbandes.\newline
+Erreicht ein Werkstück das Ende des ersten Förderbandes, wird es auf das zweite Förderband transportiert, sofern dieses frei ist. Andernfalls wartet das Werkstück am Ende des ersten Förderbandes.\newline
 \newline
-Sobald das Werkstück das Ende des zweiten Fließbandes erreicht hat, blinkt die gelbe Signalleuchte der Ampelanlage und das Werkstück muss vom Personal entnommen werden.\newline
+Sobald das Werkstück das Ende des zweiten Förderbandes erreicht hat, blinkt die gelbe Signalleuchte der Ampelanlage und das Werkstück muss vom Personal entnommen werden.\newline
 \newline
-Die zum jeweiligen Werkstück gehörenden Daten, wie die Höhenmesswerte und der Typ, werden auf den Terminals beider Fließbänder ausgegeben.
+Die zum jeweiligen Werkstück gehörenden Daten, wie die Höhenmesswerte und der Typ, werden auf den Terminals beider Förderbänder ausgegeben.
 
 \newpage
 
 \subsection{Fehlerbehandlung}
-\subsubsection{Werkstück mit Bohrung nach unten auf dem ersten Fließband}
-Wird auf dem ersten Fließband ein Werkstück mit der Bohrung nach unten erkannt, wird es an dessen Ende befördert. Beim Erreichen des Lichtschranken-Sensors des Auslaufs stoppt es und die gelbe Signalleuchte der Ampelanlage des ersten Fließbandes beginnt zu blinken. Das Personal muss das Werkstück wenden und zurück in den Bereich des Lichtschranken-Sensors des ersten Fließbandes legen. Durch das anschließende Betätigen des Start-Buttons wird der Normalbetrieb fortgesetzt und die gelbe Signalleuchte des ersten Fließbandes erlischt.
+\subsubsection{Werkstück mit Bohrung nach unten auf dem ersten Förderband}
+Wird auf dem ersten Förderband ein Werkstück mit der Bohrung nach unten erkannt, wird es an dessen Ende befördert. Dort stoppt es und die gelbe Signalleuchte der Ampelanlage des ersten Förderbandes beginnt zu blinken. Das Personal muss das Werkstück wenden und zurück in den Bereich des Lichtschranken-Sensors des ersten Förderbandes legen. Durch das anschließende Betätigen der Start-Taste wird der Normalbetrieb fortgesetzt und die gelbe Signalleuchte des ersten Förderbandes erlischt.
 
-\subsubsection{Werkstücke in falscher Reihenfolge auf dem zweiten Fließband}
-Wird auf dem zweiten Fließband eine falsche Reihenfolge der Werkstücke erkannt, wird das betroffene Werkstück zurück an den Anfang des zweiten Fließbandes befördert und die gelbe Signalleuchte der Ampelanlage des zweiten Fließbandes blinkt. Das Personal muss dieses Werkstück entnehmen und danach den Start-Button betätigen. Die gelbe Signalleuchte des zweiten Fließbandes erlischt daraufhin und der Normalbetrieb wird fortsetzt.
-\newline TODO: Muss hier nochmal der Start-Button betätigt werden?
-%TODO: Muss hier nochmal der Start-Button betätigt werden?
+\subsubsection{Werkstücke in falscher Reihenfolge auf dem zweiten Förderband}
+Wird auf dem zweiten Förderband eine falsche Reihenfolge der Werkstücke erkannt, wird das betroffene Werkstück zurück an den Anfang des zweiten Förderbandes befördert und die gelbe Signalleuchte der Ampelanlage beginnt zu blinken. Das Personal muss dieses Werkstück entnehmen, danach erlischt die gelbe Signalleuchte des zweiten Förderbandes und der Normalbetrieb wird fortsetzt.
 
 \subsubsection{Rutsche ist voll}
-Sobald die Rutsche eines Fließbandes voll ist, werden beide Fließbänder angehalten und die rote Signalleuchte des betroffenen Fließbandes fängt an schnell zu blinken (1x pro Sekunde), während das nicht betroffene Fließband ein Dauerleuchten der roten Signalleuchte anzeigt. Dieser Fehler muss zuerst durch das Betätigen des Reset-Buttons quittiert werden. Die blinkende Signalleuchte wechselt in ein Dauerleuchten der roten Signalleuchte. Sobald das Personal mindestens ein Werkstück aus der vollen Rutsche entnommen hat, kann der Normalbetrieb durch das Betätigen des Start-Buttons fortgesetzt werden. Die roten Signalleuchten erlöschen.
-\newline TODO: Blinken beide roten Signalleuchten oder nur die vom betroffenen Fließband, während die andere nur leuchtet? 
-%TODO: Blinken beide roten Signalleuchten oder nur die vom betroffenen Fließband, während die andere nur leuchtet?
+Sobald die Rutsche eines Förderbandes voll ist, wird es angehalten und die rote Signalleuchte des betroffenen Förderbandes fängt an schnell zu blinken (1x pro Sekunde). Dieser Fehler muss zuerst durch das Betätigen der Reset-Taste quittiert werden. Die blinkende Signalleuchte wechselt in ein Dauerleuchten der roten Signalleuchte. Sobald das Personal mindestens ein Werkstück aus der vollen Rutsche entnommen hat, kann der Normalbetrieb durch das Betätigen der Start-Taste fortgesetzt werden. Die rote Signalleuchte erlischt.
 
 \subsubsection{Verschwinden von Werkstücken im Normalbetrieb}
-Wird ein Werkstück im Normalbetrieb von einem Fließband entnommen, wird dies als Fehler gewertet. Beide Fließbänder halten an und deren Ampelanlagen signalisieren mit einem schnellen Blinken der roten Signalleuchten (1x pro Sekunde), dass ein Fehler aufgetreten ist. Dieser Fehlerfall muss durch das Betätigen des Reset-Buttons quittiert werden. Daraufhin wechselt das rote Blinken der beiden Ampelanlagen in ein rotes Dauerleuchten. Nun kann durch Betätigen des Start-Buttons der Normalbetrieb der Anlage fortgesetzt werden. Die roten Signalleuchten erlöschen.
+Wird ein Werkstück im Normalbetrieb von einem Förderband entnommen, wird dies als Fehler gewertet. Das betroffene Förderband hält an und die Ampelanlage signalisiert mit einem schnellen Blinken der roten Signalleuchte (1x pro Sekunde), dass ein Fehler aufgetreten ist. Dieser Fehlerfall muss durch das Betätigen der Reset-Taste quittiert werden. Daraufhin wechselt das rote Blinken in ein rotes Dauerleuchten. Nun kann durch Betätigen der Start-Taste der Normalbetrieb der Anlage fortgesetzt werden. Die rote Signalleuchte erlischt.
 
-\subsubsection{Hinzufügen von Werkstücken irgendwo "mitten"\ auf einem Fließband}
-Wird ein Werkstück im Normalbetrieb außerhalb des Einlaufs des ersten Fließbandes der Anlage zugeführt, wird dies als Fehler gewertet. Beide Fließbänder halten an und deren Ampelanlagen signalisieren mit einem schnellen Blinken der roten Signalleuchten (1x pro Sekunde), dass ein Fehler aufgetreten ist. Dieser Fehlerfall muss durch das Betätigen des Reset-Buttons quittiert werden. Daraufhin wechselt das rote Blinken der beiden Ampelanlagen in ein rotes Dauerleuchten. Das Personal muss anschließend das fremde Werkstück entfernen. Nun kann durch Betätigen des Start-Buttons der Normalbetrieb der Anlage fortgesetzt werden. Die roten Signalleuchten erlöschen.
+\subsubsection{Hinzufügen von Werkstücken mitten auf einem Förderband}
+Wird ein Werkstück im Normalbetrieb außerhalb des Einlaufs des ersten Förderbandes der Anlage zugeführt, wird dies als Fehler gewertet. Das betroffene Förderband hält an und die Ampelanlage signalisiert mit einem schnellen Blinken der roten Signalleuchte (1x pro Sekunde), dass ein Fehler aufgetreten ist. Dieser Fehlerfall muss durch das Betätigen der Reset-Taste quittiert werden. Daraufhin wechselt das rote Blinken in ein rotes Dauerleuchten. Das Personal muss anschließend das fremde Werkstück entfernen. Nun kann durch Betätigen der Start-Taste der Normalbetrieb der Anlage fortgesetzt werden. Die rote Signalleuchte erlischt.
 
 \subsubsection{Unquittierte Fehler}
-Wird im Normalbetrieb der Anlage ein Fehler registriert, der sich anschließend wieder von selbst löst oder verschwindet, blinkt die rote Signalleuchte der jeweiligen Ampelanlage langsam (1x pro 2 Sekunden). Durch das Betätigen des Reset-Buttons kann der Normalbetrieb der Anlage fortgesetzt werden. Die roten Signalleuchten erlöschen.
-\newline TODO: Blinken beide roten Signalleuchten langsam oder nur die vom betroffenen Fließband, während die andere normal leuchtet? 
-%TODO: Blinken beide roten Signalleuchten langsam oder nur die vom betroffenen Fließband, während die andere normal leuchtet?
+Wird im Normalbetrieb der Anlage ein Fehler registriert, der sich anschließend wieder von selbst löst oder verschwindet, blinkt die rote Signalleuchte der betroffenen Ampelanlage langsam (1x pro 2 Sekunden). Durch das Betätigen der Reset-Taste kann der Normalbetrieb der Anlage fortgesetzt werden. Die rote Signalleuchte erlischt.
 
 \subsubsection{Sonstige Fehler}
 Sollten während des Normalbetriebs Fehler auftreten, deren Ursache unklar ist, empfiehlt es sich ein Zurücksetzen der gesamten Anlage vorzunehmen. 
@@ -243,12 +237,10 @@ Sollten während des Normalbetriebs Fehler auftreten, deren Ursache unklar ist, 
 \subsubsection{Zurücksetzen der Anlage im Fehlerfall}
 Soll die Anlage aufgrund eines möglichen Fehlerfalls vollständig zurückgesetzt werden, sind folgende Schritte durchzuführen:
 \begin{itemize}
-  \item E-Stopp- / Not-Aus-Button betätigen, um die gesamte Anlage zu stoppen
-  \item Alle auf den Fließbändern befindlichen Werkstücke entnehmen
-  \item Software beider Fließbänder neu starten  
+  \item E-Stopp-Taste betätigen, um die gesamte Anlage zu stoppen
+  \item Alle auf den Förderbändern befindlichen Werkstücke entnehmen
+  \item Software beider Förderbänder neu starten  
 \end{itemize}
-Schaffen diese Maßnahmen keine Abhilfe, sollten zusätzlich beide GEME-Rechner neu gestartet und die Fließbänder kurz vom Stromnetz getrennt werden.
-\newline TODO: Zurücksetzen der Anlage so OK?
-%TODO: Zurücksetzen der Anlage so OK?
+Schaffen diese Maßnahmen keine Abhilfe, sollten zusätzlich beide GEME-Rechner neu gestartet und die Förderbänder kurz vom Stromnetz getrennt werden.
 
 \end{document}
