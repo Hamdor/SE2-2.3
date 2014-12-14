@@ -163,45 +163,107 @@ Testen: Katja Kirstein, Anne-Lena Kowalka, Marian Triebe, Eugen Winter\newline
 \subsection{PSP/Zeitplan/Tracking}
 \textbf{Verwendetes Vorgangsmodell:} V-Modell\newline
 \newline
-\textbf{Festgestellte Arbeitspakete mit ihrer zugehörigen Dauer (Stand: 7.10.2014):}\newline
-\newline
- \begin{small}
-  \begin{tabular}{|p{8cm}|L{5cm}|}
-   \hline
-   \rowcolor{lightgray}\textbf{Arbeitspaket} & \textbf{Dauer}\\
-   \hline
-   Requirements feststellen & 5h insgesamt\\
-   \hline
-   Use Cases feststellen & 5h insgesamt\\
-   \hline
-   RDD bearbeiten & 2h/Woche\\
-   \hline
-   Git-Repository-Verwaltung & 1h/Woche\\
-   \hline
-   Codequalität sicherstellen & 1h/Woche\\
-   \hline
-   Schnittstellenansteuerung/Interface & 3h insgesamt\\
-   \hline
-   Projektplanung mit GanttProject/MS Project & 3h insgesamt\\
-   \hline
-   Regressions-Tests & 8h insgesamt\\
-   \hline
-   Protokollführung & 1h/Woche\\
-   \hline
-   Meetings abhalten & 1.5h/Woche\\
-   \hline
-   Moderation der Meetings/Agenda erstellen & 30 Min/Meeting bzw. Woche\\
-   \hline
-   UML-Diagramme erstellen & 8h insgesamt\\
-   \hline
-   HAL bzw. Ports ansteuern (Tasten, Lichter, serielle Schnittstelle, Sensorik) & 20h insgesamt\\
-   \hline
-   Tests & 16h insgesamt\\
-   \hline
-   Fehlerbehandlung/-korrektur & 30h insgesamt\\
-   \hline
-  \end{tabular}
-\end{small}
+Termine der Milestones und Liste der Arbeitspakete: \newline
+ 1. Milestone (1. Praktikumstermin): \textbf{16.10.2014 \textbar \space (OK am 21.10.2014)}\\
+ 2. Milestone (2. Praktikumstermin): \textbf{23.10.2014 \textbar \space (OK am 24.10.2014)}\\
+ 3. Milestone (4. Praktikumstermin): \textbf{13.11.2014 \textbar \space (OK am 15.11.2014)}\\
+ 4. Milestone (5. Praktikumstermin): \textbf{27.11.2014 \textbar \space (OK am 27.11.2014)}\\
+ 5. Milestone (6. Praktikumstermin): \textbf{04.12.2014 \textbar \space (verschoben auf den 18.12.2014)}\\
+ 6. Milestone (7. Praktikumstermin): \textbf{18.12.2014}\\
+ \textit{6. Milestone (8. Praktikumstermin): \textbf{15.01.2015 (Reserve)}}
+ \subsection{Arbeitspakete}
+\begin{small}
+     \begin{center}
+         \begin{tabular}{|l|c|}
+             \hline
+             \rowcolor{lightgray}\textbf{Arbeitspaket} & \textbf{Dauer}\\
+             \hline
+             Meeting abhalten & 1,5 Stunden / Woche\\
+             \hline
+             Moderation \& Agenda planen & 0,5 Stunden / Woche\\
+             \hline
+             Protokollführung & 1,0 Stunden / Woche\\
+             \hline
+             RDD bearbeiten & 2,0 Stunden / Woche\\
+             \hline
+             Git-Repository Verwaltung & 1,0 Stunden / Woche\\
+             \hline
+             Code-Qualität sicherstellen & 1,0 Stunden / Woche\\
+             \hline
+             Debugging und Fehlerbehandlung & 30,0 Stunden\\
+             \hline
+             Testing & 16,0 Stunden\\
+             \hline
+             \rowcolor{lightgray}\multicolumn{2}{|l|}{\textbf{0. Milestone}}\\
+             \hline
+             Kick-Off Meeting abhalten & 1,0 Stunden\\
+             \hline
+             \rowcolor{lightgray}\multicolumn{2}{|l|}{\textbf{1. Milestone}}\\
+             \hline
+             Interface für HAL erstellen & 3,0 Stunden\\
+             \hline
+             Use Cases feststellen & 5,0 Stunden\\
+             \hline
+             Requirements feststellen & 5,0 Stunden\\
+             \hline
+             UML-Diagramme erstellen & 8,0 Stunden\\
+             \hline
+             Regressionstests planen & 0,5 Stunden\\
+             \hline
+             \rowcolor{lightgray}\multicolumn{2}{|l|}{\textbf{2. Milestone}}\\
+             \hline
+             Projektstrukturplan erstellen & 3,0 Stunden\\
+             \hline
+             HAL der Aktorik implementieren & 8,0 Stunden\\
+             \hline
+             Serielle Schnittstelle implementieren & 4,0 Stunden\\
+             \hline
+             Testprogramm für Aktorik und serielle Schnittstelle erstellen & 1,0 Stunden\\
+             \hline
+             \rowcolor{lightgray}\multicolumn{2}{|l|}{\textbf{3. Milestone}}\\
+             \hline
+             Projektstrukturplan fertigstellen & 3,0 Stunden\\
+             \hline
+             HAL der Sensorik implementieren (via ISRs und Pulse-Messages) & 8,0 Stunden\\
+             \hline
+             Anlagensteuerung mit Zustandsautomaten modellieren & 2,0 Stunden\\
+             \hline
+             Regressionstests implementieren & 7,5 Stunden\\
+             \hline
+             \rowcolor{lightgray}\multicolumn{2}{|l|}{\textbf{4. Milestone}}\\
+             \hline
+             Callback-Mechanismus für Sensorik implementieren (Reactor Pattern) & 6,0 Stunden\\
+             \hline
+             Testprogramm für Implementierung des Callback-Mechanismus erstellen & 1,0 Stunden\\
+             \hline
+             Zustandsautomaten der Anlagensteuerung implementieren & 8,0 Stunden\\
+             \hline
+             Testprogramm für Implementierung der Zustandsautomaten erstellen & 1,0 Stunden\\
+             \hline
+             \rowcolor{lightgray}\multicolumn{2}{|l|}{\textbf{5. Milestone}}\\
+             \hline
+             Ablauf über beide Förderbänder implementieren (ohne Ausnahmebehandlung) & 5,0 Stunden\\
+             \hline
+             Dokumentation des fehlerfreien Testablaufs mit allen Bauteilen erstellen & 2,0 Stunden\\
+             \hline
+             Timer für Ausnahmebehandlung implementieren & 5,0 Stunden\\
+             \hline
+             Timingverhalten zwischen HW- und BS-Timer im RDD diskutiert & 1,0 Stunden\\
+             \hline
+             \rowcolor{lightgray}\multicolumn{2}{|l|}{\textbf{6. Milestone}}\\
+             \hline
+             Ablauf über beide Förderbänder implementieren (inkl. Ausnahmebehandlung) & 40,0 Stunden\\
+             \hline
+             Bedienhandbuch für die Werkstück-Sortieranlage erstellen & 10,0 Stunden\\
+             \hline
+             Abnahmetest erstellen & 8,0 Stunden\\
+             \hline
+             Dokumentation vervollständigen (inkl. „Lessons learned“) & 9,0 Stunden\\
+             \hline
+            \end{tabular}
+        \end{center}
+    \end{small}
+    \newpage
 
 % 3.2 Repository-Konzept
 \subsection{Repository-Konzept}
@@ -970,6 +1032,9 @@ die Regression-Tests und der Normalbetrieb der Anlage vorgeführt.
     \hline
   \end{longtable}
 \end{small}
+\newpage
+
+\subsection{Requirements-Tests-Abdeckung}
 
 \newpage
 
@@ -1031,6 +1096,8 @@ Steuerung = Software, um die Hardware zu koordinieren\newline
 Personal = geschultes Personal, das die Sortieranlage bedient\newline
 Interrupts = asynchrone Nachricht einer Systemkomponente\newline
 Singleton – Modell zur Sicherstellung einer singulären Instanz\newline
+B1 = Sortierband 1 \newline
+B2 = Sortierband 2 \newline
 
 % 11. Abkürzungen
 \section{Abkürzungen}
