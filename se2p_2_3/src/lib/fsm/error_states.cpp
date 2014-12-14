@@ -32,7 +32,7 @@ using namespace se2::util;
 using namespace se2::dispatch;
 
 err_slide_full::err_slide_full(token* t) : state::state(t) {
-  LOG_TRACE("err_slide_full::err_slide_full")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -45,12 +45,12 @@ err_slide_full::err_slide_full(token* t) : state::state(t) {
 }
 
 void err_slide_full::dispatched_event_button_reset() {
-  LOG_TRACE("err_slide_full::dispatched_event_button_reset")
+  LOG_TRACE("")
   new (this) err_slide_full_quitted(m_token);
 }
 
 err_slide_full_quitted::err_slide_full_quitted(token* t) : state::state(t) {
-  LOG_TRACE("err_slide_full_quitted::err_slide_full_quitted")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
   // TODO:
@@ -61,7 +61,7 @@ err_slide_full_quitted::err_slide_full_quitted(token* t) : state::state(t) {
 }
 
 void err_slide_full_quitted::dispatched_event_button_start() {
-  LOG_TRACE("err_slide_full_quitted::dispatched_event_button_start")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -72,7 +72,7 @@ void err_slide_full_quitted::dispatched_event_button_start() {
 
 err_token_not_removed_from_end::err_token_not_removed_from_end(token* t)
     : state::state(t) {
-  LOG_TRACE("err_token_not_removed_from_end::err_token_not_removed_from_end")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
   // TODO:
@@ -82,8 +82,7 @@ err_token_not_removed_from_end::err_token_not_removed_from_end(token* t)
 
 err_token_not_removed_from_end_token_removed::
 err_token_not_removed_from_end_token_removed(token* t) : state::state(t) {
-  LOG_TRACE("err_token_not_removed_from_end_token_removed::\
-    err_token_not_removed_from_end_token_removed")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_GONE);
   // TODO:
@@ -92,7 +91,7 @@ err_token_not_removed_from_end_token_removed(token* t) : state::state(t) {
 
 err_token_not_removed_from_end_quitted::
 err_token_not_removed_from_end_quitted(token* t) : state::state(t) {
-  LOG_TRACE("err_token_not_removed_from_end_quitted::err_token_not_removed_from_end_quitted")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
   dispatcher* disp =
@@ -101,7 +100,7 @@ err_token_not_removed_from_end_quitted(token* t) : state::state(t) {
 }
 
 err_runtime_too_long::err_runtime_too_long(token* t) : state::state(t) {
-  LOG_TRACE("err_runtime_too_long::err_runtime_too_long")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -113,13 +112,13 @@ err_runtime_too_long::err_runtime_too_long(token* t) : state::state(t) {
 }
 
 void err_runtime_too_long::dispatched_event_button_reset() {
-  LOG_TRACE("err_runtime_too_long::dispatched_event_button_reset")
+  LOG_TRACE("")
   new (this) err_runtime_too_long_quitted(m_token);
 }
 
 err_runtime_too_long_quitted
 ::err_runtime_too_long_quitted(token* t) : state::state(t) {
-  LOG_TRACE("err_runtime_too_long_quitted::err_runtime_too_long_quitted")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
   dispatcher* disp =
@@ -128,7 +127,7 @@ err_runtime_too_long_quitted
 }
 
 void err_runtime_too_long_quitted::dispatched_event_button_start() {
-  LOG_TRACE("err_runtime_too_long_quitted::dispatched_event_button_start")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -138,7 +137,7 @@ void err_runtime_too_long_quitted::dispatched_event_button_start() {
 }
 
 err_runtime_too_short::err_runtime_too_short(token* t) : state::state(t) {
-  LOG_TRACE("err_runtime_too_short::err_runtime_too_short")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -151,13 +150,13 @@ err_runtime_too_short::err_runtime_too_short(token* t) : state::state(t) {
 }
 
 void err_runtime_too_short::dispatched_event_button_reset() {
-  LOG_TRACE("err_runtime_too_short::dispatched_event_button_reset")
+  LOG_TRACE("")
   new (this) err_runtime_too_short_quitted(m_token);
 }
 
 err_runtime_too_short_quitted::err_runtime_too_short_quitted(token* t)
     : state::state(t) {
-  LOG_TRACE("err_runtime_too_short_quitted::err_runtime_too_short_quitted")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
   dispatcher* disp =
@@ -166,7 +165,7 @@ err_runtime_too_short_quitted::err_runtime_too_short_quitted(token* t)
 }
 
 void err_runtime_too_short_quitted::dispatched_event_button_start() {
-  LOG_TRACE("err_runtime_too_short_quitted::dispatched_event_button_start")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -176,7 +175,7 @@ void err_runtime_too_short_quitted::dispatched_event_button_start() {
 
 // TODO AN ALLEN SCHRANKEN ALS PREFFERED TOKEN ANMELDEN
 err_unexpected_token::err_unexpected_token(token* t) : state::state(t) {
-  LOG_TRACE("err_unexpected_token::err_unexpected_token")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -190,14 +189,14 @@ err_unexpected_token::err_unexpected_token(token* t) : state::state(t) {
 }
 
 void err_unexpected_token::dispatched_event_button_reset() {
-  LOG_TRACE("err_unexpected_token::dispatched_event_button_reset")
+  LOG_TRACE("")
   new (this) err_unexpected_token_quitted(m_token);
 }
 
 // TODO VON ALLEN SCHRANKEN ALS PREFFERED TOKEN ABMELDEN
 err_unexpected_token_quitted::err_unexpected_token_quitted(token* t)
     : state::state(t) {
-  LOG_TRACE("err_unexpected_token_quitted::err_unexpected_token_quitted")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
   dispatcher* disp =
@@ -206,7 +205,7 @@ err_unexpected_token_quitted::err_unexpected_token_quitted(token* t)
 }
 
 void err_unexpected_token_quitted::dispatched_event_button_start() {
-  LOG_TRACE("err_unexpected_token_quitted::dispatched_event_button_start")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -221,7 +220,7 @@ void err_unexpected_token_quitted::dispatched_event_button_start() {
  **/
 err_token_not_removed_turnover::err_token_not_removed_turnover(token* t)
     : state::state(t) {
-  LOG_TRACE("err_token_not_removed_turnover::err_token_not_removed_turnover")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
 }
@@ -230,14 +229,14 @@ err_token_not_removed_turnover::err_token_not_removed_turnover(token* t)
  * Werkstueck wurde entnommen
  **/
 void err_token_not_removed_turnover::dispatched_event_sensor_exit_rising() {
-  LOG_TRACE("err_token_not_removed_turnover::dispatched_event_sensor_exit_rising")
+  LOG_TRACE("")
 }
 
 /**
  * Werkstueck wurde zurueckgelegt
  **/
 void err_token_not_removed_turnover::dispatched_event_sensor_exit() {
-  LOG_TRACE("err_token_not_removed_turnover::dispatched_event_sensor_exit")
+  LOG_TRACE("")
   new (this) err_token_not_removed_turnover_fixed(m_token);
 }
 
@@ -246,7 +245,7 @@ void err_token_not_removed_turnover::dispatched_event_sensor_exit() {
  **/
 err_token_not_removed_turnover_fixed
 ::err_token_not_removed_turnover_fixed(token* t) : state::state(t) {
-  LOG_TRACE("err_token_not_removed_turnover_fixed::err_token_not_removed_turnover_fixed")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_GONE);
   dispatcher* disp =
@@ -258,7 +257,7 @@ err_token_not_removed_turnover_fixed
  * Werkstueck wurde auf Band 1 gelegt und es wurde der Reset button betaetigt
  **/
 void err_token_not_removed_turnover_fixed::dispatched_event_button_reset() {
-  LOG_TRACE("err_token_not_removed_turnover_fixed::dispatched_event_button_reset")
+  LOG_TRACE("")
   new (this) err_token_not_removed_turnover_quitted(m_token);
 }
 
@@ -267,7 +266,7 @@ void err_token_not_removed_turnover_fixed::dispatched_event_button_reset() {
  **/
 err_token_not_removed_turnover_quitted
 ::err_token_not_removed_turnover_quitted(token* t) : state::state(t) {
-  LOG_TRACE("err_token_not_removed_turnover_quitted::err_token_not_removed_turnover_quitted")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
 }
@@ -276,7 +275,7 @@ err_token_not_removed_turnover_quitted
  * Start Taster wurde wieder betätigt, Band ist wieder bereit.
  **/
 void err_token_not_removed_turnover_quitted::dispatched_event_button_start() {
-  LOG_TRACE("err_token_not_removed_turnover_quitted::dispatched_event_button_start")
+  LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   new (this) b1_token_ready_for_b2(m_token);

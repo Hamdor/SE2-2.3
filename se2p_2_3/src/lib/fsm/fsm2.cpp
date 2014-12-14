@@ -29,6 +29,7 @@
 #include "lib/util/logging.hpp"
 #include "lib/util/light_mgr.hpp"
 #include "lib/hal/HWaccess.hpp"
+#include "lib/fsm/error_states.hpp"
 
 using namespace se2;
 using namespace se2::fsm;
@@ -38,6 +39,9 @@ using namespace se2::dispatch;
 using namespace se2::serial_bus;
 using namespace se2::timer;
 
+/**
+ *
+ **/
 b2_receive_data::b2_receive_data(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(
@@ -69,6 +73,7 @@ b2_received_object::b2_received_object(token* t) : state::state(t) {
   TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
+  // TODO Hier timer fuer die Übergabe starten...
 }
 
 void b2_received_object::dispatched_event_sensor_entrance() {
@@ -82,13 +87,63 @@ b2_realized_object::b2_realized_object(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_HEIGHT);
+  disp->register_listener(m_token, EVENT_SEG1_HAS_TO_EXPIRE);
+  disp->register_listener(m_token, EVENT_SEG1_TOO_LATE);
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration to_expire = { SEGMENT1_SEC__HAS_TO_EXPIRE,
+                               SEGMENT1_MSEC_HAS_TO_EXPIRE };
+  const duration too_late  = { SEGMENT1_SEC__TOO_LATE,
+                               SEGMENT1_MSEC_TOO_LATE };
+  m_token->add_timer_id(hdl->register_timer(to_expire, EVENT_SEG1_HAS_TO_EXPIRE));
+  m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG1_TOO_LATE));
 }
 
+/**
+ * EVENT_SEG1_HAS_TO_EXPIRE timer ist abgelaufen. Nun darf
+ * der Token auch die Lichtschranke durchbrechen
+ **/
+void b2_realized_object::dispatched_event_seg1_has_to_expire() {
+  LOG_TRACE("")
+  new (this) b2_realized_object_seg1_ok(m_token);
+}
+
+/**
+ * EVENT_SENSOR_HEIGHT wurde zu frueh gefeuert, es wurde wahrscheinlich
+ * ein neuer Token wild auf das Band gelegt.
+ **/
 void b2_realized_object::dispatched_event_sensor_height() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_short(m_token);
+}
+
+/**
+ * Timer von Segment 1 ist abgelaufen, Werkstueck kam noch nicht
+ * zu frueh an.
+ **/
+b2_realized_object_seg1_ok::b2_realized_object_seg1_ok(token* t)
+    : state::state(t) {
+  LOG_TRACE("")
+}
+
+/**
+ * Good Case. Token ist zwischen dem Too late und dem Too early
+ * Token in die Lichtschranke geraten
+ * Betreffend Segment 1 (Hoehenmessung)
+ **/
+void b2_realized_object_seg1_ok::dispatched_event_sensor_height() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_slow_motor();
   new (this) b2_height_measurement(m_token);
+}
+
+/**
+ * Token ist zu spaet und wurde wahrscheinlich vom Band entfernt.
+ * Betreffend Segment 1
+ **/
+void b2_realized_object_seg1_ok::dispatched_event_seg1_too_late() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_long(m_token);
 }
 
 b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
