@@ -237,6 +237,7 @@ void err_token_not_removed_turnover::dispatched_event_sensor_exit_rising() {
  * Werkstueck wurde zurueckgelegt
  **/
 void err_token_not_removed_turnover::dispatched_event_sensor_exit() {
+  LOG_TRACE("err_token_not_removed_turnover::dispatched_event_sensor_exit")
   new (this) err_token_not_removed_turnover_fixed(m_token);
 }
 
