@@ -178,14 +178,20 @@ bool token::check_internal_times(int section) {
   if (section == SEGMENT_1) {
     timespec diffspec = diff(m_timespec_seg1, curspec);
     // TODO Pruefen ob zu groß/zu klein
+    std::cout << "sec: "  << diffspec.tv_sec  << " "
+              << "nsec: " << diffspec.tv_nsec << std::endl;
     return true;
   } else if (section == SEGMENT_2) {
     timespec diffspec = diff(m_timespec_seg2, curspec);
     // TODO Pruefen ob zu groß/zu klein
+    std::cout << "sec: "  << diffspec.tv_sec  << " "
+              << "nsec: " << diffspec.tv_nsec << std::endl;
     return true;
   } else if (section == SEGMENT_3) {
     timespec diffspec = diff(m_timespec_seg3, curspec);
     // TODO Pruefen ob zu groß/zu klein
+    std::cout << "sec: "  << diffspec.tv_sec  << " "
+              << "nsec: " << diffspec.tv_nsec << std::endl;
     return true;
   } else {
     return false;

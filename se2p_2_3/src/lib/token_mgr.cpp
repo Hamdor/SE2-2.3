@@ -96,6 +96,9 @@ void token_mgr::update() {
     TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->pause_all();
   } else {
     if (m_wait_turnover == 0) {
+      for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
+        m_tokens[i].start_internal_times();
+      }
       hal->set_motor(MOTOR_RESUME);
       TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->continue_all();
     }
@@ -168,7 +171,11 @@ void token_mgr::unrequest_left_motor(bool update) {
 }
 
 void token_mgr::request_stop_motor(bool update) {
-  ++m_motor_stop;
+  if (++m_motor_stop == 1) {
+    for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
+      m_tokens[i].stop_internal_times();
+    }
+  }
   if (update) {
     this->update();
   }
