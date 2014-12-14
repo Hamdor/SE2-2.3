@@ -680,7 +680,8 @@ C++ (nur STL)
 % 5.4 Use-Case-Diagramm
 \begin{figure}
  \subsection{Use-Case-Diagramm}
- \centering\vfill\includegraphics[angle=90,scale=0.7]{imgs/UseCases.png}
+ \centering\vfill\includegraphics[angle=90,scale=0.6]{imgs/UseCases.png}
+ \caption{Use-Cas-Diagramm}
 \end{figure}
 
 \newpage
@@ -701,7 +702,7 @@ Das System verfügt über folgende Module: HAL zum Ansteuern/Auslesen der Aktori
 \begin{figure}
     \subsubsection{Komponentendiagramm}
     \centering\vfill\includegraphics[angle=0,scale=0.8]{imgs/Sortieranlage-Komponenten.png}
-    \newline
+    \caption{Komponentendiagramm}
 \end{figure}
 
 % 6.2 Datenmodell
@@ -710,20 +711,27 @@ siehe Klassendiagramm im imgs-Ordner \newline
 
 % 6.3 Datenmodell
 \subsection{Verhaltensmodell}
-siehe Automatendiagramme
+siehe Abbildungen 3-5 auf den Seiten 22-24
 
 % 6.3.1 Automat für Band 1
 \begin{figure}
 	\subsubsection{Automat für Band 1}
-	\centering\vfill\includegraphics[angle=90,scale=0.58]{imgs/Band1_FSM.png}
+	\centering\vfill\includegraphics[angle=90,scale=0.54]{imgs/Band1_FSM.png}
+    \caption{Automat für Band 1}
 \end{figure}
 
 % 6.3.2 Automat für Band 2
 \begin{figure}
 	\subsubsection{Automat für Band 2}
-	\centering\vfill\includegraphics[angle=0,scale=0.46]{imgs/Band2_FSM.png}
-	\subsubsection{Automat für Fehlerbehebung}
-	\centering\vfill\includegraphics[angle=0,scale=0.6]{imgs/Error_FSM.png}
+	\centering\vfill\includegraphics[angle=90,scale=0.65]{imgs/Band2_FSM.png}
+    \caption{Automat für Band 2}
+    \clearpage
+\end{figure}
+
+\begin{figure}
+    \subsubsection{Automat für Fehlerbehebung}
+    \centering\vfill\includegraphics[angle=90,scale=0.54]{imgs/Error_FSM.png}
+    \caption{Automat für Fehlerbehebung}
 \end{figure}
 
 \newpage
@@ -1002,7 +1010,7 @@ Das Klima im Team war sehr angenehm. Getroffene Absprachen wurden eingehalten un
 Durch die Aufgabenverteilung konnte effizient und gleichzeitig an verschiedenen Aufgaben gearbeitet werden, was durchaus sinnvoll ist, wenn wie bei diesem Projekt Deadlines eingehalten werden müssen und entsprechend unter Zeitdruck gearbeitet werden muss. \newline
 Die Verteilung der Aufgaben hat allerdings dazu geführt, dass man wenig Einblick in die Arbeit der anderen bekommen konnte und z.B. keine Architekturdiskussionen geführt wurden, was Fehler von vornherein hätte vermeiden können. Als die Fehler schließlich aufkamen, war es teilweise schon zu spät, grundlegende Änderungen vornehmen zu können, sodass kleinere Workarounds notwendig wurden. \newline
 Außerdem hat sich herausgestellt, dass eine Teamorganisation sehr schwierig ist, wenn die Wissensstände zu unterschiedlich sind. \newline
-Des Weiteren wurde es als sehr anstrengend und schwierig empfunden, streng nach dem V-Modell vorzugehen. Diese Vorgehensweise hatten wir zu Beginn des Projekts zwar ausgewählt, es hat sich aber herausgestellt, dass die Verwendung des Scrumm- oder V-Modell-XT vermutlich besser wäre.\newline
+Des Weiteren wurde es als sehr anstrengend und schwierig empfunden, streng nach dem V-Modell vorzugehen. Diese Vorgehensweise hatten wir zu Beginn des Projekts zwar ausgewählt, es hat sich aber herausgestellt, dass die Verwendung des Scrumm- oder V-Modell-XT vermutlich besser wäre. weil somit eine gelockertere Vorgehensweise möglich ist.\newline
 Weiterhin hat sich gezeigt, dass die Aufteilung eines großen Projekts in kleinere Milestones sehr hilfreich ist, um den Überblick zu behalten und gesetzte Deadlines einzuhalten. Diese Deadlines sollten früh angesetzt werden, damit die Aufgaben auch wirklich pünktlich fertig sind.\newline
 Es wurde allerdings festgestellt, dass die Granularität der Commits bzw. Pushs auf Github  immer noch teilweise zu grob war, besonders bei der Bearbeitung von Binärdateien, an denen mehrere Personen gearbeitet haben. Hier ist es wahrscheinlich sinnvoll, in kleineren Paketen Commits und Pushs durchzuführen, was eventuell einer weiteren Aufteilung der vorgegebenen Milestones bedarf. \newline
 Außerdem wurde öfters bemerkt, dass die Dokumentation/UML-Diagramme nicht auf demselben Stand wie der Code waren. Hier ist es sehr wichtig, darauf zu achten, dass Code und Dokumentation auf demselben Stand bleiben, um Inkonsistenzen zu vermeiden.\newline
