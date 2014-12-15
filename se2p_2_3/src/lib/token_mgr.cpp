@@ -77,6 +77,11 @@ void token_mgr::update() {
     hal->set_motor(MOTOR_RIGHT);
   }
   if (m_motor_slow > 0) {
+    if (m_motor_slow == 1) {
+      for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
+        m_tokens[i].add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
+      }
+    }
     hal->set_motor(MOTOR_SLOW);
   } else {
     hal->set_motor(MOTOR_FAST);

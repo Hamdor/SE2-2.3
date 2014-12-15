@@ -93,20 +93,20 @@ class logging : public abstract_singleton {
 #define LOG_TRACE(str)                                                        \
     static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(  \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::TRACE,     \
-                          __FILE__, __LINE__, __FUNCTION__);
+                          __FILE__, __LINE__, __PRETTY_FUNCTION__);
 
 #define LOG_DEBUG(str)                                                        \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::DEBUG,     \
-                                         __FILE__, __LINE__, __FUNCTION__);
+                                         __FILE__, __LINE__, __PRETTY_FUNCTION__);
 
 #define LOG_WARNING(str)                                                      \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::WARNING,   \
-                                         __FILE__, __LINE__, __FUNCTION__);
+                                         __FILE__, __LINE__, __PRETTY_FUNCTION__);
 
 #define LOG_ERROR(str)                                                        \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
-                   se2::util::LOGGER_PLUGIN))->log(str,              \
-                   se2::util::ERROR, __FILE__, __LINE__, __FUNCTION__);
+                   se2::util::LOGGER_PLUGIN))->log(str,                       \
+                   se2::util::ERROR, __FILE__, __LINE__, __PRETTY_FUNCTION__);
 #endif // SE2_LOGGING_HPP

@@ -65,45 +65,14 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(
       DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_HEIGHT);
-  disp->register_listener(m_token, EVENT_SEG1_HAS_TO_EXPIRE);
   disp->register_listener(m_token, EVENT_SEG1_TOO_LATE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_existence();
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  const duration to_expire = { SEGMENT1_SEC__HAS_TO_EXPIRE,
-                               SEGMENT1_MSEC_HAS_TO_EXPIRE };
   const duration too_late  = { SEGMENT1_SEC__TOO_LATE,
                                SEGMENT1_MSEC_TOO_LATE };
-  m_token->add_timer_id(hdl->register_timer(to_expire,
-                                            EVENT_SEG1_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG1_TOO_LATE));
-}
-
-/**
- * EVENT_SEG1_HAS_TO_EXPIRE timer ist abgelaufen. Nun darf
- * der Token auch die Lichtschranke durchbrechen
- **/
-void b1_realized_object::dispatched_event_seg1_has_to_expire() {
-  LOG_TRACE("");
-  new (this) b1_realized_object_seg1_ok(m_token);
-}
-
-/**
- * EVENT_SENSOR_HEIGHT wurde zu frueh gefeuert, es wurde wahrscheinlich
- * ein neuer Token auf das Band gelegt.
- **/
-void b1_realized_object::dispatched_event_sensor_height() {
-  LOG_TRACE("");
-  new (this) err_runtime_too_short(m_token);
-}
-
-/**
- * Timer von Segment 1 ist abgelaufen, Werkstueck kam noch nicht
- * zu frueh an.
- **/
-b1_realized_object_seg1_ok::b1_realized_object_seg1_ok(token* t)
-    : state::state(t) {
-  LOG_TRACE("")
+  m_token->init_internal_times();
 }
 
 /**
@@ -111,19 +80,22 @@ b1_realized_object_seg1_ok::b1_realized_object_seg1_ok(token* t)
  * Token in die Lichtschranke geraten
  * Betreffend Segment 1
  **/
-void b1_realized_object_seg1_ok::dispatched_event_sensor_height() {
+void b1_realized_object::dispatched_event_sensor_height() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_slow_motor();
-  new (this) b1_height_measurement(m_token);
+  if (m_token->check_internal_times(SEGMENT_1)) {
+    new (this) b1_height_measurement(m_token);
+  } else {
+    new (this) err_runtime_too_short(m_token);
+  }
 }
 
 /**
- * Token ist zu spaet und wurde wahrscheinlich vom Band entfernt.
- * Betreffend Segment 1
+ * Laufzeit im Segment 1 war zu lang
  **/
-void b1_realized_object_seg1_ok::dispatched_event_seg1_too_late() {
-  LOG_TRACE("");
+void b1_realized_object::dispatched_event_seg1_too_late() {
+  LOG_TRACE("")
   new (this) err_runtime_too_long(m_token);
 }
 
@@ -189,24 +161,11 @@ void b1_token_too_small::dispatched_event_sensor_height_rising() {
   mgr->request_fast_motor();
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
-  disp->register_listener(m_token, EVENT_SEG2_HAS_TO_EXPIRE);
   disp->register_listener(m_token, EVENT_SEG2_TOO_LATE);
-  const duration to_expire = { SEGMENT2_SEC__HAS_TO_EXPIRE,
-                              SEGMENT2_MSEC_HAS_TO_EXPIRE };
-  const duration too_late = { SEGMENT2_SEC__TOO_LATE + 1,
+  const duration too_late = { SEGMENT2_SEC__TOO_LATE + 2,
                               SEGMENT2_MSEC_TOO_LATE };
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  m_token->add_timer_id(hdl->register_timer(to_expire,
-                                            EVENT_SEG2_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG2_TOO_LATE));
-}
-
-/**
- * Werkstueck ist nicht zu frueh in den Sensor der Rutsche gekommen
- **/
-void b1_token_too_small::dispatched_event_seg2_has_to_expire() {
-  LOG_TRACE("")
-  new (this) b1_token_too_small_seg2_ok(m_token);
 }
 
 /**
@@ -214,7 +173,9 @@ void b1_token_too_small::dispatched_event_seg2_has_to_expire() {
  **/
 void b1_token_too_small::dispatched_event_sensor_switch() {
   LOG_TRACE("")
-  new (this) err_runtime_too_short(m_token);
+  if (!m_token->check_internal_times(SEGMENT_2)) {
+    new (this) err_runtime_too_short(m_token);
+  }
 }
 
 /**
@@ -231,29 +192,6 @@ void b1_token_too_small::dispatched_event_sensor_switch() {
  **/
 void b1_token_too_small::dispatched_event_sensor_slide() {
   LOG_TRACE("")
-  new (this) err_runtime_too_short(m_token);
-}
-
-/**
- * Uebergang von `b1_token_too_small::dispatched_event_seg2_has_to_expire()`
- * Werkstueck kam schonmal nicht zu spaet
- **/
-b1_token_too_small_seg2_ok::b1_token_too_small_seg2_ok(token* t)
-    : state::state(t) {
-  LOG_TRACE("")
-  m_token->m_seg2_ok = true;
-}
-
-/**
- * Good Case, Werkstueck war nicht zu spaet und nicht zu frueh
- * Werkstueck muss jetzt die Rutsche runterrtuschen
- * TODO:
- * - Timer starten fuer timeout der Rutsche
- * - `dispatched_event_sensor_slide_r()` implementieren
- * - Token erst loeschen wenn Lichtschranke wieder ununterbrochen
- **/
-void b1_token_too_small_seg2_ok::dispatched_event_sensor_slide() {
-  LOG_TRACE("")
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SLIDE_FULL_TIMEOUT);
@@ -266,7 +204,7 @@ void b1_token_too_small_seg2_ok::dispatched_event_sensor_slide() {
 /**
  * Werkstueck hat Rutschenbereich wieder verlassen
  **/
-void b1_token_too_small_seg2_ok::dispatched_event_sensor_slide_rising() {
+void b1_token_too_small::dispatched_event_sensor_slide_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_death();
@@ -276,7 +214,7 @@ void b1_token_too_small_seg2_ok::dispatched_event_sensor_slide_rising() {
 /**
  * Rutsche ist voll
  **/
-void b1_token_too_small_seg2_ok::dispatched_event_slide_full_timeout() {
+void b1_token_too_small::dispatched_event_slide_full_timeout() {
   LOG_TRACE("")
   new (this) err_slide_full(m_token);
 }
@@ -285,7 +223,7 @@ void b1_token_too_small_seg2_ok::dispatched_event_slide_full_timeout() {
  * Werkstueck hat die Lichtschranke der Rutsche nicht durchbrochen und
  * wurde (a) vom Band entfernt oder (b) haengt auf dem Band fest
  **/
-void b1_token_too_small_seg2_ok::dispatched_event_seg2_too_late() {
+void b1_token_too_small::dispatched_event_seg2_too_late() {
   LOG_TRACE("")
   new (this) err_runtime_too_long(m_token);
 }
@@ -309,38 +247,17 @@ void b1_valid_height::dispatched_event_sensor_height_rising() {
   mgr->request_fast_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
-  disp->register_listener(m_token, EVENT_SEG2_HAS_TO_EXPIRE);
   disp->register_listener(m_token, EVENT_SEG2_TOO_LATE);
-  const duration to_expire = { SEGMENT2_SEC__HAS_TO_EXPIRE,
-                              SEGMENT2_MSEC_HAS_TO_EXPIRE };
   const duration too_late = { SEGMENT2_SEC__TOO_LATE,
                               SEGMENT2_MSEC_TOO_LATE };
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  m_token->add_timer_id(hdl->register_timer(to_expire,
-                                            EVENT_SEG2_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG2_TOO_LATE));
-}
-
-/**
- * Der erste Timer ist abgelaufen, Werkstueck nicht zu frueh
- **/
-void b1_valid_height::dispatched_event_seg2_has_to_expire() {
-  LOG_TRACE("")
-  new (this) b1_valid_height_seg2_ok(m_token);
-}
-
-/**
- * Uebergang von `b1_valid_height`
- **/
-b1_valid_height_seg2_ok::b1_valid_height_seg2_ok(token* t) : state::state(t) {
-  LOG_TRACE("")
-  m_token->m_seg2_ok = true;
 }
 
 /**
  * Good Case, Werkstueck ist nicht zu spaet im Weichensensor
  **/
-void b1_valid_height_seg2_ok::dispatched_event_sensor_switch() {
+void b1_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_open_switch();
@@ -352,51 +269,18 @@ void b1_valid_height_seg2_ok::dispatched_event_sensor_switch() {
 /**
  * Werkstueck hat den Sensor der Weiche verlassen
  **/
-void b1_valid_height_seg2_ok::dispatched_event_sensor_switch_rising() {
+void b1_valid_height::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_open_switch();
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_EXIT);
-  disp->register_listener(m_token, EVENT_SEG3_HAS_TO_EXPIRE);
   disp->register_listener(m_token, EVENT_SEG3_TOO_LATE);
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  const duration to_expire = { SEGMENT3_SEC__HAS_TO_EXPIRE,
-                               SEGMENT3_MSEC_HAS_TO_EXPIRE };
   const duration too_late  = { SEGMENT3_SEC__TOO_LATE,
                                SEGMENT3_MSEC_TOO_LATE };
-  m_token->add_timer_id(hdl->register_timer(to_expire,
-                                            EVENT_SEG3_HAS_TO_EXPIRE));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE));
-}
-
-/**
- * Werkstueck wurde von der Weiche entfernt (Segment 2)
- **/
-void b1_valid_height_seg2_ok::dispatched_event_seg2_too_late() {
-  LOG_TRACE("")
-  new (this) err_runtime_too_long(m_token);
-}
-
-/**
- * Werkstueck hat die Lichtschranke der Weiche zu frueh durchbrochen
- * In Fehlerbehandlung springen
- **/
-void b1_valid_height::dispatched_event_sensor_switch() {
-  LOG_TRACE("")
-  new (this) err_runtime_too_short(m_token);
-}
-
-/**
- * Werkstueck hat Lichtschranke der Weiche verlassen
- * TODO:
- * - Evtl einen Timer erstellen der `unrequest_open_switch()` ausloest,
- *   auf manchen Baendern bleibt das Werkstueck in der Weiche haengen da
- *   entweder der Motor zu schwach ist, oder die Weiche zu stark.
- **/
-void b1_valid_height::dispatched_event_sensor_switch_rising() {
-  // TODO: In fehler.. Zu frueh oder zu spaet?!
 }
 
 /**
@@ -404,47 +288,15 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
  **/
 void b1_valid_height::dispatched_event_sensor_exit() {
   LOG_TRACE("")
-  new (this) err_runtime_too_short(m_token);
-}
-
-/**
- * Werkstueck kam nicht zu frueh an
- **/
-void b1_valid_height_seg2_ok::dispatched_event_seg3_has_to_expire() {
-  LOG_TRACE("")
-  new (this) b1_valid_height_seg3_ok(m_token);
-}
-
-/**
- * Werkstueck sollte nun im letzten (3ten) Segment sein
- **/
-b1_valid_height_seg3_ok::b1_valid_height_seg3_ok(token* t) : state::state(t) {
-  LOG_TRACE("")
-}
-
-/**
- * Token zu spaet, in Fehlerbehandlung springen
- **/
-void b1_valid_height_seg3_ok::dispatched_event_seg2_too_late() {
-  LOG_TRACE("")
-  if (!m_token->m_seg2_ok) {
-    new (this) err_runtime_too_long(m_token);
-  }
-}
-
-/**
- * Werkstueck ist zur korrekten Zeit in die Exit-Lichtschranke gekommen
- **/
-void b1_valid_height_seg3_ok::dispatched_event_sensor_exit() {
-  LOG_TRACE("")
   new (this) b1_exit(m_token);
 }
 
-/**
- * Werkstueck ist zu spaet. Wurde (a) vom Band entnommen,
- * oder (b) haengt auf dem Band fest
- **/
-void b1_valid_height_seg3_ok::dispatched_event_seg3_too_late() {
+void b1_valid_height::dispatched_event_seg2_too_long() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_long(m_token);
+}
+
+void b1_valid_height::dispatched_event_seg3_too_long() {
   LOG_TRACE("")
   new (this) err_runtime_too_long(m_token);
 }

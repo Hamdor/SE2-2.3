@@ -169,20 +169,10 @@ class b1_realized_object : public state {
     // nop
   }
 
-  virtual void dispatched_event_seg1_has_to_expire();
-  virtual void dispatched_event_sensor_height();
-};
-
-class b1_realized_object_seg1_ok : public state {
- public:
-  b1_realized_object_seg1_ok(token* t);
-  virtual ~b1_realized_object_seg1_ok() {
-    // nop
-  }
-
   virtual void dispatched_event_sensor_height();
   virtual void dispatched_event_seg1_too_late();
 };
+
 
 class b1_height_measurement : public state {
  public:
@@ -199,22 +189,11 @@ class b1_token_too_small : public state {
     // nop
   }
   virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_sensor_slide_rising();
   virtual void dispatched_event_sensor_switch();
   virtual void dispatched_event_sensor_height_rising();
-  virtual void dispatched_event_seg2_has_to_expire();
-};
-
-class b1_token_too_small_seg2_ok : public state {
- public:
-  b1_token_too_small_seg2_ok(token* t);
-  virtual ~b1_token_too_small_seg2_ok() {
-    // nop
-  }
-
-  virtual void dispatched_event_sensor_slide();
-  virtual void dispatched_event_seg2_too_late();
-  virtual void dispatched_event_sensor_slide_rising();
   virtual void dispatched_event_slide_full_timeout();
+  virtual void dispatched_event_seg2_too_late();
 };
 
 class b1_valid_height : public state {
@@ -228,32 +207,8 @@ class b1_valid_height : public state {
   virtual void dispatched_event_sensor_switch();
   virtual void dispatched_event_sensor_switch_rising();
   virtual void dispatched_event_sensor_exit();
-  virtual void dispatched_event_seg2_has_to_expire();
-};
-
-class b1_valid_height_seg2_ok : public state {
- public:
-  b1_valid_height_seg2_ok(token* t);
-  virtual ~b1_valid_height_seg2_ok() {
-    // nop
-  }
-
-  virtual void dispatched_event_sensor_switch();
-  virtual void dispatched_event_sensor_switch_rising();
-  virtual void dispatched_event_seg3_has_to_expire();
-  virtual void dispatched_event_seg2_too_late();
-};
-
-class b1_valid_height_seg3_ok : public state {
- public:
-  b1_valid_height_seg3_ok(token* t);
-  virtual ~b1_valid_height_seg3_ok() {
-    // nop
-  }
-
-  virtual void dispatched_event_seg2_too_late();
-  virtual void dispatched_event_sensor_exit();
-  virtual void dispatched_event_seg3_too_late();
+  virtual void dispatched_event_seg2_too_long();
+  virtual void dispatched_event_seg3_too_long();
 };
 
 class b1_exit : public state {

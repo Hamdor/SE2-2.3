@@ -135,13 +135,13 @@ void token::reset_internal_times() {
   std::memset(&m_timespec_stop, 0, sizeof(timespec));
 }
 
-void token::add_internal_times(int sec, int msec) {
+void token::add_internal_times(int sec, long nsec) {
   m_timespec_seg1.tv_sec  += sec;
-  m_timespec_seg1.tv_nsec += msec * MILISEC_TO_NANOSEC;
+  m_timespec_seg1.tv_nsec += nsec;
   m_timespec_seg2.tv_sec  += sec;
-  m_timespec_seg2.tv_nsec += msec * MILISEC_TO_NANOSEC;
+  m_timespec_seg2.tv_nsec += nsec;
   m_timespec_seg3.tv_sec  += sec;
-  m_timespec_seg3.tv_nsec += msec * MILISEC_TO_NANOSEC;
+  m_timespec_seg3.tv_nsec += nsec;
 }
 
 void token::stop_internal_times() {
