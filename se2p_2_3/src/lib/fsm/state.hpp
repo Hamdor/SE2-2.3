@@ -321,6 +321,9 @@ class b2_token_upside_down : public state {
 
   virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_slide();
+  virtual void dispatched_event_sensor_slide_rising();
+  virtual void dispatched_event_slide_full_timeout();
+  virtual void dispatched_event_seg2_too_late();
 };
 
 class b2_valid_height : public state {

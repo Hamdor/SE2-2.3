@@ -171,12 +171,32 @@ void b2_token_upside_down::dispatched_event_sensor_height_rising() {
 
 void b2_token_upside_down::dispatched_event_sensor_slide() {
   LOG_TRACE("")
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_SLIDE_FULL_TIMEOUT);
+  disp->register_listener(m_token, EVENT_SENSOR_SLIDE_R);
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration dur = { SLIDE_SEC__TIMEOUT, SLIDE_MSEC_TIMEOUT };
+  m_token->add_timer_id(hdl->register_timer(dur, EVENT_SLIDE_FULL_TIMEOUT));
+}
+
+void b2_token_upside_down::dispatched_event_sensor_slide_rising() {
+  LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_death();
-  // TODO: Wenn zu lange unterbrochen, dann in error springen,
-  // da die rutsche voll ist
   new (this) anonymous_token(m_token);
 }
+
+void b2_token_upside_down::dispatched_event_slide_full_timeout() {
+  LOG_TRACE("")
+  new (this) err_slide_full(m_token);
+}
+
+void b2_token_upside_down::dispatched_event_seg2_too_late() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_long(m_token);
+}
+
 
 b2_valid_height::b2_valid_height(token* t) : state::state(t) {
   LOG_TRACE("")
