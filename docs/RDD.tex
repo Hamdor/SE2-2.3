@@ -974,7 +974,7 @@ geworfen wird.
 
 % 8.4 Regressions-Test
 \subsection{Regressions-Test}
-Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese sind möglichst unabhängig voneinander.
+Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese sind möglichst unabhängig voneinander und werden zur Qualitätssicherung durchgeführt.
 \begin{enumerate}
   \item \textbf{Test der HAL}
   \begin{enumerate}
@@ -1010,10 +1010,11 @@ Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese s
 \newpage
 
 % 8.5 Abnahme-Test
-\subsection{Abnahme-Test}
-Nachdem die Qualitätssicherung und korrekte Funktionalität der Software mittels Durchführung der Regressionstests bestätigt wurde, wird die Funktionsfähigkeit der Anlage mit den folgenden Abnahmetests geprüft. Die Abnahmetests decken die zu Beginn des Projekts aufgestellten Requirements ab und sollen die Funktionsfähigkeit der Anlage sowohl im Normalbetrieb als auch in Fehlerfällen demonstrieren.
+\subsection{Abnahme-Tests}
+Um eine komplette Abdeckung der zu Beginn des Projekts aufgestellten Requirements zu gewährleisten, wurden Abnahmetests entworfen. Eine Auflistung dieser Tests findet sich in den Unterpunkten 8.5.1 und 8.5.2 . \newline
+Eine Übersicht, welcher Abnahmetest welche Requirements abdeckt, findet sich in den darauffolgenden Punkten 8.5.3 - 8.5.5 .\newline
 
-% 8.3.1 Auflistung der Regressions-Tests für die Grundfunktionen der Anlage
+% 8.5.1 Auflistung der Regressions-Tests für die Grundfunktionen der Anlage
 \subsubsection{Auflistung der Abnahme-Tests für die Grundfunktionen der Anlage}
 \textbf{Mindestabstand: 5cm}
 % Tabelle
@@ -1161,6 +1162,10 @@ Etwas, worauf wir bei der Arbeit häufiger gestoßen sind, war die Tatsache, das
   \textbf{Personal:}         \> \> Geschultes Personal, das die Sortieranlage bedient\\
   \textbf{Interrupts:}       \> \> Asynchrone Nachricht einer Systemkomponente\\
   \textbf{Singleton:}        \> \> Modell zur Sicherstellung einer singulären Instanz\\
+  \textbf{V-Modell:}         \> \> Vorgehensmodell in der Systementwicklung\\
+  \textbf{Stub:}             \> \> Programmcode, der ein Verhalten emuliert (z.B. von Hardware)\\
+  
+  
 \end{tabbing}
 
 
@@ -1168,9 +1173,16 @@ Etwas, worauf wir bei der Arbeit häufiger gestoßen sind, war die Tatsache, das
 \section{Abkürzungen}
 \begin{tabbing}
   Links \= Mitte \= Rechts \kill
-  \textbf{WS:} \> \> Werkstück\\
-  \textbf{B1:} \> \> Sortierband 1\\
-  \textbf{B2:} \> \> Sortierband 2\\
+  \textbf{WS:}   \> \> Werkstück\\
+  \textbf{B1:}   \> \> Sortierband 1\\
+  \textbf{B2:}   \> \> Sortierband 2\\
+  \textbf{HAL:}  \> \> Hardware Abstraction Layer\\
+  \textbf{DCLP:} \> \> Double Checked Locking Pattern\\
+  \textbf{ISR:}  \> \> Interrupt Service Routine\\
+  \textbf{IRQ:}  \> \> Interrupt Request\\
+  \textbf{FIFO:} \> \> First In First Out\\
+  \textbf{RDD:}  \> \> Requirements and Design Document\\
+  
 \end{tabbing}
 
 \newpage
