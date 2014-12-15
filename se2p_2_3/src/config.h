@@ -69,6 +69,10 @@
                                     // Der Name des generieten Logfiles setzt
                                     // sich wie folgt zusammen:
                                     // "log_{prozess ID}_{UNIX_TIME}.log"
+
+#define LOG_TRACE_STDIO  // Alle Ausgaben werden auch in den STDIO geloggt
+                         // Im Normalfall ist dies die Konsole von Momentics.
+
 /**
  * ----------------------------------------------------------------------------
  * Serielle Schnittstelle Spezifische Defines
