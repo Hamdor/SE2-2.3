@@ -106,7 +106,7 @@
       \hline
       0.8 & Alle Team-Mitglieder & 27.11.2014 & Implementierungen von Dispatcher, Automaten und Timer hinzugefügt. Unit-/Komponenten-Tests für HAL, IRQ, Dispatcher und Timer hinzugefügt.\\
       \hline
-      0.9 & Eugen Winter & 02.12.2014 & Timer-Werte und Öffnungsdauer der Weiche in den Nicht-funktionalen Anforderungen angepasst und separate Seite für den Versionsverlauf im RDD erstellt.\\
+      0.9 & Eugen Winter & 02.12.2014 & Timer-Werte und Öffnungsdauer der Weiche in den Non-functional Requirements angepasst und separate Seite für den Versionsverlauf im RDD erstellt.\\
       \hline
       0.91 & Anne-Lena Kowalka & 03.12.2014 & Allgemeine Überarbeitung, Repository-Konzept aktualisiert, Requirements angepasst, System-Test-Szenarien hinzugefügt\\
       \hline
@@ -312,11 +312,11 @@ C++ (nur STL)
 
 \newpage
 
-% 5.2 Anforderungen
-\subsection{Anforderungen}
+% 5.2 Requirements
+\subsection{Requirements}
 
-% 5.2.1 Funktionale Anforderungen
-\subsubsection{Funktionale Anforderungen}
+% 5.2.1 Functional Requirements
+\subsubsection{Functional Requirements}
 \begin{small}
   \begin{center}
     \begin{longtable}{|c|p{4cm}|c|p{7cm}|}
@@ -327,7 +327,7 @@ C++ (nur STL)
       \hline
       FR-001 & Typen von Werkstücken & Werkstück & Es gibt 3 Typen von Werkstücken:Zu flach, mit Bohrung, sowie mit und ohne Metalleinsatz.\\
       \hline
-      \rowcolor{lightgray} FR-002 & Anzahl der Sortierbänder & Anlage & Für die Werkstück"=Sortieranlage stehen 2 Sortierbänder zur Verfügung.\\
+      \rowcolor{lightgray} FR-002 & Anzahl der Förderbänder & Anlage & Für die Werkstück"=Sortieranlage stehen 2 Förderbänder zur Verfügung.\\
       \hline
       FR-003.1 & Ziel der Werkstück"=Sortieranlage & Anlage & Am Ende von Band 2 sollen die Werkstücke im Wechsel mit und ohne Metalleinsatz ankommen.\\
       \hline
@@ -437,8 +437,8 @@ C++ (nur STL)
 
 \newpage
 
-% 5.2.2 Nicht-funktionale Anforderungen
-\subsubsection{Nicht-funktionale Anforderungen}
+% 5.2.2 Non-functional Requirements
+\subsubsection{Non-functional Requirements}
 \begin{small}
   \begin{center}
     \begin{longtable}{|c|p{4cm}|c|p{7cm}|}
@@ -958,7 +958,7 @@ geworfen wird.
 
 % 8.2 Integrations-Test/System-Test
 \subsection{Integrations-Test/System-Test}
-\textbf{Beim Systemtest werden folgende Szenarien getestet:}\newline
+\textbf{Beim Systemtest werden folgende Szenarien getestet:}
 \begin{enumerate}
   \item Es werden zu flache Pucks auf Band 1 gelegt, um zu prüfen, ob diese von Band 1 aussortiert werden.
   \item Es werden mehrere Werkstücke gleichzeitig auf Band 1 gelegt. Dabei wird überprüft, ob Band 1 stoppt und mit der Übergabe der Pucks wartet, bis Band 2 frei ist.
@@ -1010,12 +1010,13 @@ Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese s
 \newpage
 
 % 8.5 Abnahme-Test
-\subsection{Abnahme-Tests}
-Um eine komplette Abdeckung der zu Beginn des Projekts aufgestellten Requirements zu gewährleisten, wurden Abnahmetests entworfen. Eine Auflistung dieser Tests findet sich in den Unterpunkten 8.5.1 und 8.5.2 . \newline
-Eine Übersicht, welcher Abnahmetest welche Requirements abdeckt, findet sich in den darauffolgenden Punkten 8.5.3 - 8.5.5 .\newline
+\subsection{Abnahme-Test}
+Um eine komplette Abdeckung der zu Beginn des Projekts aufgestellten Requirements zu gewährleisten, wurden Abnahme-Tests entworfen.\newline
+Die Auflistung dieser Tests findet sich in den Unterpunkten 8.5.1 und 8.5.2.\newline
+Eine Übersicht, welcher Abnahme-Test welche Requirements abdeckt, findet sich in den darauffolgenden Abbildungen der Unterpunkte 8.5.3 - 8.5.5.
 
-% 8.5.1 Auflistung der Regressions-Tests für die Grundfunktionen der Anlage
-\subsubsection{Auflistung der Abnahme-Tests für die Grundfunktionen der Anlage}
+% 8.5.1 Abnahme-Tests für die Grundfunktionen der Anlage
+\subsubsection{Abnahme-Tests für die Grundfunktionen der Anlage}
 \textbf{Mindestabstand: 5cm}
 % Tabelle
 \begin{small}
@@ -1036,7 +1037,7 @@ Eine Übersicht, welcher Abnahmetest welche Requirements abdeckt, findet sich in
       Die B2-Ampel blinkt orange, bis dieser Puck entfernt wird.
       Der zweite Puck (Nicht-Metall) fährt bis ans Ende von B1 und wartet, bis der erste von B2 entfernt wird.
       Sobald der erste Puck entfernt wird, fährt der zweite ans Ende von B2 und gibt dann seine Daten aus.
-      Der dritte Puck verhält sich wie der zweite. Er hält am Ende von B1 und fährt auf B2, sobald dieses wieder frei ist. Während der gesamten Zeit leuchtet die Ampel auf B1 grün.
+      Der dritte Puck verhält sich wie der Zweite. Er hält am Ende von B1 und fährt auf B2, sobald dieses wieder frei ist. Während der gesamten Zeit leuchtet die Ampel auf B1 grün.
       Wenn der dritte Puck auf B2 ist, hält B1 an und auch wenn er von B2 entnommen wird fährt keines der beiden wieder los. & FR-003.1, FR-003.2, FR-004, FR-005, FR-008.1, FR-009.1, FR-009.3, FR-009.4, FR-010, FR-011, FR-012.1, FR-012.2, FR-013, FR-014, FR-015, FR-017, FR-018.2, FR-020, FR-026, NFR-003, NFR-004.1, NFR-005\\
       \hline
       \rowcolor{lightgray} TG03 & Ein Nicht-Metall-Puck wird mit der Bohrung nach unten auf B1 gelegt. Am Ende von B1 wird der Puck gewendet und die Start-Taste wird betätigt. & Der Puck fährt bis ans Ende von B1. B1 hält an und die Ampel blinkt orange. Erst nach Betätigen der Start-Taste erlischt das orange Blinken und der Nicht-Metall-Puck fährt an das Ende von B2. & FR-004, FR-007.1, FR-007.2, FR-007.3, FR-007.4, FR-007.5, FR-009.4, FR-014, FR-015, FR-018.1, FR-019.5, FR-026, NFR-001, NFR-003, NFR-004.1\\
@@ -1055,8 +1056,8 @@ Eine Übersicht, welcher Abnahmetest welche Requirements abdeckt, findet sich in
 
 \newpage
 
-% 8.3.2 Auflistung der Regressions-Tests für die Fehlerfälle der Anlage
-\subsubsection{Auflistung der Abnahme-Tests für die Fehlerfälle der Anlage}
+% 8.5.2 Abnahme-Tests für die Fehlerfälle der Anlage
+\subsubsection{Abnahme-Tests für die Fehlerfälle der Anlage}
 \textbf{Mindestabstand: 5cm}
 % Tabelle
 \begin{small}
@@ -1067,13 +1068,13 @@ Eine Übersicht, welcher Abnahmetest welche Requirements abdeckt, findet sich in
       \toprule
       \endhead
       \hline
-      TF01 & Ein Metall-Puck und ein Nicht-Metall-Puck mit Bohrung nach unten werden mit dem Mindestabstand von 5cm auf B1 gelegt. Der erste Puck wird entnommen, sobald der zweite Puck das Ende von B1 erreicht hat. Der verkehrt herum liegende Puck wird nicht gewendet oder entnommen und die Start-Taste von B1 wird betätigt. & Der zweite Puck fährt bis ans Ende von B1. Dieses hält an und die Ampel von B1 blinkt orange. Das orange Blinken wechselt nach ca. 15 Sekunden in ein rotes Blinken. Sobald der Fehler quittiert wird, wechselt das rote Blinken in ein Dauerlicht. Sobald der Puck entfernt und die Start-Taste betätigt wird, geht das Band wieder in den betriebsbereiten Zustand und die Ampel von B1 leuchtet grün. & FR-004, FR-007.1, FR-007.2, FR-007.3, FR-007.4, FR-007.5, FR-013, FR-014, FR-017, FR-018.1, FR-019.2, FR-019.3, FR-029.2\\
+      TF01 & Ein Metall-Puck und ein Nicht-Metall-Puck mit Bohrung nach unten werden mit dem Mindestabstand von 5cm auf B1 gelegt. Der erste Puck wird entnommen, wenn er am Ende von B2 ist und sobald der zweite Puck das Ende von B1 erreicht hat. Der verkehrt herum liegende Puck wird nicht gewendet oder entnommen und die Start-Taste von B1 wird betätigt. & Der zweite Puck fährt bis ans Ende von B1. Dieses hält an und die Ampel von B1 blinkt orange. Das orange Blinken wechselt nach ca. 15 Sekunden in ein rotes Blinken. Sobald der Fehler quittiert wird, wechselt das rote Blinken in ein Dauerlicht. Sobald der Puck entfernt, der Fehler quittiert und die Start-Taste betätigt wird, geht das Band wieder in den betriebsbereiten Zustand und die Ampel von B1 leuchtet grün. & FR-004, FR-007.1, FR-007.2, FR-007.3, FR-007.4, FR-007.5, FR-013, FR-014, FR-017, FR-018.1, FR-019.2, FR-019.3, FR-029.2\\
       \hline
       \rowcolor{lightgray} TF02 & Ein Nicht-Metall-Puck wird auf B1 gelegt. Der Puck wird auf B2 vor der Höhenmessung entfernt. & Das Band hält an und die Ampel von B1 blinkt rot. & FR-004, FR-010, FR-011, FR-016, FR-019.1, FR-019.2, FR-019.3, FR-019.5, FR-021, FR-025, FR-029.1, FR-029.2, NFR-004.1, NFR-004.3\\
       \hline
       TF03 & Ein Metall- und ein Nicht-Metall-Puck werden mit dem Mindestabstand von 5cm auf B1 gelegt. Zwischen Höhenmessung und Weiche wird der Metall-Puck von dem Band entfernt. & Das Band hält an und die Ampel von B1 blinkt rot. & FR-004, FR-010, FR-011, FR-016, FR-019.1, FR-019.2, FR-019.3, FR-019.5, FR-021, FR-025, FR-029.1, FR-029.2, NFR-004.1, NFR-004.3\\
       \hline
-      \rowcolor{lightgray} TF04 & Es werden Nicht-Metall-, Metall-, Nicht-Metall-Pucks auf B1 gelegt. Nach der Weiche wird der Metall-Puck von B1 entfernt. Der Fehler wird quittiert und die Bänder neu gestartet. Danach wird ein Metall-Puck auf B1 gelegt. & Das Band hält an und die Ampel von B1 blinkt rot. Nach dem Quittieren und Starten leuchtet die Ampel wieder grün und das Band ist betriebsbereit. Der neue Metall-Puck wird wieder befördert. & FR-004, FR-010, FR-011, FR-016, FR-019.1, FR-019.2, FR-019.3, FR-019.5, FR-021, FR-025, FR-029.1, FR-029.2, NFR-004.1, NFR-004.3\\
+      \rowcolor{lightgray} TF04 & Es werden Nicht-Metall-, Metall-, Nicht-Metall-Pucks auf B1 gelegt. Nach der Weiche wird der Metall-Puck (Zweite) von B1 entfernt. Der Fehler wird quittiert und die Bänder neu gestartet. Danach wird ein Metall-Puck auf B1 gelegt. & Das Band hält an und die Ampel von B1 blinkt rot. Nach dem Quittieren und Starten leuchtet die Ampel wieder grün und das Band ist betriebsbereit. Der neue Metall-Puck wird wieder befördert. & FR-004, FR-010, FR-011, FR-016, FR-019.1, FR-019.2, FR-019.3, FR-019.5, FR-021, FR-025, FR-029.1, FR-029.2, NFR-004.1, NFR-004.3\\
       \hline
       TF05 & Manuell werden drei zu kleine Pucks in die Rutsche von B1 gelegt. Danach wird ein zu kleiner Puck an den Anfang von B1 gelegt. Nach Auftreten des Fehlers wird ein Puck aus der Rutsche genommen. & Der zu kleine Puck wird auf B1 aussortiert. Es wird erkannt, dass die Rutsche voll ist. B1 geht in den Fehlerzustand über, die Ampel blinkt schnell rot. Wenn der Puck entfernt wird, wechselt das schnelle Blinken in ein langsames. & FR-004, FR-006.1, FR-006.2, FR-011, FR-016, FR-017, FR-019.1, FR-019.2, FR-019.3, FR-019.4, FR-019.5, FR-023\\
       \hline
@@ -1093,23 +1094,23 @@ Eine Übersicht, welcher Abnahmetest welche Requirements abdeckt, findet sich in
   \end{center}
 \end{small}
 
-% 8.3.3 Auflistung der Abdeckung der Functional Requirements [1/2]
+% 8.5.3 Abdeckung der Functional Requirements [1/2]
 \begin{figure}[p]
-  \subsubsection{Auflistung der Abdeckung der Functional Requirements [1/2]}
+  \subsubsection{Abdeckung der Functional Requirements [1/2]}
   \centering\includegraphics[angle=90,scale=0.305]{imgs/Req_Test_Abdeckung_1.png}
   \caption{Abdeckung der Functional Requirements [1/2]}
 \end{figure}
 
-% 8.3.4 Auflistung der Abdeckung der die Functional Requirements [2/2]
+% 8.5.4 Abdeckung der Functional Requirements [2/2]
 \begin{figure}[p]
-  \subsubsection{Auflistung der Abdeckung der Functional Requirements [2/2]}
+  \subsubsection{Abdeckung der Functional Requirements [2/2]}
   \centering\includegraphics[angle=90,scale=0.305]{imgs/Req_Test_Abdeckung_2.png}
   \caption{Abdeckung der Functional Requirements [2/2]}
 \end{figure}
 
-% 8.3.5 Auflistung der Abdeckung der Non-functional Requirements
+% 8.5.5 Abdeckung der Non-functional Requirements
 \begin{figure}[p]
-  \subsubsection{Auflistung der Abdeckung der Non-functional Requirements}
+  \subsubsection{Abdeckung der Non-functional Requirements}
   \centering\includegraphics[angle=90,scale=0.305]{imgs/Req_Test_Abdeckung_3.png}
   \caption{Abdeckung der Non-functional Requirements}
 \end{figure}
@@ -1151,21 +1152,23 @@ Etwas, worauf wir bei der Arbeit häufiger gestoßen sind, war die Tatsache, das
 \section{Glossar}
 \begin{tabbing}
   Links Links Links \= Mitte \= Rechts \kill
-  \textbf{Werkstück:} \> \>        Puck\\
-  \textbf{Förderband, Band:} \> \> Sortierband des Festo-Typs\\
-  \textbf{Weiche:}           \> \> Schranke, um Pucks auszusortieren oder durchzulassen\\
-  \textbf{Rutsche:}          \> \> Lagerplatz für aussortierte Werkstücke\\
+  \textbf{Ampel, Signal:}    \> \> Warnsignalanlage der Förderbänder\\
   \textbf{Bohrung:}          \> \> Aushöhlung der Werkstücke\\
-  \textbf{Ampel, Signal:}    \> \> Warnsignalanlage der Sortierbänder\\
+  \textbf{DCLP:}             \> \> Double-Checked Locking Pattern: Muster in der Softwareentwicklung\\
+  \textbf{Förderband, Band:} \> \> Fließband des Festo-Typs\\
+  \textbf{GEME:}             \> \> General Embedded Machine Engine: Controller eines Förderbandes\\
+  \textbf{Interrupt:}        \> \> Asynchrone Nachricht einer Systemkomponente\\
+  \textbf{Personal:}         \> \> Geschultes Personal, das die Werkstück-Sortieranlage bedient\\
+  \textbf{QNX:}              \> \> Proprietäres Echtzeitbetriebssystem für eingebettete Systeme\\
+  \textbf{Rutsche:}          \> \> Lagerplatz für aussortierte Werkstücke\\
+  \textbf{Singleton:}        \> \> Modell zur Sicherstellung einer singulären Instanz\\
+  \textbf{SEAP Simulation:}  \> \> Grafische Software-Simulation der Werkstück-Sortieranlage\\
   \textbf{Stakeholder:}      \> \> Gruppen, die mit der Anlage interagieren\\
   \textbf{Steuerung:}        \> \> Software, um die Hardware zu koordinieren\\
-  \textbf{Personal:}         \> \> Geschultes Personal, das die Sortieranlage bedient\\
-  \textbf{Interrupts:}       \> \> Asynchrone Nachricht einer Systemkomponente\\
-  \textbf{Singleton:}        \> \> Modell zur Sicherstellung einer singulären Instanz\\
-  \textbf{V-Modell:}         \> \> Vorgehensmodell in der Systementwicklung\\
-  \textbf{Stub:}             \> \> Programmcode, der ein Verhalten emuliert (z.B. von Hardware)\\
-  
-  
+  \textbf{Stub:}             \> \> Programmcode, der als Platzhalter ein Verhalten / Hardware emuliert\\
+  \textbf{V-Modell-XT:}      \> \> Standard für die Softwareentwicklung (Erweiterung des V-Modell)\\
+  \textbf{Weiche:}           \> \> Schranke, um Pucks auszusortieren oder durchzulassen\\
+  \textbf{Werkstück:}        \> \> Puck\\
 \end{tabbing}
 
 
@@ -1173,16 +1176,15 @@ Etwas, worauf wir bei der Arbeit häufiger gestoßen sind, war die Tatsache, das
 \section{Abkürzungen}
 \begin{tabbing}
   Links \= Mitte \= Rechts \kill
-  \textbf{WS:}   \> \> Werkstück\\
-  \textbf{B1:}   \> \> Sortierband 1\\
-  \textbf{B2:}   \> \> Sortierband 2\\
-  \textbf{HAL:}  \> \> Hardware Abstraction Layer\\
-  \textbf{DCLP:} \> \> Double Checked Locking Pattern\\
-  \textbf{ISR:}  \> \> Interrupt Service Routine\\
-  \textbf{IRQ:}  \> \> Interrupt Request\\
-  \textbf{FIFO:} \> \> First In First Out\\
-  \textbf{RDD:}  \> \> Requirements and Design Document\\
-  
+  \textbf{B1:}  \> \> Sortierband 1\\
+  \textbf{B2:}  \> \> Sortierband 2\\
+  \textbf{FIFO} \> \> First In First Out\\
+  \textbf{FSM}  \> \> Finite State Machine (Deterministischer Endlicher Automat)\\
+  \textbf{HAL}  \> \> Hardware Abstraction Layer\\
+  \textbf{IRQ}  \> \> Interrupt Request\\
+  \textbf{ISR}  \> \> Interrupt Service Routine\\
+  \textbf{RDD}  \> \> Requirements and Design Documentation\\
+  \textbf{WS:}  \> \> Werkstück\\
 \end{tabbing}
 
 \newpage
