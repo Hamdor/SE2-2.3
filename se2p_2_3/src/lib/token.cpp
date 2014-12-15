@@ -24,7 +24,9 @@
 
 #include "lib/token.hpp"
 #include "lib/constants.hpp"
+
 #include "lib/util/singleton_mgr.hpp"
+#include "lib/timer/time_utils.hpp"
 
 #include <iostream>
 
@@ -113,58 +115,6 @@ void token::delete_timers() {
   m_timer_ids.clear();
 }
 
-#define MILISEC_TO_NANOSEC 1000000
-#define SEC_TO_NANOSEC     1000000000
-
-timespec add(timespec a, timespec b) {
-  long sec  = a.tv_sec  + b.tv_sec;
-  long nsec = a.tv_nsec + b.tv_nsec;
-  if (nsec >= SEC_TO_NANOSEC) {
-      nsec -= SEC_TO_NANOSEC;
-      sec++;
-  }
-  timespec temp;
-  temp.tv_sec  = sec;
-  temp.tv_nsec = nsec;
-  return temp;
-}
-
-timespec diff(timespec begin, timespec end) {
-  timespec tempspec;
-  if ((end.tv_nsec - begin.tv_nsec) < 0) {
-    tempspec.tv_sec  = end.tv_sec - begin.tv_sec - 1;
-    tempspec.tv_nsec = SEC_TO_NANOSEC + end.tv_nsec - begin.tv_nsec;
-  } else {
-    tempspec.tv_sec  = end.tv_sec  - begin.tv_sec;
-    tempspec.tv_nsec = end.tv_nsec - begin.tv_nsec;
-  }
-  if (tempspec.tv_sec == uint32_t(0xFFFFFFFF)) {
-    tempspec.tv_sec = 0;
-  }
-  return tempspec;
-}
-
-timespec sub(timespec a, timespec b) {
-  return diff(a, b);
-}
-
-bool smaller_then(timespec smaller, timespec bigger) {
-  timespec diffspec = diff(bigger, smaller);
-  if (diffspec.tv_sec > bigger.tv_sec && diffspec.tv_sec > smaller.tv_sec) {
-    return true;
-  } else if (diffspec.tv_sec < bigger.tv_sec) {
-    return true;
-  } else {
-    if (diffspec.tv_sec == 0) {
-      if (diffspec.tv_nsec > 0) {
-        return true;
-      }
-    }
-    return false;
-  }
-  return true;
-}
-
 void token::init_internal_times() {
   timespec add_seg1;
   add_seg1.tv_sec  = SEGMENT1__SEC;
@@ -176,11 +126,11 @@ void token::init_internal_times() {
   add_seg3.tv_sec  = SEGMENT3__SEC;
   add_seg3.tv_nsec = SEGMENT3_NSEC;
   clock_gettime(CLOCK_REALTIME, &m_timespec_seg1);
-  m_timespec_seg1 = add(m_timespec_seg1, add_seg1);
+  m_timespec_seg1 = time_utils::add(m_timespec_seg1, add_seg1);
   m_timespec_seg2 = m_timespec_seg1;
-  m_timespec_seg2 = add(m_timespec_seg2, add_seg2);
+  m_timespec_seg2 = time_utils::add(m_timespec_seg2, add_seg2);
   m_timespec_seg3 = m_timespec_seg2;
-  m_timespec_seg3 = add(m_timespec_seg3, add_seg3);
+  m_timespec_seg3 = time_utils::add(m_timespec_seg3, add_seg3);
 }
 
 void token::reset_internal_times() {
@@ -192,9 +142,9 @@ void token::reset_internal_times() {
 
 void token::add_internal_times(int sec, long nsec) {
   timespec add_spec = { (time_t)sec, nsec };
-  m_timespec_seg1 = add(m_timespec_seg1, add_spec);
-  m_timespec_seg2 = add(m_timespec_seg2, add_spec);
-  m_timespec_seg3 = add(m_timespec_seg3, add_spec);
+  m_timespec_seg1 = time_utils::add(m_timespec_seg1, add_spec);
+  m_timespec_seg2 = time_utils::add(m_timespec_seg2, add_spec);
+  m_timespec_seg3 = time_utils::add(m_timespec_seg3, add_spec);
 }
 
 void token::stop_internal_times() {
@@ -204,23 +154,14 @@ void token::stop_internal_times() {
 void token::start_internal_times() {
   timespec curspec;
   clock_gettime(CLOCK_REALTIME, &curspec);
-  timespec tempspec = diff(m_timespec_stop, curspec);
+  timespec tempspec = time_utils::diff(m_timespec_stop, curspec);
   if (m_timespec_seg1.tv_nsec != 0 && m_timespec_seg2.tv_nsec != 0
       && m_timespec_seg3.tv_nsec != 0) {
-    m_timespec_seg1 = add(m_timespec_seg1, tempspec);
-    m_timespec_seg2 = add(m_timespec_seg2, tempspec);
-    m_timespec_seg3 = add(m_timespec_seg3, tempspec);
+    m_timespec_seg1 = time_utils::add(m_timespec_seg1, tempspec);
+    m_timespec_seg2 = time_utils::add(m_timespec_seg2, tempspec);
+    m_timespec_seg3 = time_utils::add(m_timespec_seg3, tempspec);
   }
 }
-
-#define OFFSET_CHECK_TIMES_SEG1__SEC 1
-#define OFFSET_CHECK_TIMES_SEG1_NSEC 500 * MILISEC_TO_NANOSEC
-
-#define OFFSET_CHECK_TIMES_SEG2__SEC 0
-#define OFFSET_CHECK_TIMES_SEG2_MSEC 700 * MILISEC_TO_NANOSEC
-
-#define OFFSET_CHECK_TIMES_SEG3__SEC 0
-#define OFFSET_CHECK_TIMES_SEG3_MSEC 950 * MILISEC_TO_NANOSEC
 
 bool token::check_internal_times(int section) {
   timespec curspec;
@@ -228,15 +169,18 @@ bool token::check_internal_times(int section) {
   if (section == SEGMENT_1) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG1__SEC,
                                   OFFSET_CHECK_TIMES_SEG1_NSEC };
-    return smaller_then(diff(curspec, m_timespec_seg1), max_offset);
+    return time_utils::smaller_then(
+        time_utils::diff(curspec, m_timespec_seg1), max_offset);
   } else if (section == SEGMENT_2) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG2__SEC,
                                   OFFSET_CHECK_TIMES_SEG2_MSEC };
-    return smaller_then(diff(curspec, m_timespec_seg2), max_offset);
+    return time_utils::smaller_then(
+        time_utils::diff(curspec, m_timespec_seg2), max_offset);
   } else if (section == SEGMENT_3) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG3__SEC,
                                    OFFSET_CHECK_TIMES_SEG3_MSEC };
-    return smaller_then(diff(curspec, m_timespec_seg3), max_offset);
+    return time_utils::smaller_then(
+        time_utils::diff(curspec, m_timespec_seg3), max_offset);
   } else {
     return false;
   }
