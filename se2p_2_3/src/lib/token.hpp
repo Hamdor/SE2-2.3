@@ -34,11 +34,6 @@
 #include <unistd.h>
 
 namespace se2 {
-namespace fsm {
-class b1_valid_height_seg2_ok;
-class b1_valid_height_seg3_ok;
-class b1_token_too_small_seg2_ok;
-}
 namespace serial_bus {
 class telegram;
 }
@@ -46,16 +41,13 @@ class telegram;
 typedef std::vector<int> ivec;
 
 class token : public fsm::events {
-  friend class fsm::b1_valid_height_seg2_ok;
-  friend class fsm::b1_valid_height_seg3_ok;
-  friend class fsm::b1_token_too_small_seg2_ok;
  public:
   /**
    * Default Konstruktor
    **/
   token()
       : m_state(0), m_id(0), m_height1(0), m_height2(0)
-      , m_is_metal(false), m_is_upside_down(false), m_seg2_ok(false) {
+      , m_is_metal(false), m_is_upside_down(false) {
     std::memset(&m_timespec_seg1, 0, sizeof(timespec));
     std::memset(&m_timespec_seg2, 0, sizeof(timespec));
     std::memset(&m_timespec_seg3, 0, sizeof(timespec));
@@ -113,7 +105,6 @@ class token : public fsm::events {
    * @returns Den zweiten Hoehenwert des Tokens
    **/
   int get_height2() const;
-
 
   /**
    * Setzt den Token auf verkehrt herum
@@ -202,7 +193,7 @@ class token : public fsm::events {
   bool check_internal_times(int section);
 
   /**
-   * AUfrufe die an den Zustand delegiert werden
+   * Aufrufe die an den Zustand delegiert werden
    **/
   virtual void dispatched_event_button_start();
   virtual void dispatched_event_button_stop();
@@ -244,7 +235,6 @@ class token : public fsm::events {
   bool       m_is_metal;
   bool       m_is_upside_down;
   ivec       m_timer_ids;
-  bool       m_seg2_ok;
 
   // interne erwartete Zeiten, fuer Guard Benutzung
   timespec   m_timespec_seg1;

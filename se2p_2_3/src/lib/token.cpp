@@ -86,7 +86,6 @@ void token::reset() {
   m_height2        = 0;
   m_is_metal       = false;
   m_is_upside_down = false;
-  m_seg2_ok        = false;
   delete_timers();
   dispatcher* disp =
     TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
@@ -116,15 +115,9 @@ void token::delete_timers() {
 }
 
 void token::init_internal_times() {
-  timespec add_seg1;
-  add_seg1.tv_sec  = SEGMENT1__SEC;
-  add_seg1.tv_nsec = SEGMENT1_NSEC;
-  timespec add_seg2;
-  add_seg2.tv_sec  = SEGMENT2__SEC;
-  add_seg2.tv_nsec = SEGMENT2_NSEC;
-  timespec add_seg3;
-  add_seg3.tv_sec  = SEGMENT3__SEC;
-  add_seg3.tv_nsec = SEGMENT3_NSEC;
+  const timespec add_seg1 = { (time_t)SEGMENT1__SEC, SEGMENT1_NSEC };
+  const timespec add_seg2 = { (time_t)SEGMENT2__SEC, SEGMENT2_NSEC };
+  const timespec add_seg3 = { (time_t)SEGMENT3__SEC, SEGMENT3_NSEC };
   clock_gettime(CLOCK_REALTIME, &m_timespec_seg1);
   m_timespec_seg1 = time_utils::add(m_timespec_seg1, add_seg1);
   m_timespec_seg2 = m_timespec_seg1;
