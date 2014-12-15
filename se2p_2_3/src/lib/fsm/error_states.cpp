@@ -145,8 +145,6 @@ err_runtime_too_short::err_runtime_too_short(token* t) : state::state(t) {
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_RESET);
-  // TODO:
-  // - Register entfernen
 }
 
 void err_runtime_too_short::dispatched_event_button_reset() {
@@ -170,6 +168,7 @@ void err_runtime_too_short_quitted::dispatched_event_button_start() {
   lmgr->set_state(READY_TO_USE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
+  mgr->notify_death();
   new (this) anonymous_token(m_token);
 }
 
