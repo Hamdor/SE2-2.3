@@ -100,7 +100,7 @@ void initialization_run::get_heights() {
 #define SEC_TO_NSEC 1000000000
 timespec initialization_run::diff(timespec start, timespec end) {
   timespec temp;
-  if ((end.tv_nsec-start.tv_nsec) < 0) {
+  if ((end.tv_nsec - start.tv_nsec) < 0) {
     temp.tv_sec = end.tv_sec - start.tv_sec - 1;
     temp.tv_nsec = SEC_TO_NSEC + end.tv_nsec - start.tv_nsec;
   } else {
@@ -113,8 +113,8 @@ timespec initialization_run::diff(timespec start, timespec end) {
 void initialization_run::get_times() {
   std::cout << "====== Start of `get_times` ======" << std::endl;
   // 0 - 3 sind der schnelle durchlauf
-  // 3 - 5 sind mit höhenmessung langsame
-  timespec times[6];
+  // 3 - 5 sind mit Hoehenmessung langsame
+  timespec times[4];
   int which_timeintervall = 0;
   int run_index = 0; // erster lauf ist der schnelle
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
@@ -123,23 +123,24 @@ void initialization_run::get_times() {
     while (!hal->obj_in_light_barrier(SENSOR_ENTRANCE)) {
       // nop
     }
-    if (run_index == 0) {
-      hal->set_motor(MOTOR_RIGHT);
-    }
+    hal->set_motor(MOTOR_RIGHT);
     get_curr_time();
     while (!hal->obj_in_light_barrier(SENSOR_HEIGHT)) {
       // nop
     }
     // ist nun in Hoehenmessung
-    if(run_index == 1) {
+    if (run_index == 1) {
       hal->set_motor(MOTOR_SLOW);
     }
-    while (!hal->obj_in_light_barrier(SENSOR_HEIGHT)) {
+    while (hal->obj_in_light_barrier(SENSOR_HEIGHT)) {
       // nop
     }
     // nicht mehr in Hoehenmessung
     hal->set_motor(MOTOR_FAST);
     times[which_timeintervall++] = get_curr_time();
+    if (which_timeintervall == 4) {
+      break;
+    }
     while (!hal->obj_in_light_barrier(SENSOR_SWITCH)) {
       // nop
     }
@@ -148,20 +149,18 @@ void initialization_run::get_times() {
     while (hal->obj_in_light_barrier(SENSOR_SWITCH)) {
       // nop
     }
-    hal->close_switch();
-    times[which_timeintervall++] = get_curr_time();
     while (!hal->obj_in_light_barrier(SENSOR_EXIT)) {
       // nop
     }
+    times[which_timeintervall++] = get_curr_time();
+    hal->close_switch();
     hal->set_motor(MOTOR_STOP);
     while (hal->obj_in_light_barrier(SENSOR_EXIT)) {
       // nop
     }
     ++run_index;
   }
-  for (int i = 0; i < 3; ++i) {
-    times[i + 3] = diff(times[i + 3], times[i]);
-  }
+  times[3] = diff(times[3], times[0]);
   print_time(times);
   std::cout << "======  End of `get_times`  ======" << std::endl;
 }
@@ -189,14 +188,14 @@ timespec initialization_run::get_curr_time() {
 void initialization_run::print_time(const timespec time[]) {
   std::string time_names[] = {
       "SEGMENT1__SEC", "SEGMENT1_NSEC",
-      "SEGMENT2__SEC", "SEGMENT2__NSEC",
-      "SEGMENT3__SEC", "SEGMENT3__NSEC",
+      "SEGMENT2__SEC", "SEGMENT2_NSEC",
+      "SEGMENT3__SEC", "SEGMENT3_NSEC",
       "HEIGHT_TIME_OFFSET_SEG1_SEC", "HEIGHT_TIME_OFFSET_SEG1_NSEC",
       "HEIGHT_TIME_OFFSET_SEG2_SEC", "HEIGHT_TIME_OFFSET_SEG2_NSEC",
       "HEIGHT_TIME_OFFSET_SEG3_SEC", "HEIGHT_TIME_OFFSET_SEG3_NSEC",
   };
   size_t idx   = 0;
-  for (size_t i = 0; i < 6; ++i) {
+  for (size_t i = 0; i < 4; ++i) {
     std::cout << "#define "   << time_names[idx++] << " "
               << time[i].tv_sec<< std::endl;
     std::cout << "#define "   << time_names[idx++] << " "
@@ -231,6 +230,6 @@ void initialization_run::start_init() {
   // ausserdem sind die Hoehenwerte in der Simulation falsch.
   //get_heights();
 #endif
-  get_times();
+  //get_times();
   HAWThread::reset_shutdown_flag();
 }
