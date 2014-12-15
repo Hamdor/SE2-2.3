@@ -807,7 +807,7 @@ Die Kommunikation der beiden Förderbänder läuft über eine serielle Schnittst
 
 % 6.1 System-Architektur
 \subsection{System-Architektur}
-Das System verfügt über folgende Module: HAL zum Ansteuern/Auslesen der Aktorik und Sensorik, seriellen Bus zur Ansteuerung der seriellen Schnittstelle, FSM zur Anlagensteuerun, Dispatcher, der die Pulse Messages entgegennimmt, Timer zur Zeitmessung/-kontrolle und util(mutex, condvar, lockguard, logging, singleton\_mgr, HAWThread, light\_mgr). Des weiteren gibt es zugehörige Unit-Tests.
+Das System verfügt über folgende Module: HAL zum Ansteuern/Auslesen der Aktorik und Sensorik, seriellen Bus zur Ansteuerung der seriellen Schnittstelle, FSM zur Anlagensteuerun, Dispatcher, der die Pulse Messages entgegennimmt, Timer zur Zeitmessung/-kontrolle und util(mutex, condvar, lockguard, logging, singleton\_mgr, HAWThread, light\_mgr). Des Weiteren gibt es zugehörige Unit-Tests.
 
 % 6.1.1 Komponenten-Diagramm
 \begin{figure}[h]
@@ -857,7 +857,7 @@ Scoped Locking, DCLP, Singelton, Delegator, Factory, Dispatcher-/Reactor-Pattern
 % 7.2 Interrupt Implementierung
 \subsection{Interrupt-Implementierung}
 Die ISR soll eine Pulse Message generieren. Diese landet im Pulse Message Channel, der vom Dispatcher abgehört wird.
-Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach Links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port-Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
+Der Code in der Pulse Message spezifiziert die Quelle des Ereignisses. Als zusätzlicher Integer wird das geänderte Bit angehängt. Dabei wird Port A um 8 Bits nach links geschoben. Port B wird per Veroderung angehängt. Als Vergleich dienen die Port-Werte vor dem Interrupt. Um nun das geänderte Bit zu erkennen, werden aktueller Wert und alter Wert per Exklusiv-Oder verknüpft.
 
 % 7.3 Dispatcher Implementierung
 \subsection{Dispatcher-Implementierung}
@@ -912,6 +912,10 @@ Ein Softtime-Timer ist nur aktiv, wenn auch die CPU läuft. Dieser Timer kann di
 
 % 8. Testen
 \section{Testen}
+
+% 8.0 Testplan
+\subsection{Testplan}
+Da nach dem V-Modell vorgegangen wird, wird zu jedem Milestone die Funktionalität der für den Milestone benötigten Punkte getestet.
 
 % 8.1 Unit-Test/Komponenten-Test
 \subsection{Unit-Test/Komponenten-Test}
@@ -1005,8 +1009,12 @@ Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese s
 
 \newpage
 
+% 8.5 Abnahme-Test
+\subsection{Abnahme-Test}
+Nachdem die Qualitätssicherung und korrekte Funktionalität der Software mittels Durchführung der Regressionstests bestätigt wurde, wird die Funktionsfähigkeit der Anlage mit den folgenden Abnahmetests geprüft. Die Abnahmetests decken die zu Beginn des Projekts aufgestellten Requirements ab und sollen die Funktionsfähigkeit der Anlage sowohl im Normalbetrieb als auch in Fehlerfällen demonstrieren.
+
 % 8.3.1 Auflistung der Regressions-Tests für die Grundfunktionen der Anlage
-\subsubsection{Auflistung der Regressions-Tests für die Grundfunktionen der Anlage}
+\subsubsection{Auflistung der Abnahme-Tests für die Grundfunktionen der Anlage}
 \textbf{Mindestabstand: 5cm}
 % Tabelle
 \begin{small}
@@ -1047,7 +1055,7 @@ Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese s
 \newpage
 
 % 8.3.2 Auflistung der Regressions-Tests für die Fehlerfälle der Anlage
-\subsubsection{Auflistung der Regressions-Tests für die Fehlerfälle der Anlage}
+\subsubsection{Auflistung der Abnahme-Tests für die Fehlerfälle der Anlage}
 \textbf{Mindestabstand: 5cm}
 % Tabelle
 \begin{small}
@@ -1106,14 +1114,6 @@ Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese s
 \end{figure}
 
 \newpage
-
-% 8.4 Testplan
-\subsection{Testplan}
-Da nach dem V-Modell vorgegangen wird, wird zu jedem Milestone die Funktionalität der für den Milestone benötigten Punkte getestet.
-
-% 8.5 Abnahme-Test
-\subsection{Abnahme-Test}
-Zum Abnahme-Test werden alle Requirements und Use-Cases durchgegangen. Anschließend werden die in den Unit-Tests umgesetzten Regressions-Tests und der Normalbetrieb der Anlage vorgeführt.
 
 % 8.6 Testprotokolle und Auswertungen
 \subsection{Testprotokolle und Auswertungen}
