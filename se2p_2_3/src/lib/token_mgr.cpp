@@ -281,3 +281,7 @@ void token_mgr::notify_ready_for_next() {
 void token_mgr::notify_pseudo_token_not_known_event() {
   m_pseudo_token.set_state(new err_unexpected_token(&m_pseudo_token));
 }
+
+bool token_mgr::is_motor_slow() const {
+  return m_motor_slow;
+}

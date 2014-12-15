@@ -216,6 +216,14 @@ class token_mgr : public util::abstract_singleton {
    * keinem anderen Werkstueck gehoert wurde
    **/
   void notify_pseudo_token_not_known_event();
+
+  /**
+   * Pruft ob der Motor langsam laeuft
+   * @return TRUE  wenn der Motor langsam laeuft
+   *         FALSE wenn der Motor schnell laeuft
+   **/
+  bool is_motor_slow() const;
+
  private:
   static token_mgr* instance;
   token m_tokens[NUM_OF_TOKENS];
