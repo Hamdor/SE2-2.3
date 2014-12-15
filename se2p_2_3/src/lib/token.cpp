@@ -116,36 +116,17 @@ void token::delete_timers() {
 #define MILISEC_TO_NANOSEC 1000000
 #define SEC_TO_NANOSEC     1000000000
 
-void token::init_internal_times() {
-  clock_gettime(CLOCK_REALTIME, &m_timespec_seg1);
-  m_timespec_seg1.tv_sec  += SEGMENT1__SEC;
-  m_timespec_seg1.tv_nsec += SEGMENT1_NSEC;
-  clock_gettime(CLOCK_REALTIME, &m_timespec_seg2);
-  m_timespec_seg2.tv_sec  += SEGMENT2__SEC;
-  m_timespec_seg2.tv_nsec += SEGMENT2_NSEC;
-  clock_gettime(CLOCK_REALTIME, &m_timespec_seg3);
-  m_timespec_seg3.tv_sec  += SEGMENT3__SEC;
-  m_timespec_seg3.tv_nsec += SEGMENT3_NSEC;
-}
-
-void token::reset_internal_times() {
-  std::memset(&m_timespec_seg1, 0, sizeof(timespec));
-  std::memset(&m_timespec_seg2, 0, sizeof(timespec));
-  std::memset(&m_timespec_seg3, 0, sizeof(timespec));
-  std::memset(&m_timespec_stop, 0, sizeof(timespec));
-}
-
-void token::add_internal_times(int sec, long nsec) {
-  m_timespec_seg1.tv_sec  += sec;
-  m_timespec_seg1.tv_nsec += nsec;
-  m_timespec_seg2.tv_sec  += sec;
-  m_timespec_seg2.tv_nsec += nsec;
-  m_timespec_seg3.tv_sec  += sec;
-  m_timespec_seg3.tv_nsec += nsec;
-}
-
-void token::stop_internal_times() {
-  clock_gettime(CLOCK_REALTIME, &m_timespec_stop);
+timespec add(timespec a, timespec b) {
+  long sec  = a.tv_sec  + b.tv_sec;
+  long nsec = a.tv_nsec + b.tv_nsec;
+  if (nsec >= SEC_TO_NANOSEC) {
+      nsec -= SEC_TO_NANOSEC;
+      sec++;
+  }
+  timespec temp;
+  temp.tv_sec  = sec;
+  temp.tv_nsec = nsec;
+  return temp;
 }
 
 timespec diff(timespec begin, timespec end) {
@@ -157,42 +138,105 @@ timespec diff(timespec begin, timespec end) {
     tempspec.tv_sec  = end.tv_sec  - begin.tv_sec;
     tempspec.tv_nsec = end.tv_nsec - begin.tv_nsec;
   }
+  if (tempspec.tv_sec == uint32_t(0xFFFFFFFF)) {
+    tempspec.tv_sec = 0;
+  }
   return tempspec;
+}
+
+timespec sub(timespec a, timespec b) {
+  return diff(a, b);
+}
+
+bool smaller_then(timespec smaller, timespec bigger) {
+  timespec diffspec = diff(bigger, smaller);
+  if (diffspec.tv_sec > bigger.tv_sec && diffspec.tv_sec > smaller.tv_sec) {
+    return true;
+  } else if (diffspec.tv_sec < bigger.tv_sec) {
+    return true;
+  } else {
+    if (diffspec.tv_sec == 0) {
+      if (diffspec.tv_nsec > 0) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return true;
+}
+
+void token::init_internal_times() {
+  timespec add_seg1;
+  add_seg1.tv_sec  = SEGMENT1__SEC;
+  add_seg1.tv_nsec = SEGMENT1_NSEC;
+  timespec add_seg2;
+  add_seg2.tv_sec  = SEGMENT2__SEC;
+  add_seg2.tv_nsec = SEGMENT2_NSEC;
+  timespec add_seg3;
+  add_seg3.tv_sec  = SEGMENT3__SEC;
+  add_seg3.tv_nsec = SEGMENT3_NSEC;
+  clock_gettime(CLOCK_REALTIME, &m_timespec_seg1);
+  m_timespec_seg1 = add(m_timespec_seg1, add_seg1);
+  m_timespec_seg2 = m_timespec_seg1;
+  m_timespec_seg2 = add(m_timespec_seg2, add_seg2);
+  m_timespec_seg3 = m_timespec_seg2;
+  m_timespec_seg3 = add(m_timespec_seg3, add_seg3);
+}
+
+void token::reset_internal_times() {
+  std::memset(&m_timespec_seg1, 0, sizeof(timespec));
+  std::memset(&m_timespec_seg2, 0, sizeof(timespec));
+  std::memset(&m_timespec_seg3, 0, sizeof(timespec));
+  std::memset(&m_timespec_stop, 0, sizeof(timespec));
+}
+
+void token::add_internal_times(int sec, long nsec) {
+  timespec add_spec = { (time_t)sec, nsec };
+  m_timespec_seg1 = add(m_timespec_seg1, add_spec);
+  m_timespec_seg2 = add(m_timespec_seg2, add_spec);
+  m_timespec_seg3 = add(m_timespec_seg3, add_spec);
+}
+
+void token::stop_internal_times() {
+  clock_gettime(CLOCK_REALTIME, &m_timespec_stop);
 }
 
 void token::start_internal_times() {
   timespec curspec;
   clock_gettime(CLOCK_REALTIME, &curspec);
   timespec tempspec = diff(m_timespec_stop, curspec);
-  m_timespec_seg1.tv_sec  += tempspec.tv_sec;
-  m_timespec_seg1.tv_nsec += tempspec.tv_nsec;
-  m_timespec_seg2.tv_sec  += tempspec.tv_sec;
-  m_timespec_seg2.tv_nsec += tempspec.tv_nsec;
-  m_timespec_seg3.tv_sec  += tempspec.tv_sec;
-  m_timespec_seg3.tv_nsec += tempspec.tv_nsec;
+  if (m_timespec_seg1.tv_nsec != 0 && m_timespec_seg2.tv_nsec != 0
+      && m_timespec_seg3.tv_nsec != 0) {
+    m_timespec_seg1 = add(m_timespec_seg1, tempspec);
+    m_timespec_seg2 = add(m_timespec_seg2, tempspec);
+    m_timespec_seg3 = add(m_timespec_seg3, tempspec);
+  }
 }
+
+#define OFFSET_CHECK_TIMES_SEG1__SEC 1
+#define OFFSET_CHECK_TIMES_SEG1_NSEC 500 * MILISEC_TO_NANOSEC
+
+#define OFFSET_CHECK_TIMES_SEG2__SEC 0
+#define OFFSET_CHECK_TIMES_SEG2_MSEC 700 * MILISEC_TO_NANOSEC
+
+#define OFFSET_CHECK_TIMES_SEG3__SEC 0
+#define OFFSET_CHECK_TIMES_SEG3_MSEC 950 * MILISEC_TO_NANOSEC
 
 bool token::check_internal_times(int section) {
   timespec curspec;
   clock_gettime(CLOCK_REALTIME, &curspec);
   if (section == SEGMENT_1) {
-    timespec diffspec = diff(m_timespec_seg1, curspec);
-    // TODO Pruefen ob zu groß/zu klein
-    std::cout << "sec: "  << diffspec.tv_sec  << " "
-              << "nsec: " << diffspec.tv_nsec << std::endl;
-    return true;
+    const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG1__SEC,
+                                  OFFSET_CHECK_TIMES_SEG1_NSEC };
+    return smaller_then(diff(curspec, m_timespec_seg1), max_offset);
   } else if (section == SEGMENT_2) {
-    timespec diffspec = diff(m_timespec_seg2, curspec);
-    // TODO Pruefen ob zu groß/zu klein
-    std::cout << "sec: "  << diffspec.tv_sec  << " "
-              << "nsec: " << diffspec.tv_nsec << std::endl;
-    return true;
+    const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG2__SEC,
+                                  OFFSET_CHECK_TIMES_SEG2_MSEC };
+    return smaller_then(diff(curspec, m_timespec_seg2), max_offset);
   } else if (section == SEGMENT_3) {
-    timespec diffspec = diff(m_timespec_seg3, curspec);
-    // TODO Pruefen ob zu groß/zu klein
-    std::cout << "sec: "  << diffspec.tv_sec  << " "
-              << "nsec: " << diffspec.tv_nsec << std::endl;
-    return true;
+    const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG3__SEC,
+                                   OFFSET_CHECK_TIMES_SEG3_MSEC };
+    return smaller_then(diff(curspec, m_timespec_seg3), max_offset);
   } else {
     return false;
   }

@@ -77,11 +77,6 @@ void token_mgr::update() {
     hal->set_motor(MOTOR_RIGHT);
   }
   if (m_motor_slow > 0) {
-    if (m_motor_slow == 1) {
-      for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
-        m_tokens[i].add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
-      }
-    }
     hal->set_motor(MOTOR_SLOW);
   } else {
     hal->set_motor(MOTOR_FAST);
@@ -101,9 +96,6 @@ void token_mgr::update() {
     TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->pause_all();
   } else {
     if (m_wait_turnover == 0) {
-      for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
-        m_tokens[i].start_internal_times();
-      }
       hal->set_motor(MOTOR_RESUME);
       TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->continue_all();
     }
@@ -156,6 +148,11 @@ void token_mgr::request_fast_motor(bool update) {
 
 void token_mgr::request_slow_motor(bool update) {
   ++m_motor_slow;
+  if (m_motor_slow == 1) {
+    for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
+      m_tokens[i].add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
+    }
+  }
   if (update) {
     this->update();
   }
@@ -188,6 +185,11 @@ void token_mgr::request_stop_motor(bool update) {
 
 void token_mgr::unrequest_stop_motor(bool update) {
   --m_motor_stop;
+  if (m_motor_stop == 0 && m_wait_turnover == 0) {
+    for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
+      m_tokens[i].start_internal_times();
+    }
+  }
   if (update) {
     this->update();
   }

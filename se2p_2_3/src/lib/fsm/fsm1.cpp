@@ -273,6 +273,10 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_open_switch();
+  if (!m_token->check_internal_times(SEGMENT_2)) {
+    new (this) err_runtime_too_short(m_token);
+    return;
+  }
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_EXIT);
@@ -288,7 +292,11 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
  **/
 void b1_valid_height::dispatched_event_sensor_exit() {
   LOG_TRACE("")
-  new (this) b1_exit(m_token);
+  if (m_token->check_internal_times(SEGMENT_3)) {
+    new (this) b1_exit(m_token);
+  } else {
+    new (this) err_runtime_too_short(m_token);
+  }
 }
 
 void b1_valid_height::dispatched_event_seg2_too_long() {
