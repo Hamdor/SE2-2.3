@@ -17,7 +17,7 @@
  ******************************************************************************/
 /**
  * @file    token_mgr.hpp
- * @version 0.1
+ * @version 0.2
  *
  * Manager fuer Token
  **/
@@ -31,24 +31,12 @@
 #include "lib/util/abstract_singleton.hpp"
 
 namespace se2 {
-namespace fsm {
-class state;
-}
 namespace util {
 class singleton_mgr;
 }
 class token_mgr : public util::abstract_singleton {
   friend token;
   friend util::singleton_mgr;
-
-  /**
-   * `safe_state` Speichert alle wichtigen Zustaende
-   * der Maschine zum Zeitpunkt des Drucks auf den E-Stop.
-   **/
-  struct safe_state {
-    bool m_switch_open;
-    bool m_motor_running;
-  };
 
   /**
    * Enum fuer den als naechstes erwarteten Token,
@@ -226,19 +214,17 @@ class token_mgr : public util::abstract_singleton {
 
  private:
   static token_mgr* instance;
-  token m_tokens[NUM_OF_TOKENS];
-  token m_pseudo_token;
-
-  volatile int   m_alife;
-  volatile int   m_motor_slow;
-  volatile int   m_switch_open;
-  volatile int   m_wait_turnover;
-  volatile int   m_motor_stop;
-  volatile bool  m_motor_left;
-  safe_state     m_safe;
-  expected_token m_expected_token;
-  bool           m_is_b2_ready;
-  bool           m_safe_state;
+  token             m_tokens[NUM_OF_TOKENS];
+  token             m_pseudo_token;
+  int               m_alife;
+  int               m_motor_slow;
+  int               m_switch_open;
+  int               m_wait_turnover;
+  int               m_motor_stop;
+  bool              m_motor_left;
+  expected_token    m_expected_token;
+  bool              m_is_b2_ready;
+  bool              m_safe_state;
 };
 
 }
