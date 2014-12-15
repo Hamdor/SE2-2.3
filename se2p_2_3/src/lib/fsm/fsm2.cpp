@@ -287,10 +287,10 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   mgr->request_stop_motor();
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(REMOVE_TOKEN);
-  m_token->pretty_print();
   if (!m_token->check_internal_times(SEGMENT_3)) {
     new (this) err_runtime_too_short(m_token);
   }
+  m_token->pretty_print();
 }
 
 void b2_is_correct_order::dispatched_event_sensor_exit_rising() {

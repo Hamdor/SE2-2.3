@@ -35,7 +35,7 @@ timespec time_utils::add(timespec a, timespec b) {
   long nsec = a.tv_nsec + b.tv_nsec;
   if (nsec >= SEC_TO_NANOSEC) {
       nsec -= SEC_TO_NANOSEC;
-      sec++;
+      ++sec;
   }
   timespec temp;
   temp.tv_sec  = sec;
@@ -70,8 +70,10 @@ bool time_utils::smaller_then(timespec smaller, timespec bigger) {
     return true;
   } else {
     if (diffspec.tv_sec == 0) {
-      if (diffspec.tv_nsec > 0) {
+      if (bigger.tv_nsec > smaller.tv_nsec) {
         return true;
+      } else {
+        return false;
       }
     }
     return false;
