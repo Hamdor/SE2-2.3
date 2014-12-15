@@ -82,7 +82,7 @@ b2_received_object::b2_received_object(token* t) : state::state(t) {
   TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
-  // TODO Hier timer fuer die Übergabe starten
+  // TODO Hier timer fuer die Uebergabe starten
 }
 
 /**
@@ -141,7 +141,8 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   if (TOO_SMALL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
       && height <= TOO_SMALL_HI + HEIGHT_SENSOR_TOLERANCE_MAX) {
     // darf nicht passieren
-    // TODO: In Fehlerbehandlung?
+    // TODO: Eigenen Fehlerzustand ?
+    new (this) err_unexpected_token(m_token);
   } else if ((HOLE_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
          && height <= HOLE_HI + HEIGHT_SENSOR_TOLERANCE_MAX)
      || (METAL_LOW - HEIGHT_SENSOR_TOLERANCE_MIN <= height
@@ -269,9 +270,6 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {
   mgr->unrequest_left_motor(false);
   mgr->unrequest_stop_motor(false);
   mgr->notify_death();
-  // TODO: Muss jetzt erst erneut die start Taste gedrueckt werden?
-  // wie steht das in den Requirements?
-  // Wenn ja, dann sollte send_free() auch erst dort aufgerufen werden...
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   new (this) anonymous_token(m_token);

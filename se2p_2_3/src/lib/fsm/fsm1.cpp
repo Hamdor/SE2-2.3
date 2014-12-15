@@ -109,12 +109,6 @@ void b1_realized_object::dispatched_event_seg1_too_late() {
  * Moegliche Folgezustaende:
  * - b1_token_too_small
  * - b1_valid_height
- * TODO:
- * - Braucht dieser Zustand evtl. auch einen Handler fuer
- *   `dispatched_event_sensor_height_rising()` ? Grund:
- *   In seltenen Faellen bleibt der Motor auf Slow, ist der Grund
- *   das der Zustand noch nicht gewechselt wurde, aber die Hoehenmessung
- *   bereits verlassen wurde?
  **/
 b1_height_measurement::b1_height_measurement(token* t) : state::state(t) {
   LOG_TRACE("")
@@ -156,9 +150,6 @@ b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
 
 /**
  * Werkstueck hat die Hoehenmessung verlassen.
- * TODO:
- * - Ab hier einen Timer starten, der bis zur Lichtschranke
- *   der Weiche gilt.
  **/
 void b1_token_too_small::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
@@ -188,14 +179,6 @@ void b1_token_too_small::dispatched_event_sensor_switch() {
 /**
  * Werkstueck ist zu klein und hat gerade die Lichtschranke der
  * Rutsche durchbrochen
- * TODO:
- * - Neuen Zustand der den Timeout der Lichtschranke beschreibt
- *   erstellen
- * - Wenn der Timer abgelaufen ist im Uebergang pruefen ob
- *   die Lichtschranke noch durchbrochen ist, wenn diese noch
- *   durchbrochen, dann in Fehlerbehandlung springen
- * - Token erst nach ablauf des Timers loeschen, bzw. erst nach
- *   erfolgreicher Fehlerbehandlung
  **/
 void b1_token_too_small::dispatched_event_sensor_slide() {
   LOG_TRACE("")
@@ -244,9 +227,6 @@ b1_valid_height::b1_valid_height(token* t) : state::state(t) {
 
 /**
  * Werkstueck hat die korrekte Hoehe
- * TODO:
- * - Ab hier einen Timer starten, der bis zur Lichtschranke
- *   der Weiche gilt.
  **/
 void b1_valid_height::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
