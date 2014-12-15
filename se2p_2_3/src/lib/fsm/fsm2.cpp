@@ -54,6 +54,11 @@ b2_receive_data::b2_receive_data(token* t) : state::state(t) {
 }
 
 #ifdef CONVEYOR_2_SINGLEMOD
+/**
+ * Bei diesem Zustand funktioniert falsche Reihenfolge nicht,
+ * da das Werkstueck zum anfang gefahren wird, jedoch andere Tokens
+ * beim Dispatcher angemeldet sind
+ **/
 void b2_receive_data::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -86,7 +91,7 @@ b2_received_object::b2_received_object(token* t) : state::state(t) {
 }
 
 /**
- *
+ * Werkstueck hat Band 2 erreicht (Lichtscnrake des Eingangs durchbrochen)
  **/
 void b2_received_object::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
@@ -95,6 +100,9 @@ void b2_received_object::dispatched_event_sensor_entrance() {
   new (this) b2_realized_object(m_token);
 }
 
+/**
+ * Uebergang von `b2_received_object::dispatched_event_sensor_entrance()`
+ **/
 b2_realized_object::b2_realized_object(token* t) : state::state(t) {
   LOG_TRACE("")
   m_token->init_internal_times();
@@ -131,6 +139,9 @@ void b2_realized_object::dispatched_event_seg1_too_late() {
   new (this) err_runtime_too_long(m_token);
 }
 
+/**
+ * Uebergang von `b2_realized_object::dispatched_event_sensor_height()`
+ **/
 b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
@@ -158,18 +169,28 @@ b2_height_measurement::b2_height_measurement(token* t) : state::state(t) {
   new (this) b2_valid_height(m_token);
 }
 
+/**
+ * Uebergang von`b2_height_measurement::b2_height_measuremet`
+ **/
 b2_token_upside_down::b2_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
 }
 
+/**
+ * Werkstueck ist verkehrt herum und verlaesst gerade die Hoehenmessung
+ **/
 void b2_token_upside_down::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_fast_motor();
 }
 
+/**
+ * Werkstueck wird gerade aussortiert und hat die Lichtschranke der
+ * Rutsche durchbrochen
+ **/
 void b2_token_upside_down::dispatched_event_sensor_slide() {
   LOG_TRACE("")
   dispatcher* disp =
@@ -181,6 +202,10 @@ void b2_token_upside_down::dispatched_event_sensor_slide() {
   m_token->add_timer_id(hdl->register_timer(dur, EVENT_SLIDE_FULL_TIMEOUT));
 }
 
+/**
+ * Werkstueck hat die Lichtschranke der Weiche wieder freigemancht,
+ * Rutsche war also nicht voll
+ **/
 void b2_token_upside_down::dispatched_event_sensor_slide_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -188,23 +213,34 @@ void b2_token_upside_down::dispatched_event_sensor_slide_rising() {
   new (this) anonymous_token(m_token);
 }
 
+/**
+ * Timeout ist angekommen, Rutsche ist voll
+ **/
 void b2_token_upside_down::dispatched_event_slide_full_timeout() {
   LOG_TRACE("")
   new (this) err_slide_full(m_token);
 }
 
+/**
+ * Werkstueck wurde zwischen Hoehenmessung und Weiche entnommen (Segment 2)
+ **/
 void b2_token_upside_down::dispatched_event_seg2_too_late() {
   LOG_TRACE("")
   new (this) err_runtime_too_long(m_token);
 }
 
-
+/**
+ * Uebergang von `b2_height_measurement::b2_height_measurement`
+ **/
 b2_valid_height::b2_valid_height(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
 }
 
+/**
+ * Werkstueck hat gueltige Hoehe und hat gerade die Hoehenmessung verlassen
+ **/
 void b2_valid_height::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -217,6 +253,10 @@ void b2_valid_height::dispatched_event_sensor_height_rising() {
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG2_TOO_LATE));
 }
 
+/**
+ * Werkstueck hat gueltige Hoehe und ist gerade in den Bereich der Weiche
+ * gekommen, hat also die Lichtschranke der Weiche durchbrochen
+ **/
 void b2_valid_height::dispatched_event_sensor_switch() {
   LOG_TRACE("")
   if (m_token->check_internal_times(SEGMENT_2)) {
@@ -226,11 +266,19 @@ void b2_valid_height::dispatched_event_sensor_switch() {
   }
 }
 
+/**
+ * Werkstueck hat gueltige Hoehe, wurde jedoch zwischen
+ * Hoehenmessung und Weiche entnommen (Segment 2)
+ **/
 void b2_valid_height::dispatched_event_seg2_too_late() {
   LOG_TRACE("")
   new (this) err_runtime_too_long(m_token);
 }
 
+/**
+ * Werkstueck befindet sich unter dem Metall-detektor
+ * Uebergang von `b2_valid_height::dispatched_event_sensor_switch`
+ **/
 b2_metal_detection::b2_metal_detection(token* t) : state::state(t) {
   LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
@@ -243,6 +291,9 @@ b2_metal_detection::b2_metal_detection(token* t) : state::state(t) {
   }
 }
 
+/**
+ * Werkstueck ist vom falschen Typen (falsche Reihenfolge)
+ **/
 b2_is_wrong_order::b2_is_wrong_order(token* t) : state::state(t) {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -255,6 +306,9 @@ b2_is_wrong_order::b2_is_wrong_order(token* t) : state::state(t) {
   lmgr->set_state(REMOVE_TOKEN);
 }
 
+/**
+ * Werkstueck hat falsche Reihenfolge und ist wieder am Anfang des Bandes
+ **/
 void b2_is_wrong_order::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -263,6 +317,10 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance() {
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE_R);
 }
 
+/**
+ * Werkstueck hat falsche Reihenfolge und wurde vom Band entnommen
+ * (Am Anfang des Bandes)
+ **/
 void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {
   // Token wurde vom Band entfernt
   LOG_TRACE("")
@@ -275,6 +333,10 @@ void b2_is_wrong_order::dispatched_event_sensor_entrance_rising() {
   new (this) anonymous_token(m_token);
 }
 
+/**
+ * Werkstueck hat korrekte Reihenfolge
+ * (Uebergang von `b2_metal_detection::b2_metal_detection`)
+ **/
 b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -285,6 +347,10 @@ b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
   disp->register_listener(m_token, EVENT_SENSOR_EXIT_R);
 }
 
+/**
+ * Werkstueck hat korrekte Reihenfolge und hat gerade die Weiche verlassen
+ * TODO: Weiche etvl spaeter schliessen um festhaengen zu verhindern
+ **/
 void b2_is_correct_order::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -299,6 +365,10 @@ void b2_is_correct_order::dispatched_event_sensor_switch_rising() {
 
 }
 
+/**
+ * Werkstueck hat korrekte Reihenfolge und hat gerade die End Lichtschranke
+ * durchbrochen
+ **/
 void b2_is_correct_order::dispatched_event_sensor_exit() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -311,6 +381,9 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
   m_token->pretty_print();
 }
 
+/**
+ * Werkstueck hat korrekte Reihenfolge und wurde vom Ende des Bandes entnommen
+ **/
 void b2_is_correct_order::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -321,6 +394,9 @@ void b2_is_correct_order::dispatched_event_sensor_exit_rising() {
   new (this) anonymous_token(m_token);
 }
 
+/**
+ * Werkstueck hat korrekte Reihenfolge, wurde aber von Segment 3 entnommen
+ **/
 void b2_is_correct_order::dispatched_event_seg3_too_late() {
   LOG_TRACE("")
   new (this) err_runtime_too_long(m_token);
