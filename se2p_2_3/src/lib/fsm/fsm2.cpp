@@ -176,6 +176,7 @@ b2_token_upside_down::b2_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_SLIDE);
+  disp->register_listener(m_token, EVENT_SENSOR_SWITCH);
 }
 
 /**
