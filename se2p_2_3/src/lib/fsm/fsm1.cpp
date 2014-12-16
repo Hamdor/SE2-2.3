@@ -151,6 +151,7 @@ b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
 /**
  * Werkstueck hat die Hoehenmessung verlassen.
  **/
+#define SLIDE_OFFSET 2
 void b1_token_too_small::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -159,7 +160,7 @@ void b1_token_too_small::dispatched_event_sensor_height_rising() {
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SEG2_TOO_LATE);
   m_token->delete_timers();
-  const duration too_late = { SEGMENT2_SEC__TOO_LATE + 2,
+  const duration too_late = { SEGMENT2_SEC__TOO_LATE + SLIDE_OFFSET,
                               SEGMENT2_MSEC_TOO_LATE };
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG2_TOO_LATE));

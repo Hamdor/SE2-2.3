@@ -35,6 +35,7 @@ using namespace se2;
 using namespace se2::fsm;
 using namespace se2::hal;
 using namespace se2::util;
+using namespace se2::timer;
 using namespace se2::dispatch;
 using namespace se2::serial_bus;
 
@@ -152,6 +153,9 @@ void token_mgr::request_slow_motor(bool update) {
     for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
       m_tokens[i].add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
     }
+    const duration dur = { 1, (size_t)HEIGHT_TIME_OFFSET_SEG1_NSEC / MILISEC_TO_NANOSEC };
+    timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+    hdl->add_all(dur);
   }
   if (update) {
     this->update();
