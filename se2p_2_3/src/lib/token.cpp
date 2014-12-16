@@ -135,6 +135,7 @@ void token::reset_internal_times() {
 
 void token::add_internal_times(int sec, long nsec) {
   timespec add_spec = { (time_t)sec, nsec };
+  // TODO Pruefen ob kurz vor erwartetem durchgang, dann nicht addieren
   m_timespec_seg1 = time_utils::add(m_timespec_seg1, add_spec);
   m_timespec_seg2 = time_utils::add(m_timespec_seg2, add_spec);
   m_timespec_seg3 = time_utils::add(m_timespec_seg3, add_spec);
@@ -159,21 +160,31 @@ void token::start_internal_times() {
 bool token::check_internal_times(int section) {
   timespec curspec;
   clock_gettime(CLOCK_REALTIME, &curspec);
+  std::stringstream ss;
   if (section == SEGMENT_1) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG1__SEC,
                                   OFFSET_CHECK_TIMES_SEG1_NSEC };
-    return time_utils::smaller_then(
-        time_utils::diff(curspec, m_timespec_seg1), max_offset);
+    const timespec diffspec = time_utils::diff(curspec, m_timespec_seg1);
+    ss << "Segment 1 - Sec: " << diffspec.tv_sec
+       << " Nsec: "           << diffspec.tv_nsec;
+    LOG_TRACE(ss.str().c_str())
+    return time_utils::smaller_then(diffspec, max_offset);
   } else if (section == SEGMENT_2) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG2__SEC,
                                   OFFSET_CHECK_TIMES_SEG2_MSEC };
-    return time_utils::smaller_then(
-        time_utils::diff(curspec, m_timespec_seg2), max_offset);
+    const timespec diffspec = time_utils::diff(curspec, m_timespec_seg2);
+    ss << "Segment 2 - Sec: " << diffspec.tv_sec
+       << " Nsec: "           << diffspec.tv_nsec;
+    LOG_TRACE(ss.str().c_str())
+    return time_utils::smaller_then(diffspec, max_offset);
   } else if (section == SEGMENT_3) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG3__SEC,
                                    OFFSET_CHECK_TIMES_SEG3_MSEC };
-    return time_utils::smaller_then(
-        time_utils::diff(curspec, m_timespec_seg3), max_offset);
+    const timespec diffspec = time_utils::diff(curspec, m_timespec_seg3);
+    ss << "Segment 3 - Sec: " << diffspec.tv_sec
+       << " Nsec: "           << diffspec.tv_nsec;
+    LOG_TRACE(ss.str().c_str())
+    return time_utils::smaller_then(diffspec, max_offset);
   } else {
     return false;
   }

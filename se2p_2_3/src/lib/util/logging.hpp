@@ -33,6 +33,7 @@
 #include "lib/util/abstract_singleton.hpp"
 
 #include <fstream>
+#include <sstream>
 
 namespace se2 {
 namespace util {

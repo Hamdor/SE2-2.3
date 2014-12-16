@@ -185,6 +185,9 @@ void token_mgr::request_stop_motor(bool update) {
 
 void token_mgr::unrequest_stop_motor(bool update) {
   --m_motor_stop;
+  if (m_motor_stop < 0) {
+    LOG_ERROR("m_motor_stop is under 0")
+  }
   if (m_motor_stop == 0 && m_wait_turnover == 0) {
     for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
       m_tokens[i].start_internal_times();
