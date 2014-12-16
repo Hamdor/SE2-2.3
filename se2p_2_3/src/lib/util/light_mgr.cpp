@@ -129,4 +129,5 @@ void light_mgr::set_state(light_states state) {
   delete m_timer;
   duration dur = { state == ERROR_GONE ? (size_t)2 : (size_t)1, 0 };
   m_timer = new timer_wrapper(dur, TIMER_TICK_MSG, m_chid);
+  update_light();
 }
