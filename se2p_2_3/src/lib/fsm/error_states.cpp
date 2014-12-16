@@ -101,6 +101,7 @@ err_token_not_removed_from_end_quitted(token* t) : state::state(t) {
 
 err_runtime_too_long::err_runtime_too_long(token* t) : state::state(t) {
   LOG_TRACE("")
+  m_token->delete_timers();
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
@@ -138,6 +139,7 @@ void err_runtime_too_long_quitted::dispatched_event_button_start() {
 
 err_runtime_too_short::err_runtime_too_short(token* t) : state::state(t) {
   LOG_TRACE("")
+  m_token->delete_timers();
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));

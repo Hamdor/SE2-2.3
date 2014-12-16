@@ -86,9 +86,9 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
  **/
 void b1_realized_object::dispatched_event_sensor_height() {
   LOG_TRACE("")
+  m_token->delete_timers();
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_slow_motor();
-  m_token->delete_timers();
   if (m_token->check_internal_times(SEGMENT_1)) {
     new (this) b1_height_measurement(m_token);
   } else {
@@ -258,6 +258,7 @@ void b1_valid_height::dispatched_event_sensor_switch() {
  **/
 void b1_valid_height::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
+  m_token->delete_timers();
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_open_switch();
   if (!m_token->check_internal_times(SEGMENT_2)) {
@@ -279,6 +280,7 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
  **/
 void b1_valid_height::dispatched_event_sensor_exit() {
   LOG_TRACE("")
+  m_token->delete_timers();
   if (m_token->check_internal_times(SEGMENT_3)) {
     new (this) b1_exit(m_token);
   } else {
@@ -286,12 +288,12 @@ void b1_valid_height::dispatched_event_sensor_exit() {
   }
 }
 
-void b1_valid_height::dispatched_event_seg2_too_long() {
+void b1_valid_height::dispatched_event_seg2_too_late() {
   LOG_TRACE("")
   new (this) err_runtime_too_long(m_token);
 }
 
-void b1_valid_height::dispatched_event_seg3_too_long() {
+void b1_valid_height::dispatched_event_seg3_too_late() {
   LOG_TRACE("")
   new (this) err_runtime_too_long(m_token);
 }
