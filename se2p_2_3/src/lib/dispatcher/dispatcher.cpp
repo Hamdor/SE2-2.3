@@ -245,7 +245,7 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       }
       if (!m_prior_listners[devent] && m_listeners[devent].empty()) {
         std::stringstream ss;
-        ss << "Event: " << buffer.value.sival_int;
+        ss << "Unexpected Token triggered event: " << buffer.value.sival_int;
         LOG_WARNING(ss.str().c_str())
         token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
         mgr->notify_pseudo_token_not_known_event();
