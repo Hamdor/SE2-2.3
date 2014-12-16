@@ -360,6 +360,7 @@ enum event_values {
   EVENT_SENSOR_SLIDE_R    = 0x01 << 20,
   EVENT_SENSOR_EXIT_R     = 0x01 << 21,
   // Unkown / Not handled inputs
+  EVENT_SENSOR_VALID_HEIGHT = EVENT_BASE << 2 << EVENT_PORT_C_OFFSET,
   EVENT_UNKOWN1 = 1024,
   EVENT_UNKOWN2 = 4096,
   EVENT_UNKOWN3 = 8192
