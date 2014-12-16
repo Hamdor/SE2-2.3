@@ -23,6 +23,7 @@
  **/
 
 #include "lib/timer/timer_wrapper.hpp"
+#include "lib/timer/time_utils.hpp"
 #include "lib/util/logging.hpp"
 #include <cstring>
 
@@ -107,11 +108,13 @@ void timer_wrapper::continue_timer() {
 }
 
 void timer_wrapper::add_time(duration timer) {
-  itimerspec tempsec;
-  timer_gettime(m_timerid, &tempsec);
+  itimerspec tempspec;
+  std::memset(&tempspec, 0, sizeof(itimerspec));
+  timer_gettime(m_timerid, &tempspec);
   stop_timer();
-  tempsec.it_value.tv_sec  += timer.sec;
-  tempsec.it_value.tv_nsec += timer.msec * MILISEC_TO_NANOSEC;
-  m_timer = tempsec;
+  const timespec durspec = { timer.sec, (long)timer.msec * MILISEC_TO_NANOSEC };
+  timespec curspec  = tempspec.it_value;
+  tempspec.it_value = time_utils::add(curspec, durspec);
+  m_timer = tempspec;
   start_timer();
 }
