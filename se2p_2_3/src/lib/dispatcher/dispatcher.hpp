@@ -108,7 +108,6 @@ struct dispatcher : public abstract_dispatcher
   void special_case_handling(const _pulse& buffer);
 
   virtual void execute(void*);
-
   virtual void shutdown();
 
   fsm::events*             m_prior_listners[DISPATCHED_EVENT_MAX];
