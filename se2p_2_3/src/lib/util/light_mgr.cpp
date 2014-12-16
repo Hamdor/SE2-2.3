@@ -123,11 +123,13 @@ void light_mgr::shutdown() {
   // nop
 }
 
+#define HALF_HERTZ 2
+#define ONE_HERTZ 1
 void light_mgr::set_state(light_states state) {
   m_state = state;
   // unnoetiger `size_t` cast damit GCC 4.7 auch happy ist. :@)
   delete m_timer;
-  duration dur = { state == ERROR_GONE ? (size_t)2 : (size_t)1, 0 };
+  duration dur = { state == ERROR_GONE ? (size_t)HALF_HERTZ : (size_t)ONE_HERTZ, 0 };
   m_timer = new timer_wrapper(dur, TIMER_TICK_MSG, m_chid);
   update_light();
 }

@@ -324,7 +324,6 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     }
     break;
   case TIMER:
-    LOG_TRACE(ss.str().c_str());
     switch(buffer.value.sival_int) {
     case EVENT_SEG1_HAS_TO_EXPIRE:
       break;
