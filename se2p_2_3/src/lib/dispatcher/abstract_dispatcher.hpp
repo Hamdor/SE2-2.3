@@ -87,8 +87,16 @@ struct abstract_dispatcher {
                                          hal::event_values event) = 0;
 
   /**
-   * Entfernt einen Zustand von allen Queues
-   * @param listener Der Listener/Zustand der entfernt werden soll
+   * Entfernt den ersten Listener aus der Queue wenn es der Uebergebene
+   * Listener ist
+   * @param listener Der zu entfernende Listener
+   * @param event Das Event von welchem geloescht werden soll
+   **/
+  virtual void force_pop(fsm::events* listener, hal::event_values event) = 0;
+
+  /**
+   * Entfernt einen Listener von allen Events
+   * @param listener Listener der entfernt werden soll
    **/
   virtual void remove_from_all(fsm::events* listener) = 0;
 
@@ -100,6 +108,11 @@ struct abstract_dispatcher {
    *          nicht verwendet werden
    **/
   virtual void direct_call_event(hal::event_values event) = 0;
+
+  /**
+   * Entfernt einen einzelnen Listener aus einer Queue
+   **/
+  virtual void single_remove(fsm::events* listener, size_t idx) = 0;
 };
 
 } // namespace dispatch

@@ -154,23 +154,35 @@ bool dispatcher::unregister_prior_listener(fsm::events* listener,
   return true;
 }
 
+void dispatcher::single_remove(fsm::events* listener, size_t idx) {
+  if (m_prior_listners[idx] == listener) {
+    LOG_WARNING("m_prior_listener genullt")
+    m_prior_listners[idx] = NULL;
+  }
+  int to_iter = m_listeners[idx].size();
+  for (int j = 0; j < to_iter; ++j) {
+    fsm::events* temp = m_listeners[idx].front();
+    m_listeners[idx].pop();
+    if (temp != listener && temp != NULL) {
+      m_listeners[idx].push(temp);
+    }
+  }
+}
+
+void dispatcher::force_pop(fsm::events* listener, hal::event_values event) {
+  dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
+      event);
+  if (devent == DISPATCHED_EVENT_MAX || m_prior_listners[devent] != listener) {
+    return;
+  }
+  if (m_listeners[devent].front() == listener) {
+    m_listeners[devent].pop();
+  }
+}
+
 void dispatcher::remove_from_all(fsm::events* listener) {
-  for (size_t i = 0; i < DISPATCHED_EVENT_MAX; ++i) {
-    if (m_prior_listners[i] == listener) {
-      LOG_WARNING("m_prior_listener genullt")
-      m_prior_listners[i] = NULL;
-    }
-    if (m_listeners[i].empty()) {
-      continue;
-    }
-    int to_iter = m_listeners[i].size();
-    for (int j = 0; j < to_iter; ++j) {
-      fsm::events* temp = m_listeners[i].front();
-      m_listeners[i].pop();
-      if (temp != listener && temp != NULL) {
-        m_listeners[i].push(temp);
-      }
-    }
+  for (size_t event = 0; event < DISPATCHED_EVENT_MAX; ++event) {
+    single_remove(listener, event);
   }
 }
 
@@ -268,9 +280,9 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_UNKOWN3:
       break;
     default: {
-      std::string err = "Unkown Interrupt Value ";
-      err += buffer.value.sival_int;
-      LOG_WARNING(err.c_str())
+      std::stringstream ss;
+      ss << "Unkown Interrupt Value " << buffer.value.sival_int;
+      LOG_WARNING(ss.str().c_str())
       // Unkown Event, diese Funktion schiebt einzele
       // Masken, um zu schauen welche Events zeitgleich
       // ausgeloest wurden und fuehrt diese aus
@@ -312,6 +324,7 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     }
     break;
   case TIMER:
+    LOG_TRACE(ss.str().c_str());
     switch(buffer.value.sival_int) {
     case EVENT_SEG1_HAS_TO_EXPIRE:
       break;
@@ -335,7 +348,7 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       LOG_WARNING("Unkown Timer Value")
       break;
     }
-    break;
+  break;
   default:
     LOG_WARNING("Unkown Pulse Code")
     break;

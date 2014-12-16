@@ -64,6 +64,8 @@ struct dispatcher : public abstract_dispatcher
   virtual bool unregister_prior_listener(fsm::events* listener,
                                          hal::event_values event);
 
+  virtual void force_pop(fsm::events* listener, hal::event_values event);
+
   virtual void remove_from_all(fsm::events* listener);
 
   /**
@@ -77,6 +79,8 @@ struct dispatcher : public abstract_dispatcher
       const std::map<hal::event_values, dispatcher_events>& map,
       hal::event_values val);
  private:
+  virtual void single_remove(fsm::events* listener, size_t idx);
+
   virtual void direct_call_event(hal::event_values event);
 
   /**

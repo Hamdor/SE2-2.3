@@ -71,11 +71,14 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   const duration too_late  = { SEGMENT1_SEC__TOO_LATE,
                                SEGMENT1_MSEC_TOO_LATE };
-  m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG1_TOO_LATE));
+  size_t idx = hdl->register_timer(too_late,  EVENT_SEG1_TOO_LATE);
+  m_token->add_timer_id(idx);
   m_token->init_internal_times();
   if (mgr->is_motor_slow()) {
     // Motor laeuft langsam, einaml die Zeiten hinzufuegen
     m_token->add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
+    const duration dur = { 0, HEIGHT_TIME_OFFSET_SEG1_NSEC / MILISEC_TO_NANOSEC };
+    hdl->add_time(idx, dur);
   }
 }
 
@@ -87,6 +90,9 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
 void b1_realized_object::dispatched_event_sensor_height() {
   LOG_TRACE("")
   m_token->delete_timers();
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->force_pop(m_token, EVENT_SEG2_TOO_LATE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_slow_motor();
   if (m_token->check_internal_times(SEGMENT_1)) {
@@ -172,6 +178,9 @@ void b1_token_too_small::dispatched_event_sensor_height_rising() {
 void b1_token_too_small::dispatched_event_sensor_switch() {
   LOG_TRACE("")
   m_token->delete_timers();
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->force_pop(m_token, EVENT_SEG2_TOO_LATE);
   if (!m_token->check_internal_times(SEGMENT_2)) {
     new (this) err_runtime_too_short(m_token);
   }
@@ -268,6 +277,7 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
   }
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->force_pop(m_token, EVENT_SEG2_TOO_LATE);
   disp->register_listener(m_token, EVENT_SENSOR_EXIT);
   disp->register_listener(m_token, EVENT_SEG3_TOO_LATE);
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
@@ -282,6 +292,9 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
 void b1_valid_height::dispatched_event_sensor_exit() {
   LOG_TRACE("")
   m_token->delete_timers();
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->force_pop(m_token, EVENT_SEG3_TOO_LATE);
   if (m_token->check_internal_times(SEGMENT_3)) {
     new (this) b1_exit(m_token);
   } else {
