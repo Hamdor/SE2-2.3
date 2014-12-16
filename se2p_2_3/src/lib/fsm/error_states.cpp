@@ -209,6 +209,7 @@ void err_unexpected_token_quitted::dispatched_event_button_start() {
   lmgr->set_state(READY_TO_USE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
+  mgr->notify_death();
   new (this) anonymous_token(m_token);
 }
 
@@ -271,7 +272,7 @@ err_token_not_removed_turnover_quitted
 }
 
 /**
- * Start Taster wurde wieder betaetigt, Band ist wieder bereit.
+ * Start Taster wurde wieder betaetigt, Band ist wieder bereit
  **/
 void err_token_not_removed_turnover_quitted::dispatched_event_button_start() {
   LOG_TRACE("")
