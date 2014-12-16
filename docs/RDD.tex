@@ -413,7 +413,7 @@ C++ (nur STL)
       \hline
       \rowcolor{lightgray} FR-024.2 & Ansteuerung der Weiche & Gefahr & Eine dauerhaft geöffnete Weiche muss aufgrund von Überhitzung des Motors vermieden werden!\\
       \hline
-      FR-025 & Not-Aus der Anlage & Gefahr & Die Anlage darf erst nach einem Reset und einem erneuten Starten durch die Start-Taste wieder in Betrieb gehen und nicht bereits nach der Behebung des Fehlers!\\
+      FR-025 & E-Stopp der Anlage & Gefahr & Die Anlage darf erst nach einem Reset und einem erneuten Starten durch die Start-Taste wieder in Betrieb gehen und nicht bereits nach der Behebung des Fehlers!\\
       \hline
       \rowcolor{lightgray} FR-026 & Bandlaufgeschwindigkeit bei Höhenmessung & Sensorik & Bei der Höhenmessung auf Band 1 und Band 2 werden die Werkstücke im langsamen Modus des Bandes befördert.\\
       \hline
@@ -827,14 +827,14 @@ siehe Abbildungen 3-5 auf den Seiten 19-21
 % 6.3.1 Automat für Band 1
 \begin{figure}[p]
   \subsubsection{Automat für Band 1}
-  \centering\includegraphics[angle=90,scale=0.62]{imgs/Band1_FSM.png}
+  \centering\includegraphics[angle=90,scale=0.59]{imgs/Band1_FSM.png}
   \caption{Automat für Band 1}
 \end{figure}
 
 % 6.3.2 Automat für Band 2
 \begin{figure}[p]
   \subsubsection{Automat für Band 2}
-  \centering\includegraphics[angle=90,scale=0.77]{imgs/Band2_FSM.png}
+  \centering\includegraphics[angle=90,scale=0.635]{imgs/Band2_FSM.png}
   \caption{Automat für Band 2}
   \clearpage
 \end{figure}
@@ -1154,9 +1154,7 @@ Etwas, worauf wir bei der Arbeit häufiger gestoßen sind, war die Tatsache, das
   Links Links Links \= Mitte \= Rechts \kill
   \textbf{Ampel, Signal:}    \> \> Warnsignalanlage der Förderbänder\\
   \textbf{Bohrung:}          \> \> Aushöhlung der Werkstücke\\
-  \textbf{DCLP:}             \> \> Double-Checked Locking Pattern: Muster in der Softwareentwicklung\\
   \textbf{Förderband, Band:} \> \> Fließband des Festo-Typs\\
-  \textbf{GEME:}             \> \> General Embedded Machine Engine: Controller eines Förderbandes\\
   \textbf{Interrupt:}        \> \> Asynchrone Nachricht einer Systemkomponente\\
   \textbf{Personal:}         \> \> Geschultes Personal, das die Werkstück-Sortieranlage bedient\\
   \textbf{QNX:}              \> \> Proprietäres Echtzeitbetriebssystem für eingebettete Systeme\\
@@ -1176,15 +1174,17 @@ Etwas, worauf wir bei der Arbeit häufiger gestoßen sind, war die Tatsache, das
 \section{Abkürzungen}
 \begin{tabbing}
   Links \= Mitte \= Rechts \kill
-  \textbf{B1:}  \> \> Sortierband 1\\
-  \textbf{B2:}  \> \> Sortierband 2\\
-  \textbf{FIFO} \> \> First In First Out\\
-  \textbf{FSM}  \> \> Finite State Machine (Deterministischer Endlicher Automat)\\
-  \textbf{HAL}  \> \> Hardware Abstraction Layer\\
-  \textbf{IRQ}  \> \> Interrupt Request\\
-  \textbf{ISR}  \> \> Interrupt Service Routine\\
-  \textbf{RDD}  \> \> Requirements and Design Documentation\\
-  \textbf{WS:}  \> \> Werkstück\\
+  \textbf{B1:}   \> \> Sortierband 1\\
+  \textbf{B2:}   \> \> Sortierband 2\\
+  \textbf{DCLP:} \> \> Double-Checked Locking Pattern\\
+  \textbf{FIFO:} \> \> First In First Out\\
+  \textbf{FSM:}  \> \> Finite State Machine (Deterministischer Endlicher Automat)\\
+  \textbf{GEME:} \> \> General Embedded Machine Engine\\
+  \textbf{HAL:}  \> \> Hardware Abstraction Layer\\
+  \textbf{IRQ:}  \> \> Interrupt Request\\
+  \textbf{ISR:}  \> \> Interrupt Service Routine\\
+  \textbf{RDD:}  \> \> Requirements and Design Documentation\\
+  \textbf{WS:}   \> \> Werkstück\\
 \end{tabbing}
 
 \newpage
