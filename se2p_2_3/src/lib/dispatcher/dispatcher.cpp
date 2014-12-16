@@ -263,7 +263,7 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       break;
     case EVENT_SENSOR_EXIT_R:
       break;
-    case EVENT_UNKOWN1:
+    case EVENT_SENSOR_VALID_HEIGHT:
     case EVENT_UNKOWN2:
     case EVENT_UNKOWN3:
       break;

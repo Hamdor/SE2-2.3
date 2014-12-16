@@ -164,7 +164,7 @@ bool token::check_internal_times(int section) {
   if (section == SEGMENT_1) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG1__SEC,
                                   OFFSET_CHECK_TIMES_SEG1_NSEC };
-    const timespec diffspec = time_utils::diff(curspec, m_timespec_seg1);
+    const timespec diffspec = time_utils::diff(m_timespec_seg1, curspec);
     ss << "Segment 1 - Sec: " << diffspec.tv_sec
        << " Nsec: "           << diffspec.tv_nsec;
     LOG_TRACE(ss.str().c_str())
@@ -172,7 +172,7 @@ bool token::check_internal_times(int section) {
   } else if (section == SEGMENT_2) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG2__SEC,
                                   OFFSET_CHECK_TIMES_SEG2_MSEC };
-    const timespec diffspec = time_utils::diff(curspec, m_timespec_seg2);
+    const timespec diffspec = time_utils::diff(m_timespec_seg2, curspec);
     ss << "Segment 2 - Sec: " << diffspec.tv_sec
        << " Nsec: "           << diffspec.tv_nsec;
     LOG_TRACE(ss.str().c_str())
@@ -180,7 +180,7 @@ bool token::check_internal_times(int section) {
   } else if (section == SEGMENT_3) {
     const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG3__SEC,
                                    OFFSET_CHECK_TIMES_SEG3_MSEC };
-    const timespec diffspec = time_utils::diff(curspec, m_timespec_seg3);
+    const timespec diffspec = time_utils::diff(m_timespec_seg3, curspec);
     ss << "Segment 3 - Sec: " << diffspec.tv_sec
        << " Nsec: "           << diffspec.tv_nsec;
     LOG_TRACE(ss.str().c_str())

@@ -23,6 +23,7 @@
  **/
 
 #include "lib/timer/time_utils.hpp"
+#include <limits>
 
 using namespace se2;
 using namespace se2::timer;
@@ -52,7 +53,10 @@ timespec time_utils::diff(timespec begin, timespec end) {
     tempspec.tv_sec  = end.tv_sec  - begin.tv_sec;
     tempspec.tv_nsec = end.tv_nsec - begin.tv_nsec;
   }
-  if (tempspec.tv_sec == unsigned(0xFFFFFFFF)) {
+  //if (tempspec.tv_sec == unsigned(0xFFFFFFFF)) {
+  //  tempspec.tv_sec = 0;
+  //}
+  if (tempspec.tv_sec > (unsigned)std::numeric_limits<int>::max()) {
     tempspec.tv_sec = 0;
   }
   return tempspec;
