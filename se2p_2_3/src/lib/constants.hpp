@@ -588,7 +588,7 @@ struct duration {
 #define SLIDE_MSEC_TIMEOUT         500
 
 // Timeout fuer Transfer nach Band 2
-#define TRANSFER_SEC__TIMEOUT        3
+#define TRANSFER_SEC__TIMEOUT        4
 #define TRANSFER_MSEC_TIMEOUT        0
 
 // Timeout zum entnehmen des Pucks
