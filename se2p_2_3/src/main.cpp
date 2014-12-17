@@ -30,6 +30,7 @@
 #include <unistd.h>
 
 using namespace se2;
+using namespace se2::hal;
 using namespace se2::util;
 
 #define MAIN_LOOP_SLEEP 250000
@@ -43,6 +44,11 @@ int main(int argc, char *argv[]) {
   init.start_init();
   hal::hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   if (!hal->is_button_pressed(hal::BUTTON_ESTOP)) {
+	  hal->set_led_state(LED_START, 1);
+	  while(!hal->is_button_pressed(BUTTON_START)){
+		  // nop
+	  }
+	  hal->set_led_state(LED_START, 0);
     // Hauptprogram
     singleton_mgr::force_initialization(SERIAL_PLUGIN);
     singleton_mgr::force_initialization(LIGHT_PLUGIN);
