@@ -299,7 +299,7 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
         if (event) {
           direct_call_event(static_cast<event_values>(event));
         }
-        mask <<= i;
+        mask <<= 1;
       }
     } break;
     }
