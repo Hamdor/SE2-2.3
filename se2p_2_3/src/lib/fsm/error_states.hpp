@@ -36,6 +36,7 @@ class err_slide_full : public fsm::state {
     // nop
   }
 
+  virtual void dispatched_event_sensor_slide_rising();
   virtual void dispatched_event_button_reset();
 };
 
@@ -55,6 +56,8 @@ class err_token_not_removed_from_end : public fsm::state {
   virtual ~err_token_not_removed_from_end() {
     // nop
   }
+
+  virtual void dispatched_event_sensor_exit_rising();
 };
 
 class err_token_not_removed_from_end_token_removed : public fsm::state {
@@ -63,6 +66,9 @@ class err_token_not_removed_from_end_token_removed : public fsm::state {
   virtual ~err_token_not_removed_from_end_token_removed() {
     // nop
   }
+
+  virtual void dispatched_event_sensor_exit();
+  virtual void dispatched_event_button_reset();
 };
 
 class err_token_not_removed_from_end_quitted : public fsm::state {
@@ -71,6 +77,8 @@ class err_token_not_removed_from_end_quitted : public fsm::state {
   virtual ~err_token_not_removed_from_end_quitted() {
     // nop
   }
+
+  virtual void dispatched_event_button_start();
 };
 
 class err_runtime_too_long : public fsm::state {

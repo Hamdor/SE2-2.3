@@ -41,8 +41,12 @@ err_slide_full::err_slide_full(token* t) : state::state(t) {
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_RESET);
-  // TODO:
-  // - Alleine Weg gehen registieren
+  disp->register_listener(m_token, EVENT_SENSOR_SLIDE_R);
+}
+
+void err_slide_full::dispatched_event_sensor_slide_rising() {
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_GONE);
 }
 
 void err_slide_full::dispatched_event_button_reset() {
@@ -57,8 +61,6 @@ err_slide_full_quitted::err_slide_full_quitted(token* t) : state::state(t) {
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
   hal->set_led_state(LED_START,1);
-  // TODO:
-  // - Register start button
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_START);
@@ -89,6 +91,15 @@ err_token_not_removed_from_end::err_token_not_removed_from_end(token* t)
   // TODO:
   // - Sensitiv auf Steigende Flanke Exit => Error Gone
   // - Register exit sensor
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
+  disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT);
+}
+
+void err_token_not_removed_from_end::dispatched_event_sensor_exit_rising() {
+  LOG_TRACE("")
+  new (this) err_token_not_removed_from_end_token_removed(m_token);
 }
 
 err_token_not_removed_from_end_token_removed::
@@ -97,8 +108,18 @@ err_token_not_removed_from_end_token_removed(token* t) : state::state(t) {
   TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_RESET, true);
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_GONE);
-  // TODO:
-  // - Quittierung
+}
+
+void err_token_not_removed_from_end_token_removed::dispatched_event_sensor_exit() {
+  LOG_TRACE("")
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_BUTTON_RESET);
+}
+
+void err_token_not_removed_from_end_token_removed::dispatched_event_button_reset() {
+  LOG_TRACE("")
+  new (this) err_token_not_removed_from_end_quitted(m_token);
 }
 
 err_token_not_removed_from_end_quitted::
@@ -110,6 +131,23 @@ err_token_not_removed_from_end_quitted(token* t) : state::state(t) {
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_START);
+}
+
+void err_token_not_removed_from_end_quitted::dispatched_event_button_start() {
+  LOG_TRACE("")
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(READY_TO_USE);
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->remove_from_all(m_token);
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->unrequest_stop_motor();
+#ifdef IS_CONVEYOR_1
+  new (this) b1_token_ready_for_b2(m_token);
+#else
+  mgr->notify_death();
+  new (this) anonymous_token(m_token);
+#endif
 }
 
 err_runtime_too_long::err_runtime_too_long(token* t) : state::state(t) {

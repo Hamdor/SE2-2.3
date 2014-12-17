@@ -361,6 +361,7 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   disp->register_listener(m_token, EVENT_BUTTON_START);
   disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT);
   disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
+  disp->register_listener(m_token, EVENT_REMOVE_TOKEN_TIMEOUT);
   // Timer fuer timeout zum entnehmen des Werkstueckes starten
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   const duration dur = { LIFT_UP_SEC__TIMEOUT, LIFT_UP_MSEC_TIMEOUT };
@@ -399,6 +400,7 @@ void b1_token_upside_down::dispatched_event_sensor_exit_rising() {
  **/
 void b1_token_upside_down::dispatched_event_remove_token_timeout() {
   LOG_TRACE("")
+  m_token->delete_timers();
   new (this) err_token_not_removed_from_end(m_token);
 }
 
