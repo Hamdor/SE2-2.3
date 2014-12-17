@@ -798,7 +798,7 @@ C++ (nur STL)
 % 5.5 Systemanalyse
 \subsection{Systemanalyse}
 Das System wird über ein C++-Programm gesteuert, welches auf einem bzw. zwei (bei Nutzung von zwei Förderbändern) GEME-Rechnern läuft. Die Aktorik und Sensorik werden über 3 Ports angesteuert, wobei die Sensoren die Werte mittels Interrupts dem System mitteilen.\newline
-Die Kommunikation der beiden Förderbänder läuft über eine serielle Schnittstelle. Es werden hier z.B. die Messergebnisse von Band 1 an Band 2 übergeben, damit, wenn ein Puk das Ende von Band 2 erreicht, seine zugehörigen Daten ausgegeben werden können. Nachrichteneingänge über die serielle Schnittstelle werden ebenfalls durch Interrupts realisiert.
+Die Kommunikation der beiden Förderbänder läuft über eine serielle Schnittstelle. Es werden hier z.B. die Messergebnisse von Band 1 an Band 2 übergeben, damit, wenn ein Puck das Ende von Band 2 erreicht, seine zugehörigen Daten ausgegeben werden können. Nachrichteneingänge über die serielle Schnittstelle werden ebenfalls durch Interrupts realisiert.
 
 \newpage
 
@@ -920,12 +920,12 @@ Da nach dem V-Modell vorgegangen wird, wird zu jedem Milestone die Funktionalit�
 % 8.1 Unit-Test/Komponenten-Test
 \subsection{Unit-Test/Komponenten-Test}
 Es gibt Testfälle für die einzelnen Komponenten. Für die Unit-Tests steht eine Testumgebung zur Verfügung.
-Jeder Unit-Test muss das Unit-Test-Interface implementieren, damit diese automatisiert ausgeführt werden
+Jeder Unit-Test muss das Abstract-Test-Interface implementieren, damit diese automatisiert ausgeführt werden
 können.
 
 % 8.1.1 HAL
 \subsubsection{HAL}
-Im Unit Test für die HAL werden 2 verschiedene Stubs verwendet. Die Hardware wird dafür nicht verwendet,
+Im Unit Test für die HAL werden zwei verschiedene Stubs verwendet. Die Hardware wird dafür nicht verwendet,
 da diese Stubs das Verhalten der Hardware emulieren. Alle Funktionen der HAL werden bei dem Test einmal durchlaufen
 und es wird geprüft, ob die Funktionen die erwarteten Rückgabewerte liefern.
 
@@ -979,7 +979,7 @@ Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese s
   \item \textbf{Test der HAL}
   \begin{enumerate}
     \item Alle HAL Funktionalitäten werden auf ihre positiven Fälle geprüft. (Benötigt keine Hardware, da durch Stubs realisiert)
-    \item Alle HAL Funktionalitäten werden einmal auf Ihr invertiertes Verhalten geprüft. (Benötigt keine Hardware, da durch Stubs realisiert)
+    \item Alle HAL Funktionalitäten werden einmal auf ihr invertiertes Verhalten geprüft. (Benötigt keine Hardware, da durch Stubs realisiert)
   \end{enumerate}
   \item \textbf{Test der ISR/IRQ}
   \begin{enumerate}
@@ -996,7 +996,7 @@ Die wichtigsten Hauptkomponenten haben jeweils eigene Regressions-Tests. Diese s
   \begin{enumerate}
     \item Ein normaler Timer wird erstellt, dieser soll nach einer Millisekunde einen Wert in einen Pulse Message Channel schreiben. Der Wert der Pulse Message wird geprüft.
     \item Ein Timer mit kurzer Laufzeit und ein zweiter Timer mit längerer Laufzeit wird erstellt. Der erste Timer wird pausiert. Es wird blockiert bis eine Pulse Message vorhanden ist. Danach wird der kurze Timer fortgesetzt und auf die Pulse Message gewartet.
-    \item Es werden 3 Timer erstellt. Einer mit 500 Millisekunden Laufzeit, einer mit 1 Sekunden Laufzeit, sowie einer mit 3 Sekunden. Nachdem alle gestartet sind, wird dem 500 Millisekunden Timer 1 Sekunde hinzugefügt. Die korrekte Reihenfolge der Pulse Messages wird ausgewertet.
+    \item Es werden drei Timer erstellt. Einer mit 500 Millisekunden Laufzeit, einer mit einer Sekunde Laufzeit, sowie einer mit drei Sekunden. Nachdem alle gestartet sind, wird dem 500 Millisekunden Timer eine Sekunde hinzugefügt. Die korrekte Reihenfolge der Pulse Messages wird ausgewertet.
   \end{enumerate}
   \item \textbf{Test der Seriellen Schnittstelle}
   \begin{enumerate}
@@ -1122,6 +1122,7 @@ Eine Übersicht, welcher Abnahme-Test welche Requirements abdeckt, findet sich i
 04.11.2014: Testen der HAL, insbesondere der Sensorik\newline
 Nachdem die korrekte Ansteuerung der Aktorik und die serielle Schnittstelle mit dem zweiten Milestone abgenommen wurde, wurde die Sensorik getestet. Es wurde beobachtet, dass der Höhensensor (korrekte) Messwerte liefert. Weiterhin wurde beobachtet, dass das Programm sich aufhängt, sobald ein Messwert geliefert bzw. ein Interrupt von der Sensorik ausgelöst wurde. Dies benötigt weitere Bearbeitung.\newline\newline
 06.11.2014: Der Interrupt für die Sensorik funktioniert.\newline\newline
+02.12.2014: Alle Tests wurden bestanden ohne Blinken der Ampel und Button LEDs, da diese zu diesem Zeitpunkt noch nicht implementiert waren. Getestet wurden Puck-Reihenfolge, Toleranzbereiche zu flacher Pucks, zu wendende Pucks auf B1 und deren Aussortierung auf B2 sowie das Warten von Pucks auf B1, wenn B2 belegt ist.\newline\newline
 04.12.2014: Fehlerhafte Übergabe auf Band 2 bei folgender Werkstück Anordnung: Korrekt liegendes Werkstück, falsch liegendes Werkstück. Werkstück wird am Ende des Bandes gewendet.\newline\newline
 04.12.2014: Fehlerhaftes Aussortieren von zu großen Werkstücken. Werkstück Anordnung: Korrekte Höhe, falsche Höhe.\newline\newline
 08.12.2014: Der Fehler bei der Übergabe von Werkstücken wurde behoben. Dieser Fehler wurde ausgelöst durch einen Zustand der nicht korrekt bei dem Dispatcher
@@ -1129,7 +1130,8 @@ angemeldet war. Das hatte zur folge, das beim zurücklegen des Werkstückes die 
 08.12.2014: Ein Fehler beim Aussortieren wurde behoben. Dieser Fehler wurde ausgelöst dadurch, dass das zu kleine Werkstück (welches auf dem Band vor dem korrekten Werkstück liegt)
 in die Lichtschranke der Weiche gekommen ist, jedoch nicht auf dessen Event sensitiv war. Das nachfolgende Werkstück mit korrekter Höhe war jedoch sensitiv auf dieses Event.
 Das nachfolgende Werkstück hat die Weiche geöffnet, dadurch konnte dann das zu kleine Werkstück die Weiche passieren und den Weichenbereich verlassen. Die Weiche wurde geschlossen
-und das Werkstück mit korrekter Höhe wurde aussortiert.
+und das Werkstück mit korrekter Höhe wurde aussortiert. \newline\newline
+11.12.2014: Bei den Tests fiel auf, dass anstatt eines Blinkens ein Dauerlicht geleuchtet hat und dass am Ende von B2 keine gelbe Signalleuchte zum Entnehmen eines Pucks aktiv war. Dies erforderte jedoch nur kleine Änderungen, die vor Ort vorgenommen wurden. Bei den erneut ausgeführten Tests lief alles wie erwartet.\newline\newline
 \newline\newline\textcolor{red}{\textbf{Das letzte Testprotokoll ist das Abnahmeprotokoll, das bei der abschließenden Vorführung erstellt wird. Es enthält eine Auflistung der erfolgreich vorgeführten Funktionen des Systems sowie eine Mängelliste mit Erklärungen der Ursachen der Fehlfunktionen und Vorschlägen zur Abhilfe}}
 
 \newpage
