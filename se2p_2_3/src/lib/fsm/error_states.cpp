@@ -16,7 +16,7 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    error_handler.cpp
+ * @file    error_states.cpp
  * @version 0.2
  *
  * Klasse fuer Fehler Zustandsautomaten

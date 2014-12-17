@@ -16,7 +16,7 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    error_handler.hpp
+ * @file    error_states.hpp
  * @version 0.2
  *
  * Interface/Abstrakte Klasse fuer Fehler Zustandsautomaten

@@ -16,7 +16,7 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    state.cpp
+ * @file    fsm1.cpp
  * @version 0.2
  *
  * Klasse fuer Zustandsautomaten

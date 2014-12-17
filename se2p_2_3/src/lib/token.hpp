@@ -170,7 +170,7 @@ class token : public fsm::events {
   /**
    * Fuegt Zeit zu den erwarteten Zeiten hinzu
    * @param sec  Sekunden die addiert werden sollen
-   * @param msec Nanosekunden die addiert werden sollen
+   * @param nsec Nanosekunden die addiert werden sollen
    **/
   void add_internal_times(int sec, long nsec);
 
