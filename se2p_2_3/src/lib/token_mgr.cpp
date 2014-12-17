@@ -73,6 +73,10 @@ void token_mgr::update() {
   if (m_safe_state) {
     return;
   }
+  if (m_alife < 0) {
+    LOG_ERROR("m_alife is under 0")
+    m_alife = 0;
+  }
   hwaccess* hal = TO_HAL(util::singleton_mgr::get_instance(HAL_PLUGIN));
   if (m_alife > 0) {
     hal->set_motor(MOTOR_RIGHT);
@@ -106,9 +110,6 @@ void token_mgr::update() {
 #if defined(IS_CONVEYOR_2)
     send_free();
 #endif
-  }
-  if (m_alife < 0) {
-    LOG_ERROR("m_alife is under 0")
   }
 }
 
