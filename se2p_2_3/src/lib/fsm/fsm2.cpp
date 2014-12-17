@@ -87,7 +87,19 @@ b2_received_object::b2_received_object(token* t) : state::state(t) {
   TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_motor(MOTOR_RIGHT);
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
-  // TODO Hier timer fuer die Uebergabe starten
+  disp->register_listener(m_token, EVENT_TRANSFER_TIMEOUT);
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration dur = { TRANSFER_SEC__TIMEOUT, TRANSFER_MSEC_TIMEOUT };
+  m_token->add_timer_id(hdl->register_timer(dur, EVENT_TRANSFER_TIMEOUT));
+}
+
+/**
+ * Werkstueck hat es nicht in der Zeit durch die Lichtschranke geschafft,
+ * Uebergabe des Werkstueckes ist gescheitert...
+ **/
+void b2_received_object::dispatched_event_tansfer_timeout() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_long(m_token);
 }
 
 /**

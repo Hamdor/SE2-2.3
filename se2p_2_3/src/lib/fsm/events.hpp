@@ -65,6 +65,7 @@ class events {
   virtual void dispatched_event_turn_token_timeout()     = 0;
   virtual void dispatched_event_remove_token_timeout()   = 0;
   virtual void dispatched_event_close_switch_time()      = 0;
+  virtual void dispatched_event_tansfer_timeout()        = 0;
 };
 
 } // namespace fsm
