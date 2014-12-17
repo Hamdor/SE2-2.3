@@ -29,7 +29,7 @@
 #include "lib/timer/timer_wrapper.hpp"
 #include "lib/constants.hpp"
 
-#include <vector>
+#include <map>
 
 namespace se2 {
 namespace util {
@@ -96,8 +96,9 @@ friend class util::singleton_mgr;
 
 
  private:
+  static size_t IDs;
   static timer_handler* instance;
-  std::vector<timer_wrapper*> timers;
+  std::map<size_t, timer_wrapper*> timers;
   int m_chid;
   /**
    * Initialisierung des Singletons

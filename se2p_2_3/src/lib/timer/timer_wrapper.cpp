@@ -38,6 +38,7 @@ timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
   m_coid = ConnectAttach(0, 0, chid, _NTO_SIDE_CHANNEL, 0);
   if (m_coid == -1) {
     LOG_ERROR("ConnectAttach() failed in timer_wrapper()")
+    perror("");
   }
   SIGEV_PULSE_INIT(&m_event, m_coid,
                    SIGEV_PULSE_PRIO_INHERIT, TIMER, pulse_value);

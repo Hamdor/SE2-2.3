@@ -30,7 +30,10 @@ using namespace se2::hal;
 using namespace se2::util;
 using namespace se2::timer;
 
+size_t timer_handler::IDs              = 0;
 timer_handler* timer_handler::instance = 0;
+
+typedef std::map<size_t, timer_wrapper*>::iterator it_type;
 
 void timer_handler::initialize() {
 
@@ -45,17 +48,18 @@ timer_handler::timer_handler() {
 }
 
 timer_handler::~timer_handler() {
-  for (std::vector<timer_wrapper*>::iterator it = timers.begin();
-       it != timers.end(); ++it) {
-    delete *it;
+  for(it_type iterator = timers.begin(); iterator != timers.end(); ++iterator) {
+    delete iterator->second;
   }
   timers.clear();
+  IDs      = 0;
   instance = 0;
 }
 
 int timer_handler::register_timer(duration time, int value) {
-  timers.push_back (new timer_wrapper(time, value, m_chid));
-  return timers.size() - 1;
+  size_t idx = IDs++;
+  timers.insert(std::make_pair(idx, new timer_wrapper(time, value, m_chid)));
+  return idx;
 }
 
 void timer_handler::change_channel(int chid) {
@@ -63,45 +67,34 @@ void timer_handler::change_channel(int chid) {
 }
 
 void timer_handler::delete_timer(size_t pos) {
-  if (pos < timers.size()) {
-    delete timers[pos];
-    timers.erase(timers.begin()+pos);
-  }
+  delete timers[pos];
+  timers.erase(pos);
 }
 
 void timer_handler::pause_timer(size_t pos) {
-  if (pos < timers.size()) {
-    timers[pos]->pause_timer();
-  }
+  timers[pos]->pause_timer();
 }
 void timer_handler::pause_all() {
-  for (std::vector<timer_wrapper*>::iterator it = timers.begin();
-       it != timers.end(); ++it) {
-    (*it)->pause_timer();
+  for(it_type iterator = timers.begin(); iterator != timers.end(); ++iterator) {
+    iterator->second->pause_timer();
   }
 }
 
 void timer_handler::continue_timer(size_t pos) {
-  if (pos < timers.size()) {
-    timers[pos]->continue_timer();
-  }
+  timers[pos]->continue_timer();
 }
 
 void timer_handler::continue_all() {
-  for (std::vector<timer_wrapper*>::iterator it = timers.begin();
-       it != timers.end(); ++it) {
-    (*it)->continue_timer();
+  for(it_type iterator = timers.begin(); iterator != timers.end(); ++iterator) {
+    iterator->second->continue_timer();
   }
 }
 void timer_handler::add_time(size_t pos, duration time) {
-  if (pos < timers.size()) {
-    timers[pos]->add_time(time);
-  }
+  timers[pos]->add_time(time);
 }
 
 void timer_handler::add_all(duration time) {
-  for (std::vector<timer_wrapper*>::iterator it = timers.begin();
-       it != timers.end(); ++it) {
-    (*it)->add_time(time);
+  for(it_type iterator = timers.begin(); iterator != timers.end(); ++iterator) {
+    iterator->second->add_time(time);
   }
 }
