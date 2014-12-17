@@ -69,6 +69,7 @@ class err_token_not_removed_from_end_token_removed : public fsm::state {
 
   virtual void dispatched_event_sensor_exit();
   virtual void dispatched_event_button_reset();
+  virtual void dispatched_event_button_start();
 };
 
 class err_token_not_removed_from_end_quitted : public fsm::state {

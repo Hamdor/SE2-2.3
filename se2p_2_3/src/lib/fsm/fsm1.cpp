@@ -364,7 +364,7 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   disp->register_listener(m_token, EVENT_REMOVE_TOKEN_TIMEOUT);
   // Timer fuer timeout zum entnehmen des Werkstueckes starten
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
-  const duration dur = { LIFT_UP_SEC__TIMEOUT, LIFT_UP_MSEC_TIMEOUT };
+  const duration dur = { TURNOVER_SEC__TIMEOUT, TURNOVER_MSEC_TIMEOUT };
   m_token->add_timer_id(hdl->register_timer(dur, EVENT_REMOVE_TOKEN_TIMEOUT));
 }
 

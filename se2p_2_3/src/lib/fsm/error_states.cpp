@@ -88,18 +88,24 @@ err_token_not_removed_from_end::err_token_not_removed_from_end(token* t)
   LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
-  // TODO:
-  // - Sensitiv auf Steigende Flanke Exit => Error Gone
-  // - Register exit sensor
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT_R);
+#ifdef IS_CONVEYOR_1
   disp->register_prior_listener(m_token, EVENT_SENSOR_EXIT);
+#endif
 }
 
 void err_token_not_removed_from_end::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
   new (this) err_token_not_removed_from_end_token_removed(m_token);
+#ifdef IS_CONVEYOR_2
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_GONE);
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_BUTTON_RESET);
+#endif
 }
 
 err_token_not_removed_from_end_token_removed::
@@ -108,6 +114,7 @@ err_token_not_removed_from_end_token_removed(token* t) : state::state(t) {
   TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_RESET, true);
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_GONE);
+
 }
 
 void err_token_not_removed_from_end_token_removed::dispatched_event_sensor_exit() {
@@ -119,7 +126,30 @@ void err_token_not_removed_from_end_token_removed::dispatched_event_sensor_exit(
 
 void err_token_not_removed_from_end_token_removed::dispatched_event_button_reset() {
   LOG_TRACE("")
+#ifdef IS_CONVEYOR_2
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(ERROR_RESOLVED);
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_BUTTON_START);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_RESET, false);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START, true);
+#else
   new (this) err_token_not_removed_from_end_quitted(m_token);
+#endif
+}
+
+void err_token_not_removed_from_end_token_removed::dispatched_event_button_start() {
+  LOG_TRACE("")
+#ifdef IS_CONVEYOR_2
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(READY_TO_USE);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START, false);
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->unrequest_stop_motor();
+  mgr->notify_death();
+  new (this) anonymous_token(m_token);
+#endif
 }
 
 err_token_not_removed_from_end_quitted::
@@ -144,9 +174,6 @@ void err_token_not_removed_from_end_quitted::dispatched_event_button_start() {
   mgr->unrequest_stop_motor();
 #ifdef IS_CONVEYOR_1
   new (this) b1_token_ready_for_b2(m_token);
-#else
-  mgr->notify_death();
-  new (this) anonymous_token(m_token);
 #endif
 }
 

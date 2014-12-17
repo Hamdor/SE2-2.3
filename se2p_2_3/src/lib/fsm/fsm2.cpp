@@ -401,6 +401,18 @@ void b2_is_correct_order::dispatched_event_sensor_exit() {
     new (this) err_runtime_too_short(m_token);
   }
   m_token->pretty_print();
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_REMOVE_TOKEN_TIMEOUT);
+  // Timer fuer timeout zum entnehmen des Werkstueckes starten
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration dur = { LIFT_UP_SEC__TIMEOUT, LIFT_UP_MSEC_TIMEOUT };
+  m_token->add_timer_id(hdl->register_timer(dur, EVENT_REMOVE_TOKEN_TIMEOUT));
+}
+
+void b2_is_correct_order::dispatched_event_remove_token_timeout() {
+  LOG_TRACE("")
+  new (this) err_token_not_removed_from_end(m_token);
 }
 
 /**
