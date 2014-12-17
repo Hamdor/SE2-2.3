@@ -190,14 +190,11 @@ Anschließend werden alle Geräte an das Stromnetz angeschlossen und über die K
 Sind alle Geräte hochgefahren, wird die jeweilige Software für die Ansteuerung des Förderbandes gestartet.\newline
 \newline
 Die LED der Start-Taste leuchtet auf, um dem Personal zu signalisieren, dass die Anlage betriebsbereit ist und gestartet werden kann.
-
 \newpage
 
 \section{Betrieb}
 \subsection{Normalbetrieb}
-Nach einem erfolgreichen Aufbau der Anlage signalisiert die leuchtende LED der Start-Taste, dass die Anlage betriebsbereit ist. Durch das Drücken der Start-Taste wird die Anlage in den Normalbetrieb versetzt.\newline
-\newline
-Die LED der Start-Taste erlischt und die grüne Signalleuchte der Ampelanlage leuchtet auf.\newline
+Nach erfolgreichem Aufbau der Anlage signalisiert die leuchtende LED der Start-Taste, dass die Anlage betriebsbereit ist. Durch das Drücken der Start-Taste wird die Anlage in den Normalbetrieb versetzt.
 \newline
 Das Personal kann nun damit beginnen die zu sortierenden Werkstücke in den Einlauf des ersten Förderbandes zu legen.\newline
 \newline
@@ -239,13 +236,14 @@ Sollten während des Normalbetriebs ein Verhalten oder Fehler auftreten, deren U
     \item Die Verkabelung der Förderbänder ist korrekt. Die Ports der Förderbänder sind mit den zugehörigen Ports der GEME-Rechner verbunden. Die Verbindungskabel sind intakt
     \item Die GEME-Rechner sind über ein serielles Verbindungskabel miteinander verbunden. Das Verbindungskabel ist intakt
     \item Die Stromzufuhr zu beiden Förderbänder ist angeschlossen und eingeschaltet
+    \item Der E-Stopp ist noch eingerastet
 \end{itemize}
 Wenn diese Fehlerquellen ausgeschlossen werden können und der Fehler weiterhin auftritt, sollte die Anlage aus Sicherheitsgründen zurückgesetzt werden (siehe Punkt 6.2.8: Zurücksetzen der Anlage im Fehlerfall).
 
 \subsubsection{Zurücksetzen der Anlage im Fehlerfall}
 Soll die Anlage aufgrund eines möglichen Fehlerfalls vollständig zurückgesetzt werden, sind folgende Schritte durchzuführen:
 \begin{itemize}
-  \item E-Stopp-Taste betätigen, um die gesamte Anlage zu stoppen
+  \item Beide Programme beenden
   \item Alle auf den Förderbändern befindlichen Werkstücke entnehmen
   \item Software beider Förderbänder neu starten  
 \end{itemize}
