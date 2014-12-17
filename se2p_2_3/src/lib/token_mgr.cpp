@@ -239,6 +239,8 @@ void token_mgr::enter_safe_state(bool send_serial) {
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
   hal->close_switch();
   hal->set_motor(MOTOR_STOP);
+  hal->set_led_state(LED_START, false);
+  hal->set_led_state(LED_RESET, false);
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(NO_LIGHTS);
   TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN))->pause_all();
