@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -169,7 +169,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="ttc" id="classse2_1_1serial__bus_1_1serial__interface_html_a0e505a6163a6166d110759e55ca3a5ba"><div class="ttname"><a href="classse2_1_1serial__bus_1_1serial__interface.html#a0e505a6163a6166d110759e55ca3a5ba">se2::serial_bus::serial_interface::m_fd</a></div><div class="ttdeci">int m_fd</div><div class="ttdef"><b>Definition:</b> <a href="serial__interface_8hpp_source.html#l00073">serial_interface.hpp:73</a></div></div>
 <div class="ttc" id="classse2_1_1serial__bus_1_1serial__interface_html_a4be646d22ddcb0e4ed60f5d1b648d35a"><div class="ttname"><a href="classse2_1_1serial__bus_1_1serial__interface.html#a4be646d22ddcb0e4ed60f5d1b648d35a">se2::serial_bus::serial_interface::config</a></div><div class="ttdeci">void config()</div><div class="ttdoc">Konfiguriert die Serielle Schnittstelle. </div><div class="ttdef"><b>Definition:</b> <a href="serial__interface_8cpp_source.html#l00086">serial_interface.cpp:86</a></div></div>
-<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00109">logging.hpp:109</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -205,7 +205,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor"></span>}</div>
 <div class="ttc" id="classse2_1_1serial__bus_1_1serial__interface_html_a0e505a6163a6166d110759e55ca3a5ba"><div class="ttname"><a href="classse2_1_1serial__bus_1_1serial__interface.html#a0e505a6163a6166d110759e55ca3a5ba">se2::serial_bus::serial_interface::m_fd</a></div><div class="ttdeci">int m_fd</div><div class="ttdef"><b>Definition:</b> <a href="serial__interface_8hpp_source.html#l00073">serial_interface.hpp:73</a></div></div>
-<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00109">logging.hpp:109</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -277,11 +277,11 @@ Private Attributes</h2></td></tr>
 <p>Schreibt Daten auf den Seriellen bus. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">buffer</td><td>gibt die zu lesende Telegram an </td></tr>
+    <tr><td class="paramname">buffer</td><td>Gibt die zu lesende Telegram an </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>TRUE wenn erfolgreich FALSE wenn fehlschlaegt FALSE wenn ohne <code>HAS_SERIAL_INTERFACE</code> kompiliert </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE Wenn erfolgreich FALSE Wenn fehlschlaegt FALSE Wenn ohne <code>HAS_SERIAL_INTERFACE</code> kompiliert </dd></dl>
 
 <p>Definition at line <a class="el" href="serial__interface_8cpp_source.html#l00077">77</a> of file <a class="el" href="serial__interface_8cpp_source.html">serial_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;                                            {</div>
@@ -292,7 +292,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="ttc" id="structse2_1_1serial__bus_1_1telegram_html"><div class="ttname"><a href="structse2_1_1serial__bus_1_1telegram.html">se2::serial_bus::telegram</a></div><div class="ttdoc">Telegram komplett. </div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00414">constants.hpp:414</a></div></div>
+<div class="ttc" id="structse2_1_1serial__bus_1_1telegram_html"><div class="ttname"><a href="structse2_1_1serial__bus_1_1telegram.html">se2::serial_bus::telegram</a></div><div class="ttdoc">Telegram komplett. </div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00468">constants.hpp:468</a></div></div>
 <div class="ttc" id="classse2_1_1serial__bus_1_1serial__interface_html_a0e505a6163a6166d110759e55ca3a5ba"><div class="ttname"><a href="classse2_1_1serial__bus_1_1serial__interface.html#a0e505a6163a6166d110759e55ca3a5ba">se2::serial_bus::serial_interface::m_fd</a></div><div class="ttdeci">int m_fd</div><div class="ttdef"><b>Definition:</b> <a href="serial__interface_8hpp_source.html#l00073">serial_interface.hpp:73</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -322,11 +322,11 @@ Private Attributes</h2></td></tr>
 <p>Schreibt Daten auf den Seriellen bus. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">data</td><td>gibt das zu schreibenden Telegram an </td></tr>
+    <tr><td class="paramname">data</td><td>Gibt das zu schreibenden Telegram an </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>TRUE wenn erfolgreich FALSE wenn fehlschlaegt FALSE wenn ohne <code>HAS_SERIAL_INTERFACE</code> kompiliert </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>TRUE Wenn erfolgreich FALSE Wenn fehlschlaegt FALSE Wenn ohne <code>HAS_SERIAL_INTERFACE</code> kompiliert </dd></dl>
 
 <p>Definition at line <a class="el" href="serial__interface_8cpp_source.html#l00061">61</a> of file <a class="el" href="serial__interface_8cpp_source.html">serial_interface.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                           {</div>
@@ -344,7 +344,7 @@ Private Attributes</h2></td></tr>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor"></span>  <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor"></span>}</div>
-<div class="ttc" id="structse2_1_1serial__bus_1_1telegram_html"><div class="ttname"><a href="structse2_1_1serial__bus_1_1telegram.html">se2::serial_bus::telegram</a></div><div class="ttdoc">Telegram komplett. </div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00414">constants.hpp:414</a></div></div>
+<div class="ttc" id="structse2_1_1serial__bus_1_1telegram_html"><div class="ttname"><a href="structse2_1_1serial__bus_1_1telegram.html">se2::serial_bus::telegram</a></div><div class="ttdoc">Telegram komplett. </div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00468">constants.hpp:468</a></div></div>
 <div class="ttc" id="classse2_1_1serial__bus_1_1serial__interface_html_a0e505a6163a6166d110759e55ca3a5ba"><div class="ttname"><a href="classse2_1_1serial__bus_1_1serial__interface.html#a0e505a6163a6166d110759e55ca3a5ba">se2::serial_bus::serial_interface::m_fd</a></div><div class="ttdeci">int m_fd</div><div class="ttdef"><b>Definition:</b> <a href="serial__interface_8hpp_source.html#l00073">serial_interface.hpp:73</a></div></div>
 <div class="ttc" id="classse2_1_1serial__bus_1_1serial__interface_html_a6a2170daa825958ec4c48e9043fe9c78"><div class="ttname"><a href="classse2_1_1serial__bus_1_1serial__interface.html#a6a2170daa825958ec4c48e9043fe9c78">se2::serial_bus::serial_interface::write</a></div><div class="ttdeci">bool write(telegram *data)</div><div class="ttdoc">Schreibt Daten auf den Seriellen bus. </div><div class="ttdef"><b>Definition:</b> <a href="serial__interface_8cpp_source.html#l00061">serial_interface.cpp:61</a></div></div>
 </div><!-- fragment -->

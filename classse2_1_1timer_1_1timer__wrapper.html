@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -115,7 +115,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ab7b2b2a2c5861c5eb40c4136770d4283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setzt den Timer fort.  <a href="#ab7b2b2a2c5861c5eb40c4136770d4283">More...</a><br/></td></tr>
 <tr class="separator:ab7b2b2a2c5861c5eb40c4136770d4283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5362b3bfb1434025964e1f6cae19fffe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">reset_timer</a> ()</td></tr>
-<tr class="memdesc:a5362b3bfb1434025964e1f6cae19fffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">resetet timer  <a href="#a5362b3bfb1434025964e1f6cae19fffe">More...</a><br/></td></tr>
+<tr class="memdesc:a5362b3bfb1434025964e1f6cae19fffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resetet timer.  <a href="#a5362b3bfb1434025964e1f6cae19fffe">More...</a><br/></td></tr>
 <tr class="separator:a5362b3bfb1434025964e1f6cae19fffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2785735e1b36588a157eadf267f6256"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#ae2785735e1b36588a157eadf267f6256">add_time</a> (<a class="el" href="structse2_1_1timer_1_1duration.html">duration</a> time)</td></tr>
 <tr class="memdesc:ae2785735e1b36588a157eadf267f6256"><td class="mdescLeft">&#160;</td><td class="mdescRight">Addiert die angegebene Zeit.  <a href="#ae2785735e1b36588a157eadf267f6256">More...</a><br/></td></tr>
@@ -124,7 +124,7 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
 <tr class="memitem:a27691feb010c47a7b0bddab59a38bb8b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a27691feb010c47a7b0bddab59a38bb8b">timer_wrapper</a> (<a class="el" href="structse2_1_1timer_1_1duration.html">duration</a> time, int pulse_value, int chid)</td></tr>
-<tr class="memdesc:a27691feb010c47a7b0bddab59a38bb8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor.  <a href="#a27691feb010c47a7b0bddab59a38bb8b">More...</a><br/></td></tr>
+<tr class="memdesc:a27691feb010c47a7b0bddab59a38bb8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Konstruktor.  <a href="#a27691feb010c47a7b0bddab59a38bb8b">More...</a><br/></td></tr>
 <tr class="separator:a27691feb010c47a7b0bddab59a38bb8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cbb686887aee4a884a82dc5201461d8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a7cbb686887aee4a884a82dc5201461d8">~timer_wrapper</a> ()</td></tr>
 <tr class="memdesc:a7cbb686887aee4a884a82dc5201461d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Destruktor.  <a href="#a7cbb686887aee4a884a82dc5201461d8">More...</a><br/></td></tr>
@@ -156,10 +156,12 @@ Private Attributes</h2></td></tr>
 Friends</h2></td></tr>
 <tr class="memitem:a70d26da73a6a4698e6aeb567017f679f"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a70d26da73a6a4698e6aeb567017f679f">timer_handler</a></td></tr>
 <tr class="separator:a70d26da73a6a4698e6aeb567017f679f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36c53cc97d019270034936b752d8777e"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a36c53cc97d019270034936b752d8777e">util::light_mgr</a></td></tr>
+<tr class="separator:a36c53cc97d019270034936b752d8777e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00039">39</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00042">42</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a27691feb010c47a7b0bddab59a38bb8b"></a>
 <div class="memitem">
@@ -199,41 +201,42 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Konstruktor. </p>
+<p>Default Konstruktor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">time</td><td>dauer des timers </td></tr>
+    <tr><td class="paramname">time</td><td>Dauer des Timers </td></tr>
     <tr><td class="paramname">pulse_value</td><td>Wert der die Pulse Message senden soll </td></tr>
-    <tr><td class="paramname">chid</td><td>ist die channel id </td></tr>
+    <tr><td class="paramname">chid</td><td>Ist die channel ID </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00033">33</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    : <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a>(0), <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a>(<span class="keyword">false</span>) {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a> = ConnectAttach(0, 0, chid, _NTO_SIDE_CHANNEL, 0);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a> == -1) {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;ConnectAttach() failed in timer_wrapper()&quot;</span>)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  SIGEV_PULSE_INIT(&amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a3991126042e2c674bb7d22e1193e5585">m_event</a>, <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a>,</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                   SIGEV_PULSE_PRIO_INHERIT, <a class="code" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4">TIMER</a>, pulse_value);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;  <span class="keywordtype">int</span> rc = timer_create(CLOCK_REALTIME, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a3991126042e2c674bb7d22e1193e5585">m_event</a>, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_create() failed in timer_wrapper()&quot;</span>)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  }</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">m_duration</a> = time;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">reset_timer</a>();</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1">start_timer</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4b5af96d31946b93af4df56bc7a4be64"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">se2::timer::timer_wrapper::m_duration</a></div><div class="ttdeci">duration m_duration</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00115">timer_wrapper.hpp:115</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a5362b3bfb1434025964e1f6cae19fffe"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">se2::timer::timer_wrapper::reset_timer</a></div><div class="ttdeci">void reset_timer()</div><div class="ttdoc">resetet timer </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00061">timer_wrapper.cpp:61</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a3991126042e2c674bb7d22e1193e5585"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a3991126042e2c674bb7d22e1193e5585">se2::timer::timer_wrapper::m_event</a></div><div class="ttdeci">sigevent m_event</div><div class="ttdoc">Zu ausfuerendes Event. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00108">timer_wrapper.hpp:108</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a1ad864727cf4e374fddbb813c5caacd1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1">se2::timer::timer_wrapper::start_timer</a></div><div class="ttdeci">void start_timer()</div><div class="ttdoc">Startet Timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00068">timer_wrapper.cpp:68</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00093">timer_wrapper.hpp:93</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a233b2c6e4cccc4f29f31b8be4f02dd0b"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">se2::timer::timer_wrapper::m_paused</a></div><div class="ttdeci">bool m_paused</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00114">timer_wrapper.hpp:114</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a2034e7d3f161f47e9aa5b78203f61382"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">se2::timer::timer_wrapper::m_coid</a></div><div class="ttdeci">int m_coid</div><div class="ttdoc">Connection id. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00113">timer_wrapper.hpp:113</a></div></div>
-<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
-<div class="ttc" id="namespacese2_html_a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4"><div class="ttname"><a href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4">se2::TIMER</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00107">constants.hpp:107</a></div></div>
+<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00036">36</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    : <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a>(0), <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a>(<span class="keyword">false</span>) {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a> = ConnectAttach(0, 0, chid, _NTO_SIDE_CHANNEL, 0);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a> == -1) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;ConnectAttach() failed in timer_wrapper()&quot;</span>)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    perror(&quot;&quot;);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  SIGEV_PULSE_INIT(&amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a3991126042e2c674bb7d22e1193e5585">m_event</a>, <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a>,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                   SIGEV_PULSE_PRIO_INHERIT, <a class="code" href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4">TIMER</a>, pulse_value);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <span class="keywordtype">int</span> rc = timer_create(CLOCK_REALTIME, &amp;m_event, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  if (rc == -1) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_create() failed in timer_wrapper()&quot;</span>)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  }</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">m_duration</a> = time;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">reset_timer</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1">start_timer</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4b5af96d31946b93af4df56bc7a4be64"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">se2::timer::timer_wrapper::m_duration</a></div><div class="ttdeci">duration m_duration</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00117">timer_wrapper.hpp:117</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a5362b3bfb1434025964e1f6cae19fffe"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">se2::timer::timer_wrapper::reset_timer</a></div><div class="ttdeci">void reset_timer()</div><div class="ttdoc">Resetet timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00066">timer_wrapper.cpp:66</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a3991126042e2c674bb7d22e1193e5585"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a3991126042e2c674bb7d22e1193e5585">se2::timer::timer_wrapper::m_event</a></div><div class="ttdeci">sigevent m_event</div><div class="ttdoc">Zu ausfuerendes Event. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00110">timer_wrapper.hpp:110</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a1ad864727cf4e374fddbb813c5caacd1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1">se2::timer::timer_wrapper::start_timer</a></div><div class="ttdeci">void start_timer()</div><div class="ttdoc">Startet Timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00073">timer_wrapper.cpp:73</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00095">timer_wrapper.hpp:95</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a233b2c6e4cccc4f29f31b8be4f02dd0b"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">se2::timer::timer_wrapper::m_paused</a></div><div class="ttdeci">bool m_paused</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00116">timer_wrapper.hpp:116</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a2034e7d3f161f47e9aa5b78203f61382"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">se2::timer::timer_wrapper::m_coid</a></div><div class="ttdeci">int m_coid</div><div class="ttdoc">Connection id. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00115">timer_wrapper.hpp:115</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00109">logging.hpp:109</a></div></div>
+<div class="ttc" id="namespacese2_html_a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4"><div class="ttname"><a href="namespacese2.html#a8b8153f14e875cb44bc6084edf126894a1755c40baa589f44f14c3367e78b40c4">se2::TIMER</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00109">constants.hpp:109</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -260,20 +263,22 @@ Friends</h2></td></tr>
 
 <p>Default Destruktor. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00050">50</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                              {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  <span class="keywordtype">int</span> rc = ConnectDetach(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a>);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;ConnectDetach() failed in ~timer_wrapper()&quot;</span>)</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  }</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  rc = timer_delete(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_delete() failed in ~timer_wrapper()&quot;</span>)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00093">timer_wrapper.hpp:93</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a2034e7d3f161f47e9aa5b78203f61382"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">se2::timer::timer_wrapper::m_coid</a></div><div class="ttdeci">int m_coid</div><div class="ttdoc">Connection id. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00113">timer_wrapper.hpp:113</a></div></div>
-<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
+<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00054">54</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                              {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a3229ea4d4c6c81d2f2e1eeba818c47bd">stop_timer</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  <span class="keywordtype">int</span> rc = ConnectDetach(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">m_coid</a>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;ConnectDetach() failed in ~timer_wrapper()&quot;</span>)</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  rc = timer_delete(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_delete() failed in ~timer_wrapper()&quot;</span>)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00095">timer_wrapper.hpp:95</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a2034e7d3f161f47e9aa5b78203f61382"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a2034e7d3f161f47e9aa5b78203f61382">se2::timer::timer_wrapper::m_coid</a></div><div class="ttdeci">int m_coid</div><div class="ttdoc">Connection id. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00115">timer_wrapper.hpp:115</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a3229ea4d4c6c81d2f2e1eeba818c47bd"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a3229ea4d4c6c81d2f2e1eeba818c47bd">se2::timer::timer_wrapper::stop_timer</a></div><div class="ttdeci">void stop_timer()</div><div class="ttdoc">Stopt den Timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00083">timer_wrapper.cpp:83</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00109">logging.hpp:109</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -295,24 +300,29 @@ Friends</h2></td></tr>
 <p>Addiert die angegebene Zeit. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">time</td><td>zu addierende Zeit </td></tr>
+    <tr><td class="paramname">time</td><td>Zu addierende Zeit </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00107">107</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                                           {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  timer_gettime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a3229ea4d4c6c81d2f2e1eeba818c47bd">stop_timer</a>();</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_value.tv_sec += timer.sec;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_value.tv_sec += timer.msec * <a class="code" href="timer__wrapper_8cpp.html#ad905895ca0af5e19c92bf5be0f55bb7d">MILISEC_TO_NANOSEC</a> ;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1">start_timer</a>();</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a1ad864727cf4e374fddbb813c5caacd1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1">se2::timer::timer_wrapper::start_timer</a></div><div class="ttdeci">void start_timer()</div><div class="ttdoc">Startet Timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00068">timer_wrapper.cpp:68</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00093">timer_wrapper.hpp:93</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00098">timer_wrapper.hpp:98</a></div></div>
-<div class="ttc" id="timer__wrapper_8cpp_html_ad905895ca0af5e19c92bf5be0f55bb7d"><div class="ttname"><a href="timer__wrapper_8cpp.html#ad905895ca0af5e19c92bf5be0f55bb7d">MILISEC_TO_NANOSEC</a></div><div class="ttdeci">#define MILISEC_TO_NANOSEC</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00031">timer_wrapper.cpp:31</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a3229ea4d4c6c81d2f2e1eeba818c47bd"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a3229ea4d4c6c81d2f2e1eeba818c47bd">se2::timer::timer_wrapper::stop_timer</a></div><div class="ttdeci">void stop_timer()</div><div class="ttdoc">Stopt den Timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00075">timer_wrapper.cpp:75</a></div></div>
+<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00114">114</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                                           {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  itimerspec tempspec;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  std::memset(&amp;tempspec, 0, <span class="keyword">sizeof</span>(itimerspec));</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  timer_gettime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, &amp;tempspec);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a3229ea4d4c6c81d2f2e1eeba818c47bd">stop_timer</a>();</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;  <span class="keyword">const</span> timespec durspec = { timer.sec, (long)timer.msec * <a class="code" href="timer__wrapper_8cpp.html#ad905895ca0af5e19c92bf5be0f55bb7d">MILISEC_TO_NANOSEC</a> };</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  timespec curspec  = tempspec.it_value;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;  tempspec.it_value = <a class="code" href="structse2_1_1timer_1_1time__utils.html#a67250af70ff10037d7f9833652ea60a9">time_utils::add</a>(curspec, durspec);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a> = tempspec;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1">start_timer</a>();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a1ad864727cf4e374fddbb813c5caacd1"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a1ad864727cf4e374fddbb813c5caacd1">se2::timer::timer_wrapper::start_timer</a></div><div class="ttdeci">void start_timer()</div><div class="ttdoc">Startet Timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00073">timer_wrapper.cpp:73</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00095">timer_wrapper.hpp:95</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00100">timer_wrapper.hpp:100</a></div></div>
+<div class="ttc" id="timer__wrapper_8cpp_html_ad905895ca0af5e19c92bf5be0f55bb7d"><div class="ttname"><a href="timer__wrapper_8cpp.html#ad905895ca0af5e19c92bf5be0f55bb7d">MILISEC_TO_NANOSEC</a></div><div class="ttdeci">#define MILISEC_TO_NANOSEC</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00034">timer_wrapper.cpp:34</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a3229ea4d4c6c81d2f2e1eeba818c47bd"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a3229ea4d4c6c81d2f2e1eeba818c47bd">se2::timer::timer_wrapper::stop_timer</a></div><div class="ttdeci">void stop_timer()</div><div class="ttdoc">Stopt den Timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00083">timer_wrapper.cpp:83</a></div></div>
+<div class="ttc" id="structse2_1_1timer_1_1time__utils_html_a67250af70ff10037d7f9833652ea60a9"><div class="ttname"><a href="structse2_1_1timer_1_1time__utils.html#a67250af70ff10037d7f9833652ea60a9">se2::timer::time_utils::add</a></div><div class="ttdeci">static timespec add(timespec a, timespec b)</div><div class="ttdoc">Addiert zwei timespec und gibt den Wert in einem neuen timespec zurueck. </div><div class="ttdef"><b>Definition:</b> <a href="time__utils_8cpp_source.html#l00034">time_utils.cpp:34</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -331,20 +341,20 @@ Friends</h2></td></tr>
 
 <p>Setzt den Timer fort. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00097">97</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                                   {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a>) {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">int</span> rc = timer_settime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, 0, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">m_temp_timer</a>, NULL);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">if</span> (rc == -1) {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;      <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_settime() failed in continue_timer()&quot;</span>)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  }</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00093">timer_wrapper.hpp:93</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a233b2c6e4cccc4f29f31b8be4f02dd0b"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">se2::timer::timer_wrapper::m_paused</a></div><div class="ttdeci">bool m_paused</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00114">timer_wrapper.hpp:114</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_ac095bdb1a002a6c66288c0f288aa4fa8"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">se2::timer::timer_wrapper::m_temp_timer</a></div><div class="ttdeci">itimerspec m_temp_timer</div><div class="ttdoc">Temp-Timer fuer Pausierung. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00103">timer_wrapper.hpp:103</a></div></div>
-<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
+<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00104">104</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                                   {</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keywordflow">if</span> (<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a>) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keywordtype">int</span> rc = timer_settime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, 0, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">m_temp_timer</a>, NULL);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> (rc == -1) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_settime() failed in continue_timer()&quot;</span>)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    }</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;  }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00095">timer_wrapper.hpp:95</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a233b2c6e4cccc4f29f31b8be4f02dd0b"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">se2::timer::timer_wrapper::m_paused</a></div><div class="ttdeci">bool m_paused</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00116">timer_wrapper.hpp:116</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_ac095bdb1a002a6c66288c0f288aa4fa8"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">se2::timer::timer_wrapper::m_temp_timer</a></div><div class="ttdeci">itimerspec m_temp_timer</div><div class="ttdoc">Temp-Timer fuer Pausierung. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00105">timer_wrapper.hpp:105</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00109">logging.hpp:109</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -363,21 +373,22 @@ Friends</h2></td></tr>
 
 <p>Pausiert den Timer. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00087">87</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                                {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  <span class="keywordflow">if</span> (!<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a>) {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">int</span> rc = timer_settime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, 0, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">m_temp_timer</a>);</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">if</span> (rc == -1) {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_settime() failed in pause_timer()&quot;</span>)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  }</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00093">timer_wrapper.hpp:93</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a233b2c6e4cccc4f29f31b8be4f02dd0b"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">se2::timer::timer_wrapper::m_paused</a></div><div class="ttdeci">bool m_paused</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00114">timer_wrapper.hpp:114</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00098">timer_wrapper.hpp:98</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_ac095bdb1a002a6c66288c0f288aa4fa8"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">se2::timer::timer_wrapper::m_temp_timer</a></div><div class="ttdeci">itimerspec m_temp_timer</div><div class="ttdoc">Temp-Timer fuer Pausierung. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00103">timer_wrapper.hpp:103</a></div></div>
-<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
+<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00092">92</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  <span class="keywordflow">if</span> (!<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a>) {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    itimerspec nullspec;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    std::memset(&amp;nullspec, 0, <span class="keyword">sizeof</span>(itimerspec));</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">int</span> rc = timer_settime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, 0, &amp;nullspec, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">m_temp_timer</a>);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">if</span> (rc == -1) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;      <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_settime() failed in pause_timer()&quot;</span>)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">m_paused</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;  }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00095">timer_wrapper.hpp:95</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a233b2c6e4cccc4f29f31b8be4f02dd0b"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a233b2c6e4cccc4f29f31b8be4f02dd0b">se2::timer::timer_wrapper::m_paused</a></div><div class="ttdeci">bool m_paused</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00116">timer_wrapper.hpp:116</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_ac095bdb1a002a6c66288c0f288aa4fa8"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">se2::timer::timer_wrapper::m_temp_timer</a></div><div class="ttdeci">itimerspec m_temp_timer</div><div class="ttdoc">Temp-Timer fuer Pausierung. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00105">timer_wrapper.hpp:105</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00109">logging.hpp:109</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -394,20 +405,20 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>resetet timer </p>
+<p>Resetet timer. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00061">61</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;                                {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_value.tv_sec = <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">m_duration</a>.<a class="code" href="structse2_1_1timer_1_1duration.html#a8202e5e42c03a8ab2a61136cd43ea951">sec</a>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_value.tv_nsec = <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">m_duration</a>.<a class="code" href="structse2_1_1timer_1_1duration.html#afd19755c5be0c72bae59a126f9cfeebc">msec</a> * <a class="code" href="timer__wrapper_8cpp.html#ad905895ca0af5e19c92bf5be0f55bb7d">MILISEC_TO_NANOSEC</a>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_interval.tv_sec = 0;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_interval.tv_nsec = 0;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4b5af96d31946b93af4df56bc7a4be64"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">se2::timer::timer_wrapper::m_duration</a></div><div class="ttdeci">duration m_duration</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00115">timer_wrapper.hpp:115</a></div></div>
-<div class="ttc" id="structse2_1_1timer_1_1duration_html_afd19755c5be0c72bae59a126f9cfeebc"><div class="ttname"><a href="structse2_1_1timer_1_1duration.html#afd19755c5be0c72bae59a126f9cfeebc">se2::timer::duration::msec</a></div><div class="ttdeci">size_t msec</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00441">constants.hpp:441</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00098">timer_wrapper.hpp:98</a></div></div>
-<div class="ttc" id="structse2_1_1timer_1_1duration_html_a8202e5e42c03a8ab2a61136cd43ea951"><div class="ttname"><a href="structse2_1_1timer_1_1duration.html#a8202e5e42c03a8ab2a61136cd43ea951">se2::timer::duration::sec</a></div><div class="ttdeci">size_t sec</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00440">constants.hpp:440</a></div></div>
-<div class="ttc" id="timer__wrapper_8cpp_html_ad905895ca0af5e19c92bf5be0f55bb7d"><div class="ttname"><a href="timer__wrapper_8cpp.html#ad905895ca0af5e19c92bf5be0f55bb7d">MILISEC_TO_NANOSEC</a></div><div class="ttdeci">#define MILISEC_TO_NANOSEC</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00031">timer_wrapper.cpp:31</a></div></div>
+<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00066">66</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                                {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_value.tv_sec = <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">m_duration</a>.<a class="code" href="structse2_1_1timer_1_1duration.html#a8202e5e42c03a8ab2a61136cd43ea951">sec</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_value.tv_nsec = <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">m_duration</a>.<a class="code" href="structse2_1_1timer_1_1duration.html#afd19755c5be0c72bae59a126f9cfeebc">msec</a> * <a class="code" href="timer__wrapper_8cpp.html#ad905895ca0af5e19c92bf5be0f55bb7d">MILISEC_TO_NANOSEC</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_interval.tv_sec = 0;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_interval.tv_nsec = 0;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4b5af96d31946b93af4df56bc7a4be64"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">se2::timer::timer_wrapper::m_duration</a></div><div class="ttdeci">duration m_duration</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00117">timer_wrapper.hpp:117</a></div></div>
+<div class="ttc" id="structse2_1_1timer_1_1duration_html_afd19755c5be0c72bae59a126f9cfeebc"><div class="ttname"><a href="structse2_1_1timer_1_1duration.html#afd19755c5be0c72bae59a126f9cfeebc">se2::timer::duration::msec</a></div><div class="ttdeci">size_t msec</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00500">constants.hpp:500</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00100">timer_wrapper.hpp:100</a></div></div>
+<div class="ttc" id="structse2_1_1timer_1_1duration_html_a8202e5e42c03a8ab2a61136cd43ea951"><div class="ttname"><a href="structse2_1_1timer_1_1duration.html#a8202e5e42c03a8ab2a61136cd43ea951">se2::timer::duration::sec</a></div><div class="ttdeci">size_t sec</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00499">constants.hpp:499</a></div></div>
+<div class="ttc" id="timer__wrapper_8cpp_html_ad905895ca0af5e19c92bf5be0f55bb7d"><div class="ttname"><a href="timer__wrapper_8cpp.html#ad905895ca0af5e19c92bf5be0f55bb7d">MILISEC_TO_NANOSEC</a></div><div class="ttdeci">#define MILISEC_TO_NANOSEC</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00034">timer_wrapper.cpp:34</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -426,16 +437,22 @@ Friends</h2></td></tr>
 
 <p>Startet Timer. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00068">68</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                                {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keywordtype">int</span> rc = timer_settime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, 0, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>, NULL);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_settime() failed in start_timer()&quot;</span>)</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00093">timer_wrapper.hpp:93</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00098">timer_wrapper.hpp:98</a></div></div>
-<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
+<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00073">73</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;  <span class="keywordtype">int</span> rc = timer_settime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, 0, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>, NULL);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::stringstream ss;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    ss &lt;&lt; <span class="stringliteral">&quot;timer_settime() failed in start_timer() sec: &quot;</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">m_duration</a>.<a class="code" href="structse2_1_1timer_1_1duration.html#a8202e5e42c03a8ab2a61136cd43ea951">sec</a> &lt;&lt; <span class="stringliteral">&quot; msec: &quot;</span> &lt;&lt; <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">m_duration</a>.<a class="code" href="structse2_1_1timer_1_1duration.html#afd19755c5be0c72bae59a126f9cfeebc">msec</a>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(ss.str().c_str());</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4b5af96d31946b93af4df56bc7a4be64"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">se2::timer::timer_wrapper::m_duration</a></div><div class="ttdeci">duration m_duration</div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00117">timer_wrapper.hpp:117</a></div></div>
+<div class="ttc" id="structse2_1_1timer_1_1duration_html_afd19755c5be0c72bae59a126f9cfeebc"><div class="ttname"><a href="structse2_1_1timer_1_1duration.html#afd19755c5be0c72bae59a126f9cfeebc">se2::timer::duration::msec</a></div><div class="ttdeci">size_t msec</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00500">constants.hpp:500</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00095">timer_wrapper.hpp:95</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00100">timer_wrapper.hpp:100</a></div></div>
+<div class="ttc" id="structse2_1_1timer_1_1duration_html_a8202e5e42c03a8ab2a61136cd43ea951"><div class="ttname"><a href="structse2_1_1timer_1_1duration.html#a8202e5e42c03a8ab2a61136cd43ea951">se2::timer::duration::sec</a></div><div class="ttdeci">size_t sec</div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00499">constants.hpp:499</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00109">logging.hpp:109</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -454,22 +471,19 @@ Friends</h2></td></tr>
 
 <p>Stopt den Timer. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00075">75</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                               {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_value.tv_sec = 0;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_value.tv_sec = 0;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_interval.tv_sec = 0;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>.it_interval.tv_nsec = 0;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keywordtype">int</span> rc = timer_settime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, 0, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>, NULL);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_settime() failed in stop_timer()&quot;</span>)</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;  }</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">reset_timer</a>();</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a5362b3bfb1434025964e1f6cae19fffe"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">se2::timer::timer_wrapper::reset_timer</a></div><div class="ttdeci">void reset_timer()</div><div class="ttdoc">resetet timer </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00061">timer_wrapper.cpp:61</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00093">timer_wrapper.hpp:93</a></div></div>
-<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00098">timer_wrapper.hpp:98</a></div></div>
-<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00106">logging.hpp:106</a></div></div>
+<p>Definition at line <a class="el" href="timer__wrapper_8cpp_source.html#l00083">83</a> of file <a class="el" href="timer__wrapper_8cpp_source.html">timer_wrapper.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                               {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  std::memset(&amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>, 0, <span class="keyword">sizeof</span>(itimerspec));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;  <span class="keywordtype">int</span> rc = timer_settime(<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">m_timerid</a>, 0, &amp;<a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">m_timer</a>, NULL);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keywordflow">if</span> (rc == -1) {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a>(<span class="stringliteral">&quot;timer_settime() failed in stop_timer()&quot;</span>)</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;  }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;  <a class="code" href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">reset_timer</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a5362b3bfb1434025964e1f6cae19fffe"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a5362b3bfb1434025964e1f6cae19fffe">se2::timer::timer_wrapper::reset_timer</a></div><div class="ttdeci">void reset_timer()</div><div class="ttdoc">Resetet timer. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8cpp_source.html#l00066">timer_wrapper.cpp:66</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a212caa0ab0f31270a0a5b92b74971724"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper::m_timerid</a></div><div class="ttdeci">timer_t m_timerid</div><div class="ttdoc">Timer ID. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00095">timer_wrapper.hpp:95</a></div></div>
+<div class="ttc" id="classse2_1_1timer_1_1timer__wrapper_html_a4a2c7fd5ba140459ad2694566e48a81a"><div class="ttname"><a href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper::m_timer</a></div><div class="ttdeci">itimerspec m_timer</div><div class="ttdoc">Timer Daten. </div><div class="ttdef"><b>Definition:</b> <a href="timer__wrapper_8hpp_source.html#l00100">timer_wrapper.hpp:100</a></div></div>
+<div class="ttc" id="logging_8hpp_html_a4932e603544e8dfb37fee1534bd30c53"><div class="ttname"><a href="logging_8hpp.html#a4932e603544e8dfb37fee1534bd30c53">LOG_ERROR</a></div><div class="ttdeci">#define LOG_ERROR(str)</div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00109">logging.hpp:109</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -492,7 +506,29 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00040">40</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00043">43</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a36c53cc97d019270034936b752d8777e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classse2_1_1util_1_1light__mgr.html">util::light_mgr</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00044">44</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 
 </div>
 </div>
@@ -517,7 +553,7 @@ Friends</h2></td></tr>
 
 <p>Connection id. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00113">113</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00115">115</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 
 </div>
 </div>
@@ -539,7 +575,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00115">115</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00117">117</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 
 </div>
 </div>
@@ -563,7 +599,7 @@ Friends</h2></td></tr>
 
 <p>Zu ausfuerendes Event. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00108">108</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00110">110</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 
 </div>
 </div>
@@ -585,7 +621,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00114">114</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00116">116</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 
 </div>
 </div>
@@ -609,7 +645,7 @@ Friends</h2></td></tr>
 
 <p>Temp-Timer fuer Pausierung. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00103">103</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00105">105</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 
 </div>
 </div>
@@ -633,7 +669,7 @@ Friends</h2></td></tr>
 
 <p>Timer Daten. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00098">98</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00100">100</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 
 </div>
 </div>
@@ -657,7 +693,7 @@ Friends</h2></td></tr>
 
 <p>Timer ID. </p>
 
-<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00093">93</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
+<p>Definition at line <a class="el" href="timer__wrapper_8hpp_source.html#l00095">95</a> of file <a class="el" href="timer__wrapper_8hpp_source.html">timer_wrapper.hpp</a>.</p>
 
 </div>
 </div>

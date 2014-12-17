@@ -5,6 +5,7 @@ var searchData=
   ['s_5fexit',['s_exit',['../classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d',1,'se2::util::HAWThread']]],
   ['s_5flock_5fdispatcher',['s_lock_dispatcher',['../classse2_1_1util_1_1singleton__mgr.html#ab72c1dc573e218395bbf2c72cc11d525',1,'se2::util::singleton_mgr']]],
   ['s_5flock_5fhal',['s_lock_hal',['../classse2_1_1util_1_1singleton__mgr.html#aa055404d695f9a817c0db40e7889158d',1,'se2::util::singleton_mgr']]],
+  ['s_5flock_5flight_5fmgr',['s_lock_light_mgr',['../classse2_1_1util_1_1singleton__mgr.html#a3beb8e15e9a0b9d34d91592fd1590932',1,'se2::util::singleton_mgr']]],
   ['s_5flock_5flog',['s_lock_log',['../classse2_1_1util_1_1singleton__mgr.html#a45720c27e84dfda1d90ebbb49ee1df5c',1,'se2::util::singleton_mgr']]],
   ['s_5flock_5fserial',['s_lock_serial',['../classse2_1_1util_1_1singleton__mgr.html#a75d2cafb3a8f17f094236217d03c56ef',1,'se2::util::singleton_mgr']]],
   ['s_5flock_5ftimer',['s_lock_timer',['../classse2_1_1util_1_1singleton__mgr.html#af01bdf767cf0798bd83c83245cdf02c3',1,'se2::util::singleton_mgr']]],

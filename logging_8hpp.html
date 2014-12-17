@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -99,6 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <code>#include &quot;<a class="el" href="singleton__mgr_8hpp_source.html">lib/util/singleton_mgr.hpp</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="abstract__singleton_8hpp_source.html">lib/util/abstract_singleton.hpp</a>&quot;</code><br/>
 <code>#include &lt;fstream&gt;</code><br/>
+<code>#include &lt;sstream&gt;</code><br/>
 </div>
 <p><a href="logging_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -148,13 +149,13 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">static_cast&lt;</span><a class="code" href="classse2_1_1util_1_1logging.html">se2::util::logging</a>*<span class="keyword">&gt;</span>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a>(    \</div>
 <div class="line">                   <a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a>))-&gt;log(str, <a class="code" href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a2c60931e9b4cb214d8228f5c90e3cc5c">se2::util::DEBUG</a>,     \</div>
-<div class="line">                                         __FILE__, __LINE__);</div>
-<div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00040">singleton_mgr.cpp:40</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_a6037efca13537d0d7fa1533dae5f0565a2c60931e9b4cb214d8228f5c90e3cc5c"><div class="ttname"><a href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a2c60931e9b4cb214d8228f5c90e3cc5c">se2::util::DEBUG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00380">constants.hpp:380</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1logging_html"><div class="ttname"><a href="classse2_1_1util_1_1logging.html">se2::util::logging</a></div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00042">logging.hpp:42</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00049">singleton_mgr.hpp:49</a></div></div>
+<div class="line">                                         __FILE__, __LINE__, __PRETTY_FUNCTION__);</div>
+<div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00041">singleton_mgr.cpp:41</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_a6037efca13537d0d7fa1533dae5f0565a2c60931e9b4cb214d8228f5c90e3cc5c"><div class="ttname"><a href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a2c60931e9b4cb214d8228f5c90e3cc5c">se2::util::DEBUG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00433">constants.hpp:433</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1logging_html"><div class="ttname"><a href="classse2_1_1util_1_1logging.html">se2::util::logging</a></div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00043">logging.hpp:43</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00047">singleton_mgr.hpp:47</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="logging_8hpp_source.html#l00096">96</a> of file <a class="el" href="logging_8hpp_source.html">logging.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logging_8hpp_source.html#l00099">99</a> of file <a class="el" href="logging_8hpp_source.html">logging.hpp</a>.</p>
 
 </div>
 </div>
@@ -172,14 +173,14 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">static_cast&lt;</span><a class="code" href="classse2_1_1util_1_1logging.html">se2::util::logging</a>*<span class="keyword">&gt;</span>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a>(    \</div>
-<div class="line">                            <a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a>))-&gt;log(str,              \</div>
-<div class="line">                                   <a class="code" href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565acfd3ad73a2c089003cf04874047cc25b">se2::util::ERROR</a>, __FILE__, __LINE__);</div>
-<div class="ttc" id="namespacese2_1_1util_html_a6037efca13537d0d7fa1533dae5f0565acfd3ad73a2c089003cf04874047cc25b"><div class="ttname"><a href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565acfd3ad73a2c089003cf04874047cc25b">se2::util::ERROR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00382">constants.hpp:382</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00040">singleton_mgr.cpp:40</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1logging_html"><div class="ttname"><a href="classse2_1_1util_1_1logging.html">se2::util::logging</a></div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00042">logging.hpp:42</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00049">singleton_mgr.hpp:49</a></div></div>
+<div class="line">                   <a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a>))-&gt;log(str,                       \</div>
+<div class="line">                   <a class="code" href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565acfd3ad73a2c089003cf04874047cc25b">se2::util::ERROR</a>, __FILE__, __LINE__, __PRETTY_FUNCTION__);</div>
+<div class="ttc" id="namespacese2_1_1util_html_a6037efca13537d0d7fa1533dae5f0565acfd3ad73a2c089003cf04874047cc25b"><div class="ttname"><a href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565acfd3ad73a2c089003cf04874047cc25b">se2::util::ERROR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00435">constants.hpp:435</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00041">singleton_mgr.cpp:41</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1logging_html"><div class="ttname"><a href="classse2_1_1util_1_1logging.html">se2::util::logging</a></div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00043">logging.hpp:43</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00047">singleton_mgr.hpp:47</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="logging_8hpp_source.html#l00106">106</a> of file <a class="el" href="logging_8hpp_source.html">logging.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logging_8hpp_source.html#l00109">109</a> of file <a class="el" href="logging_8hpp_source.html">logging.hpp</a>.</p>
 
 </div>
 </div>
@@ -198,15 +199,15 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">static_cast&lt;</span><a class="code" href="classse2_1_1util_1_1logging.html">se2::util::logging</a>*<span class="keyword">&gt;</span>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a>(  \</div>
 <div class="line">                   <a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a>))-&gt;log(str, <a class="code" href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a928291a479ee8a8f8100a0208dfd1b3f">se2::util::TRACE</a>,     \</div>
-<div class="line">                          __FILE__, __LINE__);</div>
-<div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00040">singleton_mgr.cpp:40</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_a6037efca13537d0d7fa1533dae5f0565a928291a479ee8a8f8100a0208dfd1b3f"><div class="ttname"><a href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a928291a479ee8a8f8100a0208dfd1b3f">se2::util::TRACE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00379">constants.hpp:379</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1logging_html"><div class="ttname"><a href="classse2_1_1util_1_1logging.html">se2::util::logging</a></div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00042">logging.hpp:42</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00049">singleton_mgr.hpp:49</a></div></div>
+<div class="line">                          __FILE__, __LINE__, __PRETTY_FUNCTION__);</div>
+<div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00041">singleton_mgr.cpp:41</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_a6037efca13537d0d7fa1533dae5f0565a928291a479ee8a8f8100a0208dfd1b3f"><div class="ttname"><a href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a928291a479ee8a8f8100a0208dfd1b3f">se2::util::TRACE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00432">constants.hpp:432</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1logging_html"><div class="ttname"><a href="classse2_1_1util_1_1logging.html">se2::util::logging</a></div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00043">logging.hpp:43</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00047">singleton_mgr.hpp:47</a></div></div>
 </div><!-- fragment -->
 <p>Zugriff auf den LOG bitte nur durch diese Makros! </p>
 
-<p>Definition at line <a class="el" href="logging_8hpp_source.html#l00091">91</a> of file <a class="el" href="logging_8hpp_source.html">logging.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logging_8hpp_source.html#l00094">94</a> of file <a class="el" href="logging_8hpp_source.html">logging.hpp</a>.</p>
 
 </div>
 </div>
@@ -225,13 +226,13 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line"><span class="keyword">static_cast&lt;</span><a class="code" href="classse2_1_1util_1_1logging.html">se2::util::logging</a>*<span class="keyword">&gt;</span>(<a class="code" href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a>(    \</div>
 <div class="line">                   <a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a>))-&gt;log(str, <a class="code" href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a49689120eacd515b4f9ac92218ce0d5a">se2::util::WARNING</a>,   \</div>
-<div class="line">                                         __FILE__, __LINE__);</div>
-<div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00040">singleton_mgr.cpp:40</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_a6037efca13537d0d7fa1533dae5f0565a49689120eacd515b4f9ac92218ce0d5a"><div class="ttname"><a href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a49689120eacd515b4f9ac92218ce0d5a">se2::util::WARNING</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00381">constants.hpp:381</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1logging_html"><div class="ttname"><a href="classse2_1_1util_1_1logging.html">se2::util::logging</a></div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00042">logging.hpp:42</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00049">singleton_mgr.hpp:49</a></div></div>
+<div class="line">                                         __FILE__, __LINE__, __PRETTY_FUNCTION__);</div>
+<div class="ttc" id="classse2_1_1util_1_1singleton__mgr_html_aa131afddc6afbbecf20abee0febec7fc"><div class="ttname"><a href="classse2_1_1util_1_1singleton__mgr.html#aa131afddc6afbbecf20abee0febec7fc">se2::util::singleton_mgr::get_instance</a></div><div class="ttdeci">static abstract_singleton * get_instance(module_type module)</div><div class="ttdoc">Zurgiff auf ein beliebiges Singleton Module. </div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8cpp_source.html#l00041">singleton_mgr.cpp:41</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_a6037efca13537d0d7fa1533dae5f0565a49689120eacd515b4f9ac92218ce0d5a"><div class="ttname"><a href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a49689120eacd515b4f9ac92218ce0d5a">se2::util::WARNING</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00434">constants.hpp:434</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1logging_html"><div class="ttname"><a href="classse2_1_1util_1_1logging.html">se2::util::logging</a></div><div class="ttdef"><b>Definition:</b> <a href="logging_8hpp_source.html#l00043">logging.hpp:43</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util::LOGGER_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00047">singleton_mgr.hpp:47</a></div></div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="logging_8hpp_source.html#l00101">101</a> of file <a class="el" href="logging_8hpp_source.html">logging.hpp</a>.</p>
+<p>Definition at line <a class="el" href="logging_8hpp_source.html#l00104">104</a> of file <a class="el" href="logging_8hpp_source.html">logging.hpp</a>.</p>
 
 </div>
 </div>

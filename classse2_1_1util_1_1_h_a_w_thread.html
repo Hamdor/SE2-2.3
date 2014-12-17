@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -109,6 +109,7 @@ Inheritance diagram for se2::util::HAWThread:</div>
   <map id="se2::util::HAWThread_map" name="se2::util::HAWThread_map">
 <area href="structse2_1_1dispatch_1_1dispatcher.html" alt="se2::dispatch::dispatcher" shape="rect" coords="0,56,185,80"/>
 <area href="classse2_1_1serial__bus_1_1serial__channel.html" alt="se2::serial_bus::serial_channel" shape="rect" coords="195,56,380,80"/>
+<area href="classse2_1_1util_1_1light__mgr.html" alt="se2::util::light_mgr" shape="rect" coords="390,56,575,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -141,6 +142,11 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a519b1ae4b86f100bba4f8237b959396f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#a519b1ae4b86f100bba4f8237b959396f">shutdownAll</a> ()</td></tr>
 <tr class="memdesc:a519b1ae4b86f100bba4f8237b959396f"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the GLOBAL_EXIT flag to true.  <a href="#a519b1ae4b86f100bba4f8237b959396f">More...</a><br/></td></tr>
 <tr class="separator:a519b1ae4b86f100bba4f8237b959396f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb5bcbe3a3dd097c4e485cbf304bca37"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#aeb5bcbe3a3dd097c4e485cbf304bca37">reset_shutdown_flag</a> ()</td></tr>
+<tr class="memdesc:aeb5bcbe3a3dd097c4e485cbf304bca37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the GLObAL_EXIT flag to false.  <a href="#aeb5bcbe3a3dd097c4e485cbf304bca37">More...</a><br/></td></tr>
+<tr class="separator:aeb5bcbe3a3dd097c4e485cbf304bca37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cc0e56f555d7ce66d0a0c778363795b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#a7cc0e56f555d7ce66d0a0c778363795b">is_global_shutdown</a> ()</td></tr>
+<tr class="separator:a7cc0e56f555d7ce66d0a0c778363795b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -212,9 +218,9 @@ Static Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                     : <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a6c6ed1486df9e674e150508f427380d0">m_running</a>(<span class="keyword">false</span>), <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">m_arg</a>(NULL), <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">m_exit</a>(<span class="keyword">false</span>) {</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;  <span class="comment">// nop</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_ad6d83e0f72b5dc3a6577786cabdfd4e6"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">se2::util::HAWThread::m_exit</a></div><div class="ttdeci">bool m_exit</div><div class="ttdoc">stop this thread </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00136">HAWThread.hpp:136</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a0edc084b41b2812bd448a3c4ced7d4da"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">se2::util::HAWThread::m_arg</a></div><div class="ttdeci">void * m_arg</div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00134">HAWThread.hpp:134</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a6c6ed1486df9e674e150508f427380d0"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a6c6ed1486df9e674e150508f427380d0">se2::util::HAWThread::m_running</a></div><div class="ttdeci">volatile bool m_running</div><div class="ttdoc">flag to check if thread is running </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00133">HAWThread.hpp:133</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_ad6d83e0f72b5dc3a6577786cabdfd4e6"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">se2::util::HAWThread::m_exit</a></div><div class="ttdeci">bool m_exit</div><div class="ttdoc">stop this thread </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00143">HAWThread.hpp:143</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a0edc084b41b2812bd448a3c4ced7d4da"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">se2::util::HAWThread::m_arg</a></div><div class="ttdeci">void * m_arg</div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00141">HAWThread.hpp:141</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a6c6ed1486df9e674e150508f427380d0"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a6c6ed1486df9e674e150508f427380d0">se2::util::HAWThread::m_running</a></div><div class="ttdeci">volatile bool m_running</div><div class="ttdoc">flag to check if thread is running </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00140">HAWThread.hpp:140</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -247,7 +253,7 @@ Static Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                      {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  ThreadDestroy(<a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">m_tid</a> , 0 , 0);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00132">HAWThread.hpp:132</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00139">HAWThread.hpp:139</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -275,9 +281,9 @@ Static Private Attributes</h2></td></tr>
 
 <p>used internally to pass the argument. </p>
 
-<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00117">117</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">m_arg</a>; }</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a0edc084b41b2812bd448a3c4ced7d4da"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">se2::util::HAWThread::m_arg</a></div><div class="ttdeci">void * m_arg</div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00134">HAWThread.hpp:134</a></div></div>
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00124">124</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">m_arg</a>; }</div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a0edc084b41b2812bd448a3c4ced7d4da"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">se2::util::HAWThread::m_arg</a></div><div class="ttdeci">void * m_arg</div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00141">HAWThread.hpp:141</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -305,9 +311,9 @@ Static Private Attributes</h2></td></tr>
 
 <p>used internally to set the arguement. </p>
 
-<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00122">122</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{ <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">m_arg</a> = a; }</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a0edc084b41b2812bd448a3c4ced7d4da"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">se2::util::HAWThread::m_arg</a></div><div class="ttdeci">void * m_arg</div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00134">HAWThread.hpp:134</a></div></div>
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00129">129</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{ <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">m_arg</a> = a; }</div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a0edc084b41b2812bd448a3c4ced7d4da"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a0edc084b41b2812bd448a3c4ced7d4da">se2::util::HAWThread::m_arg</a></div><div class="ttdeci">void * m_arg</div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00141">HAWThread.hpp:141</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -331,7 +337,7 @@ Static Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                     {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  ThreadCtl(_NTO_TCTL_ONE_THREAD_CONT, static_cast&lt;void*&gt;(&amp;<a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">m_tid</a>));</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00132">HAWThread.hpp:132</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00139">HAWThread.hpp:139</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -364,7 +370,7 @@ Static Private Attributes</h2></td></tr>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
 <div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a1ab6abfec47a74cc4f586a7fdab86d6b"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a1ab6abfec47a74cc4f586a7fdab86d6b">se2::util::HAWThread::run</a></div><div class="ttdeci">void run(void *arg)</div><div class="ttdoc">This is called when the thread is started. </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8cpp_source.html#l00058">HAWThread.cpp:58</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a79cc43559eb4a74918bab76eab168634"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a79cc43559eb4a74918bab76eab168634">se2::util::HAWThread::Arg</a></div><div class="ttdeci">void * Arg() const </div><div class="ttdoc">used internally to pass the argument. </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00117">HAWThread.hpp:117</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a79cc43559eb4a74918bab76eab168634"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a79cc43559eb4a74918bab76eab168634">se2::util::HAWThread::Arg</a></div><div class="ttdeci">void * Arg() const </div><div class="ttdoc">used internally to pass the argument. </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00124">HAWThread.hpp:124</a></div></div>
 <div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html">se2::util::HAWThread</a></div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00039">HAWThread.hpp:39</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -394,7 +400,7 @@ Static Private Attributes</h2></td></tr>
 <p>to be implemented in the derived class. </p>
 <p>The application programmer has to write his own loop. He can check bool <a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#afa70fb89fec6daa647c6d13c6ef53243" title="returns the stop-status of the thread. ">isStopped()</a> to see if the thread should exit the loop. </p>
 
-<p>Implemented in <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a762b0d29e231bd72a3a75fd39963d522">se2::dispatch::dispatcher</a>, and <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#a74426d17c76df0e61cae2478a9301be0">se2::serial_bus::serial_channel</a>.</p>
+<p>Implemented in <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a762b0d29e231bd72a3a75fd39963d522">se2::dispatch::dispatcher</a>, <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#a74426d17c76df0e61cae2478a9301be0">se2::serial_bus::serial_channel</a>, and <a class="el" href="classse2_1_1util_1_1light__mgr.html#acb66d4e4024f323c007c67aaca31e3a6">se2::util::light_mgr</a>.</p>
 
 </div>
 </div>
@@ -418,7 +424,34 @@ Static Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                     {</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  ThreadCtl(_NTO_TCTL_ONE_THREAD_HOLD, static_cast&lt;void*&gt;(&amp;<a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">m_tid</a>));</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00132">HAWThread.hpp:132</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00139">HAWThread.hpp:139</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7cc0e56f555d7ce66d0a0c778363795b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool se2::util::HAWThread::is_global_shutdown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00095">95</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">s_exit</a>; }</div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a4b0ceffa4ca444b4c625cb96fc588c5d"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">se2::util::HAWThread::s_exit</a></div><div class="ttdeci">static volatile bool s_exit</div><div class="ttdoc">close all threads </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00142">HAWThread.hpp:142</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -446,10 +479,10 @@ Static Private Attributes</h2></td></tr>
 <p>returns the stop-status of the thread. </p>
 <p>This function should be checked by the user function execute regularly. </p>
 
-<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00129">129</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;{ <span class="keywordflow">return</span> (<a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">s_exit</a> || <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">m_exit</a>); }</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_ad6d83e0f72b5dc3a6577786cabdfd4e6"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">se2::util::HAWThread::m_exit</a></div><div class="ttdeci">bool m_exit</div><div class="ttdoc">stop this thread </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00136">HAWThread.hpp:136</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a4b0ceffa4ca444b4c625cb96fc588c5d"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">se2::util::HAWThread::s_exit</a></div><div class="ttdeci">static volatile bool s_exit</div><div class="ttdoc">close all threads </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00135">HAWThread.hpp:135</a></div></div>
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00136">136</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;{ <span class="keywordflow">return</span> (<a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">s_exit</a> || <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">m_exit</a>); }</div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_ad6d83e0f72b5dc3a6577786cabdfd4e6"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">se2::util::HAWThread::m_exit</a></div><div class="ttdeci">bool m_exit</div><div class="ttdoc">stop this thread </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00143">HAWThread.hpp:143</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a4b0ceffa4ca444b4c625cb96fc588c5d"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">se2::util::HAWThread::s_exit</a></div><div class="ttdeci">static volatile bool s_exit</div><div class="ttdoc">close all threads </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00142">HAWThread.hpp:142</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -473,7 +506,36 @@ Static Private Attributes</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                           {</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  pthread_join(<a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">m_tid</a>, NULL);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00132">HAWThread.hpp:132</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00139">HAWThread.hpp:139</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aeb5bcbe3a3dd097c4e485cbf304bca37"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void se2::util::HAWThread::reset_shutdown_flag </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the GLObAL_EXIT flag to false. </p>
+
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00093">93</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;{ <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">s_exit</a> = <span class="keyword">false</span>; }</div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a4b0ceffa4ca444b4c625cb96fc588c5d"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">se2::util::HAWThread::s_exit</a></div><div class="ttdeci">static volatile bool s_exit</div><div class="ttdoc">close all threads </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00142">HAWThread.hpp:142</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -536,7 +598,7 @@ Static Private Attributes</h2></td></tr>
 <p>this function must be implemented in the derived class. </p>
 <p>The function is called once after the thread has been stopped. </p>
 
-<p>Implemented in <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a1fc42f2d8cc3d8e9630f94f2a9191788">se2::dispatch::dispatcher</a>, and <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#ae515edd804a0c3aa3c29d9218bdf56f5">se2::serial_bus::serial_channel</a>.</p>
+<p>Implemented in <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a1fc42f2d8cc3d8e9630f94f2a9191788">se2::dispatch::dispatcher</a>, <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#ae515edd804a0c3aa3c29d9218bdf56f5">se2::serial_bus::serial_channel</a>, and <a class="el" href="classse2_1_1util_1_1light__mgr.html#a9546b29875dbd8305870dd813d3df990">se2::util::light_mgr</a>.</p>
 
 </div>
 </div>
@@ -565,7 +627,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00088">88</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;{ <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">s_exit</a> = <span class="keyword">true</span>; }</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a4b0ceffa4ca444b4c625cb96fc588c5d"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">se2::util::HAWThread::s_exit</a></div><div class="ttdeci">static volatile bool s_exit</div><div class="ttdoc">close all threads </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00135">HAWThread.hpp:135</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a4b0ceffa4ca444b4c625cb96fc588c5d"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a4b0ceffa4ca444b4c625cb96fc588c5d">se2::util::HAWThread::s_exit</a></div><div class="ttdeci">static volatile bool s_exit</div><div class="ttdoc">close all threads </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00142">HAWThread.hpp:142</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -612,9 +674,9 @@ If Thread is already running, <a class="el" href="classse2_1_1util_1_1_h_a_w_thr
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;              &lt;&lt; rc &lt;&lt; std::endl;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  }</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a79cc43559eb4a74918bab76eab168634"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a79cc43559eb4a74918bab76eab168634">se2::util::HAWThread::Arg</a></div><div class="ttdeci">void * Arg() const </div><div class="ttdoc">used internally to pass the argument. </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00117">HAWThread.hpp:117</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a6c6ed1486df9e674e150508f427380d0"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a6c6ed1486df9e674e150508f427380d0">se2::util::HAWThread::m_running</a></div><div class="ttdeci">volatile bool m_running</div><div class="ttdoc">flag to check if thread is running </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00133">HAWThread.hpp:133</a></div></div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00132">HAWThread.hpp:132</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a79cc43559eb4a74918bab76eab168634"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a79cc43559eb4a74918bab76eab168634">se2::util::HAWThread::Arg</a></div><div class="ttdeci">void * Arg() const </div><div class="ttdoc">used internally to pass the argument. </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00124">HAWThread.hpp:124</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a6c6ed1486df9e674e150508f427380d0"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a6c6ed1486df9e674e150508f427380d0">se2::util::HAWThread::m_running</a></div><div class="ttdeci">volatile bool m_running</div><div class="ttdoc">flag to check if thread is running </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00140">HAWThread.hpp:140</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_a59f31bad4bba0eedcb9034d133135a7a"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread::m_tid</a></div><div class="ttdeci">pthread_t m_tid</div><div class="ttdoc">thread id to be passed to pthread_create </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00139">HAWThread.hpp:139</a></div></div>
 <div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_ab582a0dbecfab57f1141c8655cd46c34"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#ab582a0dbecfab57f1141c8655cd46c34">se2::util::HAWThread::entryPoint</a></div><div class="ttdeci">static void * entryPoint(void *)</div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8cpp_source.html#l00063">HAWThread.cpp:63</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -638,7 +700,7 @@ If Thread is already running, <a class="el" href="classse2_1_1util_1_1_h_a_w_thr
 <div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                     {</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <a class="code" href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">m_exit</a> = <span class="keyword">true</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
-<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_ad6d83e0f72b5dc3a6577786cabdfd4e6"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">se2::util::HAWThread::m_exit</a></div><div class="ttdeci">bool m_exit</div><div class="ttdoc">stop this thread </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00136">HAWThread.hpp:136</a></div></div>
+<div class="ttc" id="classse2_1_1util_1_1_h_a_w_thread_html_ad6d83e0f72b5dc3a6577786cabdfd4e6"><div class="ttname"><a href="classse2_1_1util_1_1_h_a_w_thread.html#ad6d83e0f72b5dc3a6577786cabdfd4e6">se2::util::HAWThread::m_exit</a></div><div class="ttdeci">bool m_exit</div><div class="ttdoc">stop this thread </div><div class="ttdef"><b>Definition:</b> <a href="_h_a_w_thread_8hpp_source.html#l00143">HAWThread.hpp:143</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -661,7 +723,7 @@ If Thread is already running, <a class="el" href="classse2_1_1util_1_1_h_a_w_thr
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00134">134</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00141">141</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
 
 </div>
 </div>
@@ -685,7 +747,7 @@ If Thread is already running, <a class="el" href="classse2_1_1util_1_1_h_a_w_thr
 
 <p>stop this thread </p>
 
-<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00136">136</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00143">143</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
 
 </div>
 </div>
@@ -709,7 +771,7 @@ If Thread is already running, <a class="el" href="classse2_1_1util_1_1_h_a_w_thr
 
 <p>flag to check if thread is running </p>
 
-<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00133">133</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00140">140</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
 
 </div>
 </div>
@@ -733,7 +795,7 @@ If Thread is already running, <a class="el" href="classse2_1_1util_1_1_h_a_w_thr
 
 <p>thread id to be passed to pthread_create </p>
 
-<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00132">132</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00139">139</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
 
 </div>
 </div>
@@ -757,7 +819,7 @@ If Thread is already running, <a class="el" href="classse2_1_1util_1_1_h_a_w_thr
 
 <p>close all threads </p>
 
-<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00135">135</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="_h_a_w_thread_8hpp_source.html#l00142">142</a> of file <a class="el" href="_h_a_w_thread_8hpp_source.html">HAWThread.hpp</a>.</p>
 
 </div>
 </div>

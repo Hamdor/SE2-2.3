@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -102,10 +102,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aab74930d6affcd14bb2b0f08a3e708ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1lock__guard.html#aab74930d6affcd14bb2b0f08a3e708ea">lock_guard</a> (<a class="el" href="structse2_1_1util_1_1mutex.html">mutex</a> &amp;)</td></tr>
-<tr class="memdesc:aab74930d6affcd14bb2b0f08a3e708ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstructor, lockt das Mutex.  <a href="#aab74930d6affcd14bb2b0f08a3e708ea">More...</a><br/></td></tr>
+<tr class="memdesc:aab74930d6affcd14bb2b0f08a3e708ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Konstructor lockt das Mutex.  <a href="#aab74930d6affcd14bb2b0f08a3e708ea">More...</a><br/></td></tr>
 <tr class="separator:aab74930d6affcd14bb2b0f08a3e708ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58000800c506b26cf15650c433a62f25"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1lock__guard.html#a58000800c506b26cf15650c433a62f25">~lock_guard</a> ()</td></tr>
-<tr class="memdesc:a58000800c506b26cf15650c433a62f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor, gibt das Mutex frei.  <a href="#a58000800c506b26cf15650c433a62f25">More...</a><br/></td></tr>
+<tr class="memdesc:a58000800c506b26cf15650c433a62f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Destruktor gibt das Mutex frei.  <a href="#a58000800c506b26cf15650c433a62f25">More...</a><br/></td></tr>
 <tr class="separator:a58000800c506b26cf15650c433a62f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
@@ -136,14 +136,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Konstructor, lockt das Mutex. </p>
+<p>Default Konstructor lockt das Mutex. </p>
 
 <p>Definition at line <a class="el" href="lock__guard_8cpp_source.html#l00029">29</a> of file <a class="el" href="lock__guard_8cpp_source.html">lock_guard.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                    : <a class="code" href="structse2_1_1util_1_1lock__guard.html#ac009b8df8752e90342a0a565318331fd">m_ref</a>(_mutex) {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;  <a class="code" href="structse2_1_1util_1_1lock__guard.html#ac009b8df8752e90342a0a565318331fd">m_ref</a>.<a class="code" href="structse2_1_1util_1_1mutex.html#a960f2f3e8fc475cda6a277948b2d6f37">acquire</a>();</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
 <div class="ttc" id="structse2_1_1util_1_1mutex_html_a960f2f3e8fc475cda6a277948b2d6f37"><div class="ttname"><a href="structse2_1_1util_1_1mutex.html#a960f2f3e8fc475cda6a277948b2d6f37">se2::util::mutex::acquire</a></div><div class="ttdeci">int acquire()</div><div class="ttdoc">Mutex erlangen. </div><div class="ttdef"><b>Definition:</b> <a href="mutex_8cpp_source.html#l00037">mutex.cpp:37</a></div></div>
-<div class="ttc" id="structse2_1_1util_1_1lock__guard_html_ac009b8df8752e90342a0a565318331fd"><div class="ttname"><a href="structse2_1_1util_1_1lock__guard.html#ac009b8df8752e90342a0a565318331fd">se2::util::lock_guard::m_ref</a></div><div class="ttdeci">mutex &amp; m_ref</div><div class="ttdef"><b>Definition:</b> <a href="lock__guard_8hpp_source.html#l00047">lock_guard.hpp:47</a></div></div>
+<div class="ttc" id="structse2_1_1util_1_1lock__guard_html_ac009b8df8752e90342a0a565318331fd"><div class="ttname"><a href="structse2_1_1util_1_1lock__guard.html#ac009b8df8752e90342a0a565318331fd">se2::util::lock_guard::m_ref</a></div><div class="ttdeci">mutex &amp; m_ref</div><div class="ttdef"><b>Definition:</b> <a href="lock__guard_8hpp_source.html#l00049">lock_guard.hpp:49</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -168,13 +168,13 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Destruktor, gibt das Mutex frei. </p>
+<p>Default Destruktor gibt das Mutex frei. </p>
 
 <p>Definition at line <a class="el" href="lock__guard_8cpp_source.html#l00033">33</a> of file <a class="el" href="lock__guard_8cpp_source.html">lock_guard.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                        {</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  <a class="code" href="structse2_1_1util_1_1lock__guard.html#ac009b8df8752e90342a0a565318331fd">m_ref</a>.<a class="code" href="structse2_1_1util_1_1mutex.html#ae0384ff94dcb2909625dc1aac1131716">release</a>();</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
-<div class="ttc" id="structse2_1_1util_1_1lock__guard_html_ac009b8df8752e90342a0a565318331fd"><div class="ttname"><a href="structse2_1_1util_1_1lock__guard.html#ac009b8df8752e90342a0a565318331fd">se2::util::lock_guard::m_ref</a></div><div class="ttdeci">mutex &amp; m_ref</div><div class="ttdef"><b>Definition:</b> <a href="lock__guard_8hpp_source.html#l00047">lock_guard.hpp:47</a></div></div>
+<div class="ttc" id="structse2_1_1util_1_1lock__guard_html_ac009b8df8752e90342a0a565318331fd"><div class="ttname"><a href="structse2_1_1util_1_1lock__guard.html#ac009b8df8752e90342a0a565318331fd">se2::util::lock_guard::m_ref</a></div><div class="ttdeci">mutex &amp; m_ref</div><div class="ttdef"><b>Definition:</b> <a href="lock__guard_8hpp_source.html#l00049">lock_guard.hpp:49</a></div></div>
 <div class="ttc" id="structse2_1_1util_1_1mutex_html_ae0384ff94dcb2909625dc1aac1131716"><div class="ttname"><a href="structse2_1_1util_1_1mutex.html#ae0384ff94dcb2909625dc1aac1131716">se2::util::mutex::release</a></div><div class="ttdeci">int release()</div><div class="ttdoc">Mutex zurückgeben. </div><div class="ttdef"><b>Definition:</b> <a href="mutex_8cpp_source.html#l00041">mutex.cpp:41</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -222,7 +222,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="lock__guard_8hpp_source.html#l00047">47</a> of file <a class="el" href="lock__guard_8hpp_source.html">lock_guard.hpp</a>.</p>
+<p>Definition at line <a class="el" href="lock__guard_8hpp_source.html#l00049">49</a> of file <a class="el" href="lock__guard_8hpp_source.html">lock_guard.hpp</a>.</p>
 
 </div>
 </div>

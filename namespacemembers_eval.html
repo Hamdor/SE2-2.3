@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -125,6 +125,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>B2_FREE
 : <a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804">se2::serial_bus</a>
 </li>
+<li>B2_TRANS_FIN
+: <a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a8167b8f992398ccd68ce7a75ce47ae10">se2::serial_bus</a>
+</li>
 <li>BUTTON_ESTOP
 : <a class="el" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e">se2::hal</a>
 </li>
@@ -150,9 +153,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>DISPATCHED_EVENT_BUTTON_E_STOP
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6ac09906deb8aaa2349deeff22c8874c71">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_BUTTON_E_STOP_R
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a2c30e279f221fa5ef7545534fcc263d9">se2::dispatch</a>
-</li>
 <li>DISPATCHED_EVENT_BUTTON_RESET
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a8db42b7b18428b6254a98330e90beaeb">se2::dispatch</a>
 </li>
@@ -162,26 +162,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>DISPATCHED_EVENT_BUTTON_STOP
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a8e156e18a116479d965ca9cb72b86593">se2::dispatch</a>
 </li>
+<li>DISPATCHED_EVENT_CLOSE_SWITCH_TIME
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a15ac2d7eb84d81fc26875262a777c9d2">se2::dispatch</a>
+</li>
 <li>DISPATCHED_EVENT_MAX
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6ac65a1fae03f7b69d5ce86451b4907140">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_OPEN_SWITCH
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6aece8e3b0b28198c3c93033094c4b0920">se2::dispatch</a>
+<li>DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a4fe3c1de89b5f25368729a582c3d79e2">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_REMOVE_TOKEN
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a82423af302341523d7702ffb63c95b7b">se2::dispatch</a>
+<li>DISPATCHED_EVENT_SEG1_HAS_TO_EXPIRE
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a829323065e5fbe341b0b12f4eb16b37e">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_SEG1_EXCEEDED
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6af56f851a39bac08aa1969221bf1f063d">se2::dispatch</a>
+<li>DISPATCHED_EVENT_SEG1_TOO_LATE
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6ac605c9c7ce6c38f7c7b9a8764b1ef02c">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_SEG2_EXCEEDED
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a007e6bc88f88a95143dcf2bfdf7aea35">se2::dispatch</a>
+<li>DISPATCHED_EVENT_SEG2_HAS_TO_EXPIRE
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6afd70f58f5c81c1764830e8d70683e7ba">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_SEG3_EXCEEDED
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6ae19640706af8802ccdb8888c00885d0b">se2::dispatch</a>
+<li>DISPATCHED_EVENT_SEG2_TOO_LATE
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a7749f42b2685ef4b2b521d74e47357d1">se2::dispatch</a>
+</li>
+<li>DISPATCHED_EVENT_SEG3_HAS_TO_EXPIRE
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a471c5e48e9caffa693ba956c49d700cd">se2::dispatch</a>
+</li>
+<li>DISPATCHED_EVENT_SEG3_TOO_LATE
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a2eea0f62c61eb9ae16d7b4c16d8cd09c">se2::dispatch</a>
 </li>
 <li>DISPATCHED_EVENT_SENSOR_ENTRANCE
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6acdda1e0dc2a09d0a0441c3d82dc28226">se2::dispatch</a>
+</li>
+<li>DISPATCHED_EVENT_SENSOR_ENTRANCE_R
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a3ad0a1b5fe57cf1fab0480094237e1ee">se2::dispatch</a>
 </li>
 <li>DISPATCHED_EVENT_SENSOR_EXIT
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a3ab56a25238095b4f968ebf1014b250a">se2::dispatch</a>
@@ -210,6 +222,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>DISPATCHED_EVENT_SERIAL_DATA
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6ade625bda7bff2ebf7af3667cb3814f1c">se2::dispatch</a>
 </li>
+<li>DISPATCHED_EVENT_SERIAL_E_STOPP
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6aaec3e148461162c84865aa259b87b25c">se2::dispatch</a>
+</li>
 <li>DISPATCHED_EVENT_SERIAL_ERR
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a145db845942d48aab7583f748514e50b">se2::dispatch</a>
 </li>
@@ -219,17 +234,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>DISPATCHED_EVENT_SERIAL_NEXT_OK
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6ac4311934cddedc4ece1fa185ebb7bb42">se2::dispatch</a>
 </li>
+<li>DISPATCHED_EVENT_SERIAL_TRANSFER_FIN
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a86449f7934d5c28dedc3886f5886f42c">se2::dispatch</a>
+</li>
 <li>DISPATCHED_EVENT_SERIAL_UNK
 : <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6aa1d8dc4e84da69df4407e752940ce5c5">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_SLIDE_FULL
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6ae08f24eca541aa180b880f035178325e">se2::dispatch</a>
+<li>DISPATCHED_EVENT_SLIDE_FULL_TIMEOUT
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6aeb97fbae423a4b357d38bdd15feabb08">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_TOKEN_FINISHED
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a044e88b1a08c6d6acc7571547ddb7458">se2::dispatch</a>
+<li>DISPATCHED_EVENT_TRANSFER_TIMEOUT
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a6f37849ba69a2d55c587b797dfe440bb">se2::dispatch</a>
 </li>
-<li>DISPATCHED_EVENT_TURN_TOKEN
-: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a20b26ca90e05c31abaefe18463c674d3">se2::dispatch</a>
+<li>DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT
+: <a class="el" href="namespacese2_1_1dispatch.html#a18df07fc27c5b0e53f7f50a8ecaa94a6a6394a44fc880219dd8d059fea55c8666">se2::dispatch</a>
 </li>
 <li>DISPATCHER_PLUGIN
 : <a class="el" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa2661848ec5b66f97630b355a5535795f">se2::util</a>
@@ -253,11 +271,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>ERROR
 : <a class="el" href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565acfd3ad73a2c089003cf04874047cc25b">se2::util</a>
 </li>
+<li>ERROR_GONE
+: <a class="el" href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9a3567d8e0886c6ebf8f2fc1cc9f41fecb">se2::util</a>
+</li>
+<li>ERROR_NOT_RESOLVED
+: <a class="el" href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9a5352699a7b516dfaa7989bf60487bbf8">se2::util</a>
+</li>
+<li>ERROR_RESOLVED
+: <a class="el" href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9a56f8b32f2c930f89d8ef0c4f94c3e88b">se2::util</a>
+</li>
 <li>EVENT_BUTTON_E_STOP
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a7d4c88f1fd2f7d1db845c2fe64d456">se2::hal</a>
-</li>
-<li>EVENT_BUTTON_E_STOP_R
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a3a7edbae3c2180e379ebf61507f956ae">se2::hal</a>
 </li>
 <li>EVENT_BUTTON_RESET
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a71055ea76e6573a0e7650d2e09414408">se2::hal</a>
@@ -268,23 +292,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>EVENT_BUTTON_STOP
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac6684b02ec9653e47211530f5d224df3">se2::hal</a>
 </li>
-<li>EVENT_OPEN_SWITCH
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4a410ee72c39ac3291c282dc6f886d7f">se2::hal</a>
+<li>EVENT_CLOSE_SWITCH_TIME
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac5ff941cc01df1442b520b747b64ae85">se2::hal</a>
 </li>
-<li>EVENT_REMOVE_TOKEN
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a5ab7992e791b3aa1193e28cf2f469b76">se2::hal</a>
+<li>EVENT_REMOVE_TOKEN_TIMEOUT
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004afdde9d483741e5744d7002e7473892f8">se2::hal</a>
 </li>
-<li>EVENT_SEG1_EXCEEDED
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a8e1d471f62813abaedc0ea167a8d073e">se2::hal</a>
+<li>EVENT_SEG1_HAS_TO_EXPIRE
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004af75d696e5f7edc16f4e07be272c2789c">se2::hal</a>
 </li>
-<li>EVENT_SEG2_EXCEEDED
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a8fea9109db6379dc36c510fd8e15f5a5">se2::hal</a>
+<li>EVENT_SEG1_TOO_LATE
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a7658a17acf1959b02214980745236888">se2::hal</a>
 </li>
-<li>EVENT_SEG3_EXCEEDED
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a1ec736b50849a444ba3201d81e7427cc">se2::hal</a>
+<li>EVENT_SEG2_HAS_TO_EXPIRE
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa9c443c2f0fc4d430334845282485c83">se2::hal</a>
+</li>
+<li>EVENT_SEG2_TOO_LATE
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a8a973779f3f9da933b9e3260ba96e967">se2::hal</a>
+</li>
+<li>EVENT_SEG3_HAS_TO_EXPIRE
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a9a8607a5098ce5bb10b090e9c1774ed6">se2::hal</a>
+</li>
+<li>EVENT_SEG3_TOO_LATE
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a9fa8e82272959cfe4f9be22ff019d8e4">se2::hal</a>
 </li>
 <li>EVENT_SENSOR_ENTRANCE
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a2c5a30341452530408c97727748abd51">se2::hal</a>
+</li>
+<li>EVENT_SENSOR_ENTRANCE_R
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004af4d2fc3f2c70eb64067c01e3342a3055">se2::hal</a>
 </li>
 <li>EVENT_SENSOR_EXIT
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac4e103d879964c98b639ef0c29805ae1">se2::hal</a>
@@ -310,8 +346,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>EVENT_SENSOR_SWITCH_R
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a5664c0b85cd9f6f56533c1810e26fcfd">se2::hal</a>
 </li>
+<li>EVENT_SENSOR_VALID_HEIGHT
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a5a503b9a7d628149f126c8142dc56bb7">se2::hal</a>
+</li>
 <li>EVENT_SERIAL_DATA
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa2fd86c0980707be15d24a67b5bbbee8">se2::hal</a>
+</li>
+<li>EVENT_SERIAL_E_STOPP
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004afc915da3495b78760c59fd6843efba31">se2::hal</a>
 </li>
 <li>EVENT_SERIAL_ERR
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aff402f85e9892df5f4917c550b3bbba7">se2::hal</a>
@@ -322,20 +364,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>EVENT_SERIAL_NEXT_OK
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a96c6e267c7822d4d8e1bc1df00463278">se2::hal</a>
 </li>
+<li>EVENT_SERIAL_TRANSFER_FIN
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004adc2416aed9bd6234754ddce554eccda8">se2::hal</a>
+</li>
 <li>EVENT_SERIAL_UNK
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a4b6cd089fb81ad0f5828b18c1a536160">se2::hal</a>
 </li>
-<li>EVENT_SLIDE_FULL
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa94f91cf0bc577e61cd1e1c1161a4da6">se2::hal</a>
+<li>EVENT_SLIDE_FULL_TIMEOUT
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a1d7008d5fa0349bb6edf7201b73011eb">se2::hal</a>
 </li>
-<li>EVENT_TOKEN_FINISHED
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ad0bf3a5449edc78509c96c4c8ec1c5ff">se2::hal</a>
+<li>EVENT_TRANSFER_TIMEOUT
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a0ebda3c37dfc0ab1091ea4bac767fe55">se2::hal</a>
 </li>
-<li>EVENT_TURN_TOKEN
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004ac246aa2ac4cfe8ab0fef792f285797e1">se2::hal</a>
+<li>EVENT_TURN_TOKEN_TIMEOUT
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a108f0d8cb45b86a6a997c75e92f1e06c">se2::hal</a>
 </li>
-<li>EVENT_UNKOWN1
-: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004aa5d8ea7bee2b4f951c635dde8fa5458d">se2::hal</a>
+<li>EVENT_UNKOWN2
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a59bef4e84eeaed5499a0aa1250d38ede">se2::hal</a>
+</li>
+<li>EVENT_UNKOWN3
+: <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a73f392d72573eae35398c635e99ba32e">se2::hal</a>
 </li>
 <li>EVENT_ZERO
 : <a class="el" href="namespacese2_1_1hal.html#a59011818b97b3bb7046e4c33b3b02004a6710bd3528525757d4e76a988a912ecd">se2::hal</a>
@@ -386,6 +434,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>LED_START
 : <a class="el" href="namespacese2_1_1hal.html#a08bfb12dbe0016518917c4df234f9925a8a2649e2a2c27f441ee60a3734b660f7">se2::hal</a>
 </li>
+<li>LIGHT_PLUGIN
+: <a class="el" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa4809eae31fe1e9686231c05d60773b1a">se2::util</a>
+</li>
 <li>LOGGER_PLUGIN
 : <a class="el" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa3ada2cdb48cd0648a92a202dd697a307">se2::util</a>
 </li>
@@ -418,6 +469,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
+<li>NO_LIGHTS
+: <a class="el" href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9ad6ce0ff83317189e42ccea19daa14866">se2::util</a>
+</li>
 <li>NOTHING
 : <a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5">se2::serial_bus</a>
 </li>
@@ -438,8 +492,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>READY_TO_USE
+: <a class="el" href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9a1f75e4c67fb69b0cb3313ce9953a4e41">se2::util</a>
+</li>
 <li>RED
 : <a class="el" href="namespacese2_1_1hal.html#a548828526dc7fd5e105c955b6777bef8a432221c6181c99aaa74248105fb8ed9a">se2::hal</a>
+</li>
+<li>REMOVE_TOKEN
+: <a class="el" href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9a40342605ef30c7b6a7133ef442c1e1f2">se2::util</a>
 </li>
 <li>RESUME
 : <a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a9b63d260012fa48e8ed7ea4f81c1413a">se2::serial_bus</a>
@@ -487,6 +547,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>TRACE
 : <a class="el" href="namespacese2_1_1util.html#a6037efca13537d0d7fa1533dae5f0565a928291a479ee8a8f8100a0208dfd1b3f">se2::util</a>
+</li>
+<li>TURN_TOKEN
+: <a class="el" href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9ac028e25f8108ae36c93deabae4d5ba98">se2::util</a>
 </li>
 </ul>
 

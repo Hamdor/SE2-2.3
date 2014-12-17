@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['telegram_5fsize',['TELEGRAM_SIZE',['../serial__channel_8hpp.html#a33028e422bee06f4d7bf245b85d26e31',1,'serial_channel.hpp']]],
-  ['to_5fdispatcher',['TO_DISPATCHER',['../singleton__mgr_8hpp.html#ab4ba35dc6b423c3069067425e582bf1e',1,'singleton_mgr.hpp']]],
-  ['to_5fhal',['TO_HAL',['../singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae',1,'singleton_mgr.hpp']]],
-  ['to_5flog',['TO_LOG',['../singleton__mgr_8hpp.html#ac48d33126ca81886807720bc25dddc08',1,'singleton_mgr.hpp']]],
-  ['to_5fserial',['TO_SERIAL',['../singleton__mgr_8hpp.html#ab7a264a8a1c447ab3b85c7233883bd5f',1,'singleton_mgr.hpp']]],
-  ['to_5ftimer',['TO_TIMER',['../singleton__mgr_8hpp.html#a1859ae4b979f49ac9a3ac3ef93400607',1,'singleton_mgr.hpp']]],
-  ['to_5ftoken_5fmgr',['TO_TOKEN_MGR',['../singleton__mgr_8hpp.html#ae45a7e650b29ed49f2ed8c4996904158',1,'singleton_mgr.hpp']]]
+  ['offset_5fcheck_5ftimes_5fseg1_5f_5fsec',['OFFSET_CHECK_TIMES_SEG1__SEC',['../constants_8hpp.html#afd1c65d5d2b77600515c08730401fdb2',1,'constants.hpp']]],
+  ['offset_5fcheck_5ftimes_5fseg1_5fnsec',['OFFSET_CHECK_TIMES_SEG1_NSEC',['../constants_8hpp.html#a4a63c0412f10e28120bff79e1d40faa1',1,'constants.hpp']]],
+  ['offset_5fcheck_5ftimes_5fseg2_5f_5fsec',['OFFSET_CHECK_TIMES_SEG2__SEC',['../constants_8hpp.html#a91f8c5d1c50ace32695532d1e2c00623',1,'constants.hpp']]],
+  ['offset_5fcheck_5ftimes_5fseg2_5fmsec',['OFFSET_CHECK_TIMES_SEG2_MSEC',['../constants_8hpp.html#a6d21eb468446608c5a6508ea4c4b7493',1,'constants.hpp']]],
+  ['offset_5fcheck_5ftimes_5fseg3_5f_5fsec',['OFFSET_CHECK_TIMES_SEG3__SEC',['../constants_8hpp.html#a0c1c20684b096cd8c363cc163a3fac4b',1,'constants.hpp']]],
+  ['offset_5fcheck_5ftimes_5fseg3_5fmsec',['OFFSET_CHECK_TIMES_SEG3_MSEC',['../constants_8hpp.html#a8f6aaee1d14ad8886c920521934080cd',1,'constants.hpp']]],
+  ['one_5fhertz',['ONE_HERTZ',['../light__mgr_8cpp.html#a11bad50596884fef9ff461242f430a4b',1,'light_mgr.cpp']]]
 ];

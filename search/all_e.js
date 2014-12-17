@@ -10,5 +10,6 @@ var searchData=
   ['portb_5finterrupt',['PORTB_INTERRUPT',['../constants_8hpp.html#a9e58537ed5fcfbef21e7b62272709201',1,'constants.hpp']]],
   ['portc',['PORTC',['../namespacese2_1_1hal.html#ae0b046d03802ed481d6e12b408e5f35faedc9f11ae53769ff72c2325c88766bda',1,'se2::hal']]],
   ['portc_5finterrupt',['PORTC_INTERRUPT',['../constants_8hpp.html#a5130a017ce900f831d0bb027872217f7',1,'constants.hpp']]],
-  ['pretty_5fprint',['pretty_print',['../classse2_1_1token.html#ad9c6d2889fc207b221fdef47d1bd1354',1,'se2::token']]]
+  ['pretty_5fprint',['pretty_print',['../classse2_1_1token.html#ad9c6d2889fc207b221fdef47d1bd1354',1,'se2::token']]],
+  ['print_5ftime',['print_time',['../classse2_1_1initialization__run.html#aa90cc8734affe58cd93456197d7f3f6f',1,'se2::initialization_run']]]
 ];

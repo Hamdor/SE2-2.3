@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -102,16 +102,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a09058793d3d1fff9d1a5e8459234ded8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1condvar.html#a09058793d3d1fff9d1a5e8459234ded8">condvar</a> (<a class="el" href="structse2_1_1util_1_1mutex.html">mutex</a> &amp;<a class="el" href="structse2_1_1util_1_1mutex.html">mutex</a>)</td></tr>
-<tr class="memdesc:a09058793d3d1fff9d1a5e8459234ded8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konsturktor condvar.  <a href="#a09058793d3d1fff9d1a5e8459234ded8">More...</a><br/></td></tr>
+<tr class="memdesc:a09058793d3d1fff9d1a5e8459234ded8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Konstruktor condvar Erstellt eine neue Conditionvariable, diese ist mit dem referenzierten Mutex verknüpft.  <a href="#a09058793d3d1fff9d1a5e8459234ded8">More...</a><br/></td></tr>
 <tr class="separator:a09058793d3d1fff9d1a5e8459234ded8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2d3664286d77471aec1593014a663f8"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1condvar.html#af2d3664286d77471aec1593014a663f8">~condvar</a> ()</td></tr>
-<tr class="memdesc:af2d3664286d77471aec1593014a663f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor.  <a href="#af2d3664286d77471aec1593014a663f8">More...</a><br/></td></tr>
+<tr class="memdesc:af2d3664286d77471aec1593014a663f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Destruktor.  <a href="#af2d3664286d77471aec1593014a663f8">More...</a><br/></td></tr>
 <tr class="separator:af2d3664286d77471aec1593014a663f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9649d7344f6c0db5a0ff4d08abe392f3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1condvar.html#a9649d7344f6c0db5a0ff4d08abe392f3">wait</a> ()</td></tr>
 <tr class="memdesc:a9649d7344f6c0db5a0ff4d08abe392f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auf dieser Conditionvariable blockieren, bis diese Conditionvariable signalisiert wird.  <a href="#a9649d7344f6c0db5a0ff4d08abe392f3">More...</a><br/></td></tr>
 <tr class="separator:a9649d7344f6c0db5a0ff4d08abe392f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a822b8a1dcdb91c1d54df02982f6e8006"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1condvar.html#a822b8a1dcdb91c1d54df02982f6e8006">signal</a> ()</td></tr>
-<tr class="memdesc:a822b8a1dcdb91c1d54df02982f6e8006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diese Funktion entblockt einen Thread der auf diese Conditionvariable blockieren.  <a href="#a822b8a1dcdb91c1d54df02982f6e8006">More...</a><br/></td></tr>
+<tr class="memdesc:a822b8a1dcdb91c1d54df02982f6e8006"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diese Funktion entblockt einen Thread der auf diese Conditionvariable blockiert.  <a href="#a822b8a1dcdb91c1d54df02982f6e8006">More...</a><br/></td></tr>
 <tr class="separator:a822b8a1dcdb91c1d54df02982f6e8006"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fc47991abebdacc318587ef2b450831"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1condvar.html#a3fc47991abebdacc318587ef2b450831">broadcast</a> ()</td></tr>
 <tr class="memdesc:a3fc47991abebdacc318587ef2b450831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diese Funktion entblockt alle Threads die auf diese Conditionvariable blockieren.  <a href="#a3fc47991abebdacc318587ef2b450831">More...</a><br/></td></tr>
@@ -149,11 +149,10 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Konsturktor condvar. </p>
-<p>Erstellt eine neue Conditionvariable, diese ist mit dem referenzierten Mutex verknüpft. </p>
+<p>Default Konstruktor condvar Erstellt eine neue Conditionvariable, diese ist mit dem referenzierten Mutex verknüpft. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">mutex</td><td>ist die Referenz auf ein mutex </td></tr>
+    <tr><td class="paramname">mutex</td><td>Ist die Referenz auf ein Mutex </td></tr>
   </table>
   </dd>
 </dl>
@@ -188,7 +187,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Destruktor. </p>
+<p>Default Destruktor. </p>
 
 <p>Definition at line <a class="el" href="condvar_8cpp_source.html#l00033">33</a> of file <a class="el" href="condvar_8cpp_source.html">condvar.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                  {</div>
@@ -283,7 +282,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Diese Funktion entblockt einen Thread der auf diese Conditionvariable blockieren. </p>
+<p>Diese Funktion entblockt einen Thread der auf diese Conditionvariable blockiert. </p>
 <dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_cond_t</code> wurde nicht initialisiert 0 bei Erfolg </dd></dl>
 
 <p>Definition at line <a class="el" href="condvar_8cpp_source.html#l00041">41</a> of file <a class="el" href="condvar_8cpp_source.html">condvar.cpp</a>.</p>
@@ -308,7 +307,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Auf dieser Conditionvariable blockieren, bis diese Conditionvariable signalisiert wird. </p>
-<dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_mutex_t</code> oder <code>pthread_cond_t</code> sind ungültig EINVAL Der aufrufende Thread war/ist nicht im besitzt von <code>pthread_mutex_t</code> 0 bei Erfolg </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_mutex_t</code> oder <code>pthread_cond_t</code> sind ungültig EINVAL Der aufrufende Thread war/ist nicht im Besitz von <code>pthread_mutex_t</code> 0 bei Erfolg </dd></dl>
 
 <p>Definition at line <a class="el" href="condvar_8cpp_source.html#l00037">37</a> of file <a class="el" href="condvar_8cpp_source.html">condvar.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;                  {</div>

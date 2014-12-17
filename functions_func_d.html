@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -125,6 +125,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>delete_timer()
 : <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a2d899082e8fba825a7f129ac779d0b59">se2::timer::timer_handler</a>
 </li>
+<li>delete_timers()
+: <a class="el" href="classse2_1_1token.html#a7b16395c01d8580025e7edf578ceabf4">se2::token</a>
+</li>
 <li>destroy()
 : <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a60fdf81e5756e2ceed44e3dbcf811241">se2::dispatch::dispatcher</a>
 , <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a36d65ba6b404df0f559f780f9009ae3d">se2::hal::hwaccess</a>
@@ -132,7 +135,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a5eb852fbc6a793c04138b73ce526ec62">se2::timer::timer_handler</a>
 , <a class="el" href="classse2_1_1token__mgr.html#a4ce003c1c185f2458865f4e74454e8ef">se2::token_mgr</a>
 , <a class="el" href="classse2_1_1util_1_1abstract__singleton.html#a752730b510e3e985ba61fca22aadaf94">se2::util::abstract_singleton</a>
+, <a class="el" href="classse2_1_1util_1_1light__mgr.html#a12e681a413a3ec66afb12ce4fc4e9674">se2::util::light_mgr</a>
 , <a class="el" href="classse2_1_1util_1_1logging.html#a0ab01de2c709398933308acbba547c18">se2::util::logging</a>
+</li>
+<li>diff()
+: <a class="el" href="classse2_1_1initialization__run.html#aca36500fafd81f81df03cd886659432b">se2::initialization_run</a>
+, <a class="el" href="structse2_1_1timer_1_1time__utils.html#a6029e2ff98515947191128d9300565c9">se2::timer::time_utils</a>
 </li>
 <li>direct_call_event()
 : <a class="el" href="structse2_1_1dispatch_1_1abstract__dispatcher.html#a2db3e0402dba7cf93a42599240ec997b">se2::dispatch::abstract_dispatcher</a>
@@ -140,24 +148,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>dispatched_event_button_e_stop()
 : <a class="el" href="classse2_1_1fsm_1_1events.html#a9b15dd2021f8b89765d34ebaf46e6a39">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#ac075c7689983e32c9749432f7845fed3">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#aff131c9daa265eba94d1b7ee750ee596">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#a1018ebd98f30802730eb87ce7bdd14c7">se2::token</a>
 , <a class="el" href="classstate.html#ac075c7689983e32c9749432f7845fed3">state</a>
 </li>
 <li>dispatched_event_button_e_stop_rising()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#ae5e4b5095a3262989087b334da6634c9">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#ac3de3b82a0080d98ba8bb5047f6a784f">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#a75affc1b184419b48dec13d6d307429b">se2::token</a>
-, <a class="el" href="classstate.html#ac3de3b82a0080d98ba8bb5047f6a784f">state</a>
+: <a class="el" href="classstate.html#ac3de3b82a0080d98ba8bb5047f6a784f">state</a>
 </li>
 <li>dispatched_event_button_reset()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#ad23d2474aa3f0cf5d1b21923edd2c0a7">se2::fsm::events</a>
+: <a class="el" href="classse2_1_1err__runtime__too__long.html#a75712b11054f9c843be50e1f598b23c1">se2::err_runtime_too_long</a>
+, <a class="el" href="classse2_1_1err__runtime__too__short.html#a512f37de6b9c8e2656df9d4ba501fe2c">se2::err_runtime_too_short</a>
+, <a class="el" href="classse2_1_1err__slide__full.html#aaad1ebfb7ded955e364b897660559f63">se2::err_slide_full</a>
+, <a class="el" href="classse2_1_1err__token__not__removed__from__end__token__removed.html#af166914b0d4c67eb6b9c0073391c2b0a">se2::err_token_not_removed_from_end_token_removed</a>
+, <a class="el" href="classse2_1_1err__token__not__removed__turnover__fixed.html#aca26688c6bcf09c354d36071a09a03c6">se2::err_token_not_removed_turnover_fixed</a>
+, <a class="el" href="classse2_1_1err__unexpected__token.html#a769bdcf59c9f54d3b300df01bd0fba04">se2::err_unexpected_token</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#ad23d2474aa3f0cf5d1b21923edd2c0a7">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#a6f09e7ee48802d18c901dcaa94442fdf">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#ab69a7cb6d32dadcc778df86e848fce89">se2::token</a>
 , <a class="el" href="classstate.html#a813341701f1edbe1bd0c05f778520a74">state</a>
 </li>
 <li>dispatched_event_button_start()
-: <a class="el" href="classse2_1_1fsm_1_1b1__token__upside__down.html#a9b254a5b30edacf7c9f62f77887b3b03">se2::fsm::b1_token_upside_down</a>
+: <a class="el" href="classse2_1_1err__runtime__too__long__quitted.html#a40d4de47504513e85db9364244042ed9">se2::err_runtime_too_long_quitted</a>
+, <a class="el" href="classse2_1_1err__runtime__too__short__quitted.html#acc5c484ab86a870a7b85164159af7f05">se2::err_runtime_too_short_quitted</a>
+, <a class="el" href="classse2_1_1err__slide__full__quitted.html#a77aa727d4b7f4e035b1b94580ad7de2c">se2::err_slide_full_quitted</a>
+, <a class="el" href="classse2_1_1err__token__not__removed__from__end__quitted.html#a57a2a6915cb2d1d80166f0096db00543">se2::err_token_not_removed_from_end_quitted</a>
+, <a class="el" href="classse2_1_1err__token__not__removed__from__end__token__removed.html#a3ccd8253606cf7f46d45e47652277d18">se2::err_token_not_removed_from_end_token_removed</a>
+, <a class="el" href="classse2_1_1err__token__not__removed__turnover__quitted.html#a976f2c5aa8e7bce5e33b36048fb06209">se2::err_token_not_removed_turnover_quitted</a>
+, <a class="el" href="classse2_1_1err__unexpected__token__quitted.html#abac4c30e89315f06b67a927aa8a982fb">se2::err_unexpected_token_quitted</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__token__upside__down.html#a0e977f03628d0ff28f6a34ad06801b31">se2::fsm::b1_token_upside_down</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__token__upside__down__put__back.html#a137b7676dea01782443e7df2921776b1">se2::fsm::b1_token_upside_down_put_back</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#a48699604ed680834d81fb1cc14fd21e3">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#a552c7fbb8ff3b7bdd728d826f4a197dd">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#aa824777bb9784cd4e2c8d9ec60724b9c">se2::token</a>
@@ -169,118 +188,169 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classse2_1_1token.html#ae4656d4541bcd57205f82c3046f93437">se2::token</a>
 , <a class="el" href="classstate.html#a7bc2b835caf1091ca99150bfecc8d46e">state</a>
 </li>
-<li>dispatched_event_open_switch()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#a622cf7576c10a4f2bdfa9cd1970d9ef7">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#aeead523d19845660a58af4922b4a38d0">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#a8b96bd3e85862b3ebc289f9f916f90d7">se2::token</a>
-, <a class="el" href="classstate.html#a2224b4f526a336f190f1f44f8399b36b">state</a>
+<li>dispatched_event_close_switch_time()
+: <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#ad47c496d1cbe6233790365a5dfe940d0">se2::fsm::b1_valid_height</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#a1de833380c0dcdb103d8db9b33c74e52">se2::fsm::b2_is_correct_order</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#abd662c0d3019b28756751cdc19508f80">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#a505f46283625f6e66c9a06749fce02b0">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#a3de624896d6a11d642f75abb32034607">se2::token</a>
+, <a class="el" href="classstate.html#aabcc7a7030c7656536a34de9c4812c78">state</a>
 </li>
-<li>dispatched_event_remove_token()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#a07f1c3a040a2bbddcda7651ee393e330">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#aecbe4cb3d40638ada9292160e77be584">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#a162a7593bc1e4dce091ba16acf147337">se2::token</a>
-, <a class="el" href="classstate.html#a4bf927247935c8868e6733e3a3a026d6">state</a>
+<li>dispatched_event_remove_token_timeout()
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__upside__down.html#a31f84acd6bbd63b32fcf2dcbba320a6b">se2::fsm::b1_token_upside_down</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#ac6e975f3044974ffdeefa914d1df9892">se2::fsm::b2_is_correct_order</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#a37f38436cb05fab258a549a73ef440eb">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#a95ebc4c2cf13315dfe0bd75d4f2c51f2">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#af4afe9b1a37645edb0ea13f842723003">se2::token</a>
+, <a class="el" href="classstate.html#af9af12c0dd69ce30ab87c5ccd31891d7">state</a>
 </li>
-<li>dispatched_event_seg1_exceeded()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#acd2790bf0a8f3195fd72ae5a8e395a70">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#a867abae104691b51893287144ab0d2e9">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#ac1c80f54f1a9a49405ecbdedfbf4ce40">se2::token</a>
-, <a class="el" href="classstate.html#a9850904bd422ba9554aa9dc1ebbd35ee">state</a>
+<li>dispatched_event_seg1_has_to_expire()
+: <a class="el" href="classse2_1_1fsm_1_1events.html#a5f3c86d59b3a56573c8f33cf09d03091">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#abf3d5d680804e99cd3ffd192db5e061b">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#a0db2ce6123f9825a2cd75bd3334ade5e">se2::token</a>
+, <a class="el" href="classstate.html#af7fd88e2bef2bb632810c68298dc8364">state</a>
 </li>
-<li>dispatched_event_seg2_exceeded()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#aa7fe84936907a3a9b30535ebd7de5d13">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#a08dc4eec7424657596aa6d260d304837">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#ae10fe093a233d6ab7bc03610c7a2a714">se2::token</a>
-, <a class="el" href="classstate.html#a991321b7d49b3414141c94004c72e9a4">state</a>
+<li>dispatched_event_seg1_too_late()
+: <a class="el" href="classse2_1_1fsm_1_1b1__realized__object.html#ab40f0b3b491dbcdd1e26d01ebc38b7d5">se2::fsm::b1_realized_object</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__realized__object.html#a93f0c28093555c8ef71d689e01c836a0">se2::fsm::b2_realized_object</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#a77150dee2c8dadb71361df6f48324b1d">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#a2c540e41fde14d4a6692cb4a0818be7f">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#aa02ba58464a2d6ac519f801880c8ce4c">se2::token</a>
+, <a class="el" href="classstate.html#a25587f1806502bf88ab95adb8bcd4291">state</a>
 </li>
-<li>dispatched_event_seg3_exceeded()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#a8bc3b886c8011693523fed2890851656">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#ab4f73867c1325b879029815e4c943441">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#a2f63a1413b9c00c72179203059dd4345">se2::token</a>
-, <a class="el" href="classstate.html#ae101f1273da2edcbe4fb418807f0634c">state</a>
+<li>dispatched_event_seg2_has_to_expire()
+: <a class="el" href="classse2_1_1fsm_1_1events.html#aa8c464032e45651dc78661a74c240aef">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#acb57e483a4c20630c61271098b242974">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#a683be04e00a2379e19129e485974bbbd">se2::token</a>
+, <a class="el" href="classstate.html#aad5579ccfcc12ddd23a08a5bf2a4768c">state</a>
+</li>
+<li>dispatched_event_seg2_too_late()
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__too__small.html#ae3f04567a8102e6df7a369b49f32fd85">se2::fsm::b1_token_too_small</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#a876b40e8c4740f13ded5d92188d55323">se2::fsm::b1_valid_height</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__token__upside__down.html#a7c98e942b0a95c8c637bf6a16f30595f">se2::fsm::b2_token_upside_down</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__valid__height.html#ab415dcb3087d5af9e0f1da2153c8b712">se2::fsm::b2_valid_height</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#a7b97ef23ef1c821267ad48e130829aa8">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#aa68730031e62dbb96b0501ef4c606deb">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#acac4c897c6e9e70f90888ad473f5fba1">se2::token</a>
+, <a class="el" href="classstate.html#a08cb961308471463a1e329a2decc9e68">state</a>
+</li>
+<li>dispatched_event_seg3_has_to_expire()
+: <a class="el" href="classse2_1_1fsm_1_1events.html#a9a36b534d5d28f5fbce11f7102777aa8">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#ac76298b6acbd803efae40697f9cb2b03">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#a8587d69683d22331c5e622a2644b3496">se2::token</a>
+, <a class="el" href="classstate.html#aecaffa919e528f87ce722ec6713038e2">state</a>
+</li>
+<li>dispatched_event_seg3_too_late()
+: <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#a633739a360c09fa8a5867c66051c4721">se2::fsm::b1_valid_height</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#af10bf9b7c142bdc529ca2779235237f4">se2::fsm::b2_is_correct_order</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#aee0bfc67f7c1afbedbf160220859f2a0">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#a83923051c93d6aca4bf81a4cb70fe806">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#af53a6fa9233ddebe1affc62808cc2d04">se2::token</a>
+, <a class="el" href="classstate.html#a8efcfda8b6f882f267b01e5cf162de52">state</a>
 </li>
 <li>dispatched_event_sensor_entrance()
 : <a class="el" href="classse2_1_1fsm_1_1anonymous__token.html#adaf02792037f7a04f5069786eb1d9242">se2::fsm::anonymous_token</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__is__wrong__order.html#a7ffbdc0ecae851156ab1c2e8596c6c6c">se2::fsm::b2_is_wrong_order</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__received__object.html#a7bd54e73d757a0f33170e457213520b2">se2::fsm::b2_received_object</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__is__wrong__order.html#ae750904d64436fe03d9eb091e06926aa">se2::fsm::b2_is_wrong_order</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__received__object.html#a14391442447d1057a2c2f6288f3a73bd">se2::fsm::b2_received_object</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#af476c9c9310f42bf2928148d361de222">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#a9adb221825bbfe9258a5ad450d2932e6">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#ac30b74f318c2ec34770bee0242377b9b">se2::token</a>
 , <a class="el" href="classstate.html#a563eb48f3c211533bf76323bd58b5042">state</a>
 </li>
 <li>dispatched_event_sensor_entrance_rising()
-: <a class="el" href="classse2_1_1fsm_1_1b2__is__wrong__order.html#a6b4cae9361e2d46adcbc524920fe3d31">se2::fsm::b2_is_wrong_order</a>
+: <a class="el" href="classse2_1_1fsm_1_1b2__is__wrong__order.html#afd1440fae9b12456270c08072627b682">se2::fsm::b2_is_wrong_order</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#a5eda6c77346c5d922072aae48fd9b52a">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#a3634e9753c8bfac3c28525536cbbf899">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#a95fb7ece257f5ac25d2ce5868f08483d">se2::token</a>
+, <a class="el" href="classstate.html#a1374d30f179faf28f1a130f8c83c6795">state</a>
 </li>
 <li>dispatched_event_sensor_exit()
-: <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#a83c83a665b4eeb821bcfe22dccaaf138">se2::fsm::b1_valid_height</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#aecdcd6745348038de67781f1fe073f1d">se2::fsm::b2_is_correct_order</a>
+: <a class="el" href="classse2_1_1err__token__not__removed__from__end__token__removed.html#ab8dd62934da6b32920e59e17b67ef36f">se2::err_token_not_removed_from_end_token_removed</a>
+, <a class="el" href="classse2_1_1err__token__not__removed__turnover.html#a4370f4588ab37f2dfdd70b6d2f1c9e4e">se2::err_token_not_removed_turnover</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__token__upside__down__lift__up.html#ab1ed40e2ab337b480b722bbc3d4f5038">se2::fsm::b1_token_upside_down_lift_up</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#a9d0cbf83f6685cb2272d70a633ae087a">se2::fsm::b1_valid_height</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#a27f50818aef5b8e7ecee5d5d6545552e">se2::fsm::b2_is_correct_order</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#aab251bcde5a969faeafd3ef5a23b3f17">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#acb581bd2037c3423d42a47ced34ebb95">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#aeca5fb1da65d773a4a25007136053de6">se2::token</a>
 , <a class="el" href="classstate.html#afbe0843260b34a8578c91305ecd4aad6">state</a>
 </li>
 <li>dispatched_event_sensor_exit_rising()
-: <a class="el" href="classse2_1_1fsm_1_1b1__token__ready__for__b2.html#a233e3af01c1322e70303ae5f92d012dc">se2::fsm::b1_token_ready_for_b2</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#a9a1486e0335d54b68bacb7e6989526e6">se2::fsm::b2_is_correct_order</a>
+: <a class="el" href="classse2_1_1err__token__not__removed__from__end.html#a8c6da867bc1b9b8956228d6561abbca4">se2::err_token_not_removed_from_end</a>
+, <a class="el" href="classse2_1_1err__token__not__removed__turnover.html#a3facc303d6aacfd4ccd55c9b6752a104">se2::err_token_not_removed_turnover</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__token__ready__for__b2.html#a6b078ea9c805a89695037959cbfb724d">se2::fsm::b1_token_ready_for_b2</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__token__upside__down.html#a49ff0591b481f343b30c6ee327a8bd91">se2::fsm::b1_token_upside_down</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__token__upside__down__put__back.html#a9deb9f0eb76b7f8116830bbfd5ce4f62">se2::fsm::b1_token_upside_down_put_back</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#adf6967a29d34249e95badb6998ce2d35">se2::fsm::b2_is_correct_order</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#a30e937af7b71046f4d6e757ac7b6e3f5">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#ab8fab23ec57a881d582d7ce2487caf8c">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#a72747fda56164c155cc18fcc4047251b">se2::token</a>
 , <a class="el" href="classstate.html#a0bca1979a5677d0fac260ce3f1488470">state</a>
 </li>
 <li>dispatched_event_sensor_height()
-: <a class="el" href="classse2_1_1fsm_1_1b1__realized__object.html#a7ce65593631ec167cae121ad9196a5c7">se2::fsm::b1_realized_object</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__realized__object.html#aae3918929b40553f2723f851561b38ce">se2::fsm::b2_realized_object</a>
+: <a class="el" href="classse2_1_1fsm_1_1b1__realized__object.html#af099da855d14b435eb5827d10db2f634">se2::fsm::b1_realized_object</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__realized__object.html#aa0abc45e61b4fbed424d346b4fd361b1">se2::fsm::b2_realized_object</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#a707a0041907d1d36a9bba3720f37e0a3">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#af96d8179c430a927b27beccfb50297a9">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#a6065470bb5a8a1d33beed9cb7a840557">se2::token</a>
 , <a class="el" href="classstate.html#a2708a376de4e82799149b94179426963">state</a>
 </li>
 <li>dispatched_event_sensor_height_rising()
-: <a class="el" href="classse2_1_1fsm_1_1b1__token__too__small.html#a600caaa964bad9f62fb0672091fad14c">se2::fsm::b1_token_too_small</a>
-, <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#a7d9687d6dc742a2c1412991330a523e0">se2::fsm::b1_valid_height</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__token__upside__down.html#a6ac8402415e41cb43fcfe4ad2553392b">se2::fsm::b2_token_upside_down</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__valid__height.html#afb4d1ad6d4ecf3b40dc959f6b51931e5">se2::fsm::b2_valid_height</a>
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__too__small.html#a54d1fda1203a53dab40a0a1db613ab68">se2::fsm::b1_token_too_small</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#a3d0e78ef8e178649c3f7a0f08ef35ed1">se2::fsm::b1_valid_height</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__token__upside__down.html#ad34cab693db899a029e9abb7badc43b4">se2::fsm::b2_token_upside_down</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__valid__height.html#a06783bf7c8f1eee1e7db44327080d51f">se2::fsm::b2_valid_height</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#afbe2b5245019693e40f0bf5c9b259044">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#abf6e5559db5039b4767e5c6187ea8544">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#a6b93da33de927f1611b087cba4c49180">se2::token</a>
 , <a class="el" href="classstate.html#abacb6959c15f39945cb7f991392a63bd">state</a>
 </li>
 <li>dispatched_event_sensor_slide()
-: <a class="el" href="classse2_1_1fsm_1_1b1__token__too__small.html#a01ef199b764393068df13c877a4193f2">se2::fsm::b1_token_too_small</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__token__upside__down.html#a89e81dfd9f20cb40bcae615047cfea6f">se2::fsm::b2_token_upside_down</a>
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__too__small.html#a660ab261b2ac50126a73de8b41895e54">se2::fsm::b1_token_too_small</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__token__upside__down.html#a5af4f769fc5b39390807f404714fe440">se2::fsm::b2_token_upside_down</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#a8d091ef8d5dc616615f5524acfb52476">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#a3e4d7c91dac47f5327f7811c74e7cda9">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#a1cc5df40940d3fa6c652f3c1b864a3e4">se2::token</a>
 , <a class="el" href="classstate.html#a7b1b6b8a15e753c8be9a2edfc31e977a">state</a>
 </li>
 <li>dispatched_event_sensor_slide_rising()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#a1fef8f51d02a1ea04addc9f4ec174ede">se2::fsm::events</a>
+: <a class="el" href="classse2_1_1err__slide__full.html#aaf314f81c078302871331587c8c97c1a">se2::err_slide_full</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__token__too__small.html#a22f8472afeecee0493dd09d6d33df81e">se2::fsm::b1_token_too_small</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__token__upside__down.html#a8a2b5b23e76448c65169fad9d30eeb7d">se2::fsm::b2_token_upside_down</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#a1fef8f51d02a1ea04addc9f4ec174ede">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#a11793fa5abde3d0597ab04e5caefd114">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#a846e9768249850bd87f5dcfa18fbc008">se2::token</a>
 , <a class="el" href="classstate.html#a4b9dc27214df81bb1ed3e986c6318d13">state</a>
 </li>
 <li>dispatched_event_sensor_switch()
-: <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#a465eee19ef3c21e219c08467779d5023">se2::fsm::b1_valid_height</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__valid__height.html#a653246f7b452cf7d11445466a3ddffa0">se2::fsm::b2_valid_height</a>
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__too__small.html#a8951c5a6685c00e4f7198d104b274012">se2::fsm::b1_token_too_small</a>
+, <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#a9b39ca85efef38c8879f7ea92c56472c">se2::fsm::b1_valid_height</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__valid__height.html#adbfec4f3a0ad0de77bc2b6dae544fe97">se2::fsm::b2_valid_height</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#a77deb78bd6862677e56d7b16206104c7">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#a5a8be6aa4b42109032f1d77cf6198e98">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#afce942325f66f4904b00161184ec3a04">se2::token</a>
 , <a class="el" href="classstate.html#aae9f28eec5136531cbc66ca884da7cdb">state</a>
 </li>
 <li>dispatched_event_sensor_switch_rising()
-: <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#ab8541c294739988bfede75d07e10fada">se2::fsm::b1_valid_height</a>
-, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#ae9f6ae16e7b8c06db528320910f30ac4">se2::fsm::b2_is_correct_order</a>
+: <a class="el" href="classse2_1_1fsm_1_1b1__valid__height.html#af93dcbca32340ed059904897d90ea349">se2::fsm::b1_valid_height</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__is__correct__order.html#a9c7052e29e260e0cb500a6917345fc2d">se2::fsm::b2_is_correct_order</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#aeb05cbcb23fd8c89d16b1f80f5fcf8f6">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#a7c0252b8c290efdf1ba175e0a669aa37">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#aa1df2b07e02fb67be1d8a241a5ff4a80">se2::token</a>
 , <a class="el" href="classstate.html#a39a4ca4ac50546b80ff73bb81b6ae038">state</a>
 </li>
 <li>dispatched_event_serial_data()
-: <a class="el" href="classse2_1_1fsm_1_1b2__receive__data.html#ae6232423ae377d488bc9cca74dd2b9ab">se2::fsm::b2_receive_data</a>
+: <a class="el" href="classse2_1_1fsm_1_1b2__receive__data.html#a648d6e6bcb339cd3d0dfa54b5b75b546">se2::fsm::b2_receive_data</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#a607bc03f95b82ea31fd76f9f80effba8">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#ae61c59009967264dacc42f5b79e5ecd5">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#a0e02a9ef1deb55ac7fffbbe5d8f8fd82">se2::token</a>
 , <a class="el" href="classstate.html#aee2d4ba4b66a13b0b08f10afc0583c16">state</a>
+</li>
+<li>dispatched_event_serial_e_stopp()
+: <a class="el" href="classse2_1_1fsm_1_1events.html#a861a91bc61bf1f5283ff02cee46a525a">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#abebcf6dd1d69f8c57751185977119a05">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#a1442000268f6512354372a0c60e5946e">se2::token</a>
+, <a class="el" href="classstate.html#ad92fabafa82b7dcd565d7d5315549667">state</a>
 </li>
 <li>dispatched_event_serial_err()
 : <a class="el" href="classse2_1_1fsm_1_1events.html#a08bb51091b6b567a1095afbb2de3f7ca">se2::fsm::events</a>
@@ -295,11 +365,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classstate.html#ac7ab91b4e1d8946f1c75f5f572d972f7">state</a>
 </li>
 <li>dispatched_event_serial_next_ok()
-: <a class="el" href="classse2_1_1fsm_1_1b1__token__ready__for__b2.html#ace5249c9a0723df5556fd26d1975a44e">se2::fsm::b1_token_ready_for_b2</a>
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__ready__for__b2.html#a3b74000c47bd6e2130c654f94347ed67">se2::fsm::b1_token_ready_for_b2</a>
 , <a class="el" href="classse2_1_1fsm_1_1events.html#adf1296f2a648cd57eae381636569433c">se2::fsm::events</a>
 , <a class="el" href="classse2_1_1fsm_1_1state.html#a38fb0ee9be3f96de04fb0a54980257f1">se2::fsm::state</a>
 , <a class="el" href="classse2_1_1token.html#aea3afc2c50476128f05864d24784124f">se2::token</a>
 , <a class="el" href="classstate.html#aa0990619470c6fb9f06276970bc6a60a">state</a>
+</li>
+<li>dispatched_event_serial_transfer_fin()
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__ready__for__b2.html#a4934a4e8647cb4618447106045d7c6ce">se2::fsm::b1_token_ready_for_b2</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#a5f5bb0b5a5f16861655e7ab095781e95">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#aeff307697ef5d4f99e7fe39b0fc03f6d">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#aa9d93a876ea3eb002b2c675e3f63c54d">se2::token</a>
+, <a class="el" href="classstate.html#a6e5ff1d592cb95629f40923adf40907c">state</a>
 </li>
 <li>dispatched_event_serial_unk()
 : <a class="el" href="classse2_1_1fsm_1_1events.html#ac8bcc5812caa2c1dd86ed7a547dba600">se2::fsm::events</a>
@@ -307,23 +384,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="classse2_1_1token.html#a1a2802389b443e860d01e326d555ff88">se2::token</a>
 , <a class="el" href="classstate.html#ae2c36ea28c1e963832798935ea20aa60">state</a>
 </li>
-<li>dispatched_event_slide_full()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#ae626f8738d13487e6bc3e70b2e8bd343">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#a57c2cd35a1a9c981199390ecee127c6f">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#a415d6d6b6e549c8bd8d88b53c57e0d86">se2::token</a>
-, <a class="el" href="classstate.html#ac6a09b021e62132d9afbfe5b2657f2d5">state</a>
+<li>dispatched_event_slide_full_timeout()
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__too__small.html#a1c7a190244fbe8b950cd83f2e0aa8f41">se2::fsm::b1_token_too_small</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__token__upside__down.html#aa1ab8ae49819b09ec97ef86c870d9aba">se2::fsm::b2_token_upside_down</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#a1044ee4a1360479314d7b52c5f709b39">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#ae80a2fcada1ed55da3cc0e7c9206a4a3">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#a135c226f8819622d1d5d5b6f59e2402c">se2::token</a>
+, <a class="el" href="classstate.html#a938e546876299344d82f3675c946f357">state</a>
 </li>
-<li>dispatched_event_token_finished()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#aae0cfc871fa75cd4cc8704aeea57f18b">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#a7cdc6f8fe45519690e20cd26e57d6baf">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#a242002787f0a46afd2cf7b09a2346034">se2::token</a>
-, <a class="el" href="classstate.html#a504e7e325e5daf527f6be74f357b5e99">state</a>
+<li>dispatched_event_tansfer_timeout()
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__ready__for__b2.html#afad31c96abd7d812843af3174f1e3d73">se2::fsm::b1_token_ready_for_b2</a>
+, <a class="el" href="classse2_1_1fsm_1_1b2__received__object.html#a1b8007ac1a8ad39862193a952b460c6b">se2::fsm::b2_received_object</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#a1ca32a1d7da2c3a1227563398e63f13b">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#af4d25d8332a90edf1a96045d7b967bbb">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#a7d029e0b5c5c6bfcdf36d37288bb70c8">se2::token</a>
+, <a class="el" href="classstate.html#a5e9078cba4cfb29ee9557cdc09ac8f92">state</a>
 </li>
-<li>dispatched_event_turn_token()
-: <a class="el" href="classse2_1_1fsm_1_1events.html#aa90fa4560e20d318516e45f47b68e667">se2::fsm::events</a>
-, <a class="el" href="classse2_1_1fsm_1_1state.html#ae5e272daadc98eeae54d66b8a7d0cee6">se2::fsm::state</a>
-, <a class="el" href="classse2_1_1token.html#a65c7ecd54df23e1627c6e286ce4d344b">se2::token</a>
-, <a class="el" href="classstate.html#ac71a6c4d1dea46b85b24c6a1b4f323c2">state</a>
+<li>dispatched_event_token_finished_timeout()
+: <a class="el" href="classse2_1_1fsm_1_1state.html#a31fc9d6f6b1f715158473a9037ab3e26">se2::fsm::state</a>
+</li>
+<li>dispatched_event_turn_token_timeout()
+: <a class="el" href="classse2_1_1fsm_1_1b1__token__upside__down__lift__up.html#ab80715ce19db6be74988e44c16a5da43">se2::fsm::b1_token_upside_down_lift_up</a>
+, <a class="el" href="classse2_1_1fsm_1_1events.html#ad5b93019dd175b3939ebe856732db804">se2::fsm::events</a>
+, <a class="el" href="classse2_1_1fsm_1_1state.html#a8ad9780deebb290a12f541df4b2640e1">se2::fsm::state</a>
+, <a class="el" href="classse2_1_1token.html#af04675886656b6749d5962d614f84133">se2::token</a>
+, <a class="el" href="classstate.html#a520fb09bb4707028348f5df88fc91158">state</a>
 </li>
 <li>dispatcher()
 : <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a72121d0c851967c2ea485b2d6ffdd263">se2::dispatch::dispatcher</a>

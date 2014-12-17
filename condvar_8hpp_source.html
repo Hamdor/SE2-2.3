@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -118,10 +118,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">namespace </span>util {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
 <div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="structse2_1_1util_1_1condvar.html">   36</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structse2_1_1util_1_1condvar.html">condvar</a> {</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <a class="code" href="structse2_1_1util_1_1condvar.html#a8a6568ee847ed9e795592c00e72f56ce">condvar</a>(<a class="code" href="structse2_1_1util_1_1mutex.html">mutex</a>&amp; <a class="code" href="structse2_1_1util_1_1mutex.html">mutex</a>);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="structse2_1_1util_1_1condvar.html#af2d3664286d77471aec1593014a663f8">~condvar</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="structse2_1_1util_1_1condvar.html#a8a6568ee847ed9e795592c00e72f56ce">condvar</a>(<a class="code" href="structse2_1_1util_1_1mutex.html">mutex</a>&amp; <a class="code" href="structse2_1_1util_1_1mutex.html">mutex</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;  <span class="keyword">virtual</span> <a class="code" href="structse2_1_1util_1_1condvar.html#af2d3664286d77471aec1593014a663f8">~condvar</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="structse2_1_1util_1_1condvar.html#a9649d7344f6c0db5a0ff4d08abe392f3">wait</a>();</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  <span class="keywordtype">int</span> <a class="code" href="structse2_1_1util_1_1condvar.html#a822b8a1dcdb91c1d54df02982f6e8006">signal</a>();</div>
@@ -140,7 +140,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;} <span class="comment">// namespace se2</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif // SE2_UTIL_CONDVAR_HPP</span></div>
-<div class="ttc" id="structse2_1_1util_1_1condvar_html_a822b8a1dcdb91c1d54df02982f6e8006"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a822b8a1dcdb91c1d54df02982f6e8006">se2::util::condvar::signal</a></div><div class="ttdeci">int signal()</div><div class="ttdoc">Diese Funktion entblockt einen Thread der auf diese Conditionvariable blockieren. ...</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8cpp_source.html#l00041">condvar.cpp:41</a></div></div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_a822b8a1dcdb91c1d54df02982f6e8006"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a822b8a1dcdb91c1d54df02982f6e8006">se2::util::condvar::signal</a></div><div class="ttdeci">int signal()</div><div class="ttdoc">Diese Funktion entblockt einen Thread der auf diese Conditionvariable blockiert. </div><div class="ttdef"><b>Definition:</b> <a href="condvar_8cpp_source.html#l00041">condvar.cpp:41</a></div></div>
 <div class="ttc" id="mutex_8hpp_html"><div class="ttname"><a href="mutex_8hpp.html">mutex.hpp</a></div></div>
 <div class="ttc" id="config_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div></div>
 <div class="ttc" id="structse2_1_1util_1_1condvar_html_a1492dce3c07a46fddd9074ad8c660af8"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a1492dce3c07a46fddd9074ad8c660af8">se2::util::condvar::m_cond</a></div><div class="ttdeci">pthread_cond_t m_cond</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00081">condvar.hpp:81</a></div></div>
@@ -149,7 +149,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="structse2_1_1util_1_1condvar_html_a3fc47991abebdacc318587ef2b450831"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a3fc47991abebdacc318587ef2b450831">se2::util::condvar::broadcast</a></div><div class="ttdeci">int broadcast()</div><div class="ttdoc">Diese Funktion entblockt alle Threads die auf diese Conditionvariable blockieren. ...</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8cpp_source.html#l00045">condvar.cpp:45</a></div></div>
 <div class="ttc" id="structse2_1_1util_1_1condvar_html_a8a6568ee847ed9e795592c00e72f56ce"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a8a6568ee847ed9e795592c00e72f56ce">se2::util::condvar::condvar</a></div><div class="ttdeci">condvar()</div></div>
 <div class="ttc" id="structse2_1_1util_1_1condvar_html_a5b7fb7253f47d6e2886030a808af3b70"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a5b7fb7253f47d6e2886030a808af3b70">se2::util::condvar::m_lock</a></div><div class="ttdeci">mutex &amp; m_lock</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8hpp_source.html#l00080">condvar.hpp:80</a></div></div>
-<div class="ttc" id="structse2_1_1util_1_1condvar_html_af2d3664286d77471aec1593014a663f8"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#af2d3664286d77471aec1593014a663f8">se2::util::condvar::~condvar</a></div><div class="ttdeci">virtual ~condvar()</div><div class="ttdoc">Destruktor. </div><div class="ttdef"><b>Definition:</b> <a href="condvar_8cpp_source.html#l00033">condvar.cpp:33</a></div></div>
+<div class="ttc" id="structse2_1_1util_1_1condvar_html_af2d3664286d77471aec1593014a663f8"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#af2d3664286d77471aec1593014a663f8">se2::util::condvar::~condvar</a></div><div class="ttdeci">virtual ~condvar()</div><div class="ttdoc">Default Destruktor. </div><div class="ttdef"><b>Definition:</b> <a href="condvar_8cpp_source.html#l00033">condvar.cpp:33</a></div></div>
 <div class="ttc" id="structse2_1_1util_1_1condvar_html_a9649d7344f6c0db5a0ff4d08abe392f3"><div class="ttname"><a href="structse2_1_1util_1_1condvar.html#a9649d7344f6c0db5a0ff4d08abe392f3">se2::util::condvar::wait</a></div><div class="ttdeci">int wait()</div><div class="ttdoc">Auf dieser Conditionvariable blockieren, bis diese Conditionvariable signalisiert wird...</div><div class="ttdef"><b>Definition:</b> <a href="condvar_8cpp_source.html#l00037">condvar.cpp:37</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

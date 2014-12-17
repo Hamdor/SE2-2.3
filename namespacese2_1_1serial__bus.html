@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -125,11 +125,13 @@ Enumerations</h2></td></tr>
 <br/>
 &#160;&#160;<a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804">B2_FREE</a> = 3, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73">E_STOP</a> = 4, 
+&#160;&#160;<a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a8167b8f992398ccd68ce7a75ce47ae10">B2_TRANS_FIN</a> = 4, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2">STOP</a> = 5, 
+&#160;&#160;<a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73">E_STOP</a> = 5, 
 <br/>
-&#160;&#160;<a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5">NOTHING</a> = 6
+&#160;&#160;<a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2">STOP</a> = 6, 
+<br/>
+&#160;&#160;<a class="el" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5">NOTHING</a> = 7
 <br/>
  }</td></tr>
 <tr class="memdesc:a5eb67bd59cce92bdabeac403756945d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nachricht Typen.  <a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4">More...</a><br/></td></tr>
@@ -156,6 +158,8 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804"></a>B2_FREE</em>&#160;</td><td class="fielddoc">
 </td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="a5eb67bd59cce92bdabeac403756945d4a8167b8f992398ccd68ce7a75ce47ae10"></a>B2_TRANS_FIN</em>&#160;</td><td class="fielddoc">
+</td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73"></a>E_STOP</em>&#160;</td><td class="fielddoc">
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2"></a>STOP</em>&#160;</td><td class="fielddoc">
@@ -164,23 +168,25 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00401">401</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;              {</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a15646040d812e8138bdac0123338015e">ERR_STOP</a> = 0,  <span class="comment">// Fehler auf einem Band, stoppen</span></div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4af4fdc05b03ea437f39d14892652b8fa1">ERR_QUIT</a> = 1,  <span class="comment">// Fehler quittiert</span></div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a9b63d260012fa48e8ed7ea4f81c1413a">RESUME</a>   = 2,  <span class="comment">// Weiterlaufen/Start</span></div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804">B2_FREE</a>  = 3,  <span class="comment">// Band 2 wieder frei von Puck</span></div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73">E_STOP</a>   = 4,  <span class="comment">// E-Stop gedrueckt</span></div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2">STOP</a>     = 5,  <span class="comment">// Stop Taste gedrueckt</span></div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5">NOTHING</a>  = 6   <span class="comment">// Keine MSG</span></div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;};</div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a9b63d260012fa48e8ed7ea4f81c1413a"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a9b63d260012fa48e8ed7ea4f81c1413a">se2::serial_bus::RESUME</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00404">constants.hpp:404</a></div></div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2">se2::serial_bus::STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00407">constants.hpp:407</a></div></div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804">se2::serial_bus::B2_FREE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00405">constants.hpp:405</a></div></div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4af4fdc05b03ea437f39d14892652b8fa1"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4af4fdc05b03ea437f39d14892652b8fa1">se2::serial_bus::ERR_QUIT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00403">constants.hpp:403</a></div></div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a15646040d812e8138bdac0123338015e"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a15646040d812e8138bdac0123338015e">se2::serial_bus::ERR_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00402">constants.hpp:402</a></div></div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73">se2::serial_bus::E_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00406">constants.hpp:406</a></div></div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5">se2::serial_bus::NOTHING</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00408">constants.hpp:408</a></div></div>
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00454">454</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;              {</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a15646040d812e8138bdac0123338015e">ERR_STOP</a>     = 0,  <span class="comment">// Fehler auf einem Band, stoppen</span></div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4af4fdc05b03ea437f39d14892652b8fa1">ERR_QUIT</a>     = 1,  <span class="comment">// Fehler quittiert</span></div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a9b63d260012fa48e8ed7ea4f81c1413a">RESUME</a>       = 2,  <span class="comment">// Weiterlaufen/Start</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804">B2_FREE</a>      = 3,  <span class="comment">// Band 2 wieder frei von Puck</span></div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a8167b8f992398ccd68ce7a75ce47ae10">B2_TRANS_FIN</a> = 4,  <span class="comment">// Lichtschranke auf Band 2 ist durchbrochen</span></div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73">E_STOP</a>       = 5,  <span class="comment">// E-Stop gedrueckt</span></div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2">STOP</a>         = 6,  <span class="comment">// Stop Taste gedrueckt</span></div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5">NOTHING</a>      = 7   <span class="comment">// Keine MSG</span></div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;};</div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a9b63d260012fa48e8ed7ea4f81c1413a"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a9b63d260012fa48e8ed7ea4f81c1413a">se2::serial_bus::RESUME</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00457">constants.hpp:457</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a524225abdcebdd85c7dc3c8ff9d68cf2">se2::serial_bus::STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00461">constants.hpp:461</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a494a53d2b78937e76463cfc56ac4b804">se2::serial_bus::B2_FREE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00458">constants.hpp:458</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a8167b8f992398ccd68ce7a75ce47ae10"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a8167b8f992398ccd68ce7a75ce47ae10">se2::serial_bus::B2_TRANS_FIN</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00459">constants.hpp:459</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4af4fdc05b03ea437f39d14892652b8fa1"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4af4fdc05b03ea437f39d14892652b8fa1">se2::serial_bus::ERR_QUIT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00456">constants.hpp:456</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a15646040d812e8138bdac0123338015e"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a15646040d812e8138bdac0123338015e">se2::serial_bus::ERR_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00455">constants.hpp:455</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a4773b6265b78848626e310b99f160d73">se2::serial_bus::E_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00460">constants.hpp:460</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a5eb67bd59cce92bdabeac403756945d4a2e6616c968681e681161039d1fce53d5">se2::serial_bus::NOTHING</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00462">constants.hpp:462</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -204,15 +210,15 @@ Enumerations</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00392">392</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;                   {</div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda6740779c1b381667fbe18669e0e90a38">MSG</a>  = 0,  <span class="comment">// Nachricht (keine Daten)</span></div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda0785994311b35fdaa93795a1a495bb3a">DATA</a> = 1,  <span class="comment">// Daten werden uebertragen</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9edad141e204efb0f459bf8b75b9b3995131">ERR</a>  = 2   <span class="comment">// Letztes Paket neu senden</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;};</div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a3f0f8822d74d66dd8debd8ecd95ec9eda0785994311b35fdaa93795a1a495bb3a"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda0785994311b35fdaa93795a1a495bb3a">se2::serial_bus::DATA</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00394">constants.hpp:394</a></div></div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a3f0f8822d74d66dd8debd8ecd95ec9eda6740779c1b381667fbe18669e0e90a38"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda6740779c1b381667fbe18669e0e90a38">se2::serial_bus::MSG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00393">constants.hpp:393</a></div></div>
-<div class="ttc" id="namespacese2_1_1serial__bus_html_a3f0f8822d74d66dd8debd8ecd95ec9edad141e204efb0f459bf8b75b9b3995131"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9edad141e204efb0f459bf8b75b9b3995131">se2::serial_bus::ERR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00395">constants.hpp:395</a></div></div>
+<p>Definition at line <a class="el" href="constants_8hpp_source.html#l00445">445</a> of file <a class="el" href="constants_8hpp_source.html">constants.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;                   {</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda6740779c1b381667fbe18669e0e90a38">MSG</a>  = 0,  <span class="comment">// Nachricht (keine Daten)</span></div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda0785994311b35fdaa93795a1a495bb3a">DATA</a> = 1,  <span class="comment">// Daten werden uebertragen</span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;  <a class="code" href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9edad141e204efb0f459bf8b75b9b3995131">ERR</a>  = 2   <span class="comment">// Letztes Paket neu senden</span></div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;};</div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a3f0f8822d74d66dd8debd8ecd95ec9eda0785994311b35fdaa93795a1a495bb3a"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda0785994311b35fdaa93795a1a495bb3a">se2::serial_bus::DATA</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00447">constants.hpp:447</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a3f0f8822d74d66dd8debd8ecd95ec9eda6740779c1b381667fbe18669e0e90a38"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9eda6740779c1b381667fbe18669e0e90a38">se2::serial_bus::MSG</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00446">constants.hpp:446</a></div></div>
+<div class="ttc" id="namespacese2_1_1serial__bus_html_a3f0f8822d74d66dd8debd8ecd95ec9edad141e204efb0f459bf8b75b9b3995131"><div class="ttname"><a href="namespacese2_1_1serial__bus.html#a3f0f8822d74d66dd8debd8ecd95ec9edad141e204efb0f459bf8b75b9b3995131">se2::serial_bus::ERR</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00448">constants.hpp:448</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>

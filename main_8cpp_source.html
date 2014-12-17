@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -89,167 +89,90 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">main.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * @file    main.cpp</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * @version 0.1</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="config_8h.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_h_waccess_8hpp.html">lib/hal/HWaccess.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="singleton__mgr_8hpp.html">lib/util/singleton_mgr.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dispatcher_8hpp.html">lib/dispatcher/dispatcher.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="irq__test_8hpp.html">unit_tests/irq_test.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="test__suite_8hpp.html">unit_tests/test_suite.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="serial__test_8hpp.html">unit_tests/serial_test.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="hal__test__stub1_8hpp.html">unit_tests/hal_test_stub1.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="hal__test__stub2_8hpp.html">unit_tests/hal_test_stub2.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="dispatcher__test_8hpp.html">unit_tests/dispatcher_test.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="timer__test_8hpp.html">unit_tests/timer_test.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="state_8hpp.html">lib/fsm/state.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="token_8hpp.html">lib/token.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">using namespace </span>std;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">using namespace </span>se2;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">using namespace </span>se2::fsm;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">using namespace </span>se2::dispatch;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">using namespace </span>se2::hal;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">using namespace </span>se2::util;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">using namespace </span>se2::unit_tests;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">using namespace </span>se2::timer;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="main_8cpp.html#ac3ef4e4ac9b8681e56bf390cb4c152cd">   37</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#ac3ef4e4ac9b8681e56bf390cb4c152cd">run_tests</a>() {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;run `hal_test_stub1`  errors: &quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;hal_test_stub1&gt;</a>().run()  &lt;&lt; endl;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;run `hal_test_stub2`  errors: &quot;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;hal_test_stub2&gt;</a>().run()  &lt;&lt; endl;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="comment">//cout &lt;&lt; &quot;run `irq_test`        errors: &quot;</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <span class="comment">//     &lt;&lt; test_suite&lt;irq_test&gt;().run()        &lt;&lt; endl;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;run `dispatcher_test` errors: &quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;dispatcher_test&gt;</a>().run() &lt;&lt; endl;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;run `timer_test`      errors: &quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;timer_test&gt;</a>().run()      &lt;&lt; endl;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">  #ifdef HAS_SERIAL_INTERFACE</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor"></span>  cout &lt;&lt; <span class="stringliteral">&quot;run `serial_test`     errors: &quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;       &lt;&lt; <a class="code" href="classse2_1_1unit__tests_1_1test__suite.html">test_suite&lt;serial_test&gt;</a>().run()     &lt;&lt; endl;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">  #endif</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor"></span>  singleton_mgr::shutdown();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="main_8cpp.html#ac2a619e15707149b8fd228653d6077a6">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#ac2a619e15707149b8fd228653d6077a6">get_heights</a>() {</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  <a class="code" href="structse2_1_1hal_1_1hwaccess.html">hwaccess</a>* hal = <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>));</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  std::string puck_names[] = {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      <span class="stringliteral">&quot;TOO_SMALL_LOW&quot;</span>,       <span class="stringliteral">&quot;TOO_SMALL_HI&quot;</span>,</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;      <span class="stringliteral">&quot;HOLE_BOTTOM_UP_LOW&quot;</span>,  <span class="stringliteral">&quot;HOLE_BOTTOM_UP_HI&quot;</span>,</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      <span class="stringliteral">&quot;HOLE_LOW&quot;</span>,            <span class="stringliteral">&quot;HOLE_HI&quot;</span>,</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      <span class="stringliteral">&quot;METAL_BOTTOM_UP_LOW&quot;</span>, <span class="stringliteral">&quot;METAL_BOTTOM_UP_HI&quot;</span>,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      <span class="stringliteral">&quot;METAL_LOW&quot;</span>,           <span class="stringliteral">&quot;METAL_HI&quot;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;  };</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keywordtype">size_t</span> arr[10];</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;  <span class="keywordtype">size_t</span> min = 0xFFFFFFFF;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keywordtype">size_t</span> max = 0;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;  <span class="keywordtype">size_t</span> idx = 0;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;  <span class="keywordflow">while</span>(idx &lt; 10) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    std::cout &lt;&lt; <span class="stringliteral">&quot;Bitte &quot;</span> &lt;&lt; puck_names[idx].substr(0,</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                                    puck_names[idx].size()-4)</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;              &lt;&lt; <span class="stringliteral">&quot; einlegen&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">while</span>(!hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a00b933055fc87da122d3aabc954ecd89">is_button_pressed</a>(<a class="code" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78">BUTTON_START</a>)) {</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;      <span class="comment">// nop</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">while</span>(!hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#ab4b416a31e2c961b18027b9ebc24f1ae">obj_in_light_barrier</a>(<a class="code" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889acb710dc2acfa5ed865b4396be20f36e6">SENSOR_ENTRANCE</a>)) {</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;      <span class="comment">// nop</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">MOTOR_RIGHT</a>);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">while</span>(!hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#ab4b416a31e2c961b18027b9ebc24f1ae">obj_in_light_barrier</a>(<a class="code" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a7ce0c41cfb9baf16fc97b700346946e6">SENSOR_HEIGHT</a>)) {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      <span class="comment">// nop</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">MOTOR_STOP</a>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">// MIN - MAX holen</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    min = 0xFFFFFFFF;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    max = 0;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 250000; ++i) {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;      <span class="keywordtype">size_t</span> cur = hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a6ad0abf522ba9cc2942c7359998311a0">get_height_value</a>();</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      max = std::max(max, cur);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;      min = std::min(min, cur);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// Min und max werte merken</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    arr[idx++] = min;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    arr[idx++] = max;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c">MOTOR_LEFT</a>);</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">while</span>(!hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#ab4b416a31e2c961b18027b9ebc24f1ae">obj_in_light_barrier</a>(<a class="code" href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889acb710dc2acfa5ed865b4396be20f36e6">SENSOR_ENTRANCE</a>)) {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;      <span class="comment">// nop</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">set_motor</a>(<a class="code" href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">MOTOR_STOP</a>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  <span class="comment">// Kopierbarer output der direkt in den Code kann...</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;enum height_values {&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 10; ++i) {</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;  &quot;</span> &lt;&lt; puck_names[i] &lt;&lt; <span class="stringliteral">&quot; = &quot;</span> &lt;&lt; arr[i]</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;         &lt;&lt; (i == 9 ? <span class="stringliteral">&quot;&quot;</span> : <span class="stringliteral">&quot;,&quot;</span>)   &lt;&lt; endl;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;  }</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;  cout &lt;&lt; <span class="stringliteral">&quot;};&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="main_8cpp.html#aa85efa7d61919323d9f121fbcc39c40c">  115</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8cpp.html#aa85efa7d61919323d9f121fbcc39c40c">main_program</a>() {</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  singleton_mgr::force_initialization(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62">SERIAL_PLUGIN</a>);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;  <a class="code" href="singleton__mgr_8hpp.html#ae45a7e650b29ed49f2ed8c4996904158">TO_TOKEN_MGR</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81">TOKEN_PLUGIN</a>));</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;  <span class="keywordflow">while</span>(1) {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    sleep(1);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;  }</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">  123</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#ifdef SIMULATION</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor"></span>  IOaccess_open();</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor"></span>  <span class="comment">//get_heights();</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;  <span class="comment">//run_tests();</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  <a class="code" href="main_8cpp.html#aa85efa7d61919323d9f121fbcc39c40c">main_program</a>();</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;  singleton_mgr::shutdown();</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#ifdef SIMULATION</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor"></span>  IOaccess_close();</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor"></span>  cout &lt;&lt; <span class="stringliteral">&quot;End of main()&quot;</span> &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
-<div class="ttc" id="singleton__mgr_8hpp_html_ae45a7e650b29ed49f2ed8c4996904158"><div class="ttname"><a href="singleton__mgr_8hpp.html#ae45a7e650b29ed49f2ed8c4996904158">TO_TOKEN_MGR</a></div><div class="ttdeci">#define TO_TOKEN_MGR(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00095">singleton_mgr.hpp:95</a></div></div>
-<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00090">singleton_mgr.hpp:90</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baec534258e3f2183277934a86434652cd">se2::hal::MOTOR_STOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00133">constants.hpp:133</a></div></div>
-<div class="ttc" id="main_8cpp_html_ac3ef4e4ac9b8681e56bf390cb4c152cd"><div class="ttname"><a href="main_8cpp.html#ac3ef4e4ac9b8681e56bf390cb4c152cd">run_tests</a></div><div class="ttdeci">void run_tests()</div><div class="ttdoc">Unit tests starten. </div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00037">main.cpp:37</a></div></div>
+<a href="main_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/******************************************************************************</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> *                   ____    ____       ___    ____                           *</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *                  /\  _`\ /\  _`\   /&#39;___`\ /\  _`\                         *</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> *                  \ \,\L\_\ \ \L\_\/\_\ /\ \\ \ \L\ \                       *</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *                   \/_\__ \\ \  _\L\/_/// /__\ \ ,__/                       *</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> *                     /\ \L\ \ \ \L\ \ // /_\ \\ \ \/                        *</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *                     \ `\____\ \____//\______/ \ \_\                        *</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *                      \/_____/\/___/ \/_____/   \/_/                        *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *                                                                            *</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Copyright (C) 2014                                                         *</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * Katja Kirstein    &lt;katja.kirstein    (at) haw-hamburg.de&gt;                  *</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * Anne-Lena Kowalka &lt;anne-lena.kowalka (at) haw-hamburg.de&gt;                  *</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * Marian Triebe     &lt;marian.triebe     (at) haw-hamburg.de&gt;                  *</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * Eugen Winter      &lt;eugen.winter      (at) haw-hamburg.de&gt;                  *</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *                                                                            *</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * Gruppe 2.3                                                                 *</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> ******************************************************************************/</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="config_8h.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="initialization__run_8hpp.html">initialization_run.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="singleton__mgr_8hpp.html">lib/util/singleton_mgr.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_h_a_w_thread_8hpp.html">lib/util/HAWThread.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">using namespace </span>se2;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">using namespace </span>se2::hal;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">using namespace </span>se2::util;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="main_8cpp.html#a17fa7a999c28df20939077a45fd5008b">   36</a></span>&#160;<span class="preprocessor">#define MAIN_LOOP_SLEEP 250000</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">   38</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#ifdef SIMULATION</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor"></span>  IOaccess_open();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"></span>  <span class="comment">// Initialisierung (Hoehenwerte/Zeitwerte)</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  <a class="code" href="classse2_1_1initialization__run.html">initialization_run</a> init;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;  init.<a class="code" href="classse2_1_1initialization__run.html#a1a77ef3a8c127225cca20449fb7fda1a">start_init</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  <a class="code" href="structse2_1_1hal_1_1hwaccess.html">hal::hwaccess</a>* hal = <a class="code" href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">HAL_PLUGIN</a>));</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keywordflow">if</span> (!hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a00b933055fc87da122d3aabc954ecd89">is_button_pressed</a>(<a class="code" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e">hal::BUTTON_ESTOP</a>)) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a0da4f0ca7d6a8607c831f4b8417617fa">set_led_state</a>(<a class="code" href="namespacese2_1_1hal.html#a08bfb12dbe0016518917c4df234f9925a8a2649e2a2c27f441ee60a3734b660f7">LED_START</a>, <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">while</span>(!hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a00b933055fc87da122d3aabc954ecd89">is_button_pressed</a>(<a class="code" href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78">BUTTON_START</a>)) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;      <span class="comment">// nop</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    hal-&gt;<a class="code" href="structse2_1_1hal_1_1hwaccess.html#a0da4f0ca7d6a8607c831f4b8417617fa">set_led_state</a>(<a class="code" href="namespacese2_1_1hal.html#a08bfb12dbe0016518917c4df234f9925a8a2649e2a2c27f441ee60a3734b660f7">LED_START</a>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// Hauptprogram</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    singleton_mgr::force_initialization(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62">SERIAL_PLUGIN</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    singleton_mgr::force_initialization(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa4809eae31fe1e9686231c05d60773b1a">LIGHT_PLUGIN</a>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="singleton__mgr_8hpp.html#a386ddfe1572cc37fed1fd5e54107f3c5">TO_LIGHT</a>(singleton_mgr::get_instance(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa4809eae31fe1e9686231c05d60773b1a">LIGHT_PLUGIN</a>))-&gt;set_state(<a class="code" href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9a1f75e4c67fb69b0cb3313ce9953a4e41">READY_TO_USE</a>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    singleton_mgr::force_initialization(<a class="code" href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81">TOKEN_PLUGIN</a>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordflow">while</span>(1) {</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;      usleep(<a class="code" href="main_8cpp.html#a17fa7a999c28df20939077a45fd5008b">MAIN_LOOP_SLEEP</a>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;      <span class="keywordflow">if</span> (HAWThread::is_global_shutdown()) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      }</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;  }</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;  singleton_mgr::shutdown();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#ifdef SIMULATION</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor"></span>  IOaccess_close();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor"></span>  std::cout &lt;&lt; <span class="stringliteral">&quot;End of main()&quot;</span> &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="ttc" id="main_8cpp_html_a17fa7a999c28df20939077a45fd5008b"><div class="ttname"><a href="main_8cpp.html#a17fa7a999c28df20939077a45fd5008b">MAIN_LOOP_SLEEP</a></div><div class="ttdeci">#define MAIN_LOOP_SLEEP</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00036">main.cpp:36</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a386ddfe1572cc37fed1fd5e54107f3c5"><div class="ttname"><a href="singleton__mgr_8hpp.html#a386ddfe1572cc37fed1fd5e54107f3c5">TO_LIGHT</a></div><div class="ttdeci">#define TO_LIGHT(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00094">singleton_mgr.hpp:94</a></div></div>
+<div class="ttc" id="singleton__mgr_8hpp_html_a29110417f0eaf3b2ed1ce7d036db8bae"><div class="ttname"><a href="singleton__mgr_8hpp.html#a29110417f0eaf3b2ed1ce7d036db8bae">TO_HAL</a></div><div class="ttdeci">#define TO_HAL(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00088">singleton_mgr.hpp:88</a></div></div>
+<div class="ttc" id="_h_a_w_thread_8hpp_html"><div class="ttname"><a href="_h_a_w_thread_8hpp.html">HAWThread.hpp</a></div></div>
 <div class="ttc" id="singleton__mgr_8hpp_html"><div class="ttname"><a href="singleton__mgr_8hpp.html">singleton_mgr.hpp</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62">se2::util::SERIAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00050">singleton_mgr.hpp:50</a></div></div>
-<div class="ttc" id="state_8hpp_html"><div class="ttname"><a href="state_8hpp.html">state.hpp</a></div></div>
-<div class="ttc" id="token_8hpp_html"><div class="ttname"><a href="token_8hpp.html">token.hpp</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78"><div class="ttname"><a href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78">se2::hal::BUTTON_START</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00152">constants.hpp:152</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa1639fb996f788cfa9b8410f562ae8e62">se2::util::SERIAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00048">singleton_mgr.hpp:48</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78"><div class="ttname"><a href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba88fb37080a5d0aae9e691080ff69bd78">se2::hal::BUTTON_START</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00154">constants.hpp:154</a></div></div>
 <div class="ttc" id="structse2_1_1hal_1_1hwaccess_html"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html">se2::hal::hwaccess</a></div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8hpp_source.html#l00046">HWaccess.hpp:46</a></div></div>
-<div class="ttc" id="dispatcher_8hpp_html"><div class="ttname"><a href="dispatcher_8hpp.html">dispatcher.hpp</a></div></div>
-<div class="ttc" id="classse2_1_1unit__tests_1_1test__suite_html"><div class="ttname"><a href="classse2_1_1unit__tests_1_1test__suite.html">se2::unit_tests::test_suite</a></div><div class="ttdef"><b>Definition:</b> <a href="test__suite_8hpp_source.html#l00038">test_suite.hpp:38</a></div></div>
 <div class="ttc" id="config_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div></div>
-<div class="ttc" id="hal__test__stub1_8hpp_html"><div class="ttname"><a href="hal__test__stub1_8hpp.html">hal_test_stub1.hpp</a></div></div>
-<div class="ttc" id="timer__test_8hpp_html"><div class="ttname"><a href="timer__test_8hpp.html">timer_test.hpp</a></div></div>
-<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_ab4b416a31e2c961b18027b9ebc24f1ae"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#ab4b416a31e2c961b18027b9ebc24f1ae">se2::hal::hwaccess::obj_in_light_barrier</a></div><div class="ttdeci">bool obj_in_light_barrier(enum light_barriers barrier) const </div><div class="ttdoc">Prueft ob die angegebene Lichtschranke unterbrochen ist. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00110">HWaccess.cpp:110</a></div></div>
-<div class="ttc" id="irq__test_8hpp_html"><div class="ttname"><a href="irq__test_8hpp.html">irq_test.hpp</a></div></div>
-<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a303125efc29bdba874316616263313d1"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a303125efc29bdba874316616263313d1">se2::hal::hwaccess::set_motor</a></div><div class="ttdeci">void set_motor(enum motor_modes mode)</div><div class="ttdoc">Setzt den Motor Modus (Aus, Rechtslauf, Linkslauf) </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00074">HWaccess.cpp:74</a></div></div>
-<div class="ttc" id="serial__test_8hpp_html"><div class="ttname"><a href="serial__test_8hpp.html">serial_test.hpp</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baf44d9d07346a375a739d65134739747c">se2::hal::MOTOR_LEFT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00131">constants.hpp:131</a></div></div>
-<div class="ttc" id="_h_waccess_8hpp_html"><div class="ttname"><a href="_h_waccess_8hpp.html">HWaccess.hpp</a></div></div>
-<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a6ad0abf522ba9cc2942c7359998311a0"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a6ad0abf522ba9cc2942c7359998311a0">se2::hal::hwaccess::get_height_value</a></div><div class="ttdeci">uint16_t get_height_value()</div><div class="ttdoc">Ruft den absoluten Hoehenwert des Sensors ab. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00118">HWaccess.cpp:118</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a"><div class="ttname"><a href="namespacese2_1_1hal.html#abc94d0dd219c97174e3804e68bf3d64baebfc26fe22c5d1ddf6c94bc5ab1f8a3a">se2::hal::MOTOR_RIGHT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00130">constants.hpp:130</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00048">singleton_mgr.hpp:48</a></div></div>
-<div class="ttc" id="main_8cpp_html_ac2a619e15707149b8fd228653d6077a6"><div class="ttname"><a href="main_8cpp.html#ac2a619e15707149b8fd228653d6077a6">get_heights</a></div><div class="ttdeci">void get_heights()</div><div class="ttdoc">Initialisierung fuer Puck hoehen. </div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00058">main.cpp:58</a></div></div>
-<div class="ttc" id="main_8cpp_html_aa85efa7d61919323d9f121fbcc39c40c"><div class="ttname"><a href="main_8cpp.html#aa85efa7d61919323d9f121fbcc39c40c">main_program</a></div><div class="ttdeci">void main_program()</div><div class="ttdoc">Hauptprogamm. </div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00115">main.cpp:115</a></div></div>
-<div class="ttc" id="test__suite_8hpp_html"><div class="ttname"><a href="test__suite_8hpp.html">test_suite.hpp</a></div></div>
-<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81">se2::util::TOKEN_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00053">singleton_mgr.hpp:53</a></div></div>
-<div class="ttc" id="main_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00123">main.cpp:123</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_aa1d44c1c759eace0e3537635c4c7b889a7ce0c41cfb9baf16fc97b700346946e6"><div class="ttname"><a href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889a7ce0c41cfb9baf16fc97b700346946e6">se2::hal::SENSOR_HEIGHT</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00163">constants.hpp:163</a></div></div>
-<div class="ttc" id="dispatcher__test_8hpp_html"><div class="ttname"><a href="dispatcher__test_8hpp.html">dispatcher_test.hpp</a></div></div>
-<div class="ttc" id="hal__test__stub2_8hpp_html"><div class="ttname"><a href="hal__test__stub2_8hpp.html">hal_test_stub2.hpp</a></div></div>
+<div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a0da4f0ca7d6a8607c831f4b8417617fa"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a0da4f0ca7d6a8607c831f4b8417617fa">se2::hal::hwaccess::set_led_state</a></div><div class="ttdeci">void set_led_state(enum leds led, bool on)</div><div class="ttdoc">Setzt eine LED auf an oder aus. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00143">HWaccess.cpp:143</a></div></div>
+<div class="ttc" id="initialization__run_8hpp_html"><div class="ttname"><a href="initialization__run_8hpp.html">initialization_run.hpp</a></div></div>
+<div class="ttc" id="classse2_1_1initialization__run_html_a1a77ef3a8c127225cca20449fb7fda1a"><div class="ttname"><a href="classse2_1_1initialization__run.html#a1a77ef3a8c127225cca20449fb7fda1a">se2::initialization_run::start_init</a></div><div class="ttdeci">void start_init()</div><div class="ttdoc">Startet die Unterprogramme der Initialisierung, dazu gehoeren: </div><div class="ttdef"><b>Definition:</b> <a href="initialization__run_8cpp_source.html#l00226">initialization_run.cpp:226</a></div></div>
+<div class="ttc" id="classse2_1_1initialization__run_html"><div class="ttname"><a href="classse2_1_1initialization__run.html">se2::initialization_run</a></div><div class="ttdef"><b>Definition:</b> <a href="initialization__run_8hpp_source.html#l00035">initialization_run.hpp:35</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_a56ee67c6a521c2c2c6d7d8c7b4400bc9a1f75e4c67fb69b0cb3313ce9953a4e41"><div class="ttname"><a href="namespacese2_1_1util.html#a56ee67c6a521c2c2c6d7d8c7b4400bc9a1f75e4c67fb69b0cb3313ce9953a4e41">se2::util::READY_TO_USE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00423">constants.hpp:423</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e"><div class="ttname"><a href="namespacese2_1_1hal.html#a7991a0acc71800c63fa419fa508cd13ba2f7bc2045deb9d9450414c0abe3a961e">se2::hal::BUTTON_ESTOP</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00157">constants.hpp:157</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa4809eae31fe1e9686231c05d60773b1a"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa4809eae31fe1e9686231c05d60773b1a">se2::util::LIGHT_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00052">singleton_mgr.hpp:52</a></div></div>
+<div class="ttc" id="namespacese2_1_1hal_html_a08bfb12dbe0016518917c4df234f9925a8a2649e2a2c27f441ee60a3734b660f7"><div class="ttname"><a href="namespacese2_1_1hal.html#a08bfb12dbe0016518917c4df234f9925a8a2649e2a2c27f441ee60a3734b660f7">se2::hal::LED_START</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00144">constants.hpp:144</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa042e57ce2621d632c6b89796dcd4dfc6">se2::util::HAL_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00046">singleton_mgr.hpp:46</a></div></div>
+<div class="ttc" id="namespacese2_1_1util_html_aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81"><div class="ttname"><a href="namespacese2_1_1util.html#aec7194bc44b59b9b8e4fb0f3fe027bbfa06379a7ca71150d839dda3d9a2a25f81">se2::util::TOKEN_PLUGIN</a></div><div class="ttdef"><b>Definition:</b> <a href="singleton__mgr_8hpp_source.html#l00051">singleton_mgr.hpp:51</a></div></div>
+<div class="ttc" id="main_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00038">main.cpp:38</a></div></div>
 <div class="ttc" id="structse2_1_1hal_1_1hwaccess_html_a00b933055fc87da122d3aabc954ecd89"><div class="ttname"><a href="structse2_1_1hal_1_1hwaccess.html#a00b933055fc87da122d3aabc954ecd89">se2::hal::hwaccess::is_button_pressed</a></div><div class="ttdeci">bool is_button_pressed(enum buttons key) const </div><div class="ttdoc">Prueft ob ein Button gedrueckt ist. </div><div class="ttdef"><b>Definition:</b> <a href="_h_waccess_8cpp_source.html#l00147">HWaccess.cpp:147</a></div></div>
-<div class="ttc" id="namespacese2_1_1hal_html_aa1d44c1c759eace0e3537635c4c7b889acb710dc2acfa5ed865b4396be20f36e6"><div class="ttname"><a href="namespacese2_1_1hal.html#aa1d44c1c759eace0e3537635c4c7b889acb710dc2acfa5ed865b4396be20f36e6">se2::hal::SENSOR_ENTRANCE</a></div><div class="ttdef"><b>Definition:</b> <a href="constants_8hpp_source.html#l00162">constants.hpp:162</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

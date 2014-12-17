@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -126,59 +126,64 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                               <span class="comment">// auf ein Ereignis der Seriellen Schnittstelle</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                               <span class="comment">// sondern auch auf Sensor Entrance.</span></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test fuer</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                           <span class="comment">// die Serielle chnittstelle</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">//#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                       <span class="comment">// Folge dass `ioaccess.h` in `abstract_inout.hpp`</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                       <span class="comment">// inkludiert wird. Dadurch koennen die Original</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                       <span class="comment">// `in8()`, `out8` sowie `AttachInterrupt()`,</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                       <span class="comment">// `DetachInterrupt()` nicht verwendet werden.</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                       <span class="comment">// Stattaedeassen werden diese Funktionen auf eigene fuer</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                       <span class="comment">// die Simulation ueberschrieben.</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#if defined(SIMULATION)</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#warning SIMULATION ist definiert, richtige Hardware wird nicht funktionieren</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">//#define PRINT_TRANSITIONS_UNIT_TEST // Aktiviert die Ausgabe der Uebergaenge</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                                      <span class="comment">// im Dispatcher Unit Test</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="config_8h.html#a0da4d1de3808cee665d84ded695b8fd9">   68</a></span>&#160;<span class="preprocessor">#define DISABLE_LOGGING // Deaktiviert das schreiben auf das File System.</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"></span>                        <span class="comment">// Es wird nur eine Ausgabe in der Console erzeugt.</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="config_8h.html#a2889e8288a815b7468172bbf1cec1ead">   70</a></span>&#160;<span class="preprocessor">#define LOG_FILE_PATH &quot;/root/logs/&quot; // Gibt den Pfad zum Logfile Ordner an</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor"></span>                                    <span class="comment">// Das generierte Logfile hat einen prefix</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                                    <span class="comment">// Der Name des generieten Logfiles setzt</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                                    <span class="comment">// sich wie folgt zusammen:</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;                                    <span class="comment">// &quot;log_{prozess ID}_{UNIX_TIME}.log&quot;</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="config_8h.html#a912ce68b02718695eb1176a43e0cd2d9">   79</a></span>&#160;<span class="comment"></span><span class="preprocessor">#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle</span></div>
-<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="config_8h.html#a049693a215b10d5f1ae060044694f183">   80</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define SERIAL_CHAR_DEV &quot;/dev/ser1&quot; // Pfad zum Char Device der Seriellen</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor"></span>                                    <span class="comment">// Schnittstelle. In der VM NICHT verfügbar</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment"></span><span class="comment">//#define FESTO_3      // Aktiviert spezifisch gemessene Werte fuer Festo 3</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="comment">//#define FESTO_9      // Aktiviert spezifisch gemessene Werte fuer Festo 9</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">//#define FESTO_7      // Aktiviert spezifisch gemessene Werte fuer Festo 7</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">//#define FESTO_1      // Aktiviert spezifisch gemessene Werte fuer Festo 1</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">//#define FESTO_6      // Aktiviert spezifisch gemessene Werte fuer Festo 6</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="comment">//#define FESTO_5      // Aktiviert spezifisch gemessene Werte fuer Festo 5</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif // SE2_CONFIG_H</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="comment">//#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                       <span class="comment">// Folge dass `ioaccess.h` in `abstract_inout.hpp`</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                       <span class="comment">// inkludiert wird. Dadurch koennen die Original</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                       <span class="comment">// `in8()`, `out8` sowie `AttachInterrupt()`,</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                       <span class="comment">// `DetachInterrupt()` nicht verwendet werden.</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                       <span class="comment">// Stattaedeassen werden diese Funktionen auf eigene fuer</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                       <span class="comment">// die Simulation ueberschrieben.</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#if defined(SIMULATION)</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#warning SIMULATION ist definiert, richtige Hardware wird nicht funktionieren</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">//#define PRINT_TRANSITIONS_UNIT_TEST // Aktiviert die Ausgabe der Uebergaenge</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                      <span class="comment">// im Dispatcher Unit Test</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="config_8h.html#a0da4d1de3808cee665d84ded695b8fd9">   65</a></span>&#160;<span class="preprocessor">#define DISABLE_LOGGING // Deaktiviert das schreiben auf das File System.</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor"></span>                        <span class="comment">// Es wird nur eine Ausgabe in der Console erzeugt.</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="config_8h.html#a2889e8288a815b7468172bbf1cec1ead">   67</a></span>&#160;<span class="preprocessor">#define LOG_FILE_PATH &quot;/root/logs/&quot; // Gibt den Pfad zum Logfile Ordner an</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor"></span>                                    <span class="comment">// Das generierte Logfile hat einen prefix</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                    <span class="comment">// Der Name des generieten Logfiles setzt</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                    <span class="comment">// sich wie folgt zusammen:</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                    <span class="comment">// &quot;log_{prozess ID}_{UNIX_TIME}.log&quot;</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="config_8h.html#aed27d5c2384da7e9fdaadd6234f53829">   73</a></span>&#160;<span class="preprocessor">#define LOG_TRACE_STDIO  // Alle Ausgaben werden auch in den STDIO geloggt</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor"></span>                         <span class="comment">// Im Normalfall ist dies die Konsole von Momentics.</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="config_8h.html#a912ce68b02718695eb1176a43e0cd2d9">   80</a></span>&#160;<span class="preprocessor">#define HAS_SERIAL_INTERFACE        // Aktiviert die Serielle Schnittstelle</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="config_8h.html#a049693a215b10d5f1ae060044694f183">   81</a></span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define SERIAL_CHAR_DEV &quot;/dev/ser1&quot; // Pfad zum Char Device der Seriellen</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor"></span>                                    <span class="comment">// Schnittstelle. In der VM NICHT verfügbar</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment"></span><span class="comment">//#define FESTO_3      // Aktiviert spezifisch gemessene Werte fuer Festo 3</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="comment">//#define FESTO_9      // Aktiviert spezifisch gemessene Werte fuer Festo 9</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">//#define FESTO_7      // Aktiviert spezifisch gemessene Werte fuer Festo 7</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">//#define FESTO_1      // Aktiviert spezifisch gemessene Werte fuer Festo 1</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">//#define FESTO_6      // Aktiviert spezifisch gemessene Werte fuer Festo 6</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">//#define FESTO_5      // Aktiviert spezifisch gemessene Werte fuer Festo 5</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">//#define FESTO_4      // Aktiviert spezifisch gemessene Werte fuer Festo 4</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                       <span class="comment">// Unter anderem Daten fuer Hoehenmessung</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                       <span class="comment">// definiert in `constants.hpp` (height_values)</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif // SE2_CONFIG_H</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

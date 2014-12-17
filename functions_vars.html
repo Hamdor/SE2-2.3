@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -104,12 +104,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>IDs
+: <a class="el" href="classse2_1_1timer_1_1timer__handler.html#aa6d3cda76b0b2acc081013226a5b8dae">se2::timer::timer_handler</a>
+</li>
 <li>instance
 : <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#afce4954d6fc14da0dad295af5f59d295">se2::dispatch::dispatcher</a>
 , <a class="el" href="structse2_1_1hal_1_1hwaccess.html#a677f875922ead3ae0ec29cc348bfbfc5">se2::hal::hwaccess</a>
 , <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#a27dd225daa1792577de1c62ba8bd1374">se2::serial_bus::serial_channel</a>
 , <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a98d08e2ed021fc197a7591ad0664e69b">se2::timer::timer_handler</a>
 , <a class="el" href="classse2_1_1token__mgr.html#a2d94dd25789dce9d612d9aff2ae0c4d1">se2::token_mgr</a>
+, <a class="el" href="classse2_1_1util_1_1light__mgr.html#a865fbc05a316fadfa9dda55eedcb0cbf">se2::util::light_mgr</a>
 , <a class="el" href="classse2_1_1util_1_1logging.html#a7a9f82fafe7ced4cc88365dbb747e06f">se2::util::logging</a>
 </li>
 </ul>
@@ -126,6 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="structse2_1_1hal_1_1hwaccess_1_1isr__control.html#a7312ae79da71930db94443ad884e074e">se2::hal::hwaccess::isr_control</a>
 , <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a99aa7545d2e5c74e3d5cec868bf66049">se2::timer::timer_handler</a>
 , <a class="el" href="classse2_1_1unit__tests_1_1timer__test.html#afc4ade56f5381df0bbcab1442fb29e03">se2::unit_tests::timer_test</a>
+, <a class="el" href="classse2_1_1util_1_1light__mgr.html#a75f24a853e0ead21cd035a9fe40d56c5">se2::util::light_mgr</a>
 </li>
 <li>m_coid
 : <a class="el" href="structse2_1_1hal_1_1hwaccess_1_1isr__control.html#ad86b653a5c8804b700e64f2206bc5d74">se2::hal::hwaccess::isr_control</a>
@@ -140,9 +145,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>m_duration
 : <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a4b5af96d31946b93af4df56bc7a4be64">se2::timer::timer_wrapper</a>
-</li>
-<li>m_e_stop_listener
-: <a class="el" href="classse2_1_1token__mgr.html#a177b839217db9bdbd5c4de0fbf783d9d">se2::token_mgr</a>
 </li>
 <li>m_error
 : <a class="el" href="classse2_1_1unit__tests_1_1dispatcher__test.html#a7a6ba410db0920e99dd6c47386f34bee">se2::unit_tests::dispatcher_test</a>
@@ -227,14 +229,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_motor_left
 : <a class="el" href="classse2_1_1token__mgr.html#a42a92ca0f3bad85371e5024759437317">se2::token_mgr</a>
 </li>
-<li>m_motor_running
-: <a class="el" href="structse2_1_1token__mgr_1_1safe__state.html#a477f53218a5926d7fb22d13923da7432">se2::token_mgr::safe_state</a>
-</li>
 <li>m_motor_slow
 : <a class="el" href="classse2_1_1token__mgr.html#a17b678209bb792a8b350b8df11e684be">se2::token_mgr</a>
 </li>
+<li>m_motor_slow_time
+: <a class="el" href="classse2_1_1token__mgr.html#abfecfa6b470eb837bdc8c997b69ba332">se2::token_mgr</a>
+</li>
 <li>m_motor_stop
-: <a class="el" href="classse2_1_1token__mgr.html#ac17349f09c1b593c19c1d520d6e495dd">se2::token_mgr</a>
+: <a class="el" href="classse2_1_1token__mgr.html#ac768de5844ffe8712f23b5b79a657b73">se2::token_mgr</a>
 </li>
 <li>m_msg
 : <a class="el" href="structse2_1_1serial__bus_1_1telegram.html#a3a7d5a9cf062ae1e40056079809fe452">se2::serial_bus::telegram</a>
@@ -254,6 +256,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_port_c
 : <a class="el" href="structse2_1_1hal_1_1iostub.html#a1df73602ab4c017f473a6b78a5991bde">se2::hal::iostub</a>
 </li>
+<li>m_prior_listners
+: <a class="el" href="structse2_1_1dispatch_1_1dispatcher.html#a8da0f575c34359489bf863df53c25125">se2::dispatch::dispatcher</a>
+</li>
+<li>m_pseudo_token
+: <a class="el" href="classse2_1_1token__mgr.html#a2e5a1054e012011e967e5c5985331bb4">se2::token_mgr</a>
+</li>
 <li>m_queue
 : <a class="el" href="classse2_1_1serial__bus_1_1serial__channel.html#a499992d1aabfd8b1e097600676083408">se2::serial_bus::serial_channel</a>
 </li>
@@ -263,8 +271,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_running
 : <a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#a6c6ed1486df9e674e150508f427380d0">se2::util::HAWThread</a>
 </li>
-<li>m_safe
-: <a class="el" href="classse2_1_1token__mgr.html#aaf252240ae940c612c48b5aa3f7df0bd">se2::token_mgr</a>
+<li>m_safe_state
+: <a class="el" href="classse2_1_1token__mgr.html#a7c019f0d6a60f324308667b02637ef06">se2::token_mgr</a>
 </li>
 <li>m_serial
 : <a class="el" href="classse2_1_1unit__tests_1_1serial__test.html#ae7cb8b74918684baa29d24376b2983d3">se2::unit_tests::serial_test</a>
@@ -272,9 +280,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_state
 : <a class="el" href="classfsm.html#a0f774cd3853e0b6a19be46eb1401c49c">fsm</a>
 , <a class="el" href="classse2_1_1token.html#acce41f000b649af235b9ffc41f07257f">se2::token</a>
+, <a class="el" href="classse2_1_1util_1_1light__mgr.html#a060dece98c258c9616e75bb3da3a831f">se2::util::light_mgr</a>
 </li>
 <li>m_switch_open
-: <a class="el" href="structse2_1_1token__mgr_1_1safe__state.html#a112b5fae8a41a9115d23f07fd3db024e">se2::token_mgr::safe_state</a>
+: <a class="el" href="classse2_1_1token__mgr.html#a08be3a75bcc7bb84a25ca41c74b02bfa">se2::token_mgr</a>
 </li>
 <li>m_temp_timer
 : <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#ac095bdb1a002a6c66288c0f288aa4fa8">se2::timer::timer_wrapper</a>
@@ -285,15 +294,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>m_test_functions
 : <a class="el" href="classse2_1_1unit__tests_1_1abstract__test.html#ad4d416edcf1b614138ecd145fb87f43a">se2::unit_tests::abstract_test&lt; T &gt;</a>
 </li>
+<li>m_tick
+: <a class="el" href="classse2_1_1util_1_1light__mgr.html#a02770c083e776390b4583855c7c3b771">se2::util::light_mgr</a>
+</li>
 <li>m_tid
 : <a class="el" href="classse2_1_1util_1_1_h_a_w_thread.html#a59f31bad4bba0eedcb9034d133135a7a">se2::util::HAWThread</a>
 </li>
 <li>m_timer
 : <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a4a2c7fd5ba140459ad2694566e48a81a">se2::timer::timer_wrapper</a>
 , <a class="el" href="classse2_1_1unit__tests_1_1timer__test.html#ac081d269372a068a7ee374c594ed742a">se2::unit_tests::timer_test</a>
+, <a class="el" href="classse2_1_1util_1_1light__mgr.html#ad2fb58b2ce275397bae1bfbd544a463b">se2::util::light_mgr</a>
+</li>
+<li>m_timer_ids
+: <a class="el" href="classse2_1_1token.html#a058beb193c3bd69cf4057dd322c627d6">se2::token</a>
 </li>
 <li>m_timerid
 : <a class="el" href="classse2_1_1timer_1_1timer__wrapper.html#a212caa0ab0f31270a0a5b92b74971724">se2::timer::timer_wrapper</a>
+</li>
+<li>m_timespec_seg1
+: <a class="el" href="classse2_1_1token.html#a1e1c864edb0de06a7364cc06d45223ea">se2::token</a>
+</li>
+<li>m_timespec_seg2
+: <a class="el" href="classse2_1_1token.html#a289c454ea631c3889df3fcaccb879f51">se2::token</a>
+</li>
+<li>m_timespec_seg3
+: <a class="el" href="classse2_1_1token.html#a9aa1ab76784e3fb31c0d99378d1b6a8d">se2::token</a>
+</li>
+<li>m_timespec_stop
+: <a class="el" href="classse2_1_1token.html#ae90a62a09f6054f9d718a2a02b7913ae">se2::token</a>
 </li>
 <li>m_token
 : <a class="el" href="classse2_1_1fsm_1_1state.html#a58d6e719330914e6526335ccbd740e9d">se2::fsm::state</a>
@@ -303,6 +331,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>m_type
 : <a class="el" href="structse2_1_1serial__bus_1_1telegram.html#a05442e8478ddc5d10db955c389d8944e">se2::serial_bus::telegram</a>
+</li>
+<li>m_wait_turnover
+: <a class="el" href="classse2_1_1token__mgr.html#a934d3a5f8d6fa074af6b829bf13537aa">se2::token_mgr</a>
 </li>
 <li>msec
 : <a class="el" href="structse2_1_1timer_1_1duration.html#afd19755c5be0c72bae59a126f9cfeebc">se2::timer::duration</a>
@@ -325,6 +356,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>s_lock_hal
 : <a class="el" href="classse2_1_1util_1_1singleton__mgr.html#aa055404d695f9a817c0db40e7889158d">se2::util::singleton_mgr</a>
+</li>
+<li>s_lock_light_mgr
+: <a class="el" href="classse2_1_1util_1_1singleton__mgr.html#a3beb8e15e9a0b9d34d91592fd1590932">se2::util::singleton_mgr</a>
 </li>
 <li>s_lock_log
 : <a class="el" href="classse2_1_1util_1_1singleton__mgr.html#a45720c27e84dfda1d90ebbb49ee1df5c">se2::util::singleton_mgr</a>
@@ -352,7 +386,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
 <li>timers
-: <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a5377815cccfc7d969af4330e5245f5f1">se2::timer::timer_handler</a>
+: <a class="el" href="classse2_1_1timer_1_1timer__handler.html#a48bb16677ab1008e40fdcadaed1fb130">se2::timer::timer_handler</a>
 </li>
 <li>token
 : <a class="el" href="classse2_1_1token__mgr.html#a47d2064bfa9b2ac33b069f68a2115631">se2::token_mgr</a>

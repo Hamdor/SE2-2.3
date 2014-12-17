@@ -9,6 +9,7 @@ var searchData=
   ['hal_5ftest_5fstub2',['hal_test_stub2',['../classse2_1_1unit__tests_1_1hal__test__stub2.html#a15bf06fb18e0c09d25ef8d2747c83945',1,'se2::unit_tests::hal_test_stub2']]],
   ['hal_5ftest_5fstub2_2ecpp',['hal_test_stub2.cpp',['../hal__test__stub2_8cpp.html',1,'']]],
   ['hal_5ftest_5fstub2_2ehpp',['hal_test_stub2.hpp',['../hal__test__stub2_8hpp.html',1,'']]],
+  ['half_5fhertz',['HALF_HERTZ',['../light__mgr_8cpp.html#a8cbc1980f2ae089e32339f81a0c15222',1,'light_mgr.cpp']]],
   ['has_5fserial_5finterface',['HAS_SERIAL_INTERFACE',['../config_8h.html#a912ce68b02718695eb1176a43e0cd2d9',1,'config.h']]],
   ['hawthread',['HAWThread',['../classse2_1_1util_1_1_h_a_w_thread.html',1,'se2::util']]],
   ['hawthread',['HAWThread',['../classse2_1_1util_1_1_h_a_w_thread.html#a4ead560d2275603711f88a38a04f9096',1,'se2::util::HAWThread']]],

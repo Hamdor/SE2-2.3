@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">se2-2.3
-   &#160;<span id="projectnumber">0.3-Milestone5</span>
+   &#160;<span id="projectnumber">0.5-Milestone6</span>
    </div>
   </td>
  </tr>
@@ -103,10 +103,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a6b7350155befa79a8c6ad27c4c794b1e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1mutex.html#a6b7350155befa79a8c6ad27c4c794b1e">mutex</a> ()</td></tr>
-<tr class="memdesc:a6b7350155befa79a8c6ad27c4c794b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Konstruktor.  <a href="#a6b7350155befa79a8c6ad27c4c794b1e">More...</a><br/></td></tr>
+<tr class="memdesc:a6b7350155befa79a8c6ad27c4c794b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Konstruktor.  <a href="#a6b7350155befa79a8c6ad27c4c794b1e">More...</a><br/></td></tr>
 <tr class="separator:a6b7350155befa79a8c6ad27c4c794b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae30185d87a48c5451a04c2861ba3d034"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1mutex.html#ae30185d87a48c5451a04c2861ba3d034">~mutex</a> ()</td></tr>
-<tr class="memdesc:ae30185d87a48c5451a04c2861ba3d034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destruktor.  <a href="#ae30185d87a48c5451a04c2861ba3d034">More...</a><br/></td></tr>
+<tr class="memdesc:ae30185d87a48c5451a04c2861ba3d034"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default Destruktor.  <a href="#ae30185d87a48c5451a04c2861ba3d034">More...</a><br/></td></tr>
 <tr class="separator:ae30185d87a48c5451a04c2861ba3d034"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a960f2f3e8fc475cda6a277948b2d6f37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structse2_1_1util_1_1mutex.html#a960f2f3e8fc475cda6a277948b2d6f37">acquire</a> ()</td></tr>
 <tr class="memdesc:a960f2f3e8fc475cda6a277948b2d6f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mutex erlangen.  <a href="#a960f2f3e8fc475cda6a277948b2d6f37">More...</a><br/></td></tr>
@@ -147,7 +147,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Konstruktor. </p>
+<p>Default Konstruktor. </p>
 
 <p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00029">29</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;             {</div>
@@ -178,7 +178,7 @@ Friends</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Destruktor. </p>
+<p>Default Destruktor. </p>
 
 <p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00033">33</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;              {</div>
@@ -227,7 +227,7 @@ Friends</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Mutex erlangen. </p>
-<p>Blockiert bis der Aufrufende Thread das Mutex bekommt. </p>
+<p>Blockiert bis der aufrufende Thread das Mutex bekommt </p>
 <dl class="section return"><dt>Returns</dt><dd>EINVAL <code>pthread_mutex_t</code> wurde nicht initialisiert EAGAIN Die maximale Anzahl an Mutexen wurde erreicht EDEADLK Der aufrufende Thread besitzt das Mutex bereits 0 bei Erfolg </dd></dl>
 
 <p>Definition at line <a class="el" href="mutex_8cpp_source.html#l00037">37</a> of file <a class="el" href="mutex_8cpp_source.html">mutex.cpp</a>.</p>
