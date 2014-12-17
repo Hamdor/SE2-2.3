@@ -31,6 +31,8 @@
 #include "lib/hal/HWaccess.hpp"
 #include "lib/fsm/error_states.hpp"
 
+#include <time.h>
+
 using namespace se2;
 using namespace se2::fsm;
 using namespace se2::hal;
@@ -75,9 +77,10 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   m_token->add_timer_id(idx);
   m_token->init_internal_times(SEGMENT_1);
   if (mgr->is_motor_slow()) {
-    // Motor laeuft langsam, einaml die Zeiten hinzufuegen
-    m_token->add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
-    const duration dur = { 0, HEIGHT_TIME_OFFSET_SEG1_NSEC / MILISEC_TO_NANOSEC };
+    // Motor laeuft langsam, Zeiten anpassen
+    const timespec addspec = mgr->get_motor_slow_diff();
+    m_token->add_internal_times(addspec.tv_sec, addspec.tv_nsec);
+    const duration dur = { addspec.tv_sec, (size_t)addspec.tv_nsec / MILISEC_TO_NANOSEC };
     hdl->add_time(idx, dur);
   }
 }

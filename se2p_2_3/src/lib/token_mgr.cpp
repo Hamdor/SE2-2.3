@@ -27,6 +27,7 @@
 #include "lib/fsm/error_states.hpp"
 
 #include "lib/util/singleton_mgr.hpp"
+#include "lib/timer/time_utils.hpp"
 #include "lib/dispatcher/dispatcher.hpp"
 #include "lib/hal/HWaccess.hpp"
 #include "lib/serial_bus/serial_channel.hpp"
@@ -55,6 +56,7 @@ token_mgr::token_mgr() : m_pseudo_token()
   for (int i = 0; i < NUM_OF_TOKENS; ++i) {
     m_tokens[i].set_state(new anonymous_token(&m_tokens[i]));
   }
+  std::memset(&m_motor_slow_time, 0, sizeof(timespec));
 }
 
 token_mgr::~token_mgr() {
@@ -151,6 +153,7 @@ void token_mgr::request_fast_motor(bool update) {
 void token_mgr::request_slow_motor(bool update) {
   ++m_motor_slow;
   if (m_motor_slow == 1) {
+    clock_gettime(CLOCK_REALTIME, &m_motor_slow_time);
     for (size_t i = 0; i < NUM_OF_TOKENS; ++i) {
       m_tokens[i].add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
     }
@@ -289,4 +292,13 @@ void token_mgr::notify_pseudo_token_not_known_event() {
 
 bool token_mgr::is_motor_slow() const {
   return m_motor_slow;
+}
+
+timespec token_mgr::get_motor_slow_diff() const {
+  timespec diffspec;
+  clock_gettime(CLOCK_REALTIME, &diffspec);
+  const timespec subspec = { 0, HEIGHT_TIME_OFFSET_SEG1_NSEC };
+  diffspec = time_utils::sub(diffspec, subspec);
+  diffspec = time_utils::sub(diffspec, m_motor_slow_time);
+  return diffspec;
 }
