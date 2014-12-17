@@ -62,6 +62,12 @@ err_slide_full_quitted::err_slide_full_quitted(token* t) : state::state(t) {
 
 void err_slide_full_quitted::dispatched_event_button_start() {
   LOG_TRACE("")
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  if (hal->obj_in_light_barrier(SENSOR_SLIDE)) {
+    // rutsche wurde nicht geleert...
+    new (this) err_slide_full(m_token);
+    return;
+  }
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));

@@ -30,6 +30,8 @@
 #include "lib/token.hpp"
 #include "lib/util/abstract_singleton.hpp"
 
+#include <time.h>
+
 namespace se2 {
 namespace util {
 class singleton_mgr;
@@ -212,6 +214,20 @@ class token_mgr : public util::abstract_singleton {
    **/
   bool is_motor_slow() const;
 
+  /**
+   * Prueft ob der Motor gestoppt ist
+   * @return TRUE  wenn der Motor gestoppt ist
+   *         FALSE wenn der Motor laeuft
+   **/
+  bool is_motor_stopped() const;
+
+  /**
+   * Gibt die verbleibende Zeit zurueck bis der Motor wieder
+   * schnell gestellt wird
+   * @return ein neues timespec mit der restlichen Zeit
+   **/
+  timespec get_motor_slow_diff() const;
+
  private:
   static token_mgr* instance;
   token             m_tokens[NUM_OF_TOKENS];
@@ -225,6 +241,7 @@ class token_mgr : public util::abstract_singleton {
   expected_token    m_expected_token;
   bool              m_is_b2_ready;
   bool              m_safe_state;
+  timespec          m_motor_slow_time;
 };
 
 }

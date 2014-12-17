@@ -73,7 +73,10 @@ void timer_wrapper::reset_timer() {
 void timer_wrapper::start_timer() {
   int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
   if (rc == -1) {
-    LOG_ERROR("timer_settime() failed in start_timer()")
+    std::stringstream ss;
+    ss << "timer_settime() failed in start_timer() sec: "
+       << m_duration.sec << " msec: " << m_duration.msec;
+    LOG_ERROR(ss.str().c_str());
   }
 }
 

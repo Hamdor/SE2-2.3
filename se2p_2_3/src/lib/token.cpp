@@ -115,6 +115,7 @@ void token::delete_timers() {
 }
 
 void token::init_internal_times(int segment) {
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   const timespec add_seg1 = { (time_t)SEGMENT1__SEC, SEGMENT1_NSEC };
   const timespec add_seg2 = { (time_t)SEGMENT2__SEC, SEGMENT2_NSEC };
   const timespec add_seg3 = { (time_t)SEGMENT3__SEC, SEGMENT3_NSEC };
@@ -124,9 +125,17 @@ void token::init_internal_times(int segment) {
   } else if (segment == SEGMENT_2) {
     clock_gettime(CLOCK_REALTIME, &m_timespec_seg2);
     m_timespec_seg2 = time_utils::add(m_timespec_seg2, add_seg2);
+    if (mgr->is_motor_slow()) {
+      const timespec addspec = mgr->get_motor_slow_diff();
+      m_timespec_seg2 = time_utils::add(m_timespec_seg2, addspec);
+    }
   } else if (segment == SEGMENT_3) {
     clock_gettime(CLOCK_REALTIME, &m_timespec_seg3);
-    m_timespec_seg2 = time_utils::add(m_timespec_seg3, add_seg3);
+    m_timespec_seg3 = time_utils::add(m_timespec_seg3, add_seg3);
+    if (mgr->is_motor_slow()) {
+      const timespec addspec = mgr->get_motor_slow_diff();
+      m_timespec_seg3 = time_utils::add(m_timespec_seg3, addspec);
+    }
   } else {
     LOG_ERROR("Unkown segment value")
   }

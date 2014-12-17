@@ -31,6 +31,8 @@
 #include "lib/hal/HWaccess.hpp"
 #include "lib/fsm/error_states.hpp"
 
+#include <time.h>
+
 using namespace se2;
 using namespace se2::fsm;
 using namespace se2::hal;
@@ -75,10 +77,15 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
   m_token->add_timer_id(idx);
   m_token->init_internal_times(SEGMENT_1);
   if (mgr->is_motor_slow()) {
-    // Motor laeuft langsam, einaml die Zeiten hinzufuegen
-    m_token->add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
-    const duration dur = { 0, HEIGHT_TIME_OFFSET_SEG1_NSEC / MILISEC_TO_NANOSEC };
+    // Motor laeuft langsam, Zeiten anpassen
+    const timespec addspec = mgr->get_motor_slow_diff();
+    m_token->add_internal_times(addspec.tv_sec, addspec.tv_nsec);
+    const duration dur = { addspec.tv_sec, (size_t)addspec.tv_nsec / MILISEC_TO_NANOSEC };
     hdl->add_time(idx, dur);
+  }
+  if (mgr->is_motor_stopped()) {
+    // motor ist gestoppt, timer pausieren...
+    hdl->pause_timer(idx);
   }
 }
 
@@ -477,6 +484,10 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
     telegram tg(m_token);
     TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
     mgr->notify_token_trasition();
+    disp->register_listener(m_token, EVENT_TRANSFER_TIMEOUT);
+    timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+    const duration dur = { TRANSFER_SEC__TIMEOUT, TRANSFER_MSEC_TIMEOUT };
+    m_token->add_timer_id(hdl->register_timer(dur, EVENT_TRANSFER_TIMEOUT));
   }
 }
 
@@ -499,11 +510,11 @@ void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
  **/
 void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->notify_token_trasition();
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_TRANSFER_TIMEOUT);
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->notify_token_trasition();
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   const duration dur = { TRANSFER_SEC__TIMEOUT, TRANSFER_MSEC_TIMEOUT };
   m_token->add_timer_id(hdl->register_timer(dur, EVENT_TRANSFER_TIMEOUT));
