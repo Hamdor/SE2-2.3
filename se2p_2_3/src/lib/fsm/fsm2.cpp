@@ -350,20 +350,27 @@ b2_is_correct_order::b2_is_correct_order(token* t) : state::state(t) {
 
 /**
  * Werkstueck hat korrekte Reihenfolge und hat gerade die Weiche verlassen
- * TODO: Weiche etvl spaeter schliessen um festhaengen zu verhindern
  **/
 void b2_is_correct_order::dispatched_event_sensor_switch_rising() {
   LOG_TRACE("")
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->unrequest_open_switch();
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_SEG3_TOO_LATE);
+  disp->register_listener(m_token, EVENT_CLOSE_SWITCH_TIME);
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   const duration too_late  = { SEGMENT3_SEC__TOO_LATE,
                                SEGMENT3_MSEC_TOO_LATE };
+  const duration switch_timeout = { CLOSE_SWITCH_TIME__SEC,
+                                    CLOSE_SWITCH_TIME_MSEC };
   m_token->add_timer_id(hdl->register_timer(too_late,  EVENT_SEG3_TOO_LATE));
+  m_token->add_timer_id(hdl->register_timer(switch_timeout,
+      EVENT_CLOSE_SWITCH_TIME));
+}
 
+void b2_is_correct_order::dispatched_event_close_switch_time() {
+  LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->unrequest_open_switch();
 }
 
 /**
