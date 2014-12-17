@@ -72,6 +72,7 @@ dispatcher::dispatcher() {
   m_functions[27] = &fsm::events::dispatched_event_slide_full_timeout;
   m_functions[28] = &fsm::events::dispatched_event_turn_token_timeout;
   m_functions[29] = &fsm::events::dispatched_event_remove_token_timeout;
+  m_functions[30] = &fsm::events::dispatched_event_close_switch_time;
   // Map fuer mapping von event_values => dispatcher_events fuellen
   map_insert(m_mapping, EVENT_ZERO, DISPATCHED_EVENT_MAX);
   map_insert(m_mapping, EVENT_BUTTON_START, DISPATCHED_EVENT_BUTTON_START);
@@ -115,6 +116,8 @@ dispatcher::dispatcher() {
       DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT);
   map_insert(m_mapping, EVENT_REMOVE_TOKEN_TIMEOUT,
       DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT);
+  map_insert(m_mapping, EVENT_CLOSE_SWITCH_TIME,
+      DISPATCHED_EVENT_CLOSE_SWITCH_TIME);
 }
 
 dispatcher::~dispatcher() {
@@ -342,6 +345,8 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
     case EVENT_TURN_TOKEN_TIMEOUT:
       break;
     case EVENT_REMOVE_TOKEN_TIMEOUT:
+      break;
+    case EVENT_CLOSE_SWITCH_TIME:
       break;
     default:
       LOG_WARNING("Unkown Timer Value")

@@ -145,6 +145,9 @@ class state : public events {
   virtual void dispatched_event_token_finished_timeout() {
     // nop
   }
+  virtual void dispatched_event_close_switch_time() {
+    // nop
+  }
 };
 
 class anonymous_token : public state {
@@ -206,6 +209,7 @@ class b1_valid_height : public state {
   virtual void dispatched_event_sensor_height_rising();
   virtual void dispatched_event_sensor_switch();
   virtual void dispatched_event_sensor_switch_rising();
+  virtual void dispatched_event_close_switch_time();
   virtual void dispatched_event_sensor_exit();
   virtual void dispatched_event_seg2_too_late();
   virtual void dispatched_event_seg3_too_late();

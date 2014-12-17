@@ -353,6 +353,7 @@ enum event_values {
   EVENT_SLIDE_FULL_TIMEOUT,                   // EVENT_SERIAL_UNK + 0x07
   EVENT_TURN_TOKEN_TIMEOUT,                   // EVENT_SERIAL_UNK + 0x08
   EVENT_REMOVE_TOKEN_TIMEOUT,                 // EVENT_SERIAL_UNK + 0x09
+  EVENT_CLOSE_SWITCH_TIME,                    // EVENT_SERIAL_UNK + 0x0A
   // Steigende Flanken
   EVENT_SENSOR_ENTRANCE_R = 0x01 << 17,
   EVENT_SENSOR_HEIGHT_R   = 0x01 << 18,
@@ -404,6 +405,7 @@ enum dispatcher_events {
   DISPATCHED_EVENT_SLIDE_FULL_TIMEOUT,
   DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT,
   DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT,
+  DISPATCHED_EVENT_CLOSE_SWITCH_TIME,
   DISPATCHED_EVENT_MAX
 };
 
@@ -594,6 +596,10 @@ struct duration {
 // Timeout zum Drehen des Pucks
 #define TURNOVER_SEC__TIMEOUT        5
 #define TURNOVER_MSEC_TIMEOUT        0
+
+// Time fuer schliessen der Weiche
+#define CLOSE_SWITCH_TIME__SEC   0
+#define CLOSE_SWITCH_TIME_MSEC 100
 
 } // namespace timer
 } // namespace se2

@@ -64,6 +64,7 @@ class events {
   virtual void dispatched_event_slide_full_timeout()     = 0;
   virtual void dispatched_event_turn_token_timeout()     = 0;
   virtual void dispatched_event_remove_token_timeout()   = 0;
+  virtual void dispatched_event_close_switch_time()      = 0;
 };
 
 } // namespace fsm

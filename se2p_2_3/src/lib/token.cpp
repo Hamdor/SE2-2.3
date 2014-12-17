@@ -309,3 +309,7 @@ void token::dispatched_event_turn_token_timeout() {
 void token::dispatched_event_remove_token_timeout() {
   m_state->dispatched_event_remove_token_timeout();
 }
+
+void token::dispatched_event_close_switch_time() {
+  m_state->dispatched_event_close_switch_time();
+}

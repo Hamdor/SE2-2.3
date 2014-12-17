@@ -225,6 +225,7 @@ class token : public fsm::events {
   virtual void dispatched_event_slide_full_timeout();
   virtual void dispatched_event_turn_token_timeout();
   virtual void dispatched_event_remove_token_timeout();
+  virtual void dispatched_event_close_switch_time();
 
  private:
   events*    m_state;

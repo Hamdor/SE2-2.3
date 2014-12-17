@@ -143,6 +143,8 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT);
   m_error += test_single_mapping_equal(EVENT_REMOVE_TOKEN_TIMEOUT,
                                        DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT);
+  m_error += test_single_mapping_equal(EVENT_CLOSE_SWITCH_TIME,
+                                       DISPATCHED_EVENT_CLOSE_SWITCH_TIME);
   return m_error;
 }
 
@@ -235,6 +237,9 @@ int dispatcher_test::test_function_address_reg() {
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT],
       &fsm::events::dispatched_event_remove_token_timeout);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_CLOSE_SWITCH_TIME],
+      &fsm::events::dispatched_event_close_switch_time);
   return m_error;
 }
 
@@ -454,7 +459,14 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_remove_token_timeout()" << std::endl;
 #endif
-    if (dispatcher_test::s_assumed_next != EVENT_REMOVE_TOKEN_TIMEOUT) {
+    register_for_next(EVENT_REMOVE_TOKEN_TIMEOUT, EVENT_CLOSE_SWITCH_TIME);
+  }
+
+  void dispatched_event_close_switch_time() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_close_switch_time()" << std::endl;
+#endif
+    if (dispatcher_test::s_assumed_next != EVENT_CLOSE_SWITCH_TIME) {
       ++dispatcher_test::s_error;
     }
   }
@@ -504,6 +516,7 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_SLIDE_FULL_TIMEOUT);
   m_dispatcher->direct_call_event(EVENT_TURN_TOKEN_TIMEOUT);
   m_dispatcher->direct_call_event(EVENT_REMOVE_TOKEN_TIMEOUT);
+  m_dispatcher->direct_call_event(EVENT_CLOSE_SWITCH_TIME);
   return s_error;
 }
 
@@ -542,10 +555,11 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SLIDE_FULL_TIMEOUT);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_TURN_TOKEN_TIMEOUT);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_REMOVE_TOKEN_TIMEOUT);
-  sleep(1);// 1 sek warten damit die FSM auch fertig ist
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_CLOSE_SWITCH_TIME);
+  sleep(1); // 1 sek warten damit die FSM auch fertig ist
             // Das ausloesen der Uebergaenge wird von dem Dispatcher Thread
             // gemacht. Deshalb ist dieser Teil asynchron
-  if (dispatcher_test::s_assumed_next != EVENT_REMOVE_TOKEN_TIMEOUT) {
+  if (dispatcher_test::s_assumed_next != EVENT_CLOSE_SWITCH_TIME) {
     // Pruefen ob FSM alle Signale erhalten hat
     ++s_error;
   }
