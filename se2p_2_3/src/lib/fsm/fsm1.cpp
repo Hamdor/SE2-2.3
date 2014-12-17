@@ -493,15 +493,26 @@ void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
 
 /**
  * Werkstueck hat Band 1 verlassen
- * TODO:
- * - Hier Timer starten, falls das Werkstueck zwischen Band 1 und
- *   Band 2 haengen bleibt.
- * - Evtl Timer starten der erkennt ob ein Werkstueck dazwischen gelegt wurde
  **/
 void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
+  dispatcher* disp =
+      TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->register_listener(m_token, EVENT_TRANSFER_TIMEOUT);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->notify_token_trasition();
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  const duration dur = { TRANSFER_SEC__TIMEOUT, TRANSFER_MSEC_TIMEOUT };
+  m_token->add_timer_id(hdl->register_timer(dur, EVENT_TRANSFER_TIMEOUT));
+}
+
+/**
+ * Wenn dieses Event getriggert wird, ist das Werkstueck zwischen
+ * Band 1 und Band 2 haengengeblieben
+ **/
+void b1_token_ready_for_b2::dispatched_event_tansfer_timeout() {
+  LOG_TRACE("")
+  new (this) err_runtime_too_long(m_token);
 }
 
 /**

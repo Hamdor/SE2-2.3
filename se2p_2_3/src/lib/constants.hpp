@@ -354,6 +354,7 @@ enum event_values {
   EVENT_TURN_TOKEN_TIMEOUT,                   // EVENT_SERIAL_UNK + 0x08
   EVENT_REMOVE_TOKEN_TIMEOUT,                 // EVENT_SERIAL_UNK + 0x09
   EVENT_CLOSE_SWITCH_TIME,                    // EVENT_SERIAL_UNK + 0x0A
+  EVENT_TRANSFER_TIMEOUT,                     // EVENT_SERIAL_UNK + 0x0B
   // Steigende Flanken
   EVENT_SENSOR_ENTRANCE_R = 0x01 << 17,
   EVENT_SENSOR_HEIGHT_R   = 0x01 << 18,
@@ -406,6 +407,7 @@ enum dispatcher_events {
   DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT,
   DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT,
   DISPATCHED_EVENT_CLOSE_SWITCH_TIME,
+  DISPATCHED_EVENT_TRANSFER_TIMEOUT,
   DISPATCHED_EVENT_MAX
 };
 
@@ -586,7 +588,7 @@ struct duration {
 #define SLIDE_MSEC_TIMEOUT         500
 
 // Timeout fuer Transfer nach Band 2
-#define TRANSFER_SEC__TIMEOUT        2
+#define TRANSFER_SEC__TIMEOUT        3
 #define TRANSFER_MSEC_TIMEOUT        0
 
 // Timeout zum entnehmen des Pucks

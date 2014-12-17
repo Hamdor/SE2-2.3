@@ -148,6 +148,9 @@ class state : public events {
   virtual void dispatched_event_close_switch_time() {
     // nop
   }
+  virtual void dispatched_event_tansfer_timeout() {
+    // nop
+  }
 };
 
 class anonymous_token : public state {
@@ -266,6 +269,7 @@ class b1_token_ready_for_b2 : public state {
 
   virtual void dispatched_event_serial_next_ok();
   virtual void dispatched_event_sensor_exit_rising();
+  virtual void dispatched_event_tansfer_timeout();
   virtual void dispatched_event_serial_transfer_fin();
 };
 
@@ -294,6 +298,7 @@ class b2_received_object : public state {
     // nop
   }
 
+  virtual void dispatched_event_tansfer_timeout();
   virtual void dispatched_event_sensor_entrance();
 };
 
