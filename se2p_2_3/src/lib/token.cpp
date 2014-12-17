@@ -114,16 +114,22 @@ void token::delete_timers() {
   m_timer_ids.clear();
 }
 
-void token::init_internal_times() {
+void token::init_internal_times(int segment) {
   const timespec add_seg1 = { (time_t)SEGMENT1__SEC, SEGMENT1_NSEC };
   const timespec add_seg2 = { (time_t)SEGMENT2__SEC, SEGMENT2_NSEC };
   const timespec add_seg3 = { (time_t)SEGMENT3__SEC, SEGMENT3_NSEC };
-  clock_gettime(CLOCK_REALTIME, &m_timespec_seg1);
-  m_timespec_seg1 = time_utils::add(m_timespec_seg1, add_seg1);
-  m_timespec_seg2 = m_timespec_seg1;
-  m_timespec_seg2 = time_utils::add(m_timespec_seg2, add_seg2);
-  m_timespec_seg3 = m_timespec_seg2;
-  m_timespec_seg3 = time_utils::add(m_timespec_seg3, add_seg3);
+  if (segment == SEGMENT_1) {
+    clock_gettime(CLOCK_REALTIME, &m_timespec_seg1);
+    m_timespec_seg1 = time_utils::add(m_timespec_seg1, add_seg1);
+  } else if (segment == SEGMENT_2) {
+    clock_gettime(CLOCK_REALTIME, &m_timespec_seg2);
+    m_timespec_seg2 = time_utils::add(m_timespec_seg2, add_seg2);
+  } else if (segment == SEGMENT_3) {
+    clock_gettime(CLOCK_REALTIME, &m_timespec_seg3);
+    m_timespec_seg2 = time_utils::add(m_timespec_seg3, add_seg3);
+  } else {
+    LOG_ERROR("Unkown segment value")
+  }
 }
 
 void token::reset_internal_times() {

@@ -158,8 +158,9 @@ class token : public fsm::events {
 
   /**
    * Initialisiert die internen Zeiten
+   * @param segment Segment Nummer der zu initialisierenden Zeit
    **/
-  void init_internal_times();
+  void init_internal_times(int segment);
 
   /**
    * Setzt die erwarteten Zeiten zrueck

@@ -73,7 +73,7 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
                                SEGMENT1_MSEC_TOO_LATE };
   size_t idx = hdl->register_timer(too_late,  EVENT_SEG1_TOO_LATE);
   m_token->add_timer_id(idx);
-  m_token->init_internal_times();
+  m_token->init_internal_times(SEGMENT_1);
   if (mgr->is_motor_slow()) {
     // Motor laeuft langsam, einaml die Zeiten hinzufuegen
     m_token->add_internal_times(0, HEIGHT_TIME_OFFSET_SEG1_NSEC);
@@ -160,6 +160,7 @@ b1_token_too_small::b1_token_too_small(token* t) : state::state(t) {
 #define SLIDE_OFFSET 2
 void b1_token_too_small::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
+  m_token->init_internal_times(SEGMENT_2);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_fast_motor();
   dispatcher* disp =
@@ -240,6 +241,7 @@ b1_valid_height::b1_valid_height(token* t) : state::state(t) {
  **/
 void b1_valid_height::dispatched_event_sensor_height_rising() {
   LOG_TRACE("")
+  m_token->init_internal_times(SEGMENT_2);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_fast_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
@@ -273,6 +275,7 @@ void b1_valid_height::dispatched_event_sensor_switch_rising() {
     new (this) err_runtime_too_short(m_token);
     return;
   }
+  m_token->init_internal_times(SEGMENT_3);
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->force_pop(m_token, EVENT_SEG2_TOO_LATE);
