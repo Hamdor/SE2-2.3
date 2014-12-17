@@ -17,7 +17,7 @@
  ******************************************************************************/
 /**
  * @file    timer_test.hpp
- * @version 0.1
+ * @version 0.2
  *
  * Unit tests des Timers
  **/
@@ -37,43 +37,19 @@ class timer_test : public abstract_test<timer_test> {
 
 public:
   /**
-   * Constructor
+   * Default Construktor
    **/
   timer_test();
 
   /**
-   * Destructor
+   * Default Destruktor
    **/
   virtual ~timer_test();
 
-  /**
-   * Wird einmalig für alle ausgeführt
-   * @return 0 wenn erfolgreich
-   */
   virtual int before_class();
-
-  /**
-   * Funktion wird vor jedem test ausgeführt
-   * @return 0 wenn erfolgreich
-   */
   virtual int before();
-
-  /**
-   * Initialisiert den Funktionsvektor
-   * @return 0 wenn erfolgreich
-   */
   virtual int init();
-
-  /**
-   * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
   virtual int after();
-
-  /**
-   * Aufräumen der Unit Tests
-   * @return 0 wenn erfolgreich
-   */
   virtual int after_class();
 
  private:
@@ -93,7 +69,7 @@ public:
   int test_timer_continue();
 
   /**
-   * Test zum Timer erhoen
+   * Test zum Timer erhoehen
    **/
   int test_timer_add();
 

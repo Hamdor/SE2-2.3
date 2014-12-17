@@ -25,10 +25,16 @@
 #include "lib/token.hpp"
 #include "lib/constants.hpp"
 
+#include "lib/util/singleton_mgr.hpp"
+#include "lib/timer/time_utils.hpp"
+
 #include <iostream>
 
 using namespace se2;
 using namespace se2::fsm;
+using namespace se2::util;
+using namespace se2::timer;
+using namespace se2::dispatch;
 
 int token::m_id_counter = 0;
 
@@ -80,6 +86,11 @@ void token::reset() {
   m_height2        = 0;
   m_is_metal       = false;
   m_is_upside_down = false;
+  delete_timers();
+  dispatcher* disp =
+    TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
+  disp->remove_from_all(this);
+  reset_internal_times();
 }
 
 void token::pretty_print() const {
@@ -89,6 +100,109 @@ void token::pretty_print() const {
             << ", m_is_metal: "       << (m_is_metal ? "true" : "false")
             << ", m_is_upside_down: " << (m_is_upside_down ? "true" : "false")
             << " ]"                   << std::endl;
+}
+
+void token::add_timer_id(int idx) {
+  m_timer_ids.push_back(idx);
+}
+
+void token::delete_timers() {
+  timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+  for (size_t i = 0; i < m_timer_ids.size(); ++i) {
+    hdl->delete_timer(m_timer_ids[i]);
+  }
+  m_timer_ids.clear();
+}
+
+void token::init_internal_times(int segment) {
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  const timespec add_seg1 = { (time_t)SEGMENT1__SEC, SEGMENT1_NSEC };
+  const timespec add_seg2 = { (time_t)SEGMENT2__SEC, SEGMENT2_NSEC };
+  const timespec add_seg3 = { (time_t)SEGMENT3__SEC, SEGMENT3_NSEC };
+  if (segment == SEGMENT_1) {
+    clock_gettime(CLOCK_REALTIME, &m_timespec_seg1);
+    m_timespec_seg1 = time_utils::add(m_timespec_seg1, add_seg1);
+  } else if (segment == SEGMENT_2) {
+    clock_gettime(CLOCK_REALTIME, &m_timespec_seg2);
+    m_timespec_seg2 = time_utils::add(m_timespec_seg2, add_seg2);
+    if (mgr->is_motor_slow()) {
+      const timespec addspec = mgr->get_motor_slow_diff();
+      m_timespec_seg2 = time_utils::add(m_timespec_seg2, addspec);
+    }
+  } else if (segment == SEGMENT_3) {
+    clock_gettime(CLOCK_REALTIME, &m_timespec_seg3);
+    m_timespec_seg3 = time_utils::add(m_timespec_seg3, add_seg3);
+    if (mgr->is_motor_slow()) {
+      const timespec addspec = mgr->get_motor_slow_diff();
+      m_timespec_seg3 = time_utils::add(m_timespec_seg3, addspec);
+    }
+  } else {
+    LOG_ERROR("Unkown segment value")
+  }
+}
+
+void token::reset_internal_times() {
+  std::memset(&m_timespec_seg1, 0, sizeof(timespec));
+  std::memset(&m_timespec_seg2, 0, sizeof(timespec));
+  std::memset(&m_timespec_seg3, 0, sizeof(timespec));
+  std::memset(&m_timespec_stop, 0, sizeof(timespec));
+}
+
+void token::add_internal_times(int sec, long nsec) {
+  timespec add_spec = { (time_t)sec, nsec };
+  // TODO Pruefen ob kurz vor erwartetem durchgang, dann nicht addieren
+  m_timespec_seg1 = time_utils::add(m_timespec_seg1, add_spec);
+  m_timespec_seg2 = time_utils::add(m_timespec_seg2, add_spec);
+  m_timespec_seg3 = time_utils::add(m_timespec_seg3, add_spec);
+}
+
+void token::stop_internal_times() {
+  clock_gettime(CLOCK_REALTIME, &m_timespec_stop);
+}
+
+void token::start_internal_times() {
+  timespec curspec;
+  clock_gettime(CLOCK_REALTIME, &curspec);
+  timespec tempspec = time_utils::diff(m_timespec_stop, curspec);
+  if (m_timespec_seg1.tv_nsec != 0 && m_timespec_seg2.tv_nsec != 0
+      && m_timespec_seg3.tv_nsec != 0) {
+    m_timespec_seg1 = time_utils::add(m_timespec_seg1, tempspec);
+    m_timespec_seg2 = time_utils::add(m_timespec_seg2, tempspec);
+    m_timespec_seg3 = time_utils::add(m_timespec_seg3, tempspec);
+  }
+}
+
+bool token::check_internal_times(int section) {
+  timespec curspec;
+  clock_gettime(CLOCK_REALTIME, &curspec);
+  std::stringstream ss;
+  if (section == SEGMENT_1) {
+    const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG1__SEC,
+                                  OFFSET_CHECK_TIMES_SEG1_NSEC };
+    const timespec diffspec = time_utils::diff(m_timespec_seg1, curspec);
+    ss << "Segment 1 - Sec: " << diffspec.tv_sec
+       << " Nsec: "           << diffspec.tv_nsec;
+    LOG_TRACE(ss.str().c_str())
+    return time_utils::smaller_then(diffspec, max_offset);
+  } else if (section == SEGMENT_2) {
+    const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG2__SEC,
+                                  OFFSET_CHECK_TIMES_SEG2_MSEC };
+    const timespec diffspec = time_utils::diff(m_timespec_seg2, curspec);
+    ss << "Segment 2 - Sec: " << diffspec.tv_sec
+       << " Nsec: "           << diffspec.tv_nsec;
+    LOG_TRACE(ss.str().c_str())
+    return time_utils::smaller_then(diffspec, max_offset);
+  } else if (section == SEGMENT_3) {
+    const timespec max_offset = { (time_t)OFFSET_CHECK_TIMES_SEG3__SEC,
+                                   OFFSET_CHECK_TIMES_SEG3_MSEC };
+    const timespec diffspec = time_utils::diff(m_timespec_seg3, curspec);
+    ss << "Segment 3 - Sec: " << diffspec.tv_sec
+       << " Nsec: "           << diffspec.tv_nsec;
+    LOG_TRACE(ss.str().c_str())
+    return time_utils::smaller_then(diffspec, max_offset);
+  } else {
+    return false;
+  }
 }
 
 void token::dispatched_event_button_start() {
@@ -105,10 +219,6 @@ void token::dispatched_event_button_reset() {
 
 void token::dispatched_event_button_e_stop() {
   m_state->dispatched_event_button_e_stop();
-}
-
-void token::dispatched_event_button_e_stop_rising() {
-  m_state->dispatched_event_button_e_stop_rising();
 }
 
 void token::dispatched_event_sensor_entrance() {
@@ -167,38 +277,58 @@ void token::dispatched_event_serial_next_ok() {
   m_state->dispatched_event_serial_next_ok();
 }
 
+void token::dispatched_event_serial_transfer_fin() {
+  m_state->dispatched_event_serial_transfer_fin();
+}
+
+void token::dispatched_event_serial_e_stopp() {
+  m_state->dispatched_event_serial_e_stopp();
+}
+
 void token::dispatched_event_serial_unk() {
   m_state->dispatched_event_serial_unk();
 }
 
-void token::dispatched_event_seg1_exceeded() {
-  m_state->dispatched_event_seg1_exceeded();
+void token::dispatched_event_seg1_has_to_expire() {
+  m_state->dispatched_event_seg1_has_to_expire();
 }
 
-void token::dispatched_event_seg2_exceeded() {
-  m_state->dispatched_event_seg2_exceeded();
+void token::dispatched_event_seg2_has_to_expire() {
+  m_state->dispatched_event_seg2_has_to_expire();
 }
 
-void token::dispatched_event_seg3_exceeded() {
-  m_state->dispatched_event_seg3_exceeded();
+void token::dispatched_event_seg3_has_to_expire() {
+  m_state->dispatched_event_seg3_has_to_expire();
 }
 
-void token::dispatched_event_slide_full() {
-  m_state->dispatched_event_slide_full();
+void token::dispatched_event_seg1_too_late() {
+  m_state->dispatched_event_seg1_too_late();
 }
 
-void token::dispatched_event_open_switch() {
-  m_state->dispatched_event_open_switch();
+void token::dispatched_event_seg2_too_late() {
+  m_state->dispatched_event_seg2_too_late();
 }
 
-void token::dispatched_event_turn_token() {
-  m_state->dispatched_event_turn_token();
+void token::dispatched_event_seg3_too_late() {
+  m_state->dispatched_event_seg3_too_late();
 }
 
-void token::dispatched_event_remove_token() {
-  m_state->dispatched_event_remove_token();
+void token::dispatched_event_slide_full_timeout() {
+  m_state->dispatched_event_slide_full_timeout();
 }
 
-void token::dispatched_event_token_finished() {
-  m_state->dispatched_event_token_finished();
+void token::dispatched_event_turn_token_timeout() {
+  m_state->dispatched_event_turn_token_timeout();
+}
+
+void token::dispatched_event_remove_token_timeout() {
+  m_state->dispatched_event_remove_token_timeout();
+}
+
+void token::dispatched_event_close_switch_time() {
+  m_state->dispatched_event_close_switch_time();
+}
+
+void token::dispatched_event_tansfer_timeout() {
+  m_state->dispatched_event_tansfer_timeout();
 }

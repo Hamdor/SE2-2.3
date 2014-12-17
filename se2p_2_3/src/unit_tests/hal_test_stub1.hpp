@@ -37,12 +37,12 @@ namespace unit_tests {
 class hal_test_stub1 : public abstract_test<hal_test_stub1> {
  public:
   /**
-   * Constructor
+   * Default Konstruktor
    **/
   hal_test_stub1();
 
   /**
-   * Default Destructor
+   * Default Destruktor
    **/
   virtual ~hal_test_stub1();
 
@@ -54,8 +54,8 @@ class hal_test_stub1 : public abstract_test<hal_test_stub1> {
 
  private:
   /**
-   * Test fuer die funktionsfaehigkeit des Motors
-   * @return fehlgeschlagene Anzahl
+   * Test fuer die Funktionsfaehigkeit des Motors
+   * @return Fehlgeschlagene Anzahl
    **/
    int motor_test();
 
@@ -67,37 +67,37 @@ class hal_test_stub1 : public abstract_test<hal_test_stub1> {
 
    /**
     * Test fuer die LEDs der Tasten
-    * @return fehlgeschlagene Anzahl
+    * @return Fehlgeschlagene Anzahl
     **/
    int button_led_test();
 
    /**
     * Test fuer die Ampeln
-    * @return fehlgeschlagene Anzahl
+    * @return Fehlgeschlagene Anzahl
     **/
    int light_test();
 
    /**
-    * Tests der funktionsfaehigkeit der Lichtschranken
-    * @return fehlgeschlagene Anzahl
+    * Tests der Funktionsfaehigkeit der Lichtschranken
+    * @return Fehlgeschlagene Anzahl
     **/
    int light_barrier_test();
 
    /**
     * Tests fuer nicht gedrueckte Tasten
-    * @return fehlgeschlagene Anzahl
+    * @return Fehlgeschlagene Anzahl
     **/
    int buttons_not_pressed_test();
 
    /**
-    * Test der Hoehe ausserhalb des toleranzbereichs
-    * @return fehlgeschlagene Anzahl
+    * Test der Hoehe ausserhalb des Toleranzbereichs
+    * @return Fehlgeschlagene Anzahl
     **/
    int invalid_heigt_test();
 
    /**
-    * Test des Metallsensors fuer kein metall
-    * @return fehlgeschlagene Anzahl
+    * Test des Metallsensors fuer kein Metall
+    * @return Fehlgeschlagene Anzahl
     **/
    int no_metal_test();
  private:

@@ -36,12 +36,12 @@ namespace unit_tests {
 class dispatcher_test : public abstract_test<dispatcher_test> {
  public:
   /**
-   * Constructor
+   * Default Konstruktor
    **/
   dispatcher_test();
 
   /**
-   * Default Destructor
+   * Default Destruktor
    **/
   ~dispatcher_test();
 
@@ -58,14 +58,14 @@ class dispatcher_test : public abstract_test<dispatcher_test> {
   static hal::event_values s_assumed_next;
  private:
   /**
-   * Test fuer das mapping von `event_values` zu `dispatcher_events`.
+   * Test fuer das mapping von `event_values` zu `dispatcher_events`
    * Das Mapping wird von der Funktion `dispatcher::map_from_event_values()`
-   * uebernommen.
+   * uebernommen
    **/
   int test_mapping();
 
   /**
-   * Testet die Belegung im `m_functions` array von `dispatcher`.
+   * Testet die Belegung im `m_functions` array von `dispatcher`
    **/
   int test_function_address_reg();
 
@@ -75,7 +75,7 @@ class dispatcher_test : public abstract_test<dispatcher_test> {
   int test_small_fsm();
 
   /**
-   * Test fuer den Dispatcher Thread bzw. die verteilung
+   * Test fuer den Dispatcher Thread bzw. die Verteilung
    * ueber Pulse Messages
    **/
   int dispatcher_thread_test();

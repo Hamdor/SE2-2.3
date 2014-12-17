@@ -25,6 +25,8 @@
 #ifndef SE2_CONSTANTS_HPP
 #define SE2_CONSTANTS_HPP
 
+#include "config.h"
+
 #include <cstddef>
 #include "lib/token.hpp"
 
@@ -52,7 +54,7 @@
 /**
  * Basis Addresse des IO Registers
  **/
-#define IOBASE    0x300         // IO Base Register
+#define IOBASE 0x300
 
 /**
  * Bitposition des Bits was von dem Hoehensensor gesetzt wird,
@@ -63,18 +65,18 @@
 /**
  * Maximale Anzahl an loops bis der Hoehenwert gelesen wird
  **/
-#define HEIGHT_SENSOR_MAX_LOOPS 50
+#define HEIGHT_SENSOR_MAX_LOOPS 100
 
 /**
  * Maximale und minimale Toleranz fuer den Puck/Hoehenwert
  **/
-#define HEIGHT_SENSOR_TOLERANCE_MIN 70
-#define HEIGHT_SENSOR_TOLERANCE_MAX 70
+#define HEIGHT_SENSOR_TOLERANCE_MIN 100
+#define HEIGHT_SENSOR_TOLERANCE_MAX 100
 
 /**
  * Addresse des Control-Registers
  **/
-#define IOCTLADDR IOBASE + 0x03 // Register zum definieren der Ports
+#define IOCTLADDR IOBASE + 0x03
 
 /**
  * Maske fuer das Control-Register
@@ -91,10 +93,10 @@
 /**
  * Addressen/Defines Interrupt
  **/
-#define IRQ_ENABLE_MASK         0xF9
-#define PORTB_INTERRUPT         2
-#define PORTC_INTERRUPT         8
-#define IO_IRQ                  11
+#define IRQ_ENABLE_MASK 0xF9
+#define PORTB_INTERRUPT 2
+#define PORTC_INTERRUPT 8
+#define IO_IRQ          11
 
 namespace se2 {
 
@@ -113,14 +115,14 @@ namespace hal {
  * Offset der Ports
  **/
 enum port_num {
-  PORTA          = IOBASE + 0x00, // IOBASE + 0x00
-  PORTB          = IOBASE + 0x01, // IOBASE + 0x01
-  PORTC          = IOBASE + 0x02, // IOBASE + 0x02
-  IRQ_ENABLE_REG = IOBASE + 0x0B, // IOBASE + 0x0B
-  IRQ_CLEAR_REG  = IOBASE + 0x0F, // IOBASE + 0x0F
-  IRQ_RNC_REG    = IOBASE + 0x12, // IOBASE + 0x12 (Read and Clear)
-  ANALOG_BASE    = IOANALOG_BASE, // IOANALOG_BASE (0x320)
-  ANALOG_PORT_A  = IOANALOG_BASE + IOANALOG_OFFSET // IOANALOG_BASE + 0x02
+  PORTA          = IOBASE + 0x00,
+  PORTB          = IOBASE + 0x01,
+  PORTC          = IOBASE + 0x02,
+  IRQ_ENABLE_REG = IOBASE + 0x0B,
+  IRQ_CLEAR_REG  = IOBASE + 0x0F,
+  IRQ_RNC_REG    = IOBASE + 0x12, // (Read and Clear)
+  ANALOG_BASE    = IOANALOG_BASE,
+  ANALOG_PORT_A  = IOANALOG_BASE + IOANALOG_OFFSET
 };
 
 /**
@@ -177,7 +179,7 @@ enum light_colors {
 
 /**
  * Rueckgabewerte des Hoehensensors
- * fuer die einzelnen Puck Typen.
+ * fuer die einzelnen Puck Typen
  **/
 enum height_values {
 #if defined(FESTO_3)
@@ -192,14 +194,16 @@ enum height_values {
   METAL_LOW           = 3620, // Mit Metall (Richtig herum) (Min)
   METAL_HI            = 3629  // Mit Metall (Richtig herum) (Max)
 #elif defined(FESTO_9)
-  TOO_SMALL_LOW       = 2720, // zu flach (Min)
-  TOO_SMALL_HI        = 2735, // zu flach (Max)
-  HOLE_BOTTOM_UP_LOW  = 2455, // Bohrung (Falsch herum) (Min)
-  HOLE_BOTTOM_UP_HI   = 2470, // Bohrung (Falsch herum) (Max)
-  HOLE_LOW            = 3475, // Bohrung (Richtig herum) (Min)
-  HOLE_HI             = 3490, // Bohrung (Richtig herum) (Max)
-  METAL_LOW           = 3515, // Mit Metall (Richtig herum) (Min)
-  METAL_HI            = 3535  // Mit Metall (Richtig herum) (Max)
+  TOO_SMALL_LOW = 2710,
+  TOO_SMALL_HI = 2746,
+  HOLE_BOTTOM_UP_LOW = 2415,
+  HOLE_BOTTOM_UP_HI = 2544,
+  HOLE_LOW = 3476,
+  HOLE_HI = 3506,
+  METAL_BOTTOM_UP_LOW = 2442,
+  METAL_BOTTOM_UP_HI = 2473,
+  METAL_LOW = 3522,
+  METAL_HI = 3564
 #elif defined(FESTO_5)
   TOO_SMALL_LOW = 2774,
   TOO_SMALL_HI = 2833,
@@ -255,6 +259,17 @@ enum height_values {
   METAL_BOTTOM_UP_HI = 2561,
   METAL_LOW = 3583,
   METAL_HI = 3636
+#elif defined(FESTO_8)
+  TOO_SMALL_LOW = 2792,
+  TOO_SMALL_HI = 2819,
+  HOLE_BOTTOM_UP_LOW = 2482,
+  HOLE_BOTTOM_UP_HI = 2582,
+  HOLE_LOW = 3541,
+  HOLE_HI = 3605,
+  METAL_BOTTOM_UP_LOW = 2516,
+  METAL_BOTTOM_UP_HI = 2588,
+  METAL_LOW = 3594,
+  METAL_HI = 3646
 #else
   // nop
 #endif
@@ -276,11 +291,10 @@ enum height_values {
  *   EVENT_BUTTON_STOP       Stop Button getoggelt
  *   EVENT_BUTTON_RESET      Reset Button getoggelt
  *   EVENT_BUTTON_E_STOP     E-Stop getoggelt
- *   EVENT_BUTTON_E_STOP_R   E-Stop getoggelt (Steigende Flanke)
  *
  * Events Port B:
- *   EVENT_SENSOR_ENTRANCE   Lichtschranke am Band einlauf (Fallende Flanke)
- *   EVENT_SENSOR_ENTRANCE_R Lichtschranke am Band einlauf (Steigende Flanke)
+ *   EVENT_SENSOR_ENTRANCE   Lichtschranke am Band Einlauf (Fallende Flanke)
+ *   EVENT_SENSOR_ENTRANCE_R Lichtschranke am Band Einlauf (Steigende Flanke)
  *   EVENT_SENSOR_HEIGHT     Lichtschranke am Hoehensensor (Fallende Flanke)
  *   EVENT_SENSOR_HEIGHT_R   Lichtschranke am Hoehensensor (Steigende Flanke)
  *   EVENT_SENSOR_SWITCH     Lichtschranke am Switch (Fallende Flanke)
@@ -314,35 +328,43 @@ enum event_values {
   EVENT_BUTTON_STOP     = EVENT_BASE << BUTTON_STOP     << EVENT_PORT_A_OFFSET,
   EVENT_BUTTON_RESET    = EVENT_BASE << BUTTON_RESET    << EVENT_PORT_A_OFFSET,
   EVENT_BUTTON_E_STOP   = EVENT_BASE << BUTTON_ESTOP    << EVENT_PORT_A_OFFSET,
-  EVENT_BUTTON_E_STOP_R = (EVENT_BASE<<BUTTON_ESTOP<< EVENT_PORT_A_OFFSET) | 1,
   // Port B
   EVENT_SENSOR_ENTRANCE = EVENT_BASE << SENSOR_ENTRANCE << EVENT_PORT_C_OFFSET,
-  EVENT_SENSOR_ENTRANCE_R=(EVENT_BASE<<SENSOR_ENTRANCE<<EVENT_PORT_C_OFFSET)|1,
   EVENT_SENSOR_HEIGHT   = EVENT_BASE << SENSOR_HEIGHT   << EVENT_PORT_C_OFFSET,
-  EVENT_SENSOR_HEIGHT_R = (EVENT_BASE<<SENSOR_HEIGHT<<EVENT_PORT_C_OFFSET) | 1,
   EVENT_SENSOR_SWITCH   = EVENT_BASE << SENSOR_SWITCH   << EVENT_PORT_C_OFFSET,
-  EVENT_SENSOR_SWITCH_R = (EVENT_BASE<<SENSOR_SWITCH<<EVENT_PORT_C_OFFSET) | 1,
   EVENT_SENSOR_SLIDE    = EVENT_BASE << SENSOR_SLIDE    << EVENT_PORT_C_OFFSET,
-  EVENT_SENSOR_SLIDE_R  = (EVENT_BASE<< SENSOR_SLIDE<<EVENT_PORT_C_OFFSET) | 1,
   EVENT_SENSOR_EXIT     = EVENT_BASE << SENSOR_EXIT     << EVENT_PORT_C_OFFSET,
-  EVENT_SENSOR_EXIT_R   = (EVENT_BASE<<SENSOR_EXIT << EVENT_PORT_C_OFFSET) | 1,
+
   // Serial Interface
   EVENT_SERIAL_DATA     = EVENT_SERIAL_START, // EVENT_SERIAL_START + 0x00
   EVENT_SERIAL_MSG,                           // EVENT_SERIAL_START + 0x01
   EVENT_SERIAL_ERR,                           // EVENT_SERIAL_START + 0x02
   EVENT_SERIAL_NEXT_OK,                       // EVENT_SERIAL_START + 0x03
-  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x04
+  EVENT_SERIAL_TRANSFER_FIN,                  // EVENT_SERIAL_START + 0x04
+  EVENT_SERIAL_E_STOPP,                       // EVENT_SERIAL_START + 0x05
+  EVENT_SERIAL_UNK,                           // EVENT_SERIAL_START + 0x06
   // Timer
-  EVENT_SEG1_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x01
-  EVENT_SEG2_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x02
-  EVENT_SEG3_EXCEEDED,                        // EVENT_SERIAL_UNK + 0x03
-  EVENT_SLIDE_FULL,                           // EVENT_SERIAL_UNK + 0x04
-  EVENT_OPEN_SWITCH,                          // EVENT_SERIAL_UNK + 0x05
-  EVENT_TURN_TOKEN,                           // EVENT_SERIAL_UNK + 0x06
-  EVENT_REMOVE_TOKEN,                         // EVENT_SERIAL_UNK + 0x07
-  EVENT_TOKEN_FINISHED,                       // EVENT_SERIAL_UNK + 0x08
+  EVENT_SEG1_HAS_TO_EXPIRE,                   // EVENT_SERIAL_UNK + 0x01
+  EVENT_SEG2_HAS_TO_EXPIRE,                   // EVENT_SERIAL_UNK + 0x02
+  EVENT_SEG3_HAS_TO_EXPIRE,                   // EVENT_SERIAL_UNK + 0x03
+  EVENT_SEG1_TOO_LATE,                        // EVENT_SERIAL_UNK + 0x04
+  EVENT_SEG2_TOO_LATE,                        // EVENT_SERIAL_UNK + 0x05
+  EVENT_SEG3_TOO_LATE,                        // EVENT_SERIAL_UNK + 0x06
+  EVENT_SLIDE_FULL_TIMEOUT,                   // EVENT_SERIAL_UNK + 0x07
+  EVENT_TURN_TOKEN_TIMEOUT,                   // EVENT_SERIAL_UNK + 0x08
+  EVENT_REMOVE_TOKEN_TIMEOUT,                 // EVENT_SERIAL_UNK + 0x09
+  EVENT_CLOSE_SWITCH_TIME,                    // EVENT_SERIAL_UNK + 0x0A
+  EVENT_TRANSFER_TIMEOUT,                     // EVENT_SERIAL_UNK + 0x0B
+  // Steigende Flanken
+  EVENT_SENSOR_ENTRANCE_R = 0x01 << 17,
+  EVENT_SENSOR_HEIGHT_R   = 0x01 << 18,
+  EVENT_SENSOR_SWITCH_R   = 0x01 << 19,
+  EVENT_SENSOR_SLIDE_R    = 0x01 << 20,
+  EVENT_SENSOR_EXIT_R     = 0x01 << 21,
   // Unkown / Not handled inputs
-  EVENT_UNKOWN1 = 8192                        // Ich weiss nicht woher dieses Event kommt...
+  EVENT_SENSOR_VALID_HEIGHT = EVENT_BASE << 2 << EVENT_PORT_C_OFFSET, // 1024 ?
+  EVENT_UNKOWN2 = 4096,
+  EVENT_UNKOWN3 = 8192
 };
 
 } // namespace hal
@@ -357,37 +379,54 @@ enum dispatcher_events {
   DISPATCHED_EVENT_BUTTON_START = 0,
   DISPATCHED_EVENT_BUTTON_STOP,
   DISPATCHED_EVENT_BUTTON_RESET,
-  DISPATCHED_EVENT_BUTTON_E_STOP,   // Fallende Flanke
-  DISPATCHED_EVENT_BUTTON_E_STOP_R, // Steigende Flanke
-  DISPATCHED_EVENT_SENSOR_ENTRANCE,   // Fallende Flanke
-  DISPATCHED_EVENT_SENSOR_ENTRANCE_R, // Steigende Flnake
-  DISPATCHED_EVENT_SENSOR_HEIGHT,   // Fallende Flanke
-  DISPATCHED_EVENT_SENSOR_HEIGHT_R, // Steigende Flanke
-  DISPATCHED_EVENT_SENSOR_SWITCH,   // Fallende Flanke
-  DISPATCHED_EVENT_SENSOR_SWITCH_R, // Steigende Flanke
-  DISPATCHED_EVENT_SENSOR_SLIDE,    // Fallende Flanke
-  DISPATCHED_EVENT_SENSOR_SLIDE_R,  // Steigende Flanke
-  DISPATCHED_EVENT_SENSOR_EXIT,     // Fallende Flanke
-  DISPATCHED_EVENT_SENSOR_EXIT_R,   // Steigende Flanke
+  DISPATCHED_EVENT_BUTTON_E_STOP,
+  DISPATCHED_EVENT_SENSOR_ENTRANCE,
+  DISPATCHED_EVENT_SENSOR_ENTRANCE_R,
+  DISPATCHED_EVENT_SENSOR_HEIGHT,
+  DISPATCHED_EVENT_SENSOR_HEIGHT_R,
+  DISPATCHED_EVENT_SENSOR_SWITCH,
+  DISPATCHED_EVENT_SENSOR_SWITCH_R,
+  DISPATCHED_EVENT_SENSOR_SLIDE,
+  DISPATCHED_EVENT_SENSOR_SLIDE_R,
+  DISPATCHED_EVENT_SENSOR_EXIT,
+  DISPATCHED_EVENT_SENSOR_EXIT_R,
   DISPATCHED_EVENT_SERIAL_DATA,
   DISPATCHED_EVENT_SERIAL_MSG,
   DISPATCHED_EVENT_SERIAL_ERR,
   DISPATCHED_EVENT_SERIAL_NEXT_OK,
+  DISPATCHED_EVENT_SERIAL_TRANSFER_FIN,
+  DISPATCHED_EVENT_SERIAL_E_STOPP,
   DISPATCHED_EVENT_SERIAL_UNK,
-  DISPATCHED_EVENT_SEG1_EXCEEDED,
-  DISPATCHED_EVENT_SEG2_EXCEEDED,
-  DISPATCHED_EVENT_SEG3_EXCEEDED,
-  DISPATCHED_EVENT_SLIDE_FULL,
-  DISPATCHED_EVENT_OPEN_SWITCH,
-  DISPATCHED_EVENT_TURN_TOKEN,
-  DISPATCHED_EVENT_REMOVE_TOKEN,
-  DISPATCHED_EVENT_TOKEN_FINISHED,
+  DISPATCHED_EVENT_SEG1_HAS_TO_EXPIRE,
+  DISPATCHED_EVENT_SEG2_HAS_TO_EXPIRE,
+  DISPATCHED_EVENT_SEG3_HAS_TO_EXPIRE,
+  DISPATCHED_EVENT_SEG1_TOO_LATE,
+  DISPATCHED_EVENT_SEG2_TOO_LATE,
+  DISPATCHED_EVENT_SEG3_TOO_LATE,
+  DISPATCHED_EVENT_SLIDE_FULL_TIMEOUT,
+  DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT,
+  DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT,
+  DISPATCHED_EVENT_CLOSE_SWITCH_TIME,
+  DISPATCHED_EVENT_TRANSFER_TIMEOUT,
   DISPATCHED_EVENT_MAX
 };
 
 }
 
 namespace util {
+
+/**
+ * Kann im `light_mgr` gesetzt werden, um die Ampelanlage zu aendern
+ **/
+enum light_states {
+  NO_LIGHTS,          // Nichts Leuchtet
+  READY_TO_USE,       // Nur Gruen leuchtet
+  TURN_TOKEN,         // Gelb blinkt mit 1Hz
+  REMOVE_TOKEN,       // Gelb blinkt mit 1Hz
+  ERROR_NOT_RESOLVED, // Rot blinkt mit 1Hz
+  ERROR_GONE,         // Rot blinkt mit 0,5Hz (selbst gegangen)
+  ERROR_RESOLVED      // Rot leuchtet permanent (quittiert)
+};
 
 enum loglevel {
   TRACE   = 0,  // Unwichtig
@@ -413,13 +452,14 @@ enum telegram_type {
  * Nachricht Typen
  **/
 enum msg_type {
-  ERR_STOP = 0,  // Fehler auf einem Band, stoppen
-  ERR_QUIT = 1,  // Fehler quittiert
-  RESUME   = 2,  // Weiterlaufen/Start
-  B2_FREE  = 3,  // Band 2 wieder frei von Puck
-  E_STOP   = 4,  // E-Stop gedrueckt
-  STOP     = 5,  // Stop Taste gedrueckt
-  NOTHING  = 6   // Keine MSG
+  ERR_STOP     = 0,  // Fehler auf einem Band, stoppen
+  ERR_QUIT     = 1,  // Fehler quittiert
+  RESUME       = 2,  // Weiterlaufen/Start
+  B2_FREE      = 3,  // Band 2 wieder frei von Puck
+  B2_TRANS_FIN = 4,  // Lichtschranke auf Band 2 ist durchbrochen
+  E_STOP       = 5,  // E-Stop gedrueckt
+  STOP         = 6,  // Stop Taste gedrueckt
+  NOTHING      = 7   // Keine MSG
 };
 
 /**
@@ -449,12 +489,119 @@ struct telegram {
 
 } // namespace serial_bus
 
+#define SEGMENT_1 1
+#define SEGMENT_2 2
+#define SEGMENT_3 3
+
 namespace timer {
+
 struct duration {
   size_t sec;
   size_t msec;
 };
 
+/**
+ * Erwartete Zeiten zwischen den Segmenten
+ **/
+#define MILISEC_TO_NANOSEC 1000000
+#define SEC_TO_NANOSEC     1000000000
+
+#if defined(FESTO_9)
+#define SEGMENT1__SEC 3
+#define SEGMENT1_NSEC 70530137
+#define SEGMENT2__SEC 0
+#define SEGMENT2_NSEC 867867196
+#define SEGMENT3__SEC 2
+#define SEGMENT3_NSEC 510615817
+#define HEIGHT_TIME_OFFSET_SEG1_NSEC 42146574
+#endif
+
+#if defined(FESTO_7)
+#define SEGMENT1__SEC 3
+#define SEGMENT1_NSEC 112523711
+#define SEGMENT2__SEC 0
+#define SEGMENT2_NSEC 802877141
+#define SEGMENT3__SEC 2
+#define SEGMENT3_NSEC 301647794
+#define HEIGHT_TIME_OFFSET_SEG1_NSEC 370096390
+#endif
+
+#if defined(FESTO_6)
+#define SEGMENT1__SEC 3
+#define SEGMENT1_NSEC 118522793
+#define SEGMENT2__SEC 0
+#define SEGMENT2_NSEC 806876529
+#define SEGMENT3__SEC 2
+#define SEGMENT3_NSEC 198663553
+#define HEIGHT_TIME_OFFSET_SEG1_NSEC 532071604
+#endif
+
+#if defined(FESTO_5)
+#define SEGMENT1__SEC 3
+#define SEGMENT1_NSEC 313492958
+#define SEGMENT2__SEC 0
+#define SEGMENT2_NSEC 768882343
+#define SEGMENT3__SEC 2
+#define SEGMENT3_NSEC 281650854
+#define HEIGHT_TIME_OFFSET_SEG1_NSEC 422088434
+#endif
+
+#if defined(FESTO_3)
+#define SEGMENT1__SEC 3
+#define SEGMENT1_NSEC 318492193
+#define SEGMENT2__SEC 0
+#define SEGMENT2_NSEC 827873316
+#define SEGMENT3__SEC 2
+#define SEGMENT3_NSEC 459623620
+#define HEIGHT_TIME_OFFSET_SEG1_NSEC 439085833
+#endif
+
+#if defined(FESTO_1)
+#define SEGMENT1__SEC 3
+#define SEGMENT1_NSEC 148518203
+#define SEGMENT2__SEC 0
+#define SEGMENT2_NSEC 906861229
+#define SEGMENT3__SEC 2
+#define SEGMENT3_NSEC 35688492
+#define HEIGHT_TIME_OFFSET_SEG1_NSEC 392093024
+#endif
+
+#define OFFSET_CHECK_TIMES_SEG1__SEC 1
+#define OFFSET_CHECK_TIMES_SEG1_NSEC 500 * MILISEC_TO_NANOSEC
+
+#define OFFSET_CHECK_TIMES_SEG2__SEC 1
+#define OFFSET_CHECK_TIMES_SEG2_MSEC 0 * MILISEC_TO_NANOSEC
+
+#define OFFSET_CHECK_TIMES_SEG3__SEC 1
+#define OFFSET_CHECK_TIMES_SEG3_MSEC 0 * MILISEC_TO_NANOSEC
+
+#define SEGMENT1_SEC__TOO_LATE SEGMENT1__SEC
+#define SEGMENT1_MSEC_TOO_LATE SEGMENT1_NSEC / MILISEC_TO_NANOSEC + 250
+
+#define SEGMENT2_SEC__TOO_LATE SEGMENT2__SEC + 1
+#define SEGMENT2_MSEC_TOO_LATE SEGMENT2_NSEC / MILISEC_TO_NANOSEC
+#define SEGMENT3_SEC__TOO_LATE SEGMENT3__SEC
+#define SEGMENT3_MSEC_TOO_LATE SEGMENT3_NSEC / MILISEC_TO_NANOSEC + 250
+
+// Timeout fuer Rutsche voll
+#define SLIDE_SEC__TIMEOUT           1
+#define SLIDE_MSEC_TIMEOUT         500
+
+// Timeout fuer Transfer nach Band 2
+#define TRANSFER_SEC__TIMEOUT        4
+#define TRANSFER_MSEC_TIMEOUT        0
+
+// Timeout zum entnehmen des Pucks
+#define LIFT_UP_SEC__TIMEOUT        10
+#define LIFT_UP_MSEC_TIMEOUT         0
+
+// Timeout zum Drehen des Pucks
+#define TURNOVER_SEC__TIMEOUT        5
+#define TURNOVER_MSEC_TIMEOUT        0
+
+// Time fuer schliessen der Weiche
+#define CLOSE_SWITCH_TIME__SEC   0
+#define CLOSE_SWITCH_TIME_MSEC 100
 
 } // namespace timer
 } // namespace se2

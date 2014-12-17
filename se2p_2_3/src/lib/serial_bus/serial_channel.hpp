@@ -48,7 +48,7 @@ class serial_channel : public util::abstract_singleton
                      , public util::HAWThread {
   friend class util::singleton_mgr;
   /**
-   * Konstruktor
+   * Default Konstruktor
    **/
   serial_channel();
 
@@ -63,36 +63,36 @@ class serial_channel : public util::abstract_singleton
   virtual void shutdown();
 
   /**
-   * Serial channel instanz
+   * Serial channel Instanz
    **/
   static serial_channel* instance;
   serial_interface* m_interface;
 
   /**
-   * FIFO der telegrams
+   * FIFO der Telegrams
    **/
   std::queue<telegram> m_queue;
 
   /**
-   * Lock fuer einfuegen/entfernen aus queue
+   * Lock fuer einfuegen/entfernen aus Queue
    **/
   util::mutex   m_lock;
 
   /**
    * Condition Variable
    * Wird signalisiert sobald eine Nachricht in die
-   * queue kommt
+   * Queue kommt
    **/
   util::condvar m_cond;
  public:
   /**
-   * Ruft das naechste telegram ab und entfertnt es
-   * @return next telegram
+   * Ruft das naechste Telegram ab und entfertnt es
+   * @return naechstes Telegram
    **/
   telegram get_telegram();
 
   /**
-   * Sendet ein telegram
+   * Sendet ein Telegram
    **/
   void send_telegram(telegram* tel);
 };

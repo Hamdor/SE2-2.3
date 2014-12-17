@@ -1,0 +1,31 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm]{geometry}
+\usepackage[utf8x]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc} % T1-encoded fonts: Auch Wörter mit Umlauten trennen
+\usepackage{colortbl}    % Für farbige Zeilen/Reihen in Tabellen
+\usepackage{xcolor}      % Definitionen von Farben
+\thispagestyle{empty}    % Keine Kopf- und Fusszeile
+
+% Beginn des Dokuments
+\begin{document}
+
+\section*{\small{Software Engineering II \\ Wintersemester 2014/2015: Gruppe 2.3 \\ Katja Kirstein}}
+\section*{Testprotokoll 11.12.2014}
+\textbf{Verwendete Hardware:} GEME 8 mit Festo 6 als Band 1 und GEME 7 mit Festo 5 als Band 2.\\
+Folgende Abnahmetests wurden durchgeführt:
+\newline
+\begin{itemize}
+ \item TG01 : Wurde erfolgreich bestanden.
+ \item TG02 : Der Puck lief durch, jedoch fehlte am Ende von Band 2 das Blinken zum Entfernen des Pucks.
+ \item TG03 : Das gelbe Licht zum Wenden ist ein Dauerlicht und kein Blinken, ansonsten fehlerfrei.
+ \item TG04 : Der verkehrt liegende Puck ist in der Metallmessung stehengeblieben und das Band 2 ist in den Fehlerzustand gegangen.
+ \item TG05 : Beim Zurückfahren auf Band 2 geht das Band in den Fehlerzustand.\\\newline
+\end{itemize}
+Nachdem das Blinken am Ende von Band 2 zum Entfernen des Pucks und das Dauerlicht auf Band 1 zum Wenden hinzugefügt worden sind, wurden folgende Tests erneut durchgeführt:
+\begin{itemize}
+ \item TG02 : Diesmal lief alles erfolgreich ab.
+ \item TG03 : Nun blinkt Band 1 wenn ein Puck gewendet werden soll.
+\end{itemize}
+
+\end{document}

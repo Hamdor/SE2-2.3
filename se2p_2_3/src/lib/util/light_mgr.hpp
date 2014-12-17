@@ -16,12 +16,60 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    error_handler.cpp
+ * @file    light_mgr.hpp
  * @version 0.1
  *
- * Klasse fuer Fehler Zustandsautomaten
+ * Der `light_mgr` soll die Ansteuerung der Ampelanlage uebernehmen
  **/
 
-#include "lib/fsm/error_handler.hpp"
+#ifndef SE2_LIGHT_MGR_HPP
+#define SE2_LIGHT_MGR_HPP
 
-using namespace se2;
+#include "lib/util/abstract_singleton.hpp"
+#include "lib/util/HAWThread.hpp"
+#include "lib/timer/timer_wrapper.hpp"
+#include "lib/constants.hpp"
+
+namespace se2 {
+namespace util {
+class singleton_mgr;
+class light_mgr : public abstract_singleton
+                , public HAWThread {
+  friend class singleton_mgr;
+  /**
+   * Default Konstruktor
+   **/
+  light_mgr();
+  /**
+   * Default Destruktor
+   **/
+  virtual ~light_mgr();
+
+  virtual void initialize();
+  virtual void destroy();
+
+  void update_light();
+
+  virtual void execute(void*);
+  virtual void shutdown();
+
+  static light_mgr* instance;
+
+  int                   m_chid;
+  bool                  m_tick;
+  timer::timer_wrapper* m_timer;
+  light_states          m_state;
+
+ public:
+  /**
+   * Aendert das Licht der Ampelanlage
+   * @param state Beschreibt den State in dem sich die Ampelanlage
+   *        befinden soll
+   **/
+  void set_state(light_states state);
+};
+
+} // namespace util
+} // namespace se2
+
+#endif // SE2_LIGHT_MGR_HPP

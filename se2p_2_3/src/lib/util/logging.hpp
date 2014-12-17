@@ -33,6 +33,7 @@
 #include "lib/util/abstract_singleton.hpp"
 
 #include <fstream>
+#include <sstream>
 
 namespace se2 {
 namespace util {
@@ -55,24 +56,26 @@ class logging : public abstract_singleton {
   virtual void initialize();
 
   /**
-   * Zerst�rung des Singleton
+   * Zerstoerung des Singleton
    **/
   virtual void destroy();
 
  public:
   /**
-   * Fügt einen neuen Eintrag zum Log hinzu.
+   * Fuegt einen neuen Eintrag zum Log hinzu
    * @param str Definiert die Log Message
    * @param lvl Definiert das Log Level
    * @param file_name Der Aufrufer (File)
    * @param line_num Zeilennummer (Aufrufer)
+   * @param fun_name Name der Funktion (Aufrufer)
    **/
-  void log(const char* str, loglevel lvl, const char* file_name, int line_num);
+  void log(const char* str, loglevel lvl, const char* file_name, int line_num,
+           const char* fun_name);
 
   /**
    * Default Destruktor
-   * @warning Muss aufgerufen werden, da log file descriptor
-   *          sonst nicht geschlossen wird.
+   * @warning Muss aufgerufen werden, da log file Descriptor
+   *          sonst nicht geschlossen wird
    **/
   ~logging();
 
@@ -91,20 +94,20 @@ class logging : public abstract_singleton {
 #define LOG_TRACE(str)                                                        \
     static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(  \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::TRACE,     \
-                          __FILE__, __LINE__);
+                          __FILE__, __LINE__, __PRETTY_FUNCTION__);
 
 #define LOG_DEBUG(str)                                                        \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::DEBUG,     \
-                                         __FILE__, __LINE__);
+                                         __FILE__, __LINE__, __PRETTY_FUNCTION__);
 
 #define LOG_WARNING(str)                                                      \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
                    se2::util::LOGGER_PLUGIN))->log(str, se2::util::WARNING,   \
-                                         __FILE__, __LINE__);
+                                         __FILE__, __LINE__, __PRETTY_FUNCTION__);
 
 #define LOG_ERROR(str)                                                        \
   static_cast<se2::util::logging*>(se2::util::singleton_mgr::get_instance(    \
-                            se2::util::LOGGER_PLUGIN))->log(str,              \
-                                   se2::util::ERROR, __FILE__, __LINE__);
+                   se2::util::LOGGER_PLUGIN))->log(str,                       \
+                   se2::util::ERROR, __FILE__, __LINE__, __PRETTY_FUNCTION__);
 #endif // SE2_LOGGING_HPP

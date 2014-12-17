@@ -93,8 +93,6 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_BUTTON_RESET);
   m_error += test_single_mapping_equal(EVENT_BUTTON_E_STOP,
                                        DISPATCHED_EVENT_BUTTON_E_STOP);
-  m_error += test_single_mapping_equal(EVENT_BUTTON_E_STOP_R,
-                                       DISPATCHED_EVENT_BUTTON_E_STOP_R);
   m_error += test_single_mapping_equal(EVENT_SENSOR_ENTRANCE,
                                        DISPATCHED_EVENT_SENSOR_ENTRANCE);
   m_error += test_single_mapping_equal(EVENT_SENSOR_ENTRANCE_R,
@@ -121,26 +119,34 @@ int dispatcher_test::test_mapping() {
                                        DISPATCHED_EVENT_SERIAL_MSG);
   m_error += test_single_mapping_equal(EVENT_SERIAL_NEXT_OK,
                                        DISPATCHED_EVENT_SERIAL_NEXT_OK);
+  m_error += test_single_mapping_equal(EVENT_SERIAL_E_STOPP,
+                                       DISPATCHED_EVENT_SERIAL_E_STOPP);
   m_error += test_single_mapping_equal(EVENT_SERIAL_ERR,
                                        DISPATCHED_EVENT_SERIAL_ERR);
   m_error += test_single_mapping_equal(EVENT_SERIAL_UNK,
                                        DISPATCHED_EVENT_SERIAL_UNK);
-  m_error += test_single_mapping_equal(EVENT_SEG1_EXCEEDED,
-                                       DISPATCHED_EVENT_SEG1_EXCEEDED);
-  m_error += test_single_mapping_equal(EVENT_SEG2_EXCEEDED,
-                                       DISPATCHED_EVENT_SEG2_EXCEEDED);
-  m_error += test_single_mapping_equal(EVENT_SEG3_EXCEEDED,
-                                       DISPATCHED_EVENT_SEG3_EXCEEDED);
-  m_error += test_single_mapping_equal(EVENT_SLIDE_FULL,
-                                       DISPATCHED_EVENT_SLIDE_FULL);
-  m_error += test_single_mapping_equal(EVENT_OPEN_SWITCH,
-                                       DISPATCHED_EVENT_OPEN_SWITCH);
-  m_error += test_single_mapping_equal(EVENT_TURN_TOKEN,
-                                       DISPATCHED_EVENT_TURN_TOKEN);
-  m_error += test_single_mapping_equal(EVENT_REMOVE_TOKEN,
-                                       DISPATCHED_EVENT_REMOVE_TOKEN);
-  m_error += test_single_mapping_equal(EVENT_TOKEN_FINISHED,
-                                       DISPATCHED_EVENT_TOKEN_FINISHED);
+  m_error += test_single_mapping_equal(EVENT_SEG1_HAS_TO_EXPIRE,
+                                       DISPATCHED_EVENT_SEG1_HAS_TO_EXPIRE);
+  m_error += test_single_mapping_equal(EVENT_SEG2_HAS_TO_EXPIRE,
+                                       DISPATCHED_EVENT_SEG2_HAS_TO_EXPIRE);
+  m_error += test_single_mapping_equal(EVENT_SEG3_HAS_TO_EXPIRE,
+                                       DISPATCHED_EVENT_SEG3_HAS_TO_EXPIRE);
+  m_error += test_single_mapping_equal(EVENT_SEG1_TOO_LATE,
+                                       DISPATCHED_EVENT_SEG1_TOO_LATE);
+  m_error += test_single_mapping_equal(EVENT_SEG2_TOO_LATE,
+                                       DISPATCHED_EVENT_SEG2_TOO_LATE);
+  m_error += test_single_mapping_equal(EVENT_SEG3_TOO_LATE,
+                                       DISPATCHED_EVENT_SEG3_TOO_LATE);
+  m_error += test_single_mapping_equal(EVENT_SLIDE_FULL_TIMEOUT,
+                                       DISPATCHED_EVENT_SLIDE_FULL_TIMEOUT);
+  m_error += test_single_mapping_equal(EVENT_TURN_TOKEN_TIMEOUT,
+                                       DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT);
+  m_error += test_single_mapping_equal(EVENT_REMOVE_TOKEN_TIMEOUT,
+                                       DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT);
+  m_error += test_single_mapping_equal(EVENT_CLOSE_SWITCH_TIME,
+                                       DISPATCHED_EVENT_CLOSE_SWITCH_TIME);
+  m_error += test_single_mapping_equal(EVENT_TRANSFER_TIMEOUT,
+                                       DISPATCHED_EVENT_TRANSFER_TIMEOUT);
   return m_error;
 }
 
@@ -161,9 +167,6 @@ int dispatcher_test::test_function_address_reg() {
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_BUTTON_E_STOP],
       &fsm::events::dispatched_event_button_e_stop);
-  m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_BUTTON_E_STOP_R],
-      &fsm::events::dispatched_event_button_e_stop_rising);
   m_error += test_single_fun_ptr(
       m_dispatcher->m_functions[DISPATCHED_EVENT_SENSOR_ENTRANCE],
       &fsm::events::dispatched_event_sensor_entrance);
@@ -210,29 +213,38 @@ int dispatcher_test::test_function_address_reg() {
       m_dispatcher->m_functions[DISPATCHED_EVENT_SERIAL_UNK],
       &fsm::events::dispatched_event_serial_unk);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG1_EXCEEDED],
-      &fsm::events::dispatched_event_seg1_exceeded);
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG1_HAS_TO_EXPIRE],
+      &fsm::events::dispatched_event_seg1_has_to_expire);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG2_EXCEEDED],
-      &fsm::events::dispatched_event_seg2_exceeded);
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG2_HAS_TO_EXPIRE],
+      &fsm::events::dispatched_event_seg2_has_to_expire);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG3_EXCEEDED],
-      &fsm::events::dispatched_event_seg3_exceeded);
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG3_HAS_TO_EXPIRE],
+      &fsm::events::dispatched_event_seg3_has_to_expire);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_SLIDE_FULL],
-      &fsm::events::dispatched_event_slide_full);
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG1_TOO_LATE],
+      &fsm::events::dispatched_event_seg1_too_late);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_OPEN_SWITCH],
-      &fsm::events::dispatched_event_open_switch);
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG2_TOO_LATE],
+      &fsm::events::dispatched_event_seg2_too_late);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_TURN_TOKEN],
-      &fsm::events::dispatched_event_turn_token);
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SEG3_TOO_LATE],
+      &fsm::events::dispatched_event_seg3_too_late);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_REMOVE_TOKEN],
-      &fsm::events::dispatched_event_remove_token);
+      m_dispatcher->m_functions[DISPATCHED_EVENT_SLIDE_FULL_TIMEOUT],
+      &fsm::events::dispatched_event_slide_full_timeout);
   m_error += test_single_fun_ptr(
-      m_dispatcher->m_functions[DISPATCHED_EVENT_TOKEN_FINISHED],
-      &fsm::events::dispatched_event_token_finished);
+      m_dispatcher->m_functions[DISPATCHED_EVENT_TURN_TOKEN_TIMEOUT],
+      &fsm::events::dispatched_event_turn_token_timeout);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_REMOVE_TOKEN_TIMEOUT],
+      &fsm::events::dispatched_event_remove_token_timeout);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_CLOSE_SWITCH_TIME],
+      &fsm::events::dispatched_event_close_switch_time);
+  m_error += test_single_fun_ptr(
+      m_dispatcher->m_functions[DISPATCHED_EVENT_TRANSFER_TIMEOUT],
+      &fsm::events::dispatched_event_tansfer_timeout);
   return m_error;
 }
 
@@ -265,21 +277,15 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_button_reset()" << std::endl;
 #endif
-    register_for_next(EVENT_BUTTON_RESET, EVENT_BUTTON_E_STOP);
+    register_for_next(EVENT_BUTTON_RESET, EVENT_SENSOR_ENTRANCE);
   }
 
   void dispatched_event_button_e_stop() {
-#ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_button_e_stop()" << std::endl;
-#endif
-    register_for_next(EVENT_BUTTON_E_STOP, EVENT_BUTTON_E_STOP_R);
+    // nop
   }
 
   void dispatched_event_button_e_stop_rising() {
-#ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_button_e_stop_rising()" << std::endl;
-#endif
-    register_for_next(EVENT_BUTTON_E_STOP_R, EVENT_SENSOR_ENTRANCE);
+    // nop
   }
 
   void dispatched_event_sensor_entrance() {
@@ -370,7 +376,18 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_serial_next_ok()" << std::endl;
 #endif
-    register_for_next(EVENT_SERIAL_NEXT_OK, EVENT_SERIAL_UNK);
+    register_for_next(EVENT_SERIAL_NEXT_OK, EVENT_SERIAL_TRANSFER_FIN);
+  }
+
+  void dispatched_event_serial_transfer_fin() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_serial_transfer_fin()" << std::endl;
+#endif
+    register_for_next(EVENT_SERIAL_TRANSFER_FIN, EVENT_SERIAL_ERR);
+  }
+
+  void dispatched_event_serial_e_stopp() {
+
   }
 
   void dispatched_event_serial_err() {
@@ -384,63 +401,84 @@ class state : public se2::fsm::events {
 #ifdef PRINT_TRANSITIONS
     std::cout << "dispatched_event_serial_unk()" << std::endl;
 #endif
-    register_for_next(EVENT_SERIAL_UNK, EVENT_SEG1_EXCEEDED);
+    register_for_next(EVENT_SERIAL_UNK, EVENT_SEG1_HAS_TO_EXPIRE);
   }
 
-  void dispatched_event_seg1_exceeded() {
+  void dispatched_event_seg1_has_to_expire() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_seg1_exceeded()" << std::endl;
+    std::cout << "dispatched_event_seg1_has_to_expire()" << std::endl;
 #endif
-    register_for_next(EVENT_SEG1_EXCEEDED, EVENT_SEG2_EXCEEDED);
+    register_for_next(EVENT_SEG1_HAS_TO_EXPIRE, EVENT_SEG2_HAS_TO_EXPIRE);
   }
 
-  void dispatched_event_seg2_exceeded() {
+  void dispatched_event_seg2_has_to_expire() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_seg2_exceeded()" << std::endl;
+    std::cout << "dispatched_event_seg2_has_to_expire()" << std::endl;
 #endif
-    register_for_next(EVENT_SEG2_EXCEEDED, EVENT_SEG3_EXCEEDED);
+    register_for_next(EVENT_SEG2_HAS_TO_EXPIRE, EVENT_SEG3_HAS_TO_EXPIRE);
   }
 
-  void dispatched_event_seg3_exceeded() {
+  void dispatched_event_seg3_has_to_expire() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_seg3_exceeded()" << std::endl;
+    std::cout << "dispatched_event_seg3_has_to_expire()" << std::endl;
 #endif
-    register_for_next(EVENT_SEG3_EXCEEDED, EVENT_SLIDE_FULL);
+    register_for_next(EVENT_SEG3_HAS_TO_EXPIRE, EVENT_SEG1_TOO_LATE);
   }
 
-  void dispatched_event_slide_full() {
+  void dispatched_event_seg1_too_late() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_slide_full()" << std::endl;
+    std::cout << "dispatched_event_seg1_too_late()" << std::endl;
 #endif
-    register_for_next(EVENT_SLIDE_FULL, EVENT_OPEN_SWITCH);
+    register_for_next(EVENT_SEG1_TOO_LATE, EVENT_SEG2_TOO_LATE);
   }
 
-  void dispatched_event_open_switch() {
+  void dispatched_event_seg2_too_late() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_open_switch()" << std::endl;
+    std::cout << "dispatched_event_seg2_too_late()" << std::endl;
 #endif
-    register_for_next(EVENT_OPEN_SWITCH, EVENT_TURN_TOKEN);
+    register_for_next(EVENT_SEG2_TOO_LATE, EVENT_SEG3_TOO_LATE);
   }
 
-  void dispatched_event_turn_token() {
+  void dispatched_event_seg3_too_late() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_turn_token()" << std::endl;
+    std::cout << "dispatched_event_seg3_too_late()" << std::endl;
 #endif
-    register_for_next(EVENT_TURN_TOKEN, EVENT_REMOVE_TOKEN);
+    register_for_next(EVENT_SEG3_TOO_LATE, EVENT_SLIDE_FULL_TIMEOUT);
   }
 
-  void dispatched_event_remove_token() {
+  void dispatched_event_slide_full_timeout() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_remove_token()" << std::endl;
+    std::cout << "dispatched_event_slide_full_timeout()" << std::endl;
 #endif
-    register_for_next(EVENT_REMOVE_TOKEN, EVENT_TOKEN_FINISHED);
+    register_for_next(EVENT_SLIDE_FULL_TIMEOUT, EVENT_TURN_TOKEN_TIMEOUT);
   }
 
-  void dispatched_event_token_finished() {
+  void dispatched_event_turn_token_timeout() {
 #ifdef PRINT_TRANSITIONS
-    std::cout << "dispatched_event_token_finished()" << std::endl;
+    std::cout << "dispatched_event_turn_token_timeout()" << std::endl;
 #endif
-    if (dispatcher_test::s_assumed_next != EVENT_TOKEN_FINISHED) {
+    register_for_next(EVENT_TURN_TOKEN_TIMEOUT, EVENT_REMOVE_TOKEN_TIMEOUT);
+  }
+
+  void dispatched_event_remove_token_timeout() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_remove_token_timeout()" << std::endl;
+#endif
+    register_for_next(EVENT_REMOVE_TOKEN_TIMEOUT, EVENT_CLOSE_SWITCH_TIME);
+  }
+
+  void dispatched_event_close_switch_time() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_close_switch_time()" << std::endl;
+#endif
+    register_for_next(EVENT_CLOSE_SWITCH_TIME, EVENT_TRANSFER_TIMEOUT);
+  }
+
+  void dispatched_event_tansfer_timeout() {
+#ifdef PRINT_TRANSITIONS
+    std::cout << "dispatched_event_tansfer_timeout()" << std::endl;
+#endif
+    if (dispatcher_test::s_assumed_next != EVENT_TRANSFER_TIMEOUT) {
       ++dispatcher_test::s_error;
     }
   }
@@ -465,8 +503,6 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_BUTTON_START);
   m_dispatcher->direct_call_event(EVENT_BUTTON_STOP);
   m_dispatcher->direct_call_event(EVENT_BUTTON_RESET);
-  m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP);
-  m_dispatcher->direct_call_event(EVENT_BUTTON_E_STOP_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_ENTRANCE);
   m_dispatcher->direct_call_event(EVENT_SENSOR_ENTRANCE_R);
   m_dispatcher->direct_call_event(EVENT_SENSOR_HEIGHT);
@@ -480,16 +516,20 @@ int dispatcher_test::test_small_fsm() {
   m_dispatcher->direct_call_event(EVENT_SERIAL_DATA);
   m_dispatcher->direct_call_event(EVENT_SERIAL_MSG);
   m_dispatcher->direct_call_event(EVENT_SERIAL_NEXT_OK);
+  m_dispatcher->direct_call_event(EVENT_SERIAL_TRANSFER_FIN);
   m_dispatcher->direct_call_event(EVENT_SERIAL_ERR);
   m_dispatcher->direct_call_event(EVENT_SERIAL_UNK);
-  m_dispatcher->direct_call_event(EVENT_SEG1_EXCEEDED);
-  m_dispatcher->direct_call_event(EVENT_SEG2_EXCEEDED);
-  m_dispatcher->direct_call_event(EVENT_SEG3_EXCEEDED);
-  m_dispatcher->direct_call_event(EVENT_SLIDE_FULL);
-  m_dispatcher->direct_call_event(EVENT_OPEN_SWITCH);
-  m_dispatcher->direct_call_event(EVENT_TURN_TOKEN);
-  m_dispatcher->direct_call_event(EVENT_REMOVE_TOKEN);
-  m_dispatcher->direct_call_event(EVENT_TOKEN_FINISHED);
+  m_dispatcher->direct_call_event(EVENT_SEG1_HAS_TO_EXPIRE);
+  m_dispatcher->direct_call_event(EVENT_SEG2_HAS_TO_EXPIRE);
+  m_dispatcher->direct_call_event(EVENT_SEG3_HAS_TO_EXPIRE);
+  m_dispatcher->direct_call_event(EVENT_SEG1_TOO_LATE);
+  m_dispatcher->direct_call_event(EVENT_SEG2_TOO_LATE);
+  m_dispatcher->direct_call_event(EVENT_SEG3_TOO_LATE);
+  m_dispatcher->direct_call_event(EVENT_SLIDE_FULL_TIMEOUT);
+  m_dispatcher->direct_call_event(EVENT_TURN_TOKEN_TIMEOUT);
+  m_dispatcher->direct_call_event(EVENT_REMOVE_TOKEN_TIMEOUT);
+  m_dispatcher->direct_call_event(EVENT_CLOSE_SWITCH_TIME);
+  m_dispatcher->direct_call_event(EVENT_TRANSFER_TIMEOUT);
   return s_error;
 }
 
@@ -501,8 +541,6 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_START);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_STOP);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_RESET);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_E_STOP);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_BUTTON_E_STOP_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT,
                EVENT_SENSOR_ENTRANCE);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT,
@@ -517,21 +555,25 @@ int dispatcher_test::dispatcher_thread_test() {
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, INTERRUPT, EVENT_SENSOR_EXIT_R);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_DATA);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_MSG);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_ERR);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_NEXT_OK);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_TRANSFER_FIN);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_ERR);
   MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, SERIAL, EVENT_SERIAL_UNK);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG1_EXCEEDED);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG2_EXCEEDED);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG3_EXCEEDED);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SLIDE_FULL);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_OPEN_SWITCH);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_TURN_TOKEN);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_REMOVE_TOKEN);
-  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_TOKEN_FINISHED);
-  sleep(1);// 1 sek warten damit die FSM auch fertig ist
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG1_HAS_TO_EXPIRE);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG2_HAS_TO_EXPIRE);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG3_HAS_TO_EXPIRE);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG1_TOO_LATE);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG2_TOO_LATE);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SEG3_TOO_LATE);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_SLIDE_FULL_TIMEOUT);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_TURN_TOKEN_TIMEOUT);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_REMOVE_TOKEN_TIMEOUT);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_CLOSE_SWITCH_TIME);
+  MsgSendPulse(coid, SIGEV_PULSE_PRIO_INHERIT, TIMER, EVENT_TRANSFER_TIMEOUT);
+  sleep(1); // 1 sek warten damit die FSM auch fertig ist
             // Das ausloesen der Uebergaenge wird von dem Dispatcher Thread
-            // gemacht. Deshalb ist dieser Teil asynchron.
-  if (dispatcher_test::s_assumed_next != EVENT_TOKEN_FINISHED) {
+            // gemacht. Deshalb ist dieser Teil asynchron
+  if (dispatcher_test::s_assumed_next != EVENT_TRANSFER_TIMEOUT) {
     // Pruefen ob FSM alle Signale erhalten hat
     ++s_error;
   }

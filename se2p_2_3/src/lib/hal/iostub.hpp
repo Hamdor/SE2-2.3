@@ -50,45 +50,45 @@ struct iostub : public abstract_inout {
 
   /**
    * Schreibt einen Wert auf den angegebenen Port
-   * @param port gibt den port an
-   * @param val  gibt den wert an
+   * @param port Gibt den Port an
+   * @param val  Gibt den Wert an
    **/
   void outshort(enum port_num port, uint16_t val);
 
   /**
    * Liest einen Wert vom angegebenen Port
-   * @return den Wert des Ports
+   * @return Den Wert des Ports
    **/
   uint16_t inshort(enum port_num port);
 
   /**
    * Schreibt einen Wert auf den angegebenen Port
-   * @param port gibt den port an
-   * @param val  gibt den wert an
+   * @param port Gibt den Port an
+   * @param val  Gibt den Wert an
    **/
   void outbyte(enum port_num port, uint8_t val);
 
   /**
    * Liest einen Wert vom angegebenen Port
-   * @return den Wert des Ports
+   * @return Den Wert des Ports
    **/
   uint8_t inbyte(enum port_num port);
 
   /**
    * Schreibt ein Bit auf die angegebene Position des
    * angegebenen Ports
-   * @param port gibt den Port an
-   * @param pos gibt das Bit an
-   * @param set gibt an ob das Bit gesetzt werden soll
-   * @return den Wert des Ports
+   * @param port Gibt den Port an
+   * @param pos Gibt das Bit an
+   * @param set Gibt an ob das Bit gesetzt werden soll
+   * @return Den Wert des Ports
    **/
   void outbit(enum port_num port, uint8_t pos, bool set);
 
   /**
    * Liest einen Wert vom angegebenen Port
-   * @param port gibt den Port an
-   * @param bit gibt das Bit an
-   * @return den Wert des Ports
+   * @param port Gibt den Port an
+   * @param bit Gibt das Bit an
+   * @return Den Wert des Ports
    **/
   uint8_t inbit(enum port_num port, uint8_t bit);
 

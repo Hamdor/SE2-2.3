@@ -17,24 +17,28 @@
  ******************************************************************************/
 /**
  * @file    timer_wrapper.cpp
- * @version 0.1
+ * @version 0.2
  *
  * Wrapper fuer timer struct
  **/
 
 #include "lib/timer/timer_wrapper.hpp"
+#include "lib/timer/time_utils.hpp"
 #include "lib/util/logging.hpp"
+#include <cstring>
 
 using namespace se2;
-using namespace timer;
 using namespace se2::util;
-#define MILISEC_TO_NANOSEC 1000
+using namespace se2::timer;
+
+#define MILISEC_TO_NANOSEC 1000000
 
 timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
     : m_coid(0), m_paused(false) {
   m_coid = ConnectAttach(0, 0, chid, _NTO_SIDE_CHANNEL, 0);
   if (m_coid == -1) {
     LOG_ERROR("ConnectAttach() failed in timer_wrapper()")
+    perror("");
   }
   SIGEV_PULSE_INIT(&m_event, m_coid,
                    SIGEV_PULSE_PRIO_INHERIT, TIMER, pulse_value);
@@ -48,6 +52,7 @@ timer_wrapper::timer_wrapper(duration time, int pulse_value, int chid)
 }
 
 timer_wrapper::~timer_wrapper() {
+  stop_timer();
   int rc = ConnectDetach(m_coid);
   if (rc == -1) {
     LOG_ERROR("ConnectDetach() failed in ~timer_wrapper()")
@@ -68,15 +73,15 @@ void timer_wrapper::reset_timer() {
 void timer_wrapper::start_timer() {
   int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
   if (rc == -1) {
-    LOG_ERROR("timer_settime() failed in start_timer()")
+    std::stringstream ss;
+    ss << "timer_settime() failed in start_timer() sec: "
+       << m_duration.sec << " msec: " << m_duration.msec;
+    LOG_ERROR(ss.str().c_str());
   }
 }
 
 void timer_wrapper::stop_timer() {
-  m_timer.it_value.tv_sec = 0;
-  m_timer.it_value.tv_sec = 0;
-  m_timer.it_interval.tv_sec = 0;
-  m_timer.it_interval.tv_nsec = 0;
+  std::memset(&m_timer, 0, sizeof(itimerspec));
   int rc = timer_settime(m_timerid, 0, &m_timer, NULL);
   if (rc == -1) {
     LOG_ERROR("timer_settime() failed in stop_timer()")
@@ -86,7 +91,9 @@ void timer_wrapper::stop_timer() {
 
 void timer_wrapper::pause_timer() {
   if (!m_paused) {
-    int rc = timer_settime(m_timerid, 0, &m_timer, &m_temp_timer);
+    itimerspec nullspec;
+    std::memset(&nullspec, 0, sizeof(itimerspec));
+    int rc = timer_settime(m_timerid, 0, &nullspec, &m_temp_timer);
     if (rc == -1) {
       LOG_ERROR("timer_settime() failed in pause_timer()")
     }
@@ -105,9 +112,13 @@ void timer_wrapper::continue_timer() {
 }
 
 void timer_wrapper::add_time(duration timer) {
-  timer_gettime(m_timerid, &m_timer);
+  itimerspec tempspec;
+  std::memset(&tempspec, 0, sizeof(itimerspec));
+  timer_gettime(m_timerid, &tempspec);
   stop_timer();
-  m_timer.it_value.tv_sec += timer.sec;
-  m_timer.it_value.tv_sec += timer.msec * MILISEC_TO_NANOSEC ;
+  const timespec durspec = { timer.sec, (long)timer.msec * MILISEC_TO_NANOSEC };
+  timespec curspec  = tempspec.it_value;
+  tempspec.it_value = time_utils::add(curspec, durspec);
+  m_timer = tempspec;
   start_timer();
 }

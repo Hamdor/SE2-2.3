@@ -61,7 +61,7 @@ telegram serial_channel::get_telegram() {
 }
 
 void serial_channel::initialize() {
-  start(0); // startet thread
+  start(0); // Startet thread
 }
 
 void serial_channel::destroy() {
@@ -79,6 +79,10 @@ void serial_channel::execute(void*) {
     if (data.m_type == MSG) {
       if (data.m_msg == B2_FREE) {
         value = EVENT_SERIAL_NEXT_OK;
+      } else if (data.m_msg == B2_TRANS_FIN) {
+        value = EVENT_SERIAL_TRANSFER_FIN;
+      } else if (data.m_msg == E_STOP) {
+        value = EVENT_SERIAL_E_STOPP;
       } else {
         value = EVENT_SERIAL_MSG;
       }
@@ -87,10 +91,10 @@ void serial_channel::execute(void*) {
     } else if (data.m_type == ERR) {
       value = EVENT_SERIAL_ERR;
     } else {
-      // unkown ...
+      // Unkown
       value = EVENT_SERIAL_UNK;
     }
-    {
+    if (data.m_type == DATA) {
       lock_guard lock(m_lock);
       m_queue.push(data);
       m_cond.broadcast();

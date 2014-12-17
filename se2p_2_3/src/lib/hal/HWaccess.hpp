@@ -46,7 +46,7 @@ namespace hal {
 struct hwaccess : public util::abstract_singleton {
   friend class util::singleton_mgr;
   /**
-   * Control Klasse fuerr den ISR Teil der HAL
+   * Control Klasse fuer den ISR Teil der HAL
    * Diese Klasse ist nur von `hwaccess` zugaenglich
    * Kapselt alle benoetigten Daten fuer die ISR
    **/
@@ -93,15 +93,15 @@ struct hwaccess : public util::abstract_singleton {
   /**
    * Prueft ob die angegebene Lichtschranke unterbrochen ist
    * @param  barrier Gibt die Lichtschranke an
-   * @return TRUE  wenn Lichtschranke durchbrochen,
-   *         FALSE wenn Lichtschranke geschlossen
+   * @return TRUE  Wenn Lichtschranke durchbrochen,
+   *         FALSE Wenn Lichtschranke geschlossen
    **/
   bool obj_in_light_barrier(enum light_barriers barrier) const;
 
   /**
    * Prueft ob das Objekt im Tolleranzbereich ist
-   * @return TRUE  wenn Objekt im Tolleranzbereich
-   *         FALSE wenn Objekt nicht im Tolleranzbereich
+   * @return TRUE  Wenn Objekt im Tolleranzbereich
+   *         FALSE Wenn Objekt nicht im Tolleranzbereich
    **/
   bool obj_has_valid_height() const;
 
@@ -113,22 +113,22 @@ struct hwaccess : public util::abstract_singleton {
 
   /**
    * Prüft ob sich Metall im Metallsensor befindet
-   * @return TRUE  wenn Metall im Sensor
-   *         FALSE wenn kein Metall im Sensor
+   * @return TRUE  Wenn Metall im Sensor
+   *         FALSE Wenn kein Metall im Sensor
    **/
   bool obj_has_metal() const;
 
   /**
    * Prueft ob die Weiche offen ist
-   * @return TRUE  wenn Weiche geoeffnet
-   *         FALSE wenn Weiche geschlossen
+   * @return TRUE  Wenn Weiche geoeffnet
+   *         FALSE Wenn Weiche geschlossen
    **/
   bool is_switch_open() const;
 
   /**
-   * Prueft ob der Motor laeft
-   * @return TRUE  wenn der Motor laeuft
-   *         FALSE wenn der Motor nicht laeuft
+   * Prueft ob der Motor laeuft
+   * @return TRUE  Wenn der Motor laeuft
+   *         FALSE Wenn der Motor nicht laeuft
    **/
   bool is_motor_running() const;
 
@@ -142,8 +142,8 @@ struct hwaccess : public util::abstract_singleton {
   /**
    * Prueft ob ein Button gedrueckt ist
    * @param  key Bestimmt den zu pruefenden Button
-   * @return TRUE  wenn Button gedrueckt
-   *         FALSE wenn Button nicht gedrueckt
+   * @return TRUE  Wenn Button gedrueckt
+   *         FALSE Wenn Button nicht gedrueckt
    **/
   bool is_button_pressed(enum buttons key) const;
 
@@ -173,7 +173,7 @@ struct hwaccess : public util::abstract_singleton {
 
   /**
    * Initialisiert die ISR sowie die notwendigen
-   * Datenstrutkuren.
+   * Datenstrutkuren
    **/
   void init_isr();
 

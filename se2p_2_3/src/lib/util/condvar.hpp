@@ -35,23 +35,23 @@ namespace util {
 
 struct condvar {
   /**
-   * Konsturktor condvar. Erstellt eine neue Conditionvariable,
-   * diese ist mit dem referenzierten Mutex verknüpft.
-   * @param mutex ist die Referenz auf ein mutex
+   * Default Konstruktor condvar
+   * Erstellt eine neue Conditionvariable,
+   * diese ist mit dem referenzierten Mutex verknüpft
+   * @param mutex Ist die Referenz auf ein Mutex
    */
   condvar(mutex& mutex);
 
   /**
-   * Destruktor
+   * Default Destruktor
    */
   virtual ~condvar();
 
   /**
    * Auf dieser Conditionvariable blockieren, bis diese
-   * Conditionvariable signalisiert wird.
-   *
+   * Conditionvariable signalisiert wird
    * @return EINVAL `pthread_mutex_t` oder `pthread_cond_t` sind ungültig
-   *         EINVAL Der aufrufende Thread war/ist nicht im besitzt von
+   *         EINVAL Der aufrufende Thread war/ist nicht im Besitz von
    *         `pthread_mutex_t`
    *         0 bei Erfolg
    */
@@ -59,7 +59,7 @@ struct condvar {
 
   /**
    * Diese Funktion entblockt einen Thread der auf diese Conditionvariable
-   * blockieren.
+   * blockiert
    * @returns EINVAL `pthread_cond_t` wurde nicht initialisiert
    *          0 bei Erfolg
    */

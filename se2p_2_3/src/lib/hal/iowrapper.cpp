@@ -16,7 +16,7 @@
  * Gruppe 2.3                                                                 *
  ******************************************************************************/
 /**
- * @file    abstract_inout.hpp
+ * @file    abstract_inout.cpp
  * @version 0.1
  *
  * Implementierung des Wrappers für QNX in8 und out8
@@ -27,6 +27,7 @@
 #include <iostream>
 
 using namespace se2::hal;
+
 
 iowrapper::iowrapper() {
   // nop

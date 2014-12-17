@@ -43,9 +43,6 @@
                                // auf ein Ereignis der Seriellen Schnittstelle
                                // sondern auch auf Sensor Entrance.
 
-//#define UNIT_TEST_SENDER // Aktiviert Senderseite im Unit-Test fuer
-                           // die Serielle chnittstelle
-
 //#define SIMULATION   // Aktiviert die Verbindung zur Simulation, hat zur
                        // Folge dass `ioaccess.h` in `abstract_inout.hpp`
                        // inkludiert wird. Dadurch koennen die Original
@@ -72,6 +69,10 @@
                                     // Der Name des generieten Logfiles setzt
                                     // sich wie folgt zusammen:
                                     // "log_{prozess ID}_{UNIX_TIME}.log"
+
+#define LOG_TRACE_STDIO  // Alle Ausgaben werden auch in den STDIO geloggt
+                         // Im Normalfall ist dies die Konsole von Momentics.
+
 /**
  * ----------------------------------------------------------------------------
  * Serielle Schnittstelle Spezifische Defines

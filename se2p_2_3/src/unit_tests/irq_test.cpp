@@ -63,26 +63,11 @@ int irq_test::after() {
 }
 
 int irq_test::after_class() {
-  delete m_hal;
   return 0;
 }
 
-/**
- * TODO:
- * Als FSM implementieren. Das Problem ist wahrscheinlich,
- * dass der Dispatcher die Pulse Message bekommt. Deshalb
- * sollte hier eine FSM sein die sich bei dem Dispatcher
- * anmelden kann...
- **/
 int irq_test::open_switch() {
   m_hal->open_switch();
-  struct _pulse msg;
-  MsgReceivePulse(m_hal->get_isr_channel(), &msg, sizeof(msg), NULL);
-  bitset<32> expected(0b00000000000000000010000000000000);
-  bitset<32> value(msg.value.sival_int);
-  if (expected != value) {
-    m_error++;
-  }
   return m_error;
 }
 

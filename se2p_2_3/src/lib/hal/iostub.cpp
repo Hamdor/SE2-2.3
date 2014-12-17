@@ -23,7 +23,7 @@
  **/
 
 #include "lib/hal/iostub.hpp"
-#include "lib/hal/HWaccess.hpp" // for defines
+#include "lib/hal/HWaccess.hpp"
 
 using namespace se2::hal;
 
@@ -77,7 +77,7 @@ void iostub::outbit(enum port_num port, uint8_t pos, bool set) {
       if (pos == SWITCH_BIT) {
         /**
          * Das Bit muss auch gesetzt werden, da der Switch
-         * noch einen 2ten anschluss besitzt
+         * noch einen 2ten Anschluss besitzt
          **/
         m_port_b |= (0x01 << SWITCH_OPEN_BIT);
       }
@@ -86,7 +86,7 @@ void iostub::outbit(enum port_num port, uint8_t pos, bool set) {
       if (pos == SWITCH_BIT) {
         /**
          * Das Bit muss auch gesetzt werden, da der Switch
-         * noch einen 2ten anschluss besitzt
+         * noch einen 2ten Anschluss besitzt
          **/
         m_port_b &= ~(0x01 << SWITCH_OPEN_BIT);
       }

@@ -29,7 +29,7 @@
 #include "lib/timer/timer_wrapper.hpp"
 #include "lib/constants.hpp"
 
-#include <vector>
+#include <map>
 
 namespace se2 {
 namespace util {
@@ -41,15 +41,15 @@ class timer_handler : public util::abstract_singleton {
 friend class util::singleton_mgr;
  public:
   /**
-   * Registriert timer
+   * Registriert Timer
    * @param time Dauer des Timers
-   * @param value Wert der die Pulsemsg senden soll
+   * @param value Wert der die Pulsemessage senden soll
    * @return Position des neuen Timers
    **/
   int register_timer(duration time, int value);
   /**
    * Wechselt den Pulse Message Channel
-   * @param chid ist channel id
+   * @param chid Ist channel ID
    **/
   void change_channel(int chid);
 
@@ -84,20 +84,21 @@ friend class util::singleton_mgr;
   /**
    * Addiert die angegebene Zeit
    * @param pos Position des Timers
-   * @param time zu addierende Zeit
+   * @param time Zu addierende Zeit
    **/
   void add_time(size_t pos, duration time);
 
   /**
    * Addiert die angegebene Zeit auf alle Timer
-   * @param time zu addierende Zeit
+   * @param time Zu addierende Zeit
    **/
   void add_all(duration time);
 
 
  private:
+  static size_t IDs;
   static timer_handler* instance;
-  std::vector<timer_wrapper*> timers;
+  std::map<size_t, timer_wrapper*> timers;
   int m_chid;
   /**
    * Initialisierung des Singletons
@@ -109,15 +110,15 @@ friend class util::singleton_mgr;
    **/
   virtual void destroy();
 
-   /**
-    * Konstruktor
-    **/
-   timer_handler();
+  /**
+   * Default Konstruktor
+   **/
+  timer_handler();
 
   /**
    * Default Destruktor
    * */
-   ~timer_handler();
+  ~timer_handler();
 };
 
 } // namespace timer
