@@ -90,14 +90,7 @@ struct dispatcher : public abstract_dispatcher
 
   static dispatcher* instance;
 
-  /**
-   * Initialisierung des Singletons
-   **/
   virtual void initialize();
-
-  /**
-   * Zerstoerung des Singleton
-   **/
   virtual void destroy();
 
   /**
