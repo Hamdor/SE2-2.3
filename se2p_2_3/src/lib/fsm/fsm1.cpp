@@ -474,6 +474,10 @@ b1_token_ready_for_b2::b1_token_ready_for_b2(token* t) : state::state(t) {
     telegram tg(m_token);
     TO_SERIAL(singleton_mgr::get_instance(SERIAL_PLUGIN))->send_telegram(&tg);
     mgr->notify_token_trasition();
+    disp->register_listener(m_token, EVENT_TRANSFER_TIMEOUT);
+    timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
+    const duration dur = { TRANSFER_SEC__TIMEOUT, TRANSFER_MSEC_TIMEOUT };
+    m_token->add_timer_id(hdl->register_timer(dur, EVENT_TRANSFER_TIMEOUT));
   }
 }
 
@@ -496,11 +500,11 @@ void b1_token_ready_for_b2::dispatched_event_serial_next_ok() {
  **/
 void b1_token_ready_for_b2::dispatched_event_sensor_exit_rising() {
   LOG_TRACE("")
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
+  mgr->notify_token_trasition();
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_TRANSFER_TIMEOUT);
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
-  mgr->notify_token_trasition();
   timer_handler* hdl = TO_TIMER(singleton_mgr::get_instance(TIMER_PLUGIN));
   const duration dur = { TRANSFER_SEC__TIMEOUT, TRANSFER_MSEC_TIMEOUT };
   m_token->add_timer_id(hdl->register_timer(dur, EVENT_TRANSFER_TIMEOUT));
