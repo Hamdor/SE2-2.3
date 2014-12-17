@@ -339,6 +339,7 @@ b1_exit::b1_exit(token* t) : state::state(t) {
   LOG_TRACE("b1_exit::b1_exit")
   if (m_token->is_upside_down()) {
     new (this) b1_token_upside_down(m_token);
+    TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START, true);
   } else {
     new (this) b1_token_ready_for_b2(m_token);
   }
@@ -352,8 +353,6 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
   LOG_TRACE("")
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(TURN_TOKEN);
-  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_led_state(LED_START,1);
   token_mgr* mgr  = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
   dispatcher* disp =
@@ -373,7 +372,7 @@ b1_token_upside_down::b1_token_upside_down(token* t) : state::state(t) {
  * nach Band 2
  **/
 void b1_token_upside_down::dispatched_event_button_start() {
-  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START,0);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START, false);
   LOG_TRACE("")
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
@@ -400,6 +399,7 @@ void b1_token_upside_down::dispatched_event_sensor_exit_rising() {
  **/
 void b1_token_upside_down::dispatched_event_remove_token_timeout() {
   LOG_TRACE("")
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START,false);
   m_token->delete_timers();
   new (this) err_token_not_removed_from_end(m_token);
 }
@@ -431,6 +431,8 @@ void b1_token_upside_down_lift_up::dispatched_event_sensor_exit() {
  **/
 void b1_token_upside_down_lift_up::dispatched_event_turn_token_timeout() {
   LOG_TRACE("")
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START,false);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_RESET, true);
   new (this) err_runtime_too_long(m_token);
 }
 
@@ -448,6 +450,7 @@ b1_token_upside_down_put_back::b1_token_upside_down_put_back(token* t)
  **/
 void b1_token_upside_down_put_back::dispatched_event_button_start() {
   LOG_TRACE("")
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START, false);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));

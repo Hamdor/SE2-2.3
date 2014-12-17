@@ -316,8 +316,6 @@ b2_is_wrong_order::b2_is_wrong_order(token* t) : state::state(t) {
   disp->register_listener(m_token, EVENT_SENSOR_ENTRANCE);
   // Auch hier wieder sensetiv, damit kein unexpected token ausgeloest wird
   disp->register_listener(m_token, EVENT_SENSOR_HEIGHT);
-  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
-  lmgr->set_state(REMOVE_TOKEN);
 }
 
 /**
@@ -325,6 +323,8 @@ b2_is_wrong_order::b2_is_wrong_order(token* t) : state::state(t) {
  **/
 void b2_is_wrong_order::dispatched_event_sensor_entrance() {
   LOG_TRACE("")
+  light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
+  lmgr->set_state(REMOVE_TOKEN);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
   dispatcher* disp = TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));

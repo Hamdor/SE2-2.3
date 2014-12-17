@@ -155,7 +155,8 @@ void err_token_not_removed_from_end_token_removed::dispatched_event_button_start
 err_token_not_removed_from_end_quitted::
 err_token_not_removed_from_end_quitted(token* t) : state::state(t) {
   LOG_TRACE("")
-  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START,1);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_RESET, false);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START, true);
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
   dispatcher* disp =
@@ -165,6 +166,9 @@ err_token_not_removed_from_end_quitted(token* t) : state::state(t) {
 
 void err_token_not_removed_from_end_quitted::dispatched_event_button_start() {
   LOG_TRACE("")
+  hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
+  hal->set_led_state(LED_RESET, false);
+  hal->set_led_state(LED_START, false);
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
   dispatcher* disp =
@@ -312,7 +316,7 @@ void err_unexpected_token_quitted::dispatched_event_button_start() {
 err_token_not_removed_turnover::err_token_not_removed_turnover(token* t)
     : state::state(t) {
   LOG_TRACE("")
-  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_RESET, false);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_START, false);
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_NOT_RESOLVED);
 }
