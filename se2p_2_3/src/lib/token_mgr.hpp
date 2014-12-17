@@ -215,6 +215,13 @@ class token_mgr : public util::abstract_singleton {
   bool is_motor_slow() const;
 
   /**
+   * Prueft ob der Motor gestoppt ist
+   * @return TRUE  wenn der Motor gestoppt ist
+   *         FALSE wenn der Motor laeuft
+   **/
+  bool is_motor_stopped() const;
+
+  /**
    * Gibt die verbleibende Zeit zurueck bis der Motor wieder
    * schnell gestellt wird
    * @return ein neues timespec mit der restlichen Zeit

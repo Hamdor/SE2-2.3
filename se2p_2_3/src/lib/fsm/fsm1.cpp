@@ -83,6 +83,10 @@ b1_realized_object::b1_realized_object(token* t) : state::state(t) {
     const duration dur = { addspec.tv_sec, (size_t)addspec.tv_nsec / MILISEC_TO_NANOSEC };
     hdl->add_time(idx, dur);
   }
+  if (mgr->is_motor_stopped()) {
+    // motor ist gestoppt, timer pausieren...
+    hdl->pause_timer(idx);
+  }
 }
 
 /**

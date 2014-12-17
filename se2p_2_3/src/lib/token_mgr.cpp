@@ -294,6 +294,10 @@ bool token_mgr::is_motor_slow() const {
   return m_motor_slow;
 }
 
+bool token_mgr::is_motor_stopped() const {
+  return m_motor_stop;
+}
+
 timespec token_mgr::get_motor_slow_diff() const {
   timespec diffspec;
   clock_gettime(CLOCK_REALTIME, &diffspec);
