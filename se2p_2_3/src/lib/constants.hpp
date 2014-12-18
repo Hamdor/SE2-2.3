@@ -596,7 +596,7 @@ struct duration {
 #define LIFT_UP_MSEC_TIMEOUT         0
 
 // Timeout zum Drehen des Pucks
-#define TURNOVER_SEC__TIMEOUT        5
+#define TURNOVER_SEC__TIMEOUT       10
 #define TURNOVER_MSEC_TIMEOUT        0
 
 // Time fuer schliessen der Weiche
