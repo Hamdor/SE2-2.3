@@ -1076,7 +1076,7 @@ Eine Übersicht, welcher Abnahme-Test welche Requirements abdeckt, findet sich i
       \hline
       \rowcolor{lightgray} TF04 & Manuell werden drei zu kleine Pucks in die Rutsche von B1 gelegt. Danach wird ein zu kleiner Puck an den Anfang von B1 gelegt. Nach Auftreten des Fehlers wird ein Puck aus der Rutsche genommen. & Der zu kleine Puck wird auf B1 aussortiert. Es wird erkannt, dass die Rutsche voll ist. B1 geht in den Fehlerzustand über, die Ampel blinkt schnell rot. & FR-004, FR-006.1, FR-006.2, FR-011, FR-016, FR-017, FR-019.1, FR-019.2, FR-019.3, FR-019.4, FR-019.5, FR-023\\
       \hline
-      TF05 & Ein Nicht-Metall- und ein Metall-Puck werden auf B1 gelegt. Nach der Weiche wird der zweite Puck entfernt. & Das Band hält an und die Ampel von B1 blinkt rot. & FR-004, FR-006.1, FR-006.2, FR-011, FR-016, FR-017, FR-019.1, FR-019.2, FR-019.3, FR-019.4, FR-019.5, FR-023\\
+      TF05 & Ein Nicht-Metall- und ein Metall-Puck werden auf B1 gelegt. Nach der Weiche wird der zweite Puck entfernt. & Das Band hält an und die Ampel von B1 blinkt rot. &FR-004, FR-017, FR-019.1, FR-019.2,FR-019.3, FR-019.5, FR-021, FR-027, FR-029.1, NFR-004.3\\
       \hline
       \rowcolor{lightgray} TF06 & Zwei Nicht-Metall-Pucks werden so auf B1 gelegt, dass ein weiterer Puck dazwischen passt. Vor der Höhenmessung wird ein Metall-Puck dazwischen gelegt. Sobald der Fehlerzustand eintritt, wird die E-Stopp-Taste betätigt. & Das Band hält an und die Ampel von B1 blinkt rot. Nachdem der E-Stopp betätigt und die Programme neugestartet wurden, ist die Anlage wieder betriebsbereit. & FR-009.1, FR-009.2, FR-009.3, FR-009.4, FR-011, FR-016, FR-017, FR-019.1, FR-019.2, FR-019.3, FR-019.5, FR-029.1, FR-029.2, NFR-004.1, NFR-004.2\\
       \hline
@@ -1097,21 +1097,21 @@ Eine Übersicht, welcher Abnahme-Test welche Requirements abdeckt, findet sich i
 % 8.5.3 Abdeckung der Functional Requirements [1/2]
 \begin{figure}[p]
   \subsubsection{Abdeckung der Functional Requirements [1/2]}
-  \centering\includegraphics[angle=90,scale=0.305]{imgs/Req_Test_Abdeckung_1.png}
+  \centering\includegraphics[angle=90,scale=0.7]{imgs/Req_Test_Abdeckung_1.png}
   \caption{Abdeckung der Functional Requirements [1/2]}
 \end{figure}
 
 % 8.5.4 Abdeckung der Functional Requirements [2/2]
 \begin{figure}[p]
   \subsubsection{Abdeckung der Functional Requirements [2/2]}
-  \centering\includegraphics[angle=90,scale=0.305]{imgs/Req_Test_Abdeckung_2.png}
+  \centering\includegraphics[angle=90,scale=0.7]{imgs/Req_Test_Abdeckung_2.png}
   \caption{Abdeckung der Functional Requirements [2/2]}
 \end{figure}
 
 % 8.5.5 Abdeckung der Non-functional Requirements
 \begin{figure}[p]
   \subsubsection{Abdeckung der Non-functional Requirements}
-  \centering\includegraphics[angle=90,scale=0.305]{imgs/Req_Test_Abdeckung_3.png}
+  \centering\includegraphics[angle=90,scale=0.8]{imgs/Req_Test_Abdeckung_3.png}
   \caption{Abdeckung der Non-functional Requirements}
 \end{figure}
 
@@ -1132,7 +1132,28 @@ in die Lichtschranke der Weiche gekommen ist, jedoch nicht auf dessen Event sens
 Das nachfolgende Werkstück hat die Weiche geöffnet, dadurch konnte dann das zu kleine Werkstück die Weiche passieren und den Weichenbereich verlassen. Die Weiche wurde geschlossen
 und das Werkstück mit korrekter Höhe wurde aussortiert. \newline\newline
 11.12.2014: Bei den Tests fiel auf, dass anstatt eines Blinkens ein Dauerlicht geleuchtet hat und dass am Ende von B2 keine gelbe Signalleuchte zum Entnehmen eines Pucks aktiv war. Dies erforderte jedoch nur kleine Änderungen, die vor Ort vorgenommen wurden. Bei den erneut ausgeführten Tests lief alles wie erwartet.\newline\newline
-\newline\newline\textcolor{red}{\textbf{Das letzte Testprotokoll ist das Abnahmeprotokoll, das bei der abschließenden Vorführung erstellt wird. Es enthält eine Auflistung der erfolgreich vorgeführten Funktionen des Systems sowie eine Mängelliste mit Erklärungen der Ursachen der Fehlfunktionen und Vorschlägen zur Abhilfe}}
+\newpage
+
+% 8.7 Abnahmeprotokoll
+\subsection{Abnahmeprotokoll vom 18.12.2014}
+Am Donnerstag, den 18.12.2014, hat im Praktikumstermin eine erfolgreiche Abnahme des Projekts stattgefunden.\newline
+Bei der Abnahme wurden von den Abnahmetests die Testfälle TG00 bis TG06 ( siehe Unterpunkt 8.5.1 : Abnahme-Tests für die Grundfunktionen der Anlage) erfolgreich vorgeführt. \newline
+Außerdem wurden folgende Tests erfolgreich durchgeführt: 
+\begin{itemize}
+    \item Im laufenden Normalbetrieb wurde ein Puck zwischen der Ausgangslichtschranke von B1 und der Eingangslichtschranke von B2 entnommen. Die Anlage hat korrekt reagiert, indem beide Bänder in den Fehlerzustand übergingen und beide Ampeln schnell rot blinkten. 
+    \item Im laufenden Normalbetrieb wurde in das dritte Segment von B1 ein Puck hinzugefügt. Die Anlage hat korrekt reagiert und die zu kurze Laufzeit in Segment drei über ein schnelles Blinken der roten Ampel signalisiert. 
+\end{itemize}
+Des Weiteren wurden Tests durchgeführt, auf die die Anlage nicht korrekt reagiert hat:
+\begin{itemize}
+    \item Es wurden zwei Pucks auf B1 gelegt. Während der zweite Puck am Ende von B1 darauf wartete, dass B2 frei wird, wurde er entnommen und nicht wieder zurückgelegt. Hierauf zeigte B2 den Fehler mittels schnellem Blinken der roten Ampel an, während die Ampel von B1 weiterhin einen fehlerfreien Betrieb anzeigte.
+    \item Die Rutsche von B1 wurde mit Pucks belegt, sodass die Aussortierung eines flachen Pucks die Rutsche voll werden ließ. Die Anlage hat richtig reagiert und die Ampel schnell rot blinken lassen. Anschließend wurde ein Puck aus der Rutsche entnommen, ohne dass vorher der Fehler quittiert wurde. Korrekterweise hätte das schnelle Blinken nun in ein langsames übergehen sollen, um einen unquittierten gegangenen Fehler anzuzeigen; die Ampel hat allerdings schnell rot weitergeblinkt.
+    \item Es trat die Situation auf, dass der Motor von B2 weiterlief, obwohl keine Pucks mehr auf B2 lagen.
+\end{itemize}
+Es kam auch zu Fehlverhalten der Anlage (z.B. Motor wird nicht wieder schneller nach der Höhenmessung), welches bei erneutem Ausführen des Tests mit gleicher Abfolge allerdings nicht auftrat. Dies liegt möglicherweise daran, dass Interrupts, die einen Zustandswechsel des Pucks auslösen, nicht korrekt angekommen sind. Weiterhin könnte die Interrupt Service Routine überprüft werden.\newline\newline
+Überdies wurde angemerkt, dass eine Fehlerbehandlung in Form einer E-Stopp-Taster-Betätigung nicht optimal ist. Hier würde sich eine andere Fehlerbehandlung anbieten, die es nicht erforderlich macht, dass die Programme neu gestartet werden müssen.\newline
+Auch ist es nicht ideal oder notwendig, auf eine Betätigung der E-Stopp-Taste mit einem Beenden der beiden Programme zu reagieren. Aufgrund des Zeitmangels erschien diese Lösung allerdings am sinnvollsten und besten umsetzbar.
+
+
 
 \newpage
 
