@@ -251,9 +251,10 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
       mgr->enter_safe_state();
     } break;
+    case EVENT_SENSOR_SWITCH:
+      break;
     case EVENT_SENSOR_ENTRANCE:
     case EVENT_SENSOR_HEIGHT:
-    case EVENT_SENSOR_SWITCH:
     case EVENT_SENSOR_SLIDE:
     case EVENT_SENSOR_EXIT: {
       dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
@@ -296,7 +297,7 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       int mask  = ISR_CONCURRENT_HANDLE_START_MASK;
       for (int i = 0; i < ISR_USED_BITS; ++i) {
         event = mask & buffer.value.sival_int;
-        if (event) {
+        if (event > 0) {
           dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
               static_cast<event_values>(event));
           if (devent == DISPATCHED_EVENT_MAX) {

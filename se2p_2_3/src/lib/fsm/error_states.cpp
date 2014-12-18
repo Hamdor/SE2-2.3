@@ -37,7 +37,7 @@ err_slide_full::err_slide_full(token* t) : state::state(t) {
   lmgr->set_state(ERROR_NOT_RESOLVED);
   token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->request_stop_motor();
-  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_RESET,1);
+  TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN))->set_led_state(LED_RESET, true);
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_RESET);
@@ -57,10 +57,10 @@ void err_slide_full::dispatched_event_button_reset() {
 err_slide_full_quitted::err_slide_full_quitted(token* t) : state::state(t) {
   LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_led_state(LED_RESET,0);
+  hal->set_led_state(LED_RESET, false);
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(ERROR_RESOLVED);
-  hal->set_led_state(LED_START,1);
+  hal->set_led_state(LED_START, true);
   dispatcher* disp =
       TO_DISPATCHER(singleton_mgr::get_instance(DISPATCHER_PLUGIN));
   disp->register_listener(m_token, EVENT_BUTTON_START);
@@ -69,15 +69,16 @@ err_slide_full_quitted::err_slide_full_quitted(token* t) : state::state(t) {
 void err_slide_full_quitted::dispatched_event_button_start() {
   LOG_TRACE("")
   hwaccess* hal = TO_HAL(singleton_mgr::get_instance(HAL_PLUGIN));
-  hal->set_led_state(LED_START,0);
+  hal->set_led_state(LED_START, false);
+  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   if (hal->obj_in_light_barrier(SENSOR_SLIDE)) {
     // rutsche wurde nicht geleert...
+	mgr->unrequest_stop_motor();
     new (this) err_slide_full(m_token);
     return;
   }
   light_mgr* lmgr = TO_LIGHT(singleton_mgr::get_instance(LIGHT_PLUGIN));
   lmgr->set_state(READY_TO_USE);
-  token_mgr* mgr = TO_TOKEN_MGR(singleton_mgr::get_instance(TOKEN_PLUGIN));
   mgr->unrequest_stop_motor();
   mgr->notify_death();
   new (this) anonymous_token(m_token);

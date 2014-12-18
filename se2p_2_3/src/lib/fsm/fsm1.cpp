@@ -224,6 +224,7 @@ void b1_token_too_small::dispatched_event_sensor_slide_rising() {
  **/
 void b1_token_too_small::dispatched_event_slide_full_timeout() {
   LOG_TRACE("")
+  m_token->delete_timers();
   new (this) err_slide_full(m_token);
 }
 
