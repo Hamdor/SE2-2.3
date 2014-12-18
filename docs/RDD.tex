@@ -831,7 +831,7 @@ siehe Abbildungen 3-5 auf den Seiten 19-21
 % 6.3.1 Automat für Band 1
 \begin{figure}[p]
   \subsubsection{Automat für Band 1}
-  \centering\includegraphics[angle=90,scale=0.59]{imgs/Band1_FSM.png}
+  \centering\includegraphics[angle=90,scale=0.6]{imgs/Band1_FSM.png}
   \caption{Automat für Band 1}
 \end{figure}
 
@@ -846,7 +846,7 @@ siehe Abbildungen 3-5 auf den Seiten 19-21
 % 6.3.3 Automat für die Fehlerbehebung
 \begin{figure}[p]
   \subsubsection{Automat für die Fehlerbehebung}
-  \centering\includegraphics[angle=90,scale=0.5]{imgs/Error_FSM.png}
+  \centering\includegraphics[angle=90,scale=0.56]{imgs/Error_FSM.png}
   \caption{Automat für die Fehlerbehebung}
 \end{figure}
 
@@ -1101,21 +1101,21 @@ Eine Übersicht, welcher Abnahme-Test welche Requirements abdeckt, findet sich i
 % 8.5.3 Abdeckung der Functional Requirements [1/2]
 \begin{figure}[p]
   \subsubsection{Abdeckung der Functional Requirements [1/2]}
-  \centering\includegraphics[angle=90,scale=0.7]{imgs/Req_Test_Abdeckung_1.png}
+  \centering\includegraphics[angle=90,scale=0.95]{imgs/Req_Test_Abdeckung_1.png}
   \caption{Abdeckung der Functional Requirements [1/2]}
 \end{figure}
 
 % 8.5.4 Abdeckung der Functional Requirements [2/2]
 \begin{figure}[p]
   \subsubsection{Abdeckung der Functional Requirements [2/2]}
-  \centering\includegraphics[angle=90,scale=0.7]{imgs/Req_Test_Abdeckung_2.png}
+  \centering\includegraphics[angle=90,scale=0.95]{imgs/Req_Test_Abdeckung_2.png}
   \caption{Abdeckung der Functional Requirements [2/2]}
 \end{figure}
 
 % 8.5.5 Abdeckung der Non-functional Requirements
 \begin{figure}[p]
   \subsubsection{Abdeckung der Non-functional Requirements}
-  \centering\includegraphics[angle=90,scale=0.8]{imgs/Req_Test_Abdeckung_3.png}
+  \centering\includegraphics[angle=90,scale=0.95]{imgs/Req_Test_Abdeckung_3.png}
   \caption{Abdeckung der Non-functional Requirements}
 \end{figure}
 
@@ -1141,7 +1141,7 @@ und das Werkstück mit korrekter Höhe wurde aussortiert. \newline\newline
 % 8.7 Abnahmeprotokoll
 \subsection{Abnahmeprotokoll vom 18.12.2014}
 Am Donnerstag, den 18.12.2014, hat im Praktikumstermin eine erfolgreiche Abnahme des Projekts stattgefunden.\newline
-Bei der Abnahme wurden von den Abnahmetests die Testfälle TG00 bis TG06 ( siehe Unterpunkt 8.5.1 : Abnahme-Tests für die Grundfunktionen der Anlage) erfolgreich vorgeführt. \newline
+Bei der Abnahme wurden von den Abnahmetests die Testfälle TG00 bis TG06 (siehe Unterpunkt 8.5.1: Abnahme-Tests für die Grundfunktionen der Anlage) erfolgreich vorgeführt.\newline
 Außerdem wurden folgende Tests erfolgreich durchgeführt: 
 \begin{itemize}
     \item Im laufenden Normalbetrieb wurde ein Puck zwischen der Ausgangslichtschranke von B1 und der Eingangslichtschranke von B2 entnommen. Die Anlage hat korrekt reagiert, indem beide Bänder in den Fehlerzustand übergingen und beide Ampeln schnell rot blinkten. 
@@ -1150,19 +1150,21 @@ Außerdem wurden folgende Tests erfolgreich durchgeführt:
 Des Weiteren wurden Tests durchgeführt, auf die die Anlage nicht korrekt reagiert hat:
 \begin{enumerate}
     \item Es wurden zwei Pucks auf B1 gelegt. Während der zweite Puck am Ende von B1 darauf wartete, dass B2 frei wird, wurde er entnommen und nicht wieder zurückgelegt. Hierauf zeigte B2 den Fehler mittels schnellem Blinken der roten Ampel an, während die Ampel von B1 weiterhin einen fehlerfreien Betrieb anzeigte.
-    \item Die Rutsche von B1 wurde mit Pucks belegt, sodass die Aussortierung eines flachen Pucks die Rutsche voll werden ließ. Die Anlage hat richtig reagiert und die Ampel schnell rot blinken lassen. Anschließend wurde ein Puck aus der Rutsche entnommen, ohne dass vorher der Fehler quittiert wurde. Korrekterweise hätte das schnelle Blinken nun in ein langsames übergehen sollen, um einen unquittierten gegangenen Fehler anzuzeigen; die Ampel hat allerdings schnell rot weitergeblinkt.
+    \item Die Rutsche von B1 wurde mit Pucks belegt, sodass das Aussortieren eines flachen Pucks die Rutsche voll werden ließ. Die Anlage hat richtig reagiert und die Ampel schnell rot blinken lassen. Anschließend wurde ein Puck aus der Rutsche entnommen, ohne dass vorher der Fehler quittiert wurde. Korrekterweise hätte das schnelle Blinken nun in ein langsames übergehen sollen, um einen unquittierten gegangenen Fehler anzuzeigen; die Ampel hat allerdings schnell rot weitergeblinkt.
     \item Es trat die Situation auf, dass der Motor von B2 weiterlief, obwohl keine Pucks mehr auf B2 lagen.
 \end{enumerate}
 Es kam auch zu Fehlverhalten der Anlage (z.B. Motor wird nicht wieder schneller nach der Höhenmessung), welches bei erneutem Ausführen des Tests mit gleicher Abfolge allerdings nicht auftrat. Dies liegt möglicherweise daran, dass Interrupts, die einen Zustandswechsel des Pucks auslösen, nicht korrekt angekommen sind. Weiterhin könnte die Interrupt Service Routine überprüft werden.\newline\newline
 Überdies wurde angemerkt, dass eine Fehlerbehandlung in Form einer E-Stopp-Taster-Betätigung nicht optimal ist. Hier würde sich eine andere Fehlerbehandlung anbieten, die es nicht erforderlich macht, dass die Programme neu gestartet werden müssen.\newline
 Auch ist es nicht ideal oder notwendig, auf eine Betätigung der E-Stopp-Taste mit einem Beenden der beiden Programme zu reagieren. Aufgrund des Zeitmangels erschien diese Lösung allerdings am sinnvollsten und besten umsetzbar.
 
+\newpage
+
 \subsubsection{Visionen zur Behebung der Mängel}
 Die Nummerierung der Mängel wie aus der vorherigen Sektion (8.7 Abnahmeprotokoll vom 18.12.2014).
 \begin{enumerate}
- \item Das entfernte Werkstück sollte sensitiv auf das Event für die steigende Flanke der Ausgangslichtschranke sein. Der Zustand in dem sich das Werkstück zu diesem Zeitpunkt befand sollte außerdem ein Handler für dieses Event bereitstellen.
- \item Es wäre notwendig, dass der Fehlerzustand auf das Event für die steigende Flanke der Rutschenlichtschranke reagiert. Hierzu muss ein passender Handler geschrieben werden, der den Zustand der Ampel ändert.
- \item In seltenen Fällen werden Interrupts von der Software nicht erkannt. Dies könnte einem Fehler in der ISR geschuldet sein und würde weitere Prüfung benötigen.
+ \item Das entfernte Werkstück sollte sensitiv auf das Event für die steigende Flanke der Ausgangslichtschranke sein. Der Zustand in dem sich das Werkstück zu diesem Zeitpunkt befand, sollte außerdem ein Handler für dieses Event bereitstellen.
+ \item Es wäre notwendig, dass der Fehlerzustand auf das Event für die steigende Flanke der Lichtschranke der Rutsche reagiert. Hierzu muss ein passender Handler geschrieben werden, der den Zustand der Ampel ändert.
+ \item In seltenen Fällen werden Interrupts von der Software nicht erkannt. Dies könnte einem Fehler in der ISR geschuldet sein und würde einer weiterer Prüfung benötigen.
 \end{enumerate}
  
 \newpage
