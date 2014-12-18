@@ -297,7 +297,14 @@ void dispatcher::special_case_handling(const _pulse& buffer) {
       for (int i = 0; i < ISR_USED_BITS; ++i) {
         event = mask & buffer.value.sival_int;
         if (event) {
-          direct_call_event(static_cast<event_values>(event));
+          dispatcher_events devent = dispatcher::map_from_event_values(m_mapping,
+              static_cast<event_values>(event));
+          if (devent == DISPATCHED_EVENT_MAX) {
+            break;
+          }
+          if (m_prior_listners[devent] || !m_listeners[devent].empty()) {
+            direct_call_event(static_cast<event_values>(event));
+          }
         }
         mask <<= 1;
       }
