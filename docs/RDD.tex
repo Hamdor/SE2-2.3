@@ -65,7 +65,7 @@
 }
 
 % Titelseite mit Datum und Version erstellen
-\date{\today\thanks{Dokument-Version: 1.0}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
+\date{\today\thanks{Dokument-Version: 1.1}} % ! Hier die Versionsnummer an Versionshistorie anpassen !
 \maketitle
 
 % Versionsverlauf aufbauen
@@ -115,6 +115,8 @@
       0.93 & Marian Triebe & 13.12.2014 & Regressions-Tests aktualisiert, "Lessons Learned" \space begonnen\\
       \hline
       1.0 & Anne-Lena Kowalka & 18.12.2014 & Abnahmeprotokoll hinzugefügt \\
+      \hline
+      1.1 & Marian Triebe & 18.12.2014 & Visionen zur Behebung der Mängel hinzugefügt\\
       \hline
     \end{tabular}
   \end{center}
@@ -1146,17 +1148,23 @@ Außerdem wurden folgende Tests erfolgreich durchgeführt:
     \item Im laufenden Normalbetrieb wurde in das dritte Segment von B1 ein Puck hinzugefügt. Die Anlage hat korrekt reagiert und die zu kurze Laufzeit in Segment drei über ein schnelles Blinken der roten Ampel signalisiert. 
 \end{itemize}
 Des Weiteren wurden Tests durchgeführt, auf die die Anlage nicht korrekt reagiert hat:
-\begin{itemize}
+\begin{enumerate}
     \item Es wurden zwei Pucks auf B1 gelegt. Während der zweite Puck am Ende von B1 darauf wartete, dass B2 frei wird, wurde er entnommen und nicht wieder zurückgelegt. Hierauf zeigte B2 den Fehler mittels schnellem Blinken der roten Ampel an, während die Ampel von B1 weiterhin einen fehlerfreien Betrieb anzeigte.
     \item Die Rutsche von B1 wurde mit Pucks belegt, sodass die Aussortierung eines flachen Pucks die Rutsche voll werden ließ. Die Anlage hat richtig reagiert und die Ampel schnell rot blinken lassen. Anschließend wurde ein Puck aus der Rutsche entnommen, ohne dass vorher der Fehler quittiert wurde. Korrekterweise hätte das schnelle Blinken nun in ein langsames übergehen sollen, um einen unquittierten gegangenen Fehler anzuzeigen; die Ampel hat allerdings schnell rot weitergeblinkt.
     \item Es trat die Situation auf, dass der Motor von B2 weiterlief, obwohl keine Pucks mehr auf B2 lagen.
-\end{itemize}
+\end{enumerate}
 Es kam auch zu Fehlverhalten der Anlage (z.B. Motor wird nicht wieder schneller nach der Höhenmessung), welches bei erneutem Ausführen des Tests mit gleicher Abfolge allerdings nicht auftrat. Dies liegt möglicherweise daran, dass Interrupts, die einen Zustandswechsel des Pucks auslösen, nicht korrekt angekommen sind. Weiterhin könnte die Interrupt Service Routine überprüft werden.\newline\newline
 Überdies wurde angemerkt, dass eine Fehlerbehandlung in Form einer E-Stopp-Taster-Betätigung nicht optimal ist. Hier würde sich eine andere Fehlerbehandlung anbieten, die es nicht erforderlich macht, dass die Programme neu gestartet werden müssen.\newline
 Auch ist es nicht ideal oder notwendig, auf eine Betätigung der E-Stopp-Taste mit einem Beenden der beiden Programme zu reagieren. Aufgrund des Zeitmangels erschien diese Lösung allerdings am sinnvollsten und besten umsetzbar.
 
-
-
+\subsubsection{Visionen zur Behebung der Mängel}
+Die Nummerierung der Mängel wie aus der vorherigen Sektion (8.7 Abnahmeprotokoll vom 18.12.2014).
+\begin{enumerate}
+ \item Das entfernte Werkstück sollte sensitiv auf das Event für die steigende Flanke der Ausgangslichtschranke sein. Der Zustand in dem sich das Werkstück zu diesem Zeitpunkt befand sollte außerdem ein Handler für dieses Event bereitstellen.
+ \item Es wäre notwendig, dass der Fehlerzustand auf das Event für die steigende Flanke der Rutschenlichtschranke reagiert. Hierzu muss ein passender Handler geschrieben werden, der den Zustand der Ampel ändert.
+ \item In seltenen Fällen werden Interrupts von der Software nicht erkannt. Dies könnte einem Fehler in der ISR geschuldet sein und würde weitere Prüfung benötigen.
+\end{enumerate}
+ 
 \newpage
 
 % 9. Lessons Learned
