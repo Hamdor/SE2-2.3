@@ -83,7 +83,7 @@ void token_mgr::update() {
   if (m_alife > 0) {
     hal->set_motor(MOTOR_RIGHT);
   }
-  if (m_motor_slow > 0) {
+  if (m_motor_slow > 0 && m_alife > 0) {
     hal->set_motor(MOTOR_SLOW);
   } else {
     hal->set_motor(MOTOR_FAST);
