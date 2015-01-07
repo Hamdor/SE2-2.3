@@ -10,3 +10,4 @@ Get the Sources
 * git clone https://github.com/Hamdor/SE2-2.3.git
 * cd SE2-2.3
 
+[![HAW TI SE2](http://img.youtube.com/vi/Yw2qV04Hgik/0.jpg)](http://www.youtube.com/watch?v=Yw2qV04Hgik)
